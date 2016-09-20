@@ -742,6 +742,37 @@ INSERT INTO `sql_query` VALUES (1,'select CONCAT(\'$MYSQL_COLUMN_TYPES[\',ID,\']
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sql_templates`
+--
+
+DROP TABLE IF EXISTS `sql_templates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sql_templates` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  KEY `MODIFY_UID` (`MODIFY_UID`),
+  KEY `CREATE_UID` (`CREATE_UID`),
+  CONSTRAINT `sql_templates_ibfk_1` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
+  CONSTRAINT `sql_templates_ibfk_2` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sql_templates`
+--
+
+LOCK TABLES `sql_templates` WRITE;
+/*!40000 ALTER TABLE `sql_templates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sql_templates` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `table_details`
 --
 
@@ -778,7 +809,7 @@ CREATE TABLE `table_details` (
   CONSTRAINT `table_details_ibfk_6` FOREIGN KEY (`COLUMN_INDEX_TYPE_ID`) REFERENCES `list_index_types` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `table_details_ibfk_7` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `table_details_ibfk_8` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -787,7 +818,7 @@ CREATE TABLE `table_details` (
 
 LOCK TABLES `table_details` WRITE;
 /*!40000 ALTER TABLE `table_details` DISABLE KEYS */;
-INSERT INTO `table_details` VALUES (46,195,'ID',5,20,'',0,0,0,1,'',1,1,'2016-09-19 14:13:27','2016-09-19 14:13:27'),(48,195,'APP_ID',5,20,'1',3,2,0,5,'aaa',1,1,'2016-09-19 14:32:08','2016-09-19 14:32:08'),(49,195,'NUME',7,255,'test',0,0,0,5,'aaa',1,1,'2016-09-19 14:34:32','2016-09-19 14:34:32');
+INSERT INTO `table_details` VALUES (46,195,'ID',5,20,'',0,0,0,1,'',1,1,'2016-09-19 14:13:27','2016-09-19 14:13:27'),(48,195,'APP_ID',5,20,'1',3,2,0,5,'aaa',1,1,'2016-09-19 14:32:08','2016-09-19 14:32:08'),(49,195,'NUME',7,255,'test',0,0,0,5,'aaa',1,1,'2016-09-19 14:34:32','2016-09-19 14:34:32'),(50,196,'ID',5,20,'',0,0,0,1,'',1,1,'2016-09-20 14:50:44','2016-09-20 14:50:44'),(51,196,'NAME',7,255,'-',0,0,0,5,'',1,1,'2016-09-20 14:51:34','2016-09-20 14:51:34');
 /*!40000 ALTER TABLE `table_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -821,7 +852,7 @@ CREATE TABLE `tables` (
   CONSTRAINT `tables_ibfk_3` FOREIGN KEY (`TABLE_TYPE`) REFERENCES `list_table_types` (`ID`),
   CONSTRAINT `tables_ibfk_4` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `tables_ibfk_5` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=196 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -830,7 +861,7 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
-INSERT INTO `tables` VALUES (1,1,3,'users',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,1,3,'applications',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,3,'modules',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,1,3,'tables',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,1,3,'forms',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(13,1,3,'list_databases',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(18,1,3,'list_empty',1,'Empty list',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(20,1,3,'list_user_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(35,1,3,'list_no_yes',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(37,1,3,'list_mysql_column_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(42,1,3,'list_index_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(78,1,3,'list_table_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(80,10,7,'categories',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(82,1,3,'list_script_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(83,1,3,'scripts',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(87,7,3,'users',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(88,7,3,'roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(89,7,3,'permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(90,7,3,'user_roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(91,7,3,'role_permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(93,7,3,'list_permission_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(96,1,3,'list_object_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(97,1,3,'views',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(98,7,3,'list_permission_names',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(99,7,3,'user_profiles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(100,10,7,'products',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(101,1,7,'categories',2,'',1,1,'2015-08-19 07:05:34','0000-00-00 00:00:00'),(102,1,7,'products',NULL,'',1,1,'2015-08-19 07:14:13','2015-08-19 07:14:13'),(103,7,3,'scripts',NULL,'',1,1,'2015-08-19 11:48:19','2015-08-19 11:48:19'),(106,1,3,'test',2,'aaa',1,1,'2016-08-22 06:13:00','2016-07-20 05:59:53'),(111,1,2,'test_aa',1,'22',1,1,'2016-08-18 13:31:47','2016-08-17 08:22:25'),(129,1,3,'module_vars',2,'',1,1,'2016-08-29 06:13:16','2016-08-29 06:13:16'),(130,13,2,'sss',2,'',1,1,'2016-08-30 08:53:55','2016-08-30 08:53:55'),(131,1,3,'table_details',2,'',1,1,'2016-08-31 07:10:21','2016-08-31 07:10:21'),(195,1,3,'AA',2,'',1,1,'2016-09-19 14:13:27','2016-09-19 14:13:27');
+INSERT INTO `tables` VALUES (1,1,3,'users',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,1,3,'applications',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,3,'modules',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(4,1,3,'tables',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,1,3,'forms',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(13,1,3,'list_databases',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(18,1,3,'list_empty',1,'Empty list',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(20,1,3,'list_user_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(35,1,3,'list_no_yes',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(37,1,3,'list_mysql_column_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(42,1,3,'list_index_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(78,1,3,'list_table_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(80,10,7,'categories',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(82,1,3,'list_script_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(83,1,3,'scripts',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(87,7,3,'users',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(88,7,3,'roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(89,7,3,'permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(90,7,3,'user_roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(91,7,3,'role_permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(93,7,3,'list_permission_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(96,1,3,'list_object_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(97,1,3,'views',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(98,7,3,'list_permission_names',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(99,7,3,'user_profiles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(100,10,7,'products',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(101,1,7,'categories',2,'',1,1,'2015-08-19 07:05:34','0000-00-00 00:00:00'),(102,1,7,'products',NULL,'',1,1,'2015-08-19 07:14:13','2015-08-19 07:14:13'),(103,7,3,'scripts',NULL,'',1,1,'2015-08-19 11:48:19','2015-08-19 11:48:19'),(106,1,3,'test',2,'aaa',1,1,'2016-08-22 06:13:00','2016-07-20 05:59:53'),(111,1,2,'test_aa',1,'22',1,1,'2016-08-18 13:31:47','2016-08-17 08:22:25'),(129,1,3,'module_vars',2,'',1,1,'2016-08-29 06:13:16','2016-08-29 06:13:16'),(130,13,2,'sss',2,'',1,1,'2016-08-30 08:53:55','2016-08-30 08:53:55'),(131,1,3,'table_details',2,'',1,1,'2016-08-31 07:10:21','2016-08-31 07:10:21'),(195,1,3,'AA',2,'',1,1,'2016-09-19 14:13:27','2016-09-19 14:13:27'),(196,1,3,'sql_templates',2,'',1,1,'2016-09-20 14:50:44','2016-09-20 14:50:44');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1442,4 +1473,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-20 16:41:30
+-- Dump completed on 2016-09-20 17:53:29

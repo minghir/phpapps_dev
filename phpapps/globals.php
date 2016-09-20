@@ -5,7 +5,7 @@ if(!defined('DIR_SEP')) {
 }
 			
 if (!defined('WEB_BASE_DIR')) { // pt link-uri
-	define('WEB_BASE_DIR', 'http://localhost/phpapps_dev/');
+        define('WEB_BASE_DIR', 'http://' . $_SERVER["HTTP_HOST"] . '/phpapps_dev/');
 }			
 			
 if (!defined('GLOBALS_DIR')) { //pt fwrite

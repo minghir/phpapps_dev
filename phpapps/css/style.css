@@ -1,0 +1,40 @@
+a{
+	color: #145A78;
+}
+p{
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 150%;
+}
+body {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 75.5%;
+}
+table,td,th {
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 100%;
+	border: 1px "BFD4FF";
+	border-collapse:collapse;
+}
+
+.test_div{
+	border:1px solid #a1a1a1;
+	padding:10px 40px; 
+	background:#ddddd;
+	width:600px;
+	border-radius:15px;
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 100%;
+	box-shadow: 2px 2px 5px #888888;
+} 
+
+.adm_mod_div{
+	border:1px solid #a1a1a1;
+	padding:10px 40px; 
+	background:#ddddd;
+	width:90%;
+	height:70%;
+	border-radius:15px;
+	font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+	font-size: 100%;
+	box-shadow: 2px 2px 5px #888888;
+} 

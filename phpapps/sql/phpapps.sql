@@ -1063,7 +1063,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'victor','alcatraz','Gigi','Fanica','',1,'bb',2,1,1,'2016-04-05 12:00:49','0000-00-00 00:00:00'),(2,'cornelia','a','ss','','',1,'aa',2,1,1,'2016-04-05 12:00:13','0000-00-00 00:00:00'),(4,'ana','a','aa','aa','aa',1,'aa',2,1,1,'2016-04-05 12:00:13','0000-00-00 00:00:00');
+INSERT INTO `users` VALUES (1,'victor','aa','Gigi','Fanica','',1,'bb',2,1,1,'2016-04-05 12:00:49','0000-00-00 00:00:00'),(2,'cornelia','a','ss','','',1,'aa',2,1,1,'2016-04-05 12:00:13','0000-00-00 00:00:00'),(4,'ana','a','aa','aa','aa',1,'aa',2,1,1,'2016-04-05 12:00:13','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

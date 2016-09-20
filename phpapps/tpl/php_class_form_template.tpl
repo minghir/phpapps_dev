@@ -282,5 +282,5 @@ class {$form_name}{ldelim}
 		
 		$this->globals->sm->fetch($this->template);
 	{rdelim}
-{rdelim};
+{rdelim}
 ?>

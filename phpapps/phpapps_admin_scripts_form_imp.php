@@ -25,7 +25,7 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 		function afterAddRec(){
 			
 			$this->globals->sm->assign(array(
-				"SCRIPT_TEMPLATE_NAME" => $this->SCRIPT_NAME . ".tpl",
+				"CLASS_NAME" => $this->SCRIPT_NAME,
 			));
 			
 			$php_content = $this->globals->sm->fetch('php_new_script_template.tpl');

@@ -1,9 +1,19 @@
 <?php
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-global $GLOBALS_OBJ;
-$GLOBALS_OBJ->sm->assign(array("SCRIPT_CONTENT" => "Your code here.",
-								"PHPAPPS_SMARTY_TPL_DIR" => PHPAPPS_SMARTY_TPL_DIR));
-$GLOBALS_OBJ->sm->display("{$SCRIPT_TEMPLATE_NAME}");
+class {$CLASS_NAME} extends phpapps_display_abs{ldelim}
 
+    var $sm_tpl = "{$CLASS_NAME}.tpl";
+    var $app_id;
+    
+    function __construct($app_id) {ldelim}
+        parent::__construct();
+                
+        $this->app_id = $app_id;
+    {rdelim}
+{rdelim}
+
+$aa  = new {$CLASS_NAME}($_GET["app_id"]);
+$aa->displayTpl();
 ?>

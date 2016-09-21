@@ -7,8 +7,6 @@ include ("gen_php/phpapps_admin_table_details_form.php");
 		var $AFTER_COL = "";
 		
 		public function __construct() {
-		//global $GLOBALS_OBJ;
-		//$this->globals = $GLOBALS_OBJ;
 			parent::__construct();
 		
 			$this->template = "phpapps_admin_table_details_form_imp.tpl";

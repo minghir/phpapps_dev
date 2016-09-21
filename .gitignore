@@ -1,4 +1,4 @@
-/nbproject/private/
-/phpapps/tmp/
-/phpapps/tpl_c/
+nbproject/private/
+phpapps/tmp/
+phpapps/tpl_c/
 phpapps/lib/DB/DB_cfg.php

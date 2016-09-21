@@ -2,23 +2,26 @@
 // includes
 require_once ("globals.php");
 
-class phpapps_admin_list_form{
+class phpapps_database_list_empty_form{
 	public $globals;
 	public $schema = "phpapps";
 	public $table = "list_empty";
-	public $template = "gen_tpl/phpapps_admin_list_form.tpl";
+	public $template = "gen_tpl/phpapps_database_list_empty_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
 	//post values
 	public $pact;
+		public $ID;
 		public $VALUE;
 		public $DESCRIPTION;
 		
 		 
 		 
+		 
 			
+		 
 		 
 		 
 	
@@ -42,7 +45,8 @@ class phpapps_admin_list_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									VALUE,
+									ID,
+												VALUE,
 												DESCRIPTION
 							
 				FROM ".$this->schema.".".$this->table." 
@@ -50,6 +54,7 @@ class phpapps_admin_list_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
+							$this->ID = $this->globals->con->get_field("ID");
 							$this->VALUE = $this->globals->con->get_field("VALUE");
 							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
 						
@@ -66,27 +71,32 @@ class phpapps_admin_list_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
-									VALUE,
+									ID,
+												VALUE,
 												DESCRIPTION
 						 ) VALUES (
-									:VALUE,
+									:ID,
+												:VALUE,
 												:DESCRIPTION
 									)",
 			array(
+									":ID" => $this->ID,
 									":VALUE" => $this->VALUE,
 									":DESCRIPTION" => $this->DESCRIPTION,
 							)
 			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -98,11 +108,13 @@ class phpapps_admin_list_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
-									VALUE = :VALUE,
+									ID = :ID,
+												VALUE = :VALUE,
 												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
+									":ID" => $this->ID,
 									":VALUE" => $this->VALUE,
 									":DESCRIPTION" => $this->DESCRIPTION,
 								":".$this->gfield => $this->gfield_value
@@ -110,14 +122,16 @@ class phpapps_admin_list_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		};
 		
 		$this->afterSaveRec();
 	}
 	
 	function afterSaveRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 
 	function beforeDeleteRec(){
@@ -131,7 +145,7 @@ class phpapps_admin_list_form{
 				
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
-                            $this->errors[] =$sql->sql() ."|". $this->globals->con->get_error();
+                            $this->errors[] = $this->globals->con->get_error();
                         }
 		}
 		
@@ -139,8 +153,7 @@ class phpapps_admin_list_form{
 	}
 	
 	function afterDeleteRec(){
-                echo "<br>aici parinte<br>";
-	//	header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
@@ -168,6 +181,7 @@ class phpapps_admin_list_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
+					$this->ID  = addslashes(trim($_POST["ID"]));
 					$this->VALUE  = addslashes(trim($_POST["VALUE"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
 				
@@ -194,17 +208,22 @@ class phpapps_admin_list_form{
 	function setup_display(){
 					 
 					 
+					 
 				
+					 
 					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
+							"ID" => $this->ID,
 							"VALUE" => $this->VALUE,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
 						 
+						 
 									 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

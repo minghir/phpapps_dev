@@ -1,7 +1,7 @@
 <?php
 require_once ("globals.php");
-include ("gen_php/phpapps_admin_tables_form.php");
-	class phpapps_admin_tables_form_impl  extends phpapps_admin_tables_form{
+include ("gen_php/phpapps_database_tables_form.php");
+	class phpapps_database_tables_form_impl  extends phpapps_database_tables_form{
 	
 		public $table_definition;
 		public $MODULE_ID;
@@ -9,7 +9,7 @@ include ("gen_php/phpapps_admin_tables_form.php");
 		public $TABLE_ID;
 	
 		function __construct(){
-			$this->template = "phpapps_admin_tables_form_imp.tpl";
+			$this->template = "phpapps_database_tables_form_imp.tpl";
 			$this->MODULE_ID = $_GET["module_id"];
 			$this->init();
 
@@ -20,10 +20,10 @@ include ("gen_php/phpapps_admin_tables_form.php");
 		}
 		
 		function dropTable(){
-			$sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA
-			FROM phpapps.view_tables 
-			WHERE ".$this->gfield." = :".$this->gfield." AND MODULE_ID = :module_id",
-			array(":".$this->gfield => $this->gfield_value,":module_id"=>$this->MODULE_ID));
+					$sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA
+					FROM phpapps.view_tables 
+					WHERE ".$this->gfield." = :".$this->gfield." AND MODULE_ID = :module_id",
+					array(":".$this->gfield => $this->gfield_value,":module_id"=>$this->MODULE_ID));
 
 			$this->globals->con->query( $sql );
 			$this->globals->con->next();
@@ -172,7 +172,7 @@ include ("gen_php/phpapps_admin_tables_form.php");
 				$table_details_grid->where_rules = array("TABLE_ID = :table_id");
 				$table_details_grid->where_params = array(":table_id" => $this->ID);
 				$table_details_grid->rows_on_pg = 20;
-				$table_details_grid->edit_form = "phpapps_admin_table_details_form_imp.php?table_id=".$this->ID;
+				$table_details_grid->edit_form = "phpapps_database_table_details_form_imp.php?table_id=".$this->ID;
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
 			}
 		}
@@ -182,5 +182,5 @@ include ("gen_php/phpapps_admin_tables_form.php");
 		
 	};
 	
-	$phpapps_admin_tables_form_Impl = new phpapps_admin_tables_form_impl();
+	$phpapps_database_tables_form_Impl = new phpapps_database_tables_form_impl();
 ?>

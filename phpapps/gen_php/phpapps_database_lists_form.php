@@ -2,23 +2,35 @@
 // includes
 require_once ("globals.php");
 
-class phpapps_admin_list_form{
+class phpapps_database_lists_form{
 	public $globals;
 	public $schema = "phpapps";
-	public $table = "list_empty";
-	public $template = "gen_tpl/phpapps_admin_list_form.tpl";
+	public $table = "tables";
+	public $template = "gen_tpl/phpapps_database_lists_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $VALUE;
+		public $ID;
+		public $MODULE_ID;
+		public $SCHEMA_ID;
+		public $TABLE_NAME;
+		public $TABLE_TYPE;
 		public $DESCRIPTION;
 		
 		 
 		 
+		 
+		 
+		 
+		 
 			
+		 
+		 
+		 
+		 
 		 
 		 
 	
@@ -42,7 +54,11 @@ class phpapps_admin_list_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									VALUE,
+									ID,
+												MODULE_ID,
+												SCHEMA_ID,
+												TABLE_NAME,
+												TABLE_TYPE,
 												DESCRIPTION
 							
 				FROM ".$this->schema.".".$this->table." 
@@ -50,7 +66,11 @@ class phpapps_admin_list_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->VALUE = $this->globals->con->get_field("VALUE");
+							$this->ID = $this->globals->con->get_field("ID");
+							$this->MODULE_ID = $this->globals->con->get_field("MODULE_ID");
+							$this->SCHEMA_ID = $this->globals->con->get_field("SCHEMA_ID");
+							$this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
+							$this->TABLE_TYPE = $this->globals->con->get_field("TABLE_TYPE");
 							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
 						
 	}
@@ -66,27 +86,41 @@ class phpapps_admin_list_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
-									VALUE,
+									ID,
+												MODULE_ID,
+												SCHEMA_ID,
+												TABLE_NAME,
+												TABLE_TYPE,
 												DESCRIPTION
 						 ) VALUES (
-									:VALUE,
+									:ID,
+												:MODULE_ID,
+												:SCHEMA_ID,
+												:TABLE_NAME,
+												:TABLE_TYPE,
 												:DESCRIPTION
 									)",
 			array(
-									":VALUE" => $this->VALUE,
+									":ID" => $this->ID,
+									":MODULE_ID" => $this->MODULE_ID,
+									":SCHEMA_ID" => $this->SCHEMA_ID,
+									":TABLE_NAME" => $this->TABLE_NAME,
+									":TABLE_TYPE" => $this->TABLE_TYPE,
 									":DESCRIPTION" => $this->DESCRIPTION,
 							)
 			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -98,26 +132,36 @@ class phpapps_admin_list_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
-									VALUE = :VALUE,
+									ID = :ID,
+												MODULE_ID = :MODULE_ID,
+												SCHEMA_ID = :SCHEMA_ID,
+												TABLE_NAME = :TABLE_NAME,
+												TABLE_TYPE = :TABLE_TYPE,
 												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-									":VALUE" => $this->VALUE,
+									":ID" => $this->ID,
+									":MODULE_ID" => $this->MODULE_ID,
+									":SCHEMA_ID" => $this->SCHEMA_ID,
+									":TABLE_NAME" => $this->TABLE_NAME,
+									":TABLE_TYPE" => $this->TABLE_TYPE,
 									":DESCRIPTION" => $this->DESCRIPTION,
 								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		};
 		
 		$this->afterSaveRec();
 	}
 	
 	function afterSaveRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 
 	function beforeDeleteRec(){
@@ -131,7 +175,7 @@ class phpapps_admin_list_form{
 				
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
-                            $this->errors[] =$sql->sql() ."|". $this->globals->con->get_error();
+                            $this->errors[] = $this->globals->con->get_error();
                         }
 		}
 		
@@ -139,8 +183,7 @@ class phpapps_admin_list_form{
 	}
 	
 	function afterDeleteRec(){
-                echo "<br>aici parinte<br>";
-	//	header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
@@ -168,7 +211,11 @@ class phpapps_admin_list_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->VALUE  = addslashes(trim($_POST["VALUE"]));
+					$this->ID  = addslashes(trim($_POST["ID"]));
+					$this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
+					$this->SCHEMA_ID  = addslashes(trim($_POST["SCHEMA_ID"]));
+					$this->TABLE_NAME  = addslashes(trim($_POST["TABLE_NAME"]));
+					$this->TABLE_TYPE  = addslashes(trim($_POST["TABLE_TYPE"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
 				
 		switch($this->pact){
@@ -186,25 +233,51 @@ class phpapps_admin_list_form{
 	}
 	
 	function check_errors(){
-				if($this->VALUE == "") {
-			$this->errors[] = "Campul VALUE este obligatoriu!";
+				if($this->MODULE_ID == "") {
+			$this->errors[] = "Campul MODULE_ID este obligatoriu!";
+		}
+				if($this->SCHEMA_ID == "") {
+			$this->errors[] = "Campul SCHEMA_ID este obligatoriu!";
+		}
+				if($this->TABLE_NAME == "") {
+			$this->errors[] = "Campul TABLE_NAME este obligatoriu!";
 		}
 			}
 	
 	function setup_display(){
 					 
 					 
+					 
+					 
+					 
+					 
 				
+					 
+					 
+					 
+					 
 					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
-							"VALUE" => $this->VALUE,
+							"ID" => $this->ID,
+							"MODULE_ID" => $this->MODULE_ID,
+							"SCHEMA_ID" => $this->SCHEMA_ID,
+							"TABLE_NAME" => $this->TABLE_NAME,
+							"TABLE_TYPE" => $this->TABLE_TYPE,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
 						 
+						 
+						 
+						 
+						 
 									 
+						 
+						 
+						 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

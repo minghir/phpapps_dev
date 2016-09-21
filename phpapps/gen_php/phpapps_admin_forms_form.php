@@ -2,23 +2,43 @@
 // includes
 require_once ("globals.php");
 
-class phpapps_admin_list_form{
+class phpapps_admin_forms_form{
 	public $globals;
 	public $schema = "phpapps";
-	public $table = "list_empty";
-	public $template = "gen_tpl/phpapps_admin_list_form.tpl";
+	public $table = "forms";
+	public $template = "gen_tpl/phpapps_admin_forms_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $VALUE;
+		public $ID;
+		public $MODULE_ID;
+		public $FORM_NAME;
+		public $TABLE_ID;
+		public $FORM_QUERY;
+		public $FORM_PHP_DIR;
+		public $FORM_TPL_DIR;
 		public $DESCRIPTION;
 		
 		 
 		 
+		 
+		 
+		 
+		 
+		 
+		 
 			
+		 
+			public $MODULE_ID_sel;
+	 
+		 
+			public $TABLE_ID_sel;
+	 
+		 
+		 
 		 
 		 
 	
@@ -42,7 +62,13 @@ class phpapps_admin_list_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									VALUE,
+									ID,
+												MODULE_ID,
+												FORM_NAME,
+												TABLE_ID,
+												FORM_QUERY,
+												FORM_PHP_DIR,
+												FORM_TPL_DIR,
 												DESCRIPTION
 							
 				FROM ".$this->schema.".".$this->table." 
@@ -50,7 +76,13 @@ class phpapps_admin_list_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->VALUE = $this->globals->con->get_field("VALUE");
+							$this->ID = $this->globals->con->get_field("ID");
+							$this->MODULE_ID = $this->globals->con->get_field("MODULE_ID");
+							$this->FORM_NAME = $this->globals->con->get_field("FORM_NAME");
+							$this->TABLE_ID = $this->globals->con->get_field("TABLE_ID");
+							$this->FORM_QUERY = $this->globals->con->get_field("FORM_QUERY");
+							$this->FORM_PHP_DIR = $this->globals->con->get_field("FORM_PHP_DIR");
+							$this->FORM_TPL_DIR = $this->globals->con->get_field("FORM_TPL_DIR");
 							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
 						
 	}
@@ -66,14 +98,32 @@ class phpapps_admin_list_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
-									VALUE,
+									ID,
+												MODULE_ID,
+												FORM_NAME,
+												TABLE_ID,
+												FORM_QUERY,
+												FORM_PHP_DIR,
+												FORM_TPL_DIR,
 												DESCRIPTION
 						 ) VALUES (
-									:VALUE,
+									:ID,
+												:MODULE_ID,
+												:FORM_NAME,
+												:TABLE_ID,
+												:FORM_QUERY,
+												:FORM_PHP_DIR,
+												:FORM_TPL_DIR,
 												:DESCRIPTION
 									)",
 			array(
-									":VALUE" => $this->VALUE,
+									":ID" => $this->ID,
+									":MODULE_ID" => $this->MODULE_ID,
+									":FORM_NAME" => $this->FORM_NAME,
+									":TABLE_ID" => $this->TABLE_ID,
+									":FORM_QUERY" => $this->FORM_QUERY,
+									":FORM_PHP_DIR" => $this->FORM_PHP_DIR,
+									":FORM_TPL_DIR" => $this->FORM_TPL_DIR,
 									":DESCRIPTION" => $this->DESCRIPTION,
 							)
 			);
@@ -98,12 +148,24 @@ class phpapps_admin_list_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
-									VALUE = :VALUE,
+									ID = :ID,
+												MODULE_ID = :MODULE_ID,
+												FORM_NAME = :FORM_NAME,
+												TABLE_ID = :TABLE_ID,
+												FORM_QUERY = :FORM_QUERY,
+												FORM_PHP_DIR = :FORM_PHP_DIR,
+												FORM_TPL_DIR = :FORM_TPL_DIR,
 												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-									":VALUE" => $this->VALUE,
+									":ID" => $this->ID,
+									":MODULE_ID" => $this->MODULE_ID,
+									":FORM_NAME" => $this->FORM_NAME,
+									":TABLE_ID" => $this->TABLE_ID,
+									":FORM_QUERY" => $this->FORM_QUERY,
+									":FORM_PHP_DIR" => $this->FORM_PHP_DIR,
+									":FORM_TPL_DIR" => $this->FORM_TPL_DIR,
 									":DESCRIPTION" => $this->DESCRIPTION,
 								":".$this->gfield => $this->gfield_value
 			)	
@@ -129,18 +191,15 @@ class phpapps_admin_list_form{
 		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
-		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
-                            $this->errors[] =$sql->sql() ."|". $this->globals->con->get_error();
-                        }
+		if(count($this->errors) == 0) {	
+			$this->globals->con->query($sql);
 		}
 		
 		$this->afterDeleteRec();
 	}
 	
 	function afterDeleteRec(){
-                echo "<br>aici parinte<br>";
-	//	header("Location:win_close.html");
+		header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
@@ -168,7 +227,13 @@ class phpapps_admin_list_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->VALUE  = addslashes(trim($_POST["VALUE"]));
+					$this->ID  = addslashes(trim($_POST["ID"]));
+					$this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
+					$this->FORM_NAME  = addslashes(trim($_POST["FORM_NAME"]));
+					$this->TABLE_ID  = addslashes(trim($_POST["TABLE_ID"]));
+					$this->FORM_QUERY  = addslashes(trim($_POST["FORM_QUERY"]));
+					$this->FORM_PHP_DIR  = addslashes(trim($_POST["FORM_PHP_DIR"]));
+					$this->FORM_TPL_DIR  = addslashes(trim($_POST["FORM_TPL_DIR"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
 				
 		switch($this->pact){
@@ -186,25 +251,62 @@ class phpapps_admin_list_form{
 	}
 	
 	function check_errors(){
-				if($this->VALUE == "") {
-			$this->errors[] = "Campul VALUE este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
 					 
 					 
+					 
+					 
+					 
+					 
+					 
+					 
 				
+					 
+									$this->MODULE_ID_sel = new DB_select("MODULE_ID","phpapps.modules");
+				$this->MODULE_ID_sel->query = "SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM phpapps.modules ORDER BY MODULE_NAME";
+				$this->MODULE_ID_sel->selected_val = $this->MODULE_ID;
+				$this->MODULE_ID_sel->setup_select_options();
+			 
+					 
+									$this->TABLE_ID_sel = new DB_select("TABLE_ID","phpapps.tables");
+				$this->TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME";
+				$this->TABLE_ID_sel->selected_val = $this->TABLE_ID;
+				$this->TABLE_ID_sel->setup_select_options();
+			 
+					 
+					 
 					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
-							"VALUE" => $this->VALUE,
+							"ID" => $this->ID,
+							"MODULE_ID" => $this->MODULE_ID,
+							"FORM_NAME" => $this->FORM_NAME,
+							"TABLE_ID" => $this->TABLE_ID,
+							"FORM_QUERY" => $this->FORM_QUERY,
+							"FORM_PHP_DIR" => $this->FORM_PHP_DIR,
+							"FORM_TPL_DIR" => $this->FORM_TPL_DIR,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
 						 
+						 
+						 
+						 
+						 
+						 
+						 
 									 
+										"MODULE_ID_sel" => $this->MODULE_ID_sel->get_select_str(),
+			 
+						 
+										"TABLE_ID_sel" => $this->TABLE_ID_sel->get_select_str(),
+			 
+						 
+						 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

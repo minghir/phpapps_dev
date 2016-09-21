@@ -3,7 +3,6 @@ require_once ("globals.php");
 //include ("libs/code_editor.php");
 include ("gen_php/phpapps_admin_scripts_form.php");
 	class phpapps_admin_scripts_form_impl  extends phpapps_admin_scripts_form{
-	
 		public $app_name;
 	
 		function __construct(){
@@ -11,9 +10,9 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 			$this->globals = $GLOBALS_OBJ;
 			$this->MODULE_ID = $_GET["module_id"];
 			$sql = new DB_query("SELECT 
-									APP_NAME 
-									FROM phpapps.view_modules 
-									WHERE ID = :module_id", array(":module_id" => $this->MODULE_ID));
+						APP_NAME 
+						FROM phpapps.view_modules 
+						WHERE ID = :module_id", array(":module_id" => $this->MODULE_ID));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			$this->app_name = $this->globals->con->get_field("APP_NAME");
@@ -23,7 +22,6 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 		}
 		
 		function afterAddRec(){
-			
 			$this->globals->sm->assign(array(
 				"CLASS_NAME" => $this->SCRIPT_NAME,
 			));
@@ -49,14 +47,14 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 			}else{
 				$this->errors[] = "TPL SCRIPT FILE EXISTS!";
 			}
-			
-			
 		}
 		
-		function afterDeleteRec(){
-			header("Location:http://localhost/phpapps/phpapps_admin_module.php?module_id=".$this->MODULE_ID);
+		function beforeDeleteRec(){
+                        $this->getRec();
+                        if( !( unlink($this->SCRIPT_NAME . ".php") && unlink("tpl" . DIR_SEP . $this->SCRIPT_NAME . ".tpl") ) ){
+                            $this->errors[] = "FILES UNLINK FAILD !!!!";
+                        }
 		}
-	};
-	
+	}
 	$phpapps_admin_scripts_form_Impl = new phpapps_admin_scripts_form_impl();
 ?>

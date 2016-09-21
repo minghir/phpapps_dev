@@ -37,12 +37,12 @@ class phpapps_admin_tables_form{
 	
 	public $errors = array();
 	
-	function __contruct(){
+	function __construct(){
+		global $GLOBALS_OBJ;
+		$this->globals = $GLOBALS_OBJ;
 	}
 		
 	function init(){
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$this->parsePostVars();
 		} else {
@@ -112,14 +112,16 @@ class phpapps_admin_tables_form{
 			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -151,14 +153,16 @@ class phpapps_admin_tables_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		};
 		
 		$this->afterSaveRec();
 	}
 	
 	function afterSaveRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 
 	function beforeDeleteRec(){
@@ -170,15 +174,17 @@ class phpapps_admin_tables_form{
 		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
-		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+		if(count($this->errors) == 0) {
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		}
 		
 		$this->afterDeleteRec();
 	}
 	
 	function afterDeleteRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
@@ -309,5 +315,5 @@ class phpapps_admin_tables_form{
 		
 		$this->globals->sm->fetch($this->template);
 	}
-};
+}
 ?>

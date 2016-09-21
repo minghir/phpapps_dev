@@ -101,14 +101,16 @@ class {$form_name}{ldelim}
 			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){ldelim}
+                            $this->errors[] = $this->globals->con->get_error();
+                        {rdelim}
 		}
 		
 		$this->afterAddRec();
 	{rdelim}
 	
 	function afterAddRec(){ldelim}
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	{rdelim}
 	
 	function beforeSaveRec(){ldelim}
@@ -137,14 +139,16 @@ class {$form_name}{ldelim}
 			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){ldelim}
+                            $this->errors[] = $this->globals->con->get_error();
+                        {rdelim}
 		};
 		
 		$this->afterSaveRec();
 	{rdelim}
 	
 	function afterSaveRec(){ldelim}
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	{rdelim}
 
 	function beforeDeleteRec(){ldelim}
@@ -156,15 +160,17 @@ class {$form_name}{ldelim}
 		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
-		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
-		}
+		if(count($this->errors) == 0) {ldelim}
+			if( $this->globals->con->query($sql) == -1){ldelim}
+                            $this->errors[] = $this->globals->con->get_error();
+                        {rdelim}
+		{rdelim}
 		
 		$this->afterDeleteRec();
 	{rdelim}
 	
 	function afterDeleteRec(){ldelim}
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	{rdelim}
 	
 	function parseGetVars(){ldelim}

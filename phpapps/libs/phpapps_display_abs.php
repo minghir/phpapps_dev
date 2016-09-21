@@ -15,11 +15,13 @@
 require_once ("globals.php");
 
 abstract class phpapps_display_abs {
-    public $tpl = "phpapps_display_abs.tpl";
+    public $tpl;
     
     public function __construct() {
         global $GLOBALS_OBJ;
         $this->globals = $GLOBALS_OBJ;
+        
+        $this->tpl = "phpapps_display_abs.tpl";
         
         return $this;
     }

@@ -143,20 +143,29 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$lists_grid->filterable = false;
 		$lists_grid->exportable = false;
 		$lists_grid->rows_on_pg = 20;
-		$lists_grid->edit_form = "phpapps_admin_lists_imp.php?module_id=".$this->ID;
+		$lists_grid->edit_form = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		
 		
 		$la = new HrefActions();
-		$la->act_script = "phpapps_admin_lists_imp.php?module_id=".$this->ID;
+		$la->act_script = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		$la->confirm_msg = "Sigur stergeti inregistrarea?";
 		$la->popup = true;
 		$la->label = "delete";
 		$la->action = "deleteRec";
 		$la->fields = array("ID");
 		$lists_grid->add_row_acction($la);
+                
+                $dl = new HrefActions();
+		$dl->act_script = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
+		$dl->popup = true;
+		$dl->label = "drop";
+		$dl->action = "dropList";
+		$dl->confirm_msg = "Sigur stergeti lista cu DROP??";
+		$dl->fields = array("ID");
+		$lists_grid->add_row_acction($dl);
 		
 		$las = new HrefActions();
-		$las->act_script = "phpapps_admin_browse_list.php?module_id=".$this->ID;
+		$las->act_script = "phpapps_database_browse_list.php?module_id=".$this->ID;
 		$las->popup = true;
 		$las->label = "browse";
 		$las->action = "runGrid";
@@ -164,7 +173,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$lists_grid->add_row_acction($las);
 		
 		$lad = new HrefActions();
-		$lad->act_script = "phpapps_admin_lists_imp.php?module_id=".$this->ID;
+		$lad->act_script = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		$lad->popup = true;
 		$lad->label = "new";
 		$lad->action = "newRec";

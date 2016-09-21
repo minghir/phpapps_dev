@@ -3,7 +3,7 @@
 require_once ("globals.php");
 
 class phpapps_users_users_form{
-	private $globals;
+	public $globals;
 	public $schema = "phpapps";
 	public $table = "users";
 	public $template = "gen_tpl/phpapps_users_users_form.tpl";
@@ -21,6 +21,10 @@ class phpapps_users_users_form{
 		public $USER_TYPE;
 		public $DESCRIPTION;
 		public $PROFILE_ID;
+		public $MODIFY_UID;
+		public $CREATE_UID;
+		public $MODIFY_DATE;
+		public $CREATE_DATE;
 		
 		 
 		 
@@ -31,6 +35,10 @@ class phpapps_users_users_form{
 	 
 		 
 		 
+		 
+		 
+		 
+		 
 			
 		 
 		 
@@ -39,22 +47,28 @@ class phpapps_users_users_form{
 		 
 		 
 		 
-			public $PROFILE_ID_sel;
-	 
+		 
+		 
+		 
+		 
+		 
 	
 	public $errors = array();
 	
-	function __contruct(){
+	function __construct(){
+		global $GLOBALS_OBJ;
+		$this->globals = $GLOBALS_OBJ;
 	}
 		
 	function init(){
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$this->parsePostVars();
 		} else {
 			$this->parseGetVars();
 		}
+	}
+	
+	function beforeGetRec(){
 	}
 	
 	function getRec(){
@@ -66,10 +80,16 @@ class phpapps_users_users_form{
 												EMAIL,
 												USER_TYPE,
 												DESCRIPTION,
-												PROFILE_ID
+												PROFILE_ID,
+												MODIFY_UID,
+												CREATE_UID,
+												MODIFY_DATE,
+												CREATE_DATE
 							
-				FROM ".$this->schema.".".$this->table." WHERE ".$this->gfield." = '".$this->gfield_value."'");
-			$this->globals->con->query($sql->sql());
+				FROM ".$this->schema.".".$this->table." 
+				WHERE ".$this->gfield." = :".$this->gfield." ",
+				array((":".$this->gfield) => $this->gfield_value));
+			$this->globals->con->query($sql);
 			$this->globals->con->next();
 							$this->USERNAME = $this->globals->con->get_field("USERNAME");
 							$this->PASSWORD = $this->globals->con->get_field("PASSWORD");
@@ -79,9 +99,15 @@ class phpapps_users_users_form{
 							$this->USER_TYPE = $this->globals->con->get_field("USER_TYPE");
 							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
 							$this->PROFILE_ID = $this->globals->con->get_field("PROFILE_ID");
+							$this->MODIFY_UID = $this->globals->con->get_field("MODIFY_UID");
+							$this->CREATE_UID = $this->globals->con->get_field("CREATE_UID");
+							$this->MODIFY_DATE = $this->globals->con->get_field("MODIFY_DATE");
+							$this->CREATE_DATE = $this->globals->con->get_field("CREATE_DATE");
 						
 	}
 	
+	function afterGetRec(){
+	}
 	
 	function beforeAddRec(){
 	}
@@ -98,27 +124,50 @@ class phpapps_users_users_form{
 												EMAIL,
 												USER_TYPE,
 												DESCRIPTION,
-												PROFILE_ID
+												PROFILE_ID,
+												MODIFY_UID,
+												CREATE_UID,
+												MODIFY_DATE,
+												CREATE_DATE
 						 ) VALUES (
-									'$this->USERNAME',
-												'$this->PASSWORD',
-												'$this->FIRSTNAME',
-												'$this->LASTNAME',
-												'$this->EMAIL',
-												'$this->USER_TYPE',
-												'$this->DESCRIPTION',
-												'$this->PROFILE_ID'
-									)");
-echo $sql->sql();
+									:USERNAME,
+												:PASSWORD,
+												:FIRSTNAME,
+												:LASTNAME,
+												:EMAIL,
+												:USER_TYPE,
+												:DESCRIPTION,
+												:PROFILE_ID,
+												:MODIFY_UID,
+												:CREATE_UID,
+												:MODIFY_DATE,
+												:CREATE_DATE
+									)",
+			array(
+									":USERNAME" => $this->USERNAME,
+									":PASSWORD" => $this->PASSWORD,
+									":FIRSTNAME" => $this->FIRSTNAME,
+									":LASTNAME" => $this->LASTNAME,
+									":EMAIL" => $this->EMAIL,
+									":USER_TYPE" => $this->USER_TYPE,
+									":DESCRIPTION" => $this->DESCRIPTION,
+									":PROFILE_ID" => $this->PROFILE_ID,
+									":MODIFY_UID" => $this->MODIFY_UID,
+									":CREATE_UID" => $this->CREATE_UID,
+									":MODIFY_DATE" => $this->MODIFY_DATE,
+									":CREATE_DATE" => $this->CREATE_DATE,
+							)
+			);
+
 		if(count($this->errors) == 0) {	
-			$this->globals->con->exec($sql->sql());
+			$this->globals->con->query($sql);
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		//header("Location:win_close.html");
+		header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -128,20 +177,41 @@ echo $sql->sql();
 		$this->beforeSaveRec();
 		
 		$this->check_errors();
+		
 		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
-									USERNAME = '$this->USERNAME',
-												PASSWORD = '$this->PASSWORD',
-												FIRSTNAME = '$this->FIRSTNAME',
-												LASTNAME = '$this->LASTNAME',
-												EMAIL = '$this->EMAIL',
-												USER_TYPE = '$this->USER_TYPE',
-												DESCRIPTION = '$this->DESCRIPTION',
-												PROFILE_ID = '$this->PROFILE_ID'
+									USERNAME = :USERNAME,
+												PASSWORD = :PASSWORD,
+												FIRSTNAME = :FIRSTNAME,
+												LASTNAME = :LASTNAME,
+												EMAIL = :EMAIL,
+												USER_TYPE = :USER_TYPE,
+												DESCRIPTION = :DESCRIPTION,
+												PROFILE_ID = :PROFILE_ID,
+												MODIFY_UID = :MODIFY_UID,
+												CREATE_UID = :CREATE_UID,
+												MODIFY_DATE = :MODIFY_DATE,
+												CREATE_DATE = :CREATE_DATE
 							
-				WHERE ".$this->gfield." = '".$this->gfield_value."'");
+				WHERE ".$this->gfield." = :".$this->gfield,
+			array(	
+									":USERNAME" => $this->USERNAME,
+									":PASSWORD" => $this->PASSWORD,
+									":FIRSTNAME" => $this->FIRSTNAME,
+									":LASTNAME" => $this->LASTNAME,
+									":EMAIL" => $this->EMAIL,
+									":USER_TYPE" => $this->USER_TYPE,
+									":DESCRIPTION" => $this->DESCRIPTION,
+									":PROFILE_ID" => $this->PROFILE_ID,
+									":MODIFY_UID" => $this->MODIFY_UID,
+									":CREATE_UID" => $this->CREATE_UID,
+									":MODIFY_DATE" => $this->MODIFY_DATE,
+									":CREATE_DATE" => $this->CREATE_DATE,
+								":".$this->gfield => $this->gfield_value
+			)	
+			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->exec($sql->sql());
+			$this->globals->con->query($sql);
 		};
 		
 		$this->afterSaveRec();
@@ -158,8 +228,11 @@ echo $sql->sql();
 		$this->beforeDeleteRec();
 		
 		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
-				WHERE ".$this->gfield." = '".$this->gfield_value."'");
-		$this->globals->con->exec($sql->sql());
+				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
+				
+		if(count($this->errors) == 0) {	
+			$this->globals->con->query($sql);
+		}
 		
 		$this->afterDeleteRec();
 	}
@@ -175,7 +248,9 @@ echo $sql->sql();
 		
 			switch($this->gact){
 			case "editRec":
+				$this->beforeGetRec();
 				$this->getRec();
+				$this->afterGetRec();
 			break;
 			case "deleteRec":
 				$this->deleteRec();
@@ -199,6 +274,10 @@ echo $sql->sql();
 					$this->USER_TYPE  = addslashes(trim($_POST["USER_TYPE"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
 					$this->PROFILE_ID  = addslashes(trim($_POST["PROFILE_ID"]));
+					$this->MODIFY_UID  = addslashes(trim($_POST["MODIFY_UID"]));
+					$this->CREATE_UID  = addslashes(trim($_POST["CREATE_UID"]));
+					$this->MODIFY_DATE  = addslashes(trim($_POST["MODIFY_DATE"]));
+					$this->CREATE_DATE  = addslashes(trim($_POST["CREATE_DATE"]));
 				
 		switch($this->pact){
 			case "addRec":
@@ -218,6 +297,9 @@ echo $sql->sql();
 				if($this->USERNAME == "") {
 			$this->errors[] = "Campul USERNAME este obligatoriu!";
 		}
+				if($this->USER_TYPE == "") {
+			$this->errors[] = "Campul USER_TYPE este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
@@ -232,6 +314,10 @@ echo $sql->sql();
 			 
 					 
 					 
+					 
+					 
+					 
+					 
 				
 					 
 					 
@@ -240,11 +326,11 @@ echo $sql->sql();
 					 
 					 
 					 
-									$this->PROFILE_ID_sel = new DB_select("PROFILE_ID","phpapps.user_profiles");
-				$this->PROFILE_ID_sel->query = "SELECT ID AS VALUE, PROFILE_NAME AS LABEL FROM phpapps.user_profiles ORDER BY PROFILE_NAME";
-				$this->PROFILE_ID_sel->selected_val = $this->PROFILE_ID;
-				$this->PROFILE_ID_sel->setup_select_options();
-			 
+					 
+					 
+					 
+					 
+					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
@@ -256,6 +342,10 @@ echo $sql->sql();
 							"USER_TYPE" => $this->USER_TYPE,
 							"DESCRIPTION" => $this->DESCRIPTION,
 							"PROFILE_ID" => $this->PROFILE_ID,
+							"MODIFY_UID" => $this->MODIFY_UID,
+							"CREATE_UID" => $this->CREATE_UID,
+							"MODIFY_DATE" => $this->MODIFY_DATE,
+							"CREATE_DATE" => $this->CREATE_DATE,
 									 
 						 
 						 
@@ -265,6 +355,10 @@ echo $sql->sql();
 			 
 						 
 						 
+						 
+						 
+						 
+						 
 									 
 						 
 						 
@@ -272,8 +366,11 @@ echo $sql->sql();
 						 
 						 
 						 
-										"PROFILE_ID_sel" => $this->PROFILE_ID_sel->get_select_str(),
-			 
+						 
+						 
+						 
+						 
+						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,
@@ -291,6 +388,11 @@ echo $sql->sql();
 		$this->beforeDisplay();
 		
 		$this->globals->sm->display($this->template);
+		
+		$this->afterDisplay();
+	}
+	
+	function afterDisplay(){	
 	}
 	
 	function get_html_str(){	
@@ -300,5 +402,5 @@ echo $sql->sql();
 		
 		$this->globals->sm->fetch($this->template);
 	}
-};
+}
 ?>

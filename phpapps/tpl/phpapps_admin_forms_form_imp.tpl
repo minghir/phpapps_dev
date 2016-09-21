@@ -3,6 +3,6 @@
 {include file="commun_header.tpl" }
 </head>
 <body>
-{$SCRIPT_CONTENT}
+{include file="gen_tpl/phpapps_admin_forms_form.tpl" }
 </body>
 </html>

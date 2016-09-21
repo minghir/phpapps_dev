@@ -125,7 +125,7 @@ class DB_column_def{
 	//		print_r($this->MYSQL_COLUMN_TYPES);
 			$this->def_str = $this->name ." ". 
 				$this->MYSQL_COLUMN_TYPES[$this->type] 
-				."(".$this->size.")";
+				.( $this->size != "" ? "(".$this->size.")" : "" );
 		//	echo "<br>AICI|".$this->type."|" .$this->MYSQL_COLUMN_TYPES[$this->type]  . "|  " . $str ."<br>";	
 			return $this->def_str;
 		}
@@ -138,6 +138,7 @@ class DB_table_def{
 	public $table_name;
 	public $description;
 	public $columns = array();
+        public $auditable = "true";
 
 	function __construct($tschm,$tname){
 		$this->schema = $tschm;
@@ -158,16 +159,23 @@ class DB_table_def{
 			}else{
 			}
 		}
-		$str_cols[] = "MODIFY_UID bigint(20) not null default '1'";
-		$str_cols[] = "CREATE_UID bigint(20) not null default '1'";
-		$str_cols[] = "MODIFY_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-		$str_cols[] = "CREATE_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP";
+                if($this->auditable){
+                    $str_cols[] = "MODIFY_UID bigint(20) not null default '1'";
+                    $str_cols[] = "CREATE_UID bigint(20) not null default '1'";
+                    $str_cols[] = "MODIFY_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
+                    $str_cols[] = "CREATE_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP";
 		
-		$str_fk[] = "FOREIGN KEY (MODIFY_UID) REFERENCES phpapps.users(ID)";
-		$str_fk[] = "FOREIGN KEY (CREATE_UID) REFERENCES phpapps.users(ID)";
+                    $str_fk[] = "FOREIGN KEY (MODIFY_UID) REFERENCES phpapps.users(ID)";
+                    $str_fk[] = "FOREIGN KEY (CREATE_UID) REFERENCES phpapps.users(ID)";
+                }
+                
+                $str_cols_tot = implode(',',$str_cols);
+                
+                if(count($str_fk) > 0 ){
+                    $str_fk_tot = implode(',',$str_fk);
+                }
 		
-		$str_cols_tot = implode(',',$str_cols);
-		$str_fk_tot = implode(',',$str_fk);
+		
 		
 		$str = "CREATE TABLE IF NOT EXISTS " .$this->schema .".".$this->table_name ."(" . $str_cols_tot . ($str_fk_tot == "" ? "" : ",") . $str_fk_tot .
 		") ENGINE=InnoDB";

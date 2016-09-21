@@ -1,7 +1,8 @@
 <?php
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_module{
+class phpapps_admin_module extends phpapps_display_abs{
 	
 	var $ID;
 	var $APP_ID;
@@ -14,7 +15,7 @@ class phpapps_module{
 	var $APP_TITLE;
 	var $BASE_DIR;
 	
-	public function phpapps_module($module_id){
+	public function __construct($module_id){
 		
 		global $GLOBALS_OBJ;
 		$this->globals = $GLOBALS_OBJ;
@@ -216,8 +217,8 @@ class phpapps_module{
 		$this->globals->sm->assign("module",$this);
 		$this->globals->sm->display("phpapps_admin_module.tpl");
 	}
-};
+}
 
-$aa  = new phpapps_module($_GET["module_id"]);
+$aa  = new phpapps_admin_module($_GET["module_id"]);
 $aa->displayTpl();
 ?>

@@ -1,9 +1,18 @@
 <?php
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-global $GLOBALS_OBJ;
-$GLOBALS_OBJ->sm->assign(array("SCRIPT_CONTENT" => "Your code here.",
-								"PHPAPPS_SMARTY_TPL_DIR" => PHPAPPS_SMARTY_TPL_DIR));
-$GLOBALS_OBJ->sm->display("phpapps_admin_database.tpl");
+class phpapps_admin_database extends phpapps_display_abs{
+    
+    var $app_id;
+    
+    function __construct($app_id) {
+        parent::__construct();
+                
+        $this->app_id = $app_id;
+    }
+}
 
+$aa  = new phpapps_admin_database($_GET["app_id"]);
+$aa->displayTpl();
 ?>

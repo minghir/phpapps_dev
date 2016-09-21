@@ -13,10 +13,10 @@ $con_mysql["db"]   = "phpapps";
 $con_mysql["port"] = "";
 //$con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";
 
-$pdo_mysql["host"] = "localhost";
-$pdo_mysql["user"] = "root";
-$pdo_mysql["db"]   = "phpapps";
-$pdo_mysql["pass"]   = "a";
+//$pdo_mysql["host"] = "localhost";
+//$pdo_mysql["user"] = "root";
+//$pdo_mysql["db"]   = "phpapps";
+//$pdo_mysql["pass"]   = "a";
 
 //$con_mysql["port"] = "3306";
 //$con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";

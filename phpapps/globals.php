@@ -9,7 +9,8 @@ if (!defined('WEB_BASE_DIR')) { // pt link-uri
 }			
 			
 if (!defined('GLOBALS_DIR')) { //pt fwrite
-	define('GLOBALS_DIR', 'D:\linuxport\work\www\phpapps_dev' . DIR_SEP);
+
+	define('GLOBALS_DIR', $_SERVER["DOCUMENT_ROOT"] . DIR_SEP . 'phpapps_dev' . DIR_SEP);
 }
 
 if (!defined('PHPAPPS_APP_DIR')) {

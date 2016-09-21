@@ -8,7 +8,7 @@
 
 $con_mysql["host"] = "localhost";
 $con_mysql["user"] = "root";
-$con_mysql["pass"] = "";
+$con_mysql["pass"] = "alcatraz";
 $con_mysql["db"]   = "phpapps";
 $con_mysql["port"] = "";
 //$con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";
@@ -16,6 +16,8 @@ $con_mysql["port"] = "";
 $pdo_mysql["host"] = "localhost";
 $pdo_mysql["user"] = "root";
 $pdo_mysql["db"]   = "phpapps";
+$pdo_mysql["pass"]   = "alcatraz";
+
 //$con_mysql["port"] = "3306";
 //$con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";
 

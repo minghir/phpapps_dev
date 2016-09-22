@@ -18,31 +18,47 @@ include ("gen_php/phpapps_database_lists_form.php");
                         
 			$this->init();
                         
-                        if($this->gact == "dropTable"){
-				$this->dropTable();
+                        if($this->gact == "dropList"){
+				$this->dropList();
 			}
                         
 			$this->display();
 		}
 		
                 function dropList(){
-                    $sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA
+                        $sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA
 			FROM phpapps.view_tables 
-			WHERE ".$this->gfield." = :".$this->gfield." AND MODULE_ID = :module_id",
-			array(":".$this->gfield => $this->gfield_value,":module_id"=>$this->MODULE_ID));
+			WHERE ".$this->gfield." = :".$this->gfield, 
+			array(":".$this->gfield => $this->gfield_value));
+                        $res_rows = $this->globals->con->query( $sql );
 
-			$this->globals->con->query( $sql );
-			$this->globals->con->next();
-			$this->TABLE_SCHEMA = $this->globals->con->get_field("TABLE_SCHEMA");
-			$this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
-			
+                        if( $res_rows == -1 ){
+                            $this->errors[] = "ERROR:" . $this->globals->con->get_error();
+                        }else{
+                            $this->globals->con->next();
+                            $this->SCHEMA_NAME = $this->globals->con->get_field("TABLE_SCHEMA");
+                            $this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
+                            
+                            $sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA, MODULE_NAME
+                            FROM phpapps.view_tables 
+                            WHERE TABLE_NAME = :tbl AND TABLE_SCHEMA = :scm",
+                            array(":tbl" => $this->TABLE_NAME,
+                                ":scm" => $this->SCHEMA_NAME));
+                            
+                            $res_rows = $this->globals->con->query( $sql );
+                            if( $res_rows > 1){
+                                $this->errors[] = "ERROR: LISTA FOLSITA IN ALTE MODULE";
+                            }
+                        }
+                        
 			$sql = new DB_query( "DROP TABLE ". $this->TABLE_SCHEMA . "." . $this->TABLE_NAME);
-			
-			if( $this->globals->con->query($sql) == -1 ){
-				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
-			}else{
+			if(count($this->errors) == 0){
+                            if( $this->globals->con->query($sql) == -1 ){
+                            	$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
+                            }else{
 				$this->deleteRec();
-			}
+                            }
+                        }
                 }
                 
 		function beforeGetRec(){
@@ -109,10 +125,22 @@ include ("gen_php/phpapps_database_lists_form.php");
 		}
 
 		function beforeDeleteRec(){
+                    $sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA, MODULE_NAME
+                            FROM phpapps.view_tables 
+                            WHERE TABLE_NAME = :tbl AND TABLE_SCHEMA = :scm",
+                            array(":tbl" => $this->TABLE_NAME,
+                                ":scm" => $this->SCHEMA_NAME));
+print_r($sql);                            
+                    $res_rows = $this->globals->con->query( $sql );
+                    if( $res_rows == 1){
+                        $this->dropList();
+                    }
 		}
 		
 		function afterDeleteRec(){
-			header("Location:win_close.html");
+                    
+
+                    //header("Location:win_close.html");
 		}
 		
 		function beforeDisplay(){	

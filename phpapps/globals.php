@@ -9,9 +9,9 @@ if (!defined('WEB_BASE_DIR')) { // pt link-uri
 }			
 			
 if (!defined('GLOBALS_DIR')) { //pt fwrite
-
 	define('GLOBALS_DIR', $_SERVER["DOCUMENT_ROOT"] . DIR_SEP . 'phpapps_dev' . DIR_SEP);
 }
+
 
 if (!defined('PHPAPPS_APP_DIR')) {
 	define('PHPAPPS_APP_DIR', GLOBALS_DIR . 'phpapps' . DIR_SEP);

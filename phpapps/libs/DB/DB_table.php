@@ -31,6 +31,16 @@ class DB_table{
 		}
 		return $value;
 	}
+        
+        function getValueByField($fld1,$fld2,$val2){
+		$value = -1;
+		$sql = new DB_query("SELECT $fld1 FROM ".$this->table_name . " WHERE $fld2 = :val",array(":val"=>$val2));
+		if($this->globals->con->query($sql,"DB_table_getVALUE") != -1){
+			$this->globals->con->next("DB_table_getVALUE");
+			$value = $this->globals->con->get_field($fld1,"DB_table_getVALUE");
+		}
+		return $value;
+	}
 	
 	function getArray($fld){
 		$sql = new DB_query("SELECT ID, $fld AS VALUE FROM ".$this->table_name);

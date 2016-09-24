@@ -24,16 +24,19 @@ class DB_list_def {
         $this->LIST_NAME = $list_name;
         return $this;
     }
+    /*
     function createList(){
             
         //$sm->fetch(create table);
     }
+    */
     
     function createList(){
-        
+        //($vname, $vtype, $vsize, $vnull=true, $vautoincr=false, $vdefault="", $vfk = "")
         $this->columns[] = new DB_column_def("ID",
                                 (new DB_list("list_mysql_column_types"))->getID("BIGINT"),
                                 "20",
+                                false,
                                 false,
                                 "0"
                                 );
@@ -41,12 +44,14 @@ class DB_list_def {
                                 (new DB_list("list_mysql_column_types"))->getID("VARCHAR"),
                                 "20",
                                 false,
+                                false,
                                 "0"
                                 );
         $this->columns[] = new DB_column_def("DESCRIPTION",
                                 (new DB_list("list_mysql_column_types"))->getID("VARCHAR"),
                                 "255",
                                 true,
+                                false,
                                 "0"
                                 );
     }

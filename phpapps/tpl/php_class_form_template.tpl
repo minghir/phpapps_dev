@@ -62,7 +62,7 @@ class {$form_name}{ldelim}
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			{section name=ds loop=$fields}
-				$this->{$fields[ds]} = $this->globals->con->get_field("{$fields[ds]}");
+				$this->{$fields[ds]} = stripslashes($this->globals->con->get_field("{$fields[ds]}"));
 			{/section}
 			
 	{rdelim}

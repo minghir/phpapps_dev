@@ -32,27 +32,25 @@ class DB_list_def {
     */
     
     function createList(){
-        //($vname, $vtype, $vsize, $vnull=true, $vautoincr=false, $vdefault="", $vfk = "")
+        
         $this->columns[] = new DB_column_def("ID",
                                 (new DB_list("list_mysql_column_types"))->getID("BIGINT"),
                                 "20",
                                 false,
-                                false,
-                                "0"
+                                "0",
+                                true
                                 );
         $this->columns[] = new DB_column_def("VALUE",
                                 (new DB_list("list_mysql_column_types"))->getID("VARCHAR"),
                                 "20",
                                 false,
-                                false,
-                                "0"
+                                "EMPTY",
+                                false
                                 );
         $this->columns[] = new DB_column_def("DESCRIPTION",
-                                (new DB_list("list_mysql_column_types"))->getID("VARCHAR"),
+                                (new DB_list("list_mysql_column_types"))->getID("TEXT"),
                                 "255",
-                                true,
-                                false,
-                                "0"
+                                true
                                 );
     }
     

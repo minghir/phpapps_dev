@@ -31,7 +31,15 @@ CONSTRAINT list_mysql_column_types_ID_fk FOREIGN KEY (COLUMN_TYPE_ID) REFERENCES
 
 
 
-CREATE TABLE `applications` (
+CREATE TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} (
+    {section name=cols loop=$TABLE_OBJ->columns}
+        {$TABLE_OBJ->columns->getColumnDef()},
+    {/section}
+    PRIMARY KEY (`ID`)
+)ENGINE=InnoDB
+
+
+
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `USER_ID` bigint(20) NOT NULL,
   `APP_NAME` varchar(20) NOT NULL DEFAULT '',

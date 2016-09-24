@@ -38,13 +38,11 @@ class DB_column_def{
 			
 			//$this->MYSQL_INDEX_TYPES = (new DB_list("list_index_types"))->getArray();
 			//$this->MYSQL_COLUMN_TYPES = (new DB_list("list_mysql_column_types"))->getArray();
-
-//			print_r($this->MYSQL_COLUMN_TYPES);
 			
 			return $this;
 		}
 		
-		function get_column_str(){
+		function getColumnDef(){
                    // echo "aaa:" . (new DB_table("phpapps.mysql_column_defs"))->getValueByField("DEF_TPL","COLUMN_TYPE_ID", $this->COLUMN_TYPE);
                         //{$COLUMN_NAME} BIGINT({$COLUMN_SIZE} {if $ACCEPT_NULL === FALSE }NOT NULL{/if} {if $DEFAULT_VAL!= \"\" }{$DEFAULT_VAL} {/if} {if $AUTOINCREMENT === TRUE } AUTO_INCREMENT {/if}
 			$this->globals->sm->assign("COLUMN_OBJ",$this);

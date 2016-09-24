@@ -3,7 +3,7 @@ require_once ("globals.php");
 
 class phpapps_applications{
 	
-	public function phpapps_applications($uid){
+	public function __construct($uid){
 		global $GLOBALS_OBJ;
 		$this->globals = $GLOBALS_OBJ;
 		$this->globals->con->select_db("phpapps");

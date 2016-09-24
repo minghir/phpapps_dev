@@ -8,15 +8,16 @@
  * Created: Sep 23, 2016
  */
 
-create table dbms_ddf_sintax_tpl(
+create table dbms_ddl_sintax_tpl(
 ID BIGINT(20) NOT NULL PRIMARY KEY,
-NAME
+DBMS_TYPE BIGINT(20) NOT NULL DEFAULT '0',
+DDL_NAME  VARCHAR(255)
 )
 
 
 
 insert into tables (MODULE_ID,SCHEMA_ID,TABLE_NAME,TABLE_TYPE,DESCRIPTION)
-values (14,3,'mysql_column_defs','1','')
+values (14,3,'list_dbms_types','1','')
 
 
 drop table mysql_column_defs;

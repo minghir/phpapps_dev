@@ -31,7 +31,7 @@ class test_column_def extends phpapps_display_abs{
                                 true
                                 );
         foreach ($columns as $col){
-            echo $col->get_column_str() . "<br>";
+            echo $col->getColumnDef() . "<br>";
         }
         
         

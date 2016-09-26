@@ -10,32 +10,28 @@ class test_column_def extends phpapps_display_abs{
         parent::__construct();
         $this->tpl = "test_column_def.tpl";        
         $this->app_id = $app_id;
+      
+        //$bb = new DB_table_def("phpapps","test_def2");
+        //$bb->dropTable();
         
-        $columns[] = new DB_column_def("ID",
-                                (new DB_list("list_mysql_column_types"))->getID("BIGINT"),
-                                "20",
-                                false,
-                                "0",
-                                true
-                                );
-        $columns[] = new DB_column_def("VALUE",
-                                (new DB_list("list_mysql_column_types"))->getID("VARCHAR"),
-                                "20",
-                                false,
-                                "EMPTY",
-                                false
-                                );
-        $columns[] = new DB_column_def("DESCRIPTION",
-                                (new DB_list("list_mysql_column_types"))->getID("TEXT"),
-                                "255",
-                                true
-                                );
-        foreach ($columns as $col){
-            echo $col->getColumnDef() . "<br>";
+        $aa =new DB_table_def("phpapps","test_def");
+        $aa->dropTable();
+        
+        unset($aa);
+        
+        $aa =new DB_table_def("phpapps","test_def");
+        
+        if(!$aa->createIDTable()){
+            print_r($aa->errors);
         }
-        
-        
-      //  $this->displayTpl();
+        $aa->alterTblAddCol("APP_ID", (new DB_list("list_mysql_column_types"))->getID("BIGINT"), "20",FALSE);
+            print_r($aa->errors);
+        //echo "--"     . $aa->columns[count($aa->columns)-1]->getColumnName();
+        //$aa->alterTblRenameTbl("test_def2");
+        $aa->alterTblAddFK("APP_ID", "phpapps", "applications","ID");
+        print_r($aa->errors);
+        $aa->alterTblDropFK("APP_ID");
+        print_r($aa->errors);
     }
 }
 

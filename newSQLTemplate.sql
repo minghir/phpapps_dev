@@ -8,16 +8,35 @@
  * Created: Sep 23, 2016
  */
 
-create table dbms_ddl_sintax_tpl(
-ID BIGINT(20) NOT NULL PRIMARY KEY,
-DBMS_TYPE BIGINT(20) NOT NULL DEFAULT '0',
-DDL_NAME  VARCHAR(255)
-)
+drop table sql_sintax;
+create table sql_sintax(
+    ID BIGINT(20) NOT NULL AUTO_INCREMENT,
+    DBMS_TYPE_ID BIGINT(20) NOT NULL DEFAULT '0',
+    SINTAX_TYPE_ID BIGINT(20) NOT NULL DEFAULT '0',
+    DEF_TPL TEXT NOT NULL DEFAULT '',
+    DESCRIPTION TEXT NOT NULL DEFAULT '',
+    PRIMARY KEY (ID),
+CONSTRAINT sql_sintax_DBMS_TYPE_ID_fk FOREIGN KEY (DBMS_TYPE_ID) REFERENCES list_dbms_types (ID),
+CONSTRAINT sql_sintax_SINTAX_TYPE_ID_fk FOREIGN KEY (SINTAX_TYPE_ID) REFERENCES list_sql_sintax_types (ID)
+)ENGINE=InnoDB;
 
+
+CREATE TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} (
+    {section name=cols loop=$TABLE_OBJ->columns}
+        {$TABLE_OBJ->columns->getColumnDef()}
+    {/section}
+)ENGINE=InnoDB;
+
+
+insert into tables (MODULE_ID,SCHEMA_ID,TABLE_NAME,TABLE_TYPE,DESCRIPTION)
+values (14,3,'sql_sintax','2','')
 
 
 insert into tables (MODULE_ID,SCHEMA_ID,TABLE_NAME,TABLE_TYPE,DESCRIPTION)
 values (14,3,'list_dbms_types','1','')
+
+insert into tables (MODULE_ID,SCHEMA_ID,TABLE_NAME,TABLE_TYPE,DESCRIPTION)
+values (14,3,'list_sql_sintax_types','1','')
 
 
 drop table mysql_column_defs;

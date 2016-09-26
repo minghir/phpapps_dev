@@ -1,11 +1,8 @@
-drop database phpapps;
-create database phpapps;
-use database phpapps;
--- MySQL dump 10.16  Distrib 10.1.17-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
 --
 -- Host: localhost    Database: phpapps
 -- ------------------------------------------------------
--- Server version	10.1.17-MariaDB
+-- Server version	5.6.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -174,7 +171,7 @@ CREATE TABLE `form_details` (
   PRIMARY KEY (`ID`),
   KEY `FORM_ID` (`FORM_ID`),
   CONSTRAINT `form_details_ibfk_1` FOREIGN KEY (`FORM_ID`) REFERENCES `forms` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=414 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=424 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +180,7 @@ CREATE TABLE `form_details` (
 
 LOCK TABLES `form_details` WRITE;
 /*!40000 ALTER TABLE `form_details` DISABLE KEYS */;
-INSERT INTO `form_details` VALUES (58,47,'ID','bigint(20)',1,'ID',0,'text','','',''),(59,47,'USER_ID','bigint(20)',0,'User',1,'select_table','','users','USERNAME'),(60,47,'APP_NAME','varchar(20)',0,'Application name',1,'text','','',''),(61,47,'APP_TITLE','varchar(255)',0,'Application title',0,'text','','',''),(62,47,'APP_SCHEMA','varchar(20)',0,'Application database',0,'select_list','list_databases','',''),(63,47,'BASE_DIR','varchar(20)',0,'Application Directory',0,'text','','',''),(64,47,'APP_DATE','date',0,'APP_DATE',0,'date','','',''),(65,47,'DESCRIPTION','varchar(255)',0,'Description',0,'textarea','','',''),(77,54,'ID','bigint(20)',1,'ID',0,'text','','',''),(78,54,'PID','bigint(20)',0,'PID',1,'select_table','','categories','NAME'),(79,54,'NAME','varchar(20)',0,'NAME',0,'text','','',''),(80,54,'TITLE','varchar(255)',0,'TITLE',0,'text','','',''),(81,54,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(129,60,'ID','bigint(20)',1,'ID',0,'text','','',''),(130,60,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(131,60,'SCRIPT_TYPE','bigint(20)',0,'SCRIPT_TYPE',0,'select_list','list_script_types','',''),(132,60,'SCRIPT_NAME','varchar(255)',0,'SCRIPT_NAME',1,'text','','',''),(133,60,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(159,65,'ID','bigint(20)',1,'ID',0,'text','','',''),(160,65,'APP_ID','bigint(20)',0,'APP_ID',1,'hidden','','',''),(161,65,'SCRIPT_ID','bigint(20)',0,'START SCRIPT',1,'select_table','','scripts','SCRIPT_NAME'),(162,65,'MODULE_NAME','varchar(20)',0,'MODULE NAME',0,'text','','',''),(163,65,'MODULE_TITLE','varchar(255)',0,'MODULE TITLE',0,'text','','',''),(164,65,'MODULE_DATE','date',0,'MODULE_DATE',0,'hidden','','',''),(165,65,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(166,66,'ID','bigint(20)',1,'ID',0,'text','','',''),(167,66,'ROLE_NAME','varchar(255)',0,'ROLE_NAME',1,'text','','',''),(168,66,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(175,69,'ID','bigint(20)',1,'ID',0,'text','','',''),(176,69,'UID','bigint(20)',0,'UID',1,'hidden','','',''),(177,69,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(188,72,'ID','bigint(20)',1,'ID',0,'text','','',''),(189,72,'PERMISSION_NAME','varchar(255)',0,'PERMISSION_NAME',1,'select_list','list_permission_names','',''),(190,72,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(191,72,'PERMISSION_TYPE','bigint(20)',0,'PERMISSION_TYPE',1,'select_list','list_permission_types','',''),(192,72,'OBJECT_TYPE','bigint(20)',0,'OBJECT_TYPE',1,'select_list','list_object_types','',''),(193,72,'OBJECT_ID','bigint(20)',0,'OBJECT_ID',1,'hidden','','',''),(194,73,'ID','bigint(20)',1,'ID',0,'text','','',''),(195,73,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'select_table','','modules','MODULE_NAME'),(196,73,'VIEW_NAME','varchar(255)',0,'VIEW_NAME',1,'text','','',''),(197,73,'CREATE_VIEW_QUERY','tinytext',0,'CREATE_VIEW_QUERY',0,'textarea','','',''),(198,73,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(199,74,'ID','bigint(20)',1,'ID',0,'text','','',''),(200,74,'CATEG_ID','bigint(20)',0,'CATEG_ID',0,'select_table','','categories','NAME'),(201,74,'PRODUCT_NAME','varchar(255)',0,'PRODUCT_NAME',0,'text','','',''),(202,74,'DESCRIPTION','tinytext',0,'DESCRIPTION',0,'text','','',''),(209,76,'ID','bigint(20)',1,'ID',0,'text','','',''),(210,76,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(211,76,'PERMISSION_ID','bigint(20)',0,'PERMISSION_ID',1,'select_table','','view_permissions','DESCRIPTION'),(223,79,'ID','bigint(20)',1,'ID',0,'text','','',''),(224,79,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(225,79,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(226,79,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'select_table','','tables','TABLE_NAME'),(227,79,'CREATE_TABLE_QUERY','text',1,'CREATE_TABLE_QUERY',0,'text','','',''),(228,79,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(246,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(247,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(248,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(249,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(250,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(251,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(252,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','list_user_types','',''),(253,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(254,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'select_table','','user_profiles','PROFILE_NAME'),(255,84,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(256,84,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(257,84,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(258,84,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(259,85,'ID','bigint(20)',1,'ID',0,'text','','',''),(260,85,'SCRIPT_ID','bigint(20)',0,'SCRIPT_ID',0,'select_table','','scripts','SCRIPT_NAME'),(261,85,'PROFILE_NAME','varchar(255)',0,'PROFILE_NAME',1,'text','','',''),(262,85,'THEME','bigint(10)',0,'THEME',0,'text','','',''),(263,85,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(264,85,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(265,85,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(266,85,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(316,91,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(317,91,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(318,91,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(319,91,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'text','','',''),(320,91,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'select_list','list_table_types','',''),(321,91,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(322,91,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(323,91,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(324,91,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(325,91,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(341,93,'ID','bigint(20)',1,'ID',0,'hidden','','',''),(342,93,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'hidden','','',''),(343,93,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(344,93,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(345,93,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(346,93,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(347,93,'FOREIGN_KEY_SCHEMA_ID','bigint(20)',0,'FOREIGN_KEY_SCHEMA_ID',0,'select_list','list_databases','',''),(348,93,'FOREIGN_KEY_TABLE_ID','bigint(20)',0,'FOREIGN_KEY_TABLE_ID',0,'select_table','','tables','TABLE_NAME'),(349,93,'FOREIGN_KEY_COLUMN_ID','bigint(20)',1,'FOREIGN_KEY_COLUMN_ID',0,'hidden','','',''),(350,93,'COLUMN_INDEX_TYPE_ID','bigint(20)',0,'COLUMN_INDEX_TYPE_ID',0,'select_list','list_index_types','',''),(351,93,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(352,93,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(353,93,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(354,93,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(355,93,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(366,95,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(367,95,'MODULE_ID','bigint(20)',0,'MODULE',0,'select_table','','modules','MODULE_NAME'),(368,95,'FORM_NAME','varchar(255)',0,'FORM_NAME',0,'text','','',''),(369,95,'TABLE_ID','bigint(20)',0,'TABLE',0,'select_table','','tables','TABLE_NAME'),(370,95,'FORM_QUERY','varchar(255)',0,'FORM_QUERY',0,'text','','',''),(371,95,'FORM_PHP_DIR','varchar(20)',0,'FORM_PHP_DIR',0,'text','','',''),(372,95,'FORM_TPL_DIR','varchar(20)',0,'FORM_TPL_DIR',0,'text','','',''),(373,95,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(374,95,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(375,95,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(376,95,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(377,95,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(378,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(379,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(380,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(381,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(382,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(383,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(384,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',1,'select_list','list_user_types','',''),(385,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(386,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'text','','',''),(387,84,'MODIFY_UID','bigint(20)',0,'MODIFY_UID',0,'text','','',''),(388,84,'CREATE_UID','bigint(20)',0,'CREATE_UID',0,'text','','',''),(389,84,'MODIFY_DATE','timestamp',0,'MODIFY_DATE',0,'text','','',''),(390,84,'CREATE_DATE','timestamp',0,'CREATE_DATE',0,'text','','',''),(391,97,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(392,97,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(393,97,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(394,97,'TABLE_NAME','varchar(255)',0,'LIST_NAME',1,'text','','',''),(395,97,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'hidden','','',''),(396,97,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(397,97,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(398,97,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(399,97,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(400,97,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(407,100,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(408,100,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(409,100,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(410,101,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(411,101,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',0,'select_list','list_mysql_column_types','',''),(412,101,'DEF_TPL','varchar(255)',0,'DEF_TPL',0,'textarea','','',''),(413,101,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','','');
+INSERT INTO `form_details` VALUES (58,47,'ID','bigint(20)',1,'ID',0,'text','','',''),(59,47,'USER_ID','bigint(20)',0,'User',1,'select_table','','users','USERNAME'),(60,47,'APP_NAME','varchar(20)',0,'Application name',1,'text','','',''),(61,47,'APP_TITLE','varchar(255)',0,'Application title',0,'text','','',''),(62,47,'APP_SCHEMA','varchar(20)',0,'Application database',0,'select_list','list_databases','',''),(63,47,'BASE_DIR','varchar(20)',0,'Application Directory',0,'text','','',''),(64,47,'APP_DATE','date',0,'APP_DATE',0,'date','','',''),(65,47,'DESCRIPTION','varchar(255)',0,'Description',0,'textarea','','',''),(77,54,'ID','bigint(20)',1,'ID',0,'text','','',''),(78,54,'PID','bigint(20)',0,'PID',1,'select_table','','categories','NAME'),(79,54,'NAME','varchar(20)',0,'NAME',0,'text','','',''),(80,54,'TITLE','varchar(255)',0,'TITLE',0,'text','','',''),(81,54,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(129,60,'ID','bigint(20)',1,'ID',0,'text','','',''),(130,60,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(131,60,'SCRIPT_TYPE','bigint(20)',0,'SCRIPT_TYPE',0,'select_list','list_script_types','',''),(132,60,'SCRIPT_NAME','varchar(255)',0,'SCRIPT_NAME',1,'text','','',''),(133,60,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(159,65,'ID','bigint(20)',1,'ID',0,'text','','',''),(160,65,'APP_ID','bigint(20)',0,'APP_ID',1,'hidden','','',''),(161,65,'SCRIPT_ID','bigint(20)',0,'START SCRIPT',1,'select_table','','scripts','SCRIPT_NAME'),(162,65,'MODULE_NAME','varchar(20)',0,'MODULE NAME',0,'text','','',''),(163,65,'MODULE_TITLE','varchar(255)',0,'MODULE TITLE',0,'text','','',''),(164,65,'MODULE_DATE','date',0,'MODULE_DATE',0,'hidden','','',''),(165,65,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(166,66,'ID','bigint(20)',1,'ID',0,'text','','',''),(167,66,'ROLE_NAME','varchar(255)',0,'ROLE_NAME',1,'text','','',''),(168,66,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(175,69,'ID','bigint(20)',1,'ID',0,'text','','',''),(176,69,'UID','bigint(20)',0,'UID',1,'hidden','','',''),(177,69,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(188,72,'ID','bigint(20)',1,'ID',0,'text','','',''),(189,72,'PERMISSION_NAME','varchar(255)',0,'PERMISSION_NAME',1,'select_list','list_permission_names','',''),(190,72,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(191,72,'PERMISSION_TYPE','bigint(20)',0,'PERMISSION_TYPE',1,'select_list','list_permission_types','',''),(192,72,'OBJECT_TYPE','bigint(20)',0,'OBJECT_TYPE',1,'select_list','list_object_types','',''),(193,72,'OBJECT_ID','bigint(20)',0,'OBJECT_ID',1,'hidden','','',''),(194,73,'ID','bigint(20)',1,'ID',0,'text','','',''),(195,73,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'select_table','','modules','MODULE_NAME'),(196,73,'VIEW_NAME','varchar(255)',0,'VIEW_NAME',1,'text','','',''),(197,73,'CREATE_VIEW_QUERY','tinytext',0,'CREATE_VIEW_QUERY',0,'textarea','','',''),(198,73,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(199,74,'ID','bigint(20)',1,'ID',0,'text','','',''),(200,74,'CATEG_ID','bigint(20)',0,'CATEG_ID',0,'select_table','','categories','NAME'),(201,74,'PRODUCT_NAME','varchar(255)',0,'PRODUCT_NAME',0,'text','','',''),(202,74,'DESCRIPTION','tinytext',0,'DESCRIPTION',0,'text','','',''),(209,76,'ID','bigint(20)',1,'ID',0,'text','','',''),(210,76,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(211,76,'PERMISSION_ID','bigint(20)',0,'PERMISSION_ID',1,'select_table','','view_permissions','DESCRIPTION'),(223,79,'ID','bigint(20)',1,'ID',0,'text','','',''),(224,79,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(225,79,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(226,79,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'select_table','','tables','TABLE_NAME'),(227,79,'CREATE_TABLE_QUERY','text',1,'CREATE_TABLE_QUERY',0,'text','','',''),(228,79,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(246,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(247,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(248,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(249,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(250,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(251,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(252,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','list_user_types','',''),(253,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(254,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'select_table','','user_profiles','PROFILE_NAME'),(255,84,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(256,84,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(257,84,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(258,84,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(259,85,'ID','bigint(20)',1,'ID',0,'text','','',''),(260,85,'SCRIPT_ID','bigint(20)',0,'SCRIPT_ID',0,'select_table','','scripts','SCRIPT_NAME'),(261,85,'PROFILE_NAME','varchar(255)',0,'PROFILE_NAME',1,'text','','',''),(262,85,'THEME','bigint(10)',0,'THEME',0,'text','','',''),(263,85,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(264,85,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(265,85,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(266,85,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(316,91,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(317,91,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(318,91,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(319,91,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'text','','',''),(320,91,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'select_list','list_table_types','',''),(321,91,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(322,91,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(323,91,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(324,91,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(325,91,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(341,93,'ID','bigint(20)',1,'ID',0,'hidden','','',''),(342,93,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'hidden','','',''),(343,93,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(344,93,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(345,93,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(346,93,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(347,93,'FOREIGN_KEY_SCHEMA_ID','bigint(20)',0,'FOREIGN_KEY_SCHEMA_ID',0,'select_list','list_databases','',''),(348,93,'FOREIGN_KEY_TABLE_ID','bigint(20)',0,'FOREIGN_KEY_TABLE_ID',0,'select_table','','tables','TABLE_NAME'),(349,93,'FOREIGN_KEY_COLUMN_ID','bigint(20)',1,'FOREIGN_KEY_COLUMN_ID',0,'hidden','','',''),(350,93,'COLUMN_INDEX_TYPE_ID','bigint(20)',0,'COLUMN_INDEX_TYPE_ID',0,'select_list','list_index_types','',''),(351,93,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(352,93,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(353,93,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(354,93,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(355,93,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(366,95,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(367,95,'MODULE_ID','bigint(20)',0,'MODULE',0,'select_table','','modules','MODULE_NAME'),(368,95,'FORM_NAME','varchar(255)',0,'FORM_NAME',0,'text','','',''),(369,95,'TABLE_ID','bigint(20)',0,'TABLE',0,'select_table','','tables','TABLE_NAME'),(370,95,'FORM_QUERY','varchar(255)',0,'FORM_QUERY',0,'text','','',''),(371,95,'FORM_PHP_DIR','varchar(20)',0,'FORM_PHP_DIR',0,'text','','',''),(372,95,'FORM_TPL_DIR','varchar(20)',0,'FORM_TPL_DIR',0,'text','','',''),(373,95,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(374,95,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(375,95,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(376,95,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(377,95,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(378,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(379,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(380,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(381,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(382,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(383,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(384,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',1,'select_list','list_user_types','',''),(385,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(386,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'text','','',''),(387,84,'MODIFY_UID','bigint(20)',0,'MODIFY_UID',0,'text','','',''),(388,84,'CREATE_UID','bigint(20)',0,'CREATE_UID',0,'text','','',''),(389,84,'MODIFY_DATE','timestamp',0,'MODIFY_DATE',0,'text','','',''),(390,84,'CREATE_DATE','timestamp',0,'CREATE_DATE',0,'text','','',''),(391,97,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(392,97,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(393,97,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(394,97,'TABLE_NAME','varchar(255)',0,'LIST_NAME',1,'text','','',''),(395,97,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'hidden','','',''),(396,97,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(397,97,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(398,97,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(399,97,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(400,97,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(407,100,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(408,100,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(409,100,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(410,101,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(411,101,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',0,'select_list','list_mysql_column_types','',''),(412,101,'DEF_TPL','varchar(255)',0,'DEF_TPL',0,'textarea','','',''),(413,101,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(419,103,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(420,103,'DBMS_TYPE_ID','bigint(20)',0,'DBMS_TYPE_ID',1,'select_list','list_dbms_types','',''),(421,103,'SINTAX_TYPE_ID','bigint(20)',0,'SINTAX_TYPE_ID',1,'select_list','list_sql_sintax_types','',''),(422,103,'DEF_TPL','text',0,'DEF_TPL',0,'textarea','','',''),(423,103,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','','');
 /*!40000 ALTER TABLE `form_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +213,7 @@ CREATE TABLE `forms` (
   CONSTRAINT `forms_ibfk_2` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`),
   CONSTRAINT `forms_ibfk_3` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `forms_ibfk_4` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +222,7 @@ CREATE TABLE `forms` (
 
 LOCK TABLES `forms` WRITE;
 /*!40000 ALTER TABLE `forms` DISABLE KEYS */;
-INSERT INTO `forms` VALUES (47,1,'phpapps_admin_applications_form',2,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(54,10,'eshop_admin_categories_form',80,'','..\\eshop_template','..\\eshop_template','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(60,1,'phpapps_admin_scripts_form',83,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(65,1,'phpapps_admin_modules_form',3,'','.\\phpapps','.\\phpapps','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(66,7,'phpapps_users_roles_form',88,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(69,7,'phpapps_users_user_roles_form',90,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(72,7,'phpapps_users_permissions_form',89,'','.','.','',1,1,'2016-09-21 11:49:58','0000-00-00 00:00:00'),(73,14,'phpapps_admin_views_form',202,'','.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\php','.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\php','',1,1,'2016-09-21 12:20:53','0000-00-00 00:00:00'),(74,10,'eshop_admin_products_form',100,'','..\\eshop_template','..\\eshop_template','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(76,7,'phpapps_users_role_permissions_form',91,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(79,14,'phpapps_admin_add_table_form',197,'','.','.','',1,1,'2016-09-21 11:55:58','0000-00-00 00:00:00'),(84,7,'phpapps_users_users_form',87,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 09:47:14','2015-08-19 09:47:14'),(85,7,'phpapps_users_user_profiles_form',99,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 11:48:51','2015-08-19 11:48:51'),(91,14,'phpapps_admin_tables_form',197,'','D:\\\\\\\\linuxport\\\\\\\\A','D:\\\\\\\\linuxport\\\\\\\\A','',1,1,'2016-09-21 12:00:40','2016-09-06 05:51:08'),(93,14,'phpapps_admin_table_details_form',198,'','D:\\\\\\\\linuxport\\\\\\\\A','D:\\\\\\\\linuxport\\\\\\\\A','',1,1,'2016-09-21 12:01:07','2016-09-07 06:43:45'),(95,1,'phpapps_admin_forms_form',5,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 11:37:03','2016-09-21 11:37:03'),(97,14,'phpapps_database_lists_form',197,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 13:50:15','2016-09-21 13:50:15'),(100,14,'phpapps_database_list_form',210,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 14:57:13','2016-09-21 14:57:13'),(101,14,'phpapps_database_mysql_column_defs_form',222,'','/var/www/html/phpapp','/var/www/html/phpapp','',1,1,'2016-09-24 05:10:00','2016-09-24 05:10:00');
+INSERT INTO `forms` VALUES (47,1,'phpapps_admin_applications_form',2,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(54,10,'eshop_admin_categories_form',80,'','..\\eshop_template','..\\eshop_template','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(60,1,'phpapps_admin_scripts_form',83,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(65,1,'phpapps_admin_modules_form',3,'','.\\phpapps','.\\phpapps','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(66,7,'phpapps_users_roles_form',88,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(69,7,'phpapps_users_user_roles_form',90,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(72,7,'phpapps_users_permissions_form',89,'','.','.','',1,1,'2016-09-21 11:49:58','0000-00-00 00:00:00'),(73,14,'phpapps_admin_views_form',202,'','.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\php','.\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\php','',1,1,'2016-09-21 12:20:53','0000-00-00 00:00:00'),(74,10,'eshop_admin_products_form',100,'','..\\eshop_template','..\\eshop_template','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(76,7,'phpapps_users_role_permissions_form',91,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(79,14,'phpapps_admin_add_table_form',197,'','.','.','',1,1,'2016-09-21 11:55:58','0000-00-00 00:00:00'),(84,7,'phpapps_users_users_form',87,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 09:47:14','2015-08-19 09:47:14'),(85,7,'phpapps_users_user_profiles_form',99,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 11:48:51','2015-08-19 11:48:51'),(91,14,'phpapps_admin_tables_form',197,'','D:\\\\\\\\linuxport\\\\\\\\A','D:\\\\\\\\linuxport\\\\\\\\A','',1,1,'2016-09-21 12:00:40','2016-09-06 05:51:08'),(93,14,'phpapps_admin_table_details_form',198,'','D:\\\\\\\\linuxport\\\\\\\\A','D:\\\\\\\\linuxport\\\\\\\\A','',1,1,'2016-09-21 12:01:07','2016-09-07 06:43:45'),(95,1,'phpapps_admin_forms_form',5,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 11:37:03','2016-09-21 11:37:03'),(97,14,'phpapps_database_lists_form',197,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 13:50:15','2016-09-21 13:50:15'),(100,14,'phpapps_database_list_form',210,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 14:57:13','2016-09-21 14:57:13'),(101,14,'phpapps_database_mysql_column_defs_form',222,'','/var/www/html/phpapp','/var/www/html/phpapp','',1,1,'2016-09-24 05:10:00','2016-09-24 05:10:00'),(103,14,'phpapps_database_sql_sintax_form',224,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-26 06:31:40','2016-09-26 06:31:40');
 /*!40000 ALTER TABLE `forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -480,6 +477,31 @@ INSERT INTO `list_script_types` VALUES (1,'admin',''),(2,'public','');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `list_sql_sintax_types`
+--
+
+DROP TABLE IF EXISTS `list_sql_sintax_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `list_sql_sintax_types` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `VALUE` varchar(20) NOT NULL DEFAULT '',
+  `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `list_sql_sintax_types`
+--
+
+LOCK TABLES `list_sql_sintax_types` WRITE;
+/*!40000 ALTER TABLE `list_sql_sintax_types` DISABLE KEYS */;
+INSERT INTO `list_sql_sintax_types` VALUES (1,'CREATE_TABLE',''),(2,'ALTER_TABLE_ADD_PK',''),(3,'DROP_TABLE',''),(4,'ALTER_TABLE_ADD_COL',''),(5,'ALTER_TBL_REN_TBL',''),(6,'ALTER_TABLE_DROP_COL',''),(7,'ALTER_TABLE_ADD_FK',''),(8,'ALTER_TABLE_DROP_FK','');
+/*!40000 ALTER TABLE `list_sql_sintax_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `list_table_types`
 --
 
@@ -657,7 +679,7 @@ CREATE TABLE `mysql_column_defs` (
 
 LOCK TABLES `mysql_column_defs` WRITE;
 /*!40000 ALTER TABLE `mysql_column_defs` DISABLE KEYS */;
-INSERT INTO `mysql_column_defs` VALUES (1,5,'{$COLUMN_OBJ->COLUMN_NAME} BIGINT({$COLUMN_OBJ->COLUMN_SIZE}) {if $COLUMN_OBJ->ACCEPT_NULL === FALSE }NOT NULL{/if} {if $COLUMN_OBJ->DEFAULT_VAL!= \\\"\\\" } DEFAULT \\\'{if $COLUMN_OBJ->DEFAULT_VAL != \\\"EMPTY\\\"}{$COLUMN_OBJ->DEFAULT_VAL}{/if}\\\' {/if} {if $COLUMN_OBJ->AUTOINCREMENT === TRUE } AUTO_INCREMENT {/if}',''),(2,7,'{$COLUMN_OBJ->COLUMN_NAME} VARCHAR ({$COLUMN_OBJ->COLUMN_SIZE}) {if $COLUMN_OBJ->ACCEPT_NULL === FALSE }NOT NULL{/if} {if $COLUMN_OBJ->DEFAULT_VAL!= \\\"\\\" } DEFAULT \\\'{if $COLUMN_OBJ->DEFAULT_VAL != \\\"EMPTY\\\"}{$COLUMN_OBJ->DEFAULT_VAL}{/if}\\\' {/if} {if $COLUMN_OBJ->AUTOINCREMENT === TRUE } AUTO_INCREMENT {/if}',''),(3,8,'{$COLUMN_OBJ->COLUMN_NAME} TEXT {if $COLUMN_OBJ->ACCEPT_NULL === FALSE }NOT NULL{/if} {if $COLUMN_OBJ->DEFAULT_VAL!= \\\"\\\" } DEFAULT \\\'{if $COLUMN_OBJ->DEFAULT_VAL != \\\"EMPTY\\\"}{$COLUMN_OBJ->DEFAULT_VAL}{/if}\\\' {/if} {if $COLUMN_OBJ->AUTOINCREMENT === TRUE } AUTO_INCREMENT {/if}','');
+INSERT INTO `mysql_column_defs` VALUES (1,5,'{$COLUMN_OBJ->COLUMN_NAME} BIGINT({$COLUMN_OBJ->COLUMN_SIZE}) {if $COLUMN_OBJ->ACCEPT_NULL === FALSE }NOT NULL{/if} {if $COLUMN_OBJ->DEFAULT_VAL!= \\\"\\\" } DEFAULT \\\'{if $COLUMN_OBJ->DEFAULT_VAL != \\\"EMPTY\\\"}{$COLUMN_OBJ->DEFAULT_VAL}{/if}\\\'{/if}',''),(2,7,'{$COLUMN_OBJ->COLUMN_NAME} VARCHAR ({$COLUMN_OBJ->COLUMN_SIZE}) {if $COLUMN_OBJ->ACCEPT_NULL === FALSE }NOT NULL{/if} {if $COLUMN_OBJ->DEFAULT_VAL!= \\\"\\\" } DEFAULT \\\'{if $COLUMN_OBJ->DEFAULT_VAL != \\\"EMPTY\\\"}{$COLUMN_OBJ->DEFAULT_VAL}{/if}\\\' {/if}',''),(3,8,'{$COLUMN_OBJ->COLUMN_NAME} TEXT {if $COLUMN_OBJ->ACCEPT_NULL === FALSE }NOT NULL{/if} {if $COLUMN_OBJ->DEFAULT_VAL!= \\\"\\\" } DEFAULT \\\'{if $COLUMN_OBJ->DEFAULT_VAL != \\\"EMPTY\\\"}{$COLUMN_OBJ->DEFAULT_VAL}{/if}\\\' {/if}','');
 /*!40000 ALTER TABLE `mysql_column_defs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -837,6 +859,37 @@ INSERT INTO `sql_query` VALUES (1,'select CONCAT(\'$MYSQL_COLUMN_TYPES[\',ID,\']
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sql_sintax`
+--
+
+DROP TABLE IF EXISTS `sql_sintax`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sql_sintax` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DBMS_TYPE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `SINTAX_TYPE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `DEF_TPL` text NOT NULL,
+  `DESCRIPTION` text NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `sql_sintax_DBMS_TYPE_ID_fk` (`DBMS_TYPE_ID`),
+  KEY `sql_sintax_SINTAX_TYPE_ID_fk` (`SINTAX_TYPE_ID`),
+  CONSTRAINT `sql_sintax_DBMS_TYPE_ID_fk` FOREIGN KEY (`DBMS_TYPE_ID`) REFERENCES `list_dbms_types` (`ID`),
+  CONSTRAINT `sql_sintax_SINTAX_TYPE_ID_fk` FOREIGN KEY (`SINTAX_TYPE_ID`) REFERENCES `list_sql_sintax_types` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sql_sintax`
+--
+
+LOCK TABLES `sql_sintax` WRITE;
+/*!40000 ALTER TABLE `sql_sintax` DISABLE KEYS */;
+INSERT INTO `sql_sintax` VALUES (1,1,1,'CREATE TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} (\r\n    {section name=cols loop=$TABLE_OBJ->columns}\r\n        {$TABLE_OBJ->columns[cols]->getColumnDef()}\r\n    {/section}\r\n)ENGINE=InnoDB',''),(2,1,2,'ALTER TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} MODIFY COLUMN {$TABLE_OBJ->CURRENT_COLUMN->getColumnDef()}  AUTO_INCREMENT PRIMARY KEY',''),(3,1,3,'DROP TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME}',''),(4,1,4,'ALTER TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} ADD COLUMN {$TABLE_OBJ->CURRENT_COLUMN->getColumnDef()}',''),(5,1,5,'ALTER TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} RENAME {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->NEW_TABLE_NAME}',''),(6,1,6,'ALTER TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} DROP COLUMN {$TABLE_OBJ->CURRENT_COLUMN->getColumnName()}',''),(7,1,7,'ALTER TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} ADD CONSTRAINT {$TABLE_OBJ->TABLE_SCHEMA}_{$TABLE_OBJ->TABLE_NAME}_{$TABLE_OBJ->CURRENT_COLUMN->getColumnName()}_FK FOREIGN KEY ({$TABLE_OBJ->CURRENT_COLUMN->getColumnName()}) REFERENCES {$TABLE_OBJ->REF_SCHEMA_NAME}.{$TABLE_OBJ->REF_TABLE_NAME}({$TABLE_OBJ->REF_COLUMN_NAME})',''),(8,1,8,'ALTER TABLE {$TABLE_OBJ->TABLE_SCHEMA}.{$TABLE_OBJ->TABLE_NAME} DROP FOREIGN KEY {$TABLE_OBJ->TABLE_SCHEMA}_{$TABLE_OBJ->TABLE_NAME}_{$TABLE_OBJ->CURRENT_COLUMN->getColumnName()}_FK,\r\nDROP INDEX {$TABLE_OBJ->TABLE_SCHEMA}_{$TABLE_OBJ->TABLE_NAME}_{$TABLE_OBJ->CURRENT_COLUMN->getColumnName()}_FK','');
+/*!40000 ALTER TABLE `sql_sintax` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `table_details`
 --
 
@@ -915,7 +968,7 @@ CREATE TABLE `tables` (
   CONSTRAINT `tables_ibfk_3` FOREIGN KEY (`TABLE_TYPE`) REFERENCES `list_table_types` (`ID`),
   CONSTRAINT `tables_ibfk_4` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `tables_ibfk_5` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -924,8 +977,31 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
-INSERT INTO `tables` VALUES (2,1,3,'applications',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,3,'modules',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,1,3,'forms',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(35,1,3,'list_no_yes',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(80,10,7,'categories',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(82,1,3,'list_script_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(83,1,3,'scripts',3,'',1,1,'2016-09-22 13:36:29','0000-00-00 00:00:00'),(87,7,3,'users',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(88,7,3,'roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(89,7,3,'permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(90,7,3,'user_roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(91,7,3,'role_permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(93,7,3,'list_permission_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(96,1,3,'list_object_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(98,7,3,'list_permission_names',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(99,7,3,'user_profiles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(100,10,7,'products',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(103,7,3,'scripts',3,'',1,1,'2016-09-22 13:36:29','2015-08-19 11:48:19'),(129,1,3,'module_vars',2,'',1,1,'2016-08-29 06:13:16','2016-08-29 06:13:16'),(130,13,2,'sss',2,'',1,1,'2016-08-30 08:53:55','2016-08-30 08:53:55'),(197,14,3,'tables',3,'',1,1,'2016-09-22 13:36:29','2016-09-21 11:06:57'),(198,14,3,'table_details',3,'',1,1,'2016-09-22 13:36:29','2016-09-21 11:07:06'),(199,14,3,'list_databases',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:07:20'),(200,14,3,'list_index_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:07:35'),(201,14,3,'list_mysql_column_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:07:50'),(202,14,3,'views',3,'',1,1,'2016-09-22 13:36:29','2016-09-21 11:08:11'),(203,14,3,'list_table_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:59:49'),(204,7,3,'list_user_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 13:34:21'),(205,14,3,'dfasdf',1,'',1,1,'2016-09-21 14:24:36','2016-09-21 14:24:36'),(206,14,3,'aaa',1,'',1,1,'2016-09-21 14:29:14','2016-09-21 14:29:14'),(210,14,3,'list_empty',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 14:41:58'),(221,1,7,'products',NULL,'',1,1,'2016-09-23 05:47:26','2016-09-23 05:47:26'),(222,14,3,'mysql_column_defs',1,'',1,1,'2016-09-24 05:08:53','2016-09-24 05:08:53'),(223,14,3,'list_dbms_types',1,'',1,1,'2016-09-24 11:36:51','2016-09-24 11:36:51');
+INSERT INTO `tables` VALUES (2,1,3,'applications',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(3,1,3,'modules',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(5,1,3,'forms',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(35,1,3,'list_no_yes',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(80,10,7,'categories',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(82,1,3,'list_script_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(83,1,3,'scripts',3,'',1,1,'2016-09-22 13:36:29','0000-00-00 00:00:00'),(87,7,3,'users',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(88,7,3,'roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(89,7,3,'permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(90,7,3,'user_roles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(91,7,3,'role_permissions',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(93,7,3,'list_permission_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(96,1,3,'list_object_types',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(98,7,3,'list_permission_names',1,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(99,7,3,'user_profiles',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(100,10,7,'products',2,'',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(103,7,3,'scripts',3,'',1,1,'2016-09-22 13:36:29','2015-08-19 11:48:19'),(129,1,3,'module_vars',2,'',1,1,'2016-08-29 06:13:16','2016-08-29 06:13:16'),(130,13,2,'sss',2,'',1,1,'2016-08-30 08:53:55','2016-08-30 08:53:55'),(197,14,3,'tables',3,'',1,1,'2016-09-22 13:36:29','2016-09-21 11:06:57'),(198,14,3,'table_details',3,'',1,1,'2016-09-22 13:36:29','2016-09-21 11:07:06'),(199,14,3,'list_databases',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:07:20'),(200,14,3,'list_index_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:07:35'),(201,14,3,'list_mysql_column_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:07:50'),(202,14,3,'views',3,'',1,1,'2016-09-22 13:36:29','2016-09-21 11:08:11'),(203,14,3,'list_table_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 11:59:49'),(204,7,3,'list_user_types',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 13:34:21'),(205,14,3,'dfasdf',1,'',1,1,'2016-09-21 14:24:36','2016-09-21 14:24:36'),(206,14,3,'aaa',1,'',1,1,'2016-09-21 14:29:14','2016-09-21 14:29:14'),(210,14,3,'list_empty',1,'',1,1,'2016-09-22 13:38:37','2016-09-21 14:41:58'),(221,1,7,'products',NULL,'',1,1,'2016-09-23 05:47:26','2016-09-23 05:47:26'),(222,14,3,'mysql_column_defs',1,'',1,1,'2016-09-24 05:08:53','2016-09-24 05:08:53'),(223,14,3,'list_dbms_types',1,'',1,1,'2016-09-24 11:36:51','2016-09-24 11:36:51'),(224,14,3,'sql_sintax',2,'',1,1,'2016-09-26 05:58:41','2016-09-26 05:58:41'),(225,14,3,'list_sql_sintax_types',1,'',1,1,'2016-09-26 06:27:44','2016-09-26 06:27:44');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_def`
+--
+
+DROP TABLE IF EXISTS `test_def`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_def` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `APP_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_def`
+--
+
+LOCK TABLES `test_def` WRITE;
+/*!40000 ALTER TABLE `test_def` DISABLE KEYS */;
+/*!40000 ALTER TABLE `test_def` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1109,210 +1185,201 @@ INSERT INTO `users` VALUES (1,'victor','alcatraz','Gigi','Fanica','',1,'bb',2,1,
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `view_forms`
+-- Temporary view structure for view `view_forms`
 --
 
 DROP TABLE IF EXISTS `view_forms`;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_forms` (
-  `ID` tinyint NOT NULL,
-  `FORM_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `FORM_QUERY` tinyint NOT NULL,
-  `FORM_PHP_DIR` tinyint NOT NULL,
-  `FORM_TPL_DIR` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_forms` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `FORM_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `FORM_QUERY`,
+ 1 AS `FORM_PHP_DIR`,
+ 1 AS `FORM_TPL_DIR`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_modules`
+-- Temporary view structure for view `view_modules`
 --
 
 DROP TABLE IF EXISTS `view_modules`;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_modules` (
-  `ID` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `APP_SCHEMA` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `MODULE_TITLE` tinyint NOT NULL,
-  `MODULE_DATE` tinyint NOT NULL,
-  `MODULE_SCHEMA` tinyint NOT NULL,
-  `SCHEMA_NAME` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `SCRIPT_ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_modules` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `APP_SCHEMA`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `MODULE_TITLE`,
+ 1 AS `MODULE_DATE`,
+ 1 AS `MODULE_SCHEMA`,
+ 1 AS `SCHEMA_NAME`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `SCRIPT_ID`,
+ 1 AS `SCRIPT_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_permissions`
+-- Temporary view structure for view `view_permissions`
 --
 
 DROP TABLE IF EXISTS `view_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_permissions` (
-  `ID` tinyint NOT NULL,
-  `PERMISSION_NAME` tinyint NOT NULL,
-  `PERMISSION_NAME_ID` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `PERMISSION_TYPE` tinyint NOT NULL,
-  `PERMISSION_TYPE_ID` tinyint NOT NULL,
-  `OBJECT_TYPE` tinyint NOT NULL,
-  `OBJECT_TYPE_ID` tinyint NOT NULL,
-  `OBJECT_NAME` tinyint NOT NULL,
-  `OBJECT_ID` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_permissions` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `PERMISSION_NAME`,
+ 1 AS `PERMISSION_NAME_ID`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `PERMISSION_TYPE`,
+ 1 AS `PERMISSION_TYPE_ID`,
+ 1 AS `OBJECT_TYPE`,
+ 1 AS `OBJECT_TYPE_ID`,
+ 1 AS `OBJECT_NAME`,
+ 1 AS `OBJECT_ID`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_role_permissions`
+-- Temporary view structure for view `view_role_permissions`
 --
 
 DROP TABLE IF EXISTS `view_role_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_role_permissions` (
-  `ID` tinyint NOT NULL,
-  `ROLE_ID` tinyint NOT NULL,
-  `ROLE_NAME` tinyint NOT NULL,
-  `PERMISSION_ID` tinyint NOT NULL,
-  `PERMISSION_NAME` tinyint NOT NULL,
-  `PERMISSION_NAME_ID` tinyint NOT NULL,
-  `PERMISSION_DESC` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_role_permissions` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `ROLE_ID`,
+ 1 AS `ROLE_NAME`,
+ 1 AS `PERMISSION_ID`,
+ 1 AS `PERMISSION_NAME`,
+ 1 AS `PERMISSION_NAME_ID`,
+ 1 AS `PERMISSION_DESC`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_scripts`
+-- Temporary view structure for view `view_scripts`
 --
 
 DROP TABLE IF EXISTS `view_scripts`;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_scripts` (
-  `ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_scripts` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCRIPT_NAME`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_details`
+-- Temporary view structure for view `view_table_details`
 --
 
 DROP TABLE IF EXISTS `view_table_details`;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_details` (
-  `ID` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `COLUMN_NAME` tinyint NOT NULL,
-  `COLUMN_TYPE_ID` tinyint NOT NULL,
-  `COLUMN_TYPE_LABEl` tinyint NOT NULL,
-  `COLUMN_SIZE` tinyint NOT NULL,
-  `COLUMN_DEFAULT_VALUE` tinyint NOT NULL,
-  `FOREIGN_KEY_SCHEMA_ID` tinyint NOT NULL,
-  `FOREIGN_KEY_SCHEMA_LABEl` tinyint NOT NULL,
-  `FOREIGN_KEY_TABLE_ID` tinyint NOT NULL,
-  `FOREIGN_KEY_TABLE_LABEl` tinyint NOT NULL,
-  `FOREIGN_KEY_COLUMN_ID` tinyint NOT NULL,
-  `FOREIGN_KEY_COLUMN_LABEL` tinyint NOT NULL,
-  `COLUMN_INDEX_TYPE_ID` tinyint NOT NULL,
-  `COLUMN_INDEX_TYPE_LABEL` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `MODIFY_UID` tinyint NOT NULL,
-  `MODIFIED_BY` tinyint NOT NULL,
-  `CREATE_UID` tinyint NOT NULL,
-  `CREATED_BY` tinyint NOT NULL,
-  `MODIFY_DATE` tinyint NOT NULL,
-  `CREATE_DATE` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_details` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `COLUMN_NAME`,
+ 1 AS `COLUMN_TYPE_ID`,
+ 1 AS `COLUMN_TYPE_LABEl`,
+ 1 AS `COLUMN_SIZE`,
+ 1 AS `COLUMN_DEFAULT_VALUE`,
+ 1 AS `FOREIGN_KEY_SCHEMA_ID`,
+ 1 AS `FOREIGN_KEY_SCHEMA_LABEl`,
+ 1 AS `FOREIGN_KEY_TABLE_ID`,
+ 1 AS `FOREIGN_KEY_TABLE_LABEl`,
+ 1 AS `FOREIGN_KEY_COLUMN_ID`,
+ 1 AS `FOREIGN_KEY_COLUMN_LABEL`,
+ 1 AS `COLUMN_INDEX_TYPE_ID`,
+ 1 AS `COLUMN_INDEX_TYPE_LABEL`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `MODIFY_UID`,
+ 1 AS `MODIFIED_BY`,
+ 1 AS `CREATE_UID`,
+ 1 AS `CREATED_BY`,
+ 1 AS `MODIFY_DATE`,
+ 1 AS `CREATE_DATE`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_tables`
+-- Temporary view structure for view `view_tables`
 --
 
 DROP TABLE IF EXISTS `view_tables`;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_tables` (
-  `ID` tinyint NOT NULL,
-  `TABLE_TYPE` tinyint NOT NULL,
-  `TABLE_SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `APP_SCHEMA` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_tables` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `TABLE_TYPE`,
+ 1 AS `TABLE_SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `APP_SCHEMA`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_user_roles`
+-- Temporary view structure for view `view_user_roles`
 --
 
 DROP TABLE IF EXISTS `view_user_roles`;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_user_roles` (
-  `ID` tinyint NOT NULL,
-  `UID` tinyint NOT NULL,
-  `USERNAME` tinyint NOT NULL,
-  `ROLE_ID` tinyint NOT NULL,
-  `ROLE_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_user_roles` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `UID`,
+ 1 AS `USERNAME`,
+ 1 AS `ROLE_ID`,
+ 1 AS `ROLE_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_users`
+-- Temporary view structure for view `view_users`
 --
 
 DROP TABLE IF EXISTS `view_users`;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_users` (
-  `ID` tinyint NOT NULL,
-  `USERNAME` tinyint NOT NULL,
-  `PASSWORD` tinyint NOT NULL,
-  `FIRSTNAME` tinyint NOT NULL,
-  `LASTNAME` tinyint NOT NULL,
-  `EMAIL` tinyint NOT NULL,
-  `USER_TYPE` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `PROFILE_ID` tinyint NOT NULL,
-  `PROFILE_NAME` tinyint NOT NULL,
-  `SCRIPT_ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_users` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `USERNAME`,
+ 1 AS `PASSWORD`,
+ 1 AS `FIRSTNAME`,
+ 1 AS `LASTNAME`,
+ 1 AS `EMAIL`,
+ 1 AS `USER_TYPE`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `PROFILE_ID`,
+ 1 AS `PROFILE_NAME`,
+ 1 AS `SCRIPT_ID`,
+ 1 AS `SCRIPT_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1357,7 +1424,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_forms`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_forms`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1376,7 +1442,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_modules`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_modules`*/;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1395,7 +1460,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_permissions`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1414,7 +1478,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_role_permissions`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_role_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1433,7 +1496,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_scripts`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_scripts`*/;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1452,7 +1514,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_details`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_details`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1471,7 +1532,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_tables`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_tables`*/;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1490,7 +1550,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_user_roles`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_user_roles`*/;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1509,7 +1568,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_users`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_users`*/;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1533,4 +1591,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-24 14:50:26
+-- Dump completed on 2016-09-26 16:27:29

@@ -8,20 +8,10 @@ class DB_column_def{
 		public $COLUMN_SIZE;
                 public $ACCEPT_NULL;
                 public $DEFAULT_VAL;
-                public $AUTOINCREMENT;
-                
-		//public $fk;
-		//public $index;
-		public $comment;
-		//public $MYSQL_INDEX_TYPES = array();
-		//public $MYSQL_COLUMN_TYPES =  array();
 		
-		//private $idx_str = "";
-		//private $def_str = "";
-		//private $ref_str = "";
-		//private $default_val_str = "";
+		public $comment;
 
-		function __construct($vname, $vtype, $vsize, $vnull = TRUE, $vdefault = '', $vautoincr = FALSE){
+		function __construct($vname, $vtype, $vsize, $vnull = TRUE, $vdefault = ''){
 	
 			global $GLOBALS_OBJ;
 			$this->globals = $GLOBALS_OBJ;
@@ -29,24 +19,54 @@ class DB_column_def{
 			$this->COLUMN_NAME = $vname;
 			$this->COLUMN_TYPE = $vtype;
 			$this->COLUMN_SIZE = $vsize;
+                        $this->ACCEPT_NULL = $vnull;
 			$this->DEFAULT_VAL = $vdefault;
-			
-			$this->ACCEPT_NULL = $vnull;
-                        $this->AUTOINCREMENT = $vautoincr;
-                        
-                        //$this->fk = $vfk;
-			
-			//$this->MYSQL_INDEX_TYPES = (new DB_list("list_index_types"))->getArray();
-			//$this->MYSQL_COLUMN_TYPES = (new DB_list("list_mysql_column_types"))->getArray();
 			
 			return $this;
 		}
+                
+                function getColumnName(){
+                    return $this->COLUMN_NAME;
+                }
+                
+                function getColumnType(){
+                    return $this->COLUMN_TYPE;
+                }
+                
+                function getColumnSize(){
+                    return $this->COLUMN_SIZE;
+                }
+                
+                function getColumnAcceptNull(){
+                    return $this->ACCEPT_NULL;
+                }
 		
+                function getColumnDefaultVal(){
+                    return $this->DEFAULT_VAL;
+                }
+                
+                 function setColumnName($vname){
+                    $this->COLUMN_NAME = $vname;
+                }
+                
+                function setColumnType($vtype){
+                    $this->COLUMN_TYPE = $vtype;
+                }
+                
+                function setColumnSize($vsize){
+                    $this->COLUMN_SIZE = $vsize;
+                }
+                
+                function setColumnAcceptNull($vnull){
+                    $this->ACCEPT_NULL = $vnull;
+                }
+		
+                function setColumnDefaultVal($vdefault){
+                    $this->DEFAULT_VAL = $vdefault;
+                }
+                
 		function getColumnDef(){
-                   // echo "aaa:" . (new DB_table("phpapps.mysql_column_defs"))->getValueByField("DEF_TPL","COLUMN_TYPE_ID", $this->COLUMN_TYPE);
-                        //{$COLUMN_NAME} BIGINT({$COLUMN_SIZE} {if $ACCEPT_NULL === FALSE }NOT NULL{/if} {if $DEFAULT_VAL!= \"\" }{$DEFAULT_VAL} {/if} {if $AUTOINCREMENT === TRUE } AUTO_INCREMENT {/if}
 			$this->globals->sm->assign("COLUMN_OBJ",$this);
-                        
 			return  $this->globals->sm->fetch(
                                    'string:'.  stripslashes((new DB_table("phpapps.mysql_column_defs"))->getValueByField("DEF_TPL","COLUMN_TYPE_ID", $this->COLUMN_TYPE))
                                 );

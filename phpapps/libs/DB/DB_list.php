@@ -50,7 +50,7 @@ class DB_list{
 }
 
 function _lst($list_name,$val=NULL){
-    if(is_null( $val)){
+    if(is_null($val)){
         return array_flip((new DB_list($list_name))->getArray());
     }elseif(!is_int($val)){
         return (new DB_list($list_name))->getID($val);

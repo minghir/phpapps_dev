@@ -33,7 +33,7 @@ class {$form_name}{ldelim}
 	
 	function __construct(){ldelim}
 		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
 	{rdelim}
 		
 	function init(){ldelim}

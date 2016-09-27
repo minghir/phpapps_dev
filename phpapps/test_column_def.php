@@ -14,6 +14,10 @@ class test_column_def extends phpapps_display_abs{
         //$bb = new DB_table_def("phpapps","test_def2");
         //$bb->dropTable();
         
+        echo "<h1>(-"._lst("list_mysql_column_types")["BIGINT"] ."-)</h1><br>";
+        echo "<h1>(-"._lst("list_mysql_column_types","BIGINT") ."-)</h1><br>";
+        echo "<h1>(-"._lst("list_mysql_column_types",4) ."-)</h1><br>";
+        /*
         $aa =new DB_table_def("phpapps","test_def");
         $aa->dropTable();
         
@@ -32,6 +36,9 @@ class test_column_def extends phpapps_display_abs{
         print_r($aa->errors);
         $aa->alterTblDropFK("APP_ID");
         print_r($aa->errors);
+        $aa->dropTable();
+         * 
+         */
     }
 }
 

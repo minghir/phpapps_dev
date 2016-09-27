@@ -8,7 +8,7 @@ class DB_list{
 	
 	function __construct($listname){
 		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
 		
 		$this->list_name = $listname;
 		return $this;
@@ -47,4 +47,15 @@ class DB_list{
 		return $value;
 	}
 
-};
+}
+
+function _lst($list_name,$val=NULL){
+    if(is_null( $val)){
+        return array_flip((new DB_list($list_name))->getArray());
+    }elseif(!is_int($val)){
+        return (new DB_list($list_name))->getID($val);
+    }else{
+        return (new DB_list($list_name))->getValue($val);
+    }
+}
+

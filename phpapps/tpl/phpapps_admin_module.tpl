@@ -93,13 +93,8 @@
 	</ul>
 	
 	<div id="tab1" class="adm_mod_div"  >{$tables_grid}</div>
-	<br>
 	<div id="tab2" class="test_div"  style="width: 90%;">{$lists_grid}</div>
-	<br>
 	<div id="tab3" class="test_div"  style="width: 90%;">{$forms_grid}</div>
-	<br>
 	<div id="tab4" class="test_div"  style="width: 90%;">{$scripts_grid}</div>
-	
-
 </body>
 </html>

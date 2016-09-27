@@ -91,8 +91,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","DESCRIPTION"));
 		$tables_grid->labels = (array("SCHEMA","TABLE","DESCRIPTION"));
 		
-		$tables_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_NAME NOT LIKE :table_name ");
-		$tables_grid->where_params = array(":module_id" => $this->ID,":table_name"=>"LIST%");
+		$tables_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE = :table_type ");
+		$tables_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("values_table"));
 		
 		$tables_grid->paginable = true;
 		$tables_grid->filterable = false;
@@ -134,8 +134,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		
 		//$lists_grid->where_rules = array(" MODULE_ID = '".$this->ID."' AND TABLE_NAME LIKE 'LIST%'");
 		
-		$lists_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_NAME LIKE :table_name ");
-		$lists_grid->where_params = array(":module_id" => $this->ID,":table_name"=>"LIST%");
+		$lists_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE = :table_type ");
+		$lists_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("list_table"));
 		
 		
 		$lists_grid->paginable = true;
@@ -155,6 +155,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$la->fields = array("ID");
 		$lists_grid->add_row_acction($la);
                 
+                /*
                 $dl = new HrefActions();
 		$dl->act_script = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		$dl->popup = true;
@@ -163,7 +164,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$dl->confirm_msg = "Sigur stergeti lista cu DROP??";
 		$dl->fields = array("ID");
 		$lists_grid->add_row_acction($dl);
-		
+		*/
+                
 		$las = new HrefActions();
 		$las->act_script = "phpapps_database_browse_list.php?module_id=".$this->ID;
 		$las->popup = true;

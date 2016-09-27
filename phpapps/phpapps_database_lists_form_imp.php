@@ -17,6 +17,7 @@ include ("gen_php/phpapps_database_lists_form.php");
                         $this->TABLE_TYPE = (new DB_list("list_table_types"))->getID("list_table");
                         
 			$this->init();
+                        //$this->getRec();
                         
                         if($this->gact == "dropList"){
 				$this->dropList();
@@ -26,6 +27,7 @@ include ("gen_php/phpapps_database_lists_form.php");
 		}
 		
                 function dropList(){
+                    /*
                       $sql = new DB_query("SELECT SCHEMA_NAME, MODULE_SCHEMA FROM view_modules WHERE ID = :module_id",array(":module_id"=>$this->MODULE_ID));
 			if( $this->globals->con->query($sql) == -1 ){
 				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
@@ -34,7 +36,7 @@ include ("gen_php/phpapps_database_lists_form.php");
 				$this->SCHEMA_ID = $this->globals->con->get_field("MODULE_SCHEMA");
 				$this->SCHEMA_NAME = $this->globals->con->get_field("SCHEMA_NAME");
 			}
-                        
+                    */    
 			$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
 			if(!$this->table_definition->dropTable()){
                             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
@@ -85,18 +87,31 @@ include ("gen_php/phpapps_database_lists_form.php");
 		function beforeDeleteRec(){
                     $sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA, MODULE_NAME
                             FROM phpapps.view_tables 
-                            WHERE TABLE_NAME = :tbl AND TABLE_SCHEMA = :scm",
-                            array(":tbl" => $this->TABLE_NAME,
-                                ":scm" => $this->SCHEMA_NAME));
-                 
-                    $res_rows = $this->globals->con->query( $sql );
-                    if( $res_rows == 1){
-                        $this->dropList();
+                            WHERE ID = :tbl_id ",
+                            array(":tbl_id" => $this->ID));
+                    
+                    //$this->TABLE_NAME = (new DB_table())
+                    if($this->globals->con->query($sql) == 1 ){
+                        //$this->TABLE_NAME = 
                     }
 		}
 		
 		function afterDeleteRec(){
+                    $sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA, MODULE_NAME
+                            FROM phpapps.view_tables 
+                            WHERE TABLE_NAME = :tbl AND TABLE_SCHEMA = :scm ",
+                            array(":tbl" => $this->TABLE_NAME,
+                                ":scm" => $this->SCHEMA_NAME));
+                 print_r($sql);
+                    $res_rows = $this->globals->con->query( $sql );
+echo "aici" . $res_rows . "<br>";
+                    if( $res_rows == 0){
+                        if(!$this->dropList()){
+                            $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
+                        }
+                    }
                     //header("Location:win_close.html");
+                    print_r($this->errors);
 		}
 		
 		function beforeDisplay(){	

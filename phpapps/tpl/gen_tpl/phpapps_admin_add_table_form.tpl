@@ -15,6 +15,16 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
+			
+		
+						 
+										<input id="ORIGIN_ID" type="hidden" name="ORIGIN_ID" value="{$ORIGIN_ID}">
+        								
+			
+		
+						 
 										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
         								
 			
@@ -32,6 +42,11 @@ function submitDetailsForm(op){
 			{$TABLE_NAME_sel}
 		</td></tr>
         				 
+										<input id="TABLE_TYPE" type="hidden" name="TABLE_TYPE" value="{$TABLE_TYPE}">
+        								
+			
+		
+						 
 								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			

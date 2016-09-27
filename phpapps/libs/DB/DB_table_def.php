@@ -11,11 +11,12 @@ class DB_table_def{
         
 	public $columns = array();
         public $auditable = "true"; 
+        public $foreign_keys = array();
+        
         public $errors = array();
         
-        public $REF_SCHEMA_NAME;
-        public $REF_TABLE_NAME;
-        public $REF_COLUMN_NAME;
+        public $CURRENT_FK;
+        
 
 	function __construct($tschm,$tname,$auditbl = TRUE){
                 global $GLOBALS_OBJ;
@@ -111,16 +112,22 @@ echo "<br>".$sql->sql();
         
         
         function alterTblAddFK($col_name,$fk_schema,$fk_table,$fk_fld="ID"){
+            $this->CURRENT_FK =  new DB_FK_def($this->TABLE_SCHEMA,
+                                                  $this->TABLE_NAME,
+                                                  $col_name,
+                                                  $fk_schema,
+                                                  $fk_table,
+                                                  $fk_fld
+                    );
+            
+            $this->foreign_keys[] = $this->CURRENT_FK;
             $this->CURRENT_COLUMN = $this->getColDef($col_name);
-            $this->REF_SCHEMA_NAME = $fk_schema;
-            $this->REF_TABLE_NAME = $fk_table;
-            $this->REF_COLUMN_NAME = $fk_fld;
             
             return $this->execQuery("ALTER_TABLE_ADD_FK");
         }
         
         function alterTblDropPK($field){
-            
+            return $this->execQuery("ALTER_TABLE_DROP_PK");
         }
         
         function alterTblDropFK($col_name){

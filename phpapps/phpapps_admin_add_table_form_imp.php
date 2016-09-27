@@ -7,6 +7,7 @@ include ("gen_php/phpapps_admin_add_table_form.php");
 			$this->globals = $GLOBALS_OBJ;
 			
 			$this->MODULE_ID = $_GET["module_id"];
+                        
 			$this->template = "phpapps_admin_add_table_form_imp.tpl";
 			$this->init();
 			$this->display();
@@ -27,15 +28,18 @@ include ("gen_php/phpapps_admin_add_table_form.php");
 		}
 		
 		function beforeAddRec(){
+                        $this->ORIGIN_ID = $this->TABLE_NAME;
 				$sql = new DB_query("SELECT 
 									TABLE_NAME, 
 									TABLE_SCHEMA, 
-									TABLE_SCHEMA_ID
+									TABLE_SCHEMA_ID,
+                                                                        TABLE_TYPE
 								FROM view_tables 
 								WHERE ID = :ID",array(":ID"=>$this->TABLE_NAME));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			$this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
+                        $this->TABLE_TYPE = $this->globals->con->get_field("TABLE_TYPE");
 			$this->SCHEMA_ID = $this->globals->con->get_field("TABLE_SCHEMA_ID");			
 		}
 	};	

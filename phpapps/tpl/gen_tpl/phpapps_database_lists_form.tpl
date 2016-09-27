@@ -20,6 +20,11 @@ function submitDetailsForm(op){
 			
 		
 						 
+										<input id="ORIGIN_ID" type="hidden" name="ORIGIN_ID" value="{$ORIGIN_ID}">
+        								
+			
+		
+						 
 										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
         								
 			

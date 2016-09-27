@@ -14,6 +14,7 @@ class phpapps_database_lists_form{
 	//post values
 	public $pact;
 		public $ID;
+		public $ORIGIN_ID;
 		public $MODULE_ID;
 		public $SCHEMA_ID;
 		public $TABLE_NAME;
@@ -26,7 +27,9 @@ class phpapps_database_lists_form{
 		 
 		 
 		 
+		 
 			
+		 
 		 
 		 
 		 
@@ -55,6 +58,7 @@ class phpapps_database_lists_form{
 	function getRec(){
 		$sql = new DB_query( "SELECT 
 									ID,
+												ORIGIN_ID,
 												MODULE_ID,
 												SCHEMA_ID,
 												TABLE_NAME,
@@ -66,12 +70,13 @@ class phpapps_database_lists_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->ID = $this->globals->con->get_field("ID");
-							$this->MODULE_ID = $this->globals->con->get_field("MODULE_ID");
-							$this->SCHEMA_ID = $this->globals->con->get_field("SCHEMA_ID");
-							$this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
-							$this->TABLE_TYPE = $this->globals->con->get_field("TABLE_TYPE");
-							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
+							$this->ID = stripslashes($this->globals->con->get_field("ID"));
+							$this->ORIGIN_ID = stripslashes($this->globals->con->get_field("ORIGIN_ID"));
+							$this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
+							$this->SCHEMA_ID = stripslashes($this->globals->con->get_field("SCHEMA_ID"));
+							$this->TABLE_NAME = stripslashes($this->globals->con->get_field("TABLE_NAME"));
+							$this->TABLE_TYPE = stripslashes($this->globals->con->get_field("TABLE_TYPE"));
+							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
 						
 	}
 	
@@ -87,6 +92,7 @@ class phpapps_database_lists_form{
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
 									ID,
+												ORIGIN_ID,
 												MODULE_ID,
 												SCHEMA_ID,
 												TABLE_NAME,
@@ -94,6 +100,7 @@ class phpapps_database_lists_form{
 												DESCRIPTION
 						 ) VALUES (
 									:ID,
+												:ORIGIN_ID,
 												:MODULE_ID,
 												:SCHEMA_ID,
 												:TABLE_NAME,
@@ -102,6 +109,7 @@ class phpapps_database_lists_form{
 									)",
 			array(
 									":ID" => $this->ID,
+									":ORIGIN_ID" => $this->ORIGIN_ID,
 									":MODULE_ID" => $this->MODULE_ID,
 									":SCHEMA_ID" => $this->SCHEMA_ID,
 									":TABLE_NAME" => $this->TABLE_NAME,
@@ -109,7 +117,7 @@ class phpapps_database_lists_form{
 									":DESCRIPTION" => $this->DESCRIPTION,
 							)
 			);
-
+print_r($sql);
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
@@ -133,6 +141,7 @@ class phpapps_database_lists_form{
 		
 		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
 									ID = :ID,
+												ORIGIN_ID = :ORIGIN_ID,
 												MODULE_ID = :MODULE_ID,
 												SCHEMA_ID = :SCHEMA_ID,
 												TABLE_NAME = :TABLE_NAME,
@@ -142,6 +151,7 @@ class phpapps_database_lists_form{
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 									":ID" => $this->ID,
+									":ORIGIN_ID" => $this->ORIGIN_ID,
 									":MODULE_ID" => $this->MODULE_ID,
 									":SCHEMA_ID" => $this->SCHEMA_ID,
 									":TABLE_NAME" => $this->TABLE_NAME,
@@ -212,6 +222,7 @@ class phpapps_database_lists_form{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 					$this->ID  = addslashes(trim($_POST["ID"]));
+					$this->ORIGIN_ID  = addslashes(trim($_POST["ORIGIN_ID"]));
 					$this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
 					$this->SCHEMA_ID  = addslashes(trim($_POST["SCHEMA_ID"]));
 					$this->TABLE_NAME  = addslashes(trim($_POST["TABLE_NAME"]));
@@ -233,18 +244,10 @@ class phpapps_database_lists_form{
 	}
 	
 	function check_errors(){
-				if($this->MODULE_ID == "") {
-			$this->errors[] = "Campul MODULE_ID este obligatoriu!";
-		}
-				if($this->SCHEMA_ID == "") {
-			$this->errors[] = "Campul SCHEMA_ID este obligatoriu!";
-		}
-				if($this->TABLE_NAME == "") {
-			$this->errors[] = "Campul TABLE_NAME este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
+					 
 					 
 					 
 					 
@@ -258,10 +261,12 @@ class phpapps_database_lists_form{
 					 
 					 
 					 
+					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
+							"ORIGIN_ID" => $this->ORIGIN_ID,
 							"MODULE_ID" => $this->MODULE_ID,
 							"SCHEMA_ID" => $this->SCHEMA_ID,
 							"TABLE_NAME" => $this->TABLE_NAME,
@@ -273,7 +278,9 @@ class phpapps_database_lists_form{
 						 
 						 
 						 
+						 
 									 
+						 
 						 
 						 
 						 

@@ -102,7 +102,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$tables_grid->edit_form = "phpapps_admin_tables_form_imp.php?module_id=".$this->ID;
 		
 		$tad = new HrefActions();
-		$tad->act_script = "phpapps_admin_add_table_form_imp.php?module_id=".$this->ID;
+		$tad->act_script = "phpapps_admin_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("values_table")."&module_id=".$this->ID;
 		$tad->popup = true;
 		$tad->label = "add";
 		$tad->action = "newRec";
@@ -145,6 +145,12 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$lists_grid->rows_on_pg = 20;
 		$lists_grid->edit_form = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		
+                $lad = new HrefActions();
+		$lad->act_script = "phpapps_admin_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("list_table")."&module_id=".$this->ID;
+		$lad->popup = true;
+		$lad->label = "add";
+		$lad->action = "newRec";
+		$lists_grid->add_grid_acction($lad);
 		
 		$la = new HrefActions();
 		$la->act_script = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
@@ -165,6 +171,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$dl->fields = array("ID");
 		$lists_grid->add_row_acction($dl);
 		*/
+                
                 
 		$las = new HrefActions();
 		$las->act_script = "phpapps_database_browse_list.php?module_id=".$this->ID;

@@ -118,7 +118,7 @@ class phpapps_admin_add_table_form{
 									":DESCRIPTION" => $this->DESCRIPTION,
 							)
 			);
-
+print_r($sql);
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();

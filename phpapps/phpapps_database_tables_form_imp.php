@@ -9,34 +9,13 @@ include ("gen_php/phpapps_database_tables_form.php");
 		public $TABLE_ID;
 	
 		function __construct(){
+                    parent::__construct();
+                    
 			$this->template = "phpapps_database_tables_form_imp.tpl";
 			$this->MODULE_ID = $_GET["module_id"];
+                        $this->TABLE_TYPE = (new DB_list("list_table_types"))->getID("values_table");
 			$this->init();
-
-			if($this->gact == "dropTable"){
-				$this->dropTable();
-			}
 			$this->display();
-		}
-		
-		function dropTable(){
-					$sql = new DB_query( "SELECT TABLE_NAME, TABLE_SCHEMA
-					FROM phpapps.view_tables 
-					WHERE ".$this->gfield." = :".$this->gfield." AND MODULE_ID = :module_id",
-					array(":".$this->gfield => $this->gfield_value,":module_id"=>$this->MODULE_ID));
-
-			$this->globals->con->query( $sql );
-			$this->globals->con->next();
-			$this->TABLE_SCHEMA = $this->globals->con->get_field("TABLE_SCHEMA");
-			$this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
-			
-			$sql = new DB_query( "DROP TABLE ". $this->TABLE_SCHEMA . "." . $this->TABLE_NAME);
-			
-			if( $this->globals->con->query($sql) == -1 ){
-				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
-			}else{
-				$this->deleteRec();
-			}
 		}
 		
 		
@@ -55,26 +34,25 @@ include ("gen_php/phpapps_database_tables_form.php");
 				$this->SCHEMA_ID = $this->globals->con->get_field("MODULE_SCHEMA");
 				$this->SCHEMA_NAME = $this->globals->con->get_field("SCHEMA_NAME");
 			}
+			
+                        $this->globals->con->begin();
 			$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
-			$this->table_definition->add_column_def(
-				"ID",
-				(new DB_list("list_mysql_column_types"))->getID("BIGINT"),
-				"20",
-				"",
-				"",
-				(new DB_list("list_index_types"))->getID("PRIMARY")
-				);
-			 $sql = new DB_query($this->table_definition->get_create_str());
-			 if( $this->globals->con->query($sql) == -1 ){
-				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();
-			 }
+                        if(!$this->table_definition->createIDTable()){
+                            $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
+                        }
+                        
+                        if(count($this->errors) > 0){
+                            $this->table_definition->dropTable();
+                        }
+			
 		}
 		
 		function afterAddRec(){
-		
-			if(count($this->errors) == 0) {	
-				
-				$sql = new DB_query("SELECT ID FROM phpapps.tables 
+                    if(count($this->errors) > 0){
+                        $this->table_definition->dropTable();
+                        $this->globals->con->rollback();
+                    }else{
+                        $sql = new DB_query("SELECT ID FROM phpapps.tables 
 									WHERE MODULE_ID = :module_id AND
 									SCHEMA_ID = :schema_id AND
 									TABLE_NAME = :table_name",array(
@@ -94,59 +72,91 @@ include ("gen_php/phpapps_database_tables_form.php");
 						TABLE_ID,
 						COLUMN_NAME,
 						COLUMN_TYPE_ID,
-						COLUMN_SIZE,
-						COLUMN_INDEX_TYPE_ID
+						COLUMN_SIZE
 						) VALUES(
 							:TABLE_ID,
 							:COLUMN_NAME,
 							:COLUMN_TYPE_ID,
-							:COLUMN_SIZE,
-							:COLUMN_INDEX_TYPE_ID
+							:COLUMN_SIZE
 						)",array(
 							":TABLE_ID"=>$this->TABLE_ID,
 							":COLUMN_NAME"=>"ID",
 							":COLUMN_TYPE_ID"=>(new DB_list("list_mysql_column_types"))->getID("BIGINT"),
-							":COLUMN_SIZE"=>"20",
-							":COLUMN_INDEX_TYPE_ID"=>(new DB_list("list_index_types"))->getID("PRIMARY")
+							":COLUMN_SIZE"=>"20"
 						));
 						print_r($sql);
 					if( $this->globals->con->query($sql) == -1 ){
 						$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
+                                                $this->globals->con->rollback();
 					}else{
-						header("Location:phpapps_admin_tables_form_imp.php?module_id=".$this->MODULE_ID."&gact=editRec&gfield=ID&gfield_value=".$this->TABLE_ID);
+						//header("Location:phpapps_admin_tables_form_imp.php?module_id=".$this->MODULE_ID."&gact=editRec&gfield=ID&gfield_value=".$this->TABLE_ID);
+                                            $this->globals->con->commit();
 					}
 				}
+                             
 			}
-			
+                        
+print_r($this->errors);
+                }
+                    
 		
-		}
+
 		
 		function beforeSaveRec(){	
-			$sql = new DB_query("ALTER TABLE ".(new DB_table("view_tables"))->getValue("TABLE_SCHEMA",$this->ID).".".(new DB_table("tables"))->getValue("TABLE_NAME",$this->ID) ." RENAME ".
-				(new DB_table("view_tables"))->getValue("TABLE_SCHEMA",$this->ID).".".$this->TABLE_NAME);
-		
-			if( $this->globals->con->query($sql) == -1 ){
-				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
-			}else{
-			
-			}
-					
+                    $this->globals->con->begin();
+                    if($this->ORIGIN_ID != 0){
+                        $this->TABLE_NAME = (new DB_table("tables"))->getValue("TABLE_NAME",$this->ID);
+                        $this->TABLE_TYPE = (new DB_table("tables"))->getValue("TABLE_TYPE",$this->ID);
+                        $this->errors[] = "NOT THE OWNER MODULE!!!";
+                    }else{
+                        
+                        $this->table_definition = new DB_table_def((new DB_table("view_tables"))->getValue("TABLE_SCHEMA",$this->ID),(new DB_table("tables"))->getValue("TABLE_NAME",$this->ID));
+                        if(!$this->table_definition->alterTblRenameTbl($this->TABLE_NAME)){
+                            $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
+                        }
+                    }
 		}
 		
 		function afterSaveRec(){
+                    if(count($this->errors) == 0){
+                        $this->globals->con->commit();
+                    }else{
+                        $this->globals->con->rollback();
+                    }
 			//header("Location:win_close.html");
 		}
 
 		function beforeDeleteRec(){
+                    $this->getRec();
+                    $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA", $this->ID);
+                    if($this->ORIGIN_ID === 0){
+                        echo "zero";
+                    }else{
+                        echo "null";
+                    }
+                    echo "ID - " . $this->ID ."ORIGIN-" . $this->ORIGIN_ID ."<br>";
+                    //exit;
 		}
 		
 		function afterDeleteRec(){
-			header("Location:win_close.html");
+                    if(count($this->errors) == 0){
+                        if($this->ORIGIN_ID == 0){
+                            $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                            if(!$this->table_definition->dropTable()){
+                                $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                            }
+                        }
+                    }
+                    print_r($this->errors);
+                    //header("Location:win_close.html");
+			//header("Location:win_close.html");
 		}
 		
 		function beforeDisplay(){	
 			if($this->gact == "editRec"){
 				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_grid");
+                                
+                                $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
 				$table_details_grid->grid_title = "COLUMNS";
 				$table_details_grid->paginable = false;
 				$table_details_grid->filterable = false;
@@ -158,7 +168,6 @@ include ("gen_php/phpapps_database_tables_form.php");
 						"COLUMN_DEFAULT_VALUE",
 						"CONCAT(FOREIGN_KEY_SCHEMA_LABEl,'.',FOREIGN_KEY_TABLE_LABEl)",
 						"FOREIGN_KEY_COLUMN_LABEL",
-						"COLUMN_INDEX_TYPE_LABEL",
 						"DESCRIPTION");
 				$table_details_grid->labels = array(
 						"NAME",
@@ -167,12 +176,14 @@ include ("gen_php/phpapps_database_tables_form.php");
 						"DEFAULT VALUE",
 						"FK TABLE",
 						"FK COLUMN",
-						"INDEX TYPE",
 						"DESCRIPTION");
+                                $table_details_grid->current_order_field = "CREATE_DATE";
+	                        $table_details_grid->current_order_rule = "ASC";
 				$table_details_grid->where_rules = array("TABLE_ID = :table_id");
-				$table_details_grid->where_params = array(":table_id" => $this->ID);
+                                $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
+				$table_details_grid->where_params = array(":table_id" => $table_id);
 				$table_details_grid->rows_on_pg = 20;
-				$table_details_grid->edit_form = "phpapps_database_table_details_form_imp.php?table_id=".$this->ID;
+				$table_details_grid->edit_form = "phpapps_database_table_details_form_imp.php?gfield=table_id&gfield_value=".$this->ID;
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
 			}
 		}
@@ -180,7 +191,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 		function afterDisplay(){	
 		}
 		
-	};
+	}
 	
 	$phpapps_database_tables_form_Impl = new phpapps_database_tables_form_impl();
 ?>

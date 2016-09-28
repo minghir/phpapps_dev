@@ -8,6 +8,7 @@ class DB_table_def{
         
         public $CURRENT_COLUMN;
         public $NEW_TABLE_NAME;
+        public $ADD_COL_AFTER = "ID";
         
 	public $columns = array();
         public $auditable = "true"; 
@@ -136,7 +137,8 @@ echo "<br>".$sql->sql();
             // trebuie si alter table drop index : phpapps_test_def_APP_ID_FK
         }
         
-        function alterTblAddCol($vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE){
+        function alterTblAddCol($vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE,$vafter="ID"){
+            $this->ADD_COL_AFTER = $vafter;
             $this->CURRENT_COLUMN = $this->addColumn($vname, $vtype, $vsize, $vnull,$vdefault,$vautoincr);
             return $this->execQuery("ALTER_TABLE_ADD_COL");
         }

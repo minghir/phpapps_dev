@@ -343,29 +343,39 @@ class mysql
 		return $this->res[$res_id]->errorInfo()[2];
     }
     
+    /*PDO*/
     function begin(){
-	 return true;
+         //$this->conn->commit();
+         $this->conn->setAttribute(PDO::ATTR_AUTOCOMMIT, FALSE);
+	 return $this->conn->beginTransaction();
     }
-				      
+
+    /*PDO*/
     function commit(){
-	return true;
+	$res_bool =  $this->conn->commit();
+        $this->conn->setAttribute(PDO::ATTR_AUTOCOMMIT, TRUE);
+        return $res_bool;
     }
-								      
+
+    /*PDO*/
     function rollback(){
-	return true;
+	$res_bool = $this->conn->rollBack();
+        $this->conn->setAttribute(PDO::ATTR_AUTOCOMMIT, TRUE);
+        return $res_bool;
     }
     
     function current_row($res_id){
 		return $this->row_no[$res_id];
     }
     
+    /*PDO*/
     function get_conn_str($var){
 		return $this->con_str[$var];
     }
     
-	function set_conn_str($var,$val){
-		$this->con_str[$var] = $val;
-	}
+    function set_conn_str($var,$val){
+	$this->con_str[$var] = $val;
+    }
 		   
     
     function check_con(){
@@ -374,7 +384,7 @@ class mysql
         return true;
     }
 			
-	/*PDO*/			
+    /*PDO*/			
     function fetch_object($res_id){
         if(!($result = $this->res[$res_id]->fetchObject())){
 			return false;

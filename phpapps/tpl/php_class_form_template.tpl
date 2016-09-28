@@ -4,8 +4,8 @@ require_once ("globals.php");
 
 class {$form_name}{ldelim}
 	public $globals;
-	public $schema = "{$schema}";
-	public $table = "{$table}";
+	public $form_schema = "{$form_schema}";
+	public $form_table = "{$form_table}";
 	public $template = "gen_tpl/{$form_name}.tpl";
 	//get values
 	public $gact;
@@ -39,8 +39,10 @@ class {$form_name}{ldelim}
 	function init(){ldelim}
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {ldelim}
 			$this->parsePostVars();
+                        $this->takePostActions();
 		{rdelim} else {ldelim}
 			$this->parseGetVars();
+                        $this->takeGetActions();
 		{rdelim}
 	{rdelim}
 	
@@ -56,7 +58,7 @@ class {$form_name}{ldelim}
 			{$fields[ds1]},
 			{/if}
 			{/section}	
-				FROM ".$this->schema.".".$this->table." 
+				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
@@ -77,7 +79,7 @@ class {$form_name}{ldelim}
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
+		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 			{section name=ds1 loop=$fields}
 			{if $smarty.section.ds1.last }
 			{$fields[ds1]}
@@ -121,7 +123,7 @@ class {$form_name}{ldelim}
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
+		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 			{section name=ds1 loop=$fields}
 			{if $smarty.section.ds1.last }
 			{$fields[ds1]} = :{$fields[ds1]}
@@ -157,7 +159,7 @@ class {$form_name}{ldelim}
 	function deleteRec(){ldelim}
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
+		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {ldelim}
@@ -177,7 +179,9 @@ class {$form_name}{ldelim}
 		$this->gact = trim($_GET["gact"]);
 		$this->gfield = trim($_GET["gfield"]);
 		$this->gfield_value = trim($_GET["gfield_value"]);
-		
+        {rdelim}
+        
+        function takeGetActions(){ldelim}
 			switch($this->gact){ldelim}
 			case "editRec":
 				$this->beforeGetRec();
@@ -201,7 +205,9 @@ class {$form_name}{ldelim}
 		{section name=ds loop=$fields}
 			$this->{$fields[ds]}  = addslashes(trim($_POST["{$fields[ds]}"]));
 		{/section}
+        {rdelim}
 		
+        function takePostActions(){ldelim}
 		switch($this->pact){ldelim}
 			case "addRec":
 				$this->addRec();

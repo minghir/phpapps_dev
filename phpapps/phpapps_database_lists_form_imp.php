@@ -70,7 +70,9 @@ include ("gen_php/phpapps_database_lists_form.php");
 		}
 
 		function beforeDeleteRec(){
+                    $this->parseGetVars();
                     $this->getRec();
+                    
                     $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA", $this->ID);
                     echo "-" . $this->ORIGIN_ID ."<br>";
                     

@@ -54,4 +54,9 @@ class DB_table{
 		}
 		return $this->list_array;
 	}
-};
+}
+
+
+function _tbl($table_name,$fld,$val,$val_fld = "ID"){
+    return (new DB_table($table_name))->getValueByField($fld,$val_fld,$val);
+}

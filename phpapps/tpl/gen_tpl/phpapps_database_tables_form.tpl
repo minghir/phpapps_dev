@@ -20,6 +20,11 @@ function submitDetailsForm(op){
 			
 		
 						 
+										<input id="ORIGIN_ID" type="hidden" name="ORIGIN_ID" value="{$ORIGIN_ID}">
+        								
+			
+		
+						 
 										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
         								
 			
@@ -42,8 +47,8 @@ function submitDetailsForm(op){
 		</td></tr>
         
 						 
-				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" id="DESCRIPTION" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
-																
+								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
+        										
 			
 		
 						{$FROM_IMP_CLASS}

@@ -17,13 +17,15 @@ class test_column_def extends phpapps_display_abs{
         echo "<h1>(-"._lst("list_mysql_column_types")["BIGINT"] ."-)</h1><br>";
         echo "<h1>(-"._lst("list_mysql_column_types","BIGINT") ."-)</h1><br>";
         echo "<h1>(-"._lst("list_mysql_column_types",4) ."-)</h1><br>";
-        /*
-        $aa =new DB_table_def("phpapps","test_def");
-        $aa->dropTable();
         
-        unset($aa);
         
-        $aa =new DB_table_def("phpapps","test_def");
+        $this->globals->con->begin();
+        $aa =new DB_table_def("phpapps","test_def_roll");
+        //$aa->dropTable();
+        
+        //unset($aa);
+        
+        //$aa =new DB_table_def("phpapps","test_def");
         
         if(!$aa->createIDTable()){
             print_r($aa->errors);
@@ -36,9 +38,9 @@ class test_column_def extends phpapps_display_abs{
         print_r($aa->errors);
         $aa->alterTblDropFK("APP_ID");
         print_r($aa->errors);
-        $aa->dropTable();
-         * 
-         */
+        //$aa->dropTable();
+         //$this->globals->con->commit();
+        $this->globals->con->rollback();
     }
 }
 

@@ -430,7 +430,7 @@ REFERENCE_FIELD
 				"fields" => $visible_fields,
 				"labels" => $visible_labels,
 				
-				"table" => $this->form_table,
+				"form_table" => $this->form_table,
 				"form_name" => $this->form_name,
 				"database" => $this->form_schema,
 				"mandatories" => $this->mandatories,
@@ -497,8 +497,8 @@ REFERENCE_FIELD
 
 				"fields" => $visible_fields,
 				
-				"table" => $this->form_table,
-				"schema" => $this->form_schema,
+				"form_table" => $this->form_table,
+				"form_schema" => $this->form_schema,
 				"mandatories" => $this->mandatories,
 				"form_name" => $this->form_name,
 				"deploy_location" => $this->deploy_location,

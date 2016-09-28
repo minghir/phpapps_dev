@@ -14,12 +14,14 @@ class phpapps_database_tables_form{
 	//post values
 	public $pact;
 		public $ID;
+		public $ORIGIN_ID;
 		public $MODULE_ID;
 		public $SCHEMA_ID;
 		public $TABLE_NAME;
 		public $TABLE_TYPE;
 		public $DESCRIPTION;
 		
+		 
 		 
 		 
 		 
@@ -34,19 +36,22 @@ class phpapps_database_tables_form{
 		 
 		 
 		 
+		 
 	
 	public $errors = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
 	}
 		
 	function init(){
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$this->parsePostVars();
+                        $this->takePostActions();
 		} else {
 			$this->parseGetVars();
+                        $this->takeGetActions();
 		}
 	}
 	
@@ -56,6 +61,7 @@ class phpapps_database_tables_form{
 	function getRec(){
 		$sql = new DB_query( "SELECT 
 									ID,
+												ORIGIN_ID,
 												MODULE_ID,
 												SCHEMA_ID,
 												TABLE_NAME,
@@ -67,12 +73,13 @@ class phpapps_database_tables_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->ID = $this->globals->con->get_field("ID");
-							$this->MODULE_ID = $this->globals->con->get_field("MODULE_ID");
-							$this->SCHEMA_ID = $this->globals->con->get_field("SCHEMA_ID");
-							$this->TABLE_NAME = $this->globals->con->get_field("TABLE_NAME");
-							$this->TABLE_TYPE = $this->globals->con->get_field("TABLE_TYPE");
-							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
+							$this->ID = stripslashes($this->globals->con->get_field("ID"));
+							$this->ORIGIN_ID = stripslashes($this->globals->con->get_field("ORIGIN_ID"));
+							$this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
+							$this->SCHEMA_ID = stripslashes($this->globals->con->get_field("SCHEMA_ID"));
+							$this->TABLE_NAME = stripslashes($this->globals->con->get_field("TABLE_NAME"));
+							$this->TABLE_TYPE = stripslashes($this->globals->con->get_field("TABLE_TYPE"));
+							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
 						
 	}
 	
@@ -88,6 +95,7 @@ class phpapps_database_tables_form{
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
 									ID,
+												ORIGIN_ID,
 												MODULE_ID,
 												SCHEMA_ID,
 												TABLE_NAME,
@@ -95,6 +103,7 @@ class phpapps_database_tables_form{
 												DESCRIPTION
 						 ) VALUES (
 									:ID,
+												:ORIGIN_ID,
 												:MODULE_ID,
 												:SCHEMA_ID,
 												:TABLE_NAME,
@@ -103,6 +112,7 @@ class phpapps_database_tables_form{
 									)",
 			array(
 									":ID" => $this->ID,
+									":ORIGIN_ID" => $this->ORIGIN_ID,
 									":MODULE_ID" => $this->MODULE_ID,
 									":SCHEMA_ID" => $this->SCHEMA_ID,
 									":TABLE_NAME" => $this->TABLE_NAME,
@@ -112,14 +122,16 @@ class phpapps_database_tables_form{
 			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -132,6 +144,7 @@ class phpapps_database_tables_form{
 		
 		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
 									ID = :ID,
+												ORIGIN_ID = :ORIGIN_ID,
 												MODULE_ID = :MODULE_ID,
 												SCHEMA_ID = :SCHEMA_ID,
 												TABLE_NAME = :TABLE_NAME,
@@ -141,6 +154,7 @@ class phpapps_database_tables_form{
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 									":ID" => $this->ID,
+									":ORIGIN_ID" => $this->ORIGIN_ID,
 									":MODULE_ID" => $this->MODULE_ID,
 									":SCHEMA_ID" => $this->SCHEMA_ID,
 									":TABLE_NAME" => $this->TABLE_NAME,
@@ -151,14 +165,16 @@ class phpapps_database_tables_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		};
 		
 		$this->afterSaveRec();
 	}
 	
 	function afterSaveRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 
 	function beforeDeleteRec(){
@@ -170,22 +186,26 @@ class phpapps_database_tables_form{
 		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
-		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+		if(count($this->errors) == 0) {
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }
 		}
 		
 		$this->afterDeleteRec();
 	}
 	
 	function afterDeleteRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
 		$this->gact = trim($_GET["gact"]);
 		$this->gfield = trim($_GET["gfield"]);
 		$this->gfield_value = trim($_GET["gfield_value"]);
-		
+        }
+        
+        function takeGetActions(){
 			switch($this->gact){
 			case "editRec":
 				$this->beforeGetRec();
@@ -207,12 +227,15 @@ class phpapps_database_tables_form{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 					$this->ID  = addslashes(trim($_POST["ID"]));
+					$this->ORIGIN_ID  = addslashes(trim($_POST["ORIGIN_ID"]));
 					$this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
 					$this->SCHEMA_ID  = addslashes(trim($_POST["SCHEMA_ID"]));
 					$this->TABLE_NAME  = addslashes(trim($_POST["TABLE_NAME"]));
 					$this->TABLE_TYPE  = addslashes(trim($_POST["TABLE_TYPE"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-				
+		        }
+		
+        function takePostActions(){
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -237,9 +260,13 @@ class phpapps_database_tables_form{
 				if($this->TABLE_NAME == "") {
 			$this->errors[] = "Campul TABLE_NAME este obligatoriu!";
 		}
+				if($this->TABLE_TYPE == "") {
+			$this->errors[] = "Campul TABLE_TYPE este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
+					 
 					 
 					 
 					 
@@ -256,10 +283,12 @@ class phpapps_database_tables_form{
 					 
 					 
 					 
+					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
+							"ORIGIN_ID" => $this->ORIGIN_ID,
 							"MODULE_ID" => $this->MODULE_ID,
 							"SCHEMA_ID" => $this->SCHEMA_ID,
 							"TABLE_NAME" => $this->TABLE_NAME,
@@ -269,10 +298,12 @@ class phpapps_database_tables_form{
 						 
 						 
 						 
+						 
 										"TABLE_TYPE_sel" => $this->TABLE_TYPE_sel->get_select_str(),
 			 
 						 
 									 
+						 
 						 
 						 
 						 

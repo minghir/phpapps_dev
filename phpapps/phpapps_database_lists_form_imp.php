@@ -73,15 +73,18 @@ include ("gen_php/phpapps_database_lists_form.php");
                     $this->getRec();
                     $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA", $this->ID);
                     echo "-" . $this->ORIGIN_ID ."<br>";
-                    if($this->ORIGIN_ID == 0){
-                        $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
-                        if(!$this->table_definition->dropTable()){
-                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
-                        }
-                    }
+                    
 		}
 		
 		function afterDeleteRec(){
+                    if(count($this->errors) == 0){
+                        if($this->ORIGIN_ID == 0){
+                            $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                            if(!$this->table_definition->dropTable()){
+                                $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                            }
+                        }
+                    }
                     print_r($this->errors);
                     //header("Location:win_close.html");
 		}

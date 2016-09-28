@@ -7,10 +7,15 @@ include ("gen_php/phpapps_database_table_details_form.php");
                 public $TABLE_NAME;
                 
                 private $table_definition;
+                private $get_table_id;
                 
 		function __construct(){
 			parent::__construct();
 			$this->template = "phpapps_database_table_details_form_imp.tpl";
+                        
+                        print_r($_GET);
+                        $this->get_table_id = $_GET["table_id"];
+                        
 			$this->init();
 			$this->display();
 		}
@@ -22,9 +27,9 @@ include ("gen_php/phpapps_database_table_details_form.php");
 		}
 	
 		function beforeAddRec(){
-                    $this->SCHEMA_NAME = _tbl("phpapps.view_tables","TABLE_SCHEMA",$this->gfield_value);
-                    $this->TABLE_NAME = _tbl("phpapps.view_tables","TABLE_NAME",$this->gfield_value);
-                    $this->TABLE_ID = $this->gfield_value;
+                    $this->SCHEMA_NAME = _tbl("phpapps.view_tables","TABLE_SCHEMA",$this->get_table_id);
+                    $this->TABLE_NAME = _tbl("phpapps.view_tables","TABLE_NAME",$this->get_table_id);
+                    $this->TABLE_ID = $this->get_table_id;
                         echo "<h1>"."(".$this->TABLE_ID.")".$this->SCHEMA_NAME.".".$this->TABLE_NAME."</h1>";
 //                  ($vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE){                            
                     $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
@@ -53,14 +58,24 @@ include ("gen_php/phpapps_database_table_details_form.php");
 		}
 
 		function beforeDeleteRec(){
+                     $this->SCHEMA_NAME = _tbl("phpapps.view_tables","TABLE_SCHEMA",$this->get_table_id);
+                    $this->TABLE_NAME = _tbl("phpapps.view_tables","TABLE_NAME",$this->get_table_id);
+                    $this->TABLE_ID = $this->get_table_id;
+                        echo "<h1>"."(".$this->TABLE_ID.")".$this->SCHEMA_NAME.".".$this->TABLE_NAME."</h1>";
+//                  ($vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE){                            
+                    $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                    if(!$this->table_definition->alterTblDropCol($this->COLUMN_NAME)){
+                        $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
 		}
 		
 		function afterDeleteRec(){
 		//	header("Location:win_close.html");
+                        print_r($this->errors);
+                }
 		}
 		
 		function beforeDisplay(){
-                        $this->TABLE_ID = $this->gfield_value;
+                        $this->TABLE_ID = $this->get_table_id;
                     	$AFTER_COL_SEL = new DB_select("AFTER_COL","view_table_details");
 			$AFTER_COL_SEL->query = "SELECT COLUMN_NAME,COLUMN_NAME FROM phpapps.view_table_details WHERE TABLE_ID = :table_id";
 			$AFTER_COL_SEL->query_params[":table_id"] = $this->TABLE_ID;

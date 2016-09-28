@@ -177,13 +177,13 @@ print_r($this->errors);
 						"FK TABLE",
 						"FK COLUMN",
 						"DESCRIPTION");
-                                $table_details_grid->current_order_field = "CREATE_DATE";
-	                        $table_details_grid->current_order_rule = "ASC";
+                                //$table_details_grid->current_order_field = "CREATE_DATE";
+	                        //$table_details_grid->current_order_rule = "ASC";
 				$table_details_grid->where_rules = array("TABLE_ID = :table_id");
                                 $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
 				$table_details_grid->where_params = array(":table_id" => $table_id);
 				$table_details_grid->rows_on_pg = 20;
-				$table_details_grid->edit_form = "phpapps_database_table_details_form_imp.php?gfield=table_id&gfield_value=".$this->ID;
+				$table_details_grid->edit_form = "phpapps_database_table_details_form_imp.php?table_id=".$this->ID;
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
 			}
 		}

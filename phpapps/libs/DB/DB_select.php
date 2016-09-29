@@ -64,7 +64,7 @@ class DB_select{
 	function __construct($sname,$stable){
 	
 		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
 		$this->name = $sname;
 		$this->table = $stable;
 		

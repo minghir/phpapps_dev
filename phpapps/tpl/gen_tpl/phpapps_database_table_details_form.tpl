@@ -49,15 +49,8 @@ function submitDetailsForm(op){
 						 
 																
 			
-				<tr><td align="right">FOREIGN_KEY_SCHEMA_ID  :</td><td>
-			{$FOREIGN_KEY_SCHEMA_ID_sel}
-		</td></tr>
-        
-						 
-																
-			
 		
-				<tr><td align="right">FOREIGN_KEY_TABLE_ID  :</td><td>
+				<tr><td align="right">FOREIGN_KEY_TABLE  :</td><td>
 			{$FOREIGN_KEY_TABLE_ID_sel}
 		</td></tr>
         				 

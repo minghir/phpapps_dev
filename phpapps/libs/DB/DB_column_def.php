@@ -8,6 +8,7 @@ class DB_column_def{
 		public $COLUMN_SIZE;
                 public $ACCEPT_NULL;
                 public $DEFAULT_VAL;
+                public $UNSIGNED = TRUE;
 		
 		public $comment;
 

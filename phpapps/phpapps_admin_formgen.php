@@ -377,7 +377,7 @@ REFERENCE_FIELD
 				$this->globals->con->next();
 				$this->fields_id[$key] = $this->globals->con->get_field("ID");
 			}
-		}else{
+		}else{/*
 			$sql =new DB_query( "UPDATE phpapps.forms SET
 									MODULE_ID = '".$this->module_id."', 
 									FORM_NAME = '".$this->form_name."', 
@@ -385,7 +385,12 @@ REFERENCE_FIELD
 									FORM_PHP_DIR = '".addslashes($this->deploy_location)."', 
 									FORM_TPL_DIR = '".addslashes($this->deploy_location)."'	
 								WHERE ID = '".$this->form_id."'" );
-
+                                                     
+                 * 
+                 */
+                        $sql =new DB_query( "UPDATE phpapps.forms SET
+							FORM_NAME = '".$this->form_name."' 
+							WHERE ID = '".$this->form_id."'" );
 				$this->globals->con->query($sql);
 				
 				foreach($this->fields as $key => $fld){

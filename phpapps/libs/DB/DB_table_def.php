@@ -21,7 +21,7 @@ class DB_table_def{
 
 	function __construct($tschm,$tname,$auditbl = TRUE){
                 global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
                         
 		$this->TABLE_SCHEMA = $tschm;
 		$this->TABLE_NAME = $this->NEW_TABLE_NAME = $tname;
@@ -132,7 +132,12 @@ echo "<br>".$sql->sql();
         }
         
         function alterTblDropFK($col_name){
-            $this->CURRENT_COLUMN = $this->getColDef($col_name);
+            if(count($this->columns) == 0){
+                $this->CURRENT_COLUMN = new DB_column_def($col_name, "", "");
+            }else{
+                $this->CURRENT_COLUMN = $this->getColDef($col_name);
+            }
+            
             return $this->execQuery("ALTER_TABLE_DROP_FK");
             // trebuie si alter table drop index : phpapps_test_def_APP_ID_FK
         }
@@ -144,7 +149,11 @@ echo "<br>".$sql->sql();
         }
         
         function alterTblDropCol($col_name){
-            $this->CURRENT_COLUMN = $this->getColDef($col_name);
+            if(count($this->columns) == 0){
+                $this->CURRENT_COLUMN = new DB_column_def($col_name, "", "");
+            }else{
+                $this->CURRENT_COLUMN = $this->getColDef($col_name);
+            }
             
             if($this->execQuery("ALTER_TABLE_DROP_COL")){
                 unset($this->columns[$this->getColIdx($col_name)]); 

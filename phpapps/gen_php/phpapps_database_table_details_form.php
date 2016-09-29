@@ -19,7 +19,6 @@ class phpapps_database_table_details_form{
 		public $COLUMN_TYPE_ID;
 		public $COLUMN_SIZE;
 		public $COLUMN_DEFAULT_VALUE;
-		public $FOREIGN_KEY_SCHEMA_ID;
 		public $FOREIGN_KEY_TABLE_ID;
 		public $DESCRIPTION;
 		
@@ -30,12 +29,9 @@ class phpapps_database_table_details_form{
 	 
 		 
 		 
-			public $FOREIGN_KEY_SCHEMA_ID_sel;
-	 
 		 
 		 
 			
-		 
 		 
 		 
 		 
@@ -74,7 +70,6 @@ class phpapps_database_table_details_form{
 												COLUMN_TYPE_ID,
 												COLUMN_SIZE,
 												COLUMN_DEFAULT_VALUE,
-												FOREIGN_KEY_SCHEMA_ID,
 												FOREIGN_KEY_TABLE_ID,
 												DESCRIPTION
 							
@@ -89,7 +84,6 @@ class phpapps_database_table_details_form{
 							$this->COLUMN_TYPE_ID = stripslashes($this->globals->con->get_field("COLUMN_TYPE_ID"));
 							$this->COLUMN_SIZE = stripslashes($this->globals->con->get_field("COLUMN_SIZE"));
 							$this->COLUMN_DEFAULT_VALUE = stripslashes($this->globals->con->get_field("COLUMN_DEFAULT_VALUE"));
-							$this->FOREIGN_KEY_SCHEMA_ID = stripslashes($this->globals->con->get_field("FOREIGN_KEY_SCHEMA_ID"));
 							$this->FOREIGN_KEY_TABLE_ID = stripslashes($this->globals->con->get_field("FOREIGN_KEY_TABLE_ID"));
 							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
 						
@@ -112,7 +106,6 @@ class phpapps_database_table_details_form{
 												COLUMN_TYPE_ID,
 												COLUMN_SIZE,
 												COLUMN_DEFAULT_VALUE,
-												FOREIGN_KEY_SCHEMA_ID,
 												FOREIGN_KEY_TABLE_ID,
 												DESCRIPTION
 						 ) VALUES (
@@ -122,7 +115,6 @@ class phpapps_database_table_details_form{
 												:COLUMN_TYPE_ID,
 												:COLUMN_SIZE,
 												:COLUMN_DEFAULT_VALUE,
-												:FOREIGN_KEY_SCHEMA_ID,
 												:FOREIGN_KEY_TABLE_ID,
 												:DESCRIPTION
 									)",
@@ -133,12 +125,11 @@ class phpapps_database_table_details_form{
 									":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
 									":COLUMN_SIZE" => $this->COLUMN_SIZE,
 									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
-									":FOREIGN_KEY_SCHEMA_ID" => $this->FOREIGN_KEY_SCHEMA_ID,
 									":FOREIGN_KEY_TABLE_ID" => $this->FOREIGN_KEY_TABLE_ID,
 									":DESCRIPTION" => $this->DESCRIPTION,
 							)
 			);
-
+print_r($sql);
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
@@ -167,7 +158,6 @@ class phpapps_database_table_details_form{
 												COLUMN_TYPE_ID = :COLUMN_TYPE_ID,
 												COLUMN_SIZE = :COLUMN_SIZE,
 												COLUMN_DEFAULT_VALUE = :COLUMN_DEFAULT_VALUE,
-												FOREIGN_KEY_SCHEMA_ID = :FOREIGN_KEY_SCHEMA_ID,
 												FOREIGN_KEY_TABLE_ID = :FOREIGN_KEY_TABLE_ID,
 												DESCRIPTION = :DESCRIPTION
 							
@@ -179,7 +169,6 @@ class phpapps_database_table_details_form{
 									":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
 									":COLUMN_SIZE" => $this->COLUMN_SIZE,
 									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
-									":FOREIGN_KEY_SCHEMA_ID" => $this->FOREIGN_KEY_SCHEMA_ID,
 									":FOREIGN_KEY_TABLE_ID" => $this->FOREIGN_KEY_TABLE_ID,
 									":DESCRIPTION" => $this->DESCRIPTION,
 								":".$this->gfield => $this->gfield_value
@@ -254,7 +243,6 @@ class phpapps_database_table_details_form{
 					$this->COLUMN_TYPE_ID  = addslashes(trim($_POST["COLUMN_TYPE_ID"]));
 					$this->COLUMN_SIZE  = addslashes(trim($_POST["COLUMN_SIZE"]));
 					$this->COLUMN_DEFAULT_VALUE  = addslashes(trim($_POST["COLUMN_DEFAULT_VALUE"]));
-					$this->FOREIGN_KEY_SCHEMA_ID  = addslashes(trim($_POST["FOREIGN_KEY_SCHEMA_ID"]));
 					$this->FOREIGN_KEY_TABLE_ID  = addslashes(trim($_POST["FOREIGN_KEY_TABLE_ID"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
 		        }
@@ -293,14 +281,9 @@ class phpapps_database_table_details_form{
 			 
 					 
 					 
-								$this->FOREIGN_KEY_SCHEMA_ID_sel = new DB_select("FOREIGN_KEY_SCHEMA_ID",".list_databases");
-			$this->FOREIGN_KEY_SCHEMA_ID_sel->selected_val = $this->FOREIGN_KEY_SCHEMA_ID;
-			$this->FOREIGN_KEY_SCHEMA_ID_sel->setup_select_options();
-			 
 					 
 					 
 				
-					 
 					 
 					 
 					 
@@ -322,7 +305,6 @@ class phpapps_database_table_details_form{
 							"COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
 							"COLUMN_SIZE" => $this->COLUMN_SIZE,
 							"COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
-							"FOREIGN_KEY_SCHEMA_ID" => $this->FOREIGN_KEY_SCHEMA_ID,
 							"FOREIGN_KEY_TABLE_ID" => $this->FOREIGN_KEY_TABLE_ID,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
@@ -332,12 +314,9 @@ class phpapps_database_table_details_form{
 			 
 						 
 						 
-										"FOREIGN_KEY_SCHEMA_ID_sel" => $this->FOREIGN_KEY_SCHEMA_ID_sel->get_select_str(),
-			 
 						 
 						 
 									 
-						 
 						 
 						 
 						 

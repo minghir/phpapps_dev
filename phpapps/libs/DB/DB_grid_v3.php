@@ -175,6 +175,7 @@ echo"</h1><br>----------------<br>";
 				$this->query->query_str = "SELECT $select_cols FROM ". $this->table ." ".$this->where_rule . $this->order_rule;
 			}
 			$this->query->setParams($filter_where_params);	
+                        
 //print_r($this->query);
 //echo $this->query->sql()."<br>";
         }
@@ -199,7 +200,7 @@ echo"</h1><br>----------------<br>";
 				$this->query = $this->init_query ." ". $this->order_rule . " limit " . $limit ."," . $this->rows_on_pg ;
 			}else{
 				$this->query = $this->init_query . " " . $this->order_rule;
-			}		  
+			}
         }
 
         function setup_grid(){

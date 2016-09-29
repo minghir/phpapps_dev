@@ -166,8 +166,7 @@ print_r($this->errors);
 						"COLUMN_TYPE_LABEl",
 						"COLUMN_SIZE",
 						"COLUMN_DEFAULT_VALUE",
-						"CONCAT(FOREIGN_KEY_SCHEMA_LABEl,'.',FOREIGN_KEY_TABLE_LABEl)",
-						"FOREIGN_KEY_COLUMN_LABEL",
+						"CONCAT(FOREIGN_KEY_SCHEMA_LABEL,'.',FOREIGN_KEY_TABLE_LABEL)",
 						"DESCRIPTION");
 				$table_details_grid->labels = array(
 						"NAME",
@@ -175,10 +174,10 @@ print_r($this->errors);
 						"SIZE",
 						"DEFAULT VALUE",
 						"FK TABLE",
-						"FK COLUMN",
 						"DESCRIPTION");
-                                //$table_details_grid->current_order_field = "CREATE_DATE";
-	                        //$table_details_grid->current_order_rule = "ASC";
+                                $table_details_grid->current_order_field = "ORD";
+	                        $table_details_grid->current_order_rule = "ASC";
+                                $table_details_grid->sortable = FALSE;
 				$table_details_grid->where_rules = array("TABLE_ID = :table_id");
                                 $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
 				$table_details_grid->where_params = array(":table_id" => $table_id);

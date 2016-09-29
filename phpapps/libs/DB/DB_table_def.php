@@ -9,6 +9,7 @@ class DB_table_def{
         public $CURRENT_COLUMN;
         public $NEW_TABLE_NAME;
         public $ADD_COL_AFTER = "ID";
+        public $OLD_COLUMN_NAME = "";
         
 	public $columns = array();
         public $auditable = "true"; 
@@ -37,7 +38,7 @@ class DB_table_def{
                 $sql = new DB_query($this->globals->sm->fetch(
                          'string:'.  stripslashes((new DB_table("phpapps.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("phpapps.list_sql_sintax_types"))->getID($sql_sintax))))
                      );
-echo "<br>".$sql->sql();
+echo "<br><h1>".$sql->sql()."</h1><br>";
                if( $this->globals->con->query($sql) != -1){
                    return TRUE;
                }else{
@@ -163,6 +164,12 @@ echo "<br>".$sql->sql();
             }else{
                 return FALSE;
             }
+        }
+        
+        function alterTblChangeCol($voldname,$vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE){
+            $this->OLD_COLUMN_NAME = $voldname;
+            $this->CURRENT_COLUMN = $this->addColumn($vname, $vtype, $vsize, $vnull,$vdefault,$vautoincr);
+            return $this->execQuery("ALTER_TABLE_CHG_COL");
         }
 }
 ?>

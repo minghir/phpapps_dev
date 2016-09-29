@@ -3,6 +3,7 @@
 class DB_table{
 	var $globals;
 	var $table_name;
+        public $errors;
 	
 	function __construct($tablename){
 		global $GLOBALS_OBJ;
@@ -54,6 +55,21 @@ class DB_table{
 		}
 		return $this->list_array;
 	}
+        
+        function getFieldsArray($array_flds = array(),$search_fld,$search_val){
+            $value = -1;
+            $sql  =  new DB_query("SELECT " . implode(",",$array_flds) . 
+                        " FROM " .$this->table_name . 
+                        " WHERE $search_fld = :$search_fld LIMIT 1",
+                    array(":$search_fld"=>$search_val));
+//            print_r($sql);
+            if($this->globals->con->query($sql,"DB_table_getVALUES") != -1){
+			$value = $this->globals->con->fetch_array("DB_table_getVALUES");
+            }else{
+                $this->errors[] = $this->globals->con->get_error("DB_table_getVALUES");
+            }
+            return $value;
+        }
 }
 
 

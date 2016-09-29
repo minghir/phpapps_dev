@@ -154,7 +154,7 @@ print_r($this->errors);
 		
 		function beforeDisplay(){	
 			if($this->gact == "editRec"){
-				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_DDL_grid");
+				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_grid");
                                 
             $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
 				$table_details_grid->grid_title = "COLUMNS";

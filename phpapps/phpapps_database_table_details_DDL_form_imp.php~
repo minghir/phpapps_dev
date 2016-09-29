@@ -184,7 +184,6 @@ echo "AICIIIII";
          $AFTER_COL_SEL = new DB_select("AFTER_COL","view_table_details");
 			$AFTER_COL_SEL->set_query( new DB_query("SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = :table_id ORDER BY ORD",
 								array(":table_id"=>$this->TABLE_ID)));
-			print_r($AFTER_COL_SEL->db_query);					
 			//$AFTER_COL_SEL->query_params[":table_id"] = $this->TABLE_ID;
 			$AFTER_COL_SEL->empty_option = false;
 			$AFTER_COL_SEL->setup_select_options();

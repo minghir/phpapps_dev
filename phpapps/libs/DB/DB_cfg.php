@@ -8,7 +8,7 @@
 
 $con_mysql["host"] = "localhost";
 $con_mysql["user"] = "root";
-//$con_mysql["pass"] = "saxof";
+$con_mysql["pass"] = "z";
 $con_mysql["db"]   = "phpapps";
 $con_mysql["port"] = "";
 $con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";

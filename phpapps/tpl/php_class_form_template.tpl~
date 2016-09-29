@@ -114,9 +114,7 @@ class {$form_name}{ldelim}
 			)",
 			array(
 				{section name=ds1 loop=$fields}
-					{if $fields[ds1] != "ID" }
 					":{$fields[ds1]}" => $this->{$fields[ds1]},
-					{/if}
 				{/section}
 			)
 			);

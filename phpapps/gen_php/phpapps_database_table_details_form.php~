@@ -148,40 +148,43 @@ class phpapps_database_table_details_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					TABLE_ID,
-																						COLUMN_NAME,
-																						COLUMN_TYPE_ID,
-																						UNSIGN,
-																						COLUMN_SIZE,
-																						ACCEPT_NULL,
-																						COLUMN_DEFAULT_VALUE,
-																						AUTOINCREMENT,
-																						DESCRIPTION,
-																						ORD
-										 ) VALUES (
-																					:TABLE_ID,
-																						:COLUMN_NAME,
-																						:COLUMN_TYPE_ID,
-																						:UNSIGN,
-																						:COLUMN_SIZE,
-																						:ACCEPT_NULL,
-																						:COLUMN_DEFAULT_VALUE,
-																						:AUTOINCREMENT,
-																						:DESCRIPTION,
-																						:ORD
-													)",
+									ID,
+												TABLE_ID,
+												COLUMN_NAME,
+												COLUMN_TYPE_ID,
+												UNSIGN,
+												COLUMN_SIZE,
+												ACCEPT_NULL,
+												COLUMN_DEFAULT_VALUE,
+												AUTOINCREMENT,
+												DESCRIPTION,
+												ORD
+						 ) VALUES (
+									:ID,
+												:TABLE_ID,
+												:COLUMN_NAME,
+												:COLUMN_TYPE_ID,
+												:UNSIGN,
+												:COLUMN_SIZE,
+												:ACCEPT_NULL,
+												:COLUMN_DEFAULT_VALUE,
+												:AUTOINCREMENT,
+												:DESCRIPTION,
+												:ORD
+									)",
 			array(
-																							":TABLE_ID" => $this->TABLE_ID,
-																			":COLUMN_NAME" => $this->COLUMN_NAME,
-																			":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
-																			":UNSIGN" => $this->UNSIGN,
-																			":COLUMN_SIZE" => $this->COLUMN_SIZE,
-																			":ACCEPT_NULL" => $this->ACCEPT_NULL,
-																			":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
-																			":AUTOINCREMENT" => $this->AUTOINCREMENT,
-																			":DESCRIPTION" => $this->DESCRIPTION,
-																			":ORD" => $this->ORD,
-												)
+									":ID" => $this->ID,
+									":TABLE_ID" => $this->TABLE_ID,
+									":COLUMN_NAME" => $this->COLUMN_NAME,
+									":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
+									":UNSIGN" => $this->UNSIGN,
+									":COLUMN_SIZE" => $this->COLUMN_SIZE,
+									":ACCEPT_NULL" => $this->ACCEPT_NULL,
+									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
+									":AUTOINCREMENT" => $this->AUTOINCREMENT,
+									":DESCRIPTION" => $this->DESCRIPTION,
+									":ORD" => $this->ORD,
+							)
 			);
 
 		if(count($this->errors) == 0) {	

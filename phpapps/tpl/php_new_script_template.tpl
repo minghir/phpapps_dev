@@ -4,7 +4,7 @@ require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
 class {$CLASS_NAME} extends phpapps_display_abs{ldelim}
 
-    var $app_id;
+    private $app_id;
     
     function __construct($app_id) {ldelim}
         parent::__construct();

@@ -89,3 +89,30 @@ update tables set table_type = '1' where table_name in ('list_user_types','list_
 drop view view_tables;
  CREATE VIEW `view_tables` AS 
  select `t`.`ID` AS `ID`,`t`.`TABLE_TYPE` AS `TABLE_TYPE`,`t`.`SCHEMA_ID` AS `TABLE_SCHEMA_ID`,(select `list_databases`.`VALUE` AS `VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `APP_SCHEMA`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`t`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`t`.`DESCRIPTION` AS `DESCRIPTION` from (((`tables` `t` join `modules` `m`) join `applications` `a`) join `list_databases` `d`) where ((`t`.`MODULE_ID` = `m`.`ID`) and (`m`.`APP_ID` = `a`.`ID`) and (`a`.`APP_SCHEMA` = `d`.`ID`)) 
+
+
+
+
+create view view_phpapps.columns_fks as
+SELECT 
+fk.ID,
+fk.COLUMN_ID,
+td.COLUMN_NAME,
+t.SCHEMA_ID,
+(SELECT VALUE FROM phpapps.list_databases WHERE ID = t.SCHEMA_ID) AS TABLE_SCHEMA,
+td.TABLE_ID,
+t.TABLE_NAME,
+fk.FK_NAME,
+tf.SCHEMA_ID AS FK_SCHEMA_ID,
+(SELECT VALUE FROM phpapps.list_databases WHERE ID = tf.SCHEMA_ID) AS FK_TABLE_SCHEMA,
+fk.FK_TABLE_ID,
+tf.TABLE_NAME AS FK_TABLE_NAME,
+fk.FK_COLUMN_ID,
+tdf.COLUMN_NAME AS FK_COLUMN_NAME,
+fk.ON_UPDATE,
+fk.ON_DELETE,
+fk.DESCRIPTION
+FROM phpapps.columns_fks fk left join phpapps.table_details td ON (fk.COLUMN_ID = td.ID)
+left join phpapps.tables t ON (td.TABLE_ID = t.ID)
+left join phpapps.tables tf ON (fk.FK_TABLE_ID = tf.ID)
+left join phpapps.table_details tdf ON (fk.FK_COLUMN_ID = tdf.ID)

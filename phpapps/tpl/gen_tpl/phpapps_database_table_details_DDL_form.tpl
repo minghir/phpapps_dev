@@ -2,12 +2,12 @@
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_database_table_details_form").submit();
+		$("#phpapps_database_table_details_DDL_form").submit();
 }
   </script>
 {/literal}
 {$error_msg}
-<hr><form name="phpapps_database_table_details_form" id="phpapps_database_table_details_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_database_table_details_DDL_form" id="phpapps_database_table_details_DDL_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -20,13 +20,11 @@ function submitDetailsForm(op){
 			
 		
 						 
-																
+										<input id="TABLE_ID" type="hidden" name="TABLE_ID" value="{$TABLE_ID}">
+        								
 			
 		
-				<tr><td align="right">TABLE_ID  :</td><td>
-			{$TABLE_ID_sel}
-		</td></tr>
-        				 
+						 
 				<tr><td align="right">COLUMN_NAME :</td><td> <input type="text" id="COLUMN_NAME" name="COLUMN_NAME" value="{$COLUMN_NAME}"></td></tr>
 																
 			
@@ -72,11 +70,6 @@ function submitDetailsForm(op){
 						 
 								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
-			
-		
-						 
-				<tr><td align="right">ORD :</td><td> <input type="text" id="ORD" name="ORD" value="{$ORD}"></td></tr>
-																
 			
 		
 						{$FROM_IMP_CLASS}

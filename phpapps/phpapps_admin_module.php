@@ -110,7 +110,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		
 				
 		$ts = new HrefActions();
-		$ts->act_script = "phpapps_admin_browse_tables.php?module_id=".$this->ID;
+		$ts->act_script = "phpapps_database_browse_tables.php?module_id=".$this->ID;
 		$ts->popup = true;
 		$ts->label = "browse";
 		$ts->action = "runGrid";

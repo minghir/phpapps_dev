@@ -19,7 +19,7 @@ abstract class phpapps_display_abs {
     
     public function __construct() {
         global $GLOBALS_OBJ;
-        $this->globals = $GLOBALS_OBJ;
+        $this->globals = &$GLOBALS_OBJ;
         
         $this->tpl = "phpapps_display_abs.tpl";
         

@@ -2,11 +2,11 @@
 // includes
 require_once ("globals.php");
 
-class phpapps_database_table_details_form{
+class phpapps_database_table_details_DDL_form{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "table_details";
-	public $template = "gen_tpl/phpapps_database_table_details_form.tpl";
+	public $template = "gen_tpl/phpapps_database_table_details_DDL_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -23,7 +23,6 @@ class phpapps_database_table_details_form{
 		public $COLUMN_DEFAULT_VALUE;
 		public $AUTOINCREMENT;
 		public $DESCRIPTION;
-		public $ORD;
 		
 		 
 		 
@@ -39,11 +38,8 @@ class phpapps_database_table_details_form{
 			public $AUTOINCREMENT_sel;
 	 
 		 
-		 
 			
 		 
-			public $TABLE_ID_sel;
-	 
 		 
 		 
 		 
@@ -74,11 +70,8 @@ class phpapps_database_table_details_form{
 								$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT",".list_no_yes");
 			 
 					 
-					 
 				
 					 
-									$this->TABLE_ID_sel = new DB_select("TABLE_ID",".tables");
-			 
 					 
 					 
 					 
@@ -115,8 +108,7 @@ class phpapps_database_table_details_form{
 												ACCEPT_NULL,
 												COLUMN_DEFAULT_VALUE,
 												AUTOINCREMENT,
-												DESCRIPTION,
-												ORD
+												DESCRIPTION
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -133,7 +125,6 @@ class phpapps_database_table_details_form{
 							$this->COLUMN_DEFAULT_VALUE = stripslashes($this->globals->con->get_field("COLUMN_DEFAULT_VALUE"));
 							$this->AUTOINCREMENT = stripslashes($this->globals->con->get_field("AUTOINCREMENT"));
 							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-							$this->ORD = stripslashes($this->globals->con->get_field("ORD"));
 						
 	}
 	
@@ -157,8 +148,7 @@ class phpapps_database_table_details_form{
 												ACCEPT_NULL,
 												COLUMN_DEFAULT_VALUE,
 												AUTOINCREMENT,
-												DESCRIPTION,
-												ORD
+												DESCRIPTION
 						 ) VALUES (
 									:ID,
 												:TABLE_ID,
@@ -169,8 +159,7 @@ class phpapps_database_table_details_form{
 												:ACCEPT_NULL,
 												:COLUMN_DEFAULT_VALUE,
 												:AUTOINCREMENT,
-												:DESCRIPTION,
-												:ORD
+												:DESCRIPTION
 									)",
 			array(
 									":ID" => $this->ID,
@@ -183,7 +172,6 @@ class phpapps_database_table_details_form{
 									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
 									":AUTOINCREMENT" => $this->AUTOINCREMENT,
 									":DESCRIPTION" => $this->DESCRIPTION,
-									":ORD" => $this->ORD,
 							)
 			);
 
@@ -218,8 +206,7 @@ class phpapps_database_table_details_form{
 												ACCEPT_NULL = :ACCEPT_NULL,
 												COLUMN_DEFAULT_VALUE = :COLUMN_DEFAULT_VALUE,
 												AUTOINCREMENT = :AUTOINCREMENT,
-												DESCRIPTION = :DESCRIPTION,
-												ORD = :ORD
+												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -233,7 +220,6 @@ class phpapps_database_table_details_form{
 									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
 									":AUTOINCREMENT" => $this->AUTOINCREMENT,
 									":DESCRIPTION" => $this->DESCRIPTION,
-									":ORD" => $this->ORD,
 								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -310,7 +296,6 @@ class phpapps_database_table_details_form{
 					$this->COLUMN_DEFAULT_VALUE  = addslashes(trim($_POST["COLUMN_DEFAULT_VALUE"]));
 					$this->AUTOINCREMENT  = addslashes(trim($_POST["AUTOINCREMENT"]));
 					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-					$this->ORD  = addslashes(trim($_POST["ORD"]));
 		        }
 		
         function takePostActions(){
@@ -329,9 +314,6 @@ class phpapps_database_table_details_form{
 	}
 	
 	function check_errors(){
-				if($this->TABLE_ID == "") {
-			$this->errors[] = "Campul TABLE_ID este obligatoriu!";
-		}
 				if($this->COLUMN_NAME == "") {
 			$this->errors[] = "Campul COLUMN_NAME este obligatoriu!";
 		}
@@ -372,14 +354,8 @@ class phpapps_database_table_details_form{
 			$this->AUTOINCREMENT_sel->setup_select_options();
 			 
 					 
-					 
 				
 					 
-									//$this->TABLE_ID_sel = new DB_select("TABLE_ID",".tables");
-				$this->TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM .tables ORDER BY TABLE_NAME";
-				$this->TABLE_ID_sel->selected_val = $this->TABLE_ID;
-				$this->TABLE_ID_sel->setup_select_options();
-			 
 					 
 					 
 					 
@@ -402,7 +378,6 @@ class phpapps_database_table_details_form{
 							"COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
 							"AUTOINCREMENT" => $this->AUTOINCREMENT,
 							"DESCRIPTION" => $this->DESCRIPTION,
-							"ORD" => $this->ORD,
 									 
 						 
 						 
@@ -417,10 +392,7 @@ class phpapps_database_table_details_form{
 										"AUTOINCREMENT_sel" => $this->AUTOINCREMENT_sel->get_select_str(),
 			 
 						 
-						 
 									 
-										"TABLE_ID_sel" => $this->TABLE_ID_sel->get_select_str(),
-			 
 						 
 						 
 						 

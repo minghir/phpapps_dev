@@ -34,6 +34,19 @@ class {$form_name}{ldelim}
 	function __construct(){ldelim}
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                {section name=lis loop=$selected_schema_list}
+			{if $selected_schema_list[lis] != "" }
+			$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_list[lis]}");
+			{/if} 
+		{/section}
+		
+		{section name=lis loop=$selected_schema_table}
+			{if $selected_schema_table[lis] != "" }
+				$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
+			{/if} 
+		{/section}
+                
 	{rdelim}
 		
 	function init(){ldelim}
@@ -233,7 +246,7 @@ class {$form_name}{ldelim}
 	function setup_display(){ldelim}
 		{section name=lis loop=$selected_schema_list}
 			{if $selected_schema_list[lis] != "" }
-			$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_list[lis]}");
+			//$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_list[lis]}");
 			$this->{$fields[lis]}_sel->selected_val = $this->{$fields[lis]};
 			$this->{$fields[lis]}_sel->setup_select_options();
 			{/if} 
@@ -241,7 +254,7 @@ class {$form_name}{ldelim}
 		
 		{section name=lis loop=$selected_schema_table}
 			{if $selected_schema_table[lis] != "" }
-				$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
+				//$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
 				$this->{$fields[lis]}_sel->query = "SELECT ID AS VALUE, {$selected_schema_field[lis]} AS LABEL FROM {$schema}.{$selected_schema_table[lis]} ORDER BY {$selected_schema_field[lis]}";
 				$this->{$fields[lis]}_sel->selected_val = $this->{$fields[lis]};
 				$this->{$fields[lis]}_sel->setup_select_options();
@@ -275,12 +288,9 @@ class {$form_name}{ldelim}
 	{rdelim}
 	
 	function display(){ldelim}	
+                $this->beforeDisplay();
 		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
 		$this->globals->sm->display($this->template);
-		
 		$this->afterDisplay();
 	{rdelim}
 	
@@ -288,11 +298,10 @@ class {$form_name}{ldelim}
 	{rdelim}
 	
 	function get_html_str(){ldelim}	
+                $this->beforeDisplay();
 		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
 		$this->globals->sm->fetch($this->template);
+                $this->afterDisplay();
 	{rdelim}
 {rdelim}
 ?>

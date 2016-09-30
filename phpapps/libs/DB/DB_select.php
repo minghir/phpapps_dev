@@ -55,6 +55,7 @@ class DB_select{
 	
 	var $query;
 	var $query_params = array();
+        public $db_query;
 	
     var $error;
 	var $globals;
@@ -69,8 +70,10 @@ class DB_select{
 		$this->table = $stable;
 		
 		$this->sm = new Smarty;
-        $this->sm->template_dir = DB_LIBS_TPL_DIR;
-        $this->sm->compile_dir = SMARTY_COMPILE_DIR;
+                $this->sm->template_dir = DB_LIBS_TPL_DIR;
+                $this->sm->compile_dir = SMARTY_COMPILE_DIR;
+                
+                $this->db_query = new DB_query("");
 		
 		$this->parse_post_vars();
 		return $this;
@@ -84,20 +87,18 @@ class DB_select{
 	
 	function setup_select_options(){
 		$this->options = array();	
-		if($this->query == ""){
+		if($this->db_query->sql() == ""){
 			$this->value_col = $this->value_col == "" ? "ID" : $this->value_col;
 			$this->label_col = $this->label_col == "" ? "VALUE" : $this->label_col;
 			$sql = "SELECT ".$this->value_col." AS value, ".$this->label_col." AS label 
 			FROM ".$this->table ." ORDER BY :order_rle";
 			$this->query_params[":order_rle"] = $this->order_rle;
-		}else{
-			$sql = $this->query;
-		}			
-		//echo $sql;
-		
-		$db_query = new DB_query($sql,$this->query_params);
-
-		$nrs = $this->globals->con->query($db_query, $this->name);
+                        
+                        $this->db_query = new DB_query($sql,$this->query_params);
+		}
+                
+		//echo $this->db_query->sql();
+		$nrs = $this->globals->con->query($this->db_query, $this->name);
 		while($res=$this->globals->con->fetch_row($this->name)){
 			$this->options[] =  (array)(new DB_select_option( $res[0],$res[1],($this->selected_val == $res[0] ) ));
 		}
@@ -113,6 +114,14 @@ class DB_select{
 
 	}
 	
+        function set_query($sql){
+            $this->db_query = $sql;
+        }
+        
+        function set_empty_option($empt){
+            $this->empty_option = $empt;
+        }
+        
 	function get_select_str(){
 			return $this->sm->fetch('db_select.tpl');
 	}

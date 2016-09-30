@@ -34,9 +34,10 @@ function resTextarea(arg){
     <input type="hidden" name="act" value="submited">
 	
     <select name="db" onChange="this.form.submit();">
-    {section name=d loop=$dbs}
-    <option value="{$dbs[d]}" {$dbs_sel[d]}>{$dbs[d]}</option>
-    {/section}
+    {foreach $dbs as $value}   
+    <option value="{$value}" {$dbs_sel[$value@key]}>{$value}</option>
+    {/foreach}
+    
     </select>
     <select name="queries" onChange="this.form.submit();">
                     <option value=" -- " > -- </option>

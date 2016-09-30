@@ -34,5 +34,11 @@ if(file_exists(GLOBALS_DIR . $GLOBALS_OBJ->con->get_field("APP_NAME") .DIR_SEP. 
 	$phpapps_admin_tables_form_grid->editable = false;	
 }
 
+if(file_exists(GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") .DIR_SEP. $this->globals->con->get_field("FORM_NAME") . "_imp.php")){// && 
+	$phpapps_admin_tables_form_grid->edit_form = WEB_BASE_DIR . $this->globals->con->get_field("APP_NAME") ."/".$this->globals->con->get_field("FORM_NAME") . "_imp.php";
+}else{
+	$phpapps_admin_tables_form_grid->editable = false;	
+}
+
 echo $phpapps_admin_tables_form_grid->get_grid_str();
 ?>

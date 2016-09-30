@@ -184,6 +184,8 @@ print_r($this->errors);
 				$table_details_grid->rows_on_pg = 20;
 				$table_details_grid->edit_form = "phpapps_database_table_details_form_imp.php?table_id=".$this->ID;
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
+                                
+                                //$columns_fk_grid new DB_grid($this->globals->con, "table","phpapps.view_fk_details","phpapps_table_details_grid");
 			}
 		}
 		

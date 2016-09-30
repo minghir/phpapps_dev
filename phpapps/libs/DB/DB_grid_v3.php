@@ -98,23 +98,21 @@ class DB_grid
             $this->sm = new Smarty;
             $this->sm->template_dir = DB_LIBS_TPL_DIR;
             $this->sm->compile_dir = SMARTY_COMPILE_DIR;
-            $this->con = $conn;
+            $this->con = &$conn;
 			
-			$this->query = new DB_query("");
+            $this->query = new DB_query("");
 
              switch ($g_type)
              {
                case "table":
                     $this->grid_type = $g_type;
                     $this->table = $str_sql;
-                    //$this->edit_form = "form_".$this->table.".php";
                     $this->db_grid_name = $grid_name == "" ? $str_sql : $grid_name;
                break;
                case "query":
                     $this->grid_type = $g_type;
                     $this->query = $str_sql;
                     $this->init_query = $str_sql;
-                    //$this->edit_form = "query.php";
                     $this->db_grid_name = $grid_name == "" ? "str_sql" : $grid_name;
                break;
                default:

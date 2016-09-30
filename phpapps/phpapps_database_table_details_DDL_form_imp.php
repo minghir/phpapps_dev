@@ -12,12 +12,6 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
                 private $AFTER_COL;
                 private $table_definition;
                 
-                private $FOREIGN_KEY_SCHEMA;
-                private $FOREIGN_KEY_TABLE;
-                private $FOREIGN_KEY_COLUMN = "ID";
-                
-                
-                
 		function __construct(){
 			parent::__construct();
 			$this->template = "phpapps_database_table_details_DDL_form_imp.tpl";
@@ -83,10 +77,14 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
 		function beforeSaveRec(){
                     echo "EDITEZ:".$this->ID ."<br>";
                     $tbl = new DB_table("phpapps.view_table_details");
-                    $tmp_arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME","COLUMN_TYPE_ID","COLUMN_SIZE","COLUMN_DEFAULT_VALUE","FOREIGN_KEY_TABLE_ID"),"ID",$this->ID);
+                    $tmp_arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME","COLUMN_TYPE_ID","COLUMN_SIZE","COLUMN_DEFAULT_VALUE"),"ID",$this->ID);
                      
                     $this->SCHEMA_NAME = $tmp_arr["TABLE_SCHEMA"];
                     $this->TABLE_NAME = $tmp_arr["TABLE_NAME"];
+echo "_____<br>";
+                    print_r($tmp_arr);
+echo "_____<br>";
+                    
                     $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                      
                      if(($this->COLUMN_NAME != $tmp_arr["COLUMN_NAME"]) || 
@@ -104,46 +102,7 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
                                 $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
                             }
                             
-                     }elseif(($this->FOREIGN_KEY_TABLE_ID != $tmp_arr["FOREIGN_KEY_TABLE_ID"] ) ||
-                             ( $this->COLUMN_NAME != $tmp_arr["COLUMN_NAME"]) ){
-                            if($tmp_arr["FOREIGN_KEY_TABLE_ID"] != ""){
-                                if(!$this->table_definition->alterTblDropFK($tmp_arr["COLUMN_NAME"])){
-                                       $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
-                                }//else{   
-                                    echo "ALTER DROP FK<br>";
-                                    if($this->FOREIGN_KEY_TABLE_ID != ""){
-                                         echo "ALTER ADD FK<br>";
-//-----------------------------------------------------------------
-//                                       
-					$this->FOREIGN_KEY_SCHEMA = _tbl("phpapps.view_tables","TABLE_SCHEMA",$this->FOREIGN_KEY_TABLE_ID);
-					$this->FOREIGN_KEY_TABLE = _tbl("phpapps.view_tables","TABLE_NAME",$this->FOREIGN_KEY_TABLE_ID);
-					$this->FOREIGN_KEY_COLUMN = "ID";
-					//alterTblAddFK($col_name,$fk_schema,$fk_table,$fk_fld="ID"){
-					if(!$this->table_definition->alterTblAddFK($this->COLUMN_NAME,$this->FOREIGN_KEY_SCHEMA,$this->FOREIGN_KEY_TABLE,$this->FOREIGN_KEY_COLUMN)){
-                                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
-					}else{
-                                            $sql = new DB_query("UPDATE phpapps.table_details SET "
-								. "FOREIGN_KEY_SCHEMA_ID = :fk_scm_id, "
-								. "FOREIGN_KEY_TABLE_ID = :fk_tbl_id "
-								. "WHERE "
-								. "COLUMN_NAME = :col_name AND "
-								. "TABLE_ID = :table_id",
-								array(
-								":fk_scm_id" => _tbl("phpapps.view_tables","TABLE_SCHEMA_ID",$this->FOREIGN_KEY_TABLE_ID),
-								":fk_tbl_id"=> $this->FOREIGN_KEY_TABLE_ID,
-								":col_name" => $this->COLUMN_NAME,
-								":table_id" => $this->TABLE_ID));
-					
-                                                                if( $this->globals->con->query($sql) == -1 ){
-                                                                    $this->errors[] = "UPDATE ESUAT!" . $sql->sql();
-                                                                    print_r($sql);
-								}
-					}
-                                    }                                         
-//-----------------------------------------------------------------                                         
-                                //}
-                            }
-                        }      
+                     }
                      }
                      
                      //FOREIGN_KEY_TABLE_ID

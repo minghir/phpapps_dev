@@ -1,8 +1,11 @@
--- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
+drop database phpapps;
+create database phpapps;
+use database phpapps;
+-- MySQL dump 10.16  Distrib 10.1.17-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: phpapps
 -- ------------------------------------------------------
--- Server version	5.6.26
+-- Server version	10.1.17-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -868,7 +871,7 @@ CREATE TABLE `table_details` (
   CONSTRAINT `table_details_ibfk_2` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `table_details_ibfk_7` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `table_details_ibfk_8` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -877,7 +880,7 @@ CREATE TABLE `table_details` (
 
 LOCK TABLES `table_details` WRITE;
 /*!40000 ALTER TABLE `table_details` DISABLE KEYS */;
-INSERT INTO `table_details` VALUES (46,197,'ID',5,0,20,0,'',0,'',0,1,1,'2016-09-30 09:57:52','2016-09-30 09:57:52'),(47,197,'ORIGIN_ID',5,0,20,0,'',0,'',1,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:20'),(48,197,'MODULE_ID',5,0,20,0,'',0,'',2,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:42'),(49,197,'SCHEMA_ID',5,0,20,0,'',0,'',3,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:10'),(50,197,'TABLE_NAME',7,0,255,0,'',0,'',4,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:48'),(51,197,'TABLE_TYPE',5,0,20,0,'',0,'',5,1,1,'2016-09-30 10:07:20','2016-09-30 10:01:21'),(52,197,'DESCRIPTION',7,0,255,0,'',0,'',6,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:22'),(53,197,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:55'),(54,197,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-09-30 10:07:20','2016-09-30 10:03:14'),(55,197,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',0,'',9,1,1,'2016-09-30 10:07:20','2016-09-30 10:05:44'),(56,197,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',10,1,1,'2016-09-30 10:07:20','2016-09-30 10:06:41');
+INSERT INTO `table_details` VALUES (46,197,'ID',5,0,20,0,'',0,'',0,1,1,'2016-09-30 09:57:52','2016-09-30 09:57:52'),(47,197,'ORIGIN_ID',5,0,20,0,'',0,'',1,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:20'),(48,197,'MODULE_ID',5,0,20,0,'',0,'',2,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:42'),(49,197,'SCHEMA_ID',5,0,20,0,'',0,'',3,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:10'),(50,197,'TABLE_NAME',7,0,255,0,'',0,'',4,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:48'),(51,197,'TABLE_TYPE',5,0,20,0,'',0,'',5,1,1,'2016-09-30 10:07:20','2016-09-30 10:01:21'),(52,197,'DESCRIPTION',7,0,255,0,'',0,'',6,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:22'),(53,197,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:55'),(54,197,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-09-30 10:07:20','2016-09-30 10:03:14'),(55,197,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',0,'',9,1,1,'2016-09-30 10:07:20','2016-09-30 10:05:44'),(56,197,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',10,1,1,'2016-09-30 10:07:20','2016-09-30 10:06:41'),(57,275,'ID',5,0,20,0,'',1,'',0,1,1,'2016-09-30 17:56:17','2016-09-30 17:56:17'),(58,275,'MUMUSA',5,0,20,1,'',0,'',0,1,1,'2016-09-30 18:23:50','2016-09-30 18:23:50'),(59,275,'GOGU',5,0,2,0,'',0,'',1,1,1,'2016-09-30 19:01:35','2016-09-30 18:24:47');
 /*!40000 ALTER TABLE `table_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -938,6 +941,7 @@ DROP TABLE IF EXISTS `test_cols`;
 CREATE TABLE `test_cols` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `MUMUSA` bigint(20) DEFAULT NULL,
+  `GOGU` bigint(2) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `phpapps_test_cols_MUMUSA_FK` (`MUMUSA`),
   CONSTRAINT `phpapps_test_cols_MUMUSAA_FK` FOREIGN KEY (`MUMUSA`) REFERENCES `list_databases` (`ID`),
@@ -1073,200 +1077,209 @@ INSERT INTO `users` VALUES (1,'victor','alcatraz','Gigi','Fanica','',1,'bb',2,1,
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `view_forms`
+-- Temporary table structure for view `view_forms`
 --
 
 DROP TABLE IF EXISTS `view_forms`;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_forms` AS SELECT 
- 1 AS `ID`,
- 1 AS `FORM_NAME`,
- 1 AS `MODULE_ID`,
- 1 AS `MODULE_NAME`,
- 1 AS `APP_ID`,
- 1 AS `APP_NAME`,
- 1 AS `TABLE_ID`,
- 1 AS `TABLE_NAME`,
- 1 AS `TABLE_SCHEMA`,
- 1 AS `FORM_QUERY`,
- 1 AS `FORM_PHP_DIR`,
- 1 AS `FORM_TPL_DIR`,
- 1 AS `DESCRIPTION`*/;
+/*!50001 CREATE TABLE `view_forms` (
+  `ID` tinyint NOT NULL,
+  `FORM_NAME` tinyint NOT NULL,
+  `MODULE_ID` tinyint NOT NULL,
+  `MODULE_NAME` tinyint NOT NULL,
+  `APP_ID` tinyint NOT NULL,
+  `APP_NAME` tinyint NOT NULL,
+  `TABLE_ID` tinyint NOT NULL,
+  `TABLE_NAME` tinyint NOT NULL,
+  `TABLE_SCHEMA` tinyint NOT NULL,
+  `FORM_QUERY` tinyint NOT NULL,
+  `FORM_PHP_DIR` tinyint NOT NULL,
+  `FORM_TPL_DIR` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_modules`
+-- Temporary table structure for view `view_modules`
 --
 
 DROP TABLE IF EXISTS `view_modules`;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_modules` AS SELECT 
- 1 AS `ID`,
- 1 AS `APP_ID`,
- 1 AS `APP_NAME`,
- 1 AS `APP_SCHEMA`,
- 1 AS `MODULE_NAME`,
- 1 AS `MODULE_TITLE`,
- 1 AS `MODULE_DATE`,
- 1 AS `MODULE_SCHEMA`,
- 1 AS `SCHEMA_NAME`,
- 1 AS `DESCRIPTION`,
- 1 AS `SCRIPT_ID`,
- 1 AS `SCRIPT_NAME`*/;
+/*!50001 CREATE TABLE `view_modules` (
+  `ID` tinyint NOT NULL,
+  `APP_ID` tinyint NOT NULL,
+  `APP_NAME` tinyint NOT NULL,
+  `APP_SCHEMA` tinyint NOT NULL,
+  `MODULE_NAME` tinyint NOT NULL,
+  `MODULE_TITLE` tinyint NOT NULL,
+  `MODULE_DATE` tinyint NOT NULL,
+  `MODULE_SCHEMA` tinyint NOT NULL,
+  `SCHEMA_NAME` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL,
+  `SCRIPT_ID` tinyint NOT NULL,
+  `SCRIPT_NAME` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_permissions`
+-- Temporary table structure for view `view_permissions`
 --
 
 DROP TABLE IF EXISTS `view_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_permissions` AS SELECT 
- 1 AS `ID`,
- 1 AS `PERMISSION_NAME`,
- 1 AS `PERMISSION_NAME_ID`,
- 1 AS `DESCRIPTION`,
- 1 AS `PERMISSION_TYPE`,
- 1 AS `PERMISSION_TYPE_ID`,
- 1 AS `OBJECT_TYPE`,
- 1 AS `OBJECT_TYPE_ID`,
- 1 AS `OBJECT_NAME`,
- 1 AS `OBJECT_ID`*/;
+/*!50001 CREATE TABLE `view_permissions` (
+  `ID` tinyint NOT NULL,
+  `PERMISSION_NAME` tinyint NOT NULL,
+  `PERMISSION_NAME_ID` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL,
+  `PERMISSION_TYPE` tinyint NOT NULL,
+  `PERMISSION_TYPE_ID` tinyint NOT NULL,
+  `OBJECT_TYPE` tinyint NOT NULL,
+  `OBJECT_TYPE_ID` tinyint NOT NULL,
+  `OBJECT_NAME` tinyint NOT NULL,
+  `OBJECT_ID` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_role_permissions`
+-- Temporary table structure for view `view_role_permissions`
 --
 
 DROP TABLE IF EXISTS `view_role_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_role_permissions` AS SELECT 
- 1 AS `ID`,
- 1 AS `ROLE_ID`,
- 1 AS `ROLE_NAME`,
- 1 AS `PERMISSION_ID`,
- 1 AS `PERMISSION_NAME`,
- 1 AS `PERMISSION_NAME_ID`,
- 1 AS `PERMISSION_DESC`*/;
+/*!50001 CREATE TABLE `view_role_permissions` (
+  `ID` tinyint NOT NULL,
+  `ROLE_ID` tinyint NOT NULL,
+  `ROLE_NAME` tinyint NOT NULL,
+  `PERMISSION_ID` tinyint NOT NULL,
+  `PERMISSION_NAME` tinyint NOT NULL,
+  `PERMISSION_NAME_ID` tinyint NOT NULL,
+  `PERMISSION_DESC` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_scripts`
+-- Temporary table structure for view `view_scripts`
 --
 
 DROP TABLE IF EXISTS `view_scripts`;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_scripts` AS SELECT 
- 1 AS `ID`,
- 1 AS `SCRIPT_NAME`,
- 1 AS `APP_ID`,
- 1 AS `APP_NAME`,
- 1 AS `MODULE_ID`,
- 1 AS `MODULE_NAME`*/;
+/*!50001 CREATE TABLE `view_scripts` (
+  `ID` tinyint NOT NULL,
+  `SCRIPT_NAME` tinyint NOT NULL,
+  `APP_ID` tinyint NOT NULL,
+  `APP_NAME` tinyint NOT NULL,
+  `MODULE_ID` tinyint NOT NULL,
+  `MODULE_NAME` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_table_details`
+-- Temporary table structure for view `view_table_details`
 --
 
 DROP TABLE IF EXISTS `view_table_details`;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_table_details` AS SELECT 
- 1 AS `ID`,
- 1 AS `SCHEMA_ID`,
- 1 AS `TABLE_SCHEMA`,
- 1 AS `TABLE_ID`,
- 1 AS `TABLE_NAME`,
- 1 AS `COLUMN_NAME`,
- 1 AS `COLUMN_TYPE_ID`,
- 1 AS `COLUMN_TYPE_LABEl`,
- 1 AS `UNSIGN`,
- 1 AS `COLUMN_SIZE`,
- 1 AS `ACCEPT_NULL`,
- 1 AS `COLUMN_DEFAULT_VALUE`,
- 1 AS `AUTOINCREMENT`,
- 1 AS `DESCRIPTION`,
- 1 AS `ORD`,
- 1 AS `MODIFY_UID`,
- 1 AS `MODIFIED_BY`,
- 1 AS `CREATE_UID`,
- 1 AS `CREATED_BY`,
- 1 AS `MODIFY_DATE`,
- 1 AS `CREATE_DATE`*/;
+/*!50001 CREATE TABLE `view_table_details` (
+  `ID` tinyint NOT NULL,
+  `SCHEMA_ID` tinyint NOT NULL,
+  `TABLE_SCHEMA` tinyint NOT NULL,
+  `TABLE_ID` tinyint NOT NULL,
+  `TABLE_NAME` tinyint NOT NULL,
+  `COLUMN_NAME` tinyint NOT NULL,
+  `COLUMN_TYPE_ID` tinyint NOT NULL,
+  `COLUMN_TYPE_LABEl` tinyint NOT NULL,
+  `UNSIGN` tinyint NOT NULL,
+  `COLUMN_SIZE` tinyint NOT NULL,
+  `ACCEPT_NULL` tinyint NOT NULL,
+  `COLUMN_DEFAULT_VALUE` tinyint NOT NULL,
+  `AUTOINCREMENT` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL,
+  `ORD` tinyint NOT NULL,
+  `MODIFY_UID` tinyint NOT NULL,
+  `MODIFIED_BY` tinyint NOT NULL,
+  `CREATE_UID` tinyint NOT NULL,
+  `CREATED_BY` tinyint NOT NULL,
+  `MODIFY_DATE` tinyint NOT NULL,
+  `CREATE_DATE` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_tables`
+-- Temporary table structure for view `view_tables`
 --
 
 DROP TABLE IF EXISTS `view_tables`;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_tables` AS SELECT 
- 1 AS `ID`,
- 1 AS `ORIGIN_ID`,
- 1 AS `TABLE_TYPE`,
- 1 AS `TABLE_SCHEMA_ID`,
- 1 AS `TABLE_SCHEMA`,
- 1 AS `TABLE_NAME`,
- 1 AS `APP_SCHEMA`,
- 1 AS `APP_ID`,
- 1 AS `APP_NAME`,
- 1 AS `MODULE_ID`,
- 1 AS `MODULE_NAME`,
- 1 AS `DESCRIPTION`*/;
+/*!50001 CREATE TABLE `view_tables` (
+  `ID` tinyint NOT NULL,
+  `ORIGIN_ID` tinyint NOT NULL,
+  `TABLE_TYPE` tinyint NOT NULL,
+  `TABLE_SCHEMA_ID` tinyint NOT NULL,
+  `TABLE_SCHEMA` tinyint NOT NULL,
+  `TABLE_NAME` tinyint NOT NULL,
+  `APP_SCHEMA` tinyint NOT NULL,
+  `APP_ID` tinyint NOT NULL,
+  `APP_NAME` tinyint NOT NULL,
+  `MODULE_ID` tinyint NOT NULL,
+  `MODULE_NAME` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_user_roles`
+-- Temporary table structure for view `view_user_roles`
 --
 
 DROP TABLE IF EXISTS `view_user_roles`;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_user_roles` AS SELECT 
- 1 AS `ID`,
- 1 AS `UID`,
- 1 AS `USERNAME`,
- 1 AS `ROLE_ID`,
- 1 AS `ROLE_NAME`*/;
+/*!50001 CREATE TABLE `view_user_roles` (
+  `ID` tinyint NOT NULL,
+  `UID` tinyint NOT NULL,
+  `USERNAME` tinyint NOT NULL,
+  `ROLE_ID` tinyint NOT NULL,
+  `ROLE_NAME` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_users`
+-- Temporary table structure for view `view_users`
 --
 
 DROP TABLE IF EXISTS `view_users`;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE VIEW `view_users` AS SELECT 
- 1 AS `ID`,
- 1 AS `USERNAME`,
- 1 AS `PASSWORD`,
- 1 AS `FIRSTNAME`,
- 1 AS `LASTNAME`,
- 1 AS `EMAIL`,
- 1 AS `USER_TYPE`,
- 1 AS `DESCRIPTION`,
- 1 AS `PROFILE_ID`,
- 1 AS `PROFILE_NAME`,
- 1 AS `SCRIPT_ID`,
- 1 AS `SCRIPT_NAME`*/;
+/*!50001 CREATE TABLE `view_users` (
+  `ID` tinyint NOT NULL,
+  `USERNAME` tinyint NOT NULL,
+  `PASSWORD` tinyint NOT NULL,
+  `FIRSTNAME` tinyint NOT NULL,
+  `LASTNAME` tinyint NOT NULL,
+  `EMAIL` tinyint NOT NULL,
+  `USER_TYPE` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL,
+  `PROFILE_ID` tinyint NOT NULL,
+  `PROFILE_NAME` tinyint NOT NULL,
+  `SCRIPT_ID` tinyint NOT NULL,
+  `SCRIPT_NAME` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1311,6 +1324,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_forms`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_forms`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1329,6 +1343,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_modules`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_modules`*/;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1347,6 +1362,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_permissions`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1365,6 +1381,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_role_permissions`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_role_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1383,6 +1400,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_scripts`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_scripts`*/;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1401,13 +1419,14 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_details`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_table_details`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = cp850 */;
-/*!50001 SET character_set_results     = cp850 */;
-/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `view_table_details` AS select `d`.`ID` AS `ID`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`d`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`COLUMN_NAME` AS `COLUMN_NAME`,`d`.`COLUMN_TYPE_ID` AS `COLUMN_TYPE_ID`,(select `list_mysql_column_types`.`VALUE` from `list_mysql_column_types` where (`list_mysql_column_types`.`ID` = `d`.`COLUMN_TYPE_ID`)) AS `COLUMN_TYPE_LABEl`,`d`.`UNSIGN` AS `UNSIGN`,`d`.`COLUMN_SIZE` AS `COLUMN_SIZE`,`d`.`ACCEPT_NULL` AS `ACCEPT_NULL`,`d`.`COLUMN_DEFAULT_VALUE` AS `COLUMN_DEFAULT_VALUE`,`d`.`AUTOINCREMENT` AS `AUTOINCREMENT`,`d`.`DESCRIPTION` AS `DESCRIPTION`,`d`.`ORD` AS `ORD`,`d`.`MODIFY_UID` AS `MODIFY_UID`,(select `users`.`USERNAME` from `users` where (`users`.`ID` = `d`.`MODIFY_UID`)) AS `MODIFIED_BY`,`d`.`CREATE_UID` AS `CREATE_UID`,(select `users`.`USERNAME` from `users` where (`users`.`ID` = `d`.`CREATE_UID`)) AS `CREATED_BY`,`d`.`MODIFY_DATE` AS `MODIFY_DATE`,`d`.`CREATE_DATE` AS `CREATE_DATE` from (`table_details` `d` left join `tables` `t` on((`d`.`TABLE_ID` = `t`.`ID`))) */;
@@ -1419,6 +1438,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_tables`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_tables`*/;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1437,6 +1457,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_user_roles`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_user_roles`*/;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1455,6 +1476,7 @@ UNLOCK TABLES;
 -- Final view structure for view `view_users`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_users`*/;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1478,4 +1500,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-30 14:42:37
+-- Dump completed on 2016-09-30 23:00:16

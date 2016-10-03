@@ -31,3 +31,22 @@ d.CREATE_UID AS CREATE_UID,
 (select phpapps.users.USERNAME from phpapps.users where (phpapps.users.ID = d.CREATE_UID)) AS CREATED_BY,
 d.MODIFY_DATE AS MODIFY_DATE,
 d.CREATE_DATE AS CREATE_DATE from (phpapps.table_details d left join phpapps.tables t on((d.TABLE_ID = t.ID)))
+
+
+drop view view_table_indexes;
+create view view_table_indexes as select 
+ ti.ID,
+t.SCHEMA_ID,
+(select value from phpapps.list_databases where id = t.schema_id) as 'TABLE_SCHEMA',
+ ti.TABLE_ID,
+ t.TABLE_NAME,
+ ti.INDEX_NAME,
+ ti.INDEX_TYPE_ID,
+(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,
+ ti.INDEX_COLUMNS,
+ ti.DESCRIPTION,
+ ti.MODIFY_UID,
+ ti.CREATE_UID,
+ ti.MODIFY_DATE,
+ ti.CREATE_DATE
+ from table_indexes ti left join tables t on (ti.table_id = t.id)

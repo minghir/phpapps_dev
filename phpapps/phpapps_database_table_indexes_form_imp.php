@@ -1,10 +1,10 @@
 <?php
 require_once ("globals.php");
-include ("gen_php/phpapps_database_columns_fks_form.php");
-	class phpapps_database_columns_fks_form_impl  extends phpapps_database_columns_fks_form{
+include ("gen_php/phpapps_database_table_indexes_form.php");
+	class phpapps_database_table_indexes_form_impl  extends phpapps_database_table_indexes_form{
 		function __construct(){
 			parent::__construct();
-			$this->template = "phpapps_database_columns_fks_form_imp.tpl";
+			$this->template = "phpapps_database_table_indexes_form_imp.tpl";
 			$this->init();
 			$this->display();
 		}
@@ -36,7 +36,8 @@ include ("gen_php/phpapps_database_columns_fks_form.php");
 		//	header("Location:win_close.html");
 		}
 		
-		function beforeDisplay(){	
+		function beforeDisplay(){
+                    $this->INDEX_COLUMNS_sel->set_multiple(TRUE);
 		}
 		
 		function afterDisplay(){	
@@ -44,5 +45,5 @@ include ("gen_php/phpapps_database_columns_fks_form.php");
 		
 	};
 	
-	$phpapps_database_columns_fks_form_Impl = new phpapps_database_columns_fks_form_impl();
+	$phpapps_database_table_indexes_form_Impl = new phpapps_database_table_indexes_form_impl();
 ?>

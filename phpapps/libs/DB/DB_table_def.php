@@ -86,7 +86,7 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
                                 "",
                                 false
                                 );
-                
+
                 if($this->execQuery("CREATE_TABLE")){
                     return $this->alterTblAddPK("ID");
                 }else{

@@ -2,12 +2,12 @@
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_database_columns_fks_form").submit();
+		$("#phpapps_database_table_indexes_form").submit();
 }
   </script>
 {/literal}
 {$error_msg}
-<hr><form name="phpapps_database_columns_fks_form" id="phpapps_database_columns_fks_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_database_table_indexes_form" id="phpapps_database_table_indexes_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -23,43 +23,29 @@ function submitDetailsForm(op){
 																
 			
 		
-				<tr><td align="right">COLUMN_ID  :</td><td>
-			{$COLUMN_ID_sel}
+				<tr><td align="right">TABLE_ID  :</td><td>
+			{$TABLE_ID_sel}
 		</td></tr>
         				 
-				<tr><td align="right">FK_NAME :</td><td> <input type="text" id="FK_NAME" name="FK_NAME" value="{$FK_NAME}"></td></tr>
+				<tr><td align="right">INDEX_NAME :</td><td> <input type="text" id="INDEX_NAME" name="INDEX_NAME" value="{$INDEX_NAME}"></td></tr>
 																
 			
 		
 						 
 																
 			
-		
-				<tr><td align="right">FK_TABLE_ID  :</td><td>
-			{$FK_TABLE_ID_sel}
-		</td></tr>
-        				 
-																
-			
-		
-				<tr><td align="right">FK_COLUMN  :</td><td>
-			{$FK_COLUMN_sel}
-		</td></tr>
-        				 
-																
-			
-				<tr><td align="right">ON_UPDATE  :</td><td>
-			{$ON_UPDATE_sel}
+				<tr><td align="right">INDEX_TYPE  :</td><td>
+			{$INDEX_TYPE_sel}
 		</td></tr>
         
 						 
 																
 			
-				<tr><td align="right">ON_DELETE  :</td><td>
-			{$ON_DELETE_sel}
+		
+				<tr><td align="right">INDEX_COLUMNS  :</td><td>
+			{$INDEX_COLUMNS_sel}
 		</td></tr>
-        
-						 
+        				 
 								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			

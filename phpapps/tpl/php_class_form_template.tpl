@@ -14,7 +14,11 @@ class {$form_name}{ldelim}
 	//post values
 	public $pact;
 	{section name=ds loop=$fields}
+        {if $input_types[ds] == "select_table_multiple" || $input_types[ds] == "select_list_multiple"}
+        public ${$fields[ds]} = array();    
+        {else}    
 	public ${$fields[ds]};
+        {/if}
 	{/section}
 	
 	{section name=lis loop=$selected_schema_list}
@@ -28,6 +32,8 @@ class {$form_name}{ldelim}
 	public ${$fields[lis]}_sel;
 	{/if} 
 	{/section}
+        
+        
 
 	public $errors = array();
 	
@@ -38,12 +44,18 @@ class {$form_name}{ldelim}
                 {section name=lis loop=$selected_schema_list}
 			{if $selected_schema_list[lis] != "" }
 			$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_list[lis]}");
+                        {if $input_types[lis] == "select_list_multiple"}
+                                    $this->{$fields[lis]}_sel->set_multiple(TRUE);
+                         {/if}
 			{/if} 
 		{/section}
 		
 		{section name=lis loop=$selected_schema_table}
 			{if $selected_schema_table[lis] != "" }
 				$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
+                                {if $input_types[lis] == "select_table_multiple"}
+                                    $this->{$fields[lis]}_sel->set_multiple(TRUE);
+                                {/if}
 			{/if} 
 		{/section}
                 
@@ -77,7 +89,11 @@ class {$form_name}{ldelim}
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			{section name=ds loop=$fields}
-				$this->{$fields[ds]} = stripslashes($this->globals->con->get_field("{$fields[ds]}"));
+                                {if $input_types[ds] == "select_table_multiple" || $input_types[ds] == "select_list_multiple"}
+                                $this->{$fields[ds]} = explode(",",$this->globals->con->get_field("{$fields[ds]}"));    
+                                {else}
+                                $this->{$fields[ds]} = stripslashes($this->globals->con->get_field("{$fields[ds]}"));
+                                {/if}
 			{/section}
 			
 	{rdelim}
@@ -115,7 +131,11 @@ class {$form_name}{ldelim}
 			array(
 				{section name=ds1 loop=$fields}
 					{if $fields[ds1] != "ID" }
-					":{$fields[ds1]}" => $this->{$fields[ds1]},
+                                        {if $input_types[ds1] == "select_list_multiple" || $input_types[ds1] == "select_table_multiple" }
+                                            ":{$fields[ds1]}" => implode(",",$this->{$fields[ds1]}),
+                                        {else}    
+                                            ":{$fields[ds1]}" => $this->{$fields[ds1]},
+                                        {/if}
 					{/if}
 				{/section}
 			)
@@ -153,7 +173,11 @@ class {$form_name}{ldelim}
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				{section name=ds1 loop=$fields}
-					":{$fields[ds1]}" => $this->{$fields[ds1]},
+                                        {if $input_types[ds1] == "select_list_multiple" || $input_types[ds1] == "select_table_multiple" }
+                                            ":{$fields[ds1]}" => implode(",",$this->{$fields[ds1]}),
+                                        {else}
+                                            ":{$fields[ds1]}" => $this->{$fields[ds1]},
+                                        {/if}
 				{/section}
 				":".$this->gfield => $this->gfield_value
 			)	
@@ -222,7 +246,11 @@ class {$form_name}{ldelim}
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		{section name=ds loop=$fields}
-			$this->{$fields[ds]}  = addslashes(trim($_POST["{$fields[ds]}"]));
+                        {if $input_types[ds] == "select_list_multiple" || $input_types[ds] == "select_table_multiple" }
+                             $this->{$fields[ds]}  = $_POST["{$fields[ds]}"];
+                        {else}
+                            $this->{$fields[ds]}  = addslashes(trim($_POST["{$fields[ds]}"]));
+                        {/if}
 		{/section}
         {rdelim}
 		

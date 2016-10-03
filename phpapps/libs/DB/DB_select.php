@@ -125,6 +125,10 @@ class DB_select{
 	function get_select_str(){
 			return $this->sm->fetch('db_select.tpl');
 	}
+        
+        function set_multiple($bool_val){
+            $this->multiple = $bool_val;
+        }
 };
 
    

@@ -93,7 +93,7 @@ drop view view_tables;
 
 
 
-create view view_phpapps.columns_fks as
+create view phpapps.view_table_fks as
 SELECT 
 fk.ID,
 fk.COLUMN_ID,
@@ -112,7 +112,7 @@ tdf.COLUMN_NAME AS FK_COLUMN_NAME,
 fk.ON_UPDATE,
 fk.ON_DELETE,
 fk.DESCRIPTION
-FROM phpapps.columns_fks fk left join phpapps.table_details td ON (fk.COLUMN_ID = td.ID)
+FROM phpapps.table_fks fk left join phpapps.table_details td ON (fk.COLUMN_ID = td.ID)
 left join phpapps.tables t ON (td.TABLE_ID = t.ID)
 left join phpapps.tables tf ON (fk.FK_TABLE_ID = tf.ID)
 left join phpapps.table_details tdf ON (fk.FK_COLUMN_ID = tdf.ID)

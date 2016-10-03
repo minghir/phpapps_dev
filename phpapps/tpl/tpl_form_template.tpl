@@ -57,8 +57,18 @@ function submitDetailsForm(op){
 			{ldelim}${$fields[fl]}_sel{rdelim}
 		</td></tr>
         {/if}
+                {if $input_types[fl] == "select_list_multiple" }
+		<tr><td align="right">{$labels[fl]}  :</td><td>
+			{ldelim}${$fields[fl]}_sel{rdelim}
+		</td></tr>
+        {/if}
 
 		{if $input_types[fl] == "select_table" }
+		<tr><td align="right">{$labels[fl]}  :</td><td>
+			{ldelim}${$fields[fl]}_sel{rdelim}
+		</td></tr>
+        {/if}
+                {if $input_types[fl] == "select_table_multiple" }
 		<tr><td align="right">{$labels[fl]}  :</td><td>
 			{ldelim}${$fields[fl]}_sel{rdelim}
 		</td></tr>

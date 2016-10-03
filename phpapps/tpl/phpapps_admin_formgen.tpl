@@ -133,10 +133,20 @@ Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_
 			   {else}
 			   <option value="select_list">select list</option>
 			   {/if}
+                           {if $input_types[ds] == "select_list_multiple" }
+               <option value="select_list_multiple" selected>select list multiple</option>
+			   {else}
+			   <option value="select_list_multiple">select list multiple</option>
+			   {/if}
 			   {if $input_types[ds] == "select_table" }
                <option value="select_table" selected>select table</option>
 			   {else}
 			   <option value="select_table">select table</option>
+			   {/if}
+                           {if $input_types[ds] == "select_table_multiple" }
+               <option value="select_table_multiple" selected>select table multiple</option>
+			   {else}
+			   <option value="select_table_multiple">select table multiple</option>
 			   {/if}
 			   {if $input_types[ds] == "label_field" }
                <option value="label_field" selected>label field</option>

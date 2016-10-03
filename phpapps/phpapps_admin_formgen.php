@@ -23,11 +23,15 @@ class phpapps_admin_formgen{
 	var $form_schema_table;
 	
 	var $schema_lists = array();
+        var $schema_lists_multiple = array();
 	var $schema_tables = array();
+        var $schema_tables_multiple = array();
 	var $schema_fields = array();
 	
 	var $selected_schema_list = array(); //listele selectate pentru fiecare dintre campuri
+        //var $selected_schema_list_multiple = array(); //listele selectate pentru fiecare dintre campuri
 	var $selected_schema_table = array();//tabelele selectate pentru fiecare dintre campuri
+        //var $selected_schema_table_multiple = array();//tabelele selectate pentru fiecare dintre campuri
 	var $selected_schema_field = array();//campurile selectate pentru fiecare dintre  tabele
 	
 	var $hiddens = array();
@@ -491,6 +495,7 @@ REFERENCE_FIELD
 	function generateFormPhp(){
 		$tmp_arr = array_diff($this->fields,$this->hiddens);
 		$visible_fields = is_array($this->hiddens) ? (array_values($tmp_arr)) : $this->fields;
+                $visible_types = is_array($this->hiddens) ? array_values(array_intersect_key($this->input_types,$tmp_arr)):$this->input_types;
 		$visible_schema_list = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_list,$tmp_arr)):$this->selected_schema_list;
 		$visible_schema_table = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_table,$tmp_arr)):$this->selected_schema_table;	
 		$visible_schema_field = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_field,$tmp_arr)):$this->selected_schema_field;	
@@ -501,7 +506,7 @@ REFERENCE_FIELD
 				"hiddens" => $this->hiddens,
 
 				"fields" => $visible_fields,
-				
+				"input_types" => $visible_types,
 				"form_table" => $this->form_table,
 				"form_schema" => $this->form_schema,
 				"mandatories" => $this->mandatories,

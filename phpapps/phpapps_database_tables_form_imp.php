@@ -156,7 +156,7 @@ print_r($this->errors);
 			if($this->gact == "editRec"){
 				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_DDL_grid");
                                 
-            $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
+                                $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
 				$table_details_grid->grid_title = "COLUMNS";
 				$table_details_grid->paginable = false;
 				$table_details_grid->filterable = false;
@@ -173,17 +173,67 @@ print_r($this->errors);
 						"SIZE",
 						"DEFAULT VALUE",
 						"DESCRIPTION");
-            $table_details_grid->current_order_field = "ORD";
-	         $table_details_grid->current_order_rule = "ASC";
-            $table_details_grid->sortable = FALSE;
+                                $table_details_grid->current_order_field = "ORD";
+                                $table_details_grid->current_order_rule = "ASC";
+                                $table_details_grid->sortable = FALSE;
 				$table_details_grid->where_rules = array("TABLE_ID = :table_id");
-            $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
+                                $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
 				$table_details_grid->where_params = array(":table_id" => $table_id);
 				$table_details_grid->rows_on_pg = 20;
 				$table_details_grid->edit_form = "phpapps_database_table_details_DDL_form_imp.php?table_id=".$this->ID;
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
                                 
-                                //$columns_fk_grid new DB_grid($this->globals->con, "table","phpapps.view_fk_details","phpapps_table_details_grid");
+                                $columns_fk_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_fks","phpapps_view_table_fks_DDL_grid");
+                                $columns_fk_grid->grid_title = "FOREIGN KEYS";
+				$columns_fk_grid->paginable = false;
+				$columns_fk_grid->filterable = false;
+				$columns_fk_grid->exportable = false;
+                                $columns_fk_grid->sortable = FALSE;
+                                
+                                $columns_fk_grid->cols = array(
+						"COLUMN_NAME",
+						"FK_NAME",
+						"FK_TABLE_NAME",
+						"FK_COLUMN_NAME",
+                                                "ON_UPDATE",
+                                                "ON_DELETE",
+						"DESCRIPTION");
+				$columns_fk_grid->labels = array(
+						"COLUMN_NAME",
+						"FK_NAME",
+						"FK_TABLE_NAME",
+						"FK_COLUMN_NAME",
+                                                "ON_UPDATE",
+                                                "ON_DELETE",
+						"DESCRIPTION");
+                                
+                                $columns_fk_grid->where_params = array(":table_id" => $table_id);
+                                $columns_fk_grid->where_rules = array("TABLE_ID = :table_id");
+				$columns_fk_grid->rows_on_pg = 20;
+                                
+				
+                                $columns_fk_grid->edit_form = "phpapps_database_columns_fks_DDL_form_imp.php?table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $this->globals->sm->assign("columns_fk_grid",$columns_fk_grid->get_grid_str());
+                                
+                                $table_idx_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_indexes","phpapps_view_table_indexes_DDL_grid");
+                                $table_idx_grid->grid_title = "FOREIGN KEYS";
+                                $table_idx_grid->cols = array(
+						"INDEX_NAME",
+						"INDEX_TYPE",
+						"INDEX_COLUMNS",
+						"DESCRIPTION");
+				$table_idx_grid->labels = array(
+						"INDEX_NAME",
+						"INDEX_TYPE",
+						"INDEX_COLUMNS",
+						"DESCRIPTION");
+				$table_idx_grid->paginable = false;
+				$table_idx_grid->filterable = false;
+				$table_idx_grid->exportable = false;
+                                $table_idx_grid->sortable = FALSE;
+                                $table_idx_grid->edit_form = "phpapps_database_table_indexes_DDL_form_imp.php?table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                
+                                $this->globals->sm->assign("table_idx_grid",$table_idx_grid->get_grid_str());
 			}
 		}
 		

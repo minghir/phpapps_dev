@@ -45,22 +45,26 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                                     "_" . $arr["TABLE_NAME"] . 
                                     "_" . $arr["COLUMN_NAME"] .
                                     "_FK";
-		}
-		
-		function afterAddRec(){
-                    if(count($this->errors) == 0){
-                        $tbl = new DB_table("phpapps.view_tables");
-                        $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME"),"ID",$this->FK_TABLE_ID);
-                        $this->FK_SCHEMA_NAME = $arr["TABLE_SCHEMA"];
-                        $this->FK_TABLE_NAME = $arr["TABLE_NAME"];
+                    
+                                     if(count($this->errors) == 0){
+                                                $tbl = new DB_table("phpapps.view_tables");
+                                                $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME"),"ID",$this->FK_TABLE_ID);
+                                                $this->FK_SCHEMA_NAME = $arr["TABLE_SCHEMA"];
+                                                $this->FK_TABLE_NAME = $arr["TABLE_NAME"];
                         
-                        $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                                                $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
 			if(!$this->table_definition->alterTblAddFK( $this->COLUMN_NAME,
                                                                 $this->FK_SCHEMA_NAME,
                                                                 $this->FK_TABLE_NAME,"ID")){
-                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
-                        }
-                    }
+                                                                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                                                       }
+                                    }
+                    
+                    
+		}
+		
+		function afterAddRec(){
+                    
 		}
 		
 		function beforeSaveRec(){

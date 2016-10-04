@@ -18,6 +18,7 @@ class DB_table_def{
         public $errors = array();
         
         public $CURRENT_FK;
+        public $CURRENT_IDX;
         
 
 	function __construct($tschm,$tname,$auditbl = TRUE){
@@ -115,7 +116,8 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
         
         function alterTblAddFK($col_name,$fk_schema,$fk_table,$fk_fld="ID"){
             $this->CURRENT_FK =  new DB_FK_def($this->TABLE_SCHEMA,
-                                                  $this->TABLE_NAME,
+                                                  $this->TABLE_NAME);
+            $this->CURRENT_FK->setFKOpt(
                                                   $col_name,
                                                   $fk_schema,
                                                   $fk_table,
@@ -132,7 +134,14 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             return $this->execQuery("ALTER_TABLE_DROP_PK");
         }
         
-        function alterTblDropFK($col_name){
+        function alterTblDropFK($fk_name){
+            $this->CURRENT_FK =  new DB_FK_def($this->TABLE_SCHEMA,$this->TABLE_NAME);
+            $this->CURRENT_FK->setFKName($fk_name);
+            return $this->execQuery("ALTER_TABLE_DROP_FK");
+            
+            //$this->foreign_keys[] = $this->CURRENT_FK;
+            //$this->CURRENT_COLUMN = $this->getColDef($col_name);
+            /*
             if(count($this->columns) == 0){
                 $this->CURRENT_COLUMN = new DB_column_def($col_name, "", "");
             }else{
@@ -141,6 +150,8 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             
             return $this->execQuery("ALTER_TABLE_DROP_FK");
             // trebuie si alter table drop index : phpapps_test_def_APP_ID_FK
+             * 
+             */
         }
         
         function alterTblAddCol($vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE,$vafter="ID"){

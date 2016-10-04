@@ -19,16 +19,21 @@ class DB_index_def {
     public $INDEX_TYPE;
     public $columns = array();
     
-    function __construct($schema_name,$table_name,$index_type,$columns) {
+    function __construct($schema_name,$table_name){
         //"CREATE INDEX $SCHEMA_NAME_$TABLE_NAME_$COLUMN_NAME_IDX ON $SCHEMA_NAME.$TABLE_NAME ($COLUMNS)"
         $this->SCHEMA_NAME = $schema_name;
         $this->TABLE_NAME = $table_name;
+        return this;
+}
+
+    function setIndexOpt($index_type,$columns) {
         $this->INDEX_TYPE = $index_type;
         $this->columns = $columns;
-        
-        
-        $this->INDEX_NAME = $this->SCHEMA_NAME ."_".$this->TABLE_NAME . "_" . implode("_",$this->columns) . "_IDX";
-        
+        $this->INDEX_NAME = $this->SCHEMA_NAME ."_".$this->TABLE_NAME . "-" . implode("_",$this->columns) . "-IDX";
+    }
+    
+    function getIndexName(){
+        return $this->INDEX_NAME;
     }
     
     function createIndex(){

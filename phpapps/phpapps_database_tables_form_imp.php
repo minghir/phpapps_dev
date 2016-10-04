@@ -179,7 +179,6 @@ print_r($this->errors);
 				$table_details_grid->where_rules = array("TABLE_ID = :table_id");
                                 $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
 				$table_details_grid->where_params = array(":table_id" => $table_id);
-				$table_details_grid->rows_on_pg = 20;
 				$table_details_grid->edit_form = "phpapps_database_table_details_DDL_form_imp.php?table_id=".$this->ID;
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
                                 
@@ -209,10 +208,24 @@ print_r($this->errors);
                                 
                                 $columns_fk_grid->where_params = array(":table_id" => $table_id);
                                 $columns_fk_grid->where_rules = array("TABLE_ID = :table_id");
-				$columns_fk_grid->rows_on_pg = 20;
-                                
+				$columns_fk_grid->editable = FALSE;
 				
-                                $columns_fk_grid->edit_form = "phpapps_database_columns_fks_DDL_form_imp.php?table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $lfk = new HrefActions();
+                                $lfk->act_script = "phpapps_database_table_fks_DDL_form_imp.php?gact=deleteRec&table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $lfk->confirm_msg = "Sigur stergeti inregistrarea?";
+                                $lfk->popup = true;
+                                $lfk->label = "delete";
+                                $lfk->action = "deleteRec";
+                                $lfk->fields = array("ID");
+                                $columns_fk_grid->add_row_acction($lfk);
+                                
+                                $lfka = new HrefActions();
+                                $lfka->act_script = "phpapps_database_table_fks_DDL_form_imp.php?gact=newRec&table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $lfka->popup = true;
+                                $lfka->label = "new";
+                                $lfka->action = "newRec";
+                                $columns_fk_grid->add_grid_acction($lfka);
+                                
                                 $this->globals->sm->assign("columns_fk_grid",$columns_fk_grid->get_grid_str());
                                 
                                 $table_idx_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_indexes","phpapps_view_table_indexes_DDL_grid");
@@ -231,7 +244,23 @@ print_r($this->errors);
 				$table_idx_grid->filterable = false;
 				$table_idx_grid->exportable = false;
                                 $table_idx_grid->sortable = FALSE;
-                                $table_idx_grid->edit_form = "phpapps_database_table_indexes_DDL_form_imp.php?table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $table_idx_grid->editable = FALSE;
+                                
+                                $la = new HrefActions();
+                                $la->act_script = "phpapps_database_table_indexes_DDL_form_imp.php?gact=deleteRec&table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $la->confirm_msg = "Sigur stergeti inregistrarea?";
+                                $la->popup = true;
+                                $la->label = "delete";
+                                $la->action = "deleteRec";
+                                $la->fields = array("ID");
+                                $table_idx_grid->add_row_acction($la);
+                                
+                                $lad = new HrefActions();
+                                $lad->act_script = "phpapps_database_table_indexes_DDL_form_imp.php?gact=newRec&table_id=".$this->ID."&module_id=".$this->MODULE_ID;
+                                $lad->popup = true;
+                                $lad->label = "new";
+                                $lad->action = "newRec";
+                                $table_idx_grid->add_grid_acction($lad);
                                 
                                 $this->globals->sm->assign("table_idx_grid",$table_idx_grid->get_grid_str());
 			}

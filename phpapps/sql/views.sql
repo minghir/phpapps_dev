@@ -50,3 +50,24 @@ t.SCHEMA_ID,
  ti.MODIFY_DATE,
  ti.CREATE_DATE
  from table_indexes ti left join tables t on (ti.table_id = t.id)
+
+
+drop view view_table_fks;
+CREATE VIEW view_table_fks AS select fk.ID AS ID,
+fk.COLUMN_ID AS COLUMN_ID,
+td.COLUMN_NAME AS COLUMN_NAME,
+t.SCHEMA_ID AS SCHEMA_ID,
+(select list_databases.VALUE from list_databases where (list_databases.ID = t.SCHEMA_ID)) AS TABLE_SCHEMA,
+td.TABLE_ID AS TABLE_ID,
+t.TABLE_NAME AS TABLE_NAME,
+fk.FK_NAME AS FK_NAME,
+tf.SCHEMA_ID AS FK_SCHEMA_ID,
+(select list_databases.VALUE from list_databases where (list_databases.ID = tf.SCHEMA_ID)) AS FK_TABLE_SCHEMA,
+fk.FK_TABLE_ID AS FK_TABLE_ID,
+tf.TABLE_NAME AS FK_TABLE_NAME,
+fk.FK_COLUMN_ID AS FK_COLUMN_ID,
+tdf.COLUMN_NAME AS FK_COLUMN_NAME,
+(SELECT VALUE FROM phpapps.list_foreign_key_options WHERE ID = fk.ON_UPDATE) AS ON_UPDATE,
+(SELECT VALUE FROM phpapps.list_foreign_key_options WHERE ID = fk.ON_DELETE) AS ON_DELETE,
+fk.DESCRIPTION AS DESCRIPTION 
+from ((((table_fks fk left join table_details td on((fk.COLUMN_ID = td.ID))) left join tables t on((td.TABLE_ID = t.ID))) left join tables tf on((fk.FK_TABLE_ID = tf.ID))) left join table_details tdf on((fk.FK_COLUMN_ID = tdf.ID))) 

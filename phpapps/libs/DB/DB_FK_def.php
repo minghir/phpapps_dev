@@ -28,22 +28,32 @@ class DB_FK_def {
     //OPTIONS        
     //RESTRICT | CASCADE | SET NULL | NO ACTION
     
-    function __construct($scm_name,$tbl_name,$col_name,$fk_scm_name,$fk_tbl_name,$fk_col_name) {
+    function __construct($scm_name,$tbl_name){
         
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         
         $this->SCHEMA_NAME = $scm_name;
         $this->TABLE_NAME = $tbl_name;
-        $this->COLUMN_NAME = $col_name;
+        return $this;
+    }
+    
+    function setFKOpt($col_name,$fk_scm_name,$fk_tbl_name,$fk_col_name) {
         
+        $this->COLUMN_NAME = $col_name;
         $this->FK_SCHEMA_NAME = $fk_scm_name;
         $this->FK_TABLE_NAME = $fk_tbl_name;
         $this->FK_COLUMN_NAME = $fk_col_name;
         
         $this->FK_NAME = $this->SCHEMA_NAME . "_" . $this->TABLE_NAME . "_" . $this->COLUMN_NAME . "_FK";
-
-        return $this;
+    }
+    
+    function setFKName($fk_name){
+        $this->FK_NAME = $fk_name;
+    }
+    
+    function getFKName(){
+        return $this->FK_NAME;
     }
     
     function setOnDeleteOpt($opt){

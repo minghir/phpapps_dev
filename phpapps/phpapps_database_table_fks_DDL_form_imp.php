@@ -52,9 +52,9 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                     $this->COLUMN_NAME = $arr["COLUMN_NAME"];
                     //FK name 
                     $this->FK_NAME = $arr["TABLE_SCHEMA"] . 
-                                    "-" . $arr["TABLE_NAME"] . 
-                                    "-" . $arr["COLUMN_NAME"] .
-                                    "-FK";
+                                    "_" . $arr["TABLE_NAME"] . 
+                                    "_" . $arr["COLUMN_NAME"] .
+                                    "_FK";
                     
                         if(count($this->errors) == 0){
                             $tbl = new DB_table("phpapps.view_tables");

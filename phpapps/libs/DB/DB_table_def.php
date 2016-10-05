@@ -113,7 +113,7 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             return $this->execQuery("ALTER_TABLE_ADD_PK");
         }
         
-        
+        /*
         function alterTblAddFK($col_name,$fk_schema,$fk_table,$fk_fld="ID"){
             $this->CURRENT_FK =  new DB_FK_def($this->TABLE_SCHEMA,
                                                   $this->TABLE_NAME);
@@ -127,6 +127,15 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             $this->foreign_keys[] = $this->CURRENT_FK;
             $this->CURRENT_COLUMN = $this->getColDef($col_name);
             
+            return $this->execQuery("ALTER_TABLE_ADD_FK");
+        }
+         * 
+         */
+        
+        function alterTblAddFK($fk){
+            $this->CURRENT_FK =  $fk;
+            $this->foreign_keys[] = $this->CURRENT_FK;
+
             return $this->execQuery("ALTER_TABLE_ADD_FK");
         }
         
@@ -181,6 +190,13 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             $this->OLD_COLUMN_NAME = $voldname;
             $this->CURRENT_COLUMN = $this->addColumn($vname, $vtype, $vsize, $vnull,$vdefault,$vautoincr);
             return $this->execQuery("ALTER_TABLE_CHG_COL");
+        }
+        
+        function alterTblDropIdx($idx_name){
+            $this->CURRENT_IDX = new DB_index_def($this->TABLE_SCHEMA,$this->TABLE_NAME);
+            $this->CURRENT_IDX->setIndexName($idx_name);
+            
+            return $this->execQuery("ALTER_TABLE_DROP_IDX");
         }
 }
 ?>

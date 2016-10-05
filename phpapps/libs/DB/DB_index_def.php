@@ -36,6 +36,10 @@ class DB_index_def {
         return $this->INDEX_NAME;
     }
     
+     function setIndexName($idx_name){
+        $this->INDEX_NAME = $idx_name;
+    }
+    
     function createIndex(){
         
         $sql = new DB_query("CREATE " . $this->INDEX_TYPE . " " . $this->INDEX_NAME . " ON $SCHEMA_NAME.$TABLE_NAME ($COLUMNS)");

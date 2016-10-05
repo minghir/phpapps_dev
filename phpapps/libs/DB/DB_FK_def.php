@@ -45,7 +45,7 @@ class DB_FK_def {
         $this->FK_TABLE_NAME = $fk_tbl_name;
         $this->FK_COLUMN_NAME = $fk_col_name;
         
-        $this->FK_NAME = $this->SCHEMA_NAME . "_" . $this->TABLE_NAME . "_" . $this->COLUMN_NAME . "_FK";
+        $this->FK_NAME = $this->SCHEMA_NAME . "-" . $this->TABLE_NAME . "-" . $this->COLUMN_NAME . "-FK";
     }
     
     function setFKName($fk_name){

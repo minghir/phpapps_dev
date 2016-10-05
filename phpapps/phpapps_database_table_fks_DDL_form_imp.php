@@ -56,50 +56,83 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                                     "-" . $arr["COLUMN_NAME"] .
                                     "-FK";
                     
-                                     if(count($this->errors) == 0){
-                                                $tbl = new DB_table("phpapps.view_tables");
-                                                $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME"),"ID",$this->FK_TABLE_ID);
-                                                $this->FK_SCHEMA_NAME = $arr["TABLE_SCHEMA"];
-                                                $this->FK_TABLE_NAME = $arr["TABLE_NAME"];
-                                                $this->FK_COLUMN_NAME = "ID";
-                        
-                                                $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
-                                                
-			if(!$this->table_definition->alterTblAddFK( $this->COLUMN_NAME,
-                                                                $this->FK_SCHEMA_NAME,
-                                                                $this->FK_TABLE_NAME,"ID")){
-                                                                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
-                        // ADAUGA INDEX                                                    
-                                                       }
-                                    }
-                    
-                    
+                        if(count($this->errors) == 0){
+                            $tbl = new DB_table("phpapps.view_tables");
+                            $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME"),"ID",$this->FK_TABLE_ID);
+                            $this->FK_SCHEMA_NAME = $arr["TABLE_SCHEMA"];
+                            $this->FK_TABLE_NAME = $arr["TABLE_NAME"];
+                            $this->FK_COLUMN_NAME = "ID";
+                            
+                                    
+                            $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                            
+                            $fk_def = new DB_FK_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                            $fk_def->setFKOpt($this->COLUMN_NAME,$this->FK_SCHEMA_NAME,$this->FK_TABLE_NAME,"ID");
+                            $fk_def->setFKName($this->FK_NAME);
+                            
+                            if(!$this->table_definition->alterTblAddFK( $fk_def )){
+                                  $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                            }else{
+                                $sql = new DB_query("INSERT INTO phpapps.table_indexes ("
+                                        . "TABLE_ID, "
+                                        . "INDEX_NAME, "
+                                        . "INDEX_TYPE_ID, "
+                                        . "INDEX_COLUMNS, "
+                                        . "DESCRIPTION) VALUES ("
+                                        . ":table_id, "
+                                        . ":fk_name, "
+                                        . ":index_type_id, "
+                                        . ":column_id, "
+                                        . ":desc"
+                                        . ")",array(
+                                           ":table_id" => $this->TABLE_ID,
+                                           ":fk_name" => $this->FK_NAME,
+                                           ":index_type_id" => _lst("phpapps.list_index_types","INDEX"),
+                                           ":column_id" => $this->COLUMN_ID,
+                                            ":desc" => 'INDEX ADDED BY FK'
+                                        ));
+                                print_r($sql);
+                                if($this->globals->con->query($sql) == -1){
+                                    $this->errors[] = "EROARE INSERT IN table_indexes " . $this->globals->con->get_error();
+                                }
+                            }
+                        }
 		}
 		
 		function afterAddRec(){
-                    
 		}
 		
 		function beforeSaveRec(){
 		}
 		
 		function afterSaveRec(){
-			//header("Location:win_close.html");
 		}
 
 		function beforeDeleteRec(){
                     $tbl = new DB_table("phpapps.view_table_fks");
                     $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME","FK_NAME"),"ID",$this->FK_ID);
+                    
+                    $tbl2 = new DB_table("phpapps.view_table_indexes");
+                    $index_id = $tbl2->getID("INDEX_NAME", $arr["FK_NAME"]);
                     $this->table_definition = new DB_table_def($arr["TABLE_SCHEMA"],$arr["TABLE_NAME"]);
+
                     if(!$this->table_definition->alterTblDropFK($arr["FK_NAME"])){
                         $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                    }else{
+                        if(!$this->table_definition->alterTblDropIdx($arr["FK_NAME"])){
+                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                        }else{
+                            $sql = new DB_query("DELETE FROM phpapps.table_indexes WHERE ID = :id",array(":id"=>$index_id));
+                            print_r($sql);
+                            if($this->globals->con->query($sql) == -1){
+                                $this->errors[] = "EROARE DELETE DIN table_indexes " . $this->globals->con->get_error();
+                            }else{
+                            }
+                        }
                     }
-                    // DROP INDEX
-                    //print_r($arr);
-                    //exit;
-		}
-		
+                }
 		function afterDeleteRec(){
+                    print_r($this->errors);
 		//	header("Location:win_close.html");
 		}
 		

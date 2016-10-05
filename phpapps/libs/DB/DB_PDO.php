@@ -13,6 +13,7 @@ require_once(DB_LIBS_DIR . 'DB_select.php');
 require_once(DB_LIBS_DIR . 'DB_column_def.php');
 require_once(DB_LIBS_DIR . 'DB_table_def.php');
 require_once(DB_LIBS_DIR . 'DB_FK_def.php');
+require_once(DB_LIBS_DIR . 'DB_index_def.php');
 
 
 

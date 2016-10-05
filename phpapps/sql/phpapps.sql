@@ -428,7 +428,7 @@ CREATE TABLE `list_sql_sintax_types` (
 
 LOCK TABLES `list_sql_sintax_types` WRITE;
 /*!40000 ALTER TABLE `list_sql_sintax_types` DISABLE KEYS */;
-INSERT INTO `list_sql_sintax_types` VALUES (1,'CREATE_TABLE',''),(2,'ALTER_TABLE_ADD_PK',''),(3,'DROP_TABLE',''),(4,'ALTER_TABLE_ADD_COL','ALTER TABLE ADD COLUMN'),(5,'ALTER_TBL_REN_TBL',''),(6,'ALTER_TABLE_DROP_COL',''),(7,'ALTER_TABLE_ADD_FK',''),(8,'ALTER_TABLE_DROP_FK',''),(9,'FOREIGN_KEY_DEF',''),(10,'ALTER_TABLE_DROP_PK','ALTER TABLE DROP PRIMARY KEY'),(11,'ALTER_TABLE_CHG_COL',''),(12,'ALTER_TABLE_DROP_IDX','');
+INSERT INTO `list_sql_sintax_types` VALUES (1,'CREATE_TABLE','CREATE'),(2,'ALTER_TABLE_ADD_PK','ALTER ADD'),(3,'DROP_TABLE','DROP'),(4,'ALTER_TABLE_ADD_COL','ALTER ADD'),(5,'ALTER_TBL_REN_TBL','ALTER'),(6,'ALTER_TABLE_DROP_COL','ALTER DROP'),(7,'ALTER_TABLE_ADD_FK','ALTER ADD'),(8,'ALTER_TABLE_DROP_FK','ALTER DROP'),(9,'FOREIGN_KEY_DEF','DEF'),(10,'ALTER_TABLE_DROP_PK','ALTER DROP'),(11,'ALTER_TABLE_CHG_COL','ALTER'),(12,'ALTER_TABLE_DROP_IDX','ALTER DROP');
 /*!40000 ALTER TABLE `list_sql_sintax_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -874,7 +874,7 @@ CREATE TABLE `table_fks` (
   CONSTRAINT `columns_fks_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `phpapps_columns_fks_COLUMN_ID_FK` FOREIGN KEY (`COLUMN_ID`) REFERENCES `table_details` (`ID`),
   CONSTRAINT `phpapps_columns_fks_FK_TABLE_ID_FK` FOREIGN KEY (`FK_TABLE_ID`) REFERENCES `tables` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -883,7 +883,7 @@ CREATE TABLE `table_fks` (
 
 LOCK TABLES `table_fks` WRITE;
 /*!40000 ALTER TABLE `table_fks` DISABLE KEYS */;
-INSERT INTO `table_fks` VALUES (7,71,'phpapps_test_cols_VIEW_ID_FK',202,0,0,0,'',1,1,'2016-10-03 09:56:15','2016-10-03 09:56:15'),(8,73,'phpapps_table_indexes_TABLE_ID_FK',197,0,0,0,'',1,1,'2016-10-03 10:26:55','2016-10-03 10:26:55'),(9,77,'phpapps_table_indexes_INDEX_TYPE_FK',200,0,0,0,'',1,1,'2016-10-03 10:30:41','2016-10-03 10:30:41');
+INSERT INTO `table_fks` VALUES (8,73,'phpapps_table_indexes_TABLE_ID_FK',197,0,0,0,'',1,1,'2016-10-03 10:26:55','2016-10-03 10:26:55'),(9,77,'phpapps_table_indexes_INDEX_TYPE_FK',200,0,0,0,'',1,1,'2016-10-03 10:30:41','2016-10-03 10:30:41');
 /*!40000 ALTER TABLE `table_fks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -914,7 +914,7 @@ CREATE TABLE `table_indexes` (
   CONSTRAINT `phpapps_table_indexes_TABLE_ID_FK` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`),
   CONSTRAINT `table_indexes_users_CREATE_UID_FK` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `table_indexes_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,7 +923,6 @@ CREATE TABLE `table_indexes` (
 
 LOCK TABLES `table_indexes` WRITE;
 /*!40000 ALTER TABLE `table_indexes` DISABLE KEYS */;
-INSERT INTO `table_indexes` VALUES (9,279,'phpapps_table_indexes_TABLE_ID_INDEX_TYPE_ID_IDX',3,'73,77','',1,1,'2016-10-03 14:01:15','2016-10-03 14:01:15');
 /*!40000 ALTER TABLE `table_indexes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -986,10 +985,7 @@ CREATE TABLE `test_cols` (
   `MUMUSA` bigint(20) DEFAULT NULL,
   `NUME` text,
   `VIEW_ID2` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `phpapps_test_cols_MUMUSA_FK` (`MUMUSA`),
-  KEY `phpapps_test_cols_VIEW_ID2_FK` (`VIEW_ID2`),
-  CONSTRAINT `phpapps_test_cols_VIEW_ID2_FK` FOREIGN KEY (`VIEW_ID2`) REFERENCES `list_dbms_types` (`ID`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1615,4 +1611,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-04 16:25:53
+-- Dump completed on 2016-10-05 16:23:45

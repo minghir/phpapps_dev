@@ -13,6 +13,7 @@
 <script src="{$smarty.const.CODEMIRROR_DIR}/mode/css/css.js"></script>
 <script src="{$smarty.const.CODEMIRROR_DIR}/mode/clike/clike.js"></script>
 <script src="{$smarty.const.CODEMIRROR_DIR}/mode/php/php.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/sql/sql.js"></script>
 {literal}
 <style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
 {/literal}

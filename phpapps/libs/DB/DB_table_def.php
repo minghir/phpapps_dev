@@ -198,5 +198,11 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             
             return $this->execQuery("ALTER_TABLE_DROP_IDX");
         }
+        
+         function alterTblAddIdx($idx_name){
+             $this->CURRENT_IDX = $idx_name;
+             
+             return $this->execQuery("ALTER_TABLE_ADD_IDX");
+         }
 }
 ?>

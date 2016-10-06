@@ -234,11 +234,13 @@ print_r($this->errors);
 						"INDEX_NAME",
 						"INDEX_TYPE",
 						"INDEX_COLUMNS",
+                                                "INDEX_COLUMNS_LABELS",
 						"DESCRIPTION");
 				$table_idx_grid->labels = array(
 						"INDEX_NAME",
 						"INDEX_TYPE",
 						"INDEX_COLUMNS",
+                                                "INDEX_COLUMNS_LABELS",
 						"DESCRIPTION");
 				$table_idx_grid->paginable = false;
 				$table_idx_grid->filterable = false;
@@ -263,6 +265,14 @@ print_r($this->errors);
                                 $table_idx_grid->add_grid_acction($lad);
                                 
                                 $this->globals->sm->assign("table_idx_grid",$table_idx_grid->get_grid_str());
+                                //$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                                $sql = new DB_query("SHOW CREATE TABLE " . $this->SCHEMA_NAME . "." . $this->TABLE_NAME);
+                                $this->globals->con->query($sql);
+                                $this->globals->con->next();
+                                $show_create_table = str_replace("`","", $this->globals->con->get_field("Create Table") );
+                                
+                                $this->globals->sm->assign("show_create_table",$show_create_table);
+                                
 			}
 		}
 		

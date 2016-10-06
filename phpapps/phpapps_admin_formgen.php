@@ -46,7 +46,13 @@ class phpapps_admin_formgen{
 	var $table_lists = array();
 	var $field_lists = array();
 	var $post_fields = array();
-	
+        
+        public $errors = array();
+                
+        function __construct() {
+            return $this;
+        }
+        
 	function editFormgen($form_id){
 		if($form_id == null){
 			return;
@@ -411,7 +417,9 @@ REFERENCE_FIELD
 						WHERE FORM_ID = '".$this->form_id."' 
 								AND ID = '".$this->fields_id[$key]."'");
 //echo $sql->sql() . "<br>";
-					$this->globals->con->query($sql);
+					if( $this->globals->con->query($sql) != -1){
+                                            $this->errors[] = $this->globals->con->get_error();
+                                        }
 				}
 				
 			}
@@ -589,6 +597,7 @@ REFERENCE_FIELD
 				"module_id" => $this->module_id,
 				"form_table" => $this->form_table,
 				"form_id" => $this->form_id,
+                                "errors" => implode("<br>",$this->errors)
 				
         ));
 

@@ -13,15 +13,23 @@ class phpapps_database_table_fks_DDL_form{
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $ID;
-		public $COLUMN_ID;
-		public $FK_NAME;
-		public $FK_TABLE_ID;
-		public $FK_COLUMN_ID;
-		public $ON_UPDATE;
-		public $ON_DELETE;
-		public $DESCRIPTION;
-		
+	            
+	public $ID;
+        	            
+	public $COLUMN_ID;
+        	            
+	public $FK_NAME;
+        	            
+	public $FK_TABLE_ID;
+        	            
+	public $FK_COLUMN_ID;
+        	            
+	public $ON_UPDATE;
+        	            
+	public $ON_DELETE;
+        	            
+	public $DESCRIPTION;
+        		
 		 
 		 
 		 
@@ -39,12 +47,13 @@ class phpapps_database_table_fks_DDL_form{
 		 
 			public $FK_TABLE_ID_sel;
 	 
-			public $FK_COLUMN_ID_sel;
-	 
 		 
 		 
 		 
-	
+		 
+	        
+        
+
 	public $errors = array();
 	
 	function __construct(){
@@ -57,19 +66,18 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 								$this->ON_UPDATE_sel = new DB_select("ON_UPDATE",".list_foreign_key_options");
-			 
+                        			 
 								$this->ON_DELETE_sel = new DB_select("ON_DELETE",".list_foreign_key_options");
-			 
+                        			 
 					 
 				
 					 
 									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".table_details");
-			 
+                                			 
 					 
 									$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID",".tables");
-			 
-									$this->FK_COLUMN_ID_sel = new DB_select("FK_COLUMN_ID",".table_details");
-			 
+                                			 
+					 
 					 
 					 
 					 
@@ -105,15 +113,15 @@ class phpapps_database_table_fks_DDL_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->ID = stripslashes($this->globals->con->get_field("ID"));
-							$this->COLUMN_ID = stripslashes($this->globals->con->get_field("COLUMN_ID"));
-							$this->FK_NAME = stripslashes($this->globals->con->get_field("FK_NAME"));
-							$this->FK_TABLE_ID = stripslashes($this->globals->con->get_field("FK_TABLE_ID"));
-							$this->FK_COLUMN_ID = stripslashes($this->globals->con->get_field("FK_COLUMN_ID"));
-							$this->ON_UPDATE = stripslashes($this->globals->con->get_field("ON_UPDATE"));
-							$this->ON_DELETE = stripslashes($this->globals->con->get_field("ON_DELETE"));
-							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-						
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->COLUMN_ID = stripslashes($this->globals->con->get_field("COLUMN_ID"));
+                                			                                                                $this->FK_NAME = stripslashes($this->globals->con->get_field("FK_NAME"));
+                                			                                                                $this->FK_TABLE_ID = stripslashes($this->globals->con->get_field("FK_TABLE_ID"));
+                                			                                                                $this->FK_COLUMN_ID = stripslashes($this->globals->con->get_field("FK_COLUMN_ID"));
+                                			                                                                $this->ON_UPDATE = stripslashes($this->globals->con->get_field("ON_UPDATE"));
+                                			                                                                $this->ON_DELETE = stripslashes($this->globals->con->get_field("ON_DELETE"));
+                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                						
 	}
 	
 	function afterGetRec(){
@@ -144,14 +152,21 @@ class phpapps_database_table_fks_DDL_form{
 																						:DESCRIPTION
 													)",
 			array(
-																							":COLUMN_ID" => $this->COLUMN_ID,
-																			":FK_NAME" => $this->FK_NAME,
-																			":FK_TABLE_ID" => $this->FK_TABLE_ID,
-																			":FK_COLUMN_ID" => $this->FK_COLUMN_ID,
-																			":ON_UPDATE" => $this->ON_UPDATE,
-																			":ON_DELETE" => $this->ON_DELETE,
-																			":DESCRIPTION" => $this->DESCRIPTION,
-												)
+																		                                            
+                                            ":COLUMN_ID" => $this->COLUMN_ID,
+                                        														                                            
+                                            ":FK_NAME" => $this->FK_NAME,
+                                        														                                            
+                                            ":FK_TABLE_ID" => $this->FK_TABLE_ID,
+                                        														                                            
+                                            ":FK_COLUMN_ID" => $this->FK_COLUMN_ID,
+                                        														                                            
+                                            ":ON_UPDATE" => $this->ON_UPDATE,
+                                        														                                            
+                                            ":ON_DELETE" => $this->ON_DELETE,
+                                        														                                            
+                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                        												)
 			);
 
 		if(count($this->errors) == 0) {	
@@ -187,15 +202,15 @@ class phpapps_database_table_fks_DDL_form{
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-									":ID" => $this->ID,
-									":COLUMN_ID" => $this->COLUMN_ID,
-									":FK_NAME" => $this->FK_NAME,
-									":FK_TABLE_ID" => $this->FK_TABLE_ID,
-									":FK_COLUMN_ID" => $this->FK_COLUMN_ID,
-									":ON_UPDATE" => $this->ON_UPDATE,
-									":ON_DELETE" => $this->ON_DELETE,
-									":DESCRIPTION" => $this->DESCRIPTION,
-								":".$this->gfield => $this->gfield_value
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":COLUMN_ID" => $this->COLUMN_ID,
+                                        				                                                                                    ":FK_NAME" => $this->FK_NAME,
+                                        				                                                                                    ":FK_TABLE_ID" => $this->FK_TABLE_ID,
+                                        				                                                                                    ":FK_COLUMN_ID" => $this->FK_COLUMN_ID,
+                                        				                                                                                    ":ON_UPDATE" => $this->ON_UPDATE,
+                                        				                                                                                    ":ON_DELETE" => $this->ON_DELETE,
+                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
@@ -261,15 +276,15 @@ class phpapps_database_table_fks_DDL_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->ID  = addslashes(trim($_POST["ID"]));
-					$this->COLUMN_ID  = addslashes(trim($_POST["COLUMN_ID"]));
-					$this->FK_NAME  = addslashes(trim($_POST["FK_NAME"]));
-					$this->FK_TABLE_ID  = addslashes(trim($_POST["FK_TABLE_ID"]));
-					$this->FK_COLUMN_ID  = addslashes(trim($_POST["FK_COLUMN_ID"]));
-					$this->ON_UPDATE  = addslashes(trim($_POST["ON_UPDATE"]));
-					$this->ON_DELETE  = addslashes(trim($_POST["ON_DELETE"]));
-					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-		        }
+		                                                    $this->ID  = addslashes(trim($_POST["ID"]));
+                        		                                                    $this->COLUMN_ID  = addslashes(trim($_POST["COLUMN_ID"]));
+                        		                                                    $this->FK_NAME  = addslashes(trim($_POST["FK_NAME"]));
+                        		                                                    $this->FK_TABLE_ID  = addslashes(trim($_POST["FK_TABLE_ID"]));
+                        		                                                    $this->FK_COLUMN_ID  = addslashes(trim($_POST["FK_COLUMN_ID"]));
+                        		                                                    $this->ON_UPDATE  = addslashes(trim($_POST["ON_UPDATE"]));
+                        		                                                    $this->ON_DELETE  = addslashes(trim($_POST["ON_DELETE"]));
+                        		                                                    $this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
+                        		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -326,11 +341,7 @@ class phpapps_database_table_fks_DDL_form{
 				$this->FK_TABLE_ID_sel->selected_val = $this->FK_TABLE_ID;
 				$this->FK_TABLE_ID_sel->setup_select_options();
 			 
-									//$this->FK_COLUMN_ID_sel = new DB_select("FK_COLUMN_ID",".table_details");
-				$this->FK_COLUMN_ID_sel->query = "SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM .table_details ORDER BY COLUMN_NAME";
-				$this->FK_COLUMN_ID_sel->selected_val = $this->FK_COLUMN_ID;
-				$this->FK_COLUMN_ID_sel->setup_select_options();
-			 
+					 
 					 
 					 
 					 
@@ -361,8 +372,7 @@ class phpapps_database_table_fks_DDL_form{
 						 
 										"FK_TABLE_ID_sel" => $this->FK_TABLE_ID_sel->get_select_str(),
 			 
-										"FK_COLUMN_ID_sel" => $this->FK_COLUMN_ID_sel->get_select_str(),
-			 
+						 
 						 
 						 
 						 

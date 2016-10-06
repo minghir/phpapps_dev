@@ -20,6 +20,8 @@ class DB_index_def {
     public $columns = array();
     
     function __construct($schema_name,$table_name){
+        global $GLOBALS_OBJ;
+	$this->globals = &$GLOBALS_OBJ;
         //"CREATE INDEX $SCHEMA_NAME_$TABLE_NAME_$COLUMN_NAME_IDX ON $SCHEMA_NAME.$TABLE_NAME ($COLUMNS)"
         $this->SCHEMA_NAME = $schema_name;
         $this->TABLE_NAME = $table_name;
@@ -40,18 +42,14 @@ class DB_index_def {
         $this->INDEX_NAME = $idx_name;
     }
     
-    function createIndex(){
-        
-        $sql = new DB_query("CREATE " . $this->INDEX_TYPE . " " . $this->INDEX_NAME . " ON $SCHEMA_NAME.$TABLE_NAME ($COLUMNS)");
-        
+    function getIdxDef(){
+         $this->globals->sm->assign("IDX_OBJ",$this);
+         return  $this->globals->sm->fetch(
+                         'string:'.  stripslashes((new DB_table("phpapps.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("phpapps.list_sql_sintax_types"))->getID("INDEX_DEF"))));
+ 
     }
     
-    function dropIndex(){
-        
-    }
-    
-    function recreateIndex(){
-        $this->dropIndex();
-        $this->createIndex();
+    function addColumn($col){
+        $this->columns[] = $col;
     }
 }

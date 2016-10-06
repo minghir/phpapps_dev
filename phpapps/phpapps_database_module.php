@@ -8,10 +8,20 @@ class phpapps_database_module extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        $this->tpl = "phpapps_database_module.tpl";        
+        $this->tpl = PHPAPPS_TPL_DIR . "phpapps_database_module.tpl";        
         $this->app_id = $app_id;
+        
+        $this->globals->sm->assign("SCRIPT_CONTENT","MERGE");
+        
         $this->displayTpl();
     }
+    
+    /*
+    function displayTpl(){
+        $this->globals->sm->display(PHPAPPS_TPL_DIR . $this->tpl);
+    }
+     * *
+     */
 }
 
 new phpapps_database_module($_GET["app_id"]);

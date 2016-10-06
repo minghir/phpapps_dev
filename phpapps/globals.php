@@ -17,6 +17,10 @@ if (!defined('PHPAPPS_APP_DIR')) {
 	define('PHPAPPS_APP_DIR', GLOBALS_DIR . 'phpapps' . DIR_SEP);
 }
 
+if (!defined('PHPAPPS_TPL_DIR')) {
+	define('PHPAPPS_TPL_DIR', PHPAPPS_APP_DIR . 'tpl' . DIR_SEP);
+}
+
 if (!defined('PHPAPPS_LIBS_DIR')) {
 	define('PHPAPPS_LIBS_DIR', PHPAPPS_APP_DIR . 'libs' . DIR_SEP);
 }

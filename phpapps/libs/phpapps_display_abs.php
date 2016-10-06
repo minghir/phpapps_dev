@@ -21,12 +21,12 @@ abstract class phpapps_display_abs {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         
-        $this->tpl = "phpapps_display_abs.tpl";
+        $this->tpl = PHPAPPS_LIBS_TPL_DIR . "phpapps_display_abs.tpl";
         
         return $this;
     }
     
     public function displayTpl() {
-        $this->globals->sm->display(PHPAPPS_LIBS_TPL_DIR . $this->tpl);
+        $this->globals->sm->display($this->tpl);
     }
 }

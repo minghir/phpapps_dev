@@ -1,9 +1,9 @@
-alter table columns_fks add column MODIFY_UID bigint(20) not null default '1';
-alter table columns_fks add column CREATE_UID bigint(20) not null default '1';
-alter table columns_fks add column MODIFY_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
-alter table columns_fks add column `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
-alter table columns_fks add CONSTRAINT columns_fks_users_MODIFY_UID_FK FOREIGN KEY (MODIFY_UID) REFERENCES phpapps.users(ID);
-alter table columns_fks add CONSTRAINT columns_fks_users_CREATE_UID_FK FOREIGN KEY (CREATE_UID) REFERENCES phpapps.users(ID);
+alter table sql_console_history add column MODIFY_UID bigint(20) not null default '1';
+alter table sql_console_history add column CREATE_UID bigint(20) not null default '1';
+alter table sql_console_history add column MODIFY_DATE timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+alter table sql_console_history add column `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP;
+alter table sql_console_history add CONSTRAINT sql_console_history_users_MODIFY_UID_FK FOREIGN KEY (MODIFY_UID) REFERENCES phpapps.users(ID);
+alter table sql_console_history add CONSTRAINT sql_console_history_users_CREATE_UID_FK FOREIGN KEY (CREATE_UID) REFERENCES phpapps.users(ID);
 
 DELIMITER ;;
 CREATE TRIGGER `products_bi` BEFORE INSERT ON `products` FOR EACH ROW

@@ -79,7 +79,7 @@ if (!defined('PHPAPPS_JS_DIR')) {
 }
 
 
-
+require_once('auth.php');
 	
 
 class Globals{
@@ -150,5 +150,5 @@ class Globals{
 };
 
 $GLOBALS_OBJ = new Globals("phpapps");
-//require_once('auth.php');
+
 ?>

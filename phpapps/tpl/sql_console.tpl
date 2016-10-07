@@ -1,34 +1,64 @@
 <html>
 <head>
 {include file="commun_header.tpl" }
-<title>SQL:{$DATABASE}</title>
-{literal}
-<script language="JavaScript">
-<!--
-function clearDescr(){
-      //document.act.descr.value = "";
-}
-function resTextarea(arg){
+<title>phpapps SQL Console:{$DATABASE}</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="{$smarty.const.CODEMIRROR_DIR}/doc/docs.css">
+<link rel="stylesheet" href="{$smarty.const.CODEMIRROR_DIR}/lib/codemirror.css">
+<script src="{$smarty.const.CODEMIRROR_DIR}/lib/codemirror.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/addon/edit/matchbrackets.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/htmlmixed/htmlmixed.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/xml/xml.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/javascript/javascript.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/css/css.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/clike/clike.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/php/php.js"></script>
+<script src="{$smarty.const.CODEMIRROR_DIR}/mode/sql/sql.js"></script>
+{literal}    
+<style>
+    
+.container, .subContainer, .CodeMirror {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+       
+  width: 100%;
+  height: 90;
+  line-height: 1em;
+  font-family: monospace;
+ }
 
-	if(arg == 'up'){
-		if(document.act.query.rows > 13)
-			document.act.query.rows -= 10;
-		else
-		   document.act.query.rows = 3;
-	}else{
-		if(document.act.query.rows >= 43)
-		   return
-		 else
-		document.act.query.rows += 10;
-		
-	}	
-}
--->
+.CodeMirror-scroll {
+   overflow-y: auto;
+ } 
+
+</style>
+<script language="JavaScript">
+        // Wait until the DOM has loaded before querying the document
+	$(document).ready(function(){
+        ////////////////// code miror                   
+        var mime = 'text/x-mariadb';
+	
+	// get mime type
+	if (window.location.href.indexOf('mime=') > -1) {
+		mime = window.location.href.substr(window.location.href.indexOf('mime=') + 5);
+	}
+	
+	window.editor = CodeMirror.fromTextArea(document.getElementById('query'), {
+		mode: mime,
+		indentWithTabs: true,
+                tabSize: 10,
+		smartIndent: true,
+		lineNumbers: true,
+		matchBrackets : true,
+		autofocus: true,
+        //        readOnly: true,
+	});
+        });
 </script>
 {/literal}
 </head>
 <body align="left">
-    <table valign="top">
+    <table valign="top" width="100%">
     <form name="act" method="post">
     <tr><td>
     <input type="hidden" name="act" value="submited">
@@ -50,13 +80,19 @@ function resTextarea(arg){
             <input type="text" name="descr" value="{$descr}">
             <input type="submit" name="act" value="Query">
     </td></tr>
-    <tr><td><table><tr><td>
-		<div class="textwrapper">
-		<textarea name="query" cols="170" rows="3" onChange="clearDescr()">{$query}</textarea>
+    <tr><td>
+            <select name="history" onChange="this.form.submit();">
+                    <option> history </option>
+                {section name=hist loop=$hist_queries_id}
+                    <option value="{$hist_queries_id[hist]}"> {$hist_queries_desc[hist]}</option>
+                {/section}
+            </select>
+        </td></tr>
+    <tr><td><table width="100%" border="1"><tr><td>
+		<div class="textwrapper" width="100%">
+		<textarea id="query"  name="query" >{$query}</textarea>
 		</div>
 		</td>
-		<td valign="top">
-		<img src="imgs/arrow-up-double.png" onClick="resTextarea('up');"><br><img src="imgs/arrow-down-double.png" onClick="resTextarea('down');"></td>
 		</tr></table>
 	</td></tr>
     </form>

@@ -740,6 +740,41 @@ INSERT INTO `scripts` VALUES (2,1,1,'phpapps_admin_module','',1,1,'2015-08-19 09
 UNLOCK TABLES;
 
 --
+-- Table structure for table `sql_console_history`
+--
+
+DROP TABLE IF EXISTS `sql_console_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sql_console_history` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `QUERY` text,
+  `RUN_SCHEMA` bigint(20) DEFAULT NULL,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  KEY `sql_console_history_users_MODIFY_UID_FK` (`MODIFY_UID`),
+  KEY `sql_console_history_users_CREATE_UID_FK` (`CREATE_UID`),
+  KEY `phpapps_sql_console_history_RUN_SCHEMA_FK` (`RUN_SCHEMA`),
+  CONSTRAINT `phpapps_sql_console_history_RUN_SCHEMA_FK` FOREIGN KEY (`RUN_SCHEMA`) REFERENCES `list_databases` (`ID`),
+  CONSTRAINT `sql_console_history_users_CREATE_UID_FK` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`),
+  CONSTRAINT `sql_console_history_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sql_console_history`
+--
+
+LOCK TABLES `sql_console_history` WRITE;
+/*!40000 ALTER TABLE `sql_console_history` DISABLE KEYS */;
+INSERT INTO `sql_console_history` VALUES (1,'show tables',3,1,1,'2016-10-07 09:21:16','2016-10-07 09:21:16'),(2,'select * from  applications',3,1,1,'2016-10-07 09:21:33','2016-10-07 09:21:33'),(3,'select * from  sql_console_history',3,1,1,'2016-10-07 09:21:47','2016-10-07 09:21:47'),(4,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:11','2016-10-07 09:49:11'),(5,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:31','2016-10-07 09:49:31'),(6,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:52','2016-10-07 09:49:52'),(7,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:07','2016-10-07 09:50:07'),(8,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:23','2016-10-07 09:50:23'),(9,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:47','2016-10-07 09:50:47'),(10,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:53','2016-10-07 09:50:53'),(11,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:01','2016-10-07 09:51:01'),(12,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:11','2016-10-07 09:51:11'),(13,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:36','2016-10-07 09:51:36'),(14,'select * from  sql_console_history',3,1,1,'2016-10-07 09:53:53','2016-10-07 09:53:53'),(15,'select * from  sql_console_history',3,1,1,'2016-10-07 10:08:47','2016-10-07 10:08:47'),(16,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:33','2016-10-07 10:24:33'),(17,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:53','2016-10-07 10:24:53'),(18,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(19,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(20,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:23','2016-10-07 10:25:23'),(21,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:47','2016-10-07 10:25:47'),(22,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:52','2016-10-07 10:25:52'),(23,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:26:58','2016-10-07 10:26:58'),(24,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:27:17','2016-10-07 10:27:17'),(25,'show tables',7,1,1,'2016-10-07 10:45:18','2016-10-07 10:45:18'),(26,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',NULL,1,1,'2016-10-07 10:50:57','2016-10-07 10:50:57');
+/*!40000 ALTER TABLE `sql_console_history` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sql_console_saves`
 --
 
@@ -829,7 +864,7 @@ CREATE TABLE `table_details` (
   CONSTRAINT `table_details_ibfk_2` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `table_details_ibfk_7` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `table_details_ibfk_8` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -838,7 +873,7 @@ CREATE TABLE `table_details` (
 
 LOCK TABLES `table_details` WRITE;
 /*!40000 ALTER TABLE `table_details` DISABLE KEYS */;
-INSERT INTO `table_details` VALUES (46,197,'ID',5,0,20,0,'',0,'',0,1,1,'2016-09-30 09:57:52','2016-09-30 09:57:52'),(47,197,'ORIGIN_ID',5,0,20,0,'',0,'',1,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:20'),(48,197,'MODULE_ID',5,0,20,0,'',0,'',2,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:42'),(49,197,'SCHEMA_ID',5,0,20,0,'',0,'',3,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:10'),(50,197,'TABLE_NAME',7,0,255,0,'',0,'',4,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:48'),(51,197,'TABLE_TYPE',5,0,20,0,'',0,'',5,1,1,'2016-09-30 10:07:20','2016-09-30 10:01:21'),(52,197,'DESCRIPTION',7,0,255,0,'',0,'',6,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:22'),(53,197,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:55'),(54,197,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-09-30 10:07:20','2016-09-30 10:03:14'),(55,197,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',0,'',9,1,1,'2016-09-30 10:07:20','2016-09-30 10:05:44'),(56,197,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',10,1,1,'2016-09-30 10:07:20','2016-09-30 10:06:41'),(57,275,'ID',5,0,20,0,'',1,'',0,1,1,'2016-10-03 07:09:49','2016-10-03 07:09:49'),(58,275,'MUMUSA',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:10:31','2016-10-03 07:10:31'),(59,275,'NUME',8,0,0,1,'',0,'',2,1,1,'2016-10-03 07:12:09','2016-10-03 07:11:24'),(60,276,'ID',5,0,20,1,'',1,'',0,1,1,'2016-10-03 07:29:38','2016-10-03 07:29:38'),(61,276,'COLUMN_ID',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:29:53','2016-10-03 07:29:53'),(62,276,'FK_NAME',7,0,255,1,'',0,'',2,1,1,'2016-10-03 07:30:28','2016-10-03 07:30:28'),(63,276,'FK_COLUMN_ID',5,0,20,1,'',0,'',3,1,1,'2016-10-03 07:31:08','2016-10-03 07:31:08'),(64,276,'ON_UPDATE',5,0,20,1,'',0,'',4,1,1,'2016-10-03 07:31:31','2016-10-03 07:31:31'),(65,276,'ON_DELETE',5,0,20,1,'',0,'',5,1,1,'2016-10-03 07:31:46','2016-10-03 07:31:46'),(66,276,'DESCRIPTION',8,0,0,1,'',0,'',6,1,1,'2016-10-03 07:32:07','2016-10-03 07:32:07'),(67,276,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-10-03 07:32:28','2016-10-03 07:32:28'),(68,276,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-10-03 07:32:40','2016-10-03 07:32:40'),(69,276,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:21','2016-10-03 07:33:21'),(70,276,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:34','2016-10-03 07:33:34'),(71,275,'VIEW_ID2',5,0,20,0,'',0,'',3,1,1,'2016-10-03 09:58:19','2016-10-03 09:25:13'),(72,279,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(73,279,'TABLE_ID',5,0,20,0,'',0,'',1,1,1,'2016-10-03 10:22:16','2016-10-03 10:22:16'),(74,279,'INDEX_NAME',7,0,255,0,'',0,'',2,1,1,'2016-10-03 10:22:46','2016-10-03 10:22:46'),(75,279,'DESCRIPTION',8,0,0,1,'',0,'',5,1,1,'2016-10-03 10:30:22','2016-10-03 10:23:12'),(76,279,'INDEX_COLUMNS',7,0,255,0,'ID',0,'',4,1,1,'2016-10-03 13:59:35','2016-10-03 10:27:53'),(77,279,'INDEX_TYPE_ID',5,0,20,0,'',0,'',3,1,1,'2016-10-03 11:50:18','2016-10-03 10:30:22'),(78,275,'GOGU',5,1,15,1,'',0,'',4,1,1,'2016-10-06 09:17:30','2016-10-06 09:13:04');
+INSERT INTO `table_details` VALUES (46,197,'ID',5,0,20,0,'',0,'',0,1,1,'2016-09-30 09:57:52','2016-09-30 09:57:52'),(47,197,'ORIGIN_ID',5,0,20,0,'',0,'',1,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:20'),(48,197,'MODULE_ID',5,0,20,0,'',0,'',2,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:42'),(49,197,'SCHEMA_ID',5,0,20,0,'',0,'',3,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:10'),(50,197,'TABLE_NAME',7,0,255,0,'',0,'',4,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:48'),(51,197,'TABLE_TYPE',5,0,20,0,'',0,'',5,1,1,'2016-09-30 10:07:20','2016-09-30 10:01:21'),(52,197,'DESCRIPTION',7,0,255,0,'',0,'',6,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:22'),(53,197,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:55'),(54,197,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-09-30 10:07:20','2016-09-30 10:03:14'),(55,197,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',0,'',9,1,1,'2016-09-30 10:07:20','2016-09-30 10:05:44'),(56,197,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',10,1,1,'2016-09-30 10:07:20','2016-09-30 10:06:41'),(57,275,'ID',5,0,20,0,'',1,'',0,1,1,'2016-10-03 07:09:49','2016-10-03 07:09:49'),(58,275,'MUMUSA',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:10:31','2016-10-03 07:10:31'),(59,275,'NUME',8,0,0,1,'',0,'',2,1,1,'2016-10-03 07:12:09','2016-10-03 07:11:24'),(60,276,'ID',5,0,20,1,'',1,'',0,1,1,'2016-10-03 07:29:38','2016-10-03 07:29:38'),(61,276,'COLUMN_ID',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:29:53','2016-10-03 07:29:53'),(62,276,'FK_NAME',7,0,255,1,'',0,'',2,1,1,'2016-10-03 07:30:28','2016-10-03 07:30:28'),(63,276,'FK_COLUMN_ID',5,0,20,1,'',0,'',3,1,1,'2016-10-03 07:31:08','2016-10-03 07:31:08'),(64,276,'ON_UPDATE',5,0,20,1,'',0,'',4,1,1,'2016-10-03 07:31:31','2016-10-03 07:31:31'),(65,276,'ON_DELETE',5,0,20,1,'',0,'',5,1,1,'2016-10-03 07:31:46','2016-10-03 07:31:46'),(66,276,'DESCRIPTION',8,0,0,1,'',0,'',6,1,1,'2016-10-03 07:32:07','2016-10-03 07:32:07'),(67,276,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-10-03 07:32:28','2016-10-03 07:32:28'),(68,276,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-10-03 07:32:40','2016-10-03 07:32:40'),(69,276,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:21','2016-10-03 07:33:21'),(70,276,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:34','2016-10-03 07:33:34'),(71,275,'VIEW_ID2',5,0,20,0,'',0,'',3,1,1,'2016-10-03 09:58:19','2016-10-03 09:25:13'),(72,279,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(73,279,'TABLE_ID',5,0,20,0,'',0,'',1,1,1,'2016-10-03 10:22:16','2016-10-03 10:22:16'),(74,279,'INDEX_NAME',7,0,255,0,'',0,'',2,1,1,'2016-10-03 10:22:46','2016-10-03 10:22:46'),(75,279,'DESCRIPTION',8,0,0,1,'',0,'',5,1,1,'2016-10-03 10:30:22','2016-10-03 10:23:12'),(76,279,'INDEX_COLUMNS',7,0,255,0,'ID',0,'',4,1,1,'2016-10-03 13:59:35','2016-10-03 10:27:53'),(77,279,'INDEX_TYPE_ID',5,0,20,0,'',0,'',3,1,1,'2016-10-03 11:50:18','2016-10-03 10:30:22'),(78,275,'GOGU',5,1,15,1,'',0,'',4,1,1,'2016-10-06 09:17:30','2016-10-06 09:13:04'),(79,280,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-07 07:59:53','2016-10-07 07:59:53'),(80,280,'QUERY',8,0,0,1,'',0,'',1,1,1,'2016-10-07 08:02:45','2016-10-07 08:02:45'),(81,280,'RUN_SCHEMA',5,0,20,0,'',0,'',2,1,1,'2016-10-07 08:04:08','2016-10-07 08:04:08');
 /*!40000 ALTER TABLE `table_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -874,7 +909,7 @@ CREATE TABLE `table_fks` (
   CONSTRAINT `columns_fks_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `phpapps_columns_fks_COLUMN_ID_FK` FOREIGN KEY (`COLUMN_ID`) REFERENCES `table_details` (`ID`),
   CONSTRAINT `phpapps_columns_fks_FK_TABLE_ID_FK` FOREIGN KEY (`FK_TABLE_ID`) REFERENCES `tables` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -883,7 +918,7 @@ CREATE TABLE `table_fks` (
 
 LOCK TABLES `table_fks` WRITE;
 /*!40000 ALTER TABLE `table_fks` DISABLE KEYS */;
-INSERT INTO `table_fks` VALUES (8,73,'phpapps_table_indexes_TABLE_ID_FK',197,0,0,0,'',1,1,'2016-10-03 10:26:55','2016-10-03 10:26:55'),(9,77,'phpapps_table_indexes_INDEX_TYPE_FK',200,0,0,0,'',1,1,'2016-10-03 10:30:41','2016-10-03 10:30:41'),(17,71,'phpapps_test_cols_VIEW_ID2_FK',202,0,0,0,'',1,1,'2016-10-06 06:02:25','2016-10-06 06:02:25'),(19,78,'phpapps_test_cols_GOGU_FK',197,0,0,0,'',1,1,'2016-10-06 09:15:02','2016-10-06 09:15:02');
+INSERT INTO `table_fks` VALUES (8,73,'phpapps_table_indexes_TABLE_ID_FK',197,0,0,0,'',1,1,'2016-10-03 10:26:55','2016-10-03 10:26:55'),(9,77,'phpapps_table_indexes_INDEX_TYPE_FK',200,0,0,0,'',1,1,'2016-10-03 10:30:41','2016-10-03 10:30:41'),(17,71,'phpapps_test_cols_VIEW_ID2_FK',202,0,0,0,'',1,1,'2016-10-06 06:02:25','2016-10-06 06:02:25'),(19,78,'phpapps_test_cols_GOGU_FK',197,0,0,0,'',1,1,'2016-10-06 09:15:02','2016-10-06 09:15:02'),(21,81,'phpapps_sql_console_history_RUN_SCHEMA_FK',199,0,0,0,'',1,1,'2016-10-07 08:07:32','2016-10-07 08:07:32');
 /*!40000 ALTER TABLE `table_fks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -914,7 +949,7 @@ CREATE TABLE `table_indexes` (
   CONSTRAINT `phpapps_table_indexes_TABLE_ID_FK` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`),
   CONSTRAINT `table_indexes_users_CREATE_UID_FK` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `table_indexes_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,7 +958,7 @@ CREATE TABLE `table_indexes` (
 
 LOCK TABLES `table_indexes` WRITE;
 /*!40000 ALTER TABLE `table_indexes` DISABLE KEYS */;
-INSERT INTO `table_indexes` VALUES (16,275,'phpapps_test_cols_VIEW_ID2_FK',3,'71','INDEX ADDED BY FK',1,1,'2016-10-06 06:02:25','2016-10-06 06:02:25'),(17,275,'phpapps_test_cols_MUMUSA_FK',3,'58','INDEX ADDED BY FK',1,1,'2016-10-06 06:27:27','2016-10-06 06:27:27'),(19,275,'phpapps_test_cols_58_71_IDX',2,'58,71','',1,1,'2016-10-06 08:20:16','2016-10-06 08:20:16'),(21,275,'phpapps_test_cols_59_IDX',4,'59','',1,1,'2016-10-06 09:03:26','2016-10-06 09:03:26'),(24,275,'phpapps_test_cols_GOGU_FK',3,'78','INDEX ADDED BY FK',1,1,'2016-10-06 09:21:48','2016-10-06 09:21:48');
+INSERT INTO `table_indexes` VALUES (16,275,'phpapps_test_cols_VIEW_ID2_FK',3,'71','INDEX ADDED BY FK',1,1,'2016-10-06 06:02:25','2016-10-06 06:02:25'),(17,275,'phpapps_test_cols_MUMUSA_FK',3,'58','INDEX ADDED BY FK',1,1,'2016-10-06 06:27:27','2016-10-06 06:27:27'),(19,275,'phpapps_test_cols_58_71_IDX',2,'58,71','',1,1,'2016-10-06 08:20:16','2016-10-06 08:20:16'),(21,275,'phpapps_test_cols_59_IDX',4,'59','',1,1,'2016-10-06 09:03:26','2016-10-06 09:03:26'),(24,275,'phpapps_test_cols_GOGU_FK',3,'78','INDEX ADDED BY FK',1,1,'2016-10-06 09:21:48','2016-10-06 09:21:48'),(27,280,'phpapps_sql_console_history_RUN_SCHEMA_FK',3,'81','INDEX ADDED BY FK',1,1,'2016-10-07 08:07:32','2016-10-07 08:07:32');
 /*!40000 ALTER TABLE `table_indexes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -961,7 +996,7 @@ CREATE TABLE `tables` (
   CONSTRAINT `tables_ibfk_3` FOREIGN KEY (`TABLE_TYPE`) REFERENCES `list_table_types` (`ID`),
   CONSTRAINT `tables_ibfk_4` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `tables_ibfk_5` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=281 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -970,7 +1005,7 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
-INSERT INTO `tables` VALUES (0,0,14,3,'dual',4,'VIRTUAL TABLE FOR ORIGIN_ID',1,1,'2016-09-27 13:55:35','2016-09-27 13:51:17'),(2,0,1,3,'applications',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(3,0,1,3,'modules',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(5,0,1,3,'forms',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(35,0,1,3,'list_no_yes',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(80,0,10,7,'categories',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(82,0,1,3,'list_script_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(83,0,1,3,'scripts',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(87,0,7,3,'users',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(88,0,7,3,'roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(89,0,7,3,'permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(90,0,7,3,'user_roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(91,0,7,3,'role_permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(93,0,7,3,'list_permission_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(96,0,1,3,'list_object_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(98,0,7,3,'list_permission_names',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(99,0,7,3,'user_profiles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(129,0,1,3,'module_vars',2,'',1,1,'2016-09-27 10:05:46','2016-08-29 06:13:16'),(197,0,14,3,'tables',2,'',1,1,'2016-09-30 04:58:59','2016-09-21 11:06:57'),(198,0,14,3,'table_details',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:06'),(199,0,14,3,'list_databases',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:20'),(200,0,14,3,'list_index_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:35'),(201,0,14,3,'list_mysql_column_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:50'),(202,0,14,3,'views',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:08:11'),(203,0,14,3,'list_table_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:59:49'),(204,0,7,3,'list_user_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 13:34:21'),(210,0,14,3,'list_empty',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 14:41:58'),(222,0,14,3,'mysql_column_defs',2,'',1,1,'2016-09-28 11:54:35','2016-09-24 05:08:53'),(223,0,14,3,'list_dbms_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-24 11:36:51'),(224,0,14,3,'sql_sintax',2,'',1,1,'2016-09-27 10:05:46','2016-09-26 05:58:41'),(225,0,14,3,'list_sql_sintax_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-26 06:27:44'),(227,0,14,3,'list_foreign_key_options',1,'',1,1,'2016-09-27 10:05:46','2016-09-27 07:04:44'),(275,0,14,3,'test_cols',2,'',1,1,'2016-09-29 11:25:02','2016-09-29 11:25:02'),(276,0,14,3,'table_fks',2,'',1,1,'2016-10-03 10:32:41','2016-09-30 04:55:41'),(277,35,14,3,'list_no_yes',1,'',1,1,'2016-09-30 06:03:16','2016-09-30 06:03:16'),(278,0,1,3,'form_details',2,'Forms Details',1,1,'2016-09-30 08:22:17','2016-09-30 08:22:17'),(279,0,14,3,'table_indexes',2,'',1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21');
+INSERT INTO `tables` VALUES (0,0,14,3,'dual',4,'VIRTUAL TABLE FOR ORIGIN_ID',1,1,'2016-09-27 13:55:35','2016-09-27 13:51:17'),(2,0,1,3,'applications',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(3,0,1,3,'modules',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(5,0,1,3,'forms',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(35,0,1,3,'list_no_yes',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(80,0,10,7,'categories',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(82,0,1,3,'list_script_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(83,0,1,3,'scripts',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(87,0,7,3,'users',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(88,0,7,3,'roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(89,0,7,3,'permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(90,0,7,3,'user_roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(91,0,7,3,'role_permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(93,0,7,3,'list_permission_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(96,0,1,3,'list_object_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(98,0,7,3,'list_permission_names',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(99,0,7,3,'user_profiles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(129,0,1,3,'module_vars',2,'',1,1,'2016-09-27 10:05:46','2016-08-29 06:13:16'),(197,0,14,3,'tables',2,'',1,1,'2016-09-30 04:58:59','2016-09-21 11:06:57'),(198,0,14,3,'table_details',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:06'),(199,0,14,3,'list_databases',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:20'),(200,0,14,3,'list_index_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:35'),(201,0,14,3,'list_mysql_column_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:50'),(202,0,14,3,'views',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:08:11'),(203,0,14,3,'list_table_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:59:49'),(204,0,7,3,'list_user_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 13:34:21'),(210,0,14,3,'list_empty',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 14:41:58'),(222,0,14,3,'mysql_column_defs',2,'',1,1,'2016-09-28 11:54:35','2016-09-24 05:08:53'),(223,0,14,3,'list_dbms_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-24 11:36:51'),(224,0,14,3,'sql_sintax',2,'',1,1,'2016-09-27 10:05:46','2016-09-26 05:58:41'),(225,0,14,3,'list_sql_sintax_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-26 06:27:44'),(227,0,14,3,'list_foreign_key_options',1,'',1,1,'2016-09-27 10:05:46','2016-09-27 07:04:44'),(275,0,14,3,'test_cols',2,'',1,1,'2016-09-29 11:25:02','2016-09-29 11:25:02'),(276,0,14,3,'table_fks',2,'',1,1,'2016-10-03 10:32:41','2016-09-30 04:55:41'),(277,35,14,3,'list_no_yes',1,'',1,1,'2016-09-30 06:03:16','2016-09-30 06:03:16'),(278,0,1,3,'form_details',2,'Forms Details',1,1,'2016-09-30 08:22:17','2016-09-30 08:22:17'),(279,0,14,3,'table_indexes',2,'',1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(280,0,14,3,'sql_console_history',3,'',1,1,'2016-10-07 07:59:53','2016-10-07 07:59:53');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1323,6 +1358,7 @@ SET character_set_client = utf8;
  1 AS `ID`,
  1 AS `ORIGIN_ID`,
  1 AS `TABLE_TYPE`,
+ 1 AS `TABLE_TYPE_LABEL`,
  1 AS `TABLE_SCHEMA_ID`,
  1 AS `TABLE_SCHEMA`,
  1 AS `TABLE_NAME`,
@@ -1568,7 +1604,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_tables` AS select `t`.`ID` AS `ID`,`t`.`ORIGIN_ID` AS `ORIGIN_ID`,`t`.`TABLE_TYPE` AS `TABLE_TYPE`,`t`.`SCHEMA_ID` AS `TABLE_SCHEMA_ID`,(select `list_databases`.`VALUE` AS `VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `APP_SCHEMA`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`t`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`t`.`DESCRIPTION` AS `DESCRIPTION` from (((`tables` `t` join `modules` `m`) join `applications` `a`) join `list_databases` `d`) where ((`t`.`MODULE_ID` = `m`.`ID`) and (`m`.`APP_ID` = `a`.`ID`) and (`a`.`APP_SCHEMA` = `d`.`ID`)) */;
+/*!50001 VIEW `view_tables` AS select `t`.`ID` AS `ID`,`t`.`ORIGIN_ID` AS `ORIGIN_ID`,`t`.`TABLE_TYPE` AS `TABLE_TYPE`,`ty`.`VALUE` AS `TABLE_TYPE_LABEL`,`t`.`SCHEMA_ID` AS `TABLE_SCHEMA_ID`,(select `list_databases`.`VALUE` AS `VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `APP_SCHEMA`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`t`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`t`.`DESCRIPTION` AS `DESCRIPTION` from ((((`tables` `t` join `modules` `m`) join `applications` `a`) join `list_databases` `d`) join `list_table_types` `ty` on((`t`.`TABLE_TYPE` = `ty`.`ID`))) where ((`t`.`MODULE_ID` = `m`.`ID`) and (`m`.`APP_ID` = `a`.`ID`) and (`a`.`APP_SCHEMA` = `d`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1618,4 +1654,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-06 13:22:24
+-- Dump completed on 2016-10-07 13:52:29

@@ -88,11 +88,11 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 
-		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","DESCRIPTION"));
-		$tables_grid->labels = (array("SCHEMA","TABLE","DESCRIPTION"));
+		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","TABLE_TYPE_LABEL","DESCRIPTION"));
+		$tables_grid->labels = (array("SCHEMA","TABLE","TABLE_TYPE","DESCRIPTION"));
 		
-		$tables_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE = :table_type ");
-		$tables_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("values_table"));
+		$tables_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE != :table_type ");
+		$tables_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("list_table"));
 		
 		$tables_grid->paginable = true;
 		$tables_grid->filterable = false;

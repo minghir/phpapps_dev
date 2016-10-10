@@ -82,7 +82,7 @@
     </td></tr>
     <tr><td>
             <select name="history" onChange="this.form.submit();">
-                    <option> history </option>
+                    <option>  </option>
                 {section name=hist loop=$hist_queries_id}
                     <option value="{$hist_queries_id[hist]}"> {$hist_queries_desc[hist]}</option>
                 {/section}

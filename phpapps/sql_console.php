@@ -25,11 +25,13 @@ switch($_POST["act"]){
                      . "(QUERY,RUN_SCHEMA) VALUES(:query,:schm)",
                         array(
                             ":query" => $query,
-                            ":schm" => $db
+                            ":schm" => _lst("phpapps.list_databases",$db)
                         ));
       
                 if($con->query($sql) == -1){
                     //errrorare insert in history
+                    echo "ERROARE INSERT HISTORY";
+                    print_r($sql);
                 }
         
 		$rec_no = $con->query(new DB_query($query));
@@ -108,7 +110,8 @@ switch($_POST["act"]){
             $con->query($sql);
             $con->next();
             $query = $con->get_field("QUERY");
-            $db = $con->get_field("RUN_SCHEMA");// _lst("list_databases",intval($con->get_field("RUN_SCHEMA")));
+            //$db = $con->get_field("RUN_SCHEMA");// _lst("list_databases",intval($con->get_field("RUN_SCHEMA")));
+            $db = _lst("phpapps.list_databases",intval($con->get_field("RUN_SCHEMA")));
         }else{
             $querie_run = $_POST["queries"];
             $sql = new DB_query("SELECT id,query,descr,dataq FROM phpapps.sql_console_saves "
@@ -120,6 +123,8 @@ switch($_POST["act"]){
         }
     break;
 }
+//echo "AICIII:$db";
+//echo "AICIII:$hdb";
 
 $dbs = _lst("phpapps.list_databases");
 $dbs_sel[$dbs[$db]] = "selected";
@@ -142,7 +147,7 @@ while($res=$con->fetch_array()){
 
 $con->query(new DB_query("SELECT ID, LEFT(QUERY,120) AS QUERY, RUN_SCHEMA, CREATE_DATE"
         . " FROM phpapps.sql_console_history "
-        . " WHERE CREATE_UID = :uid",
+        . " WHERE CREATE_UID = :uid ORDER BY CREATE_DATE DESC LIMIT 30",
         array(":uid" => $_USER_ID)));
 
 while($res=$con->fetch_array()){

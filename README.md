@@ -1,8 +1,3 @@
 # phpapps_dev
-PHPAPPS
-ddd
--------
-wwwwwww
-ddddddd
-ddddddd
-lili
+<h1>PHPAPPS</h1>
+Tools for online development of database oriented web applications.

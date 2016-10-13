@@ -9,3 +9,4 @@ Tools for online development of database oriented web applications.<br><br><br>
     title="Powered by MariaDB" />
 </a>&nbsp;&nbsp;&nbsp;
 <a href="http://codemirror.net/2/"><img height="35" src="http://codemirror.net/doc/logo.png"></a>
+<a href=""><img src="https://download-codeplex.sec.s-msft.com/Download?ProjectName=phpexcel&DownloadId=65397&Build=21031"></a>

@@ -8,4 +8,4 @@ Tools for online development of database oriented web applications.<br><br><br>
     width="88" height="31" border="0" alt="Powered by MariaDB"
     title="Powered by MariaDB" />
 </a>&nbsp;&nbsp;&nbsp;
-<a href=""><font color="red"><b>{ }</b></font><font color="black"><b>CodeMirror</b></font></span></font><img height="30" src="http://codemirror.net/doc/logo.png"></a>
+<a href="http://codemirror.net/2/"><img height="35" src="http://codemirror.net/doc/logo.png"></a>

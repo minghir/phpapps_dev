@@ -7,4 +7,5 @@ Tools for online development of database oriented web applications.<br><br><br>
   <img src="http://badges.mariadb.org/mariadb-badge-88x31.png"
     width="88" height="31" border="0" alt="Powered by MariaDB"
     title="Powered by MariaDB" />
-</a>
+</a>&nbsp;&nbsp;&nbsp;
+<a href=""><img src="http://codemirror.net/doc/logo.png"></a>

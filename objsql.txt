@@ -1,0 +1,43 @@
+// CALC_BULCK_SPVS (active_par = '1')
+//////////////////////////////////////
+NAME CALC_BULCK_SPVS 
+INPUTS
+$active_par
+BODY
+$test_query = new QUERY("SELECT salbaza,sp_vech_proc FROM hr.pers WHERE active = $active_par");
+$res_table = new TABLE("hr.salary");
+
+IF !$res_table.EXIST()	
+	THEN
+		$res_table.CREATE("HR_SALARY_DEF");
+	ELSE
+FI
+$counter = 0;
+FOREACH $row IN $test_query.ROWS()  DO
+	$res_row = $res_table.NEW_ROW();
+	
+	IF $row.sp_vech_proc > 25
+			THEN 
+				$row.sp_vech_proc = 25;
+			ELSE
+				$row.sp_vech_proc = $row.sp_vech_proc;
+	FI
+	$res_row.sp_vech_val = $row.salbaza * $row.sp_vech_proc / 100;
+	$res_table.ADD_ROW($res_row);
+	$counter = $counter + 1;
+OD
+	RETURN $counter;
+/////////////////////////////////////////
+
+// SUM (par1,par2)
+//////////////////////////////////////
+NAME SUM 
+INPUTS
+$par1
+$par2 
+BODY
+RETURN $par1 + par2
+/////////////////////////////////////////
+	
+
+	

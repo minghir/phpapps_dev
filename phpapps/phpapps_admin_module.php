@@ -102,7 +102,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$tables_grid->edit_form = "phpapps_database_tables_form_imp.php?module_id=".$this->ID;
 		
 		$tad = new HrefActions();
-		$tad->act_script = "phpapps_admin_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("values_table")."&module_id=".$this->ID;
+		$tad->act_script = "phpapps_database_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("values_table")."&module_id=".$this->ID;
 		$tad->popup = true;
 		$tad->label = "add";
 		$tad->action = "newRec";

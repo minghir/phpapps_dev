@@ -242,6 +242,8 @@ print_r($this->errors);
 						"INDEX_COLUMNS",
                                                 "INDEX_COLUMNS_LABELS",
 						"DESCRIPTION");
+                                $table_idx_grid->where_params = array(":table_id" => $table_id);
+                                $table_idx_grid->where_rules = array("TABLE_ID = :table_id");
 				$table_idx_grid->paginable = false;
 				$table_idx_grid->filterable = false;
 				$table_idx_grid->exportable = false;

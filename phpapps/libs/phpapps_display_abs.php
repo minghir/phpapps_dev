@@ -26,7 +26,12 @@ abstract class phpapps_display_abs {
         return $this;
     }
     
+    function setupDisplay(){
+        
+    }
+    
     public function displayTpl() {
+        $this->setupDisplay();
         $this->globals->sm->display($this->tpl);
     }
 }

@@ -167,9 +167,33 @@ class phpapps_database_module extends phpapps_display_abs{
 		$databases_grid->exportable = false;
 		$databases_grid->rows_on_pg = 20;
                 
+                $queries_grid = new DB_grid($this->globals->con, "table","phpapps.queries","phpapps_queries_grid");
+		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
+		$queries_grid->grid_title = "QUERIES";
+		$queries_grid->cols = (array("QUERY","DESCRIPTION"));
+		$queries_grid->labels = (array("QUERY","DESCRIPTION"));
+                $queries_grid->paginable = true;
+		$queries_grid->editable = false;
+		$queries_grid->filterable = false;
+		$queries_grid->exportable = false;
+		$queries_grid->rows_on_pg = 20;
+                
+                $views_grid = new DB_grid($this->globals->con, "table","phpapps.views","phpapps_views_grid");
+		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
+		$views_grid->grid_title = "VIEWS";
+		$views_grid->cols = (array("VIEW_NAME","DESCRIPTION"));
+		$views_grid->labels = (array("VIEW_NAME","DESCRIPTION"));
+                $views_grid->paginable = true;
+		$views_grid->editable = false;
+		$views_grid->filterable = false;
+		$views_grid->exportable = false;
+		$views_grid->rows_on_pg = 20;
+                
                 $this->globals->sm->assign("databases_grid",$databases_grid->get_grid_str());
                 $this->globals->sm->assign("tables_grid",$tables_grid->get_grid_str());
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
+                $this->globals->sm->assign("queries_grid",$queries_grid->get_grid_str());
+                $this->globals->sm->assign("views_grid",$views_grid->get_grid_str());
                 
                 $this->globals->sm->assign("module",$this);
     }

@@ -2,7 +2,12 @@
 require_once ("globals.php");
 include ("gen_php/phpapps_admin_applications_form.php");
 	class phpapps_admin_applications_form_impl  extends phpapps_admin_applications_form{
-		function phpapps_admin_applications_form_impl(){
+                public function __construct() {
+                    parent::__construct();
+                //}
+                
+		//function phpapps_admin_applications_form_impl(){
+                    
 			$this->template = "phpapps_admin_applications_form_imp.tpl";
 			
 			if ($_SERVER['REQUEST_METHOD'] === 'POST'){

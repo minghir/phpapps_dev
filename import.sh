@@ -9,3 +9,9 @@ cat /var/www/html/phpapps_dev/eshop_template/sql/imp_part.sql >> /var/www/html/p
 cat /var/www/html/phpapps_dev/eshop_template/sql/eshop.sql >> /var/www/html/phpapps_dev/eshop_template/sql/imp.sql
 mysql  -u root  < /var/www/html/phpapps_dev/eshop_template/sql/imp.sql
 rm /var/www/html/phpapps_dev/eshop_template/sql/imp.sql
+
+touch /var/www/html/phpapps_dev/php_quiz/sql/imp.sql
+cat /var/www/html/phpapps_dev/php_quiz/sql/imp_part.sql >> /var/www/html/phpapps_dev/php_quiz/sql/imp.sql
+cat /var/www/html/phpapps_dev/php_quiz/sql/php_quiz.sql >> /var/www/html/phpapps_dev/php_quiz/sql/imp.sql
+mysql  -u root  < /var/www/html/phpapps_dev/php_quiz/sql/imp.sql
+rm /var/www/html/phpapps_dev/php_quiz/sql/imp.sql

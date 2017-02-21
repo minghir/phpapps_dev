@@ -90,7 +90,7 @@ class DB_select{
 		if($this->db_query->sql() == ""){
 			$this->value_col = $this->value_col == "" ? "ID" : $this->value_col;
 			$this->label_col = $this->label_col == "" ? "VALUE" : $this->label_col;
-			$sql = "SELECT ".$this->value_col." AS value, ".$this->label_col." AS label 
+			$sql = "SELECT ".$this->value_col." AS VALUE, ".$this->label_col." AS LABEL 
 			FROM ".$this->table ." ORDER BY :order_rle";
 			$this->query_params[":order_rle"] = $this->order_rle;
                         

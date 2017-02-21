@@ -53,8 +53,11 @@ class phpapps_admin_applications_form{
 	function __construct(){
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
-               
-                $this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA","phpapps.list_databases");
+                
+                			 
+					 
+					 
+								$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA","phpapps.list_databases");
                         			 
 					 
 					 
@@ -296,7 +299,7 @@ class phpapps_admin_applications_form{
 					 
 					 
 					 
-								//$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA",".list_databases");
+								//$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA",".phpapps.list_databases");
 			$this->APP_SCHEMA_sel->selected_val = $this->APP_SCHEMA;
 			$this->APP_SCHEMA_sel->setup_select_options();
 			 
@@ -304,8 +307,8 @@ class phpapps_admin_applications_form{
 					 
 					 
 				
-									//$this->USER_ID_sel = new DB_select("USER_ID",".users");
-				$this->USER_ID_sel->query = "SELECT ID AS VALUE, USERNAME AS LABEL FROM .users ORDER BY USERNAME";
+									//$this->USER_ID_sel = new DB_select("USER_ID",".phpapps.users");
+				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME");
 				$this->USER_ID_sel->selected_val = $this->USER_ID;
 				$this->USER_ID_sel->setup_select_options();
 			 

@@ -43,7 +43,7 @@ class {$form_name}{ldelim}
                 
                 {section name=lis loop=$selected_schema_list}
 			{if $selected_schema_list[lis] != "" }
-			$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_list[lis]}");
+			$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$selected_schema_list[lis]}");
                         {if $input_types[lis] == "select_list_multiple"}
                                     $this->{$fields[lis]}_sel->set_multiple(TRUE);
                          {/if}
@@ -52,7 +52,7 @@ class {$form_name}{ldelim}
 		
 		{section name=lis loop=$selected_schema_table}
 			{if $selected_schema_table[lis] != "" }
-				$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
+				$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$selected_schema_table[lis]}");
                                 {if $input_types[lis] == "select_table_multiple"}
                                     $this->{$fields[lis]}_sel->set_multiple(TRUE);
                                 {/if}
@@ -289,7 +289,7 @@ class {$form_name}{ldelim}
 		{section name=lis loop=$selected_schema_table}
 			{if $selected_schema_table[lis] != "" }
 				//$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
-				$this->{$fields[lis]}_sel->query = "SELECT ID AS VALUE, {$selected_schema_field[lis]} AS LABEL FROM {$schema}.{$selected_schema_table[lis]} ORDER BY {$selected_schema_field[lis]}";
+				$this->{$fields[lis]}_sel->db_query = new DB_query("SELECT ID AS VALUE, {$selected_schema_field[lis]} AS LABEL FROM {$selected_schema_table[lis]} ORDER BY {$selected_schema_field[lis]}");
 				$this->{$fields[lis]}_sel->selected_val = $this->{$fields[lis]};
 				$this->{$fields[lis]}_sel->setup_select_options();
 			{/if} 

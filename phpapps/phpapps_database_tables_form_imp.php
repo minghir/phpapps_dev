@@ -10,7 +10,6 @@ include ("gen_php/phpapps_database_tables_form.php");
 	
 		function __construct(){
                     parent::__construct();
-                    
 			$this->template = "phpapps_database_tables_form_imp.tpl";
 			$this->MODULE_ID = $_GET["module_id"];
                         $this->TABLE_TYPE = (new DB_list("list_table_types"))->getID("values_table");
@@ -269,6 +268,7 @@ print_r($this->errors);
                                 $this->globals->sm->assign("table_idx_grid",$table_idx_grid->get_grid_str());
                                 //$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                                 $sql = new DB_query("SHOW CREATE TABLE " . $this->SCHEMA_NAME . "." . $this->TABLE_NAME);
+                                print_r($sql);
                                 $this->globals->con->query($sql);
                                 $this->globals->con->next();
                                 $show_create_table = str_replace("`","", $this->globals->con->get_field("Create Table") );

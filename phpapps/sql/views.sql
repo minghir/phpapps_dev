@@ -72,3 +72,7 @@ tdf.COLUMN_NAME AS FK_COLUMN_NAME,
 (SELECT VALUE FROM phpapps.list_foreign_key_options WHERE ID = fk.ON_DELETE) AS ON_DELETE,
 fk.DESCRIPTION AS DESCRIPTION 
 from ((((table_fks fk left join table_details td on((fk.COLUMN_ID = td.ID))) left join tables t on((td.TABLE_ID = t.ID))) left join tables tf on((fk.FK_TABLE_ID = tf.ID))) left join table_details tdf on((fk.FK_COLUMN_ID = tdf.ID))) 
+
+create view view_views AS
+SELECT 
+ID,	MODULE_ID,	VIEW_NAME,	CREATE_VIEW_QUERY,	DESCRIPTION

@@ -18,35 +18,35 @@ function submitDetailsForm(op){
 										<input id="APP_ID" type="hidden" name="APP_ID" value="{$APP_ID}">
         								
 			
-		
-						 
+		                
+		                				 
 																
 			
-		
+		                
 				<tr><td align="right">START SCRIPT  :</td><td>
 			{$SCRIPT_ID_sel}
 		</td></tr>
-        				 
+                        				 
 				<tr><td align="right">MODULE NAME :</td><td> <input type="text" id="MODULE_NAME" name="MODULE_NAME" value="{$MODULE_NAME}"></td></tr>
 																
 			
-		
-						 
+		                
+		                				 
 				<tr><td align="right">MODULE TITLE :</td><td> <input type="text" id="MODULE_TITLE" name="MODULE_TITLE" value="{$MODULE_TITLE}"></td></tr>
 																
 			
-		
-						 
+		                
+		                				 
 										<input id="MODULE_DATE" type="hidden" name="MODULE_DATE" value="{$MODULE_DATE}">
         								
 			
-		
-						 
+		                
+		                				 
 								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			
-		
-						{$FROM_IMP_CLASS}
+		                
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

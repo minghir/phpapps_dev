@@ -259,7 +259,8 @@ class phpapps_admin_formgen{
 	}
 	
 	function getTableListFields( $table_name = "" ){
-		$sql = new DB_query("DESC ".$this->form_schema.".".$table_name);
+		$sql = new DB_query("DESC $table_name");
+                print_r($sql);
 		$this->globals->con->query($sql);
 		while($res=$this->globals->con->fetch_array()){
 			$tmp_fields[] = $res["Field"];
@@ -269,7 +270,10 @@ class phpapps_admin_formgen{
 	
 	function getListTables(){
 		$this->globals->con->select_db($this->form_schema);
-		$sql = new DB_query("SHOW TABLES LIKE :tables",array(":tables"=>"list%"));
+		//$sql = new DB_query("SHOW TABLES LIKE :tables",array(":tables"=>"list%"));
+                $sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM phpapps.view_tables WHERE TABLE_TYPE_LABEL = :list_t ",
+							array(":list_t"=>"list_table"));
+                print_r($sql);
 		$this->globals->con->query($sql,"doi");
 	
 		while($ress=$this->globals->con->fetch_row("doi")){
@@ -279,9 +283,10 @@ class phpapps_admin_formgen{
 	
 	function getDbTables(){
 		$this->globals->con->select_db($this->form_schema);
-		$sql = new DB_query("SELECT TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = :module_id UNION ALL
+		$sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM phpapps.view_tables WHERE MODULE_ID = :module_id UNION ALL
 							SELECT VIEW_NAME FROM phpapps.views WHERE MODULE_ID = :module_id",
 							array(":module_id"=>$this->module_id));
+                //print_r($sql);
 		$this->globals->con->query($sql,"doi");
 	
 		while($ress=$this->globals->con->fetch_row("doi")){

@@ -148,7 +148,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$lists_grid->edit_form = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		
                 $lad = new HrefActions();
-		$lad->act_script = "phpapps_admin_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("list_table")."&module_id=".$this->ID;
+		$lad->act_script = "phpapps_database_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("list_table")."&module_id=".$this->ID;
 		$lad->popup = true;
 		$lad->label = "add";
 		$lad->action = "newRec";

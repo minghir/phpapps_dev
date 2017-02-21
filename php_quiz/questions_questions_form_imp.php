@@ -1,11 +1,10 @@
 <?php
 require_once ("globals.php");
-include ("gen_php/phpapps_database_list_form.php");
-	class phpapps_database_list_form_impl  extends phpapps_database_list_form{
+include ("gen_php/questions_questions_form.php");
+	class questions_questions_form_impl  extends questions_questions_form{
 		function __construct(){
 			parent::__construct();
-			$this->template = "phpapps_database_list_form_imp.tpl";
-                        $this->table = $_GET["list_name"];
+			$this->template = "questions_questions_form_imp.tpl";
 			$this->init();
 			$this->display();
 		}
@@ -20,7 +19,6 @@ include ("gen_php/phpapps_database_list_form.php");
 		}
 		
 		function afterAddRec(){
-                        print_r($this->errors);
 			//header("Location:win_close.html");
 		}
 		
@@ -28,15 +26,14 @@ include ("gen_php/phpapps_database_list_form.php");
 		}
 		
 		function afterSaveRec(){
-                        
-			header("Location:win_close.html");
+			//header("Location:win_close.html");
 		}
 
 		function beforeDeleteRec(){
 		}
 		
 		function afterDeleteRec(){
-			header("Location:win_close.html");
+		//	header("Location:win_close.html");
 		}
 		
 		function beforeDisplay(){	
@@ -47,5 +44,5 @@ include ("gen_php/phpapps_database_list_form.php");
 		
 	};
 	
-	$phpapps_database_list_form_Impl = new phpapps_database_list_form_impl();
+	$questions_questions_form_Impl = new questions_questions_form_impl();
 ?>

@@ -6,6 +6,14 @@ include ("gen_php/phpapps_database_list_form.php");
 			parent::__construct();
 			$this->template = "phpapps_database_list_form_imp.tpl";
                         $this->table = $_GET["list_name"];
+                        
+                        $sql = new DB_query("SELECT TABLE_SCHEMA FROM phpapps.view_tables"
+                                . " WHERE TABLE_NAME = :tbl_name AND ORIGIN_ID = '0'", array(":tbl_name"=>$this->table));
+                        print_r($sql);
+                        $this->globals->con->query($sql);	
+                        $this->globals->con->next();
+                        $this->schema = $this->globals->con->get_field("TABLE_SCHEMA");
+                        echo "AICI:" . $this->schema;
 			$this->init();
 			$this->display();
 		}

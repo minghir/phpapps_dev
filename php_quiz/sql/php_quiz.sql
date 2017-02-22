@@ -27,7 +27,7 @@ CREATE TABLE `list_da_nu` (
   `DESCRIPTION` text,
   `VALUE` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `list_da_nu` (
 
 LOCK TABLES `list_da_nu` WRITE;
 /*!40000 ALTER TABLE `list_da_nu` DISABLE KEYS */;
+INSERT INTO `list_da_nu` VALUES (1,'','DA'),(2,'','NU');
 /*!40000 ALTER TABLE `list_da_nu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-21 16:03:24
+-- Dump completed on 2017-02-22 16:23:56

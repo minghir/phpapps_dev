@@ -1,5 +1,9 @@
 <?php
 
+if(!defined('CURRENT_APP')) {
+	define('CURRENT_APP', 'phpapps');
+}
+
 if(!defined('DIR_SEP')) {
 	define('DIR_SEP', DIRECTORY_SEPARATOR);
 }
@@ -15,6 +19,14 @@ if (!defined('GLOBALS_DIR')) { //pt fwrite
 
 if (!defined('PHPAPPS_APP_DIR')) {
 	define('PHPAPPS_APP_DIR', GLOBALS_DIR . 'phpapps' . DIR_SEP);
+}
+
+if (!defined('CURRENT_APP_DIR')) {
+	define('CURRENT_APP_DIR', GLOBALS_DIR . CURRENT_APP . DIR_SEP);
+}
+
+if (!defined('CURRENT_APP_TPL_DIR')) {
+	define('CURRENT_APP_TPL_DIR', CURRENT_APP_DIR . 'tpl' . DIR_SEP);
 }
 
 if (!defined('PHPAPPS_TPL_DIR')) {
@@ -113,7 +125,9 @@ class Globals{
 		$this->con->connect("mysql");
 			
 		$this->sm = new Smarty;
-		$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;
+		//$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;
+                $this->sm->template_dir = CURRENT_APP_TPL_DIR;
+                
 		$this->sm->compile_dir = SMARTY_COMPILE_DIR;
 		//$this->sm->config_dir = 'configs/';
 		//$this->sm->cache_dir = 'cache/';

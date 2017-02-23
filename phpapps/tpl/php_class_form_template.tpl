@@ -235,6 +235,7 @@ class {$form_name}{ldelim}
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		{rdelim}
 	{rdelim}

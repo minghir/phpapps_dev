@@ -228,6 +228,7 @@ echo"</h1><br>----------------<br>";
 				$ga->label = "new";
 				$ga->popup = true;
 				$ga->action = "newRec";
+                                //$ga->action = "addRec";
 				$this->add_grid_acction($ga);
 				
 			}

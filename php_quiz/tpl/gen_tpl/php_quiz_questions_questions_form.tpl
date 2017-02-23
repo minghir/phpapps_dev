@@ -2,12 +2,12 @@
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#questions_questions_form").submit();
+		$("#php_quiz_questions_questions_form").submit();
 }
   </script>
 {/literal}
 {$error_msg}
-<hr><form name="questions_questions_form" id="questions_questions_form" method="POST" enctype="multipart/form-data">
+<hr><form name="php_quiz_questions_questions_form" id="php_quiz_questions_questions_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">

@@ -2,11 +2,11 @@
 // includes
 require_once ("globals.php");
 
-class questions_questions_form{
+class php_quiz_questions_questions_form{
 	public $globals;
 	public $form_schema = "php_quiz";
 	public $form_table = "questions";
-	public $template = "gen_tpl/questions_questions_form.tpl";
+	public $template = "gen_tpl/php_quiz_questions_questions_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;

@@ -83,7 +83,9 @@ class mysql
 		if($this->conn){
 			$this->free_result($res_id);
 			//$this->res[$res_id]=$this->conn->query($sql);
-			$this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
+			$this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
+                                                                                        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", 
+                                                                                        PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET utf8"));
 		
 //echo"<br>===========<br>";			
 //print_r($db_query);			

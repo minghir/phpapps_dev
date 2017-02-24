@@ -250,7 +250,7 @@ class {$form_name}{ldelim}
                         {if $input_types[ds] == "select_list_multiple" || $input_types[ds] == "select_table_multiple" }
                              $this->{$fields[ds]}  = $_POST["{$fields[ds]}"];
                         {else}
-                            $this->{$fields[ds]}  = addslashes(trim($_POST["{$fields[ds]}"]));
+                            $this->{$fields[ds]}  = htmlspecialchars(addslashes(trim($_POST["{$fields[ds]}"])));
                         {/if}
 		{/section}
         {rdelim}

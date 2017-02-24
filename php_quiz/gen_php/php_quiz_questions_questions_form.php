@@ -295,15 +295,17 @@ class php_quiz_questions_questions_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->NO  = addslashes(trim($_POST["NO"]));
-                        		                                                    $this->CATEG_ID  = addslashes(trim($_POST["CATEG_ID"]));
-                        		                                                    $this->QUESTION  = addslashes(trim($_POST["QUESTION"]));
-                        		                                                    $this->ANSWER_1  = addslashes(trim($_POST["ANSWER_1"]));
-                        		                                                    $this->CORRECT_1  = addslashes(trim($_POST["CORRECT_1"]));
-                        		                                                    $this->ANSWER_2  = addslashes(trim($_POST["ANSWER_2"]));
-                        		                                                    $this->CORRECT_2  = addslashes(trim($_POST["CORRECT_2"]));
-                        		                                                    $this->ANSWER_3  = addslashes(trim($_POST["ANSWER_3"]));
-                        		                                                    $this->CORRECT_3  = addslashes(trim($_POST["CORRECT_3"]));
+		                                                    $this->NO  = htmlspecialchars(addslashes(trim($_POST["NO"])));
+                        		                                                    $this->CATEG_ID  = htmlspecialchars(addslashes(trim($_POST["CATEG_ID"])));
+                        		                                                    $this->QUESTION  = htmlspecialchars(addslashes(trim($_POST["QUESTION"])));
+                        		                                                    $this->ANSWER_1  = htmlspecialchars(addslashes(trim($_POST["ANSWER_1"])));
+                        		                                                    $this->CORRECT_1  = htmlspecialchars(addslashes(trim($_POST["CORRECT_1"])));
+                        		                                                    $this->ANSWER_2  = htmlspecialchars(addslashes(trim($_POST["ANSWER_2"])));
+                        		                                                    $this->CORRECT_2  = htmlspecialchars(addslashes(trim($_POST["CORRECT_2"])));
+                        		                                                    $this->ANSWER_3  = htmlspecialchars(addslashes(trim($_POST["ANSWER_3"])));
+                        		                                                    $this->CORRECT_3  = htmlspecialchars(addslashes(trim($_POST["CORRECT_3"])));
+                                                                                            
+                                                                                            //echo "AICI" .  $this->QUESTION ;
                         		        }
 		
         function takePostActions(){

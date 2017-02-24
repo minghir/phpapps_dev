@@ -1,10 +1,4 @@
 <?php
-/*
-if (!defined('CURRENT_APP')) {
-	define('CURRENT_APP', GLOBALS_DIR . 'php_quiz' . DIR_SEP);
-}
- * */
- 
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'php_quiz');
 }

@@ -123,6 +123,8 @@ class Globals{
 		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
 		$this->con->clear_log();
 		$this->con->connect("mysql");
+                $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
+                $this->con->query($sql);
 			
 		$this->sm = new Smarty;
 		//$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;

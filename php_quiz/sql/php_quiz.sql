@@ -88,7 +88,7 @@ CREATE TABLE `list_da_nu` (
 
 LOCK TABLES `list_da_nu` WRITE;
 /*!40000 ALTER TABLE `list_da_nu` DISABLE KEYS */;
-INSERT INTO `list_da_nu` VALUES (1,'','DA'),(2,'','NU');
+INSERT INTO `list_da_nu` VALUES (0,'','NU'),(1,'','DA');
 /*!40000 ALTER TABLE `list_da_nu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,20 +103,20 @@ CREATE TABLE `questions` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `NO` bigint(10) NOT NULL DEFAULT '0',
   `CATEG_ID` bigint(20) DEFAULT NULL,
-  `QUESTION` text,
-  `ANSWER_1` text,
+  `QUESTION` text COLLATE utf8_bin,
+  `ANSWER_1` text COLLATE utf8_bin,
   `CORRECT_1` bigint(1) DEFAULT NULL,
-  `IMAGE_1` varchar(255) DEFAULT NULL,
-  `ANSWER_2` text,
+  `IMAGE_1` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_2` text COLLATE utf8_bin,
   `CORRECT_2` bigint(1) DEFAULT NULL,
-  `IMAGE_2` varchar(255) DEFAULT NULL,
-  `ANSWER_3` text,
+  `IMAGE_2` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_3` text COLLATE utf8_bin,
   `CORRECT_3` bigint(1) DEFAULT NULL,
-  `IMAGE_3` varchar(255) DEFAULT NULL,
+  `IMAGE_3` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `php_quiz_questions_CATEG_ID_FK` (`CATEG_ID`),
   CONSTRAINT `php_quiz_questions_CATEG_ID_FK` FOREIGN KEY (`CATEG_ID`) REFERENCES `categories` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,1,7,'C?ror nave li se aplic? prevederile Colreg-1973?','a.	tuturor navelor care navig? în apele interna?ionale.',2,NULL,'b.	tuturor navelor care navig? în rade, strâmtori ?i marea liber?.',2,NULL,'c.	tuturor navelor aflate în largul m?rii ori pe toate apele învecinate accesibile navelor maritime.',1,NULL);
+INSERT INTO `questions` VALUES (1,1,7,'Căror nave li se aplică prevederile Colreg-1973?','a.	tuturor navelor care navigă în apele internaționale.',0,NULL,'b.	tuturor navelor care navigă în rade, strâmtori și marea liber?.',0,NULL,'c.	tuturor navelor aflate în largul mării ori pe toate apele învecinate accesibile navelor maritime.',1,NULL),(2,2,7,'Tuturor navelor aflate în largul mării ori pe toate apele învecinate accesibile navelor maritime li se aplică prevederile:','a.	COLREG-1973.',1,NULL,'b.	R.N.D.-1994.',0,NULL,'c.	Codului IMDG.',0,NULL),(3,3,7,'3.	Dispoziţiile Regulamentului scutesc nava, comandantul sau armatorul de consecinţele unei neglijenţe oarecare în ceea ce priveşte aplicarea Regulamentului sau în ceea ce priveşte luarea tuturor măsurilor cerute de o bună practică marinărească ?','a.	nu este precizat.',0,NULL,'b.	da.',0,NULL,'c.	nu.',1,NULL);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -138,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-23 16:17:10
+-- Dump completed on 2017-02-24 13:57:09

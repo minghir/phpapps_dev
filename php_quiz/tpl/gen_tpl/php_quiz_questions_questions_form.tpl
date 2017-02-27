@@ -15,7 +15,7 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
-				<tr><td align="right">Nr. :</td><td> <input type="text" id="NO" name="NO" value="{$NO}"></td></tr>
+				<tr><td align="right">Nr.: :</td><td> <input type="text" id="NO" name="NO" value="{$NO}"></td></tr>
 																
 			
 		                
@@ -23,48 +23,60 @@ function submitDetailsForm(op){
 																
 			
 		                
-				<tr><td align="right">CATEG_ID  :</td><td>
+				<tr><td align="right">Categorie:  :</td><td>
 			{$CATEG_ID_sel}
 		</td></tr>
                         				 
-								<tr><td align="right">QUESTION  :</td><td> <textarea id="QUESTION" name="QUESTION">{$QUESTION}</textarea></td></tr>
+								<tr><td align="right">Intrebare:  :</td><td> <textarea id="QUESTION" name="QUESTION">{$QUESTION}</textarea></td></tr>
         										
 			
 		                
 		                				 
-								<tr><td align="right">ANSWER_1  :</td><td> <textarea id="ANSWER_1" name="ANSWER_1">{$ANSWER_1}</textarea></td></tr>
+								<tr><td align="right">Raspuns 1:  :</td><td> <textarea id="ANSWER_1" name="ANSWER_1">{$ANSWER_1}</textarea></td></tr>
         										
 			
 		                
 		                				 
 																
 			
-				<tr><td align="right">CORRECT_1  :</td><td>
+				<tr><td align="right">  :</td><td>
 			{$CORRECT_1_sel}
 		</td></tr>
                         
 		                				 
-								<tr><td align="right">ANSWER_2  :</td><td> <textarea id="ANSWER_2" name="ANSWER_2">{$ANSWER_2}</textarea></td></tr>
+								<tr><td align="right">Raspuns 2:  :</td><td> <textarea id="ANSWER_2" name="ANSWER_2">{$ANSWER_2}</textarea></td></tr>
         										
 			
 		                
 		                				 
 																
 			
-				<tr><td align="right">CORRECT_2  :</td><td>
+				<tr><td align="right">  :</td><td>
 			{$CORRECT_2_sel}
 		</td></tr>
                         
 		                				 
-								<tr><td align="right">ANSWER_3  :</td><td> <textarea id="ANSWER_3" name="ANSWER_3">{$ANSWER_3}</textarea></td></tr>
+								<tr><td align="right">Raspuns 3:  :</td><td> <textarea id="ANSWER_3" name="ANSWER_3">{$ANSWER_3}</textarea></td></tr>
         										
 			
 		                
 		                				 
 																
 			
-				<tr><td align="right">CORRECT_3  :</td><td>
+				<tr><td align="right">  :</td><td>
 			{$CORRECT_3_sel}
+		</td></tr>
+                        
+		                				 
+								<tr><td align="right">Raspuns 4:  :</td><td> <textarea id="ANSWER_4" name="ANSWER_4">{$ANSWER_4}</textarea></td></tr>
+        										
+			
+		                
+		                				 
+																
+			
+				<tr><td align="right">  :</td><td>
+			{$CORRECT_4_sel}
 		</td></tr>
                         
 		                				{$FROM_IMP_CLASS}

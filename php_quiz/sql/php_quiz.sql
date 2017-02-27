@@ -113,10 +113,13 @@ CREATE TABLE `questions` (
   `ANSWER_3` text COLLATE utf8_bin,
   `CORRECT_3` bigint(1) DEFAULT NULL,
   `IMAGE_3` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_4` text COLLATE utf8_bin,
+  `CORRECT_4` bigint(1) DEFAULT NULL,
+  `IMAGE_4` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `php_quiz_questions_CATEG_ID_FK` (`CATEG_ID`),
   CONSTRAINT `php_quiz_questions_CATEG_ID_FK` FOREIGN KEY (`CATEG_ID`) REFERENCES `categories` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +128,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,1,7,'Căror nave li se aplică prevederile Colreg-1973?','a.	tuturor navelor care navigă în apele internaționale.',0,NULL,'b.	tuturor navelor care navigă în rade, strâmtori și marea liber?.',0,NULL,'c.	tuturor navelor aflate în largul mării ori pe toate apele învecinate accesibile navelor maritime.',1,NULL),(2,2,7,'Tuturor navelor aflate în largul mării ori pe toate apele învecinate accesibile navelor maritime li se aplică prevederile:','a.	COLREG-1973.',1,NULL,'b.	R.N.D.-1994.',0,NULL,'c.	Codului IMDG.',0,NULL),(3,3,7,'3.	Dispoziţiile Regulamentului scutesc nava, comandantul sau armatorul de consecinţele unei neglijenţe oarecare în ceea ce priveşte aplicarea Regulamentului sau în ceea ce priveşte luarea tuturor măsurilor cerute de o bună practică marinărească ?','a.	nu este precizat.',0,NULL,'b.	da.',0,NULL,'c.	nu.',1,NULL);
+INSERT INTO `questions` VALUES (1,1,7,'Căror nave li se aplică prevederile Colreg-1973?','a.	tuturor navelor care navigă în apele internaționale.',0,NULL,'b.	tuturor navelor care navigă în rade, strâmtori și marea liber.',0,NULL,'c.	tuturor navelor aflate în largul mării ori pe toate apele învecinate accesibile navelor maritime.',1,NULL,'',0,NULL),(2,2,7,'Tuturor navelor aflate în largul mării ori pe toate apele învecinate accesibile navelor maritime li se aplică prevederile:','a.	COLREG-1973.',1,NULL,'b.	R.N.D.-1994.',0,NULL,'c.	Codului IMDG.',0,NULL,NULL,NULL,NULL),(3,3,7,'Dispoziţiile Regulamentului scutesc nava, comandantul sau armatorul de consecinţele unei neglijenţe oarecare în ceea ce priveşte aplicarea Regulamentului sau în ceea ce priveşte luarea tuturor măsurilor cerute de o bună practică marinărească ?','a.	nu este precizat.',0,NULL,'b.	da.',0,NULL,'c.	nu.',1,NULL,NULL,NULL,NULL),(5,1,1,'Ambarcatiunile pot avea propulsie cu rame si vele?','a) da',1,NULL,'b) nu',0,NULL,'c)	ambarcatiunile nu au propulsie proprie',0,NULL,NULL,NULL,NULL),(6,2,1,'Arborada reprezinta:','a)	totalitatea pieselor confectionate din lemn sau metal si care se numesc:catarge, arbori,ghiu,bompres.',1,NULL,'b)	totalitatea manevrelor fixe si curente de la bord,folosite pentru fixarea arborilor,sustinerea si manevra vergilor si a velelor',0,NULL,'c)	un stalp vertical,asezat in planul diametral al navei si fixat de osatura de rezistenta a navei',0,NULL,'',0,NULL),(12,4,7,'Când sunt permise abateri de la prevederile Regulamentului?','a.	în apele naţionale, rade şi în toate apele învecinate accesibile navelor maritime.',0,NULL,'b.	când există pericol de navigaţie, riscul unei coliziuni,precum şi în toate împrejurările deosebite.',1,NULL,'c.	indiferent de situaţie nu este permisă abaterea de la prevederile Regulamentului.',0,NULL,'',0,NULL),(13,5,7,'Ce se înţelege prin expresia \\&quot;navă\\&quot;, conform Regulamentului ?','a.	orice construcţie sau aparat,de orice natură, capabil să plutească pe apă fără propulsie.',0,NULL,'b.	orice construcţie sau orice aparat, de orice natură ar fi, inclusiv construcţie fără pescaj şi hidro avioane, folosită sau susceptibilă de a fi folosită ca mijloc de transport pe apă.',1,NULL,'c.	orice corp plutitor cu orice mijloc de propulsie.',0,NULL,'',0,NULL);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -138,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-24 13:57:09
+-- Dump completed on 2017-02-27 12:04:36

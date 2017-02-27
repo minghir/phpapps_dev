@@ -31,6 +31,10 @@ class php_quiz_questions_questions_form{
 	public $ANSWER_3;
         	            
 	public $CORRECT_3;
+        	            
+	public $ANSWER_4;
+        	            
+	public $CORRECT_4;
         		
 		 
 		 
@@ -44,10 +48,15 @@ class php_quiz_questions_questions_form{
 		 
 			public $CORRECT_3_sel;
 	 
+		 
+			public $CORRECT_4_sel;
+	 
 			
 		 
 			public $CATEG_ID_sel;
 	 
+		 
+		 
 		 
 		 
 		 
@@ -76,10 +85,15 @@ class php_quiz_questions_questions_form{
 					 
 								$this->CORRECT_3_sel = new DB_select("CORRECT_3","php_quiz.list_da_nu");
                         			 
+					 
+								$this->CORRECT_4_sel = new DB_select("CORRECT_4","php_quiz.list_da_nu");
+                        			 
 				
 					 
 									$this->CATEG_ID_sel = new DB_select("CATEG_ID","php_quiz.categories");
                                 			 
+					 
+					 
 					 
 					 
 					 
@@ -113,7 +127,9 @@ class php_quiz_questions_questions_form{
 												ANSWER_2,
 												CORRECT_2,
 												ANSWER_3,
-												CORRECT_3
+												CORRECT_3,
+												ANSWER_4,
+												CORRECT_4
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -129,6 +145,8 @@ class php_quiz_questions_questions_form{
                                 			                                                                $this->CORRECT_2 = stripslashes($this->globals->con->get_field("CORRECT_2"));
                                 			                                                                $this->ANSWER_3 = stripslashes($this->globals->con->get_field("ANSWER_3"));
                                 			                                                                $this->CORRECT_3 = stripslashes($this->globals->con->get_field("CORRECT_3"));
+                                			                                                                $this->ANSWER_4 = stripslashes($this->globals->con->get_field("ANSWER_4"));
+                                			                                                                $this->CORRECT_4 = stripslashes($this->globals->con->get_field("CORRECT_4"));
                                 						
 	}
 	
@@ -151,7 +169,9 @@ class php_quiz_questions_questions_form{
 																						ANSWER_2,
 																						CORRECT_2,
 																						ANSWER_3,
-																						CORRECT_3
+																						CORRECT_3,
+																						ANSWER_4,
+																						CORRECT_4
 										 ) VALUES (
 															:NO,
 																						:CATEG_ID,
@@ -161,7 +181,9 @@ class php_quiz_questions_questions_form{
 																						:ANSWER_2,
 																						:CORRECT_2,
 																						:ANSWER_3,
-																						:CORRECT_3
+																						:CORRECT_3,
+																						:ANSWER_4,
+																						:CORRECT_4
 													)",
 			array(
 									                                            
@@ -182,6 +204,10 @@ class php_quiz_questions_questions_form{
                                             ":ANSWER_3" => $this->ANSWER_3,
                                         														                                            
                                             ":CORRECT_3" => $this->CORRECT_3,
+                                        														                                            
+                                            ":ANSWER_4" => $this->ANSWER_4,
+                                        														                                            
+                                            ":CORRECT_4" => $this->CORRECT_4,
                                         												)
 			);
 
@@ -215,7 +241,9 @@ class php_quiz_questions_questions_form{
 												ANSWER_2 = :ANSWER_2,
 												CORRECT_2 = :CORRECT_2,
 												ANSWER_3 = :ANSWER_3,
-												CORRECT_3 = :CORRECT_3
+												CORRECT_3 = :CORRECT_3,
+												ANSWER_4 = :ANSWER_4,
+												CORRECT_4 = :CORRECT_4
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -228,6 +256,8 @@ class php_quiz_questions_questions_form{
                                         				                                                                                    ":CORRECT_2" => $this->CORRECT_2,
                                         				                                                                                    ":ANSWER_3" => $this->ANSWER_3,
                                         				                                                                                    ":CORRECT_3" => $this->CORRECT_3,
+                                        				                                                                                    ":ANSWER_4" => $this->ANSWER_4,
+                                        				                                                                                    ":CORRECT_4" => $this->CORRECT_4,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -304,8 +334,8 @@ class php_quiz_questions_questions_form{
                         		                                                    $this->CORRECT_2  = htmlspecialchars(addslashes(trim($_POST["CORRECT_2"])));
                         		                                                    $this->ANSWER_3  = htmlspecialchars(addslashes(trim($_POST["ANSWER_3"])));
                         		                                                    $this->CORRECT_3  = htmlspecialchars(addslashes(trim($_POST["CORRECT_3"])));
-                                                                                            
-                                                                                            //echo "AICI" .  $this->QUESTION ;
+                        		                                                    $this->ANSWER_4  = htmlspecialchars(addslashes(trim($_POST["ANSWER_4"])));
+                        		                                                    $this->CORRECT_4  = htmlspecialchars(addslashes(trim($_POST["CORRECT_4"])));
                         		        }
 		
         function takePostActions(){
@@ -354,6 +384,11 @@ class php_quiz_questions_questions_form{
 			$this->CORRECT_3_sel->selected_val = $this->CORRECT_3;
 			$this->CORRECT_3_sel->setup_select_options();
 			 
+					 
+								//$this->CORRECT_4_sel = new DB_select("CORRECT_4",".php_quiz.list_da_nu");
+			$this->CORRECT_4_sel->selected_val = $this->CORRECT_4;
+			$this->CORRECT_4_sel->setup_select_options();
+			 
 				
 					 
 									//$this->CATEG_ID_sel = new DB_select("CATEG_ID",".php_quiz.categories");
@@ -361,6 +396,8 @@ class php_quiz_questions_questions_form{
 				$this->CATEG_ID_sel->selected_val = $this->CATEG_ID;
 				$this->CATEG_ID_sel->setup_select_options();
 			 
+					 
+					 
 					 
 					 
 					 
@@ -380,6 +417,8 @@ class php_quiz_questions_questions_form{
 							"CORRECT_2" => $this->CORRECT_2,
 							"ANSWER_3" => $this->ANSWER_3,
 							"CORRECT_3" => $this->CORRECT_3,
+							"ANSWER_4" => $this->ANSWER_4,
+							"CORRECT_4" => $this->CORRECT_4,
 									 
 						 
 						 
@@ -392,9 +431,14 @@ class php_quiz_questions_questions_form{
 						 
 										"CORRECT_3_sel" => $this->CORRECT_3_sel->get_select_str(),
 			 
+						 
+										"CORRECT_4_sel" => $this->CORRECT_4_sel->get_select_str(),
+			 
 									 
 										"CATEG_ID_sel" => $this->CATEG_ID_sel->get_select_str(),
 			 
+						 
+						 
 						 
 						 
 						 

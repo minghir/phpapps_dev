@@ -5,6 +5,7 @@ include ("gen_php/php_quiz_questions_questions_form.php");
 		function __construct(){
 			parent::__construct();
 			$this->template = "php_quiz_questions_questions_form_imp.tpl";
+                        $this->CATEG_ID = trim($_GET["CATEG_ID"]);
 			$this->init();
 			$this->display();
 		}
@@ -19,21 +20,27 @@ include ("gen_php/php_quiz_questions_questions_form.php");
 		}
 		
 		function afterAddRec(){
-			//header("Location:win_close.html");
+                    if( count($this->errors) == 0){
+			header("Location:win_close.html");
+                    }
 		}
 		
 		function beforeSaveRec(){
 		}
 		
 		function afterSaveRec(){
-			//header("Location:win_close.html");
+                    if( count($this->errors) == 0){
+			header("Location:win_close.html");
+                    }
 		}
 
 		function beforeDeleteRec(){
 		}
 		
 		function afterDeleteRec(){
-		//	header("Location:win_close.html");
+                    if( count($this->errors) == 0){
+			header("Location:win_close.html");
+                    }
 		}
 		
 		function beforeDisplay(){	

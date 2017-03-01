@@ -41,7 +41,10 @@ class Questions extends phpapps_display_abs{
                                     q.IMAGE_2,
                                     q.ANSWER_3,
                                     q.CORRECT_3,
-                                    q.IMAGE_3 
+                                    q.IMAGE_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4,
+                                    q.IMAGE_4 
                             FROM php_quiz.questions q ".$this->where_categ." ORDER BY q.CATEG_ID ASC, q.NO DESC",$this->sql_array);
         
         $res_no = $this->globals->con->query($sql);

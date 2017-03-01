@@ -54,7 +54,7 @@ function confirmation(url) {
         {/if}
         {if $QUESTIONS[qus]->ANSWER_4 != ""}
             {if $QUESTIONS[qus]->CORRECT_4 == 1}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{stripslashes($QUESTIONS[qus]->ANSWER_4)}</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="#0c3563">{stripslashes($QUESTIONS[qus]->ANSWER_4)}</font></b><br>
             {else}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{stripslashes($QUESTIONS[qus]->ANSWER_4)}<br>
         {/if}

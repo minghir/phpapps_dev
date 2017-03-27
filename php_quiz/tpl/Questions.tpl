@@ -24,7 +24,7 @@ function confirmation(url) {
  <option value="5" {if $category_id=="5"}selected{/if}> (C) Marinarie Agrement</option>
  <option value="6" {if $category_id=="6"}selected{/if}> (C) Navigatie Agrement</option>
  <option value="7" {if $category_id=="7"}selected{/if}> (C) Colreg Agrement</option>
-        </select> | <a href="php_quiz_questions_questions_form_imp.php?gact=newRec&CATEG_ID={$category_id}" onclick="window.open('php_quiz_questions_questions_form_imp.php?gact=newRec&CATEG_ID={$category_id}','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false"> <font color="blue">new</font></a>
+        </select> | <a href="php_quiz_questions_questions_form_imp.php?gact=newRec&CATEG_ID={$category_id}" onclick="window.open('php_quiz_questions_questions_form_imp.php?gact=newRec&CATEG_ID={$category_id}','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false"> <font color="blue">new</font></a> | <a href="quiz_test.php?cat=C">test categoria C</a>| <a href="quiz_test.php?cat=D">test categoria D</a>
     </form>
     <br><br>
     <hr>
@@ -59,7 +59,11 @@ function confirmation(url) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{stripslashes($QUESTIONS[qus]->ANSWER_4)}<br>
         {/if}
         {/if}
-     <br>
+        <br>
+        {if file_exists("imgs/{$QUESTIONS[qus]->CATEG_ID}/{$QUESTIONS[qus]->NO}.jpg")}
+            <img src="imgs/{$QUESTIONS[qus]->CATEG_ID}/{$QUESTIONS[qus]->NO}.jpg">
+            <br>    
+        {/if}
      <a href="php_quiz_questions_questions_form_imp.php?gact=editRec&gfield=ID&gfield_value={$QUESTIONS[qus]->ID}" onclick="window.open('php_quiz_questions_questions_form_imp.php?gact=editRec&gfield=ID&gfield_value={$QUESTIONS[qus]->ID}','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false"><font color="green">edit</font></a> |
      <a href="php_quiz_questions_questions_form_imp.php?gact=deleteRec&gfield=ID&gfield_value={$QUESTIONS[qus]->ID}" onclick="if(confirm('Sigur stergeti inregistrarea?')) window.open('php_quiz_questions_questions_form_imp.php?gact=deleteRec&gfield=ID&gfield_value={$QUESTIONS[qus]->ID}','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false"><font color="red">delete</font></a>
      

@@ -2,11 +2,26 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
+/*
+ * Pentru categoria D
+- 8 intrebari din Marinarie 1
+- 8 intrebari din Conducere / Manevra 2
+- 10 intrebari din RND 3
+Pentru categoria C
+- 6 intrebari din Manevra Agrement 4
+- 6 intrebari din Marinarie Agrement 5
+- 4 intrebari din Navigatie Agrement 6
+- 10 intrebari din Colreg Agrement 7
+ */
+
+
 class quiz_test extends phpapps_display_abs{
 
     private $app_id;
     private $questions = array();
     private $corect_answers;
+    private $CHECK = false;
+    private $CATEGORY_TEST;
     
     function __construct($app_id) {
         parent::__construct();
@@ -16,6 +31,7 @@ class quiz_test extends phpapps_display_abs{
         $this->corect_answers = 0;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             //print_r($_POST);
+            $this->CHECK = true;
             $this->questions =  $_SESSION["questions_ses"];
             $answer = $_POST["answer"];
             //print_r($answer);
@@ -25,28 +41,34 @@ class quiz_test extends phpapps_display_abs{
                 
                 switch($this->questions[$i]->user_answer){
                     case 1: 
-                         if( $this->questions[$i]->ANSWER_1 == '1'){
+                         if( $this->questions[$i]->CORRECT_1 == 1){
                              $this->corect_answers++;
                         } 
                     break;
                     case 2: 
-                        if( $this->questions[$i]->ANSWER_2 == '1'){
+                        if( $this->questions[$i]->CORRECT_2 == '1'){
                              $this->corect_answers++;
                         } 
                     break;
                     case 3: 
-                        if( $this->questions[$i]->ANSWER_3 == '1'){
+                        if( $this->questions[$i]->CORRECT_3 == '1'){
                              $this->corect_answers++;
                         }
                     break;
                     case 4:
-                        if( $this->questions[$i]->ANSWER_4 == '1'){
+                        if( $this->questions[$i]->CORRECT_4 == '1'){
                              $this->corect_answers++;
                         }
                     break;
               }
             }
+        //print_r($this->questions[0]);    
         }else{
+            if($_GET["cat"] == "C"){
+                $this->CATEGORY_TEST = "C";
+            }else{
+                $this->CATEGORY_TEST = "D";
+            }
             $this->setupQueryDisplay();
         }
       
@@ -54,7 +76,9 @@ class quiz_test extends phpapps_display_abs{
     }
     
     function setupQueryDisplay(){
-        $sql = new DB_query("SELECT q.ID,
+        $sql_D = new DB_query("
+                        SELECT a.* FROM (
+                            SELECT q.ID,
                                     q.NO,
                                     q.CATEG_ID,
                                     (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
@@ -62,19 +86,124 @@ class quiz_test extends phpapps_display_abs{
                                     q.QUESTION,
                                     q.ANSWER_1,
                                     q.CORRECT_1,
-                                    q.IMAGE_1,
                                     q.ANSWER_2,
                                     q.CORRECT_2,
-                                    q.IMAGE_2,
                                     q.ANSWER_3,
                                     q.CORRECT_3,
-                                    q.IMAGE_3,
                                     q.ANSWER_4,
-                                    q.CORRECT_4,
-                                    q.IMAGE_4 
-                            FROM php_quiz.questions q ".$this->where_categ." ORDER BY q.CATEG_ID ASC, q.NO DESC",$this->sql_array);
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '1' ORDER BY RAND() DESC LIMIT 8  ) a
+                            UNION ALL
+                        SELECT b.* FROM (    
+                            SELECT q.ID,
+                                    q.NO,
+                                    q.CATEG_ID,
+                                    (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
+                                    FROM php_quiz.categories c LEFT JOIN php_quiz.list_category_type t ON  (c.CATEG_TYPE = t.ID) WHERE c.ID = q.CATEG_ID) AS CTEG_NAME,
+                                    q.QUESTION,
+                                    q.ANSWER_1,
+                                    q.CORRECT_1,
+                                    q.ANSWER_2,
+                                    q.CORRECT_2,
+                                    q.ANSWER_3,
+                                    q.CORRECT_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '2' ORDER BY RAND() DESC LIMIT 8 ) b
+                            UNION ALL
+                            SELECT c.* FROM (  
+                            SELECT q.ID,
+                                    q.NO,
+                                    q.CATEG_ID,
+                                    (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
+                                    FROM php_quiz.categories c LEFT JOIN php_quiz.list_category_type t ON  (c.CATEG_TYPE = t.ID) WHERE c.ID = q.CATEG_ID) AS CTEG_NAME,
+                                    q.QUESTION,
+                                    q.ANSWER_1,
+                                    q.CORRECT_1,
+                                    q.ANSWER_2,
+                                    q.CORRECT_2,
+                                    q.ANSWER_3,
+                                    q.CORRECT_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '3' ORDER BY RAND() DESC LIMIT 10 ) c
+                            ",$this->sql_array);
         
-        $res_no = $this->globals->con->query($sql);
+                $sql_C = new DB_query("
+                        SELECT a.* FROM (
+                            SELECT q.ID,
+                                    q.NO,
+                                    q.CATEG_ID,
+                                    (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
+                                    FROM php_quiz.categories c LEFT JOIN php_quiz.list_category_type t ON  (c.CATEG_TYPE = t.ID) WHERE c.ID = q.CATEG_ID) AS CTEG_NAME,
+                                    q.QUESTION,
+                                    q.ANSWER_1,
+                                    q.CORRECT_1,
+                                    q.ANSWER_2,
+                                    q.CORRECT_2,
+                                    q.ANSWER_3,
+                                    q.CORRECT_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '4' ORDER BY RAND() DESC LIMIT 6  ) a
+                            UNION ALL
+                        SELECT b.* FROM (    
+                            SELECT q.ID,
+                                    q.NO,
+                                    q.CATEG_ID,
+                                    (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
+                                    FROM php_quiz.categories c LEFT JOIN php_quiz.list_category_type t ON  (c.CATEG_TYPE = t.ID) WHERE c.ID = q.CATEG_ID) AS CTEG_NAME,
+                                    q.QUESTION,
+                                    q.ANSWER_1,
+                                    q.CORRECT_1,
+                                    q.ANSWER_2,
+                                    q.CORRECT_2,
+                                    q.ANSWER_3,
+                                    q.CORRECT_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '5' ORDER BY RAND() DESC LIMIT 6 ) b
+                            UNION ALL
+                            SELECT c.* FROM (  
+                            SELECT q.ID,
+                                    q.NO,
+                                    q.CATEG_ID,
+                                    (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
+                                    FROM php_quiz.categories c LEFT JOIN php_quiz.list_category_type t ON  (c.CATEG_TYPE = t.ID) WHERE c.ID = q.CATEG_ID) AS CTEG_NAME,
+                                    q.QUESTION,
+                                    q.ANSWER_1,
+                                    q.CORRECT_1,
+                                    q.ANSWER_2,
+                                    q.CORRECT_2,
+                                    q.ANSWER_3,
+                                    q.CORRECT_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '6' ORDER BY RAND() DESC LIMIT 4 ) c
+                            UNION ALL
+                            SELECT d.* FROM (  
+                            SELECT q.ID,
+                                    q.NO,
+                                    q.CATEG_ID,
+                                    (SELECT CONCAT('(<b>',t.VALUE,'</b>) ',c.NAME) 
+                                    FROM php_quiz.categories c LEFT JOIN php_quiz.list_category_type t ON  (c.CATEG_TYPE = t.ID) WHERE c.ID = q.CATEG_ID) AS CTEG_NAME,
+                                    q.QUESTION,
+                                    q.ANSWER_1,
+                                    q.CORRECT_1,
+                                    q.ANSWER_2,
+                                    q.CORRECT_2,
+                                    q.ANSWER_3,
+                                    q.CORRECT_3,
+                                    q.ANSWER_4,
+                                    q.CORRECT_4
+                            FROM php_quiz.questions q WHERE q.CATEG_ID = '7' ORDER BY RAND() DESC LIMIT 10 ) d
+                            ",$this->sql_array);
+    //echo $sql_C->sql();
+        if($this->CATEGORY_TEST == "C"){
+            $res_no = $this->globals->con->query($sql_C);
+        }else{
+            $res_no = $this->globals->con->query($sql_D);
+        }
         while($res=$this->globals->con->fetch_object()){
             $this->questions[] = $res;
         }
@@ -86,6 +215,7 @@ class quiz_test extends phpapps_display_abs{
             "category_id" => $this->category_id,
             "QUESTIONS" => $this->questions,
             "CORRECT_ANS" => $this->corect_answers,
+            "CHECK" => $this->CHECK,
         ));
     }
 }

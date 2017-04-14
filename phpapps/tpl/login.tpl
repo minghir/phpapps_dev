@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>PHP Applications Login</title>
-{include file="commun_header.tpl" }
+{include file='commun_header.tpl'}
 </head>
 
 <body bgcolor="#dddddd">

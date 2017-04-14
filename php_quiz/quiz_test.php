@@ -1,5 +1,6 @@
 <?php
 require_once ("globals.php");
+$GLOBALS_OBJ->ath->public_script();
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
 /*
@@ -219,6 +220,5 @@ class quiz_test extends phpapps_display_abs{
         ));
     }
 }
-
 new quiz_test($_GET["app_id"]);
 ?>

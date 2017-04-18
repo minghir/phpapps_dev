@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Linux (x86_64)
 --
--- Host: localhost    Database: php_quiz
+-- Host: localhost    Database: localhost
 -- ------------------------------------------------------
--- Server version	5.6.26
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-14 12:20:53
+-- Dump completed on 2017-04-18 11:01:45

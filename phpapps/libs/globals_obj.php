@@ -116,7 +116,7 @@ class Globals_obj{
         
         public $ath;
 
-	function __construct($APP_NM, $public_script = false){
+	function __construct($APP_NM){
 		$this->APP_NAME = $APP_NM;
 
 		$this->set_paths();
@@ -152,7 +152,6 @@ class Globals_obj{
 		//$this->DB_smarty_assign();
                 
                 $this->ath = new auth($this);
-                $this->ath->public_script = $public_script;
                 $this->ath->authenticate();
 	}
 	

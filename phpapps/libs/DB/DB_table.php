@@ -1,5 +1,4 @@
 <?php
-
 class DB_table{
 	var $globals;
 	var $table_name;
@@ -7,9 +6,8 @@ class DB_table{
 	
 	function __construct($tablename){
 		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
-		
-		$this->table_name = $tablename;
+		$this->globals = &$GLOBALS_OBJ;
+                $this->table_name = $tablename;
 		return $this;
 	}
 	

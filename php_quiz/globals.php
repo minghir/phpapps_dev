@@ -5,6 +5,6 @@ if(!defined('CURRENT_APP')) {
 
 require_once("../phpapps/libs/globals_obj.php");
 global $GLOBALS_OBJ;
-$GLOBALS_OBJ = new Globals_obj("php_quiz",true);
+$GLOBALS_OBJ = new Globals_obj("php_quiz");
 
 ?>

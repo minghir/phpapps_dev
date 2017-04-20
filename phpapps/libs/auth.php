@@ -5,16 +5,32 @@ class auth{
     
     public $globals;
     public $public_script = false;
+    public $script_name;
+    
     
     function __construct($glb) {
         session_start();
         GLOBAL $globals;
         $this->globals = $glb;
+        
+        $this->script_name =  basename($_SERVER["SCRIPT_FILENAME"],".php");
+        
+        echo $this->script_name . "<br>";
+        
+        $tst = new DB_table("scripts");
+        $tst->globals = $this->globals;
+        echo $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name);
+        if( $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name) == 2 ){
+            $this->public_script = true;
+        }else{
+            $this->public_script = false;
+        }
     }    
         
     function authenticate(){
+        
         if($this->public_script) {
-            return;
+            return true;
         }else{
             
             if($_SESSION["_USER_ID"] == ""){
@@ -59,7 +75,7 @@ class auth{
     }
     
     function check_session(){
-        echo $_SESSION["_USER_ID"] .":" .  $_SESSION["_USER_NAME"] ."<br>";
+        //echo $_SESSION["_USER_ID"] .":" .  $_SESSION["_USER_NAME"] ."<br>";
     }
     
     public function public_script(){

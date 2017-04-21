@@ -25,7 +25,8 @@ class phpapps_applications{
 						MODULE_NAME,
 						MODULE_TITLE,
 						DESCRIPTION,
-						SCRIPT_NAME
+						SCRIPT_NAME,
+                                                CONCAT('".WEB_BASE_DIR."' ,APP_NAME,'/',SCRIPT_NAME) AS SCRIPT_PATH
 					FROM phpapps.view_modules WHERE APP_ID = :app_id",array(':app_id'=>$res["ID"]));
 					
 				$this->globals->con->query($sql,"modules");	

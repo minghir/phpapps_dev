@@ -24,7 +24,7 @@
 		<br><b>Modules:</b><br>
 		{foreach from=$modules[$app.ID] item=mod}
 				{if $mod.SCRIPT_NAME != "phpapps_admin_module"}
-					<a href="{$mod.SCRIPT_NAME}.php?module_id={$mod.ID}" title="{$mod.DESCRIPTION}">{$mod.MODULE_TITLE}</a> ( <a href="phpapps_admin_module.php?module_id={$mod.ID}" title="{$mod.DESCRIPTION}">admin</a> | <a href="phpapps_admin_modules_form_imp.php?gfield_value={$mod.ID}&gfield=ID&gact=deleteRec">delete</a> ) <br>
+					<a href="{$mod.SCRIPT_PATH}.php?module_id={$mod.ID}" title="{$mod.DESCRIPTION}">{$mod.MODULE_TITLE}</a> ( <a href="phpapps_admin_module.php?module_id={$mod.ID}" title="{$mod.DESCRIPTION}">admin</a> | <a href="phpapps_admin_modules_form_imp.php?gfield_value={$mod.ID}&gfield=ID&gact=deleteRec">delete</a> ) <br>
 				{else}
 					{$mod.MODULE_TITLE} ( <a href="phpapps_admin_module.php?module_id={$mod.ID}" title="{$mod.DESCRIPTION}">admin</a> | <a href="phpapps_admin_modules_form_imp.php?gfield_value={$mod.ID}&gfield=ID&gact=deleteRec">delete</a> ) <br>
 				{/if}

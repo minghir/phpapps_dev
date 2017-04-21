@@ -6,7 +6,7 @@
 			* {padding:0; margin:0;}
 
 			html {
-				background:url(/img/tiles/wood.png) 0 0 repeat;
+				background-color: #dddddd;
 				padding:15px 15px 0;
 				font-family:sans-serif;
 				font-size:14px;
@@ -19,14 +19,16 @@
 			.tabs li {
 				list-style:none;
 				display:inline;
+                                background:#666666;
 			}
 
 			.tabs a {
 				padding:5px 10px;
 				display:inline-block;
-				background:#666;
-				color:#fff;
+				background:#666666;
+				color:#666666;
 				text-decoration:none;
+                                background-color: #dddddd;
 			}
 
 			.tabs a.active {
@@ -77,10 +79,8 @@
 		</script>
 {/literal}
 </head>
-<body><br>
-	
-	
-	
+<body>
+{include file="top_menu.tpl" }
 	<div class="test_div">
 	<font style="font-size: 120%;"><a href="phpapps_admin_applications.php">{$module->APP_TITLE}</a> / {$module->MODULE_TITLE} </h1></font><br>
 	( <a href="phpapps_admin_modules_form_imp.php?gact=editRec&gfield=ID&gfield_value={$module->ID}">{$module->MODULE_NAME}</a> / {$module->MODULE_DATE} ) 
@@ -93,8 +93,8 @@
 	</ul>
 	
 	<div id="tab1" class="adm_mod_div"  >{$tables_grid}</div>
-	<div id="tab2" class="test_div"  style="width: 90%;">{$lists_grid}</div>
-	<div id="tab3" class="test_div"  style="width: 90%;">{$forms_grid}</div>
-	<div id="tab4" class="test_div"  style="width: 90%;">{$scripts_grid}</div>
+	<div id="tab2" class="adm_mod_div"  >{$lists_grid}</div>
+	<div id="tab3" class="adm_mod_div"  >{$forms_grid}</div>
+	<div id="tab4" class="adm_mod_div"  >{$scripts_grid}</div>
 </body>
 </html>

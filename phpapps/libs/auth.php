@@ -15,11 +15,11 @@ class auth{
         
         $this->script_name =  basename($_SERVER["SCRIPT_FILENAME"],".php");
         
-        echo $this->script_name . "<br>";
+        //echo $this->script_name . "<br>";
         
         $tst = new DB_table("scripts");
         $tst->globals = $this->globals;
-        echo $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name);
+       // echo $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name);
         if( $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name) == 2 ){
             $this->public_script = true;
         }else{

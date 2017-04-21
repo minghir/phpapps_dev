@@ -2,8 +2,9 @@
 <head>
 {include file="commun_header.tpl" }
 </head>
-<body bgcolor="#dddddd"><br>
 
+<body bgcolor="#dddddd"><br>
+{include file="top_menu.tpl" }
 
 <div class="test_div">
 <a href="phpapps_admin_applications_form_imp.php?gact=addRec"  style="text-decoration:none">

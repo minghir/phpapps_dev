@@ -1,7 +1,8 @@
 <?php
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_module{
+class phpapps_users_module extends phpapps_display_abs{
 	
 	var $ID;
 	var $APP_ID;
@@ -14,14 +15,18 @@ class phpapps_module{
 	var $APP_TITLE;
 	var $BASE_DIR;
 	
-	public function phpapps_module($module_id){
+	public function __construct($module_id) {
+        parent::__construct();
+
+            $this->tpl = PHPAPPS_TPL_DIR . "phpapps_users_module.tpl";        
+            $this->MODULE_ID = $module_id;
 		
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+            global $GLOBALS_OBJ;
+            $this->globals = $GLOBALS_OBJ;
 		
-		$this->globals->con->select_db("phpapps");
+            $this->globals->con->select_db("phpapps");
 		
-		$sql = "SELECT 	m.ID,
+            $sql = new DB_query("SELECT 	m.ID,
 						m.APP_ID,
 						m.MODULE_NAME,
 						m.MODULE_TITLE,
@@ -31,20 +36,20 @@ class phpapps_module{
 						m.APP_NAME,
 						a.APP_TITLE
 				FROM phpapps.view_modules m, phpapps.applications a
-				WHERE m.APP_ID = a.ID AND m.ID = '$module_id' ";
+				WHERE m.APP_ID = a.ID AND m.ID = '$module_id' ",array());
 				
-		$this->globals->con->query($sql);	
-		$this->globals->con->next();
-		$this->ID = $this->globals->con->get_field("ID");
-		$this->APP_ID = $this->globals->con->get_field("APP_ID");
-		$this->MODULE_NAME = $this->globals->con->get_field("MODULE_NAME");
-		$this->MODULE_TITLE = $this->globals->con->get_field("MODULE_TITLE");
-		$this->MODULE_DATE = $this->globals->con->get_field("MODULE_DATE");
-		$this->MODULE_SCHEMA = $this->globals->con->get_field("MODULE_SCHEMA");
-		$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
-		$this->APP_NAME = $this->globals->con->get_field("APP_NAME");
-		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
-		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
+            $this->globals->con->query($sql);	
+            $this->globals->con->next();
+            $this->ID = $this->globals->con->get_field("ID");
+            $this->APP_ID = $this->globals->con->get_field("APP_ID");
+            $this->MODULE_NAME = $this->globals->con->get_field("MODULE_NAME");
+            $this->MODULE_TITLE = $this->globals->con->get_field("MODULE_TITLE");
+            $this->MODULE_DATE = $this->globals->con->get_field("MODULE_DATE");
+            $this->MODULE_SCHEMA = $this->globals->con->get_field("MODULE_SCHEMA");
+            $this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
+            $this->APP_NAME = $this->globals->con->get_field("APP_NAME");
+            //$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
+            $this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
 	}
 	
 	public function displayTpl(){
@@ -220,6 +225,6 @@ class phpapps_module{
 	}
 };
 
-$aa  = new phpapps_module($_GET["module_id"]);
+$aa  = new phpapps_users_module($_GET["module_id"]);
 $aa->displayTpl();
 ?>

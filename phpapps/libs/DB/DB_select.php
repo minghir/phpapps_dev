@@ -57,9 +57,8 @@ class DB_select{
 	var $query_params = array();
         public $db_query;
 	
-    var $error;
+        var $error;
 	var $globals;
-	
 	private $sm;
 	
 	function __construct($sname,$stable){
@@ -72,8 +71,6 @@ class DB_select{
 		$this->sm = new Smarty;
                 $this->sm->template_dir = DB_LIBS_TPL_DIR;
                 $this->sm->compile_dir = SMARTY_COMPILE_DIR;
-                
-                $this->db_query = new DB_query("");
 		
 		$this->parse_post_vars();
 		return $this;
@@ -86,8 +83,10 @@ class DB_select{
 	}
 	
 	function setup_select_options(){
+                $this->db_query = new DB_query($this->query,$this->query_params);
 		$this->options = array();	
 		if($this->db_query->sql() == ""){
+                    
 			$this->value_col = $this->value_col == "" ? "ID" : $this->value_col;
 			$this->label_col = $this->label_col == "" ? "VALUE" : $this->label_col;
 			$sql = "SELECT ".$this->value_col." AS VALUE, ".$this->label_col." AS LABEL 
@@ -97,7 +96,7 @@ class DB_select{
                         $this->db_query = new DB_query($sql,$this->query_params);
 		}
                 
-		//echo $this->db_query->sql();
+		//print_r($this->db_query);
 		$nrs = $this->globals->con->query($this->db_query, $this->name);
 		while($res=$this->globals->con->fetch_row($this->name)){
 			$this->options[] =  (array)(new DB_select_option( $res[0],$res[1],($this->selected_val == $res[0] ) ));

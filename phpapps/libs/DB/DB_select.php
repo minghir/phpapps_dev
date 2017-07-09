@@ -83,8 +83,10 @@ class DB_select{
 	}
 	
 	function setup_select_options(){
-                $this->db_query = new DB_query($this->query,$this->query_params);
-		$this->options = array();	
+                if($this->db_query == ""){
+                    $this->db_query = new DB_query($this->query,$this->query_params);
+                    $this->options = array();	
+                }
 		if($this->db_query->sql() == ""){
                     
 			$this->value_col = $this->value_col == "" ? "ID" : $this->value_col;

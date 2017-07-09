@@ -1,4 +1,4 @@
-drop database eshop;
-create database eshop;
-use eshop;
+drop database atsepa;
+create database atsepa;
+use atsepa;
 

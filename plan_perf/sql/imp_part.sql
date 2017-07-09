@@ -1,4 +1,4 @@
-drop database eshop;
-create database eshop;
-use eshop;
+drop database plan_perf;
+create database plan_perf;
+use plan_perf;
 

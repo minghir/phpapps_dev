@@ -22,3 +22,10 @@ cat /var/www/html/phpapps_dev/plan_perf/sql/imp_part.sql >> /var/www/html/phpapp
 cat /var/www/html/phpapps_dev/plan_perf/sql/plan_perf.sql >> /var/www/html/phpapps_dev/plan_perf/sql/imp.sql
 mysql  -u root -palcatraz < /var/www/html/phpapps_dev/plan_perf/sql/imp.sql
 rm /var/www/html/phpapps_dev/plan_perf/sql/imp.sql
+
+
+touch /var/www/html/phpapps_dev/atsepa/sql/imp.sql
+cat /var/www/html/phpapps_dev/atsepa/sql/imp_part.sql >> /var/www/html/phpapps_dev/atsepa/sql/imp.sql
+cat /var/www/html/phpapps_dev/atsepa/sql/atsepa.sql >> /var/www/html/phpapps_dev/atsepa/sql/imp.sql
+mysql  -u root -palcatraz < /var/www/html/phpapps_dev/atsepa/sql/imp.sql
+rm /var/www/html/phpapps_dev/atsepa/sql/imp.sql

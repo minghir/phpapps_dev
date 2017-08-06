@@ -267,6 +267,7 @@ print_r($this->errors);
                                 
                                 $this->globals->sm->assign("table_idx_grid",$table_idx_grid->get_grid_str());
                                 //$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
+                                $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA", $this->ID);
                                 $sql = new DB_query("SHOW CREATE TABLE " . $this->SCHEMA_NAME . "." . $this->TABLE_NAME);
                                 print_r($sql);
                                 $this->globals->con->query($sql);

@@ -2,12 +2,12 @@
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#admin_users_form").submit();
+		$("#articles_articles_form").submit();
 }
   </script>
 {/literal}
 {$error_msg}
-<hr><form name="admin_users_form" id="admin_users_form" method="POST" enctype="multipart/form-data">
+<hr><form name="articles_articles_form" id="articles_articles_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -15,25 +15,20 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
-				<tr><td align="right">USERNAME :</td><td> <input type="text" id="USERNAME" name="USERNAME" value="{$USERNAME}"></td></tr>
+				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
 																
 			
 		                
 		                				 
-				<tr><td align="right">PASSWORD :</td><td> <input type="text" id="PASSWORD" name="PASSWORD" value="{$PASSWORD}"></td></tr>
-																
-			
-		                
-		                				 
-				<tr><td align="right">EMAIL :</td><td> <input type="text" id="EMAIL" name="EMAIL" value="{$EMAIL}"></td></tr>
-																
+								<tr><td align="right">BODY  :</td><td> <textarea id="BODY" name="BODY">{$BODY}</textarea></td></tr>
+        										
 			
 		                
 		                				 
 																
 			
-				<tr><td align="right">USER_TYPE  :</td><td>
-			{$USER_TYPE_sel}
+				<tr><td align="right">CATEG_ID  :</td><td>
+			{$CATEG_ID_sel}
 		</td></tr>
                         
 		                				{$FROM_IMP_CLASS}

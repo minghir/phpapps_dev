@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.24-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.25-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: eshop
 -- ------------------------------------------------------
--- Server version	10.1.24-MariaDB
+-- Server version	10.1.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-09 20:41:25
+-- Dump completed on 2017-08-06 14:26:42

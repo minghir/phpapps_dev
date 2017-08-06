@@ -2,11 +2,11 @@
 // includes
 require_once ("globals.php");
 
-class admin_users_form{
+class articles_articles_form{
 	public $globals;
 	public $form_schema = "atsepa";
-	public $form_table = "users";
-	public $template = "gen_tpl/admin_users_form.tpl";
+	public $form_table = "articles";
+	public $template = "gen_tpl/articles_articles_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -14,21 +14,17 @@ class admin_users_form{
 	//post values
 	public $pact;
 	            
-	public $USERNAME;
+	public $NAME;
         	            
-	public $PASSWORD;
+	public $BODY;
         	            
-	public $EMAIL;
-        	            
-	public $USER_TYPE;
+	public $CATEG_ID;
         		
 		 
 		 
-		 
-			public $USER_TYPE_sel;
+			public $CATEG_ID_sel;
 	 
 			
-		 
 		 
 		 
 		 
@@ -43,11 +39,9 @@ class admin_users_form{
                 
                 			 
 					 
-					 
-								$this->USER_TYPE_sel = new DB_select("USER_TYPE","atsepa.list_user_types");
+								$this->CATEG_ID_sel = new DB_select("CATEG_ID","atsepa.list_article_categories");
                         			 
 				
-					 
 					 
 					 
 					 
@@ -69,20 +63,18 @@ class admin_users_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									USERNAME,
-												PASSWORD,
-												EMAIL,
-												USER_TYPE
+									NAME,
+												BODY,
+												CATEG_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-			                                                                $this->USERNAME = stripslashes($this->globals->con->get_field("USERNAME"));
-                                			                                                                $this->PASSWORD = stripslashes($this->globals->con->get_field("PASSWORD"));
-                                			                                                                $this->EMAIL = stripslashes($this->globals->con->get_field("EMAIL"));
-                                			                                                                $this->USER_TYPE = stripslashes($this->globals->con->get_field("USER_TYPE"));
+			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                                			                                                                $this->BODY = stripslashes($this->globals->con->get_field("BODY"));
+                                			                                                                $this->CATEG_ID = stripslashes($this->globals->con->get_field("CATEG_ID"));
                                 						
 	}
 	
@@ -97,25 +89,21 @@ class admin_users_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															USERNAME,
-																						PASSWORD,
-																						EMAIL,
-																						USER_TYPE
+															NAME,
+																						BODY,
+																						CATEG_ID
 										 ) VALUES (
-															:USERNAME,
-																						:PASSWORD,
-																						:EMAIL,
-																						:USER_TYPE
+															:NAME,
+																						:BODY,
+																						:CATEG_ID
 													)",
 			array(
 									                                            
-                                            ":USERNAME" => $this->USERNAME,
+                                            ":NAME" => $this->NAME,
                                         														                                            
-                                            ":PASSWORD" => $this->PASSWORD,
+                                            ":BODY" => $this->BODY,
                                         														                                            
-                                            ":EMAIL" => $this->EMAIL,
-                                        														                                            
-                                            ":USER_TYPE" => $this->USER_TYPE,
+                                            ":CATEG_ID" => $this->CATEG_ID,
                                         												)
 			);
 
@@ -141,17 +129,15 @@ class admin_users_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									USERNAME = :USERNAME,
-												PASSWORD = :PASSWORD,
-												EMAIL = :EMAIL,
-												USER_TYPE = :USER_TYPE
+									NAME = :NAME,
+												BODY = :BODY,
+												CATEG_ID = :CATEG_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":USERNAME" => $this->USERNAME,
-                                        				                                                                                    ":PASSWORD" => $this->PASSWORD,
-                                        				                                                                                    ":EMAIL" => $this->EMAIL,
-                                        				                                                                                    ":USER_TYPE" => $this->USER_TYPE,
+				                                                                                    ":NAME" => $this->NAME,
+                                        				                                                                                    ":BODY" => $this->BODY,
+                                        				                                                                                    ":CATEG_ID" => $this->CATEG_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -219,10 +205,9 @@ class admin_users_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->USERNAME  = htmlspecialchars(addslashes(trim($_POST["USERNAME"])));
-                        		                                                    $this->PASSWORD  = htmlspecialchars(addslashes(trim($_POST["PASSWORD"])));
-                        		                                                    $this->EMAIL  = htmlspecialchars(addslashes(trim($_POST["EMAIL"])));
-                        		                                                    $this->USER_TYPE  = htmlspecialchars(addslashes(trim($_POST["USER_TYPE"])));
+		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
+                        		                                                    $this->BODY  = htmlspecialchars(addslashes(trim($_POST["BODY"])));
+                        		                                                    $this->CATEG_ID  = htmlspecialchars(addslashes(trim($_POST["CATEG_ID"])));
                         		        }
 		
         function takePostActions(){
@@ -241,41 +226,36 @@ class admin_users_form{
 	}
 	
 	function check_errors(){
-				if($this->USERNAME == "") {
-			$this->errors[] = "Campul USERNAME este obligatoriu!";
+				if($this->NAME == "") {
+			$this->errors[] = "Campul NAME este obligatoriu!";
 		}
-				if($this->PASSWORD == "") {
-			$this->errors[] = "Campul PASSWORD este obligatoriu!";
+				if($this->CATEG_ID == "") {
+			$this->errors[] = "Campul CATEG_ID este obligatoriu!";
 		}
 			}
 	
 	function setup_display(){
 					 
 					 
-					 
-								//$this->USER_TYPE_sel = new DB_select("USER_TYPE",".atsepa.list_user_types");
-			$this->USER_TYPE_sel->selected_val = $this->USER_TYPE;
-			$this->USER_TYPE_sel->setup_select_options();
+								//$this->CATEG_ID_sel = new DB_select("CATEG_ID",".atsepa.list_article_categories");
+			$this->CATEG_ID_sel->selected_val = $this->CATEG_ID;
+			$this->CATEG_ID_sel->setup_select_options();
 			 
 				
-					 
 					 
 					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
-							"USERNAME" => $this->USERNAME,
-							"PASSWORD" => $this->PASSWORD,
-							"EMAIL" => $this->EMAIL,
-							"USER_TYPE" => $this->USER_TYPE,
+							"NAME" => $this->NAME,
+							"BODY" => $this->BODY,
+							"CATEG_ID" => $this->CATEG_ID,
 									 
 						 
-						 
-										"USER_TYPE_sel" => $this->USER_TYPE_sel->get_select_str(),
+										"CATEG_ID_sel" => $this->CATEG_ID_sel->get_select_str(),
 			 
 									 
-						 
 						 
 						 
 						"pact" => $this->pact,

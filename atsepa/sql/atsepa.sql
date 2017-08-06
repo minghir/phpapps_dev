@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.24-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.25-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: atsepa
 -- ------------------------------------------------------
--- Server version	10.1.24-MariaDB
+-- Server version	10.1.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,11 +27,14 @@ CREATE TABLE `articles` (
   `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
   `BODY` text COLLATE utf8_bin,
   `CATEG_ID` bigint(20) NOT NULL DEFAULT '0',
+  `USER_ID` bigint(20) NOT NULL DEFAULT '0',
   `ARTICLE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `atsepa_articles_CATEG_ID_FK` (`CATEG_ID`),
-  CONSTRAINT `atsepa_articles_CATEG_ID_FK` FOREIGN KEY (`CATEG_ID`) REFERENCES `list_article_categories` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  KEY `atsepa_articles_USER_ID_FK` (`USER_ID`),
+  CONSTRAINT `atsepa_articles_CATEG_ID_FK` FOREIGN KEY (`CATEG_ID`) REFERENCES `list_article_categories` (`ID`),
+  CONSTRAINT `atsepa_articles_USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +58,7 @@ CREATE TABLE `list_article_categories` (
   `DESCRIPTION` text COLLATE utf8_bin,
   `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +67,7 @@ CREATE TABLE `list_article_categories` (
 
 LOCK TABLES `list_article_categories` WRITE;
 /*!40000 ALTER TABLE `list_article_categories` DISABLE KEYS */;
+INSERT INTO `list_article_categories` VALUES (1,'','categ1'),(2,'','categ2');
 /*!40000 ALTER TABLE `list_article_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-09 20:41:25
+-- Dump completed on 2017-08-06 14:26:42

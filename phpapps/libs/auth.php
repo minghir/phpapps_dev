@@ -33,12 +33,12 @@ class auth{
             return true;
         }else{
             if($this->check_session()){
-                if($_SESSION["_USER_ID"] == ""){
-                    if($_POST["user"] != "" && $_POST["pass"] != ""){
+                if(!isset($_SESSION["_USER_ID"])){
+                   // if($_POST["user"] != "" && $_POST["pass"] != ""){
                         $this->login();
-                    }else{
-                        $this->logout();
-                    }
+                    //}else{
+                    //    $this->logout();
+                    //}
                 }else{
                     $_USER_ID = $_SESSION["_USER_ID"]; 
                 }
@@ -51,7 +51,8 @@ class auth{
     }
     
     function login(){
-        $sql = new DB_Query("SELECT ID, 
+        if(isset($_POST)){
+            $sql = new DB_Query("SELECT ID, 
 				USERNAME,
 				SCRIPT_NAME
                             FROM 
@@ -60,13 +61,14 @@ class auth{
 				password = :PASS",
 				array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
 	
-        if($this->globals->con->query($sql)==1){
-            $res=$this->globals->con->fetch_array();
-            $_SESSION["_USER_ID"] = $res["ID"];
-            $_SESSION["_USER_NAME"] = $res["USERNAME"];
-        }else{
-            $this->globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
-            $this->logout();
+            if($this->globals->con->query($sql)==1){
+                $res=$this->globals->con->fetch_array();
+                $_SESSION["_USER_ID"] = $res["ID"];
+                $_SESSION["_USER_NAME"] = $res["USERNAME"];
+            }else{
+                $this->globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
+                $this->logout();
+            }
         }
     }
     

@@ -11,7 +11,7 @@ $con_mysql["user"] = "root";
 $con_mysql["pass"] = "alcatraz";
 $con_mysql["db"]   = "phpapps";
 $con_mysql["port"] = "";
-$con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";
+//$con_mysql["sock"] = "/var/run/mysqld/mysqld.sock";
 
 //$pdo_mysql["host"] = "localhost";
 //$pdo_mysql["user"] = "root";

@@ -30,7 +30,7 @@ require_once(DB_LIBS_DIR . 'DB_index_def.php');
 	var $config_path;
 	var $driver;
 	
-	function DB($cfg_fis){
+	function __construct($cfg_fis){
 	    $this->config_path=$cfg_fis;
 	    $this->set_log("","",false);
 	}

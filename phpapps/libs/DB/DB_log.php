@@ -7,7 +7,7 @@ class Log
     var $log_dir;
     var $txt = array();
     
-    function Log($log_type="file",$web_log_dir="./tmp", $debug=false){
+    function __construct($log_type="file",$web_log_dir="./tmp", $debug=false){
 	$this->log_type=$log_type;
 	$this->log_dir=$web_log_dir;
 	$this->debug=$debug;

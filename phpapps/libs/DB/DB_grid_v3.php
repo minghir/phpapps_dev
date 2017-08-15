@@ -91,7 +91,7 @@ class DB_grid
 	
 	public $template = 'db_grid3.tpl';
 
-      function DB_grid($conn, $g_type, $str_sql, $grid_name = ""){
+      function __construct($conn, $g_type, $str_sql, $grid_name = ""){
 	  
             session_start();
 

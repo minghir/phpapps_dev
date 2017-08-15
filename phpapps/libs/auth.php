@@ -32,18 +32,21 @@ class auth{
         if($this->public_script) {
             return true;
         }else{
-            
-            if($_SESSION["_USER_ID"] == ""){
-		if($_POST["user"] != "" && $_POST["pass"] != ""){
-                    $this->login();
+            if($this->check_session()){
+                if($_SESSION["_USER_ID"] == ""){
+                    if($_POST["user"] != "" && $_POST["pass"] != ""){
+                        $this->login();
+                    }else{
+                        $this->logout();
+                    }
                 }else{
-                    $this->logout();
+                    $_USER_ID = $_SESSION["_USER_ID"]; 
                 }
-            }else{
-                $_USER_ID = $_SESSION["_USER_ID"]; 
-            }
         
-            $this->check_session();
+                $this->check_session();
+            }else{
+                $this->logout();
+            }
         }
     }
     
@@ -68,22 +71,27 @@ class auth{
     }
     
     function logout(){
-        session_start();
+        //session_start();
         session_destroy();
         $this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );
         exit;
     }
     
     function check_session(){
+        if (session_status() == PHP_SESSION_NONE){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
         //echo $_SESSION["_USER_ID"] .":" .  $_SESSION["_USER_NAME"] ."<br>";
     }
     
-    public function public_script(){
+    function public_script(){
         //echo "set public";
         $this->public_script = true;
     }
     
-    public function private_script(){
+    function private_script(){
         $this->public_script = false;
     }
 }

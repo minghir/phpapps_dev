@@ -167,7 +167,7 @@ class Globals_obj{
 	
 	function smarty_assign(){
 		$this->sm->assign(array(
-				"JQUERY_PATH" => $this->JQUERY_PATH,
+				//"JQUERY_PATH" => $this->JQUERY_PATH,
 			));
 	}
 	

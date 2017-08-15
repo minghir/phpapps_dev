@@ -18,7 +18,7 @@ class mysql
 
 	}	
 	/*PDO*/
-    function mysql($con_str,$Log){
+    function __construct($con_str,$Log){
 		$this->Log = &$Log;
 		$this->con_str = $con_str;
 		$dsn = "mysql:host=".$this->con_str["host"].";port=".$this->con_str["port"].";dbname=".$this->con_str["db"].";charset=utf8";

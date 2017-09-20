@@ -247,9 +247,16 @@ echo"</h1><br>----------------<br>";
 			
 			$this->con->query($this->query, $this->db_grid_name);
 			
-			for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 2; $i++){ // fara ultimul camp care este id
+                        if($this->grid_type == "query"){
+                            for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 1; $i++){ // fara ultimul camp care este id
 				$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
-			}
+                            }
+                            
+                        }else{
+                            for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 2; $i++){ // fara ultimul camp care este id
+				$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
+                            }
+                        }
 			//print_r($fields);
 			$this->fields = $fields;
                 

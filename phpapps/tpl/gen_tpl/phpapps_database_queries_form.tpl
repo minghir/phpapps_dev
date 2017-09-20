@@ -15,17 +15,17 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
-										<input id="ID" type="hidden" name="ID" value="{$ID}">
-        								
-			
-		                
-		                				 
 										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
         								
 			
 		                
 		                				 
-								<tr><td align="right">QUERY  :</td><td> <textarea id="QUERY" name="QUERY">{$QUERY}</textarea></td></tr>
+				<tr><td align="right">QUERY_NAME :</td><td> <input type="text" id="QUERY_NAME" name="QUERY_NAME" value="{$QUERY_NAME}"></td></tr>
+																
+			
+		                
+		                				 
+								<tr><td align="right">QUERY_BODY  :</td><td> <textarea id="QUERY_BODY" name="QUERY_BODY">{$QUERY_BODY}</textarea></td></tr>
         										
 			
 		                

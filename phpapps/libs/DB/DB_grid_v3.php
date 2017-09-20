@@ -111,7 +111,7 @@ class DB_grid
                break;
                case "query":
                     $this->grid_type = $g_type;
-                    $this->query = $str_sql;
+                    $this->query =  new DB_query($str_sql);
                     $this->init_query = $str_sql;
                     $this->db_grid_name = $grid_name == "" ? "str_sql" : $grid_name;
                break;
@@ -181,12 +181,13 @@ echo"</h1><br>----------------<br>";
         function setup_query_query(){
 		   $this->filterable = false;
 		   
-           $this->init_query = str_ireplace("FROM", ",ID FROM", $this->init_query);
+                   if(strpos($this->init_query,"FROM") !== FALSE){
+                        $this->init_query = str_ireplace("FROM", ",ID FROM", $this->init_query);
 		   
-		   if($this->sortable){
+                        if($this->sortable){
 			   if($this->current_order_field != ""){
-					$this->order_rule  = " ORDER BY " . $this->current_order_field . " " . $this->current_order_rule;
-				}
+				$this->order_rule  = " ORDER BY " . $this->current_order_field . " " . $this->current_order_rule;
+                            }
 			}
 					
 			if($this->paginable){
@@ -195,10 +196,11 @@ echo"</h1><br>----------------<br>";
 			}
 				
 			if($this->paginable){
-				$this->query = $this->init_query ." ". $this->order_rule . " limit " . $limit ."," . $this->rows_on_pg ;
+				$this->query->query_str  = $this->init_query ." ". $this->order_rule . " limit " . $limit ."," . $this->rows_on_pg ;
 			}else{
-				$this->query = $this->init_query . " " . $this->order_rule;
+				$this->query->query_str  = $this->init_query . " " . $this->order_rule;
 			}
+                   }
         }
 
         function setup_grid(){
@@ -248,7 +250,7 @@ echo"</h1><br>----------------<br>";
 			for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 2; $i++){ // fara ultimul camp care este id
 				$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
 			}
-			
+			//print_r($fields);
 			$this->fields = $fields;
                 
 			while($res=$this->con->fetch_row($this->db_grid_name)){

@@ -14,11 +14,11 @@ class phpapps_database_queries_form{
 	//post values
 	public $pact;
 	            
-	public $ID;
-        	            
 	public $MODULE_ID;
         	            
-	public $QUERY;
+	public $QUERY_NAME;
+        	            
+	public $QUERY_BODY;
         	            
 	public $DESCRIPTION;
         		
@@ -67,9 +67,9 @@ class phpapps_database_queries_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									ID,
-												MODULE_ID,
-												QUERY,
+									MODULE_ID,
+												QUERY_NAME,
+												QUERY_BODY,
 												DESCRIPTION
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -77,9 +77,9 @@ class phpapps_database_queries_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
-                                			                                                                $this->QUERY = stripslashes($this->globals->con->get_field("QUERY"));
+			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
+                                			                                                                $this->QUERY_NAME = stripslashes($this->globals->con->get_field("QUERY_NAME"));
+                                			                                                                $this->QUERY_BODY = stripslashes($this->globals->con->get_field("QUERY_BODY"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
                                 						
 	}
@@ -95,19 +95,23 @@ class phpapps_database_queries_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					MODULE_ID,
-																						QUERY,
+															MODULE_ID,
+																						QUERY_NAME,
+																						QUERY_BODY,
 																						DESCRIPTION
 										 ) VALUES (
-																					:MODULE_ID,
-																						:QUERY,
+															:MODULE_ID,
+																						:QUERY_NAME,
+																						:QUERY_BODY,
 																						:DESCRIPTION
 													)",
 			array(
-																		                                            
+									                                            
                                             ":MODULE_ID" => $this->MODULE_ID,
                                         														                                            
-                                            ":QUERY" => $this->QUERY,
+                                            ":QUERY_NAME" => $this->QUERY_NAME,
+                                        														                                            
+                                            ":QUERY_BODY" => $this->QUERY_BODY,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
                                         												)
@@ -135,16 +139,16 @@ class phpapps_database_queries_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									ID = :ID,
-												MODULE_ID = :MODULE_ID,
-												QUERY = :QUERY,
+									MODULE_ID = :MODULE_ID,
+												QUERY_NAME = :QUERY_NAME,
+												QUERY_BODY = :QUERY_BODY,
 												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
-                                        				                                                                                    ":QUERY" => $this->QUERY,
+				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
+                                        				                                                                                    ":QUERY_NAME" => $this->QUERY_NAME,
+                                        				                                                                                    ":QUERY_BODY" => $this->QUERY_BODY,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
                                         								":".$this->gfield => $this->gfield_value
 			)	
@@ -202,6 +206,7 @@ class phpapps_database_queries_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -212,10 +217,10 @@ class phpapps_database_queries_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->ID  = addslashes(trim($_POST["ID"]));
-                        		                                                    $this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
-                        		                                                    $this->QUERY  = addslashes(trim($_POST["QUERY"]));
-                        		                                                    $this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
+		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
+                        		                                                    $this->QUERY_NAME  = htmlspecialchars(addslashes(trim($_POST["QUERY_NAME"])));
+                        		                                                    $this->QUERY_BODY  = htmlspecialchars(addslashes(trim($_POST["QUERY_BODY"])));
+                        		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
                         		        }
 		
         function takePostActions(){
@@ -234,12 +239,6 @@ class phpapps_database_queries_form{
 	}
 	
 	function check_errors(){
-				if($this->MODULE_ID == "") {
-			$this->errors[] = "Campul MODULE_ID este obligatoriu!";
-		}
-				if($this->QUERY == "") {
-			$this->errors[] = "Campul QUERY este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
@@ -255,9 +254,9 @@ class phpapps_database_queries_form{
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
-							"ID" => $this->ID,
 							"MODULE_ID" => $this->MODULE_ID,
-							"QUERY" => $this->QUERY,
+							"QUERY_NAME" => $this->QUERY_NAME,
+							"QUERY_BODY" => $this->QUERY_BODY,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
 						 

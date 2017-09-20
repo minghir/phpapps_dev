@@ -187,13 +187,24 @@ class phpapps_database_module extends phpapps_display_abs{
                 $queries_grid = new DB_grid($this->globals->con, "table","phpapps.queries","phpapps_queries_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$queries_grid->grid_title = "QUERIES";
-		$queries_grid->cols = (array("QUERY","DESCRIPTION"));
-		$queries_grid->labels = (array("QUERY","DESCRIPTION"));
+		$queries_grid->cols = (array("QUERY_NAME","QUERY_BODY","DESCRIPTION"));
+		$queries_grid->labels = (array("NAME","QUERY","DESCRIPTION"));
                 $queries_grid->paginable = true;
-		$queries_grid->editable = false;
+		$queries_grid->editable = true;
+                //
+                $queries_grid->edit_form = "phpapps_database_queries_form_imp.php?module_id=".$this->ID;
 		$queries_grid->filterable = false;
 		$queries_grid->exportable = false;
 		$queries_grid->rows_on_pg = 20;
+                
+                
+                $tsq = new HrefActions();
+		$tsq->act_script = "phpapps_database_browse_queries.php?module_id=".$this->ID;
+		$tsq->popup = true;
+		$tsq->label = "browse";
+		$tsq->action = "runGrid";
+		$tsq->fields = array("ID");
+		$queries_grid->add_row_acction($tsq);
                 
                 $views_grid = new DB_grid($this->globals->con, "table","phpapps.views","phpapps_views_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";

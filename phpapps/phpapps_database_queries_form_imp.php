@@ -5,6 +5,7 @@ include ("gen_php/phpapps_database_queries_form.php");
 		function __construct(){
 			parent::__construct();
 			$this->template = "phpapps_database_queries_form_imp.tpl";
+                        $this->MODULE_ID = $_GET["module_id"];
 			$this->init();
 			$this->display();
 		}

@@ -252,6 +252,11 @@ class {$form_name}{ldelim}
                         {else}
                             $this->{$fields[ds]}  = htmlspecialchars(addslashes(trim($_POST["{$fields[ds]}"])));
                         {/if}
+                        {if $input_types[ds] == "file" }
+                            $tmp_upload = new phpapps_upload({$fields[ds]});
+                            $this->{$fields[ds]} = $tmp_upload->getFilePath();
+                            unset($tmp_upload);
+                        {/if}
 		{/section}
         {rdelim}
 		

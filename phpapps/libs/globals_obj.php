@@ -99,7 +99,9 @@ if (!defined('CURRENT_APP_JS_DIR')) {
 	define('CURRENT_APP_JS_DIR', WEB_BASE_DIR . CURRENT_APP . '/js/');
 }
 
-
+//if (!defined('CURRENT_APP_USER_DATA_DIR')) {
+//	define('CURRENT_APP_USER_DATA_DIR', CURRENT_APP_DIR . '/user_data/');
+//}
 
 class Globals_obj{
 	//public $JQUERY_PATH = "js\jquery-ui-1.10.3";
@@ -122,7 +124,8 @@ class Globals_obj{
 
 		$this->set_paths();
 		
-		require_once(PHPAPPS_LIBS_DIR. 'auth.php');
+		require_once(PHPAPPS_LIBS_DIR. 'phpapps_upload.php');
+                require_once(PHPAPPS_LIBS_DIR. 'auth.php');
 		require_once(DB_LIBS_DIR . 'DB_PDO.php');
 		require_once(SMARTY_LIBS_DIR . 'Smarty.class.php');
                 

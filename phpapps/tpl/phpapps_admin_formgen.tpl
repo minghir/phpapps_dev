@@ -153,6 +153,11 @@ Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_
 			   {else}
 			   <option value="label_field">label field</option>
 			   {/if}
+                           {if $input_types[ds] == "file" }
+               <option value="file" selected>file</option>
+			   {else}
+			   <option value="file">file</option>
+			   {/if}
                </select>
            </td>
 		   <td>

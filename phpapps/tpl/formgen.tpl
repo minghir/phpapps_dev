@@ -36,7 +36,7 @@ function check_all_hidden() {
 {/literal}
 </head>
 <body>
-<form name="form_gen" method="POST" id="form_gen" >
+<form name="form_gen" method="POST" id="form_gen" enctype="multipart/form-data">
 
 Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_name" value="{$form_name}" size=80><br>
 <!-- Form dir:<input type="text" name="deploy_location" value="{$deploy_location}"> -->

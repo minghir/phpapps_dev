@@ -15,22 +15,42 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
+				<tr><td align="right">Title :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
 																
 			
 		                
 		                				 
-								<tr><td align="right">BODY  :</td><td> <textarea id="BODY" name="BODY">{$BODY}</textarea></td></tr>
+								<tr><td align="right">Tags  :</td><td> <textarea id="ARTICLE_TAGS" name="ARTICLE_TAGS">{$ARTICLE_TAGS}</textarea></td></tr>
+        										
+			
+		                
+		                				 
+								<tr><td align="right">Content  :</td><td> <textarea id="BODY" name="BODY">{$BODY}</textarea></td></tr>
         										
 			
 		                
 		                				 
 																
 			
-				<tr><td align="right">CATEG_ID  :</td><td>
+				<tr><td align="right">Category  :</td><td>
 			{$CATEG_ID_sel}
 		</td></tr>
                         
+		                				 
+																
+			
+		                
+		                				<tr><td align="right">IMAGE :</td><td> <input type="file" id="IMAGE" name="IMAGE" value="{$IMAGE}"></td></tr>
+				 
+										<input id="USER_ID" type="hidden" name="USER_ID" value="{$USER_ID}">
+        								
+			
+		                
+		                				 
+										<input id="ARTICLE_DATE" type="hidden" name="ARTICLE_DATE" value="{$ARTICLE_DATE}">
+        								
+			
+		                
 		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

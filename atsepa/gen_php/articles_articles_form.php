@@ -16,15 +16,31 @@ class articles_articles_form{
 	            
 	public $NAME;
         	            
+	public $ARTICLE_TAGS;
+        	            
 	public $BODY;
         	            
 	public $CATEG_ID;
+        	            
+	public $IMAGE;
+        	            
+	public $USER_ID;
+        	            
+	public $ARTICLE_DATE;
         		
+		 
 		 
 		 
 			public $CATEG_ID_sel;
 	 
+		 
+		 
+		 
 			
+		 
+		 
+		 
+		 
 		 
 		 
 		 
@@ -39,9 +55,17 @@ class articles_articles_form{
                 
                 			 
 					 
+					 
 								$this->CATEG_ID_sel = new DB_select("CATEG_ID","atsepa.list_article_categories");
                         			 
+					 
+					 
+					 
 				
+					 
+					 
+					 
+					 
 					 
 					 
 					 
@@ -64,8 +88,12 @@ class articles_articles_form{
 	function getRec(){
 		$sql = new DB_query( "SELECT 
 									NAME,
+												ARTICLE_TAGS,
 												BODY,
-												CATEG_ID
+												CATEG_ID,
+												IMAGE,
+												USER_ID,
+												ARTICLE_DATE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -73,8 +101,12 @@ class articles_articles_form{
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                                			                                                                $this->ARTICLE_TAGS = stripslashes($this->globals->con->get_field("ARTICLE_TAGS"));
                                 			                                                                $this->BODY = stripslashes($this->globals->con->get_field("BODY"));
                                 			                                                                $this->CATEG_ID = stripslashes($this->globals->con->get_field("CATEG_ID"));
+                                			                                                                $this->IMAGE = stripslashes($this->globals->con->get_field("IMAGE"));
+                                			                                                                $this->USER_ID = stripslashes($this->globals->con->get_field("USER_ID"));
+                                			                                                                $this->ARTICLE_DATE = stripslashes($this->globals->con->get_field("ARTICLE_DATE"));
                                 						
 	}
 	
@@ -90,20 +122,36 @@ class articles_articles_form{
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 															NAME,
+																						ARTICLE_TAGS,
 																						BODY,
-																						CATEG_ID
+																						CATEG_ID,
+																						IMAGE,
+																						USER_ID,
+																						ARTICLE_DATE
 										 ) VALUES (
 															:NAME,
+																						:ARTICLE_TAGS,
 																						:BODY,
-																						:CATEG_ID
+																						:CATEG_ID,
+																						:IMAGE,
+																						:USER_ID,
+																						:ARTICLE_DATE
 													)",
 			array(
 									                                            
                                             ":NAME" => $this->NAME,
                                         														                                            
+                                            ":ARTICLE_TAGS" => $this->ARTICLE_TAGS,
+                                        														                                            
                                             ":BODY" => $this->BODY,
                                         														                                            
                                             ":CATEG_ID" => $this->CATEG_ID,
+                                        														                                            
+                                            ":IMAGE" => $this->IMAGE,
+                                        														                                            
+                                            ":USER_ID" => $this->USER_ID,
+                                        														                                            
+                                            ":ARTICLE_DATE" => $this->ARTICLE_DATE,
                                         												)
 			);
 
@@ -130,14 +178,22 @@ class articles_articles_form{
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									NAME = :NAME,
+												ARTICLE_TAGS = :ARTICLE_TAGS,
 												BODY = :BODY,
-												CATEG_ID = :CATEG_ID
+												CATEG_ID = :CATEG_ID,
+												IMAGE = :IMAGE,
+												USER_ID = :USER_ID,
+												ARTICLE_DATE = :ARTICLE_DATE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":NAME" => $this->NAME,
+                                        				                                                                                    ":ARTICLE_TAGS" => $this->ARTICLE_TAGS,
                                         				                                                                                    ":BODY" => $this->BODY,
                                         				                                                                                    ":CATEG_ID" => $this->CATEG_ID,
+                                        				                                                                                    ":IMAGE" => $this->IMAGE,
+                                        				                                                                                    ":USER_ID" => $this->USER_ID,
+                                        				                                                                                    ":ARTICLE_DATE" => $this->ARTICLE_DATE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -206,9 +262,16 @@ class articles_articles_form{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
-                        		                                                    $this->BODY  = htmlspecialchars(addslashes(trim($_POST["BODY"])));
-                        		                                                    $this->CATEG_ID  = htmlspecialchars(addslashes(trim($_POST["CATEG_ID"])));
-                        		        }
+                                                		                                                    $this->ARTICLE_TAGS  = htmlspecialchars(addslashes(trim($_POST["ARTICLE_TAGS"])));
+                                                		                                                    $this->BODY  = htmlspecialchars(addslashes(trim($_POST["BODY"])));
+                                                		                                                    $this->CATEG_ID  = htmlspecialchars(addslashes(trim($_POST["CATEG_ID"])));
+                                                		                                                    $this->IMAGE  = htmlspecialchars(addslashes(trim($_POST["IMAGE"])));
+                                                                            $tmp_upload = new phpapps_upload(IMAGE);
+                            $this->IMAGE = $tmp_upload->getFilePath();
+                            unset($tmp_upload);
+                        		                                                    $this->USER_ID  = htmlspecialchars(addslashes(trim($_POST["USER_ID"])));
+                                                		                                                    $this->ARTICLE_DATE  = htmlspecialchars(addslashes(trim($_POST["ARTICLE_DATE"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -226,22 +289,30 @@ class articles_articles_form{
 	}
 	
 	function check_errors(){
-				if($this->NAME == "") {
-			$this->errors[] = "Campul NAME este obligatoriu!";
-		}
 				if($this->CATEG_ID == "") {
 			$this->errors[] = "Campul CATEG_ID este obligatoriu!";
+		}
+				if($this->USER_ID == "") {
+			$this->errors[] = "Campul USER_ID este obligatoriu!";
 		}
 			}
 	
 	function setup_display(){
 					 
 					 
+					 
 								//$this->CATEG_ID_sel = new DB_select("CATEG_ID",".atsepa.list_article_categories");
 			$this->CATEG_ID_sel->selected_val = $this->CATEG_ID;
 			$this->CATEG_ID_sel->setup_select_options();
 			 
+					 
+					 
+					 
 				
+					 
+					 
+					 
+					 
 					 
 					 
 					 
@@ -249,13 +320,25 @@ class articles_articles_form{
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
 							"NAME" => $this->NAME,
+							"ARTICLE_TAGS" => $this->ARTICLE_TAGS,
 							"BODY" => $this->BODY,
 							"CATEG_ID" => $this->CATEG_ID,
+							"IMAGE" => $this->IMAGE,
+							"USER_ID" => $this->USER_ID,
+							"ARTICLE_DATE" => $this->ARTICLE_DATE,
 									 
+						 
 						 
 										"CATEG_ID_sel" => $this->CATEG_ID_sel->get_select_str(),
 			 
+						 
+						 
+						 
 									 
+						 
+						 
+						 
+						 
 						 
 						 
 						"pact" => $this->pact,

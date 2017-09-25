@@ -48,7 +48,9 @@ Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_
 
 <input type="submit" value="save" onClick='submitDetailsForm("save")'> | 
 <input type="submit" value="generate" onClick='submitDetailsForm("generate")'> | 
-<input type="submit" value="preview" onClick='submitDetailsForm("preview")'>
+<input type="submit" value="preview" onClick='submitDetailsForm("preview")'> | 
+<input type="submit" value="reload_fields" onClick='submitDetailsForm("reload_fields")'>
+
 <input type="hidden" name="form_id" value="{$form_id}">
 <input type="hidden" name="module_id" value="{$module_id}">
 <input type="hidden" name="form_table" value="{$form_table}">

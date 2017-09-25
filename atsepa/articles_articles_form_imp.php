@@ -16,6 +16,8 @@ include ("gen_php/articles_articles_form.php");
 		}
 	
 		function beforeAddRec(){
+			$this->USER_ID = $_SESSION["_USER_ID"];
+                        echo "AAAA" . $this->USER_ID;
 		}
 		
 		function afterAddRec(){
@@ -23,6 +25,7 @@ include ("gen_php/articles_articles_form.php");
 		}
 		
 		function beforeSaveRec(){
+			$this->USER_ID = $_SESSION["_USER_ID"];
 		}
 		
 		function afterSaveRec(){

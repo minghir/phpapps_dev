@@ -143,6 +143,10 @@ class phpapps_admin_formgen{
 				case "preview":
 					$this->previewForm();
 				break;
+                                case "reload_fields":
+                                    echo "AICICICICICICIC";
+					$this->reloadTableFields();
+				break;
 			};
 		}else{	
 			//$this->getFields();
@@ -215,6 +219,10 @@ class phpapps_admin_formgen{
 				case "preview":
 					$this->previewForm();
 				break;
+                                case "reload_fields":
+                                    echo "AICICICICICICIC";
+					//$this->saveForm();
+				break;
 				case "select_table":
 					$this->getFields();	
 				break;
@@ -229,8 +237,12 @@ class phpapps_admin_formgen{
 		$sql = new DB_query("DESC ".$this->form_schema_table);
 		$this->globals->con->query($sql);
 		while($res=$this->globals->con->fetch_array()){
+                    if ( in_array( $res["Field"],$this->fields)) {
+                        continue;
+                    }
 			$this->fields[] = $res["Field"];
 			$this->data_types[] = $res["Type"];
+                        $this->labels[] = $res["Field"];
 		}
 		$this->getListsTables();
 	}
@@ -260,7 +272,7 @@ class phpapps_admin_formgen{
 	
 	function getTableListFields( $table_name = "" ){
 		$sql = new DB_query("DESC $table_name");
-                print_r($sql);
+                //print_r($sql);
 		$this->globals->con->query($sql);
 		while($res=$this->globals->con->fetch_array()){
 			$tmp_fields[] = $res["Field"];
@@ -273,7 +285,7 @@ class phpapps_admin_formgen{
 		//$sql = new DB_query("SHOW TABLES LIKE :tables",array(":tables"=>"list%"));
                 $sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM phpapps.view_tables WHERE TABLE_TYPE_LABEL = :list_t ",
 							array(":list_t"=>"list_table"));
-                print_r($sql);
+                //print_r($sql);
 		$this->globals->con->query($sql,"doi");
 	
 		while($ress=$this->globals->con->fetch_row("doi")){
@@ -326,8 +338,13 @@ REFERENCE_FIELD
 */
 	
 	function saveForm(){
+            
+            // echo "<h1>AICIC: </h1>" . $this->form_id ."<br>"; 
+            //        print_r($this->fields_id);
+            
 		if($this->form_id == ""){
-		print_r($_POST);
+                   
+		//print_r($_POST);
 			$sql = new DB_query("INSERT INTO phpapps.forms 
 							(MODULE_ID, 
 							FORM_NAME, 
@@ -409,7 +426,34 @@ REFERENCE_FIELD
 				$this->globals->con->query($sql);
 				
 				foreach($this->fields as $key => $fld){
-					$sql = new DB_query("UPDATE form_details SET
+                                    if($this->fields_id[$key] == ""){
+                                        //echo "fac insert dupa reload fields";
+                                        $sql = new DB_query("INSERT INTO phpapps.form_details 
+					(	FORM_ID,
+						FIELD,
+						FIELD_TYPE,
+						HIDDEN,
+						LABEL,
+						MANDATORY,
+						INPUT_TYPE,
+						REFERENCE_LIST,
+						REFERENCE_TABLE,
+						REFERENCE_FIELD) 
+							VALUES 
+					(	'".$this->form_id."',
+						'".$fld."',
+						'".$this->data_types[$key]."',
+						'".( is_array($this->hiddens) && in_array($fld,$this->hiddens) ? "1" : "0")."',
+						'".$this->labels[$key]."',
+						'".( is_array($this->mandatories) && in_array($fld,$this->mandatories) ? "1" : "0")."',
+						'".$this->input_types[$key]."',
+						'".$this->selected_schema_list[$key]."',
+						'".$this->selected_schema_table[$key]."',
+						'".$this->selected_schema_field[$key]."')");
+                                        
+                                    }else{
+// aici insert pentru reload                                    
+					$sql = new DB_query("UPDATE phpapps.form_details SET
 						FIELD = '".$fld."',
 						FIELD_TYPE = '".$this->data_types[$key]."',
 						HIDDEN = '".( is_array($this->hiddens) && in_array($fld,$this->hiddens) ? "1" : "0")."',
@@ -420,15 +464,18 @@ REFERENCE_FIELD
 						REFERENCE_TABLE = '".$this->selected_schema_table[$key]."',
 						REFERENCE_FIELD = '".$this->selected_schema_field[$key]."'
 						WHERE FORM_ID = '".$this->form_id."' 
-								AND ID = '".$this->fields_id[$key]."'");
-//echo $sql->sql() . "<br>";
+                                    				AND ID = '".$this->fields_id[$key]."'");
+                                    }
+        //echo $sql->sql() . "<br>";
 					if( $this->globals->con->query($sql) != -1){
                                             $this->errors[] = $this->globals->con->get_error();
                                         }
+                                       // echo $sql->query_str . "<br><br>";
 				}
 				
 			}
-	
+            //reincarc forma            
+            //$this->editFormgen($this->form_id);
 	}
 	
 	function generateForm(){
@@ -512,9 +559,9 @@ REFERENCE_FIELD
 		$visible_schema_list = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_list,$tmp_arr)):$this->selected_schema_list;
 		$visible_schema_table = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_table,$tmp_arr)):$this->selected_schema_table;	
 		$visible_schema_field = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_field,$tmp_arr)):$this->selected_schema_field;	
-		print_r($visible_schema_list);
+		//print_r($visible_schema_list);
 		echo "<br>";
-		print_r($visible_fields);
+		//print_r($visible_fields);
 		$this->globals->sm->assign(array(
 				"hiddens" => $this->hiddens,
 
@@ -578,8 +625,12 @@ REFERENCE_FIELD
 	function previewForm(){
 	}
 	
+        function reloadTableFields(){
+            $this->getFields();	
+        }
+        
 	function display(){
-		$this->labels = count($this->labels) < 1 ? $this->fields : $this->labels;
+		//$this->labels = count($this->labels) < 1 ? $this->fields : $this->labels;
 		$this->globals->sm->assign(array(
 				"form_name" => $this->form_name,
 				"deploy_location" => $this->deploy_location_php,

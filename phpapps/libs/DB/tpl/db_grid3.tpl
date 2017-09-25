@@ -66,7 +66,7 @@ function confirmation(url) {
 	   {/if}
 
 
-        {section name=vls loop=$vals}
+        {section name=vls loop=$values}
            {if $smarty.section.vls.index % 2 == 0 }
            <tr bgcolor="#E0E0E0">
            {else}
@@ -75,7 +75,7 @@ function confirmation(url) {
 
            {section name=flds2 loop=$fields}
               <td align="center">
-                {$vals[vls][flds2]}
+                {$values[vls][flds2]}
               </td>
             {/section}
            

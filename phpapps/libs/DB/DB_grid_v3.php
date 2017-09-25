@@ -259,10 +259,21 @@ echo"</h1><br>----------------<br>";
                         }
 			//print_r($fields);
 			$this->fields = $fields;
-                
+                        
 			while($res=$this->con->fetch_row($this->db_grid_name)){
-				
-				$vals[] = $res;
+                        //while($res=$this->con->fetch_array($this->db_grid_name)){
+				//print_r($res);
+			//	$vals_key_fields[] = $res;
+                            $values[] = $res;
+                            
+                            foreach($this->fields as $key=>$fld){
+                                $values_fields_tmp[$fld] = $res[$key];
+                                $values_labels_tmp[$this->labels[$key]] = $res[$key];
+                            }
+                            $values_fields[] = $values_fields_tmp;
+                            $values_labels[] = $values_labels_tmp;
+                                    
+                            
 				if($this->grid_type == "table"){
 					// adaug custom actions
 										
@@ -297,14 +308,12 @@ echo"</h1><br>----------------<br>";
 				}
 			}
 			$grid_href_actions = $tmp_g_act;
-
-			
-			
 			$this->sm->assign(array(
 									  "fields" =>  $fields ,
 									  "labels" => $this->labels,
-									  "vals" => $vals,
-									  
+									  "values" => $values,
+                                                                          "values_fields" => $values_fields,
+                                                                          "values_labels" => $values_labels,
 									  "paginable" => $this->paginable,
 									  "filterable" => $this->filterable,
 									  "exportable" => $this->exportable,

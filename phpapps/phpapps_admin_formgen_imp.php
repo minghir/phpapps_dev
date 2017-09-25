@@ -17,6 +17,7 @@ function phpapps_admin_formgen_imp(){
 			case "preview":
 			case "select_table":
 			case "select_table_list":
+                        case "reload_fields":
 				if($_POST["form_id"] != ""){
 					$fg = new phpapps_admin_formgen(); 
 					$fg->editFormgen($_POST["form_id"]);
@@ -50,6 +51,7 @@ function phpapps_admin_formgen_imp(){
 				exit;
 			break;
 			case "deleteRec":
+                                
 				$sql = new DB_query(
 				"DELETE FROM phpapps.forms WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
 				$this->globals->con->query($sql);	

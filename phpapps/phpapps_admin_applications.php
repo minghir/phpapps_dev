@@ -27,7 +27,7 @@ class phpapps_applications{
 						DESCRIPTION,
 						SCRIPT_NAME,
                                                 CONCAT('".WEB_BASE_DIR."' ,APP_NAME,'/',SCRIPT_NAME) AS SCRIPT_PATH
-					FROM phpapps.view_modules WHERE APP_ID = :app_id",array(':app_id'=>$res["ID"]));
+					FROM phpapps.view_modules WHERE APP_ID = :app_id ORDER BY MODULE_NAME",array(':app_id'=>$res["ID"]));
 					
 				$this->globals->con->query($sql,"modules");	
 				while($res_mod=$this->globals->con->fetch_array("modules")){

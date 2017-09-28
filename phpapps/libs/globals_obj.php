@@ -30,8 +30,16 @@ if (!defined('CURRENT_APP_TPL_DIR')) {
 	define('CURRENT_APP_TPL_DIR', CURRENT_APP_DIR . 'tpl' . DIR_SEP);
 }
 
+if (!defined('CURRENT_APP_LAYOUTS_DIR')) {
+	define('CURRENT_APP_LAYOUTS_DIR', CURRENT_APP_TPL_DIR . 'layouts' . DIR_SEP);
+}
+
 if (!defined('PHPAPPS_TPL_DIR')) {
 	define('PHPAPPS_TPL_DIR', PHPAPPS_APP_DIR . 'tpl' . DIR_SEP);
+}
+
+if (!defined('PHPAPPS_LAYOUTS_DIR')) {
+	define('PHPAPPS_LAYOUTS_DIR', PHPAPPS_TPL_DIR . 'layouts' . DIR_SEP);
 }
 
 if (!defined('PHPAPPS_LIBS_DIR')) {

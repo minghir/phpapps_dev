@@ -1,1 +1,2 @@
-<h1>aaa</h1>
+{extends file=$display_obj->layout}
+{block name=body}My HTML Page Body goes here{/block}

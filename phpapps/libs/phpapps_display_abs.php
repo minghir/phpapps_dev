@@ -15,19 +15,17 @@
 require_once ("globals.php");
 
 abstract class phpapps_display_abs {
-    public $tpl;
+    public $tpl = PHPAPPS_LIBS_TPL_DIR . "phpapps_display_abs.tpl";
+    public $layout = PHPAPPS_LAYOUTS_DIR . "default.lay.tpl";
     
     public function __construct() {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
-        
-        $this->tpl = PHPAPPS_LIBS_TPL_DIR . "phpapps_display_abs.tpl";
-        
+        $this->globals->sm->assign(array("display_obj"=>$this));
         return $this;
     }
     
     function setupDisplay(){
-        
     }
     
     public function displayTpl() {

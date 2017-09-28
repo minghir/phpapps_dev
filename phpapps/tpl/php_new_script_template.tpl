@@ -10,6 +10,9 @@ class {$CLASS_NAME} extends phpapps_display_abs{ldelim}
         parent::__construct();
         $this->tpl = "{$CLASS_NAME}.tpl";        
         $this->app_id = $app_id;
+        
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "{$CLASS_NAME}: Youre code here."));
+        
         $this->displayTpl();
     {rdelim}
 {rdelim}

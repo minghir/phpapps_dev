@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.25-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
 --
 -- Host: localhost    Database: phpapps
 -- ------------------------------------------------------
--- Server version	10.1.25-MariaDB
+-- Server version	5.6.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -101,7 +101,7 @@ CREATE TABLE `form_details` (
   PRIMARY KEY (`ID`),
   KEY `FORM_ID` (`FORM_ID`),
   CONSTRAINT `form_details_ibfk_1` FOREIGN KEY (`FORM_ID`) REFERENCES `forms` (`ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=696 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=756 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `form_details` (
 
 LOCK TABLES `form_details` WRITE;
 /*!40000 ALTER TABLE `form_details` DISABLE KEYS */;
-INSERT INTO `form_details` VALUES (58,47,'ID','bigint(20)',1,'ID',0,'text','','',''),(59,47,'USER_ID','bigint(20)',0,'User',1,'select_table','','phpapps.users','USERNAME'),(60,47,'APP_NAME','varchar(20)',0,'Application name',1,'text','','',''),(61,47,'APP_TITLE','varchar(255)',0,'Application title',0,'text','','',''),(62,47,'APP_SCHEMA','varchar(20)',0,'Application database',0,'select_list','phpapps.list_databases','',''),(63,47,'BASE_DIR','varchar(20)',0,'Application Directory',0,'text','','',''),(64,47,'APP_DATE','date',0,'APP_DATE',0,'date','','',''),(65,47,'DESCRIPTION','varchar(255)',0,'Description',0,'textarea','','',''),(77,54,'ID','bigint(20)',1,'ID',0,'text','','',''),(78,54,'PID','bigint(20)',0,'PID',1,'select_table','','categories','NAME'),(79,54,'NAME','varchar(20)',0,'NAME',0,'text','','',''),(80,54,'TITLE','varchar(255)',0,'TITLE',0,'text','','',''),(81,54,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(129,60,'ID','bigint(20)',1,'ID',0,'text','','',''),(130,60,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(131,60,'SCRIPT_TYPE','bigint(20)',0,'SCRIPT_TYPE',0,'select_list','list_script_types','',''),(132,60,'SCRIPT_NAME','varchar(255)',0,'SCRIPT_NAME',1,'text','','',''),(133,60,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(159,65,'ID','bigint(20)',1,'ID',0,'text','','',''),(160,65,'APP_ID','bigint(20)',0,'APP_ID',1,'hidden','','',''),(161,65,'SCRIPT_ID','bigint(20)',0,'START SCRIPT',1,'select_table','','phpapps.scripts','SCRIPT_NAME'),(162,65,'MODULE_NAME','varchar(20)',0,'MODULE NAME',1,'text','','',''),(163,65,'MODULE_TITLE','varchar(255)',0,'MODULE TITLE',0,'text','','',''),(164,65,'MODULE_DATE','date',0,'MODULE_DATE',0,'hidden','','',''),(165,65,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(166,66,'ID','bigint(20)',1,'ID',0,'text','','',''),(167,66,'ROLE_NAME','varchar(255)',0,'ROLE_NAME',1,'text','','',''),(168,66,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(175,69,'ID','bigint(20)',1,'ID',0,'text','','',''),(176,69,'UID','bigint(20)',0,'UID',1,'hidden','','',''),(177,69,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(188,72,'ID','bigint(20)',1,'ID',0,'text','','',''),(189,72,'PERMISSION_NAME','varchar(255)',0,'PERMISSION_NAME',1,'select_list','list_permission_names','',''),(190,72,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(191,72,'PERMISSION_TYPE','bigint(20)',0,'PERMISSION_TYPE',1,'select_list','list_permission_types','',''),(192,72,'OBJECT_TYPE','bigint(20)',0,'OBJECT_TYPE',1,'select_list','list_object_types','',''),(193,72,'OBJECT_ID','bigint(20)',0,'OBJECT_ID',1,'hidden','','',''),(209,76,'ID','bigint(20)',1,'ID',0,'text','','',''),(210,76,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(211,76,'PERMISSION_ID','bigint(20)',0,'PERMISSION_ID',1,'select_table','','view_permissions','DESCRIPTION'),(246,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(247,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(248,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(249,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(250,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(251,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(252,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','list_user_types','',''),(253,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(254,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'select_table','','user_profiles','PROFILE_NAME'),(255,84,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(256,84,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(257,84,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(258,84,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(259,85,'ID','bigint(20)',1,'ID',0,'text','','',''),(260,85,'SCRIPT_ID','bigint(20)',0,'SCRIPT_ID',0,'select_table','','scripts','SCRIPT_NAME'),(261,85,'PROFILE_NAME','varchar(255)',0,'PROFILE_NAME',1,'text','','',''),(262,85,'THEME','bigint(10)',0,'THEME',0,'text','','',''),(263,85,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(264,85,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(265,85,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(266,85,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(366,95,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(367,95,'MODULE_ID','bigint(20)',0,'MODULE',0,'select_table','','modules','MODULE_NAME'),(368,95,'FORM_NAME','varchar(255)',0,'FORM_NAME',0,'text','','',''),(369,95,'TABLE_ID','bigint(20)',0,'TABLE',0,'select_table','','tables','TABLE_NAME'),(370,95,'FORM_QUERY','varchar(255)',0,'FORM_QUERY',0,'text','','',''),(371,95,'FORM_PHP_DIR','varchar(20)',0,'FORM_PHP_DIR',0,'text','','',''),(372,95,'FORM_TPL_DIR','varchar(20)',0,'FORM_TPL_DIR',0,'text','','',''),(373,95,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(374,95,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(375,95,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(376,95,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(377,95,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(378,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(379,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(380,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(381,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(382,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(383,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(384,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',1,'select_list','list_user_types','',''),(385,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(386,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'text','','',''),(387,84,'MODIFY_UID','bigint(20)',0,'MODIFY_UID',0,'text','','',''),(388,84,'CREATE_UID','bigint(20)',0,'CREATE_UID',0,'text','','',''),(389,84,'MODIFY_DATE','timestamp',0,'MODIFY_DATE',0,'text','','',''),(390,84,'CREATE_DATE','timestamp',0,'CREATE_DATE',0,'text','','',''),(407,100,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(408,100,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(409,100,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(410,101,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(411,101,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',0,'select_list','list_mysql_column_types','',''),(412,101,'DEF_TPL','varchar(255)',0,'DEF_TPL',0,'textarea','','',''),(413,101,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(419,103,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(420,103,'DBMS_TYPE_ID','bigint(20)',0,'DBMS_TYPE_ID',1,'select_list','list_dbms_types','',''),(421,103,'SINTAX_TYPE_ID','bigint(20)',0,'SINTAX_TYPE_ID',1,'select_list','list_sql_sintax_types','',''),(422,103,'DEF_TPL','text',0,'DEF_TPL',0,'textarea','','',''),(423,103,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(435,105,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(436,105,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(437,105,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(438,105,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',0,'hidden','','',''),(439,105,'TABLE_NAME','varchar(255)',0,'LIST_NAME',0,'text','','',''),(440,105,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'hidden','','',''),(441,105,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(442,105,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(443,105,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(444,105,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(445,105,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(457,107,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(458,107,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(459,107,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(460,107,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(461,107,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'text','','',''),(462,107,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'select_list','list_table_types','',''),(463,107,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(464,107,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(465,107,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(466,107,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(467,107,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(546,114,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(547,114,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(548,114,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(549,114,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(550,114,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(551,114,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(552,114,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(553,114,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(554,114,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(555,114,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(556,114,'ORD','smallint(5) unsigned',0,'ORD',0,'text','','',''),(557,114,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(558,114,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(559,114,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(560,114,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(561,115,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(562,115,'TABLE_ID','bigint(20)',0,'TABLE_ID',0,'hidden','','',''),(563,115,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(564,115,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(565,115,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(566,115,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(567,115,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(568,115,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(569,115,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(570,115,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(571,115,'ORD','smallint(5) unsigned',1,'ORD',0,'text','','',''),(572,115,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(573,115,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(574,115,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(575,115,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(588,117,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(589,117,'COLUMN_ID','bigint(20)',0,'COLUMN_ID',1,'select_table','','table_details','COLUMN_NAME'),(590,117,'FK_NAME','varchar(255)',0,'FK_NAME',1,'hidden','','',''),(591,117,'FK_TABLE_ID','bigint(20)',0,'FK_TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(592,117,'FK_COLUMN_ID','bigint(20)',0,'FK_COLUMN_ID',0,'hidden','','',''),(593,117,'ON_UPDATE','bigint(20)',0,'ON_UPDATE',0,'select_list','list_foreign_key_options','',''),(594,117,'ON_DELETE','bigint(20)',0,'ON_DELETE',0,'select_list','list_foreign_key_options','',''),(595,117,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(596,117,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(597,117,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(598,117,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(599,117,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(600,118,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(601,118,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(602,118,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'text','','',''),(603,118,'INDEX_TYPE','bigint(20)',0,'INDEX_TYPE',1,'select_list','list_index_types','',''),(604,118,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table','','table_details','COLUMN_NAME'),(605,118,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(606,118,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(607,118,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(608,118,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(609,118,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(610,119,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(611,119,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'hidden','','',''),(612,119,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'hidden','','',''),(613,119,'INDEX_TYPE_ID','bigint(20)',0,'INDEX_TYPE_ID',1,'select_list','list_index_types','',''),(614,119,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table_multiple','','table_details','COLUMN_NAME'),(615,119,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(616,119,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(617,119,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(618,119,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(619,119,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(620,120,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(621,120,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(622,120,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(623,120,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(624,120,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'select_table','','tables','TABLE_NAME'),(625,120,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'hidden','','',''),(626,120,'DESCRIPTION','varchar(255)',1,'DESCRIPTION',0,'text','','',''),(627,120,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(628,120,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(629,120,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(630,120,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(631,121,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(632,121,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(633,121,'QUERY','text',0,'QUERY',1,'textarea','','',''),(634,121,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(663,125,'ID','bigint(20)',1,'ID',0,'text','','',''),(664,125,'NO','bigint(10)',0,'NO',1,'text','','',''),(665,125,'CATEG_ID','bigint(20)',0,'CATEG_ID',1,'select_table','','php_quiz.categories','NAME'),(666,125,'QUESTION','text',0,'QUESTION',1,'textarea','','',''),(667,125,'ANSWER_1','text',0,'ANSWER_1',0,'textarea','','',''),(668,125,'CORRECT_1','bigint(1)',0,'CORRECT_1',0,'select_list','php_quiz.list_da_nu','',''),(669,125,'IMAGE_1','varchar(255)',1,'IMAGE_1',0,'text','','',''),(670,125,'ANSWER_2','text',0,'ANSWER_2',0,'textarea','','',''),(671,125,'CORRECT_2','bigint(1)',0,'CORRECT_2',0,'select_list','php_quiz.list_da_nu','',''),(672,125,'IMAGE_2','varchar(255)',1,'IMAGE_2',0,'text','','',''),(673,125,'ANSWER_3','text',0,'ANSWER_3',0,'textarea','','',''),(674,125,'CORRECT_3','bigint(1)',0,'CORRECT_3',0,'select_list','php_quiz.list_da_nu','',''),(675,125,'IMAGE_3','varchar(255)',1,'IMAGE_3',0,'text','','',''),(676,125,'ANSWER_4','text',0,'ANSWER_4',0,'textarea','','',''),(677,125,'CORRECT_4','bigint(1)',0,'CORRECT_4',0,'select_list','php_quiz.list_da_nu','',''),(678,125,'IMAGE_4','varchar(255)',1,'IMAGE_4',0,'text','','',''),(682,127,'ID','bigint(20)',1,'ID',0,'text','','',''),(683,127,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(684,127,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(685,128,'ID','bigint(20)',1,'ID',0,'text','','',''),(686,128,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(687,128,'PASSWORD','varchar(255)',0,'PASSWORD',1,'text','','',''),(688,128,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(689,128,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','atsepa.list_user_types','',''),(690,128,'JOIN_DATE','timestamp',1,'JOIN_DATE',0,'text','','',''),(691,129,'ID','bigint(20)',1,'ID',0,'text','','',''),(692,129,'NAME','varchar(255)',0,'NAME',1,'text','','',''),(693,129,'BODY','text',0,'BODY',0,'textarea','','',''),(694,129,'CATEG_ID','bigint(20)',0,'CATEG_ID',1,'select_list','atsepa.list_article_categories','',''),(695,129,'ARTICLE_DATE','timestamp',0,'ARTICLE_DATE',0,'text','','','');
+INSERT INTO `form_details` VALUES (58,47,'ID','bigint(20)',1,'ID',0,'text','','',''),(59,47,'USER_ID','bigint(20)',0,'User',1,'select_table','','phpapps.users','USERNAME'),(60,47,'APP_NAME','varchar(20)',0,'Application name',1,'text','','',''),(61,47,'APP_TITLE','varchar(255)',0,'Application title',0,'text','','',''),(62,47,'APP_SCHEMA','varchar(20)',0,'Application database',0,'select_list','phpapps.list_databases','',''),(63,47,'BASE_DIR','varchar(20)',0,'Application Directory',0,'text','','',''),(64,47,'APP_DATE','date',0,'APP_DATE',0,'date','','',''),(65,47,'DESCRIPTION','varchar(255)',0,'Description',0,'textarea','','',''),(77,54,'ID','bigint(20)',1,'ID',0,'text','','',''),(78,54,'PID','bigint(20)',0,'PID',1,'select_table','','categories','NAME'),(79,54,'NAME','varchar(20)',0,'NAME',0,'text','','',''),(80,54,'TITLE','varchar(255)',0,'TITLE',0,'text','','',''),(81,54,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(129,60,'ID','bigint(20)',1,'ID',0,'text','','',''),(130,60,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(131,60,'SCRIPT_TYPE','bigint(20)',0,'SCRIPT_TYPE',0,'select_list','list_script_types','',''),(132,60,'SCRIPT_NAME','varchar(255)',0,'SCRIPT_NAME',1,'text','','',''),(133,60,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(159,65,'ID','bigint(20)',1,'ID',0,'text','','',''),(160,65,'APP_ID','bigint(20)',0,'APP_ID',1,'hidden','','',''),(161,65,'SCRIPT_ID','bigint(20)',0,'START SCRIPT',1,'select_table','','phpapps.scripts','SCRIPT_NAME'),(162,65,'MODULE_NAME','varchar(20)',0,'MODULE NAME',1,'text','','',''),(163,65,'MODULE_TITLE','varchar(255)',0,'MODULE TITLE',0,'text','','',''),(164,65,'MODULE_DATE','date',0,'MODULE_DATE',0,'hidden','','',''),(165,65,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(166,66,'ID','bigint(20)',1,'ID',0,'text','','',''),(167,66,'ROLE_NAME','varchar(255)',0,'ROLE_NAME',1,'text','','',''),(168,66,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(175,69,'ID','bigint(20)',1,'ID',0,'text','','',''),(176,69,'UID','bigint(20)',0,'UID',1,'hidden','','',''),(177,69,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(188,72,'ID','bigint(20)',1,'ID',0,'text','','',''),(189,72,'PERMISSION_NAME','varchar(255)',0,'PERMISSION_NAME',1,'select_list','list_permission_names','',''),(190,72,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(191,72,'PERMISSION_TYPE','bigint(20)',0,'PERMISSION_TYPE',1,'select_list','list_permission_types','',''),(192,72,'OBJECT_TYPE','bigint(20)',0,'OBJECT_TYPE',1,'select_list','list_object_types','',''),(193,72,'OBJECT_ID','bigint(20)',0,'OBJECT_ID',1,'hidden','','',''),(209,76,'ID','bigint(20)',1,'ID',0,'text','','',''),(210,76,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(211,76,'PERMISSION_ID','bigint(20)',0,'PERMISSION_ID',1,'select_table','','view_permissions','DESCRIPTION'),(246,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(247,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(248,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(249,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(250,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(251,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(252,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','list_user_types','',''),(253,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(254,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'select_table','','user_profiles','PROFILE_NAME'),(255,84,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(256,84,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(257,84,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(258,84,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(259,85,'ID','bigint(20)',1,'ID',0,'text','','',''),(260,85,'SCRIPT_ID','bigint(20)',0,'SCRIPT_ID',0,'select_table','','scripts','SCRIPT_NAME'),(261,85,'PROFILE_NAME','varchar(255)',0,'PROFILE_NAME',1,'text','','',''),(262,85,'THEME','bigint(10)',0,'THEME',0,'text','','',''),(263,85,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(264,85,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(265,85,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(266,85,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(366,95,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(367,95,'MODULE_ID','bigint(20)',0,'MODULE',0,'select_table','','modules','MODULE_NAME'),(368,95,'FORM_NAME','varchar(255)',0,'FORM_NAME',0,'text','','',''),(369,95,'TABLE_ID','bigint(20)',0,'TABLE',0,'select_table','','tables','TABLE_NAME'),(370,95,'FORM_QUERY','varchar(255)',0,'FORM_QUERY',0,'text','','',''),(371,95,'FORM_PHP_DIR','varchar(20)',0,'FORM_PHP_DIR',0,'text','','',''),(372,95,'FORM_TPL_DIR','varchar(20)',0,'FORM_TPL_DIR',0,'text','','',''),(373,95,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(374,95,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(375,95,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(376,95,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(377,95,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(378,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(379,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(380,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(381,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(382,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(383,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(384,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',1,'select_list','list_user_types','',''),(385,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(386,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'text','','',''),(387,84,'MODIFY_UID','bigint(20)',0,'MODIFY_UID',0,'text','','',''),(388,84,'CREATE_UID','bigint(20)',0,'CREATE_UID',0,'text','','',''),(389,84,'MODIFY_DATE','timestamp',0,'MODIFY_DATE',0,'text','','',''),(390,84,'CREATE_DATE','timestamp',0,'CREATE_DATE',0,'text','','',''),(407,100,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(408,100,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(409,100,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(410,101,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(411,101,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',0,'select_list','list_mysql_column_types','',''),(412,101,'DEF_TPL','varchar(255)',0,'DEF_TPL',0,'textarea','','',''),(413,101,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(419,103,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(420,103,'DBMS_TYPE_ID','bigint(20)',0,'DBMS_TYPE_ID',1,'select_list','list_dbms_types','',''),(421,103,'SINTAX_TYPE_ID','bigint(20)',0,'SINTAX_TYPE_ID',1,'select_list','list_sql_sintax_types','',''),(422,103,'DEF_TPL','text',0,'DEF_TPL',0,'textarea','','',''),(423,103,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(435,105,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(436,105,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(437,105,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(438,105,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',0,'hidden','','',''),(439,105,'TABLE_NAME','varchar(255)',0,'LIST_NAME',0,'text','','',''),(440,105,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'hidden','','',''),(441,105,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(442,105,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(443,105,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(444,105,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(445,105,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(457,107,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(458,107,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(459,107,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(460,107,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(461,107,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'text','','',''),(462,107,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'select_list','list_table_types','',''),(463,107,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(464,107,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(465,107,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(466,107,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(467,107,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(546,114,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(547,114,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(548,114,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(549,114,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(550,114,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(551,114,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(552,114,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(553,114,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(554,114,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(555,114,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(556,114,'ORD','smallint(5) unsigned',0,'ORD',0,'text','','',''),(557,114,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(558,114,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(559,114,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(560,114,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(561,115,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(562,115,'TABLE_ID','bigint(20)',0,'TABLE_ID',0,'hidden','','',''),(563,115,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(564,115,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(565,115,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(566,115,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(567,115,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(568,115,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(569,115,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(570,115,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(571,115,'ORD','smallint(5) unsigned',1,'ORD',0,'text','','',''),(572,115,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(573,115,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(574,115,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(575,115,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(588,117,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(589,117,'COLUMN_ID','bigint(20)',0,'COLUMN_ID',1,'select_table','','table_details','COLUMN_NAME'),(590,117,'FK_NAME','varchar(255)',0,'FK_NAME',1,'hidden','','',''),(591,117,'FK_TABLE_ID','bigint(20)',0,'FK_TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(592,117,'FK_COLUMN_ID','bigint(20)',0,'FK_COLUMN_ID',0,'hidden','','',''),(593,117,'ON_UPDATE','bigint(20)',0,'ON_UPDATE',0,'select_list','list_foreign_key_options','',''),(594,117,'ON_DELETE','bigint(20)',0,'ON_DELETE',0,'select_list','list_foreign_key_options','',''),(595,117,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(596,117,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(597,117,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(598,117,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(599,117,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(600,118,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(601,118,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(602,118,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'text','','',''),(603,118,'INDEX_TYPE','bigint(20)',0,'INDEX_TYPE',1,'select_list','list_index_types','',''),(604,118,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table','','table_details','COLUMN_NAME'),(605,118,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(606,118,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(607,118,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(608,118,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(609,118,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(610,119,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(611,119,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'hidden','','',''),(612,119,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'hidden','','',''),(613,119,'INDEX_TYPE_ID','bigint(20)',0,'INDEX_TYPE_ID',1,'select_list','list_index_types','',''),(614,119,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table_multiple','','table_details','COLUMN_NAME'),(615,119,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(616,119,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(617,119,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(618,119,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(619,119,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(620,120,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(621,120,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(622,120,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(623,120,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(624,120,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'select_table','','tables','TABLE_NAME'),(625,120,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'hidden','','',''),(626,120,'DESCRIPTION','varchar(255)',1,'DESCRIPTION',0,'text','','',''),(627,120,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(628,120,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(629,120,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(630,120,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(663,125,'ID','bigint(20)',1,'ID',0,'text','','',''),(664,125,'NO','bigint(10)',0,'NO',1,'text','','',''),(665,125,'CATEG_ID','bigint(20)',0,'CATEG_ID',1,'select_table','','php_quiz.categories','NAME'),(666,125,'QUESTION','text',0,'QUESTION',1,'textarea','','',''),(667,125,'ANSWER_1','text',0,'ANSWER_1',0,'textarea','','',''),(668,125,'CORRECT_1','bigint(1)',0,'CORRECT_1',0,'select_list','php_quiz.list_da_nu','',''),(669,125,'IMAGE_1','varchar(255)',1,'IMAGE_1',0,'text','','',''),(670,125,'ANSWER_2','text',0,'ANSWER_2',0,'textarea','','',''),(671,125,'CORRECT_2','bigint(1)',0,'CORRECT_2',0,'select_list','php_quiz.list_da_nu','',''),(672,125,'IMAGE_2','varchar(255)',1,'IMAGE_2',0,'text','','',''),(673,125,'ANSWER_3','text',0,'ANSWER_3',0,'textarea','','',''),(674,125,'CORRECT_3','bigint(1)',0,'CORRECT_3',0,'select_list','php_quiz.list_da_nu','',''),(675,125,'IMAGE_3','varchar(255)',1,'IMAGE_3',0,'text','','',''),(676,125,'ANSWER_4','text',0,'ANSWER_4',0,'textarea','','',''),(677,125,'CORRECT_4','bigint(1)',0,'CORRECT_4',0,'select_list','php_quiz.list_da_nu','',''),(678,125,'IMAGE_4','varchar(255)',1,'IMAGE_4',0,'text','','',''),(682,127,'ID','bigint(20)',1,'ID',0,'text','','',''),(683,127,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(684,127,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(706,132,'ID','bigint(20)',1,'ID',0,'text','','',''),(707,132,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(708,132,'QUERY_NAME','text',0,'QUERY_NAME',0,'text','','',''),(709,132,'QUERY_BODY','text',0,'QUERY_BODY',0,'textarea','','',''),(710,132,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(713,134,'ID','bigint(20)',1,'ID',0,'text','','',''),(714,134,'FILE_PATH','varchar(255)',0,'FILE_PATH',0,'file','','',''),(715,134,'NUME','varchar(255)',0,'NUME',0,'text','','',''),(716,135,'ID','bigint(20)',1,'ID',0,'text','','',''),(717,135,'USERNAME','varchar(255)',0,'USERNAME',0,'text','','',''),(718,135,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(719,135,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(720,135,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','atsepa.list_user_types','',''),(721,135,'JOIN_DATE','timestamp',0,'JOIN_DATE',0,'date','','',''),(742,139,'ID','bigint(20)',0,'ID',0,'text','','',''),(743,139,'USERNAME','varchar(255)',0,'USERNAME',0,'text','','',''),(744,139,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(745,139,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(746,139,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'text','','',''),(747,139,'JOIN_DATE','timestamp',0,'JOIN_DATE',0,'text','','',''),(748,140,'ID','bigint(20)',1,'ID',0,'text','','',''),(749,140,'NAME','varchar(255)',0,'Title',0,'text','','',''),(750,140,'ARTICLE_TAGS','text',0,'Tags',0,'textarea','','',''),(751,140,'BODY','text',0,'Content',0,'textarea','','',''),(752,140,'CATEG_ID','bigint(20)',0,'Category',1,'select_list','atsepa.list_article_categories','',''),(753,140,'IMAGE','varchar(255)',0,'IMAGE',0,'file','','',''),(754,140,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(755,140,'ARTICLE_DATE','timestamp',0,'ARTICLE_DATE',0,'hidden','','','');
 /*!40000 ALTER TABLE `form_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +143,7 @@ CREATE TABLE `forms` (
   CONSTRAINT `forms_ibfk_2` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`),
   CONSTRAINT `forms_ibfk_3` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `forms_ibfk_4` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `forms` (
 
 LOCK TABLES `forms` WRITE;
 /*!40000 ALTER TABLE `forms` DISABLE KEYS */;
-INSERT INTO `forms` VALUES (47,1,'phpapps_admin_applications_form',2,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(54,10,'eshop_admin_categories_form',80,'','..\\eshop_template','..\\eshop_template','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(60,1,'phpapps_admin_scripts_form',83,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(65,1,'phpapps_admin_modules_form',3,'','.\\phpapps','.\\phpapps','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(66,7,'phpapps_users_roles_form',88,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(69,7,'phpapps_users_user_roles_form',90,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(72,7,'phpapps_users_permissions_form',89,'','.','.','',1,1,'2016-09-21 11:49:58','0000-00-00 00:00:00'),(76,7,'phpapps_users_role_permissions_form',91,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(84,7,'phpapps_users_users_form',87,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 09:47:14','2015-08-19 09:47:14'),(85,7,'phpapps_users_user_profiles_form',99,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 11:48:51','2015-08-19 11:48:51'),(95,1,'phpapps_admin_forms_form',5,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 11:37:03','2016-09-21 11:37:03'),(100,14,'phpapps_database_list_form',210,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 14:57:13','2016-09-21 14:57:13'),(101,14,'phpapps_database_mysql_column_defs_form',222,'','/var/www/html/phpapp','/var/www/html/phpapp','',1,1,'2016-09-24 05:10:00','2016-09-24 05:10:00'),(103,14,'phpapps_database_sql_sintax_form',224,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-26 06:31:40','2016-09-26 06:31:40'),(105,14,'phpapps_database_lists_form',197,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-27 09:52:59','2016-09-27 09:52:59'),(107,14,'phpapps_database_tables_form',197,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-28 08:58:39','2016-09-28 08:58:39'),(114,14,'phpapps_database_table_details_form',198,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-30 08:29:05','2016-09-30 08:29:05'),(115,14,'phpapps_database_table_details_DDL_form',198,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-30 08:33:22','2016-09-30 08:33:22'),(117,14,'phpapps_database_table_fks_DDL_form',276,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-06 06:26:04','2016-10-03 07:46:58'),(118,14,'phpapps_database_table_indexes_form',279,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-03 10:53:46','2016-10-03 10:53:46'),(119,14,'phpapps_database_table_indexes_DDL_form',279,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-03 12:02:10','2016-10-03 12:02:10'),(120,14,'phpapps_database_add_table_form',197,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-11 09:04:57','2016-10-11 09:04:57'),(121,14,'phpapps_database_queries_form',281,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-11 09:28:54','2016-10-11 09:28:54'),(125,15,'php_quiz_questions_questions_form',284,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-02-27 08:06:39','2017-02-27 08:06:39'),(127,14,'phpapps_database_list_databases_form',199,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-04-27 05:10:50','2017-04-27 05:10:50'),(128,20,'admin_users_form',296,'','/var/www/html/phpapp','/var/www/html/phpapp','',1,1,'2017-07-09 12:26:31','2017-07-09 12:26:31'),(129,19,'articles_articles_form',292,'','/var/www/html/phpapp','/var/www/html/phpapp','',1,1,'2017-08-06 07:45:24','2017-08-06 07:45:24');
+INSERT INTO `forms` VALUES (47,1,'phpapps_admin_applications_form',2,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(54,10,'eshop_admin_categories_form',80,'','..\\eshop_template','..\\eshop_template','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(60,1,'phpapps_admin_scripts_form',83,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(65,1,'phpapps_admin_modules_form',3,'','.\\phpapps','.\\phpapps','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(66,7,'phpapps_users_roles_form',88,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(69,7,'phpapps_users_user_roles_form',90,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(72,7,'phpapps_users_permissions_form',89,'','.','.','',1,1,'2016-09-21 11:49:58','0000-00-00 00:00:00'),(76,7,'phpapps_users_role_permissions_form',91,'','.','.','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(84,7,'phpapps_users_users_form',87,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 09:47:14','2015-08-19 09:47:14'),(85,7,'phpapps_users_user_profiles_form',99,'','D:\\linuxport\\Apache2','D:\\linuxport\\Apache2','',1,1,'2015-08-19 11:48:51','2015-08-19 11:48:51'),(95,1,'phpapps_admin_forms_form',5,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 11:37:03','2016-09-21 11:37:03'),(100,14,'phpapps_database_list_form',210,'','D:\\\\linuxport\\\\work\\','D:\\\\linuxport\\\\work\\','',1,1,'2016-09-21 14:57:13','2016-09-21 14:57:13'),(101,14,'phpapps_database_mysql_column_defs_form',222,'','/var/www/html/phpapp','/var/www/html/phpapp','',1,1,'2016-09-24 05:10:00','2016-09-24 05:10:00'),(103,14,'phpapps_database_sql_sintax_form',224,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-26 06:31:40','2016-09-26 06:31:40'),(105,14,'phpapps_database_lists_form',197,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-27 09:52:59','2016-09-27 09:52:59'),(107,14,'phpapps_database_tables_form',197,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-28 08:58:39','2016-09-28 08:58:39'),(114,14,'phpapps_database_table_details_form',198,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-30 08:29:05','2016-09-30 08:29:05'),(115,14,'phpapps_database_table_details_DDL_form',198,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-09-30 08:33:22','2016-09-30 08:33:22'),(117,14,'phpapps_database_table_fks_DDL_form',276,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-06 06:26:04','2016-10-03 07:46:58'),(118,14,'phpapps_database_table_indexes_form',279,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-03 10:53:46','2016-10-03 10:53:46'),(119,14,'phpapps_database_table_indexes_DDL_form',279,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-03 12:02:10','2016-10-03 12:02:10'),(120,14,'phpapps_database_add_table_form',197,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2016-10-11 09:04:57','2016-10-11 09:04:57'),(125,15,'php_quiz_questions_questions_form',284,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-02-27 08:06:39','2017-02-27 08:06:39'),(127,14,'phpapps_database_list_databases_form',199,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-04-27 05:10:50','2017-04-27 05:10:50'),(132,14,'phpapps_database_queries_form',281,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-09-20 08:30:22','2017-09-20 08:30:22'),(134,18,'imp_exp_test_import_form',298,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-09-22 06:16:12','2017-09-22 06:16:12'),(135,20,'admin_app_users_form',299,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-09-25 07:11:35','2017-09-25 07:11:35'),(139,19,'articles_app_users_form',294,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-09-25 09:57:04','2017-09-25 09:57:04'),(140,19,'articles_articles_form',292,'','D:/linuxport/work/ww','D:/linuxport/work/ww','',1,1,'2017-09-25 12:46:40','2017-09-25 12:46:40');
 /*!40000 ALTER TABLE `forms` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,6 +181,30 @@ LOCK TABLES `gigi` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `layouts`
+--
+
+DROP TABLE IF EXISTS `layouts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `layouts` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `layouts`
+--
+
+LOCK TABLES `layouts` WRITE;
+/*!40000 ALTER TABLE `layouts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `layouts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `list_databases`
 --
 
@@ -201,7 +225,7 @@ CREATE TABLE `list_databases` (
 
 LOCK TABLES `list_databases` WRITE;
 /*!40000 ALTER TABLE `list_databases` DISABLE KEYS */;
-INSERT INTO `list_databases` VALUES (1,'mysql','mysql'),(2,'test','test'),(3,'phpapps','phpapps'),(7,'eshop',''),(10,'information_schema',''),(11,'performance_schema',''),(12,'php_quiz',''),(13,'lilica',''),(14,'lilica',''),(15,'test',''),(16,'plan_perf',''),(17,'atsepa','');
+INSERT INTO `list_databases` VALUES (1,'mysql','mysql'),(2,'test','test'),(3,'phpapps','phpapps'),(7,'eshop',''),(10,'information_schema',''),(11,'performance_schema',''),(12,'php_quiz',''),(15,'test',''),(16,'plan_perf',''),(17,'atsepa','');
 /*!40000 ALTER TABLE `list_databases` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -597,7 +621,7 @@ CREATE TABLE `modules` (
   CONSTRAINT `modules_ibfk_2` FOREIGN KEY (`SCRIPT_ID`) REFERENCES `scripts` (`ID`),
   CONSTRAINT `modules_ibfk_3` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `modules_ibfk_4` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -606,7 +630,7 @@ CREATE TABLE `modules` (
 
 LOCK TABLES `modules` WRITE;
 /*!40000 ALTER TABLE `modules` DISABLE KEYS */;
-INSERT INTO `modules` VALUES (1,1,2,'phpapps_admin','PHPApps Admin Module','0000-00-00','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(7,1,3,'phpapps_users','PHPApps Admin Users','0000-00-00','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(8,1,2,'phpapps_lang','PHPApps Admin Languages','0000-00-00','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(10,7,2,'eshop_admin','E-Shop Admin Module','0000-00-00','',1,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),(14,1,28,'phpapps_database','PHPApps Admin Database','2016-09-21','',1,1,'2016-09-21 13:58:04','2016-09-21 07:01:06'),(15,8,2,'questions','Questions','2017-02-21','',1,1,'2017-02-21 12:12:54','2017-02-21 12:12:54'),(17,10,7,'forum','Forum','2017-07-09','',1,1,'2017-07-09 08:33:48','2017-07-09 08:33:48'),(18,1,2,'imp_exp','Import / Export Tools','2017-07-09','',1,1,'2017-07-09 09:27:25','2017-07-09 09:27:25'),(19,10,2,'articles','Articles','2017-07-09','',1,1,'2017-07-09 11:26:52','2017-07-09 11:26:27'),(20,10,2,'admin','Admin Module','2017-07-09','',1,1,'2017-07-09 12:24:29','2017-07-09 12:24:29');
+INSERT INTO `modules` VALUES (1,1,2,'phpapps_admin','Admin','0000-00-00','',1,1,'2017-09-28 06:24:00','0000-00-00 00:00:00'),(7,1,3,'phpapps_users','Users','0000-00-00','',1,1,'2017-09-28 06:23:46','0000-00-00 00:00:00'),(8,1,2,'phpapps_lang','Languages','0000-00-00','',1,1,'2017-09-28 06:24:14','0000-00-00 00:00:00'),(10,7,2,'eshop_admin','Admin','0000-00-00','',1,1,'2017-09-28 07:08:27','0000-00-00 00:00:00'),(14,1,28,'phpapps_database','Database','2016-09-21','',1,1,'2017-09-28 06:24:26','2016-09-21 07:01:06'),(15,8,2,'questions','Questions','2017-02-21','',1,1,'2017-02-21 12:12:54','2017-02-21 12:12:54'),(17,10,7,'forum','Forum','2017-07-09','',1,1,'2017-07-09 08:33:48','2017-07-09 08:33:48'),(18,1,2,'imp_exp','Import Export','2017-07-09','',1,1,'2017-09-28 07:07:37','2017-07-09 09:27:25'),(19,10,2,'articles','Articles','2017-07-09','',1,1,'2017-07-09 11:26:52','2017-07-09 11:26:27'),(20,10,2,'admin','Admin','2017-07-09','',1,1,'2017-09-28 07:07:56','2017-07-09 12:24:29'),(21,1,2,'phpapps_designer','Designer','2017-09-28','',1,1,'2017-09-28 06:25:31','2017-09-28 06:25:31');
 /*!40000 ALTER TABLE `modules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -686,14 +710,14 @@ DROP TABLE IF EXISTS `queries`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `queries` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `MODULE_ID` bigint(20) DEFAULT NULL,
+  `MODULE_ID` bigint(20) NOT NULL DEFAULT '0',
   `QUERY_NAME` text,
   `QUERY_BODY` text,
   `DESCRIPTION` text,
   PRIMARY KEY (`ID`),
   KEY `phpapps_queries_MODULE_ID_FK` (`MODULE_ID`),
   CONSTRAINT `phpapps_queries_MODULE_ID_FK` FOREIGN KEY (`MODULE_ID`) REFERENCES `modules` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -702,6 +726,7 @@ CREATE TABLE `queries` (
 
 LOCK TABLES `queries` WRITE;
 /*!40000 ALTER TABLE `queries` DISABLE KEYS */;
+INSERT INTO `queries` VALUES (5,14,'show_tables','show tables',''),(6,14,'queries','select * from queries',''),(7,14,'show_databases','SHOW DATABASES',''),(8,14,'sql_console_saves','select * from sql_console_saves','');
 /*!40000 ALTER TABLE `queries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -802,7 +827,7 @@ CREATE TABLE `scripts` (
   CONSTRAINT `scripts_ibfk_2` FOREIGN KEY (`SCRIPT_TYPE`) REFERENCES `list_script_types` (`ID`),
   CONSTRAINT `scripts_ibfk_3` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `scripts_ibfk_4` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -811,7 +836,7 @@ CREATE TABLE `scripts` (
 
 LOCK TABLES `scripts` WRITE;
 /*!40000 ALTER TABLE `scripts` DISABLE KEYS */;
-INSERT INTO `scripts` VALUES (2,1,1,'phpapps_admin_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(3,7,1,'phpapps_users_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(4,7,1,'phpapps_users_generate_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(5,7,1,'phpapps_users_manage_user_roles','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(6,14,1,'sql_console','',1,1,'2016-09-30 10:21:39','2015-08-19 09:31:32'),(7,1,2,'index','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(8,7,1,'phpapps_users_manage_roles_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(10,1,2,'login','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(11,7,1,'user_home','',1,1,'2015-08-19 11:49:50','2015-08-19 11:49:50'),(12,1,1,'phpapps_admin_applications','',1,1,'2015-08-19 12:32:57','2015-08-19 12:32:57'),(19,1,1,'phpinfo','',1,1,'2016-08-30 12:51:15','2016-08-30 12:51:15'),(28,14,1,'phpapps_database_module','',1,1,'2016-09-21 13:57:52','2016-09-21 13:57:52'),(29,14,1,'phpapps_database_browse_list','',1,1,'2016-09-21 14:45:45','2016-09-21 14:45:45'),(30,14,1,'test_column_def','',1,1,'2016-09-24 05:46:29','2016-09-24 05:46:29'),(32,14,1,'phpapps_database_browse_tables','',1,1,'2016-09-30 08:37:55','2016-09-30 08:37:55'),(33,15,1,'questions','',1,1,'2017-04-20 13:14:05','2017-02-24 10:13:40'),(34,15,2,'quiz_test','',1,1,'2017-03-01 06:24:26','2017-03-01 06:24:26'),(36,18,1,'import_excel','',1,1,'2017-07-09 09:27:58','2017-07-09 09:27:58');
+INSERT INTO `scripts` VALUES (2,1,1,'phpapps_admin_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(3,7,1,'phpapps_users_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(4,7,1,'phpapps_users_generate_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(5,7,1,'phpapps_users_manage_user_roles','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(6,14,1,'sql_console','',1,1,'2016-09-30 10:21:39','2015-08-19 09:31:32'),(7,1,2,'index','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(8,7,1,'phpapps_users_manage_roles_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(10,1,2,'login','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(11,7,1,'user_home','',1,1,'2015-08-19 11:49:50','2015-08-19 11:49:50'),(12,1,1,'phpapps_admin_applications','',1,1,'2015-08-19 12:32:57','2015-08-19 12:32:57'),(19,1,1,'phpinfo','',1,1,'2016-08-30 12:51:15','2016-08-30 12:51:15'),(28,14,1,'phpapps_database_module','',1,1,'2016-09-21 13:57:52','2016-09-21 13:57:52'),(29,14,1,'phpapps_database_browse_list','',1,1,'2016-09-21 14:45:45','2016-09-21 14:45:45'),(30,14,1,'test_column_def','',1,1,'2016-09-24 05:46:29','2016-09-24 05:46:29'),(32,14,1,'phpapps_database_browse_tables','',1,1,'2016-09-30 08:37:55','2016-09-30 08:37:55'),(33,15,1,'questions','',1,1,'2017-04-20 13:14:05','2017-02-24 10:13:40'),(34,15,2,'quiz_test','',1,1,'2017-03-01 06:24:26','2017-03-01 06:24:26'),(36,18,1,'import_excel','',1,1,'2017-07-09 09:27:58','2017-07-09 09:27:58'),(37,19,2,'articles','display articles grid',1,1,'2017-09-25 07:37:58','2017-09-25 07:34:38'),(42,21,2,'test_layout','',1,1,'2017-09-28 08:37:20','2017-09-28 08:37:20'),(43,21,1,'layout_designer','',1,1,'2017-09-28 09:44:50','2017-09-28 09:44:50');
 /*!40000 ALTER TABLE `scripts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -837,7 +862,7 @@ CREATE TABLE `sql_console_history` (
   CONSTRAINT `phpapps_sql_console_history_RUN_SCHEMA_FK` FOREIGN KEY (`RUN_SCHEMA`) REFERENCES `list_databases` (`ID`),
   CONSTRAINT `sql_console_history_users_CREATE_UID_FK` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `sql_console_history_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -846,7 +871,7 @@ CREATE TABLE `sql_console_history` (
 
 LOCK TABLES `sql_console_history` WRITE;
 /*!40000 ALTER TABLE `sql_console_history` DISABLE KEYS */;
-INSERT INTO `sql_console_history` VALUES (1,'show tables',3,1,1,'2016-10-07 09:21:16','2016-10-07 09:21:16'),(2,'select * from  applications',3,1,1,'2016-10-07 09:21:33','2016-10-07 09:21:33'),(3,'select * from  sql_console_history',3,1,1,'2016-10-07 09:21:47','2016-10-07 09:21:47'),(4,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:11','2016-10-07 09:49:11'),(5,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:31','2016-10-07 09:49:31'),(6,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:52','2016-10-07 09:49:52'),(7,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:07','2016-10-07 09:50:07'),(8,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:23','2016-10-07 09:50:23'),(9,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:47','2016-10-07 09:50:47'),(10,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:53','2016-10-07 09:50:53'),(11,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:01','2016-10-07 09:51:01'),(12,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:11','2016-10-07 09:51:11'),(13,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:36','2016-10-07 09:51:36'),(14,'select * from  sql_console_history',3,1,1,'2016-10-07 09:53:53','2016-10-07 09:53:53'),(15,'select * from  sql_console_history',3,1,1,'2016-10-07 10:08:47','2016-10-07 10:08:47'),(16,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:33','2016-10-07 10:24:33'),(17,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:53','2016-10-07 10:24:53'),(18,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(19,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(20,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:23','2016-10-07 10:25:23'),(21,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:47','2016-10-07 10:25:47'),(22,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:52','2016-10-07 10:25:52'),(23,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:26:58','2016-10-07 10:26:58'),(24,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:27:17','2016-10-07 10:27:17'),(25,'show tables',7,1,1,'2016-10-07 10:45:18','2016-10-07 10:45:18'),(26,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',NULL,1,1,'2016-10-07 10:50:57','2016-10-07 10:50:57'),(46,'select * from sql_console_history',3,1,1,'2016-10-10 13:42:55','2016-10-10 13:42:55'),(47,'show tables',7,1,1,'2016-10-10 13:43:13','2016-10-10 13:43:13'),(48,'show tables',3,1,1,'2016-10-10 13:43:56','2016-10-10 13:43:56'),(49,'select * from  sql_console_history',3,1,1,'2016-10-10 13:44:06','2016-10-10 13:44:06'),(50,'select * from  sql_console_saves',3,1,1,'2016-10-10 13:44:20','2016-10-10 13:44:20'),(51,'show tables',1,1,1,'2016-10-10 13:50:37','2016-10-10 13:50:37'),(52,'desc tables',3,1,1,'2016-10-11 08:57:59','2016-10-11 08:57:59'),(53,'select * from tables',3,1,1,'2016-10-11 09:14:39','2016-10-11 09:14:39'),(54,'show tables',3,1,1,'2016-11-07 09:25:48','2016-11-07 09:25:48'),(55,'select * from queries',3,1,1,'2016-11-07 09:26:06','2016-11-07 09:26:06'),(56,'select * from  views',3,1,1,'2016-11-07 09:33:11','2016-11-07 09:33:11'),(57,'select * from  queries',3,1,1,'2016-11-07 09:34:09','2016-11-07 09:34:09'),(58,'select * from  queries',3,1,1,'2016-11-07 09:34:30','2016-11-07 09:34:30'),(59,'SELECT TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:01:47','2017-02-21 10:01:47'),(60,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT SCHEMA_NAME, VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:22','2017-02-21 10:02:22'),(61,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:32','2017-02-21 10:02:32'),(62,'SELECT  TABLE_NAME,* FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:39','2017-02-21 10:02:39'),(63,'SELECT  *,TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:47','2017-02-21 10:02:47'),(64,'SELECT  *,TABLE_NAME FROM phpapps.view_tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:03:10','2017-02-21 10:03:10'),(65,'show tables',3,1,1,'2017-02-21 10:04:36','2017-02-21 10:04:36'),(66,'select * from views',3,1,1,'2017-02-21 10:04:50','2017-02-21 10:04:50'),(67,'select * from view_tables',3,1,1,'2017-02-21 10:10:22','2017-02-21 10:10:22'),(68,'SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME',3,1,1,'2017-02-21 10:46:42','2017-02-21 10:46:42'),(69,'show tables',3,1,1,'2017-02-21 11:01:10','2017-02-21 11:01:10'),(70,'select * from view_tables',3,1,1,'2017-02-21 11:01:27','2017-02-21 11:01:27'),(71,'SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:28','2017-02-21 12:16:28'),(72,'SELECT * FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:58','2017-02-21 12:16:58'),(73,'SELECT * FROM phpapps.view_table_details',3,1,1,'2017-02-22 07:02:02','2017-02-22 07:02:02'),(74,'SELECT * FROM phpapps.view_tables',3,1,1,'2017-02-22 07:02:15','2017-02-22 07:02:15'),(75,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-22 07:09:02','2017-02-22 07:09:02'),(76,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-24 11:15:09','2017-02-24 11:15:09'),(77,'show tables',12,1,1,'2017-02-24 11:15:20','2017-02-24 11:15:20'),(78,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions',12,1,1,'2017-02-24 11:34:27','2017-02-24 11:34:27'),(79,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions q',12,1,1,'2017-02-24 11:34:36','2017-02-24 11:34:36'),(80,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:19','2017-02-24 11:54:19'),(81,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:22','2017-02-24 11:54:22'),(82,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:23','2017-02-24 11:54:23'),(83,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:24','2017-02-24 11:54:24'),(84,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:25','2017-02-24 11:54:25'),(85,'show tables',12,1,1,'2017-02-28 14:23:51','2017-02-28 14:23:51'),(86,'select * from questions limit 2 order by rand()',12,1,1,'2017-02-28 14:24:45','2017-02-28 14:24:45'),(87,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:08','2017-02-28 14:25:08'),(88,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:12','2017-02-28 14:25:12'),(89,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:14','2017-02-28 14:25:14'),(90,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:16','2017-02-28 14:25:16'),(91,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:18','2017-02-28 14:25:18'),(92,'show tables;',1,1,1,'2017-04-14 06:25:31','2017-04-14 06:25:31'),(93,'show tables',3,1,1,'2017-04-14 06:25:46','2017-04-14 06:25:46'),(94,'select * from view_scripts',3,1,1,'2017-04-14 06:26:03','2017-04-14 06:26:03'),(95,'select * from scripts',3,1,1,'2017-04-14 06:26:45','2017-04-14 06:26:45'),(96,'show tables',3,1,1,'2017-04-14 06:27:03','2017-04-14 06:27:03'),(97,'show tables',3,1,1,'2017-04-14 06:29:51','2017-04-14 06:29:51'),(98,'select * from view_scripts',3,1,1,'2017-04-20 09:12:36','2017-04-20 09:12:36'),(99,'select * from scripts',3,1,1,'2017-04-20 12:43:48','2017-04-20 12:43:48'),(100,'select * from view_scripts',3,1,1,'2017-04-20 12:45:48','2017-04-20 12:45:48'),(101,'select * from scripts',3,1,1,'2017-04-20 12:46:04','2017-04-20 12:46:04'),(102,'select * from scripts',3,1,1,'2017-04-20 12:46:51','2017-04-20 12:46:51'),(103,'select * from scripts',3,1,1,'2017-04-20 12:48:03','2017-04-20 12:48:03'),(104,'select * from scripts',3,1,1,'2017-04-20 12:48:21','2017-04-20 12:48:21'),(105,'select * from scripts',3,1,1,'2017-04-20 12:56:21','2017-04-20 12:56:21'),(106,'select * from scripts',3,1,1,'2017-04-20 13:01:53','2017-04-20 13:01:53'),(107,'select * from scripts',3,1,1,'2017-04-20 13:01:59','2017-04-20 13:01:59'),(108,'select * from scripts',3,1,1,'2017-04-20 13:03:54','2017-04-20 13:03:54'),(109,'select * from scripts',3,1,1,'2017-04-20 13:05:38','2017-04-20 13:05:38'),(110,'select * from scripts',3,1,1,'2017-04-20 13:05:54','2017-04-20 13:05:54'),(111,'select * from scripts',3,1,1,'2017-04-20 13:09:18','2017-04-20 13:09:18'),(112,'select * from scripts',3,1,1,'2017-04-20 13:17:24','2017-04-20 13:17:24'),(113,'select * from scripts',3,1,1,'2017-04-20 13:18:45','2017-04-20 13:18:45'),(114,'select * from scripts',3,1,1,'2017-04-20 13:22:04','2017-04-20 13:22:04'),(115,'show tables;',17,1,1,'2017-08-06 11:01:30','2017-08-06 11:01:30'),(116,'show tables',3,1,1,'2017-08-06 11:01:50','2017-08-06 11:01:50'),(117,'select * from view_tables',3,1,1,'2017-08-06 11:02:09','2017-08-06 11:02:09'),(118,'show tables',3,1,1,'2017-08-06 11:22:35','2017-08-06 11:22:35'),(119,'select * from view_table_fks',3,1,1,'2017-08-06 11:22:52','2017-08-06 11:22:52'),(120,'select * from view_table_indexes',3,1,1,'2017-08-06 11:24:02','2017-08-06 11:24:02');
+INSERT INTO `sql_console_history` VALUES (1,'show tables',3,1,1,'2016-10-07 09:21:16','2016-10-07 09:21:16'),(2,'select * from  applications',3,1,1,'2016-10-07 09:21:33','2016-10-07 09:21:33'),(3,'select * from  sql_console_history',3,1,1,'2016-10-07 09:21:47','2016-10-07 09:21:47'),(4,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:11','2016-10-07 09:49:11'),(5,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:31','2016-10-07 09:49:31'),(6,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:52','2016-10-07 09:49:52'),(7,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:07','2016-10-07 09:50:07'),(8,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:23','2016-10-07 09:50:23'),(9,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:47','2016-10-07 09:50:47'),(10,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:53','2016-10-07 09:50:53'),(11,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:01','2016-10-07 09:51:01'),(12,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:11','2016-10-07 09:51:11'),(13,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:36','2016-10-07 09:51:36'),(14,'select * from  sql_console_history',3,1,1,'2016-10-07 09:53:53','2016-10-07 09:53:53'),(15,'select * from  sql_console_history',3,1,1,'2016-10-07 10:08:47','2016-10-07 10:08:47'),(16,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:33','2016-10-07 10:24:33'),(17,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:53','2016-10-07 10:24:53'),(18,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(19,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(20,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:23','2016-10-07 10:25:23'),(21,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:47','2016-10-07 10:25:47'),(22,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:52','2016-10-07 10:25:52'),(23,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:26:58','2016-10-07 10:26:58'),(24,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:27:17','2016-10-07 10:27:17'),(25,'show tables',7,1,1,'2016-10-07 10:45:18','2016-10-07 10:45:18'),(26,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',NULL,1,1,'2016-10-07 10:50:57','2016-10-07 10:50:57'),(46,'select * from sql_console_history',3,1,1,'2016-10-10 13:42:55','2016-10-10 13:42:55'),(47,'show tables',7,1,1,'2016-10-10 13:43:13','2016-10-10 13:43:13'),(48,'show tables',3,1,1,'2016-10-10 13:43:56','2016-10-10 13:43:56'),(49,'select * from  sql_console_history',3,1,1,'2016-10-10 13:44:06','2016-10-10 13:44:06'),(50,'select * from  sql_console_saves',3,1,1,'2016-10-10 13:44:20','2016-10-10 13:44:20'),(51,'show tables',1,1,1,'2016-10-10 13:50:37','2016-10-10 13:50:37'),(52,'desc tables',3,1,1,'2016-10-11 08:57:59','2016-10-11 08:57:59'),(53,'select * from tables',3,1,1,'2016-10-11 09:14:39','2016-10-11 09:14:39'),(54,'show tables',3,1,1,'2016-11-07 09:25:48','2016-11-07 09:25:48'),(55,'select * from queries',3,1,1,'2016-11-07 09:26:06','2016-11-07 09:26:06'),(56,'select * from  views',3,1,1,'2016-11-07 09:33:11','2016-11-07 09:33:11'),(57,'select * from  queries',3,1,1,'2016-11-07 09:34:09','2016-11-07 09:34:09'),(58,'select * from  queries',3,1,1,'2016-11-07 09:34:30','2016-11-07 09:34:30'),(59,'SELECT TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:01:47','2017-02-21 10:01:47'),(60,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT SCHEMA_NAME, VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:22','2017-02-21 10:02:22'),(61,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:32','2017-02-21 10:02:32'),(62,'SELECT  TABLE_NAME,* FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:39','2017-02-21 10:02:39'),(63,'SELECT  *,TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:47','2017-02-21 10:02:47'),(64,'SELECT  *,TABLE_NAME FROM phpapps.view_tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:03:10','2017-02-21 10:03:10'),(65,'show tables',3,1,1,'2017-02-21 10:04:36','2017-02-21 10:04:36'),(66,'select * from views',3,1,1,'2017-02-21 10:04:50','2017-02-21 10:04:50'),(67,'select * from view_tables',3,1,1,'2017-02-21 10:10:22','2017-02-21 10:10:22'),(68,'SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME',3,1,1,'2017-02-21 10:46:42','2017-02-21 10:46:42'),(69,'show tables',3,1,1,'2017-02-21 11:01:10','2017-02-21 11:01:10'),(70,'select * from view_tables',3,1,1,'2017-02-21 11:01:27','2017-02-21 11:01:27'),(71,'SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:28','2017-02-21 12:16:28'),(72,'SELECT * FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:58','2017-02-21 12:16:58'),(73,'SELECT * FROM phpapps.view_table_details',3,1,1,'2017-02-22 07:02:02','2017-02-22 07:02:02'),(74,'SELECT * FROM phpapps.view_tables',3,1,1,'2017-02-22 07:02:15','2017-02-22 07:02:15'),(75,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-22 07:09:02','2017-02-22 07:09:02'),(76,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-24 11:15:09','2017-02-24 11:15:09'),(77,'show tables',12,1,1,'2017-02-24 11:15:20','2017-02-24 11:15:20'),(78,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions',12,1,1,'2017-02-24 11:34:27','2017-02-24 11:34:27'),(79,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions q',12,1,1,'2017-02-24 11:34:36','2017-02-24 11:34:36'),(80,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:19','2017-02-24 11:54:19'),(81,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:22','2017-02-24 11:54:22'),(82,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:23','2017-02-24 11:54:23'),(83,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:24','2017-02-24 11:54:24'),(84,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:25','2017-02-24 11:54:25'),(85,'show tables',12,1,1,'2017-02-28 14:23:51','2017-02-28 14:23:51'),(86,'select * from questions limit 2 order by rand()',12,1,1,'2017-02-28 14:24:45','2017-02-28 14:24:45'),(87,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:08','2017-02-28 14:25:08'),(88,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:12','2017-02-28 14:25:12'),(89,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:14','2017-02-28 14:25:14'),(90,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:16','2017-02-28 14:25:16'),(91,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:18','2017-02-28 14:25:18'),(92,'show tables;',1,1,1,'2017-04-14 06:25:31','2017-04-14 06:25:31'),(93,'show tables',3,1,1,'2017-04-14 06:25:46','2017-04-14 06:25:46'),(94,'select * from view_scripts',3,1,1,'2017-04-14 06:26:03','2017-04-14 06:26:03'),(95,'select * from scripts',3,1,1,'2017-04-14 06:26:45','2017-04-14 06:26:45'),(96,'show tables',3,1,1,'2017-04-14 06:27:03','2017-04-14 06:27:03'),(97,'show tables',3,1,1,'2017-04-14 06:29:51','2017-04-14 06:29:51'),(98,'select * from view_scripts',3,1,1,'2017-04-20 09:12:36','2017-04-20 09:12:36'),(99,'select * from scripts',3,1,1,'2017-04-20 12:43:48','2017-04-20 12:43:48'),(100,'select * from view_scripts',3,1,1,'2017-04-20 12:45:48','2017-04-20 12:45:48'),(101,'select * from scripts',3,1,1,'2017-04-20 12:46:04','2017-04-20 12:46:04'),(102,'select * from scripts',3,1,1,'2017-04-20 12:46:51','2017-04-20 12:46:51'),(103,'select * from scripts',3,1,1,'2017-04-20 12:48:03','2017-04-20 12:48:03'),(104,'select * from scripts',3,1,1,'2017-04-20 12:48:21','2017-04-20 12:48:21'),(105,'select * from scripts',3,1,1,'2017-04-20 12:56:21','2017-04-20 12:56:21'),(106,'select * from scripts',3,1,1,'2017-04-20 13:01:53','2017-04-20 13:01:53'),(107,'select * from scripts',3,1,1,'2017-04-20 13:01:59','2017-04-20 13:01:59'),(108,'select * from scripts',3,1,1,'2017-04-20 13:03:54','2017-04-20 13:03:54'),(109,'select * from scripts',3,1,1,'2017-04-20 13:05:38','2017-04-20 13:05:38'),(110,'select * from scripts',3,1,1,'2017-04-20 13:05:54','2017-04-20 13:05:54'),(111,'select * from scripts',3,1,1,'2017-04-20 13:09:18','2017-04-20 13:09:18'),(112,'select * from scripts',3,1,1,'2017-04-20 13:17:24','2017-04-20 13:17:24'),(113,'select * from scripts',3,1,1,'2017-04-20 13:18:45','2017-04-20 13:18:45'),(114,'select * from scripts',3,1,1,'2017-04-20 13:22:04','2017-04-20 13:22:04'),(115,'show tables;',17,1,1,'2017-08-06 11:01:30','2017-08-06 11:01:30'),(116,'show tables',3,1,1,'2017-08-06 11:01:50','2017-08-06 11:01:50'),(117,'select * from view_tables',3,1,1,'2017-08-06 11:02:09','2017-08-06 11:02:09'),(118,'show tables',3,1,1,'2017-08-06 11:22:35','2017-08-06 11:22:35'),(119,'select * from view_table_fks',3,1,1,'2017-08-06 11:22:52','2017-08-06 11:22:52'),(120,'select * from view_table_indexes',3,1,1,'2017-08-06 11:24:02','2017-08-06 11:24:02'),(121,'show tables',3,1,1,'2017-09-07 07:36:06','2017-09-07 07:36:06'),(122,'select * from  list_databases',3,1,1,'2017-09-07 07:36:46','2017-09-07 07:36:46'),(123,'select * from  queries',3,1,1,'2017-09-07 07:59:24','2017-09-07 07:59:24'),(124,'desc  queries',3,1,1,'2017-09-07 07:59:30','2017-09-07 07:59:30'),(125,'select * from queries',3,1,1,'2017-09-20 08:23:37','2017-09-20 08:23:37'),(126,'select * from forms',3,1,1,'2017-09-20 08:29:02','2017-09-20 08:29:02'),(127,'show tables',3,1,1,'2017-09-20 09:23:00','2017-09-20 09:23:00'),(128,'show tables',3,1,1,'2017-09-22 06:21:19','2017-09-22 06:21:19'),(129,'select * from test_import',3,1,1,'2017-09-22 06:21:30','2017-09-22 06:21:30'),(130,'select * from test_import',3,1,1,'2017-09-22 06:23:30','2017-09-22 06:23:30'),(131,'select * from test_import',3,1,1,'2017-09-22 06:27:51','2017-09-22 06:27:51'),(132,'select * from test_import',3,1,1,'2017-09-22 06:28:14','2017-09-22 06:28:14'),(133,'select * from test_import',3,1,1,'2017-09-22 07:33:05','2017-09-22 07:33:05'),(134,'select * from test_import',3,1,1,'2017-09-22 07:39:21','2017-09-22 07:39:21'),(135,'select * from test_import',3,1,1,'2017-09-22 08:20:20','2017-09-22 08:20:20'),(136,'show tables',3,1,1,'2017-09-25 09:26:59','2017-09-25 09:26:59'),(137,'select * from view_table_details',3,1,1,'2017-09-25 09:27:14','2017-09-25 09:27:14'),(138,'select * from view_table_details where table_id = \'292\'',3,1,1,'2017-09-25 09:27:38','2017-09-25 09:27:38'),(139,'show tables;',3,1,1,'2017-09-25 09:27:56','2017-09-25 09:27:56'),(140,'select * from view_table_details where table_id = \'292\'',3,1,1,'2017-09-25 09:28:29','2017-09-25 09:28:29'),(141,'select * from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:29:17','2017-09-25 09:29:17'),(142,'select id,COLUMN_NAME, ord from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:29:40','2017-09-25 09:29:40'),(143,'select id,COLUMN_NAME, ord from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:30:36','2017-09-25 09:30:36'),(144,'select * from form_details where form_id not in (select id from forms)',3,1,1,'2017-09-25 09:49:57','2017-09-25 09:49:57'),(145,'select * from form_details',3,1,1,'2017-09-25 09:51:13','2017-09-25 09:51:13'),(146,'select * from forms',3,1,1,'2017-09-25 09:51:22','2017-09-25 09:51:22'),(147,'select * from forms',3,1,1,'2017-09-25 09:53:15','2017-09-25 09:53:15'),(148,'select * from view_forms',3,1,1,'2017-09-25 12:30:07','2017-09-25 12:30:07');
 /*!40000 ALTER TABLE `sql_console_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -940,7 +965,7 @@ CREATE TABLE `table_details` (
   CONSTRAINT `table_details_ibfk_2` FOREIGN KEY (`TABLE_ID`) REFERENCES `tables` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `table_details_ibfk_7` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `table_details_ibfk_8` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -949,7 +974,7 @@ CREATE TABLE `table_details` (
 
 LOCK TABLES `table_details` WRITE;
 /*!40000 ALTER TABLE `table_details` DISABLE KEYS */;
-INSERT INTO `table_details` VALUES (46,197,'ID',5,0,20,0,'',0,'',0,1,1,'2016-09-30 09:57:52','2016-09-30 09:57:52'),(47,197,'ORIGIN_ID',5,0,20,0,'',0,'',1,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:20'),(48,197,'MODULE_ID',5,0,20,0,'',0,'',2,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:42'),(49,197,'SCHEMA_ID',5,0,20,0,'',0,'',3,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:10'),(50,197,'TABLE_NAME',7,0,255,0,'',0,'',4,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:48'),(51,197,'TABLE_TYPE',5,0,20,0,'',0,'',5,1,1,'2016-09-30 10:07:20','2016-09-30 10:01:21'),(52,197,'DESCRIPTION',7,0,255,0,'',0,'',6,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:22'),(53,197,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:55'),(54,197,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-09-30 10:07:20','2016-09-30 10:03:14'),(55,197,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',0,'',9,1,1,'2016-09-30 10:07:20','2016-09-30 10:05:44'),(56,197,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',10,1,1,'2016-09-30 10:07:20','2016-09-30 10:06:41'),(57,275,'ID',5,0,20,0,'',1,'',0,1,1,'2016-10-03 07:09:49','2016-10-03 07:09:49'),(58,275,'MUMUSA',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:10:31','2016-10-03 07:10:31'),(59,275,'NUME',8,0,0,1,'',0,'',2,1,1,'2016-10-03 07:12:09','2016-10-03 07:11:24'),(60,276,'ID',5,0,20,1,'',1,'',0,1,1,'2016-10-03 07:29:38','2016-10-03 07:29:38'),(61,276,'COLUMN_ID',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:29:53','2016-10-03 07:29:53'),(62,276,'FK_NAME',7,0,255,1,'',0,'',2,1,1,'2016-10-03 07:30:28','2016-10-03 07:30:28'),(63,276,'FK_COLUMN_ID',5,0,20,1,'',0,'',3,1,1,'2016-10-03 07:31:08','2016-10-03 07:31:08'),(64,276,'ON_UPDATE',5,0,20,1,'',0,'',4,1,1,'2016-10-03 07:31:31','2016-10-03 07:31:31'),(65,276,'ON_DELETE',5,0,20,1,'',0,'',5,1,1,'2016-10-03 07:31:46','2016-10-03 07:31:46'),(66,276,'DESCRIPTION',8,0,0,1,'',0,'',6,1,1,'2016-10-03 07:32:07','2016-10-03 07:32:07'),(67,276,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-10-03 07:32:28','2016-10-03 07:32:28'),(68,276,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-10-03 07:32:40','2016-10-03 07:32:40'),(69,276,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:21','2016-10-03 07:33:21'),(70,276,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:34','2016-10-03 07:33:34'),(71,275,'VIEW_ID2',5,0,20,0,'',0,'',3,1,1,'2016-10-03 09:58:19','2016-10-03 09:25:13'),(72,279,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(73,279,'TABLE_ID',5,0,20,0,'',0,'',1,1,1,'2016-10-03 10:22:16','2016-10-03 10:22:16'),(74,279,'INDEX_NAME',7,0,255,0,'',0,'',2,1,1,'2016-10-03 10:22:46','2016-10-03 10:22:46'),(75,279,'DESCRIPTION',8,0,0,1,'',0,'',5,1,1,'2016-10-03 10:30:22','2016-10-03 10:23:12'),(76,279,'INDEX_COLUMNS',7,0,255,0,'ID',0,'',4,1,1,'2016-10-03 13:59:35','2016-10-03 10:27:53'),(77,279,'INDEX_TYPE_ID',5,0,20,0,'',0,'',3,1,1,'2016-10-03 11:50:18','2016-10-03 10:30:22'),(78,275,'GOGU',5,1,15,1,'',0,'',4,1,1,'2016-10-06 09:17:30','2016-10-06 09:13:04'),(79,280,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-07 07:59:53','2016-10-07 07:59:53'),(80,280,'QUERY',8,0,0,1,'',0,'',1,1,1,'2016-10-07 08:02:45','2016-10-07 08:02:45'),(81,280,'RUN_SCHEMA',5,0,20,0,'',0,'',2,1,1,'2016-10-07 08:04:08','2016-10-07 08:04:08'),(82,281,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-11 08:55:57','2016-10-11 08:55:57'),(83,281,'MODULE_ID',5,0,20,0,'',0,'',1,1,1,'2016-10-11 08:56:40','2016-10-11 08:56:40'),(84,281,'QUERY_NAME',8,0,0,0,'',0,'',2,1,1,'2016-11-07 09:37:00','2016-10-11 09:17:02'),(86,281,'DESCRIPTION',8,0,0,1,'',0,'',4,1,1,'2016-11-07 09:37:42','2016-10-11 09:26:28'),(87,281,'QUERY_BODY',8,0,0,0,'',0,'',3,1,1,'2016-11-07 09:37:42','2016-11-07 09:37:42'),(88,284,'ID',5,0,20,0,'',0,'',0,1,1,'2017-02-21 12:13:35','2017-02-21 12:13:35'),(89,284,'NO',5,0,10,0,'0',0,'',1,1,1,'2017-02-21 12:19:22','2017-02-21 12:17:48'),(90,284,'QUESTION',8,0,255,0,'',0,'',3,1,1,'2017-02-23 08:24:02','2017-02-21 12:19:10'),(91,284,'ANSWER_1',8,0,255,0,'',0,'',4,1,1,'2017-02-23 08:24:02','2017-02-21 12:20:05'),(92,284,'ANSWER_2',8,0,255,0,'',0,'',7,1,1,'2017-02-23 08:24:02','2017-02-21 12:21:11'),(93,284,'ANSWER_3',8,0,255,0,'',0,'',10,1,1,'2017-02-23 08:24:02','2017-02-21 12:21:30'),(94,284,'IMAGE_1',7,0,255,0,'',0,'',6,1,1,'2017-02-23 08:24:02','2017-02-21 12:29:14'),(95,284,'IMAGE_2',7,0,255,0,'',0,'',9,1,1,'2017-02-23 08:24:02','2017-02-21 12:32:13'),(96,284,'IMAGE_3',7,0,255,0,'',0,'',12,1,1,'2017-02-23 08:24:02','2017-02-21 12:32:32'),(97,284,'CORRECT_1',5,0,1,0,'',0,'',5,1,1,'2017-02-23 08:24:02','2017-02-21 13:13:14'),(98,284,'CORRECT_2',5,0,1,0,'',0,'',8,1,1,'2017-02-23 08:24:02','2017-02-21 13:13:27'),(99,284,'CORRECT_3',5,0,1,0,'',0,'',11,1,1,'2017-02-23 08:24:02','2017-02-21 13:13:43'),(100,287,'ID',5,0,20,0,'',0,'',0,1,1,'2017-02-23 07:34:48','2017-02-23 07:34:48'),(101,287,'NAME',7,0,255,0,'',0,'',2,1,1,'2017-02-23 07:38:11','2017-02-23 07:36:15'),(102,287,'CATEG_TYPE',5,0,1,0,'',0,'',1,1,1,'2017-02-23 07:38:34','2017-02-23 07:38:11'),(103,284,'CATEG_ID',5,0,20,0,'',0,'',2,1,1,'2017-02-23 08:24:02','2017-02-23 08:24:01'),(104,284,'ANSWER_4',8,0,0,0,'',0,'',13,1,1,'2017-02-27 07:42:42','2017-02-27 07:42:42'),(105,284,'CORRECT_4',5,0,1,0,'',0,'',14,1,1,'2017-02-27 07:43:29','2017-02-27 07:43:29'),(106,284,'IMAGE_4',7,0,255,0,'',0,'',15,1,1,'2017-02-27 07:44:01','2017-02-27 07:44:01'),(107,292,'ID',5,0,20,0,'',0,'',0,1,1,'2017-07-09 11:27:22','2017-07-09 11:27:22'),(108,292,'NAME',7,0,255,0,'\\\'\\\'',0,'',1,1,1,'2017-07-09 11:29:41','2017-07-09 11:29:41'),(109,292,'BODY',8,0,0,0,'',0,'',5,1,1,'2017-08-06 11:09:24','2017-07-09 11:30:46'),(110,292,'CATEG_ID',5,0,20,0,'0',0,'',6,1,1,'2017-08-06 11:09:24','2017-07-09 11:34:15'),(111,292,'ARTICLE_DATE',9,0,0,0,'',0,'aa',4,1,1,'2017-08-06 11:09:24','2017-07-09 12:01:58'),(112,294,'ID',5,0,20,0,'',0,'',0,1,1,'2017-07-09 12:05:33','2017-07-09 12:05:33'),(113,294,'USERNAME',7,0,255,0,'\\\'\\\'',0,'',1,1,1,'2017-07-09 12:06:21','2017-07-09 12:06:21'),(114,294,'PASSWORD',7,0,255,0,'\\\'\\\'',0,'',2,1,1,'2017-07-09 12:06:57','2017-07-09 12:06:57'),(115,294,'EMAIL',7,0,255,0,'\\\'\\\'',0,'',3,1,1,'2017-07-09 12:08:34','2017-07-09 12:08:34'),(116,294,'USER_TYPE',5,0,20,0,'4',0,'',4,1,1,'2017-07-09 12:23:05','2017-07-09 12:17:51'),(117,294,'JOIN_DATE',9,0,0,0,'',0,'',5,1,1,'2017-07-09 12:22:50','2017-07-09 12:22:50'),(118,292,'USER_ID',5,0,20,0,'0',0,'',3,1,1,'2017-08-06 11:09:24','2017-08-06 11:09:24');
+INSERT INTO `table_details` VALUES (46,197,'ID',5,0,20,0,'',0,'',0,1,1,'2016-09-30 09:57:52','2016-09-30 09:57:52'),(47,197,'ORIGIN_ID',5,0,20,0,'',0,'',1,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:20'),(48,197,'MODULE_ID',5,0,20,0,'',0,'',2,1,1,'2016-09-30 10:07:20','2016-09-30 09:58:42'),(49,197,'SCHEMA_ID',5,0,20,0,'',0,'',3,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:10'),(50,197,'TABLE_NAME',7,0,255,0,'',0,'',4,1,1,'2016-09-30 10:07:20','2016-09-30 09:59:48'),(51,197,'TABLE_TYPE',5,0,20,0,'',0,'',5,1,1,'2016-09-30 10:07:20','2016-09-30 10:01:21'),(52,197,'DESCRIPTION',7,0,255,0,'',0,'',6,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:22'),(53,197,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-09-30 10:07:20','2016-09-30 10:02:55'),(54,197,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-09-30 10:07:20','2016-09-30 10:03:14'),(55,197,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',0,'',9,1,1,'2016-09-30 10:07:20','2016-09-30 10:05:44'),(56,197,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',10,1,1,'2016-09-30 10:07:20','2016-09-30 10:06:41'),(57,275,'ID',5,0,20,0,'',1,'',0,1,1,'2016-10-03 07:09:49','2016-10-03 07:09:49'),(58,275,'MUMUSA',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:10:31','2016-10-03 07:10:31'),(59,275,'NUME',8,0,0,1,'',0,'',2,1,1,'2016-10-03 07:12:09','2016-10-03 07:11:24'),(60,276,'ID',5,0,20,1,'',1,'',0,1,1,'2016-10-03 07:29:38','2016-10-03 07:29:38'),(61,276,'COLUMN_ID',5,0,20,1,'',0,'',1,1,1,'2016-10-03 07:29:53','2016-10-03 07:29:53'),(62,276,'FK_NAME',7,0,255,1,'',0,'',2,1,1,'2016-10-03 07:30:28','2016-10-03 07:30:28'),(63,276,'FK_COLUMN_ID',5,0,20,1,'',0,'',3,1,1,'2016-10-03 07:31:08','2016-10-03 07:31:08'),(64,276,'ON_UPDATE',5,0,20,1,'',0,'',4,1,1,'2016-10-03 07:31:31','2016-10-03 07:31:31'),(65,276,'ON_DELETE',5,0,20,1,'',0,'',5,1,1,'2016-10-03 07:31:46','2016-10-03 07:31:46'),(66,276,'DESCRIPTION',8,0,0,1,'',0,'',6,1,1,'2016-10-03 07:32:07','2016-10-03 07:32:07'),(67,276,'MODIFY_UID',5,0,20,0,'1',0,'',7,1,1,'2016-10-03 07:32:28','2016-10-03 07:32:28'),(68,276,'CREATE_UID',5,0,20,0,'1',0,'',8,1,1,'2016-10-03 07:32:40','2016-10-03 07:32:40'),(69,276,'MODIFY_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:21','2016-10-03 07:33:21'),(70,276,'CREATE_DATE',9,0,0,0,'CURRENT_TIMESTAMP',0,'',9,1,1,'2016-10-03 07:33:34','2016-10-03 07:33:34'),(71,275,'VIEW_ID2',5,0,20,0,'',0,'',3,1,1,'2016-10-03 09:58:19','2016-10-03 09:25:13'),(72,279,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(73,279,'TABLE_ID',5,0,20,0,'',0,'',1,1,1,'2016-10-03 10:22:16','2016-10-03 10:22:16'),(74,279,'INDEX_NAME',7,0,255,0,'',0,'',2,1,1,'2016-10-03 10:22:46','2016-10-03 10:22:46'),(75,279,'DESCRIPTION',8,0,0,1,'',0,'',5,1,1,'2016-10-03 10:30:22','2016-10-03 10:23:12'),(76,279,'INDEX_COLUMNS',7,0,255,0,'ID',0,'',4,1,1,'2016-10-03 13:59:35','2016-10-03 10:27:53'),(77,279,'INDEX_TYPE_ID',5,0,20,0,'',0,'',3,1,1,'2016-10-03 11:50:18','2016-10-03 10:30:22'),(78,275,'GOGU',5,1,15,1,'',0,'',4,1,1,'2016-10-06 09:17:30','2016-10-06 09:13:04'),(79,280,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-07 07:59:53','2016-10-07 07:59:53'),(80,280,'QUERY',8,0,0,1,'',0,'',1,1,1,'2016-10-07 08:02:45','2016-10-07 08:02:45'),(81,280,'RUN_SCHEMA',5,0,20,0,'',0,'',2,1,1,'2016-10-07 08:04:08','2016-10-07 08:04:08'),(82,281,'ID',5,0,20,0,'',0,'',0,1,1,'2016-10-11 08:55:57','2016-10-11 08:55:57'),(83,281,'MODULE_ID',5,0,20,0,'',0,'',1,1,1,'2016-10-11 08:56:40','2016-10-11 08:56:40'),(84,281,'QUERY_NAME',8,0,0,0,'',0,'',2,1,1,'2016-11-07 09:37:00','2016-10-11 09:17:02'),(86,281,'DESCRIPTION',8,0,0,1,'',0,'',4,1,1,'2016-11-07 09:37:42','2016-10-11 09:26:28'),(87,281,'QUERY_BODY',8,0,0,0,'',0,'',3,1,1,'2016-11-07 09:37:42','2016-11-07 09:37:42'),(88,284,'ID',5,0,20,0,'',0,'',0,1,1,'2017-02-21 12:13:35','2017-02-21 12:13:35'),(89,284,'NO',5,0,10,0,'0',0,'',1,1,1,'2017-02-21 12:19:22','2017-02-21 12:17:48'),(90,284,'QUESTION',8,0,255,0,'',0,'',3,1,1,'2017-02-23 08:24:02','2017-02-21 12:19:10'),(91,284,'ANSWER_1',8,0,255,0,'',0,'',4,1,1,'2017-02-23 08:24:02','2017-02-21 12:20:05'),(92,284,'ANSWER_2',8,0,255,0,'',0,'',7,1,1,'2017-02-23 08:24:02','2017-02-21 12:21:11'),(93,284,'ANSWER_3',8,0,255,0,'',0,'',10,1,1,'2017-02-23 08:24:02','2017-02-21 12:21:30'),(94,284,'IMAGE_1',7,0,255,0,'',0,'',6,1,1,'2017-02-23 08:24:02','2017-02-21 12:29:14'),(95,284,'IMAGE_2',7,0,255,0,'',0,'',9,1,1,'2017-02-23 08:24:02','2017-02-21 12:32:13'),(96,284,'IMAGE_3',7,0,255,0,'',0,'',12,1,1,'2017-02-23 08:24:02','2017-02-21 12:32:32'),(97,284,'CORRECT_1',5,0,1,0,'',0,'',5,1,1,'2017-02-23 08:24:02','2017-02-21 13:13:14'),(98,284,'CORRECT_2',5,0,1,0,'',0,'',8,1,1,'2017-02-23 08:24:02','2017-02-21 13:13:27'),(99,284,'CORRECT_3',5,0,1,0,'',0,'',11,1,1,'2017-02-23 08:24:02','2017-02-21 13:13:43'),(100,287,'ID',5,0,20,0,'',0,'',0,1,1,'2017-02-23 07:34:48','2017-02-23 07:34:48'),(101,287,'NAME',7,0,255,0,'',0,'',2,1,1,'2017-02-23 07:38:11','2017-02-23 07:36:15'),(102,287,'CATEG_TYPE',5,0,1,0,'',0,'',1,1,1,'2017-02-23 07:38:34','2017-02-23 07:38:11'),(103,284,'CATEG_ID',5,0,20,0,'',0,'',2,1,1,'2017-02-23 08:24:02','2017-02-23 08:24:01'),(104,284,'ANSWER_4',8,0,0,0,'',0,'',13,1,1,'2017-02-27 07:42:42','2017-02-27 07:42:42'),(105,284,'CORRECT_4',5,0,1,0,'',0,'',14,1,1,'2017-02-27 07:43:29','2017-02-27 07:43:29'),(106,284,'IMAGE_4',7,0,255,0,'',0,'',15,1,1,'2017-02-27 07:44:01','2017-02-27 07:44:01'),(107,292,'ID',5,0,20,0,'',0,'',0,1,1,'2017-07-09 11:27:22','2017-07-09 11:27:22'),(108,292,'NAME',7,0,255,0,'\\\'\\\'',0,'',1,1,1,'2017-07-09 11:29:41','2017-07-09 11:29:41'),(109,292,'BODY',8,0,0,0,'',0,'',8,1,1,'2017-09-25 09:30:26','2017-07-09 11:30:46'),(110,292,'CATEG_ID',5,0,20,0,'0',0,'',9,1,1,'2017-09-25 09:30:26','2017-07-09 11:34:15'),(111,292,'ARTICLE_DATE',9,0,0,0,'',0,'aa',7,1,1,'2017-09-25 09:30:26','2017-07-09 12:01:58'),(112,294,'ID',5,0,20,0,'',0,'',0,1,1,'2017-07-09 12:05:33','2017-07-09 12:05:33'),(113,294,'USERNAME',7,0,255,0,'\\\'\\\'',0,'',1,1,1,'2017-07-09 12:06:21','2017-07-09 12:06:21'),(114,294,'PASSWORD',7,0,255,0,'\\\'\\\'',0,'',2,1,1,'2017-07-09 12:06:57','2017-07-09 12:06:57'),(115,294,'EMAIL',7,0,255,0,'\\\'\\\'',0,'',3,1,1,'2017-07-09 12:08:34','2017-07-09 12:08:34'),(116,294,'USER_TYPE',5,0,20,0,'4',0,'',4,1,1,'2017-07-09 12:23:05','2017-07-09 12:17:51'),(117,294,'JOIN_DATE',9,0,0,0,'',0,'',5,1,1,'2017-07-09 12:22:50','2017-07-09 12:22:50'),(118,292,'USER_ID',5,0,20,0,'0',0,'',6,1,1,'2017-09-25 09:30:26','2017-08-06 11:09:24'),(119,298,'ID',5,0,20,0,'',0,'',0,1,1,'2017-09-21 09:06:44','2017-09-21 09:06:44'),(120,298,'FILE_PATH',7,0,255,0,'',0,'',1,1,1,'2017-09-21 09:07:37','2017-09-21 09:07:18'),(121,298,'NUME',7,0,255,0,'',0,'',2,1,1,'2017-09-22 06:15:27','2017-09-22 06:15:26'),(122,292,'IMAGE',7,0,255,0,'',0,'',5,1,1,'2017-09-25 09:30:26','2017-09-25 08:46:19'),(124,292,'ARTICLE_TAGS',8,0,0,0,'',0,'',3,1,1,'2017-09-25 09:30:26','2017-09-25 09:30:26'),(125,300,'ID',5,0,20,0,'',0,'',0,1,1,'2017-09-28 06:53:01','2017-09-28 06:53:01'),(126,300,'NAME',7,0,255,0,'',0,'',1,1,1,'2017-09-28 06:54:10','2017-09-28 06:54:10'),(127,300,'DESCRIPTION',8,0,0,0,'',0,'',3,1,1,'2017-09-28 07:06:00','2017-09-28 07:06:00');
 /*!40000 ALTER TABLE `table_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1072,7 +1097,7 @@ CREATE TABLE `tables` (
   CONSTRAINT `tables_ibfk_3` FOREIGN KEY (`TABLE_TYPE`) REFERENCES `list_table_types` (`ID`),
   CONSTRAINT `tables_ibfk_4` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `tables_ibfk_5` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1081,7 +1106,7 @@ CREATE TABLE `tables` (
 
 LOCK TABLES `tables` WRITE;
 /*!40000 ALTER TABLE `tables` DISABLE KEYS */;
-INSERT INTO `tables` VALUES (0,0,14,3,'dual',4,'VIRTUAL TABLE FOR ORIGIN_ID',1,1,'2016-09-27 13:55:35','2016-09-27 13:51:17'),(2,0,1,3,'applications',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(3,0,1,3,'modules',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(5,0,1,3,'forms',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(35,0,1,3,'list_no_yes',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(80,0,10,7,'categories',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(82,0,1,3,'list_script_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(83,0,1,3,'scripts',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(87,0,7,3,'users',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(88,0,7,3,'roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(89,0,7,3,'permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(90,0,7,3,'user_roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(91,0,7,3,'role_permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(93,0,7,3,'list_permission_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(96,0,1,3,'list_object_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(98,0,7,3,'list_permission_names',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(99,0,7,3,'user_profiles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(129,0,1,3,'module_vars',2,'',1,1,'2016-09-27 10:05:46','2016-08-29 06:13:16'),(197,0,14,3,'tables',2,'',1,1,'2016-09-30 04:58:59','2016-09-21 11:06:57'),(198,0,14,3,'table_details',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:06'),(199,0,14,3,'list_databases',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:20'),(200,0,14,3,'list_index_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:35'),(201,0,14,3,'list_mysql_column_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:50'),(202,0,14,3,'views',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:08:11'),(203,0,14,3,'list_table_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:59:49'),(204,0,7,3,'list_user_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 13:34:21'),(210,0,14,3,'list_empty',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 14:41:58'),(222,0,14,3,'mysql_column_defs',2,'',1,1,'2016-09-28 11:54:35','2016-09-24 05:08:53'),(223,0,14,3,'list_dbms_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-24 11:36:51'),(224,0,14,3,'sql_sintax',2,'',1,1,'2016-09-27 10:05:46','2016-09-26 05:58:41'),(225,0,14,3,'list_sql_sintax_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-26 06:27:44'),(227,0,14,3,'list_foreign_key_options',1,'',1,1,'2016-09-27 10:05:46','2016-09-27 07:04:44'),(275,0,14,3,'test_cols',2,'',1,1,'2016-09-29 11:25:02','2016-09-29 11:25:02'),(276,0,14,3,'table_fks',2,'',1,1,'2016-10-03 10:32:41','2016-09-30 04:55:41'),(277,35,14,3,'list_no_yes',1,'',1,1,'2016-09-30 06:03:16','2016-09-30 06:03:16'),(278,0,1,3,'form_details',2,'Forms Details',1,1,'2016-09-30 08:22:17','2016-09-30 08:22:17'),(279,0,14,3,'table_indexes',2,'',1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(280,0,14,3,'sql_console_history',3,'',1,1,'2016-10-07 07:59:53','2016-10-07 07:59:53'),(281,0,14,3,'queries',2,'',1,1,'2016-10-11 08:55:57','2016-10-11 08:55:57'),(282,3,14,3,'modules',2,'',1,1,'2016-10-11 09:14:08','2016-10-11 09:14:08'),(283,87,1,3,'users',2,'',1,1,'2017-02-20 13:15:29','2017-02-20 13:15:29'),(284,0,15,12,'questions',2,'',1,1,'2017-02-21 12:13:35','2017-02-21 12:13:35'),(285,35,15,3,'list_no_yes',1,'',1,1,'2017-02-21 13:33:02','2017-02-21 13:33:02'),(286,0,15,12,'list_da_nu',1,'',1,1,'2017-02-21 13:33:38','2017-02-21 13:33:38'),(287,0,15,12,'categories',2,'',1,1,'2017-02-23 07:34:48','2017-02-23 07:34:48'),(288,0,15,12,'list_category_type',1,'',1,1,'2017-02-23 07:36:58','2017-02-23 07:36:58'),(289,199,7,3,'list_databases',1,'',1,1,'2017-04-27 05:07:26','2017-04-27 05:07:26'),(290,0,14,3,'gigi',1,'',1,1,'2017-04-28 09:51:37','2017-04-28 09:51:37'),(291,0,14,3,'aaa',1,'',1,1,'2017-04-28 09:53:46','2017-04-28 09:53:46'),(292,0,19,17,'articles',2,'',1,1,'2017-07-09 11:27:22','2017-07-09 11:27:22'),(293,0,19,17,'list_article_categories',1,'',1,1,'2017-07-09 11:33:28','2017-07-09 11:33:28'),(294,0,19,17,'users',2,'',1,1,'2017-07-09 12:05:33','2017-07-09 12:05:33'),(295,0,19,17,'list_user_types',1,'',1,1,'2017-07-09 12:13:21','2017-07-09 12:13:21'),(296,294,20,17,'users',2,'',1,1,'2017-07-09 12:24:48','2017-07-09 12:24:48'),(297,295,20,17,'list_user_types',1,'',1,1,'2017-07-09 12:25:02','2017-07-09 12:25:02');
+INSERT INTO `tables` VALUES (0,0,14,3,'dual',4,'VIRTUAL TABLE FOR ORIGIN_ID',1,1,'2016-09-27 13:55:35','2016-09-27 13:51:17'),(2,0,1,3,'applications',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(3,0,1,3,'modules',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(5,0,1,3,'forms',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(35,0,1,3,'list_no_yes',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(80,0,10,7,'categories',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(82,0,1,3,'list_script_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(83,0,1,3,'scripts',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(87,0,7,3,'users',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(88,0,7,3,'roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(89,0,7,3,'permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(90,0,7,3,'user_roles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(91,0,7,3,'role_permissions',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(93,0,7,3,'list_permission_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(96,0,1,3,'list_object_types',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(98,0,7,3,'list_permission_names',1,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(99,0,7,3,'user_profiles',2,'',1,1,'2016-09-27 10:05:46','0000-00-00 00:00:00'),(129,0,1,3,'module_vars',2,'',1,1,'2016-09-27 10:05:46','2016-08-29 06:13:16'),(197,0,14,3,'tables',2,'',1,1,'2016-09-30 04:58:59','2016-09-21 11:06:57'),(198,0,14,3,'table_details',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:06'),(199,0,14,3,'list_databases',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:20'),(200,0,14,3,'list_index_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:35'),(201,0,14,3,'list_mysql_column_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:07:50'),(202,0,14,3,'views',2,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:08:11'),(203,0,14,3,'list_table_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 11:59:49'),(204,0,7,3,'list_user_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 13:34:21'),(210,0,14,3,'list_empty',1,'',1,1,'2016-09-27 10:05:46','2016-09-21 14:41:58'),(222,0,14,3,'mysql_column_defs',2,'',1,1,'2016-09-28 11:54:35','2016-09-24 05:08:53'),(223,0,14,3,'list_dbms_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-24 11:36:51'),(224,0,14,3,'sql_sintax',2,'',1,1,'2016-09-27 10:05:46','2016-09-26 05:58:41'),(225,0,14,3,'list_sql_sintax_types',1,'',1,1,'2016-09-27 10:05:46','2016-09-26 06:27:44'),(227,0,14,3,'list_foreign_key_options',1,'',1,1,'2016-09-27 10:05:46','2016-09-27 07:04:44'),(275,0,14,3,'test_cols',2,'',1,1,'2016-09-29 11:25:02','2016-09-29 11:25:02'),(276,0,14,3,'table_fks',2,'',1,1,'2016-10-03 10:32:41','2016-09-30 04:55:41'),(277,35,14,3,'list_no_yes',1,'',1,1,'2016-09-30 06:03:16','2016-09-30 06:03:16'),(278,0,1,3,'form_details',2,'Forms Details',1,1,'2016-09-30 08:22:17','2016-09-30 08:22:17'),(279,0,14,3,'table_indexes',2,'',1,1,'2016-10-03 10:21:21','2016-10-03 10:21:21'),(280,0,14,3,'sql_console_history',3,'',1,1,'2016-10-07 07:59:53','2016-10-07 07:59:53'),(281,0,14,3,'queries',2,'',1,1,'2016-10-11 08:55:57','2016-10-11 08:55:57'),(282,3,14,3,'modules',2,'',1,1,'2016-10-11 09:14:08','2016-10-11 09:14:08'),(283,87,1,3,'users',2,'',1,1,'2017-02-20 13:15:29','2017-02-20 13:15:29'),(284,0,15,12,'questions',2,'',1,1,'2017-02-21 12:13:35','2017-02-21 12:13:35'),(285,35,15,3,'list_no_yes',1,'',1,1,'2017-02-21 13:33:02','2017-02-21 13:33:02'),(286,0,15,12,'list_da_nu',1,'',1,1,'2017-02-21 13:33:38','2017-02-21 13:33:38'),(287,0,15,12,'categories',2,'',1,1,'2017-02-23 07:34:48','2017-02-23 07:34:48'),(288,0,15,12,'list_category_type',1,'',1,1,'2017-02-23 07:36:58','2017-02-23 07:36:58'),(289,199,7,3,'list_databases',1,'',1,1,'2017-04-27 05:07:26','2017-04-27 05:07:26'),(290,0,14,3,'gigi',1,'',1,1,'2017-04-28 09:51:37','2017-04-28 09:51:37'),(291,0,14,3,'aaa',1,'',1,1,'2017-04-28 09:53:46','2017-04-28 09:53:46'),(292,0,19,17,'articles',2,'',1,1,'2017-07-09 11:27:22','2017-07-09 11:27:22'),(293,0,19,17,'list_article_categories',1,'',1,1,'2017-07-09 11:33:28','2017-07-09 11:33:28'),(294,0,19,17,'app_users',2,'',1,1,'2017-09-25 07:08:05','2017-07-09 12:05:33'),(295,0,19,17,'list_user_types',1,'',1,1,'2017-07-09 12:13:21','2017-07-09 12:13:21'),(297,295,20,17,'list_user_types',1,'',1,1,'2017-07-09 12:25:02','2017-07-09 12:25:02'),(298,0,18,3,'test_import',2,'',1,1,'2017-09-21 09:06:44','2017-09-21 09:06:44'),(299,294,20,17,'app_users',2,'',1,1,'2017-09-25 07:10:24','2017-09-25 07:10:24'),(300,0,21,3,'layouts',2,'',1,1,'2017-09-28 06:53:01','2017-09-28 06:53:01');
 /*!40000 ALTER TABLE `tables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1113,6 +1138,31 @@ CREATE TABLE `test_cols` (
 LOCK TABLES `test_cols` WRITE;
 /*!40000 ALTER TABLE `test_cols` DISABLE KEYS */;
 /*!40000 ALTER TABLE `test_cols` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_import`
+--
+
+DROP TABLE IF EXISTS `test_import`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `test_import` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `FILE_PATH` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NUME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_import`
+--
+
+LOCK TABLES `test_import` WRITE;
+/*!40000 ALTER TABLE `test_import` DISABLE KEYS */;
+INSERT INTO `test_import` VALUES (1,'',NULL),(2,'',NULL),(3,'','xls'),(4,'','xls'),(5,'','xls'),(6,'','xls'),(7,'','xls'),(8,'','xls'),(9,'user_data/IpGavril.txt','sss'),(10,'user_data/IMG_20141219_163526.jpg','poza'),(11,'user_data/IMG_20141219_163526.jpg','poza'),(12,'../user_data/IMG_20141219_163526.jpg','poza'),(13,'../user_data/AnexeCIM.doc','sss'),(14,'user_data/aaa.bat','sss'),(15,'user_data/IMG_20141219_163526.jpg','sss'),(16,'user_data/IMG_20141219_163526.jpg','sss'),(17,'user_data/putty.exe','sss'),(18,'user_data/CIM_01_03_2015_nedeterminata.doc','sss'),(19,'user_data/IMG_20141219_163526.jpg','sss'),(20,'user_data/IMG_20141219_163526.jpg','sss'),(21,'user_data/IMG_20141219_163526.jpg','asasa'),(22,'user_data/11195280_10153293546377094_555126213_n.jpg','asasa'),(23,'http://localhost:89/phpapps_dev/phpapps/user_data/11124051_10153293547207094_1420210538_n.jpg','adasda'),(24,'D:/linuxport/work/www\\phpapps_dev\\phpapps\\/user_data/11195513_10153309278852094_1373504183_n.jpg','dasas'),(25,'user_data/11124051_10153293547207094_1420210538_n.jpg','das');
+/*!40000 ALTER TABLE `test_import` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1234,266 +1284,255 @@ INSERT INTO `users` VALUES (1,'victor','alcatraz','Gigi','Fanica','',1,'bb',2,1,
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `view_forms`
+-- Temporary view structure for view `view_forms`
 --
 
 DROP TABLE IF EXISTS `view_forms`;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_forms` (
-  `ID` tinyint NOT NULL,
-  `FORM_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `FORM_QUERY` tinyint NOT NULL,
-  `FORM_PHP_DIR` tinyint NOT NULL,
-  `FORM_TPL_DIR` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_forms` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `FORM_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `FORM_QUERY`,
+ 1 AS `FORM_PHP_DIR`,
+ 1 AS `FORM_TPL_DIR`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_modules`
+-- Temporary view structure for view `view_modules`
 --
 
 DROP TABLE IF EXISTS `view_modules`;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_modules` (
-  `ID` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `APP_SCHEMA` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `MODULE_TITLE` tinyint NOT NULL,
-  `MODULE_DATE` tinyint NOT NULL,
-  `MODULE_SCHEMA` tinyint NOT NULL,
-  `SCHEMA_NAME` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `SCRIPT_ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_modules` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `APP_SCHEMA`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `MODULE_TITLE`,
+ 1 AS `MODULE_DATE`,
+ 1 AS `MODULE_SCHEMA`,
+ 1 AS `SCHEMA_NAME`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `SCRIPT_ID`,
+ 1 AS `SCRIPT_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_permissions`
+-- Temporary view structure for view `view_permissions`
 --
 
 DROP TABLE IF EXISTS `view_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_permissions` (
-  `ID` tinyint NOT NULL,
-  `PERMISSION_NAME` tinyint NOT NULL,
-  `PERMISSION_NAME_ID` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `PERMISSION_TYPE` tinyint NOT NULL,
-  `PERMISSION_TYPE_ID` tinyint NOT NULL,
-  `OBJECT_TYPE` tinyint NOT NULL,
-  `OBJECT_TYPE_ID` tinyint NOT NULL,
-  `OBJECT_NAME` tinyint NOT NULL,
-  `OBJECT_ID` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_permissions` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `PERMISSION_NAME`,
+ 1 AS `PERMISSION_NAME_ID`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `PERMISSION_TYPE`,
+ 1 AS `PERMISSION_TYPE_ID`,
+ 1 AS `OBJECT_TYPE`,
+ 1 AS `OBJECT_TYPE_ID`,
+ 1 AS `OBJECT_NAME`,
+ 1 AS `OBJECT_ID`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_role_permissions`
+-- Temporary view structure for view `view_role_permissions`
 --
 
 DROP TABLE IF EXISTS `view_role_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_role_permissions` (
-  `ID` tinyint NOT NULL,
-  `ROLE_ID` tinyint NOT NULL,
-  `ROLE_NAME` tinyint NOT NULL,
-  `PERMISSION_ID` tinyint NOT NULL,
-  `PERMISSION_NAME` tinyint NOT NULL,
-  `PERMISSION_NAME_ID` tinyint NOT NULL,
-  `PERMISSION_DESC` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_role_permissions` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `ROLE_ID`,
+ 1 AS `ROLE_NAME`,
+ 1 AS `PERMISSION_ID`,
+ 1 AS `PERMISSION_NAME`,
+ 1 AS `PERMISSION_NAME_ID`,
+ 1 AS `PERMISSION_DESC`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_scripts`
+-- Temporary view structure for view `view_scripts`
 --
 
 DROP TABLE IF EXISTS `view_scripts`;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_scripts` (
-  `ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_scripts` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCRIPT_NAME`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_details`
+-- Temporary view structure for view `view_table_details`
 --
 
 DROP TABLE IF EXISTS `view_table_details`;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_details` (
-  `ID` tinyint NOT NULL,
-  `SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `COLUMN_NAME` tinyint NOT NULL,
-  `COLUMN_TYPE_ID` tinyint NOT NULL,
-  `COLUMN_TYPE_LABEl` tinyint NOT NULL,
-  `UNSIGN` tinyint NOT NULL,
-  `COLUMN_SIZE` tinyint NOT NULL,
-  `ACCEPT_NULL` tinyint NOT NULL,
-  `COLUMN_DEFAULT_VALUE` tinyint NOT NULL,
-  `AUTOINCREMENT` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `ORD` tinyint NOT NULL,
-  `MODIFY_UID` tinyint NOT NULL,
-  `MODIFIED_BY` tinyint NOT NULL,
-  `CREATE_UID` tinyint NOT NULL,
-  `CREATED_BY` tinyint NOT NULL,
-  `MODIFY_DATE` tinyint NOT NULL,
-  `CREATE_DATE` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_details` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `COLUMN_NAME`,
+ 1 AS `COLUMN_TYPE_ID`,
+ 1 AS `COLUMN_TYPE_LABEl`,
+ 1 AS `UNSIGN`,
+ 1 AS `COLUMN_SIZE`,
+ 1 AS `ACCEPT_NULL`,
+ 1 AS `COLUMN_DEFAULT_VALUE`,
+ 1 AS `AUTOINCREMENT`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `ORD`,
+ 1 AS `MODIFY_UID`,
+ 1 AS `MODIFIED_BY`,
+ 1 AS `CREATE_UID`,
+ 1 AS `CREATED_BY`,
+ 1 AS `MODIFY_DATE`,
+ 1 AS `CREATE_DATE`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_fks`
+-- Temporary view structure for view `view_table_fks`
 --
 
 DROP TABLE IF EXISTS `view_table_fks`;
 /*!50001 DROP VIEW IF EXISTS `view_table_fks`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_fks` (
-  `ID` tinyint NOT NULL,
-  `COLUMN_ID` tinyint NOT NULL,
-  `COLUMN_NAME` tinyint NOT NULL,
-  `SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `FK_NAME` tinyint NOT NULL,
-  `FK_SCHEMA_ID` tinyint NOT NULL,
-  `FK_TABLE_SCHEMA` tinyint NOT NULL,
-  `FK_TABLE_ID` tinyint NOT NULL,
-  `FK_TABLE_NAME` tinyint NOT NULL,
-  `FK_COLUMN_ID` tinyint NOT NULL,
-  `FK_COLUMN_NAME` tinyint NOT NULL,
-  `ON_UPDATE` tinyint NOT NULL,
-  `ON_DELETE` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_fks` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `COLUMN_ID`,
+ 1 AS `COLUMN_NAME`,
+ 1 AS `SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `FK_NAME`,
+ 1 AS `FK_SCHEMA_ID`,
+ 1 AS `FK_TABLE_SCHEMA`,
+ 1 AS `FK_TABLE_ID`,
+ 1 AS `FK_TABLE_NAME`,
+ 1 AS `FK_COLUMN_ID`,
+ 1 AS `FK_COLUMN_NAME`,
+ 1 AS `ON_UPDATE`,
+ 1 AS `ON_DELETE`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_indexes`
+-- Temporary view structure for view `view_table_indexes`
 --
 
 DROP TABLE IF EXISTS `view_table_indexes`;
 /*!50001 DROP VIEW IF EXISTS `view_table_indexes`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_indexes` (
-  `ID` tinyint NOT NULL,
-  `SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `INDEX_NAME` tinyint NOT NULL,
-  `INDEX_TYPE_ID` tinyint NOT NULL,
-  `INDEX_TYPE` tinyint NOT NULL,
-  `INDEX_COLUMNS` tinyint NOT NULL,
-  `INDEX_COLUMNS_LABELS` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `MODIFY_UID` tinyint NOT NULL,
-  `CREATE_UID` tinyint NOT NULL,
-  `MODIFY_DATE` tinyint NOT NULL,
-  `CREATE_DATE` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_indexes` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `INDEX_NAME`,
+ 1 AS `INDEX_TYPE_ID`,
+ 1 AS `INDEX_TYPE`,
+ 1 AS `INDEX_COLUMNS`,
+ 1 AS `INDEX_COLUMNS_LABELS`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `MODIFY_UID`,
+ 1 AS `CREATE_UID`,
+ 1 AS `MODIFY_DATE`,
+ 1 AS `CREATE_DATE`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_tables`
+-- Temporary view structure for view `view_tables`
 --
 
 DROP TABLE IF EXISTS `view_tables`;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_tables` (
-  `ID` tinyint NOT NULL,
-  `ORIGIN_ID` tinyint NOT NULL,
-  `TABLE_TYPE` tinyint NOT NULL,
-  `TABLE_TYPE_LABEL` tinyint NOT NULL,
-  `TABLE_SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `APP_SCHEMA` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_tables` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `ORIGIN_ID`,
+ 1 AS `TABLE_TYPE`,
+ 1 AS `TABLE_TYPE_LABEL`,
+ 1 AS `TABLE_SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `APP_SCHEMA`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_user_roles`
+-- Temporary view structure for view `view_user_roles`
 --
 
 DROP TABLE IF EXISTS `view_user_roles`;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_user_roles` (
-  `ID` tinyint NOT NULL,
-  `UID` tinyint NOT NULL,
-  `USERNAME` tinyint NOT NULL,
-  `ROLE_ID` tinyint NOT NULL,
-  `ROLE_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_user_roles` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `UID`,
+ 1 AS `USERNAME`,
+ 1 AS `ROLE_ID`,
+ 1 AS `ROLE_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_users`
+-- Temporary view structure for view `view_users`
 --
 
 DROP TABLE IF EXISTS `view_users`;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_users` (
-  `ID` tinyint NOT NULL,
-  `USERNAME` tinyint NOT NULL,
-  `PASSWORD` tinyint NOT NULL,
-  `FIRSTNAME` tinyint NOT NULL,
-  `LASTNAME` tinyint NOT NULL,
-  `EMAIL` tinyint NOT NULL,
-  `USER_TYPE` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `PROFILE_ID` tinyint NOT NULL,
-  `PROFILE_NAME` tinyint NOT NULL,
-  `SCRIPT_ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_users` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `USERNAME`,
+ 1 AS `PASSWORD`,
+ 1 AS `FIRSTNAME`,
+ 1 AS `LASTNAME`,
+ 1 AS `EMAIL`,
+ 1 AS `USER_TYPE`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `PROFILE_ID`,
+ 1 AS `PROFILE_NAME`,
+ 1 AS `SCRIPT_ID`,
+ 1 AS `SCRIPT_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1538,7 +1577,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_forms`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_forms`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1557,7 +1595,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_modules`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_modules`*/;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1576,7 +1613,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_permissions`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1595,7 +1631,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_role_permissions`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_role_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1614,7 +1649,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_scripts`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_scripts`*/;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1633,7 +1667,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_details`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_details`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1652,7 +1685,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_fks`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_fks`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_fks`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1671,7 +1703,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_indexes`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_indexes`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_indexes`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1690,7 +1721,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_tables`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_tables`*/;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1709,7 +1739,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_user_roles`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_user_roles`*/;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1728,7 +1757,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_users`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_users`*/;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1752,4 +1780,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-06 16:11:44
+-- Dump completed on 2017-09-28 14:45:48

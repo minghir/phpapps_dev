@@ -12,6 +12,10 @@ if(!defined('DIR_SEP')) {
 if (!defined('WEB_BASE_DIR')) { // pt link-uri
         define('WEB_BASE_DIR', 'http://' . $_SERVER["HTTP_HOST"] . '/phpapps_dev/');
 }			
+
+if (!defined('_3RDPARTY_WEB_DIR')) {
+	define('_3RDPARTY_WEB_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/');
+}
 			
 if (!defined('GLOBALS_DIR')) { //pt fwrite
 	define('GLOBALS_DIR', $_SERVER["DOCUMENT_ROOT"] . DIR_SEP . 'phpapps_dev' . DIR_SEP);

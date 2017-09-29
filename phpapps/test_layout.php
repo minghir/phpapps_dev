@@ -10,7 +10,7 @@ class test_layout extends phpapps_display_abs{
         parent::__construct();
         $this->tpl = "test_layout.tpl";        
         $this->app_id = $app_id;
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "test1.lay.tpl";
+        //$this->layout = PHPAPPS_LAYOUTS_DIR . "test1.lay.tpl";
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "test_layout: Youre code here."));
         
         $this->displayTpl();

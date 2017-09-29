@@ -7,7 +7,7 @@
         <script src="{$smarty.const.JQUERY_UI}"></script>  
         <title>{block name=title}Default Page Title{/block}</title>
     </head>
-    <body bgcolor="#eaeaea">
+    <body bgcolor="#4286f4">
         {block name=body}fifi{/block}
     </body> 
 </html>

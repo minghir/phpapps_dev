@@ -1,6 +1,5 @@
-<html>
-<head>
 {include file="commun_header.tpl" }
+{extends file=$display_obj->layout}
 {literal}
 <style>
 			* {padding:0; margin:0;}
@@ -76,29 +75,7 @@
 			});
 		</script>
 {/literal}
-</head>
-<body>
-    {include file="top_menu.tpl" }
-    <br>
-	
-	
-	
-	<div class="test_div">
-	<font style="font-size: 120%;"><a href="phpapps_admin_applications.php">{$module->APP_TITLE}</a> / {$module->MODULE_TITLE} </h1></font><br>
-	( <a href="phpapps_admin_modules_form_imp.php?gact=editRec&gfield=ID&gfield_value={$module->ID}">{$module->MODULE_NAME}</a> / {$module->MODULE_DATE} ) 
-	</div><br>
-	<ul class='tabs'>
-        <li><a href='#tab1'>Databases</a></li>
-	<li><a href='#tab2'>Tables</a></li>
-	<li><a href='#tab3'>Lists</a></li>
-	<li><a href='#tab4'>Queries</a></li>
-	<li><a href='#tab5'>Views</a></li>
-	</ul>
-	
-	<div id="tab1" class="adm_mod_div"  >{$databases_grid}</div>
-        <div id="tab2" class="adm_mod_div"  >{$tables_grid}</div>
-	<div id="tab3" class="test_div"  style="width: 90%;">{$lists_grid}</div>
-	<div id="tab4" class="test_div"  style="width: 90%;">{$queries_grid}</div>
-	<div id="tab5" class="test_div"  style="width: 90%;">{$views_grid}</div>
-</body>
-</html>
+{block name=body}
+{include file="top_menu.tpl" }
+{$layouts_grid}
+{/block}

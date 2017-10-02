@@ -81,6 +81,35 @@ INSERT INTO `articles` VALUES (10,'das',NULL,'This foreign key is the same as th
 UNLOCK TABLES;
 
 --
+-- Table structure for table `forum_categories`
+--
+
+DROP TABLE IF EXISTS `forum_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `forum_categories` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PID` bigint(20) NOT NULL DEFAULT '0',
+  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `DESCRIPTION` text COLLATE utf8_bin,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `atsepa_categories_130_IDX` (`NAME`),
+  KEY `atsepa_categories_PID_FK` (`PID`),
+  CONSTRAINT `atsepa_categories_PID_FK` FOREIGN KEY (`PID`) REFERENCES `forum_categories` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `forum_categories`
+--
+
+LOCK TABLES `forum_categories` WRITE;
+/*!40000 ALTER TABLE `forum_categories` DISABLE KEYS */;
+INSERT INTO `forum_categories` VALUES (0,0,'ROOT','DESC'),(6,5,'CATEGORIE 1',''),(7,5,'CATEGORIE 2','');
+/*!40000 ALTER TABLE `forum_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `list_article_categories`
 --
 
@@ -129,6 +158,65 @@ LOCK TABLES `list_user_types` WRITE;
 INSERT INTO `list_user_types` VALUES (1,NULL,'Administrator'),(2,NULL,'Superuser'),(3,NULL,'User'),(4,NULL,'Visitor');
 /*!40000 ALTER TABLE `list_user_types` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `posts` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `POST_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `TOPIC_ID` bigint(20) DEFAULT NULL,
+  `USER_ID` bigint(20) DEFAULT NULL,
+  `CONTENT` text COLLATE utf8_bin,
+  PRIMARY KEY (`ID`),
+  KEY `atsepa_posts_TOPIC_ID_FK` (`TOPIC_ID`),
+  CONSTRAINT `atsepa_posts_TOPIC_ID_FK` FOREIGN KEY (`TOPIC_ID`) REFERENCES `topics` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `posts`
+--
+
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `topics`
+--
+
+DROP TABLE IF EXISTS `topics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `topics` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
+  `TOPIC_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CAT_ID` bigint(20) NOT NULL DEFAULT '0',
+  `USER_ID` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `atsepa_topics_CAT_ID_FK` (`CAT_ID`),
+  KEY `atsepa_topics_USER_ID_FK` (`USER_ID`),
+  CONSTRAINT `atsepa_topics_CAT_ID_FK` FOREIGN KEY (`CAT_ID`) REFERENCES `forum_categories` (`ID`),
+  CONSTRAINT `atsepa_topics_USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `app_users` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `topics`
+--
+
+LOCK TABLES `topics` WRITE;
+/*!40000 ALTER TABLE `topics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `topics` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -139,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-29 13:36:32
+-- Dump completed on 2017-10-02 16:24:23

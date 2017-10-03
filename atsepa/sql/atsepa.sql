@@ -96,7 +96,7 @@ CREATE TABLE `forum_categories` (
   UNIQUE KEY `atsepa_categories_130_IDX` (`NAME`),
   KEY `atsepa_categories_PID_FK` (`PID`),
   CONSTRAINT `atsepa_categories_PID_FK` FOREIGN KEY (`PID`) REFERENCES `forum_categories` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +105,7 @@ CREATE TABLE `forum_categories` (
 
 LOCK TABLES `forum_categories` WRITE;
 /*!40000 ALTER TABLE `forum_categories` DISABLE KEYS */;
-INSERT INTO `forum_categories` VALUES (0,0,'ROOT','DESC'),(6,5,'CATEGORIE 1',''),(7,5,'CATEGORIE 2','');
+INSERT INTO `forum_categories` VALUES (0,0,'ROOT','DESC'),(6,0,'CATEGORIE 1',''),(7,0,'CATEGORIE 2',''),(8,6,'Sub categ 1.1',''),(9,6,'Sub categ 1.2',''),(10,7,'Sub categ 2.1',''),(11,7,'Sub categ 2.2','');
 /*!40000 ALTER TABLE `forum_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-02 16:24:23
+-- Dump completed on 2017-10-03 15:56:01

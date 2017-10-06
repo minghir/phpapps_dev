@@ -40,7 +40,7 @@ function submitDetailsForm(op){
 																
 			
 		                
-		                				<tr><td align="right">IMAGE :</td><td> <input type="file" id="IMAGE" name="IMAGE" value="{$IMAGE}"></td></tr>
+		                				<tr><td align="right">Title Image :</td><td> <input type="file" id="IMAGE" name="IMAGE" value="{$IMAGE}"></td></tr>
 				 
 										<input id="USER_ID" type="hidden" name="USER_ID" value="{$USER_ID}">
         								
@@ -49,6 +49,11 @@ function submitDetailsForm(op){
 		                				 
 										<input id="ARTICLE_DATE" type="hidden" name="ARTICLE_DATE" value="{$ARTICLE_DATE}">
         								
+			
+		                
+		                				 
+								<tr><td align="right">Intro  :</td><td> <textarea id="INTRO" name="INTRO">{$INTRO}</textarea></td></tr>
+        										
 			
 		                
 		                				{$FROM_IMP_CLASS}

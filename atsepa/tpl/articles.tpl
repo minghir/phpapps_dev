@@ -1,8 +1,2 @@
-<html>
-<head>
-{include file="{$PHPAPPS_SMARTY_TPL_DIR}commun_header.tpl" }
-</head>
-<body>
-{$SCRIPT_CONTENT}
-</body>
-</html>
+{extends file=$display_obj->layout}
+{block name=body}{$SCRIPT_CONTENT}{/block}

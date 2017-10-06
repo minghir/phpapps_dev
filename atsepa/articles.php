@@ -8,12 +8,13 @@ class articles extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
+        $this->layout = CURRENT_APP_LAYOUTS_DIR . "atsepa.lay";
         $this->tpl = "articles.tpl";        
         $this->app_id = $app_id;
         
         $articles_grid =  new DB_grid($this->globals->con, "table","atsepa.articles","articles_grid");
-        $articles_grid->cols = (array("NAME","BODY","CATEG_ID","USER_ID","ARTICLE_DATE"));
-        $articles_grid->labels = (array("Title","Content","CATEG_ID","USER_ID","ARTICLE_DATE"));
+        $articles_grid->cols = (array("NAME","BODY","CATEG_ID","USER_ID","ARTICLE_DATE","IMAGE"));
+        $articles_grid->labels = (array("Title","Content","CATEG_ID","USER_ID","ARTICLE_DATE","IMAGE"));
         $articles_grid->paginable = true;
         $articles_grid->editable = false;
         $articles_grid->filterable = false;

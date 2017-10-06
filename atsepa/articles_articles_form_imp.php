@@ -17,7 +17,8 @@ include ("gen_php/articles_articles_form.php");
 	
 		function beforeAddRec(){
 			$this->USER_ID = $_SESSION["_USER_ID"];
-                        echo "AAAA" . $this->USER_ID;
+                        $this->ARTICLE_DATE = date("Y-m-d");
+                        //echo "AAAA" . $this->USER_ID;
 		}
 		
 		function afterAddRec(){

@@ -8,7 +8,7 @@ class forum_categs extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";
+		$this->layout = CURRENT_APP_LAYOUTS_DIR . "atsepa.lay";
         $this->tpl = "forum_categs.tpl";        
         $this->app_id = $app_id;
         
@@ -28,7 +28,7 @@ class forum_categs extends phpapps_display_abs{
             $categ_descs[$res["PID"]][$res["ID"]] = $res["DESCRIPTION"];
             
         }
-        print_r($categ_names);
+        //print_r($categ_names);
         $this->globals->sm->assign(array(
                 "SCRIPT_CONTENT" => "forum_categs: Youre code here.",
                 "categ_names" => $categ_names,

@@ -14,8 +14,6 @@ class articles_app_users_form{
 	//post values
 	public $pact;
 	            
-	public $ID;
-        	            
 	public $USERNAME;
         	            
 	public $PASSWORD;
@@ -24,12 +22,15 @@ class articles_app_users_form{
         	            
 	public $USER_TYPE;
         	            
-	public $JOIN_DATE;
+	public $LAST_NAME;
+        	            
+	public $FIRST_NAME;
         		
 		 
 		 
 		 
-		 
+			public $USER_TYPE_sel;
+	 
 		 
 		 
 			
@@ -51,7 +52,8 @@ class articles_app_users_form{
                 			 
 					 
 					 
-					 
+								$this->USER_TYPE_sel = new DB_select("USER_TYPE","atsepa.list_user_types");
+                        			 
 					 
 					 
 				
@@ -79,24 +81,24 @@ class articles_app_users_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									ID,
-												USERNAME,
+									USERNAME,
 												PASSWORD,
 												EMAIL,
 												USER_TYPE,
-												JOIN_DATE
+												LAST_NAME,
+												FIRST_NAME
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->USERNAME = stripslashes($this->globals->con->get_field("USERNAME"));
+			                                                                $this->USERNAME = stripslashes($this->globals->con->get_field("USERNAME"));
                                 			                                                                $this->PASSWORD = stripslashes($this->globals->con->get_field("PASSWORD"));
                                 			                                                                $this->EMAIL = stripslashes($this->globals->con->get_field("EMAIL"));
                                 			                                                                $this->USER_TYPE = stripslashes($this->globals->con->get_field("USER_TYPE"));
-                                			                                                                $this->JOIN_DATE = stripslashes($this->globals->con->get_field("JOIN_DATE"));
+                                			                                                                $this->LAST_NAME = stripslashes($this->globals->con->get_field("LAST_NAME"));
+                                			                                                                $this->FIRST_NAME = stripslashes($this->globals->con->get_field("FIRST_NAME"));
                                 						
 	}
 	
@@ -111,20 +113,22 @@ class articles_app_users_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					USERNAME,
+															USERNAME,
 																						PASSWORD,
 																						EMAIL,
 																						USER_TYPE,
-																						JOIN_DATE
+																						LAST_NAME,
+																						FIRST_NAME
 										 ) VALUES (
-																					:USERNAME,
+															:USERNAME,
 																						:PASSWORD,
 																						:EMAIL,
 																						:USER_TYPE,
-																						:JOIN_DATE
+																						:LAST_NAME,
+																						:FIRST_NAME
 													)",
 			array(
-																		                                            
+									                                            
                                             ":USERNAME" => $this->USERNAME,
                                         														                                            
                                             ":PASSWORD" => $this->PASSWORD,
@@ -133,7 +137,9 @@ class articles_app_users_form{
                                         														                                            
                                             ":USER_TYPE" => $this->USER_TYPE,
                                         														                                            
-                                            ":JOIN_DATE" => $this->JOIN_DATE,
+                                            ":LAST_NAME" => $this->LAST_NAME,
+                                        														                                            
+                                            ":FIRST_NAME" => $this->FIRST_NAME,
                                         												)
 			);
 
@@ -159,21 +165,21 @@ class articles_app_users_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									ID = :ID,
-												USERNAME = :USERNAME,
+									USERNAME = :USERNAME,
 												PASSWORD = :PASSWORD,
 												EMAIL = :EMAIL,
 												USER_TYPE = :USER_TYPE,
-												JOIN_DATE = :JOIN_DATE
+												LAST_NAME = :LAST_NAME,
+												FIRST_NAME = :FIRST_NAME
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":USERNAME" => $this->USERNAME,
+				                                                                                    ":USERNAME" => $this->USERNAME,
                                         				                                                                                    ":PASSWORD" => $this->PASSWORD,
                                         				                                                                                    ":EMAIL" => $this->EMAIL,
                                         				                                                                                    ":USER_TYPE" => $this->USER_TYPE,
-                                        				                                                                                    ":JOIN_DATE" => $this->JOIN_DATE,
+                                        				                                                                                    ":LAST_NAME" => $this->LAST_NAME,
+                                        				                                                                                    ":FIRST_NAME" => $this->FIRST_NAME,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -241,12 +247,12 @@ class articles_app_users_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->USERNAME  = htmlspecialchars(addslashes(trim($_POST["USERNAME"])));
+		                                                    $this->USERNAME  = htmlspecialchars(addslashes(trim($_POST["USERNAME"])));
                                                 		                                                    $this->PASSWORD  = htmlspecialchars(addslashes(trim($_POST["PASSWORD"])));
                                                 		                                                    $this->EMAIL  = htmlspecialchars(addslashes(trim($_POST["EMAIL"])));
                                                 		                                                    $this->USER_TYPE  = htmlspecialchars(addslashes(trim($_POST["USER_TYPE"])));
-                                                		                                                    $this->JOIN_DATE  = htmlspecialchars(addslashes(trim($_POST["JOIN_DATE"])));
+                                                		                                                    $this->LAST_NAME  = htmlspecialchars(addslashes(trim($_POST["LAST_NAME"])));
+                                                		                                                    $this->FIRST_NAME  = htmlspecialchars(addslashes(trim($_POST["FIRST_NAME"])));
                                                 		        }
 		
         function takePostActions(){
@@ -271,7 +277,10 @@ class articles_app_users_form{
 					 
 					 
 					 
-					 
+								//$this->USER_TYPE_sel = new DB_select("USER_TYPE",".atsepa.list_user_types");
+			$this->USER_TYPE_sel->selected_val = $this->USER_TYPE;
+			$this->USER_TYPE_sel->setup_select_options();
+			 
 					 
 					 
 				
@@ -284,16 +293,17 @@ class articles_app_users_form{
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
-							"ID" => $this->ID,
 							"USERNAME" => $this->USERNAME,
 							"PASSWORD" => $this->PASSWORD,
 							"EMAIL" => $this->EMAIL,
 							"USER_TYPE" => $this->USER_TYPE,
-							"JOIN_DATE" => $this->JOIN_DATE,
+							"LAST_NAME" => $this->LAST_NAME,
+							"FIRST_NAME" => $this->FIRST_NAME,
 									 
 						 
 						 
-						 
+										"USER_TYPE_sel" => $this->USER_TYPE_sel->get_select_str(),
+			 
 						 
 						 
 									 

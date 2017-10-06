@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
+-- MySQL dump 10.16  Distrib 10.2.7-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: eshop
 -- ------------------------------------------------------
--- Server version	5.6.26
+-- Server version	10.2.7-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,10 +28,10 @@ CREATE TABLE `categories` (
   `NAME` varchar(20) NOT NULL DEFAULT '',
   `TITLE` varchar(255) NOT NULL DEFAULT '',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `PID` (`PID`),
   KEY `categories_ibfk_2` (`MODIFY_UID`),
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-03 15:55:58
+-- Dump completed on 2017-10-06 19:49:44

@@ -15,11 +15,6 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
-				<tr><td align="right">ID :</td><td> <input type="text" id="ID" name="ID" value="{$ID}"></td></tr>
-																
-			
-		                
-		                				 
 				<tr><td align="right">USERNAME :</td><td> <input type="text" id="USERNAME" name="USERNAME" value="{$USERNAME}"></td></tr>
 																
 			
@@ -35,12 +30,19 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-				<tr><td align="right">USER_TYPE :</td><td> <input type="text" id="USER_TYPE" name="USER_TYPE" value="{$USER_TYPE}"></td></tr>
+																
+			
+				<tr><td align="right">USER_TYPE  :</td><td>
+			{$USER_TYPE_sel}
+		</td></tr>
+                        
+		                				 
+				<tr><td align="right">LAST_NAME :</td><td> <input type="text" id="LAST_NAME" name="LAST_NAME" value="{$LAST_NAME}"></td></tr>
 																
 			
 		                
 		                				 
-				<tr><td align="right">JOIN_DATE :</td><td> <input type="text" id="JOIN_DATE" name="JOIN_DATE" value="{$JOIN_DATE}"></td></tr>
+				<tr><td align="right">FIRST_NAME :</td><td> <input type="text" id="FIRST_NAME" name="FIRST_NAME" value="{$FIRST_NAME}"></td></tr>
 																
 			
 		                

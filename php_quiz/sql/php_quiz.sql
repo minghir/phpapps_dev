@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
+-- MySQL dump 10.16  Distrib 10.2.7-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: php_quiz
 -- ------------------------------------------------------
--- Server version	5.6.26
+-- Server version	10.2.7-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `list_category_type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list_category_type` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text,
+  `DESCRIPTION` text DEFAULT NULL,
   `VALUE` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -76,7 +76,7 @@ DROP TABLE IF EXISTS `list_da_nu`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list_da_nu` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text,
+  `DESCRIPTION` text DEFAULT NULL,
   `VALUE` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -101,19 +101,19 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questions` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NO` bigint(10) NOT NULL DEFAULT '0',
+  `NO` bigint(10) NOT NULL DEFAULT 0,
   `CATEG_ID` bigint(20) DEFAULT NULL,
-  `QUESTION` text COLLATE utf8_bin,
-  `ANSWER_1` text COLLATE utf8_bin,
+  `QUESTION` text COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_1` text COLLATE utf8_bin DEFAULT NULL,
   `CORRECT_1` bigint(1) DEFAULT NULL,
   `IMAGE_1` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ANSWER_2` text COLLATE utf8_bin,
+  `ANSWER_2` text COLLATE utf8_bin DEFAULT NULL,
   `CORRECT_2` bigint(1) DEFAULT NULL,
   `IMAGE_2` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ANSWER_3` text COLLATE utf8_bin,
+  `ANSWER_3` text COLLATE utf8_bin DEFAULT NULL,
   `CORRECT_3` bigint(1) DEFAULT NULL,
   `IMAGE_3` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ANSWER_4` text COLLATE utf8_bin,
+  `ANSWER_4` text COLLATE utf8_bin DEFAULT NULL,
   `CORRECT_4` bigint(1) DEFAULT NULL,
   `IMAGE_4` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`),
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-03 15:55:59
+-- Dump completed on 2017-10-06 19:49:44

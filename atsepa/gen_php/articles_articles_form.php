@@ -27,6 +27,8 @@ class articles_articles_form{
 	public $USER_ID;
         	            
 	public $ARTICLE_DATE;
+        	            
+	public $INTRO;
         		
 		 
 		 
@@ -36,7 +38,9 @@ class articles_articles_form{
 		 
 		 
 		 
+		 
 			
+		 
 		 
 		 
 		 
@@ -61,7 +65,9 @@ class articles_articles_form{
 					 
 					 
 					 
+					 
 				
+					 
 					 
 					 
 					 
@@ -93,7 +99,8 @@ class articles_articles_form{
 												CATEG_ID,
 												IMAGE,
 												USER_ID,
-												ARTICLE_DATE
+												ARTICLE_DATE,
+												INTRO
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -107,6 +114,7 @@ class articles_articles_form{
                                 			                                                                $this->IMAGE = stripslashes($this->globals->con->get_field("IMAGE"));
                                 			                                                                $this->USER_ID = stripslashes($this->globals->con->get_field("USER_ID"));
                                 			                                                                $this->ARTICLE_DATE = stripslashes($this->globals->con->get_field("ARTICLE_DATE"));
+                                			                                                                $this->INTRO = stripslashes($this->globals->con->get_field("INTRO"));
                                 						
 	}
 	
@@ -127,7 +135,8 @@ class articles_articles_form{
 																						CATEG_ID,
 																						IMAGE,
 																						USER_ID,
-																						ARTICLE_DATE
+																						ARTICLE_DATE,
+																						INTRO
 										 ) VALUES (
 															:NAME,
 																						:ARTICLE_TAGS,
@@ -135,7 +144,8 @@ class articles_articles_form{
 																						:CATEG_ID,
 																						:IMAGE,
 																						:USER_ID,
-																						:ARTICLE_DATE
+																						:ARTICLE_DATE,
+																						:INTRO
 													)",
 			array(
 									                                            
@@ -152,6 +162,8 @@ class articles_articles_form{
                                             ":USER_ID" => $this->USER_ID,
                                         														                                            
                                             ":ARTICLE_DATE" => $this->ARTICLE_DATE,
+                                        														                                            
+                                            ":INTRO" => $this->INTRO,
                                         												)
 			);
 
@@ -183,7 +195,8 @@ class articles_articles_form{
 												CATEG_ID = :CATEG_ID,
 												IMAGE = :IMAGE,
 												USER_ID = :USER_ID,
-												ARTICLE_DATE = :ARTICLE_DATE
+												ARTICLE_DATE = :ARTICLE_DATE,
+												INTRO = :INTRO
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -194,6 +207,7 @@ class articles_articles_form{
                                         				                                                                                    ":IMAGE" => $this->IMAGE,
                                         				                                                                                    ":USER_ID" => $this->USER_ID,
                                         				                                                                                    ":ARTICLE_DATE" => $this->ARTICLE_DATE,
+                                        				                                                                                    ":INTRO" => $this->INTRO,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -271,6 +285,7 @@ class articles_articles_form{
                             unset($tmp_upload);
                         		                                                    $this->USER_ID  = htmlspecialchars(addslashes(trim($_POST["USER_ID"])));
                                                 		                                                    $this->ARTICLE_DATE  = htmlspecialchars(addslashes(trim($_POST["ARTICLE_DATE"])));
+                                                		                                                    $this->INTRO  = htmlspecialchars(addslashes(trim($_POST["INTRO"])));
                                                 		        }
 		
         function takePostActions(){
@@ -308,7 +323,9 @@ class articles_articles_form{
 					 
 					 
 					 
+					 
 				
+					 
 					 
 					 
 					 
@@ -326,6 +343,7 @@ class articles_articles_form{
 							"IMAGE" => $this->IMAGE,
 							"USER_ID" => $this->USER_ID,
 							"ARTICLE_DATE" => $this->ARTICLE_DATE,
+							"INTRO" => $this->INTRO,
 									 
 						 
 						 
@@ -334,7 +352,9 @@ class articles_articles_form{
 						 
 						 
 						 
+						 
 									 
+						 
 						 
 						 
 						 

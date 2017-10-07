@@ -14,6 +14,7 @@
   </style>
 </head>
 <body class="container">
+
 <div class="row">
 <div class="col-sm-10 text-left bg-1"> 
 <nav class="navbar navbar-inverse ">
@@ -24,17 +25,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">ATSEPA</a>
+      <a class="navbar-brand" href="about.php">ATSEPA</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="about.php">Despre noi</a></li>
-        <li><a href="articles.php">Noutati</a></li>
-        <li><a href="forum_categs.php">Forum</a></li>
-        <li><a href="#">Contact</a></li>
+        <li {if $CURRENT_PAGE == "about"} class="active" {/if}><a href="about.php">Despre noi</a></li>
+        <li {if $CURRENT_PAGE == "articles"} class="active" {/if}><a href="articles.php">Noutati</a></li>
+        <li {if $CURRENT_PAGE == "forum"} class="active" {/if}><a href="forum_categs.php">Forum</a></li>
+        <li {if $CURRENT_PAGE == "contact"} class="active" {/if}><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li {if $CURRENT_PAGE == "login"} class="active" {/if}><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       </ul>
     </div>

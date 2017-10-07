@@ -13,7 +13,7 @@ class about extends phpapps_display_abs{
         $this->app_id = $app_id;
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "about: Youre code here."));
-        
+        $this->globals->sm->assign("CURRENT_PAGE","about");
         $this->displayTpl();
     }
 }

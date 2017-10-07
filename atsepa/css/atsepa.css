@@ -9,7 +9,7 @@ body {
 
 .bg-1 { 
         color: #000000;
-        background-color: rgba(255,255,255,0.9);
+        background-color: rgba(255,255,255,0.1);
     }
 
 /* Remove the navbar's default margin-bottom and rounded borders */ 

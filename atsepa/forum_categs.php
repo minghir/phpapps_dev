@@ -34,7 +34,7 @@ class forum_categs extends phpapps_display_abs{
                 "categ_names" => $categ_names,
                 "categ_descs" => $categ_descs,
         ));
-        
+        $this->globals->sm->assign("CURRENT_PAGE","forum");
         $this->displayTpl();
     }
 }

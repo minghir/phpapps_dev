@@ -429,7 +429,7 @@ echo"</h1><br>----------------<br>";
 			
 			for($i = $this->get_pg - 2 ; $i<= $this->get_pg + 2 ; $i++){
 				if($i <= 0 || $i > $this->last_page ) continue;
-				$hrefs[] = $i == $this->get_pg ? '[' . $this->get_pg  . ']' : "<a href=\"".$url.$this->db_grid_name."=pg=$i$ord_href\">$i</a>";
+				$hrefs[] = $i == $this->get_pg ? '<a href=>[' . $this->get_pg  . ']</a>' : "<a href=\"".$url.$this->db_grid_name."=pg=$i$ord_href\">$i</a>";
 			}
 			
 			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=". ($this->get_pg + 5 > $this->last_page ? $this->last_page : $this->get_pg + 5) ."$ord_href\">></a>";

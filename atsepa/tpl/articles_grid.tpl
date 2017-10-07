@@ -11,7 +11,7 @@
             
             <div class="panel-body">
             {if $values_fields[vls]["IMAGE"] != "" }    
-            <img src="{$values_fields[vls]["IMAGE"]}" height="200" >
+            <img class="img-responsive" src="{$values_fields[vls]["IMAGE"]}" height="200" >
             {/if}     
             </div>
             

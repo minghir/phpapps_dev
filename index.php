@@ -1,5 +1,5 @@
 <?php
-header("Location:php_quiz/Questions.php")
+header("Location:phpapps/index.php")
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

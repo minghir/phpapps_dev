@@ -1,30 +1,13 @@
 {literal}
 <script>
-/*
- $(function() {
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        event.preventDefault();
-      });
-  });
-*/
-    function submitDetailsForm(op)
-    {
+function submitDetailsForm(op){
 		$("#pact").val(op);
 		$("#eshop_admin_categories_form").submit();
-    }
-/*
-	$(function() {
-		$( "#datepicker" ).datepicker();
-		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		$( "#datepicker" ).datepicker( "setDate", new Date(2008,9,03)  );
-	});
-*/
+}
   </script>
 {/literal}
 {$error_msg}
-<hr><form name="eshop_admin_categories_form" id="eshop_admin_categories_form" method="POST">
+<hr><form name="eshop_admin_categories_form" id="eshop_admin_categories_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -34,26 +17,26 @@
 		 
 																
 			
-		
+		                
 				<tr><td align="right">PID  :</td><td>
 			{$PID_sel}
 		</td></tr>
-        		 
-				<tr><td align="right">NAME :</td><td> <input type="text" name="NAME" value="{$NAME}"></td></tr>
+                        				 
+				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
 																
 			
-		
-				 
-				<tr><td align="right">TITLE :</td><td> <input type="text" name="TITLE" value="{$TITLE}"></td></tr>
+		                
+		                				 
+				<tr><td align="right">TITLE :</td><td> <input type="text" id="TITLE" name="TITLE" value="{$TITLE}"></td></tr>
 																
 			
-		
-				 
-				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
+		                
+		                				 
+				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" id="DESCRIPTION" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
 																
 			
-		
-				{$FROM_IMP_CLASS}
+		                
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

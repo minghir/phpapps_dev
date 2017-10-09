@@ -16,6 +16,7 @@ include ("gen_php/forum_posts_form.php");
 		}
 	
 		function beforeAddRec(){
+			$this->USER_ID = $_SESSION["_USER_ID"];
 		}
 		
 		function afterAddRec(){

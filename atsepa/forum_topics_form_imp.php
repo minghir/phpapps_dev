@@ -6,7 +6,7 @@ include ("gen_php/forum_topics_form.php");
 			parent::__construct();
 			$this->template = "forum_topics_form_imp.tpl";
 			$this->init();
-			$this->USER_ID = $_USER_ID;
+			$this->USER_ID = $_SESSION["_USER_ID"];
 			$this->display();
 		}
 		

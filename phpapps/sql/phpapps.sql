@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.2.7-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
 --
 -- Host: localhost    Database: phpapps
 -- ------------------------------------------------------
--- Server version	10.2.7-MariaDB
+-- Server version	5.6.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `aaa`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `aaa` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
   `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -55,10 +55,10 @@ CREATE TABLE `applications` (
   `BASE_DIR` varchar(20) NOT NULL DEFAULT '',
   `APP_DATE` date NOT NULL DEFAULT '0000-00-00',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `USER_ID` (`USER_ID`),
   KEY `applications_ibfk_2` (`MODIFY_UID`),
@@ -91,9 +91,9 @@ CREATE TABLE `form_details` (
   `FORM_ID` bigint(20) NOT NULL,
   `FIELD` varchar(255) NOT NULL DEFAULT '',
   `FIELD_TYPE` varchar(255) NOT NULL DEFAULT '',
-  `HIDDEN` int(1) NOT NULL DEFAULT 0,
+  `HIDDEN` int(1) NOT NULL DEFAULT '0',
   `LABEL` varchar(255) NOT NULL DEFAULT '',
-  `MANDATORY` int(1) NOT NULL DEFAULT 0,
+  `MANDATORY` int(1) NOT NULL DEFAULT '0',
   `INPUT_TYPE` varchar(255) NOT NULL DEFAULT '',
   `REFERENCE_LIST` varchar(255) NOT NULL DEFAULT '',
   `REFERENCE_TABLE` varchar(255) NOT NULL DEFAULT '',
@@ -110,7 +110,7 @@ CREATE TABLE `form_details` (
 
 LOCK TABLES `form_details` WRITE;
 /*!40000 ALTER TABLE `form_details` DISABLE KEYS */;
-INSERT INTO `form_details` VALUES (58,47,'ID','bigint(20)',1,'ID',0,'text','','',''),(59,47,'USER_ID','bigint(20)',0,'User',1,'select_table','','phpapps.users','USERNAME'),(60,47,'APP_NAME','varchar(20)',0,'Application name',1,'text','','',''),(61,47,'APP_TITLE','varchar(255)',0,'Application title',0,'text','','',''),(62,47,'APP_SCHEMA','varchar(20)',0,'Application database',0,'select_list','phpapps.list_databases','',''),(63,47,'BASE_DIR','varchar(20)',0,'Application Directory',0,'text','','',''),(64,47,'APP_DATE','date',0,'APP_DATE',0,'date','','',''),(65,47,'DESCRIPTION','varchar(255)',0,'Description',0,'textarea','','',''),(77,54,'ID','bigint(20)',1,'ID',0,'text','','',''),(78,54,'PID','bigint(20)',0,'PID',1,'select_table','','categories','NAME'),(79,54,'NAME','varchar(20)',0,'NAME',0,'text','','',''),(80,54,'TITLE','varchar(255)',0,'TITLE',0,'text','','',''),(81,54,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(129,60,'ID','bigint(20)',1,'ID',0,'text','','',''),(130,60,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(131,60,'SCRIPT_TYPE','bigint(20)',0,'SCRIPT_TYPE',0,'select_list','list_script_types','',''),(132,60,'SCRIPT_NAME','varchar(255)',0,'SCRIPT_NAME',1,'text','','',''),(133,60,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(159,65,'ID','bigint(20)',1,'ID',0,'text','','',''),(160,65,'APP_ID','bigint(20)',0,'APP_ID',1,'hidden','','',''),(161,65,'SCRIPT_ID','bigint(20)',0,'START SCRIPT',1,'select_table','','phpapps.scripts','SCRIPT_NAME'),(162,65,'MODULE_NAME','varchar(20)',0,'MODULE NAME',1,'text','','',''),(163,65,'MODULE_TITLE','varchar(255)',0,'MODULE TITLE',0,'text','','',''),(164,65,'MODULE_DATE','date',0,'MODULE_DATE',0,'hidden','','',''),(165,65,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(166,66,'ID','bigint(20)',1,'ID',0,'text','','',''),(167,66,'ROLE_NAME','varchar(255)',0,'ROLE_NAME',1,'text','','',''),(168,66,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(175,69,'ID','bigint(20)',1,'ID',0,'text','','',''),(176,69,'UID','bigint(20)',0,'UID',1,'hidden','','',''),(177,69,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(188,72,'ID','bigint(20)',1,'ID',0,'text','','',''),(189,72,'PERMISSION_NAME','varchar(255)',0,'PERMISSION_NAME',1,'select_list','list_permission_names','',''),(190,72,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(191,72,'PERMISSION_TYPE','bigint(20)',0,'PERMISSION_TYPE',1,'select_list','list_permission_types','',''),(192,72,'OBJECT_TYPE','bigint(20)',0,'OBJECT_TYPE',1,'select_list','list_object_types','',''),(193,72,'OBJECT_ID','bigint(20)',0,'OBJECT_ID',1,'hidden','','',''),(209,76,'ID','bigint(20)',1,'ID',0,'text','','',''),(210,76,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(211,76,'PERMISSION_ID','bigint(20)',0,'PERMISSION_ID',1,'select_table','','view_permissions','DESCRIPTION'),(246,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(247,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(248,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(249,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(250,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(251,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(252,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','list_user_types','',''),(253,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(254,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'select_table','','user_profiles','PROFILE_NAME'),(255,84,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(256,84,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(257,84,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(258,84,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(259,85,'ID','bigint(20)',1,'ID',0,'text','','',''),(260,85,'SCRIPT_ID','bigint(20)',0,'SCRIPT_ID',0,'select_table','','scripts','SCRIPT_NAME'),(261,85,'PROFILE_NAME','varchar(255)',0,'PROFILE_NAME',1,'text','','',''),(262,85,'THEME','bigint(10)',0,'THEME',0,'text','','',''),(263,85,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(264,85,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(265,85,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(266,85,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(366,95,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(367,95,'MODULE_ID','bigint(20)',0,'MODULE',0,'select_table','','modules','MODULE_NAME'),(368,95,'FORM_NAME','varchar(255)',0,'FORM_NAME',0,'text','','',''),(369,95,'TABLE_ID','bigint(20)',0,'TABLE',0,'select_table','','tables','TABLE_NAME'),(370,95,'FORM_QUERY','varchar(255)',0,'FORM_QUERY',0,'text','','',''),(371,95,'FORM_PHP_DIR','varchar(20)',0,'FORM_PHP_DIR',0,'text','','',''),(372,95,'FORM_TPL_DIR','varchar(20)',0,'FORM_TPL_DIR',0,'text','','',''),(373,95,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(374,95,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(375,95,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(376,95,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(377,95,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(378,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(379,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(380,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(381,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(382,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(383,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(384,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',1,'select_list','list_user_types','',''),(385,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(386,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'text','','',''),(387,84,'MODIFY_UID','bigint(20)',0,'MODIFY_UID',0,'text','','',''),(388,84,'CREATE_UID','bigint(20)',0,'CREATE_UID',0,'text','','',''),(389,84,'MODIFY_DATE','timestamp',0,'MODIFY_DATE',0,'text','','',''),(390,84,'CREATE_DATE','timestamp',0,'CREATE_DATE',0,'text','','',''),(407,100,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(408,100,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(409,100,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(410,101,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(411,101,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',0,'select_list','list_mysql_column_types','',''),(412,101,'DEF_TPL','varchar(255)',0,'DEF_TPL',0,'textarea','','',''),(413,101,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(419,103,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(420,103,'DBMS_TYPE_ID','bigint(20)',0,'DBMS_TYPE_ID',1,'select_list','list_dbms_types','',''),(421,103,'SINTAX_TYPE_ID','bigint(20)',0,'SINTAX_TYPE_ID',1,'select_list','list_sql_sintax_types','',''),(422,103,'DEF_TPL','text',0,'DEF_TPL',0,'textarea','','',''),(423,103,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(435,105,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(436,105,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(437,105,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(438,105,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',0,'hidden','','',''),(439,105,'TABLE_NAME','varchar(255)',0,'LIST_NAME',0,'text','','',''),(440,105,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'hidden','','',''),(441,105,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(442,105,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(443,105,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(444,105,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(445,105,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(457,107,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(458,107,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(459,107,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(460,107,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(461,107,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'text','','',''),(462,107,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'select_list','list_table_types','',''),(463,107,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(464,107,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(465,107,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(466,107,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(467,107,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(546,114,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(547,114,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(548,114,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(549,114,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(550,114,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(551,114,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(552,114,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(553,114,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(554,114,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(555,114,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(556,114,'ORD','smallint(5) unsigned',0,'ORD',0,'text','','',''),(557,114,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(558,114,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(559,114,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(560,114,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(561,115,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(562,115,'TABLE_ID','bigint(20)',0,'TABLE_ID',0,'hidden','','',''),(563,115,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(564,115,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(565,115,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(566,115,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(567,115,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(568,115,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(569,115,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(570,115,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(571,115,'ORD','smallint(5) unsigned',1,'ORD',0,'text','','',''),(572,115,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(573,115,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(574,115,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(575,115,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(588,117,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(589,117,'COLUMN_ID','bigint(20)',0,'COLUMN_ID',1,'select_table','','table_details','COLUMN_NAME'),(590,117,'FK_NAME','varchar(255)',0,'FK_NAME',1,'hidden','','',''),(591,117,'FK_TABLE_ID','bigint(20)',0,'FK_TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(592,117,'FK_COLUMN_ID','bigint(20)',0,'FK_COLUMN_ID',0,'hidden','','',''),(593,117,'ON_UPDATE','bigint(20)',0,'ON_UPDATE',0,'select_list','list_foreign_key_options','',''),(594,117,'ON_DELETE','bigint(20)',0,'ON_DELETE',0,'select_list','list_foreign_key_options','',''),(595,117,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(596,117,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(597,117,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(598,117,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(599,117,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(600,118,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(601,118,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(602,118,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'text','','',''),(603,118,'INDEX_TYPE','bigint(20)',0,'INDEX_TYPE',1,'select_list','list_index_types','',''),(604,118,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table','','table_details','COLUMN_NAME'),(605,118,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(606,118,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(607,118,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(608,118,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(609,118,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(610,119,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(611,119,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'hidden','','',''),(612,119,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'hidden','','',''),(613,119,'INDEX_TYPE_ID','bigint(20)',0,'INDEX_TYPE_ID',1,'select_list','list_index_types','',''),(614,119,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table_multiple','','table_details','COLUMN_NAME'),(615,119,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(616,119,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(617,119,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(618,119,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(619,119,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(620,120,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(621,120,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(622,120,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(623,120,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(624,120,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'select_table','','tables','TABLE_NAME'),(625,120,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'hidden','','',''),(626,120,'DESCRIPTION','varchar(255)',1,'DESCRIPTION',0,'text','','',''),(627,120,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(628,120,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(629,120,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(630,120,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(663,125,'ID','bigint(20)',1,'ID',0,'text','','',''),(664,125,'NO','bigint(10)',0,'NO',1,'text','','',''),(665,125,'CATEG_ID','bigint(20)',0,'CATEG_ID',1,'select_table','','php_quiz.categories','NAME'),(666,125,'QUESTION','text',0,'QUESTION',1,'textarea','','',''),(667,125,'ANSWER_1','text',0,'ANSWER_1',0,'textarea','','',''),(668,125,'CORRECT_1','bigint(1)',0,'CORRECT_1',0,'select_list','php_quiz.list_da_nu','',''),(669,125,'IMAGE_1','varchar(255)',1,'IMAGE_1',0,'text','','',''),(670,125,'ANSWER_2','text',0,'ANSWER_2',0,'textarea','','',''),(671,125,'CORRECT_2','bigint(1)',0,'CORRECT_2',0,'select_list','php_quiz.list_da_nu','',''),(672,125,'IMAGE_2','varchar(255)',1,'IMAGE_2',0,'text','','',''),(673,125,'ANSWER_3','text',0,'ANSWER_3',0,'textarea','','',''),(674,125,'CORRECT_3','bigint(1)',0,'CORRECT_3',0,'select_list','php_quiz.list_da_nu','',''),(675,125,'IMAGE_3','varchar(255)',1,'IMAGE_3',0,'text','','',''),(676,125,'ANSWER_4','text',0,'ANSWER_4',0,'textarea','','',''),(677,125,'CORRECT_4','bigint(1)',0,'CORRECT_4',0,'select_list','php_quiz.list_da_nu','',''),(678,125,'IMAGE_4','varchar(255)',1,'IMAGE_4',0,'text','','',''),(682,127,'ID','bigint(20)',1,'ID',0,'text','','',''),(683,127,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(684,127,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(706,132,'ID','bigint(20)',1,'ID',0,'text','','',''),(707,132,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(708,132,'QUERY_NAME','text',0,'QUERY_NAME',0,'text','','',''),(709,132,'QUERY_BODY','text',0,'QUERY_BODY',0,'textarea','','',''),(710,132,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(713,134,'ID','bigint(20)',1,'ID',0,'text','','',''),(714,134,'FILE_PATH','varchar(255)',0,'FILE_PATH',0,'file','','',''),(715,134,'NUME','varchar(255)',0,'NUME',0,'text','','',''),(716,135,'ID','bigint(20)',1,'ID',0,'text','','',''),(717,135,'USERNAME','varchar(255)',0,'USERNAME',0,'text','','',''),(718,135,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(719,135,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(720,135,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','atsepa.list_user_types','',''),(721,135,'JOIN_DATE','timestamp',0,'JOIN_DATE',0,'date','','',''),(742,139,'ID','bigint(20)',1,'ID',0,'text','','',''),(743,139,'USERNAME','varchar(255)',0,'USERNAME',0,'text','','',''),(744,139,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(745,139,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(746,139,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','atsepa.list_user_types','',''),(747,139,'JOIN_DATE','timestamp',1,'JOIN_DATE',0,'text','','',''),(748,140,'ID','bigint(20)',1,'ID',0,'text','','',''),(749,140,'NAME','varchar(255)',0,'Title',0,'text','','',''),(750,140,'ARTICLE_TAGS','text',0,'Tags',0,'textarea','','',''),(751,140,'BODY','text',0,'Content',0,'textarea','','',''),(752,140,'CATEG_ID','bigint(20)',0,'Category',1,'select_list','atsepa.list_article_categories','',''),(753,140,'IMAGE','varchar(255)',0,'Title Image',0,'file','','',''),(754,140,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(755,140,'ARTICLE_DATE','timestamp',0,'ARTICLE_DATE',0,'hidden','','',''),(756,141,'ID','bigint(20)',1,'ID',0,'text','','',''),(757,141,'NAME','varchar(255)',0,'NAME',1,'text','','',''),(758,141,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(759,142,'ID','bigint(20)',1,'ID',0,'text','','',''),(760,142,'PID','bigint(20)',0,'PID',0,'select_table','','atsepa.forum_categories','NAME'),(761,142,'NAME','varchar(255)',0,'NAME',1,'text','','',''),(762,142,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(763,143,'ID','bigint(20)',1,'ID',0,'text','','',''),(764,143,'SUBJECT','varchar(255)',0,'SUBJECT',0,'text','','',''),(765,143,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(766,143,'TOPIC_DATE','timestamp',1,'TOPIC_DATE',0,'text','','',''),(767,143,'CAT_ID','bigint(20)',0,'CAT_ID',0,'select_table','','atsepa.forum_categories','NAME'),(768,143,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(769,144,'ID','bigint(20)',1,'ID',0,'text','','',''),(770,144,'POST_DATE','timestamp',1,'POST_DATE',0,'text','','',''),(771,144,'TOPIC_ID','bigint(20)',0,'TOPIC_ID',0,'select_table','','atsepa.topics','SUBJECT'),(772,144,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(773,144,'CONTENT','text',0,'CONTENT',0,'textarea','','',''),(774,139,'LAST_NAME','varchar(255)',0,'LAST_NAME',0,'text','','',''),(775,139,'FIRST_NAME','varchar(255)',0,'FIRST_NAME',0,'text','','',''),(776,140,'INTRO','varchar(255)',0,'Intro',0,'textarea','','','');
+INSERT INTO `form_details` VALUES (58,47,'ID','bigint(20)',1,'ID',0,'text','','',''),(59,47,'USER_ID','bigint(20)',0,'User',1,'select_table','','phpapps.users','USERNAME'),(60,47,'APP_NAME','varchar(20)',0,'Application name',1,'text','','',''),(61,47,'APP_TITLE','varchar(255)',0,'Application title',0,'text','','',''),(62,47,'APP_SCHEMA','varchar(20)',0,'Application database',0,'select_list','phpapps.list_databases','',''),(63,47,'BASE_DIR','varchar(20)',0,'Application Directory',0,'text','','',''),(64,47,'APP_DATE','date',0,'APP_DATE',0,'date','','',''),(65,47,'DESCRIPTION','varchar(255)',0,'Description',0,'textarea','','',''),(77,54,'ID','bigint(20)',1,'ID',0,'text','','',''),(78,54,'PID','bigint(20)',0,'PID',1,'select_table','','','NAME'),(79,54,'NAME','varchar(20)',0,'NAME',0,'text','','',''),(80,54,'TITLE','varchar(255)',0,'TITLE',0,'text','','',''),(81,54,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(129,60,'ID','bigint(20)',1,'ID',0,'text','','',''),(130,60,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(131,60,'SCRIPT_TYPE','bigint(20)',0,'SCRIPT_TYPE',0,'select_list','list_script_types','',''),(132,60,'SCRIPT_NAME','varchar(255)',0,'SCRIPT_NAME',1,'text','','',''),(133,60,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(159,65,'ID','bigint(20)',1,'ID',0,'text','','',''),(160,65,'APP_ID','bigint(20)',0,'APP_ID',1,'hidden','','',''),(161,65,'SCRIPT_ID','bigint(20)',0,'START SCRIPT',1,'select_table','','phpapps.scripts','SCRIPT_NAME'),(162,65,'MODULE_NAME','varchar(20)',0,'MODULE NAME',1,'text','','',''),(163,65,'MODULE_TITLE','varchar(255)',0,'MODULE TITLE',0,'text','','',''),(164,65,'MODULE_DATE','date',0,'MODULE_DATE',0,'hidden','','',''),(165,65,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(166,66,'ID','bigint(20)',1,'ID',0,'text','','',''),(167,66,'ROLE_NAME','varchar(255)',0,'ROLE_NAME',1,'text','','',''),(168,66,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(175,69,'ID','bigint(20)',1,'ID',0,'text','','',''),(176,69,'UID','bigint(20)',0,'UID',1,'hidden','','',''),(177,69,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(188,72,'ID','bigint(20)',1,'ID',0,'text','','',''),(189,72,'PERMISSION_NAME','varchar(255)',0,'PERMISSION_NAME',1,'select_list','list_permission_names','',''),(190,72,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(191,72,'PERMISSION_TYPE','bigint(20)',0,'PERMISSION_TYPE',1,'select_list','list_permission_types','',''),(192,72,'OBJECT_TYPE','bigint(20)',0,'OBJECT_TYPE',1,'select_list','list_object_types','',''),(193,72,'OBJECT_ID','bigint(20)',0,'OBJECT_ID',1,'hidden','','',''),(209,76,'ID','bigint(20)',1,'ID',0,'text','','',''),(210,76,'ROLE_ID','bigint(20)',0,'ROLE_ID',1,'select_table','','roles','ROLE_NAME'),(211,76,'PERMISSION_ID','bigint(20)',0,'PERMISSION_ID',1,'select_table','','view_permissions','DESCRIPTION'),(246,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(247,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(248,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(249,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(250,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(251,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(252,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','list_user_types','',''),(253,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(254,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'select_table','','user_profiles','PROFILE_NAME'),(255,84,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(256,84,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(257,84,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(258,84,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(259,85,'ID','bigint(20)',1,'ID',0,'text','','',''),(260,85,'SCRIPT_ID','bigint(20)',0,'SCRIPT_ID',0,'select_table','','scripts','SCRIPT_NAME'),(261,85,'PROFILE_NAME','varchar(255)',0,'PROFILE_NAME',1,'text','','',''),(262,85,'THEME','bigint(10)',0,'THEME',0,'text','','',''),(263,85,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(264,85,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(265,85,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(266,85,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(366,95,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(367,95,'MODULE_ID','bigint(20)',0,'MODULE',0,'select_table','','modules','MODULE_NAME'),(368,95,'FORM_NAME','varchar(255)',0,'FORM_NAME',0,'text','','',''),(369,95,'TABLE_ID','bigint(20)',0,'TABLE',0,'select_table','','tables','TABLE_NAME'),(370,95,'FORM_QUERY','varchar(255)',0,'FORM_QUERY',0,'text','','',''),(371,95,'FORM_PHP_DIR','varchar(20)',0,'FORM_PHP_DIR',0,'text','','',''),(372,95,'FORM_TPL_DIR','varchar(20)',0,'FORM_TPL_DIR',0,'text','','',''),(373,95,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'text','','',''),(374,95,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(375,95,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(376,95,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(377,95,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(378,84,'ID','bigint(20)',1,'ID',0,'text','','',''),(379,84,'USERNAME','varchar(255)',0,'USERNAME',1,'text','','',''),(380,84,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(381,84,'FIRSTNAME','varchar(255)',0,'FIRSTNAME',0,'text','','',''),(382,84,'LASTNAME','varchar(255)',0,'LASTNAME',0,'text','','',''),(383,84,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(384,84,'USER_TYPE','bigint(20)',0,'USER_TYPE',1,'select_list','list_user_types','',''),(385,84,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(386,84,'PROFILE_ID','bigint(20)',0,'PROFILE_ID',0,'text','','',''),(387,84,'MODIFY_UID','bigint(20)',0,'MODIFY_UID',0,'text','','',''),(388,84,'CREATE_UID','bigint(20)',0,'CREATE_UID',0,'text','','',''),(389,84,'MODIFY_DATE','timestamp',0,'MODIFY_DATE',0,'text','','',''),(390,84,'CREATE_DATE','timestamp',0,'CREATE_DATE',0,'text','','',''),(407,100,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(408,100,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(409,100,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(410,101,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(411,101,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',0,'select_list','list_mysql_column_types','',''),(412,101,'DEF_TPL','varchar(255)',0,'DEF_TPL',0,'textarea','','',''),(413,101,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(419,103,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(420,103,'DBMS_TYPE_ID','bigint(20)',0,'DBMS_TYPE_ID',1,'select_list','list_dbms_types','',''),(421,103,'SINTAX_TYPE_ID','bigint(20)',0,'SINTAX_TYPE_ID',1,'select_list','list_sql_sintax_types','',''),(422,103,'DEF_TPL','text',0,'DEF_TPL',0,'textarea','','',''),(423,103,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(435,105,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(436,105,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(437,105,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(438,105,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',0,'hidden','','',''),(439,105,'TABLE_NAME','varchar(255)',0,'LIST_NAME',0,'text','','',''),(440,105,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',0,'hidden','','',''),(441,105,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(442,105,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(443,105,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(444,105,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(445,105,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(457,107,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(458,107,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(459,107,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(460,107,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(461,107,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'text','','',''),(462,107,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'select_list','list_table_types','',''),(463,107,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(464,107,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(465,107,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(466,107,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(467,107,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(546,114,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(547,114,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(548,114,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(549,114,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(550,114,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(551,114,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(552,114,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(553,114,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(554,114,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(555,114,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(556,114,'ORD','smallint(5) unsigned',0,'ORD',0,'text','','',''),(557,114,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(558,114,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(559,114,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(560,114,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(561,115,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(562,115,'TABLE_ID','bigint(20)',0,'TABLE_ID',0,'hidden','','',''),(563,115,'COLUMN_NAME','varchar(255)',0,'COLUMN_NAME',1,'text','','',''),(564,115,'COLUMN_TYPE_ID','bigint(20)',0,'COLUMN_TYPE_ID',1,'select_list','list_mysql_column_types','',''),(565,115,'UNSIGN','tinyint(3) unsigned',0,'UNSIGN',1,'select_list','list_no_yes','',''),(566,115,'COLUMN_SIZE','bigint(20)',0,'COLUMN_SIZE',0,'text','','',''),(567,115,'ACCEPT_NULL','tinyint(3) unsigned',0,'ACCEPT_NULL',1,'select_list','list_no_yes','',''),(568,115,'COLUMN_DEFAULT_VALUE','varchar(255)',0,'COLUMN_DEFAULT_VALUE',0,'text','','',''),(569,115,'AUTOINCREMENT','tinyint(3) unsigned',0,'AUTOINCREMENT',1,'select_list','list_no_yes','',''),(570,115,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(571,115,'ORD','smallint(5) unsigned',1,'ORD',0,'text','','',''),(572,115,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(573,115,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(574,115,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(575,115,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(588,117,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(589,117,'COLUMN_ID','bigint(20)',0,'COLUMN_ID',1,'select_table','','table_details','COLUMN_NAME'),(590,117,'FK_NAME','varchar(255)',0,'FK_NAME',1,'hidden','','',''),(591,117,'FK_TABLE_ID','bigint(20)',0,'FK_TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(592,117,'FK_COLUMN_ID','bigint(20)',0,'FK_COLUMN_ID',0,'hidden','','',''),(593,117,'ON_UPDATE','bigint(20)',0,'ON_UPDATE',0,'select_list','list_foreign_key_options','',''),(594,117,'ON_DELETE','bigint(20)',0,'ON_DELETE',0,'select_list','list_foreign_key_options','',''),(595,117,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(596,117,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(597,117,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(598,117,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(599,117,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(600,118,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(601,118,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'select_table','','tables','TABLE_NAME'),(602,118,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'text','','',''),(603,118,'INDEX_TYPE','bigint(20)',0,'INDEX_TYPE',1,'select_list','list_index_types','',''),(604,118,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table','','table_details','COLUMN_NAME'),(605,118,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(606,118,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(607,118,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(608,118,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(609,118,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(610,119,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(611,119,'TABLE_ID','bigint(20)',0,'TABLE_ID',1,'hidden','','',''),(612,119,'INDEX_NAME','varchar(255)',0,'INDEX_NAME',1,'hidden','','',''),(613,119,'INDEX_TYPE_ID','bigint(20)',0,'INDEX_TYPE_ID',1,'select_list','list_index_types','',''),(614,119,'INDEX_COLUMNS','varchar(255)',0,'INDEX_COLUMNS',1,'select_table_multiple','','table_details','COLUMN_NAME'),(615,119,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(616,119,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(617,119,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(618,119,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(619,119,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(620,120,'ID','bigint(20)',0,'ID',0,'hidden','','',''),(621,120,'ORIGIN_ID','bigint(20)',0,'ORIGIN_ID',0,'hidden','','',''),(622,120,'MODULE_ID','bigint(20)',0,'MODULE_ID',1,'hidden','','',''),(623,120,'SCHEMA_ID','bigint(20)',0,'SCHEMA_ID',1,'hidden','','',''),(624,120,'TABLE_NAME','varchar(255)',0,'TABLE_NAME',1,'select_table','','tables','TABLE_NAME'),(625,120,'TABLE_TYPE','bigint(20)',0,'TABLE_TYPE',1,'hidden','','',''),(626,120,'DESCRIPTION','varchar(255)',1,'DESCRIPTION',0,'text','','',''),(627,120,'MODIFY_UID','bigint(20)',1,'MODIFY_UID',0,'text','','',''),(628,120,'CREATE_UID','bigint(20)',1,'CREATE_UID',0,'text','','',''),(629,120,'MODIFY_DATE','timestamp',1,'MODIFY_DATE',0,'text','','',''),(630,120,'CREATE_DATE','timestamp',1,'CREATE_DATE',0,'text','','',''),(663,125,'ID','bigint(20)',1,'ID',0,'text','','',''),(664,125,'NO','bigint(10)',0,'NO',1,'text','','',''),(665,125,'CATEG_ID','bigint(20)',0,'CATEG_ID',1,'select_table','','php_quiz.categories','NAME'),(666,125,'QUESTION','text',0,'QUESTION',1,'textarea','','',''),(667,125,'ANSWER_1','text',0,'ANSWER_1',0,'textarea','','',''),(668,125,'CORRECT_1','bigint(1)',0,'CORRECT_1',0,'select_list','php_quiz.list_da_nu','',''),(669,125,'IMAGE_1','varchar(255)',1,'IMAGE_1',0,'text','','',''),(670,125,'ANSWER_2','text',0,'ANSWER_2',0,'textarea','','',''),(671,125,'CORRECT_2','bigint(1)',0,'CORRECT_2',0,'select_list','php_quiz.list_da_nu','',''),(672,125,'IMAGE_2','varchar(255)',1,'IMAGE_2',0,'text','','',''),(673,125,'ANSWER_3','text',0,'ANSWER_3',0,'textarea','','',''),(674,125,'CORRECT_3','bigint(1)',0,'CORRECT_3',0,'select_list','php_quiz.list_da_nu','',''),(675,125,'IMAGE_3','varchar(255)',1,'IMAGE_3',0,'text','','',''),(676,125,'ANSWER_4','text',0,'ANSWER_4',0,'textarea','','',''),(677,125,'CORRECT_4','bigint(1)',0,'CORRECT_4',0,'select_list','php_quiz.list_da_nu','',''),(678,125,'IMAGE_4','varchar(255)',1,'IMAGE_4',0,'text','','',''),(682,127,'ID','bigint(20)',1,'ID',0,'text','','',''),(683,127,'VALUE','varchar(20)',0,'VALUE',1,'text','','',''),(684,127,'DESCRIPTION','varchar(255)',0,'DESCRIPTION',0,'textarea','','',''),(706,132,'ID','bigint(20)',1,'ID',0,'text','','',''),(707,132,'MODULE_ID','bigint(20)',0,'MODULE_ID',0,'hidden','','',''),(708,132,'QUERY_NAME','text',0,'QUERY_NAME',0,'text','','',''),(709,132,'QUERY_BODY','text',0,'QUERY_BODY',0,'textarea','','',''),(710,132,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(713,134,'ID','bigint(20)',1,'ID',0,'text','','',''),(714,134,'FILE_PATH','varchar(255)',0,'FILE_PATH',0,'file','','',''),(715,134,'NUME','varchar(255)',0,'NUME',0,'text','','',''),(716,135,'ID','bigint(20)',1,'ID',0,'text','','',''),(717,135,'USERNAME','varchar(255)',0,'USERNAME',0,'text','','',''),(718,135,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(719,135,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(720,135,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','atsepa.list_user_types','',''),(721,135,'JOIN_DATE','timestamp',0,'JOIN_DATE',0,'date','','',''),(742,139,'ID','bigint(20)',1,'ID',0,'text','','',''),(743,139,'USERNAME','varchar(255)',0,'USERNAME',0,'text','','',''),(744,139,'PASSWORD','varchar(255)',0,'PASSWORD',0,'text','','',''),(745,139,'EMAIL','varchar(255)',0,'EMAIL',0,'text','','',''),(746,139,'USER_TYPE','bigint(20)',0,'USER_TYPE',0,'select_list','atsepa.list_user_types','',''),(747,139,'JOIN_DATE','timestamp',1,'JOIN_DATE',0,'text','','',''),(748,140,'ID','bigint(20)',1,'ID',0,'text','','',''),(749,140,'NAME','varchar(255)',0,'Title',0,'text','','',''),(750,140,'ARTICLE_TAGS','text',0,'Tags',0,'textarea','','',''),(751,140,'BODY','text',0,'Content',0,'textarea','','',''),(752,140,'CATEG_ID','bigint(20)',0,'Category',1,'select_list','atsepa.list_article_categories','',''),(753,140,'IMAGE','varchar(255)',0,'Title Image',0,'file','','',''),(754,140,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(755,140,'ARTICLE_DATE','timestamp',0,'ARTICLE_DATE',0,'hidden','','',''),(756,141,'ID','bigint(20)',1,'ID',0,'text','','',''),(757,141,'NAME','varchar(255)',0,'NAME',1,'text','','',''),(758,141,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(759,142,'ID','bigint(20)',1,'ID',0,'text','','',''),(760,142,'PID','bigint(20)',0,'PID',0,'select_table','','atsepa.forum_categories','NAME'),(761,142,'NAME','varchar(255)',0,'NAME',1,'text','','',''),(762,142,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(763,143,'ID','bigint(20)',1,'ID',0,'text','','',''),(764,143,'SUBJECT','varchar(255)',0,'SUBJECT',0,'text','','',''),(765,143,'DESCRIPTION','text',0,'DESCRIPTION',0,'textarea','','',''),(766,143,'TOPIC_DATE','timestamp',1,'TOPIC_DATE',0,'text','','',''),(767,143,'CAT_ID','bigint(20)',0,'CAT_ID',0,'select_table','','atsepa.forum_categories','NAME'),(768,143,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(769,144,'ID','bigint(20)',1,'ID',0,'text','','',''),(770,144,'POST_DATE','timestamp',1,'POST_DATE',0,'text','','',''),(771,144,'TOPIC_ID','bigint(20)',0,'TOPIC_ID',0,'select_table','','atsepa.topics','SUBJECT'),(772,144,'USER_ID','bigint(20)',0,'USER_ID',1,'hidden','','',''),(773,144,'CONTENT','text',0,'CONTENT',0,'textarea','','',''),(774,139,'LAST_NAME','varchar(255)',0,'LAST_NAME',0,'text','','',''),(775,139,'FIRST_NAME','varchar(255)',0,'FIRST_NAME',0,'text','','',''),(776,140,'INTRO','varchar(255)',0,'Intro',0,'textarea','','','');
 /*!40000 ALTER TABLE `form_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,15 +125,15 @@ CREATE TABLE `forms` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `MODULE_ID` bigint(20) NOT NULL,
   `FORM_NAME` varchar(255) NOT NULL DEFAULT '',
-  `TABLE_ID` bigint(20) NOT NULL DEFAULT 0,
+  `TABLE_ID` bigint(20) NOT NULL DEFAULT '0',
   `FORM_QUERY` varchar(255) NOT NULL DEFAULT '',
   `FORM_PHP_DIR` varchar(20) NOT NULL DEFAULT '',
   `FORM_TPL_DIR` varchar(20) NOT NULL DEFAULT '',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `MODULE_ID` (`MODULE_ID`,`FORM_NAME`),
   KEY `forms_ibfk_2` (`TABLE_ID`),
@@ -165,7 +165,7 @@ DROP TABLE IF EXISTS `gigi`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `gigi` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
   `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -190,7 +190,7 @@ DROP TABLE IF EXISTS `layouts`;
 CREATE TABLE `layouts` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -290,7 +290,7 @@ DROP TABLE IF EXISTS `list_foreign_key_options`;
 CREATE TABLE `list_foreign_key_options` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `VALUE` varchar(255) NOT NULL,
-  `DESCRIPTION` text DEFAULT NULL,
+  `DESCRIPTION` text,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -564,15 +564,15 @@ DROP TABLE IF EXISTS `module_vars`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `module_vars` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `MODULE_ID` bigint(20) NOT NULL DEFAULT 0,
+  `MODULE_ID` bigint(20) NOT NULL DEFAULT '0',
   `VAR_NAME` varchar(255) NOT NULL DEFAULT '',
   `VAR_VALUE` varchar(255) NOT NULL DEFAULT '',
-  `VAR_TYPE` bigint(20) NOT NULL DEFAULT 0,
+  `VAR_TYPE` bigint(20) NOT NULL DEFAULT '0',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `MODULE_ID` (`MODULE_ID`),
   KEY `VAR_TYPE` (`VAR_TYPE`),
@@ -604,15 +604,15 @@ DROP TABLE IF EXISTS `modules`;
 CREATE TABLE `modules` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `APP_ID` bigint(20) NOT NULL,
-  `SCRIPT_ID` bigint(20) NOT NULL DEFAULT 2,
+  `SCRIPT_ID` bigint(20) NOT NULL DEFAULT '2',
   `MODULE_NAME` varchar(20) NOT NULL DEFAULT '',
   `MODULE_TITLE` varchar(255) NOT NULL DEFAULT '',
   `MODULE_DATE` date NOT NULL DEFAULT '0000-00-00',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `APP_ID` (`APP_ID`),
   KEY `modules_ibfk_2` (`SCRIPT_ID`),
@@ -672,15 +672,15 @@ DROP TABLE IF EXISTS `permissions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `permissions` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `PERMISSION_NAME` bigint(20) NOT NULL DEFAULT 1,
+  `PERMISSION_NAME` bigint(20) NOT NULL DEFAULT '1',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `PERMISSION_TYPE` bigint(20) NOT NULL DEFAULT 1,
-  `OBJECT_TYPE` bigint(20) NOT NULL DEFAULT 1,
-  `OBJECT_ID` bigint(20) NOT NULL DEFAULT 0,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `PERMISSION_TYPE` bigint(20) NOT NULL DEFAULT '1',
+  `OBJECT_TYPE` bigint(20) NOT NULL DEFAULT '1',
+  `OBJECT_ID` bigint(20) NOT NULL DEFAULT '0',
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `permissions_unique_name_obj_id_idx` (`PERMISSION_NAME`,`OBJECT_ID`),
   KEY `permissions_ibfk_1` (`PERMISSION_NAME`),
@@ -711,10 +711,10 @@ DROP TABLE IF EXISTS `queries`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `queries` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `MODULE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `QUERY_NAME` text DEFAULT NULL,
-  `QUERY_BODY` text DEFAULT NULL,
-  `DESCRIPTION` text DEFAULT NULL,
+  `MODULE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `QUERY_NAME` text,
+  `QUERY_BODY` text,
+  `DESCRIPTION` text,
   PRIMARY KEY (`ID`),
   KEY `phpapps_queries_MODULE_ID_FK` (`MODULE_ID`),
   CONSTRAINT `phpapps_queries_MODULE_ID_FK` FOREIGN KEY (`MODULE_ID`) REFERENCES `modules` (`ID`)
@@ -740,12 +740,12 @@ DROP TABLE IF EXISTS `role_permissions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `role_permissions` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ROLE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `PERMISSION_ID` bigint(20) NOT NULL DEFAULT 0,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ROLE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `PERMISSION_ID` bigint(20) NOT NULL DEFAULT '0',
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `ROLE_ID` (`ROLE_ID`),
   KEY `PERMISSION_ID` (`PERMISSION_ID`),
@@ -779,10 +779,10 @@ CREATE TABLE `roles` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `ROLE_NAME` varchar(255) NOT NULL DEFAULT '',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `roles_ibfk_1` (`MODIFY_UID`),
   KEY `roles_ibfk_2` (`CREATE_UID`),
@@ -810,14 +810,14 @@ DROP TABLE IF EXISTS `scripts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `scripts` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `MODULE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `SCRIPT_TYPE` bigint(20) NOT NULL DEFAULT 0,
+  `MODULE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `SCRIPT_TYPE` bigint(20) NOT NULL DEFAULT '0',
   `SCRIPT_NAME` varchar(255) NOT NULL DEFAULT '',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `scripts_modid_name_idx` (`MODULE_ID`,`SCRIPT_NAME`),
   KEY `MODULE_ID` (`MODULE_ID`),
@@ -828,7 +828,7 @@ CREATE TABLE `scripts` (
   CONSTRAINT `scripts_ibfk_2` FOREIGN KEY (`SCRIPT_TYPE`) REFERENCES `list_script_types` (`ID`),
   CONSTRAINT `scripts_ibfk_3` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `scripts_ibfk_4` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -837,7 +837,7 @@ CREATE TABLE `scripts` (
 
 LOCK TABLES `scripts` WRITE;
 /*!40000 ALTER TABLE `scripts` DISABLE KEYS */;
-INSERT INTO `scripts` VALUES (2,1,1,'phpapps_admin_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(3,7,1,'phpapps_users_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(4,7,1,'phpapps_users_generate_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(5,7,1,'phpapps_users_manage_user_roles','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(6,14,1,'sql_console','',1,1,'2016-09-30 10:21:39','2015-08-19 09:31:32'),(7,1,2,'index','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(8,7,1,'phpapps_users_manage_roles_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(10,1,2,'login','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(11,7,1,'user_home','',1,1,'2015-08-19 11:49:50','2015-08-19 11:49:50'),(12,1,1,'phpapps_admin_applications','',1,1,'2015-08-19 12:32:57','2015-08-19 12:32:57'),(19,1,1,'phpinfo','',1,1,'2016-08-30 12:51:15','2016-08-30 12:51:15'),(28,14,1,'phpapps_database_module','',1,1,'2016-09-21 13:57:52','2016-09-21 13:57:52'),(29,14,1,'phpapps_database_browse_list','',1,1,'2016-09-21 14:45:45','2016-09-21 14:45:45'),(30,14,1,'test_column_def','',1,1,'2016-09-24 05:46:29','2016-09-24 05:46:29'),(32,14,1,'phpapps_database_browse_tables','',1,1,'2016-09-30 08:37:55','2016-09-30 08:37:55'),(33,15,1,'questions','',1,1,'2017-04-20 13:14:05','2017-02-24 10:13:40'),(34,15,2,'quiz_test','',1,1,'2017-03-01 06:24:26','2017-03-01 06:24:26'),(36,18,1,'import_excel','',1,1,'2017-07-09 09:27:58','2017-07-09 09:27:58'),(37,19,2,'articles','display articles grid',1,1,'2017-09-25 07:37:58','2017-09-25 07:34:38'),(42,21,2,'test_layout','',1,1,'2017-09-28 08:37:20','2017-09-28 08:37:20'),(44,21,1,'layout_designer','',1,1,'2017-09-29 08:46:35','2017-09-29 08:46:35'),(45,21,1,'phpapps_designer_module','',1,1,'2017-10-02 07:16:01','2017-10-02 07:16:01'),(46,17,2,'forum_categs','Display forum categories',1,1,'2017-10-03 05:12:28','2017-10-03 05:12:28'),(48,19,2,'article','',1,1,'2017-10-05 11:18:46','2017-10-05 11:18:46'),(49,19,2,'about','',1,1,'2017-10-06 13:09:50','2017-10-06 13:09:50'),(50,20,2,'login','',1,1,'2017-10-07 07:41:30','2017-10-07 07:41:30');
+INSERT INTO `scripts` VALUES (2,1,1,'phpapps_admin_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(3,7,1,'phpapps_users_module','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(4,7,1,'phpapps_users_generate_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(5,7,1,'phpapps_users_manage_user_roles','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(6,14,1,'sql_console','',1,1,'2016-09-30 10:21:39','2015-08-19 09:31:32'),(7,1,2,'index','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(8,7,1,'phpapps_users_manage_roles_permissions','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(10,1,2,'login','',1,1,'2015-08-19 09:31:31','2015-08-19 09:31:32'),(11,7,1,'user_home','',1,1,'2015-08-19 11:49:50','2015-08-19 11:49:50'),(12,1,1,'phpapps_admin_applications','',1,1,'2015-08-19 12:32:57','2015-08-19 12:32:57'),(19,1,1,'phpinfo','',1,1,'2016-08-30 12:51:15','2016-08-30 12:51:15'),(28,14,1,'phpapps_database_module','',1,1,'2016-09-21 13:57:52','2016-09-21 13:57:52'),(29,14,1,'phpapps_database_browse_list','',1,1,'2016-09-21 14:45:45','2016-09-21 14:45:45'),(30,14,1,'test_column_def','',1,1,'2016-09-24 05:46:29','2016-09-24 05:46:29'),(32,14,1,'phpapps_database_browse_tables','',1,1,'2016-09-30 08:37:55','2016-09-30 08:37:55'),(33,15,1,'questions','',1,1,'2017-04-20 13:14:05','2017-02-24 10:13:40'),(34,15,2,'quiz_test','',1,1,'2017-03-01 06:24:26','2017-03-01 06:24:26'),(36,18,1,'import_excel','',1,1,'2017-07-09 09:27:58','2017-07-09 09:27:58'),(37,19,2,'articles','display articles grid',1,1,'2017-09-25 07:37:58','2017-09-25 07:34:38'),(42,21,2,'test_layout','',1,1,'2017-09-28 08:37:20','2017-09-28 08:37:20'),(44,21,1,'layout_designer','',1,1,'2017-09-29 08:46:35','2017-09-29 08:46:35'),(45,21,1,'phpapps_designer_module','',1,1,'2017-10-02 07:16:01','2017-10-02 07:16:01'),(46,17,2,'forum_categs','Display forum categories',1,1,'2017-10-03 05:12:28','2017-10-03 05:12:28'),(48,19,2,'article','',1,1,'2017-10-05 11:18:46','2017-10-05 11:18:46'),(49,19,2,'about','',1,1,'2017-10-06 13:09:50','2017-10-06 13:09:50'),(50,20,2,'login','',1,1,'2017-10-07 07:41:30','2017-10-07 07:41:30'),(51,17,2,'forum_topics','',1,1,'2017-10-09 10:37:22','2017-10-09 10:37:22'),(52,17,2,'topic','',1,1,'2017-10-09 12:24:01','2017-10-09 12:24:01');
 /*!40000 ALTER TABLE `scripts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -850,12 +850,12 @@ DROP TABLE IF EXISTS `sql_console_history`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sql_console_history` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `QUERY` text DEFAULT NULL,
+  `QUERY` text,
   `RUN_SCHEMA` bigint(20) DEFAULT NULL,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `sql_console_history_users_MODIFY_UID_FK` (`MODIFY_UID`),
   KEY `sql_console_history_users_CREATE_UID_FK` (`CREATE_UID`),
@@ -863,7 +863,7 @@ CREATE TABLE `sql_console_history` (
   CONSTRAINT `phpapps_sql_console_history_RUN_SCHEMA_FK` FOREIGN KEY (`RUN_SCHEMA`) REFERENCES `list_databases` (`ID`),
   CONSTRAINT `sql_console_history_users_CREATE_UID_FK` FOREIGN KEY (`CREATE_UID`) REFERENCES `users` (`ID`),
   CONSTRAINT `sql_console_history_users_MODIFY_UID_FK` FOREIGN KEY (`MODIFY_UID`) REFERENCES `users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -872,7 +872,7 @@ CREATE TABLE `sql_console_history` (
 
 LOCK TABLES `sql_console_history` WRITE;
 /*!40000 ALTER TABLE `sql_console_history` DISABLE KEYS */;
-INSERT INTO `sql_console_history` VALUES (1,'show tables',3,1,1,'2016-10-07 09:21:16','2016-10-07 09:21:16'),(2,'select * from  applications',3,1,1,'2016-10-07 09:21:33','2016-10-07 09:21:33'),(3,'select * from  sql_console_history',3,1,1,'2016-10-07 09:21:47','2016-10-07 09:21:47'),(4,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:11','2016-10-07 09:49:11'),(5,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:31','2016-10-07 09:49:31'),(6,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:52','2016-10-07 09:49:52'),(7,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:07','2016-10-07 09:50:07'),(8,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:23','2016-10-07 09:50:23'),(9,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:47','2016-10-07 09:50:47'),(10,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:53','2016-10-07 09:50:53'),(11,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:01','2016-10-07 09:51:01'),(12,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:11','2016-10-07 09:51:11'),(13,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:36','2016-10-07 09:51:36'),(14,'select * from  sql_console_history',3,1,1,'2016-10-07 09:53:53','2016-10-07 09:53:53'),(15,'select * from  sql_console_history',3,1,1,'2016-10-07 10:08:47','2016-10-07 10:08:47'),(16,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:33','2016-10-07 10:24:33'),(17,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:53','2016-10-07 10:24:53'),(18,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(19,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(20,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:23','2016-10-07 10:25:23'),(21,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:47','2016-10-07 10:25:47'),(22,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:52','2016-10-07 10:25:52'),(23,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:26:58','2016-10-07 10:26:58'),(24,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:27:17','2016-10-07 10:27:17'),(25,'show tables',7,1,1,'2016-10-07 10:45:18','2016-10-07 10:45:18'),(26,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',NULL,1,1,'2016-10-07 10:50:57','2016-10-07 10:50:57'),(46,'select * from sql_console_history',3,1,1,'2016-10-10 13:42:55','2016-10-10 13:42:55'),(47,'show tables',7,1,1,'2016-10-10 13:43:13','2016-10-10 13:43:13'),(48,'show tables',3,1,1,'2016-10-10 13:43:56','2016-10-10 13:43:56'),(49,'select * from  sql_console_history',3,1,1,'2016-10-10 13:44:06','2016-10-10 13:44:06'),(50,'select * from  sql_console_saves',3,1,1,'2016-10-10 13:44:20','2016-10-10 13:44:20'),(51,'show tables',1,1,1,'2016-10-10 13:50:37','2016-10-10 13:50:37'),(52,'desc tables',3,1,1,'2016-10-11 08:57:59','2016-10-11 08:57:59'),(53,'select * from tables',3,1,1,'2016-10-11 09:14:39','2016-10-11 09:14:39'),(54,'show tables',3,1,1,'2016-11-07 09:25:48','2016-11-07 09:25:48'),(55,'select * from queries',3,1,1,'2016-11-07 09:26:06','2016-11-07 09:26:06'),(56,'select * from  views',3,1,1,'2016-11-07 09:33:11','2016-11-07 09:33:11'),(57,'select * from  queries',3,1,1,'2016-11-07 09:34:09','2016-11-07 09:34:09'),(58,'select * from  queries',3,1,1,'2016-11-07 09:34:30','2016-11-07 09:34:30'),(59,'SELECT TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:01:47','2017-02-21 10:01:47'),(60,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT SCHEMA_NAME, VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:22','2017-02-21 10:02:22'),(61,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:32','2017-02-21 10:02:32'),(62,'SELECT  TABLE_NAME,* FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:39','2017-02-21 10:02:39'),(63,'SELECT  *,TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:47','2017-02-21 10:02:47'),(64,'SELECT  *,TABLE_NAME FROM phpapps.view_tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:03:10','2017-02-21 10:03:10'),(65,'show tables',3,1,1,'2017-02-21 10:04:36','2017-02-21 10:04:36'),(66,'select * from views',3,1,1,'2017-02-21 10:04:50','2017-02-21 10:04:50'),(67,'select * from view_tables',3,1,1,'2017-02-21 10:10:22','2017-02-21 10:10:22'),(68,'SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME',3,1,1,'2017-02-21 10:46:42','2017-02-21 10:46:42'),(69,'show tables',3,1,1,'2017-02-21 11:01:10','2017-02-21 11:01:10'),(70,'select * from view_tables',3,1,1,'2017-02-21 11:01:27','2017-02-21 11:01:27'),(71,'SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:28','2017-02-21 12:16:28'),(72,'SELECT * FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:58','2017-02-21 12:16:58'),(73,'SELECT * FROM phpapps.view_table_details',3,1,1,'2017-02-22 07:02:02','2017-02-22 07:02:02'),(74,'SELECT * FROM phpapps.view_tables',3,1,1,'2017-02-22 07:02:15','2017-02-22 07:02:15'),(75,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-22 07:09:02','2017-02-22 07:09:02'),(76,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-24 11:15:09','2017-02-24 11:15:09'),(77,'show tables',12,1,1,'2017-02-24 11:15:20','2017-02-24 11:15:20'),(78,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions',12,1,1,'2017-02-24 11:34:27','2017-02-24 11:34:27'),(79,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions q',12,1,1,'2017-02-24 11:34:36','2017-02-24 11:34:36'),(80,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:19','2017-02-24 11:54:19'),(81,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:22','2017-02-24 11:54:22'),(82,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:23','2017-02-24 11:54:23'),(83,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:24','2017-02-24 11:54:24'),(84,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:25','2017-02-24 11:54:25'),(85,'show tables',12,1,1,'2017-02-28 14:23:51','2017-02-28 14:23:51'),(86,'select * from questions limit 2 order by rand()',12,1,1,'2017-02-28 14:24:45','2017-02-28 14:24:45'),(87,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:08','2017-02-28 14:25:08'),(88,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:12','2017-02-28 14:25:12'),(89,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:14','2017-02-28 14:25:14'),(90,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:16','2017-02-28 14:25:16'),(91,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:18','2017-02-28 14:25:18'),(92,'show tables;',1,1,1,'2017-04-14 06:25:31','2017-04-14 06:25:31'),(93,'show tables',3,1,1,'2017-04-14 06:25:46','2017-04-14 06:25:46'),(94,'select * from view_scripts',3,1,1,'2017-04-14 06:26:03','2017-04-14 06:26:03'),(95,'select * from scripts',3,1,1,'2017-04-14 06:26:45','2017-04-14 06:26:45'),(96,'show tables',3,1,1,'2017-04-14 06:27:03','2017-04-14 06:27:03'),(97,'show tables',3,1,1,'2017-04-14 06:29:51','2017-04-14 06:29:51'),(98,'select * from view_scripts',3,1,1,'2017-04-20 09:12:36','2017-04-20 09:12:36'),(99,'select * from scripts',3,1,1,'2017-04-20 12:43:48','2017-04-20 12:43:48'),(100,'select * from view_scripts',3,1,1,'2017-04-20 12:45:48','2017-04-20 12:45:48'),(101,'select * from scripts',3,1,1,'2017-04-20 12:46:04','2017-04-20 12:46:04'),(102,'select * from scripts',3,1,1,'2017-04-20 12:46:51','2017-04-20 12:46:51'),(103,'select * from scripts',3,1,1,'2017-04-20 12:48:03','2017-04-20 12:48:03'),(104,'select * from scripts',3,1,1,'2017-04-20 12:48:21','2017-04-20 12:48:21'),(105,'select * from scripts',3,1,1,'2017-04-20 12:56:21','2017-04-20 12:56:21'),(106,'select * from scripts',3,1,1,'2017-04-20 13:01:53','2017-04-20 13:01:53'),(107,'select * from scripts',3,1,1,'2017-04-20 13:01:59','2017-04-20 13:01:59'),(108,'select * from scripts',3,1,1,'2017-04-20 13:03:54','2017-04-20 13:03:54'),(109,'select * from scripts',3,1,1,'2017-04-20 13:05:38','2017-04-20 13:05:38'),(110,'select * from scripts',3,1,1,'2017-04-20 13:05:54','2017-04-20 13:05:54'),(111,'select * from scripts',3,1,1,'2017-04-20 13:09:18','2017-04-20 13:09:18'),(112,'select * from scripts',3,1,1,'2017-04-20 13:17:24','2017-04-20 13:17:24'),(113,'select * from scripts',3,1,1,'2017-04-20 13:18:45','2017-04-20 13:18:45'),(114,'select * from scripts',3,1,1,'2017-04-20 13:22:04','2017-04-20 13:22:04'),(115,'show tables;',17,1,1,'2017-08-06 11:01:30','2017-08-06 11:01:30'),(116,'show tables',3,1,1,'2017-08-06 11:01:50','2017-08-06 11:01:50'),(117,'select * from view_tables',3,1,1,'2017-08-06 11:02:09','2017-08-06 11:02:09'),(118,'show tables',3,1,1,'2017-08-06 11:22:35','2017-08-06 11:22:35'),(119,'select * from view_table_fks',3,1,1,'2017-08-06 11:22:52','2017-08-06 11:22:52'),(120,'select * from view_table_indexes',3,1,1,'2017-08-06 11:24:02','2017-08-06 11:24:02'),(121,'show tables',3,1,1,'2017-09-07 07:36:06','2017-09-07 07:36:06'),(122,'select * from  list_databases',3,1,1,'2017-09-07 07:36:46','2017-09-07 07:36:46'),(123,'select * from  queries',3,1,1,'2017-09-07 07:59:24','2017-09-07 07:59:24'),(124,'desc  queries',3,1,1,'2017-09-07 07:59:30','2017-09-07 07:59:30'),(125,'select * from queries',3,1,1,'2017-09-20 08:23:37','2017-09-20 08:23:37'),(126,'select * from forms',3,1,1,'2017-09-20 08:29:02','2017-09-20 08:29:02'),(127,'show tables',3,1,1,'2017-09-20 09:23:00','2017-09-20 09:23:00'),(128,'show tables',3,1,1,'2017-09-22 06:21:19','2017-09-22 06:21:19'),(129,'select * from test_import',3,1,1,'2017-09-22 06:21:30','2017-09-22 06:21:30'),(130,'select * from test_import',3,1,1,'2017-09-22 06:23:30','2017-09-22 06:23:30'),(131,'select * from test_import',3,1,1,'2017-09-22 06:27:51','2017-09-22 06:27:51'),(132,'select * from test_import',3,1,1,'2017-09-22 06:28:14','2017-09-22 06:28:14'),(133,'select * from test_import',3,1,1,'2017-09-22 07:33:05','2017-09-22 07:33:05'),(134,'select * from test_import',3,1,1,'2017-09-22 07:39:21','2017-09-22 07:39:21'),(135,'select * from test_import',3,1,1,'2017-09-22 08:20:20','2017-09-22 08:20:20'),(136,'show tables',3,1,1,'2017-09-25 09:26:59','2017-09-25 09:26:59'),(137,'select * from view_table_details',3,1,1,'2017-09-25 09:27:14','2017-09-25 09:27:14'),(138,'select * from view_table_details where table_id = \'292\'',3,1,1,'2017-09-25 09:27:38','2017-09-25 09:27:38'),(139,'show tables;',3,1,1,'2017-09-25 09:27:56','2017-09-25 09:27:56'),(140,'select * from view_table_details where table_id = \'292\'',3,1,1,'2017-09-25 09:28:29','2017-09-25 09:28:29'),(141,'select * from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:29:17','2017-09-25 09:29:17'),(142,'select id,COLUMN_NAME, ord from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:29:40','2017-09-25 09:29:40'),(143,'select id,COLUMN_NAME, ord from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:30:36','2017-09-25 09:30:36'),(144,'select * from form_details where form_id not in (select id from forms)',3,1,1,'2017-09-25 09:49:57','2017-09-25 09:49:57'),(145,'select * from form_details',3,1,1,'2017-09-25 09:51:13','2017-09-25 09:51:13'),(146,'select * from forms',3,1,1,'2017-09-25 09:51:22','2017-09-25 09:51:22'),(147,'select * from forms',3,1,1,'2017-09-25 09:53:15','2017-09-25 09:53:15'),(148,'select * from view_forms',3,1,1,'2017-09-25 12:30:07','2017-09-25 12:30:07'),(149,'show tables',17,1,1,'2017-10-03 12:00:43','2017-10-03 12:00:43'),(150,'select * from  forum_categories',17,1,1,'2017-10-03 12:00:57','2017-10-03 12:00:57'),(151,'select * from  forum_categories order by pid',17,1,1,'2017-10-03 12:01:12','2017-10-03 12:01:12'),(152,'select * from  forum_categories order by pid',17,1,1,'2017-10-03 12:01:14','2017-10-03 12:01:14'),(153,'select * from  forum_categories left join forum_categories on id = pid order by pid',17,1,1,'2017-10-03 12:01:57','2017-10-03 12:01:57'),(154,'select * from  forum_categories left join forum_categories on forum_categories.id = forum_categories.pid order by pid',17,1,1,'2017-10-03 12:02:12','2017-10-03 12:02:12'),(155,'select name, (select name from forum_categories where id = pid) as pname  from  forum_categories',17,1,1,'2017-10-03 12:03:23','2017-10-03 12:03:23'),(156,'select a.name, (select name from forum_categories b where b.id = a.pid) as pname  from  forum_categories a',17,1,1,'2017-10-03 12:03:55','2017-10-03 12:03:55'),(157,'select a.id,a.pid, a.name, (select name from forum_categories b where b.id = a.pid) as pname  from  forum_categories a',17,1,1,'2017-10-03 12:04:20','2017-10-03 12:04:20'),(158,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a',17,1,1,'2017-10-03 12:04:53','2017-10-03 12:04:53'),(159,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid',17,1,1,'2017-10-03 12:05:25','2017-10-03 12:05:25'),(160,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid',17,1,1,'2017-10-03 12:05:27','2017-10-03 12:05:27'),(161,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid',17,1,1,'2017-10-03 12:05:27','2017-10-03 12:05:27'),(162,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid desc',17,1,1,'2017-10-03 12:05:39','2017-10-03 12:05:39'),(163,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a',17,1,1,'2017-10-03 12:05:48','2017-10-03 12:05:48'),(164,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by id,pid',17,1,1,'2017-10-03 12:13:09','2017-10-03 12:13:09'),(165,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by id,pid',17,1,1,'2017-10-03 12:13:11','2017-10-03 12:13:11'),(166,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by id,pid',17,1,1,'2017-10-03 12:13:12','2017-10-03 12:13:12'),(167,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid,id',17,1,1,'2017-10-03 12:13:17','2017-10-03 12:13:17'),(168,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid,id',17,1,1,'2017-10-03 12:13:19','2017-10-03 12:13:19'),(169,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid',17,1,1,'2017-10-03 12:13:24','2017-10-03 12:13:24'),(170,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid',17,1,1,'2017-10-03 12:13:25','2017-10-03 12:13:25'),(171,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid,id',17,1,1,'2017-10-03 12:13:30','2017-10-03 12:13:30'),(172,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:44','2017-10-03 12:13:44'),(173,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:45','2017-10-03 12:13:45'),(174,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:46','2017-10-03 12:13:46'),(175,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:47','2017-10-03 12:13:47'),(176,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:47','2017-10-03 12:13:47'),(177,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid)',17,1,1,'2017-10-03 12:13:57','2017-10-03 12:13:57'),(178,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid) desc',17,1,1,'2017-10-03 12:14:09','2017-10-03 12:14:09'),(179,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid),pid desc',17,1,1,'2017-10-03 12:14:23','2017-10-03 12:14:23'),(180,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid),id desc',17,1,1,'2017-10-03 12:14:28','2017-10-03 12:14:28'),(181,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid),id desc',17,1,1,'2017-10-03 12:14:29','2017-10-03 12:14:29'),(182,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid) desc',17,1,1,'2017-10-03 12:14:33','2017-10-03 12:14:33'),(183,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(id,pid) desc',17,1,1,'2017-10-03 12:14:53','2017-10-03 12:14:53'),(184,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(pid,id) desc',17,1,1,'2017-10-03 12:15:11','2017-10-03 12:15:11'),(185,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(pid,id)',17,1,1,'2017-10-03 12:15:16','2017-10-03 12:15:16'),(186,'select a.pid,a.id,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(pid,id)',17,1,1,'2017-10-03 12:15:28','2017-10-03 12:15:28'),(187,'SELECT a.PID,a.ID,  (SELECT NAME from atsepa.forum_categories b WHERE b.ID = a.PID) as P_NAME, a.NAME\r\nFROM  atsepa.forum_categories a WHERE PID <> 0 ORDER BY CONCAT(PID,ID)',17,1,1,'2017-10-03 12:18:41','2017-10-03 12:18:41'),(188,'select * from articles',17,1,1,'2017-10-05 10:42:38','2017-10-05 10:42:38'),(189,'select * from articles',17,1,1,'2017-10-05 10:42:55','2017-10-05 10:42:55'),(190,'select * from app_users',17,1,1,'2017-10-05 10:43:19','2017-10-05 10:43:19'),(191,'select * from app_users',17,1,1,'2017-10-06 12:32:11','2017-10-06 12:32:11'),(192,'show tables',17,1,1,'2017-10-06 15:54:50','2017-10-06 15:54:50'),(193,'select * from articles',17,1,1,'2017-10-06 15:55:14','2017-10-06 15:55:14'),(194,'select * from articles',17,1,1,'2017-10-06 16:02:44','2017-10-06 16:02:44'),(195,'SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = 292',17,1,1,'2017-10-06 16:14:54','2017-10-06 16:14:54'),(196,'select * from articles',17,1,1,'2017-10-06 16:16:27','2017-10-06 16:16:27'),(197,'show tables',17,1,1,'2017-10-07 05:12:33','2017-10-07 05:12:33'),(198,'select * from articles',17,1,1,'2017-10-07 05:12:47','2017-10-07 05:12:47'),(199,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE from articles',17,1,1,'2017-10-07 05:32:01','2017-10-07 05:32:01'),(200,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE from articles a',17,1,1,'2017-10-07 05:32:07','2017-10-07 05:32:07'),(201,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE,a.* from articles a',17,1,1,'2017-10-07 05:32:18','2017-10-07 05:32:18'),(202,'show tables',17,1,1,'2017-10-07 05:33:14','2017-10-07 05:33:14'),(203,'select * from list_article_categories',17,1,1,'2017-10-07 05:33:44','2017-10-07 05:33:44'),(204,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME \r\nfrom articles a',17,1,1,'2017-10-07 05:34:51','2017-10-07 05:34:51'),(205,'select * from app_users',17,1,1,'2017-10-07 05:35:10','2017-10-07 05:35:10'),(206,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:36:43','2017-10-07 05:36:43'),(207,'desc articles',17,1,1,'2017-10-07 05:37:19','2017-10-07 05:37:19'),(208,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:39:27','2017-10-07 05:39:27'),(209,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:40:23','2017-10-07 05:40:23'),(210,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:40:43','2017-10-07 05:40:43'),(211,'select * from view_articles',17,1,1,'2017-10-07 05:41:06','2017-10-07 05:41:06'),(212,'drop VIEW view_articles',17,1,1,'2017-10-07 05:50:38','2017-10-07 05:50:38'),(213,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:51:17','2017-10-07 05:51:17'),(214,'select * from  view_articles',17,1,1,'2017-10-07 05:51:27','2017-10-07 05:51:27'),(215,'drop view  view_articles',17,1,1,'2017-10-07 05:57:03','2017-10-07 05:57:03'),(216,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,255),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:57:06','2017-10-07 05:57:06'),(217,'drop view  view_articles',17,1,1,'2017-10-07 05:58:28','2017-10-07 05:58:28'),(218,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,IF(a.INTRO =\'\',SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:58:30','2017-10-07 05:58:30'),(219,'select * from view_articles',17,1,1,'2017-10-07 05:59:16','2017-10-07 05:59:16'),(220,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:59:41','2017-10-07 05:59:41'),(221,'drop view  view_articles',17,1,1,'2017-10-07 05:59:47','2017-10-07 05:59:47'),(222,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:59:49','2017-10-07 05:59:49'),(223,'select * from view_articles',17,1,1,'2017-10-07 05:59:52','2017-10-07 05:59:52'),(224,'SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:00:50','2017-10-07 06:00:50'),(225,'SELECT a.ID, a.NAME,IF(a.INTRO == \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:01:09','2017-10-07 06:01:09'),(226,'SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:01:16','2017-10-07 06:01:16'),(227,'SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:02:30','2017-10-07 06:02:30'),(228,'SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",a.INTRO,SUBSTR(a.BODY,1,255)) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:02:42','2017-10-07 06:02:42'),(229,'drop view  view_articles',17,1,1,'2017-10-07 06:03:04','2017-10-07 06:03:04'),(230,'create view view_articles as SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",a.INTRO,SUBSTR(a.BODY,1,255)) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:03:06','2017-10-07 06:03:06'),(231,'select * from view_articles',17,1,1,'2017-10-07 06:06:43','2017-10-07 06:06:43'),(232,'drop view  view_articles',17,1,1,'2017-10-07 06:27:47','2017-10-07 06:27:47'),(233,'create view view_articles as SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",a.INTRO,SUBSTR(a.BODY,1,255)) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID) ORDER BY a.ARTICLE_DATE DESC',17,1,1,'2017-10-07 06:27:49','2017-10-07 06:27:49'),(234,'SELECT NAME,INTRO,CATEG_NAME,USERNAME,ARTICLE_DATE,IMAGE,FIRST_NAME,LAST_NAME,IDFROM atsepa.view_articles WHERE ID =21',17,1,1,'2017-10-07 07:21:15','2017-10-07 07:21:15'),(235,'select * from app_users',17,1,1,'2017-10-07 08:04:26','2017-10-07 08:04:26');
+INSERT INTO `sql_console_history` VALUES (1,'show tables',3,1,1,'2016-10-07 09:21:16','2016-10-07 09:21:16'),(2,'select * from  applications',3,1,1,'2016-10-07 09:21:33','2016-10-07 09:21:33'),(3,'select * from  sql_console_history',3,1,1,'2016-10-07 09:21:47','2016-10-07 09:21:47'),(4,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:11','2016-10-07 09:49:11'),(5,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:31','2016-10-07 09:49:31'),(6,'select * from  sql_console_history',3,1,1,'2016-10-07 09:49:52','2016-10-07 09:49:52'),(7,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:07','2016-10-07 09:50:07'),(8,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:23','2016-10-07 09:50:23'),(9,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:47','2016-10-07 09:50:47'),(10,'select * from  sql_console_history',3,1,1,'2016-10-07 09:50:53','2016-10-07 09:50:53'),(11,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:01','2016-10-07 09:51:01'),(12,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:11','2016-10-07 09:51:11'),(13,'select * from  sql_console_history',3,1,1,'2016-10-07 09:51:36','2016-10-07 09:51:36'),(14,'select * from  sql_console_history',3,1,1,'2016-10-07 09:53:53','2016-10-07 09:53:53'),(15,'select * from  sql_console_history',3,1,1,'2016-10-07 10:08:47','2016-10-07 10:08:47'),(16,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:33','2016-10-07 10:24:33'),(17,'select * from  sql_console_history',3,1,1,'2016-10-07 10:24:53','2016-10-07 10:24:53'),(18,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(19,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:21','2016-10-07 10:25:21'),(20,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:23','2016-10-07 10:25:23'),(21,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:47','2016-10-07 10:25:47'),(22,'select * from  sql_console_history',3,1,1,'2016-10-07 10:25:52','2016-10-07 10:25:52'),(23,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:26:58','2016-10-07 10:26:58'),(24,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',3,1,1,'2016-10-07 10:27:17','2016-10-07 10:27:17'),(25,'show tables',7,1,1,'2016-10-07 10:45:18','2016-10-07 10:45:18'),(26,'select \r\n ti.ID,\r\nt.SCHEMA_ID,\r\n(select value from phpapps.list_databases where id = t.schema_id) as \'TABLE_SCHEMA\',\r\n ti.TABLE_ID,\r\n t.TABLE_NAME,\r\n ti.INDEX_NAME,\r\n ti.INDEX_TYPE_ID,\r\n(select value from phpapps.list_index_types where id = ti.INDEX_TYPE_ID) as INDEX_TYPE,\r\n ti.INDEX_COLUMNS,\r\n(select GROUP_CONCAT(COLUMN_NAME SEPARATOR \',\') FROM phpapps.table_details td WHERE td.ID IN (ti.INDEX_COLUMNS) GROUP BY td.TABLE_ID ) as \'INDEX_COLUMNS_LABELS\',\r\n ti.DESCRIPTION,\r\n ti.MODIFY_UID,\r\n ti.CREATE_UID,\r\n ti.MODIFY_DATE,\r\n ti.CREATE_DATE\r\n from table_indexes ti left join tables t on (ti.table_id = t.id)',NULL,1,1,'2016-10-07 10:50:57','2016-10-07 10:50:57'),(46,'select * from sql_console_history',3,1,1,'2016-10-10 13:42:55','2016-10-10 13:42:55'),(47,'show tables',7,1,1,'2016-10-10 13:43:13','2016-10-10 13:43:13'),(48,'show tables',3,1,1,'2016-10-10 13:43:56','2016-10-10 13:43:56'),(49,'select * from  sql_console_history',3,1,1,'2016-10-10 13:44:06','2016-10-10 13:44:06'),(50,'select * from  sql_console_saves',3,1,1,'2016-10-10 13:44:20','2016-10-10 13:44:20'),(51,'show tables',1,1,1,'2016-10-10 13:50:37','2016-10-10 13:50:37'),(52,'desc tables',3,1,1,'2016-10-11 08:57:59','2016-10-11 08:57:59'),(53,'select * from tables',3,1,1,'2016-10-11 09:14:39','2016-10-11 09:14:39'),(54,'show tables',3,1,1,'2016-11-07 09:25:48','2016-11-07 09:25:48'),(55,'select * from queries',3,1,1,'2016-11-07 09:26:06','2016-11-07 09:26:06'),(56,'select * from  views',3,1,1,'2016-11-07 09:33:11','2016-11-07 09:33:11'),(57,'select * from  queries',3,1,1,'2016-11-07 09:34:09','2016-11-07 09:34:09'),(58,'select * from  queries',3,1,1,'2016-11-07 09:34:30','2016-11-07 09:34:30'),(59,'SELECT TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:01:47','2017-02-21 10:01:47'),(60,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1 UNION ALL SELECT SCHEMA_NAME, VIEW_NAME FROM phpapps.views WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:22','2017-02-21 10:02:22'),(61,'SELECT SCHEMA_NAME, TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:32','2017-02-21 10:02:32'),(62,'SELECT  TABLE_NAME,* FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:39','2017-02-21 10:02:39'),(63,'SELECT  *,TABLE_NAME FROM phpapps.tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:02:47','2017-02-21 10:02:47'),(64,'SELECT  *,TABLE_NAME FROM phpapps.view_tables WHERE MODULE_ID = 1',3,1,1,'2017-02-21 10:03:10','2017-02-21 10:03:10'),(65,'show tables',3,1,1,'2017-02-21 10:04:36','2017-02-21 10:04:36'),(66,'select * from views',3,1,1,'2017-02-21 10:04:50','2017-02-21 10:04:50'),(67,'select * from view_tables',3,1,1,'2017-02-21 10:10:22','2017-02-21 10:10:22'),(68,'SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME',3,1,1,'2017-02-21 10:46:42','2017-02-21 10:46:42'),(69,'show tables',3,1,1,'2017-02-21 11:01:10','2017-02-21 11:01:10'),(70,'select * from view_tables',3,1,1,'2017-02-21 11:01:27','2017-02-21 11:01:27'),(71,'SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:28','2017-02-21 12:16:28'),(72,'SELECT * FROM phpapps.view_table_details WHERE TABLE_ID = 284 ORDER BY ORD',3,1,1,'2017-02-21 12:16:58','2017-02-21 12:16:58'),(73,'SELECT * FROM phpapps.view_table_details',3,1,1,'2017-02-22 07:02:02','2017-02-22 07:02:02'),(74,'SELECT * FROM phpapps.view_tables',3,1,1,'2017-02-22 07:02:15','2017-02-22 07:02:15'),(75,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-22 07:09:02','2017-02-22 07:09:02'),(76,'SELECT TABLE_SCHEMA FROM phpapps.view_tables WHERE TABLE_NAME = \'list_da_nu\' AND ORIGIN_ID = \'0\'',3,1,1,'2017-02-24 11:15:09','2017-02-24 11:15:09'),(77,'show tables',12,1,1,'2017-02-24 11:15:20','2017-02-24 11:15:20'),(78,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions',12,1,1,'2017-02-24 11:34:27','2017-02-24 11:34:27'),(79,'select q.NO,q.CATEG_ID,(SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION,q.ANSWER_1,q.CORRECT_1,q.IMAGE_1,q.ANSWER_2,q.CORRECT_2,q.IMAGE_2,q.ANSWER_3,\r\nq.CORRECT_3,q.IMAGE_3 from questions q',12,1,1,'2017-02-24 11:34:36','2017-02-24 11:34:36'),(80,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:19','2017-02-24 11:54:19'),(81,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:22','2017-02-24 11:54:22'),(82,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:23','2017-02-24 11:54:23'),(83,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:24','2017-02-24 11:54:24'),(84,'SELECT q.NO, q.CATEG_ID, (SELECT c.NAME FROM categories c WHERE c.ID = q.CATEG_ID) AS CTEG_NAME, q.QUESTION, q.ANSWER_1, q.CORRECT_1, q.IMAGE_1, q.ANSWER_2, q.CORRECT_2, q.IMAGE_2, q.ANSWER_3, q.CORRECT_3, q.IMAGE_3 FROM questions q ORDER BY q.CATEG_ID, q.NO',12,1,1,'2017-02-24 11:54:25','2017-02-24 11:54:25'),(85,'show tables',12,1,1,'2017-02-28 14:23:51','2017-02-28 14:23:51'),(86,'select * from questions limit 2 order by rand()',12,1,1,'2017-02-28 14:24:45','2017-02-28 14:24:45'),(87,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:08','2017-02-28 14:25:08'),(88,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:12','2017-02-28 14:25:12'),(89,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:14','2017-02-28 14:25:14'),(90,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:16','2017-02-28 14:25:16'),(91,'select * from questions  order by rand() limit 2',12,1,1,'2017-02-28 14:25:18','2017-02-28 14:25:18'),(92,'show tables;',1,1,1,'2017-04-14 06:25:31','2017-04-14 06:25:31'),(93,'show tables',3,1,1,'2017-04-14 06:25:46','2017-04-14 06:25:46'),(94,'select * from view_scripts',3,1,1,'2017-04-14 06:26:03','2017-04-14 06:26:03'),(95,'select * from scripts',3,1,1,'2017-04-14 06:26:45','2017-04-14 06:26:45'),(96,'show tables',3,1,1,'2017-04-14 06:27:03','2017-04-14 06:27:03'),(97,'show tables',3,1,1,'2017-04-14 06:29:51','2017-04-14 06:29:51'),(98,'select * from view_scripts',3,1,1,'2017-04-20 09:12:36','2017-04-20 09:12:36'),(99,'select * from scripts',3,1,1,'2017-04-20 12:43:48','2017-04-20 12:43:48'),(100,'select * from view_scripts',3,1,1,'2017-04-20 12:45:48','2017-04-20 12:45:48'),(101,'select * from scripts',3,1,1,'2017-04-20 12:46:04','2017-04-20 12:46:04'),(102,'select * from scripts',3,1,1,'2017-04-20 12:46:51','2017-04-20 12:46:51'),(103,'select * from scripts',3,1,1,'2017-04-20 12:48:03','2017-04-20 12:48:03'),(104,'select * from scripts',3,1,1,'2017-04-20 12:48:21','2017-04-20 12:48:21'),(105,'select * from scripts',3,1,1,'2017-04-20 12:56:21','2017-04-20 12:56:21'),(106,'select * from scripts',3,1,1,'2017-04-20 13:01:53','2017-04-20 13:01:53'),(107,'select * from scripts',3,1,1,'2017-04-20 13:01:59','2017-04-20 13:01:59'),(108,'select * from scripts',3,1,1,'2017-04-20 13:03:54','2017-04-20 13:03:54'),(109,'select * from scripts',3,1,1,'2017-04-20 13:05:38','2017-04-20 13:05:38'),(110,'select * from scripts',3,1,1,'2017-04-20 13:05:54','2017-04-20 13:05:54'),(111,'select * from scripts',3,1,1,'2017-04-20 13:09:18','2017-04-20 13:09:18'),(112,'select * from scripts',3,1,1,'2017-04-20 13:17:24','2017-04-20 13:17:24'),(113,'select * from scripts',3,1,1,'2017-04-20 13:18:45','2017-04-20 13:18:45'),(114,'select * from scripts',3,1,1,'2017-04-20 13:22:04','2017-04-20 13:22:04'),(115,'show tables;',17,1,1,'2017-08-06 11:01:30','2017-08-06 11:01:30'),(116,'show tables',3,1,1,'2017-08-06 11:01:50','2017-08-06 11:01:50'),(117,'select * from view_tables',3,1,1,'2017-08-06 11:02:09','2017-08-06 11:02:09'),(118,'show tables',3,1,1,'2017-08-06 11:22:35','2017-08-06 11:22:35'),(119,'select * from view_table_fks',3,1,1,'2017-08-06 11:22:52','2017-08-06 11:22:52'),(120,'select * from view_table_indexes',3,1,1,'2017-08-06 11:24:02','2017-08-06 11:24:02'),(121,'show tables',3,1,1,'2017-09-07 07:36:06','2017-09-07 07:36:06'),(122,'select * from  list_databases',3,1,1,'2017-09-07 07:36:46','2017-09-07 07:36:46'),(123,'select * from  queries',3,1,1,'2017-09-07 07:59:24','2017-09-07 07:59:24'),(124,'desc  queries',3,1,1,'2017-09-07 07:59:30','2017-09-07 07:59:30'),(125,'select * from queries',3,1,1,'2017-09-20 08:23:37','2017-09-20 08:23:37'),(126,'select * from forms',3,1,1,'2017-09-20 08:29:02','2017-09-20 08:29:02'),(127,'show tables',3,1,1,'2017-09-20 09:23:00','2017-09-20 09:23:00'),(128,'show tables',3,1,1,'2017-09-22 06:21:19','2017-09-22 06:21:19'),(129,'select * from test_import',3,1,1,'2017-09-22 06:21:30','2017-09-22 06:21:30'),(130,'select * from test_import',3,1,1,'2017-09-22 06:23:30','2017-09-22 06:23:30'),(131,'select * from test_import',3,1,1,'2017-09-22 06:27:51','2017-09-22 06:27:51'),(132,'select * from test_import',3,1,1,'2017-09-22 06:28:14','2017-09-22 06:28:14'),(133,'select * from test_import',3,1,1,'2017-09-22 07:33:05','2017-09-22 07:33:05'),(134,'select * from test_import',3,1,1,'2017-09-22 07:39:21','2017-09-22 07:39:21'),(135,'select * from test_import',3,1,1,'2017-09-22 08:20:20','2017-09-22 08:20:20'),(136,'show tables',3,1,1,'2017-09-25 09:26:59','2017-09-25 09:26:59'),(137,'select * from view_table_details',3,1,1,'2017-09-25 09:27:14','2017-09-25 09:27:14'),(138,'select * from view_table_details where table_id = \'292\'',3,1,1,'2017-09-25 09:27:38','2017-09-25 09:27:38'),(139,'show tables;',3,1,1,'2017-09-25 09:27:56','2017-09-25 09:27:56'),(140,'select * from view_table_details where table_id = \'292\'',3,1,1,'2017-09-25 09:28:29','2017-09-25 09:28:29'),(141,'select * from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:29:17','2017-09-25 09:29:17'),(142,'select id,COLUMN_NAME, ord from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:29:40','2017-09-25 09:29:40'),(143,'select id,COLUMN_NAME, ord from view_table_details where table_id = \'292\' order by ord',3,1,1,'2017-09-25 09:30:36','2017-09-25 09:30:36'),(144,'select * from form_details where form_id not in (select id from forms)',3,1,1,'2017-09-25 09:49:57','2017-09-25 09:49:57'),(145,'select * from form_details',3,1,1,'2017-09-25 09:51:13','2017-09-25 09:51:13'),(146,'select * from forms',3,1,1,'2017-09-25 09:51:22','2017-09-25 09:51:22'),(147,'select * from forms',3,1,1,'2017-09-25 09:53:15','2017-09-25 09:53:15'),(148,'select * from view_forms',3,1,1,'2017-09-25 12:30:07','2017-09-25 12:30:07'),(149,'show tables',17,1,1,'2017-10-03 12:00:43','2017-10-03 12:00:43'),(150,'select * from  forum_categories',17,1,1,'2017-10-03 12:00:57','2017-10-03 12:00:57'),(151,'select * from  forum_categories order by pid',17,1,1,'2017-10-03 12:01:12','2017-10-03 12:01:12'),(152,'select * from  forum_categories order by pid',17,1,1,'2017-10-03 12:01:14','2017-10-03 12:01:14'),(153,'select * from  forum_categories left join forum_categories on id = pid order by pid',17,1,1,'2017-10-03 12:01:57','2017-10-03 12:01:57'),(154,'select * from  forum_categories left join forum_categories on forum_categories.id = forum_categories.pid order by pid',17,1,1,'2017-10-03 12:02:12','2017-10-03 12:02:12'),(155,'select name, (select name from forum_categories where id = pid) as pname  from  forum_categories',17,1,1,'2017-10-03 12:03:23','2017-10-03 12:03:23'),(156,'select a.name, (select name from forum_categories b where b.id = a.pid) as pname  from  forum_categories a',17,1,1,'2017-10-03 12:03:55','2017-10-03 12:03:55'),(157,'select a.id,a.pid, a.name, (select name from forum_categories b where b.id = a.pid) as pname  from  forum_categories a',17,1,1,'2017-10-03 12:04:20','2017-10-03 12:04:20'),(158,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a',17,1,1,'2017-10-03 12:04:53','2017-10-03 12:04:53'),(159,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid',17,1,1,'2017-10-03 12:05:25','2017-10-03 12:05:25'),(160,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid',17,1,1,'2017-10-03 12:05:27','2017-10-03 12:05:27'),(161,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid',17,1,1,'2017-10-03 12:05:27','2017-10-03 12:05:27'),(162,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a\r\norder by id+pid desc',17,1,1,'2017-10-03 12:05:39','2017-10-03 12:05:39'),(163,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a',17,1,1,'2017-10-03 12:05:48','2017-10-03 12:05:48'),(164,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by id,pid',17,1,1,'2017-10-03 12:13:09','2017-10-03 12:13:09'),(165,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by id,pid',17,1,1,'2017-10-03 12:13:11','2017-10-03 12:13:11'),(166,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by id,pid',17,1,1,'2017-10-03 12:13:12','2017-10-03 12:13:12'),(167,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid,id',17,1,1,'2017-10-03 12:13:17','2017-10-03 12:13:17'),(168,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid,id',17,1,1,'2017-10-03 12:13:19','2017-10-03 12:13:19'),(169,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid',17,1,1,'2017-10-03 12:13:24','2017-10-03 12:13:24'),(170,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid',17,1,1,'2017-10-03 12:13:25','2017-10-03 12:13:25'),(171,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name from  forum_categories a order by pid,id',17,1,1,'2017-10-03 12:13:30','2017-10-03 12:13:30'),(172,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:44','2017-10-03 12:13:44'),(173,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:45','2017-10-03 12:13:45'),(174,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:46','2017-10-03 12:13:46'),(175,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:47','2017-10-03 12:13:47'),(176,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(pid,id)',17,1,1,'2017-10-03 12:13:47','2017-10-03 12:13:47'),(177,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid)',17,1,1,'2017-10-03 12:13:57','2017-10-03 12:13:57'),(178,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid) desc',17,1,1,'2017-10-03 12:14:09','2017-10-03 12:14:09'),(179,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid),pid desc',17,1,1,'2017-10-03 12:14:23','2017-10-03 12:14:23'),(180,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid),id desc',17,1,1,'2017-10-03 12:14:28','2017-10-03 12:14:28'),(181,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid),id desc',17,1,1,'2017-10-03 12:14:29','2017-10-03 12:14:29'),(182,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a order by concat(id,pid) desc',17,1,1,'2017-10-03 12:14:33','2017-10-03 12:14:33'),(183,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(id,pid) desc',17,1,1,'2017-10-03 12:14:53','2017-10-03 12:14:53'),(184,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(pid,id) desc',17,1,1,'2017-10-03 12:15:11','2017-10-03 12:15:11'),(185,'select a.id,a.pid,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(pid,id)',17,1,1,'2017-10-03 12:15:16','2017-10-03 12:15:16'),(186,'select a.pid,a.id,  (select name from forum_categories b where b.id = a.pid) as pname, a.name \r\nfrom  forum_categories a where pid <> 0 order by concat(pid,id)',17,1,1,'2017-10-03 12:15:28','2017-10-03 12:15:28'),(187,'SELECT a.PID,a.ID,  (SELECT NAME from atsepa.forum_categories b WHERE b.ID = a.PID) as P_NAME, a.NAME\r\nFROM  atsepa.forum_categories a WHERE PID <> 0 ORDER BY CONCAT(PID,ID)',17,1,1,'2017-10-03 12:18:41','2017-10-03 12:18:41'),(188,'select * from articles',17,1,1,'2017-10-05 10:42:38','2017-10-05 10:42:38'),(189,'select * from articles',17,1,1,'2017-10-05 10:42:55','2017-10-05 10:42:55'),(190,'select * from app_users',17,1,1,'2017-10-05 10:43:19','2017-10-05 10:43:19'),(191,'select * from app_users',17,1,1,'2017-10-06 12:32:11','2017-10-06 12:32:11'),(192,'show tables',17,1,1,'2017-10-06 15:54:50','2017-10-06 15:54:50'),(193,'select * from articles',17,1,1,'2017-10-06 15:55:14','2017-10-06 15:55:14'),(194,'select * from articles',17,1,1,'2017-10-06 16:02:44','2017-10-06 16:02:44'),(195,'SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = 292',17,1,1,'2017-10-06 16:14:54','2017-10-06 16:14:54'),(196,'select * from articles',17,1,1,'2017-10-06 16:16:27','2017-10-06 16:16:27'),(197,'show tables',17,1,1,'2017-10-07 05:12:33','2017-10-07 05:12:33'),(198,'select * from articles',17,1,1,'2017-10-07 05:12:47','2017-10-07 05:12:47'),(199,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE from articles',17,1,1,'2017-10-07 05:32:01','2017-10-07 05:32:01'),(200,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE from articles a',17,1,1,'2017-10-07 05:32:07','2017-10-07 05:32:07'),(201,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE,a.* from articles a',17,1,1,'2017-10-07 05:32:18','2017-10-07 05:32:18'),(202,'show tables',17,1,1,'2017-10-07 05:33:14','2017-10-07 05:33:14'),(203,'select * from list_article_categories',17,1,1,'2017-10-07 05:33:44','2017-10-07 05:33:44'),(204,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME \r\nfrom articles a',17,1,1,'2017-10-07 05:34:51','2017-10-07 05:34:51'),(205,'select * from app_users',17,1,1,'2017-10-07 05:35:10','2017-10-07 05:35:10'),(206,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:36:43','2017-10-07 05:36:43'),(207,'desc articles',17,1,1,'2017-10-07 05:37:19','2017-10-07 05:37:19'),(208,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:39:27','2017-10-07 05:39:27'),(209,'SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:40:23','2017-10-07 05:40:23'),(210,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, a.ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:40:43','2017-10-07 05:40:43'),(211,'select * from view_articles',17,1,1,'2017-10-07 05:41:06','2017-10-07 05:41:06'),(212,'drop VIEW view_articles',17,1,1,'2017-10-07 05:50:38','2017-10-07 05:50:38'),(213,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,200),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:51:17','2017-10-07 05:51:17'),(214,'select * from  view_articles',17,1,1,'2017-10-07 05:51:27','2017-10-07 05:51:27'),(215,'drop view  view_articles',17,1,1,'2017-10-07 05:57:03','2017-10-07 05:57:03'),(216,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,a.INTRO,CONCAT(SUBSTR(a.BODY,1,255),\"...\") AS SHORT_BODY,a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:57:06','2017-10-07 05:57:06'),(217,'drop view  view_articles',17,1,1,'2017-10-07 05:58:28','2017-10-07 05:58:28'),(218,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,IF(a.INTRO =\'\',SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:58:30','2017-10-07 05:58:30'),(219,'select * from view_articles',17,1,1,'2017-10-07 05:59:16','2017-10-07 05:59:16'),(220,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:59:41','2017-10-07 05:59:41'),(221,'drop view  view_articles',17,1,1,'2017-10-07 05:59:47','2017-10-07 05:59:47'),(222,'CREATE VIEW view_articles AS SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 05:59:49','2017-10-07 05:59:49'),(223,'select * from view_articles',17,1,1,'2017-10-07 05:59:52','2017-10-07 05:59:52'),(224,'SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:00:50','2017-10-07 06:00:50'),(225,'SELECT a.ID, a.NAME,IF(a.INTRO == \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:01:09','2017-10-07 06:01:09'),(226,'SELECT a.ID, a.NAME,IF(a.INTRO = \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:01:16','2017-10-07 06:01:16'),(227,'SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",SUBSTR(a.BODY,1,255),a.INTRO) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:02:30','2017-10-07 06:02:30'),(228,'SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",a.INTRO,SUBSTR(a.BODY,1,255)) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:02:42','2017-10-07 06:02:42'),(229,'drop view  view_articles',17,1,1,'2017-10-07 06:03:04','2017-10-07 06:03:04'),(230,'create view view_articles as SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",a.INTRO,SUBSTR(a.BODY,1,255)) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID)',17,1,1,'2017-10-07 06:03:06','2017-10-07 06:03:06'),(231,'select * from view_articles',17,1,1,'2017-10-07 06:06:43','2017-10-07 06:06:43'),(232,'drop view  view_articles',17,1,1,'2017-10-07 06:27:47','2017-10-07 06:27:47'),(233,'create view view_articles as SELECT a.ID, a.NAME,IF(a.INTRO <> \"\",a.INTRO,SUBSTR(a.BODY,1,255)) AS INTRO , a.BODY,a.IMAGE, DATE_FORMAT(a.ARTICLE_DATE,\"%d/%m/%Y\") AS ARTICLE_DATE,(SELECT VALUE FROM atsepa.list_article_categories WHERE atsepa.list_article_categories.ID = a.CATEG_ID) AS CATEG_NAME,\r\nu.LAST_NAME,u.FIRST_NAME,u.USERNAME\r\nfrom articles a LEFT JOIN app_users u ON (a.USER_ID = u.ID) ORDER BY a.ARTICLE_DATE DESC',17,1,1,'2017-10-07 06:27:49','2017-10-07 06:27:49'),(234,'SELECT NAME,INTRO,CATEG_NAME,USERNAME,ARTICLE_DATE,IMAGE,FIRST_NAME,LAST_NAME,IDFROM atsepa.view_articles WHERE ID =21',17,1,1,'2017-10-07 07:21:15','2017-10-07 07:21:15'),(235,'select * from app_users',17,1,1,'2017-10-07 08:04:26','2017-10-07 08:04:26'),(236,'SELECT \r\n                                a.PID,\r\n                                a.ID,  \r\n                                (SELECT NAME from atsepa.forum_categories b WHERE b.ID = a.PID) as P_NAME, \r\n                                a.NAME\r\n                            FROM  atsepa.forum_categories a \r\n                            WHERE PID <> 0 \r\n                            ORDER BY CONCAT(PID,ID)',17,1,1,'2017-10-09 09:25:32','2017-10-09 09:25:32'),(237,'SELECT ID,PID,NAME,\"\r\n                    . \"(SELECT COUNT(*) FROM atsepa.topics WHERE CAT_ID = ID ) AS NO_TOPICS\"\r\n                    . \"from atsepa.forum_categories',17,1,1,'2017-10-09 11:03:10','2017-10-09 11:03:10'),(238,'SELECT ID,PID,NAME,(SELECT COUNT(*) FROM atsepa.topics WHERE CAT_ID = ID ) AS NO_TOPICS from atsepa.forum_categories',17,1,1,'2017-10-09 11:03:23','2017-10-09 11:03:23'),(239,'SELECT ID,PID,NAME,(SELECT COUNT(*) FROM atsepa.topics WHERE atsepa.topics.CAT_ID = atsepa.forum_categories.ID ) AS NO_TOPICS from atsepa.forum_categories',17,1,1,'2017-10-09 11:03:54','2017-10-09 11:03:54'),(240,'SELECT ID,PID,NAME,(SELECT COUNT(*) FROM atsepa.topics WHERE atsepa.topics.CAT_ID = atsepa.forum_categories.ID ) AS NO_TOPICSfrom atsepa.forum_categories WHERE PID =6',17,1,1,'2017-10-09 11:05:40','2017-10-09 11:05:40'),(241,'SELECT ID, SUBJECT, DESCRIPTION, TOPIC_DATE FROM atsepa.topics WHERE atsepa.topics.CAT_ID =8',17,1,1,'2017-10-09 12:15:16','2017-10-09 12:15:16'),(242,'SELECT ID, POST_DATE, TOPIC_ID, USER_ID, CONTENT,\r\n (SELECT USERNAME FROM atsepa.app_users WHERE atsepa.app_users.ID = atsepa.posts.USER_ID ) AS USERNAME,\r\n (SELECT SUBJECT FROM atsepa.topics WHERE atsepa.topics.ID = 2) AS SUBJECTFROM atsepa.posts WHERE TOPIC_ID = 2',17,1,1,'2017-10-09 12:53:49','2017-10-09 12:53:49'),(243,'SELECT ID, POST_DATE, TOPIC_ID, USER_ID, CONTENT,\r\n (SELECT USERNAME FROM atsepa.app_users WHERE atsepa.app_users.ID = atsepa.posts.USER_ID ) AS USERNAME,\r\n (SELECT SUBJECT FROM atsepa.topics WHERE atsepa.topics.ID = 2) AS SUBJECT FROM atsepa.posts WHERE TOPIC_ID = 2',17,1,1,'2017-10-09 12:53:56','2017-10-09 12:53:56'),(244,'select * from atsepa.posts p LEFT JOIN atsepa.app_users u ON (p.USER_ID = u.ID), \r\nLEFT JOIN atsepa.topics t ON ( p.CAT_ID = t.ID)',17,1,1,'2017-10-09 12:56:30','2017-10-09 12:56:30'),(245,'select * from atsepa.posts p LEFT JOIN atsepa.app_users u ON (p.USER_ID = u.ID) \r\nLEFT JOIN atsepa.topics t ON ( p.CAT_ID = t.ID)',17,1,1,'2017-10-09 12:56:42','2017-10-09 12:56:42'),(246,'select * from atsepa.posts p LEFT JOIN atsepa.app_users u ON (p.USER_ID = u.ID) \r\nLEFT JOIN atsepa.topics t ON ( p.CATEG_ID = t.ID)',17,1,1,'2017-10-09 12:56:48','2017-10-09 12:56:48'),(247,'select * from atsepa.posts p LEFT JOIN atsepa.app_users u ON (p.USER_ID = u.ID) \r\nLEFT JOIN atsepa.topics t ON ( p.TOPIC_ID = t.ID)',17,1,1,'2017-10-09 12:57:02','2017-10-09 12:57:02'),(248,'select * from  sql_console_saves',3,1,1,'2017-10-09 13:09:02','2017-10-09 13:09:02'),(249,'select * from  sql_console_history',3,1,1,'2017-10-09 13:09:18','2017-10-09 13:09:18');
 /*!40000 ALTER TABLE `sql_console_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -888,7 +888,7 @@ CREATE TABLE `sql_console_saves` (
   `QUERY` text NOT NULL,
   `DESCR` varchar(255) DEFAULT NULL,
   `DATAQ` datetime DEFAULT NULL,
-  `DATABASE_ID` bigint(20) NOT NULL DEFAULT 3,
+  `DATABASE_ID` bigint(20) NOT NULL DEFAULT '3',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -912,8 +912,8 @@ DROP TABLE IF EXISTS `sql_sintax`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sql_sintax` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DBMS_TYPE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `SINTAX_TYPE_ID` bigint(20) NOT NULL DEFAULT 0,
+  `DBMS_TYPE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `SINTAX_TYPE_ID` bigint(20) NOT NULL DEFAULT '0',
   `DEF_TPL` text NOT NULL,
   `DESCRIPTION` text NOT NULL,
   PRIMARY KEY (`ID`),
@@ -945,18 +945,18 @@ CREATE TABLE `table_details` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `TABLE_ID` bigint(20) NOT NULL,
   `COLUMN_NAME` varchar(255) NOT NULL DEFAULT '',
-  `COLUMN_TYPE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `UNSIGN` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `COLUMN_TYPE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `UNSIGN` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `COLUMN_SIZE` bigint(20) DEFAULT NULL,
-  `ACCEPT_NULL` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `ACCEPT_NULL` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `COLUMN_DEFAULT_VALUE` varchar(255) NOT NULL DEFAULT '',
-  `AUTOINCREMENT` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `AUTOINCREMENT` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `ORD` smallint(5) unsigned NOT NULL DEFAULT 0,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ORD` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `TABLE_ID` (`TABLE_ID`),
   KEY `MODIFY_UID` (`MODIFY_UID`),
@@ -994,11 +994,11 @@ CREATE TABLE `table_fks` (
   `FK_COLUMN_ID` bigint(20) DEFAULT NULL,
   `ON_UPDATE` bigint(20) DEFAULT NULL,
   `ON_DELETE` bigint(20) DEFAULT NULL,
-  `DESCRIPTION` text DEFAULT NULL,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `DESCRIPTION` text,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `phpapps_columns_fks_COLUMN_ID_FK` (`COLUMN_ID`),
   KEY `phpapps_columns_fks_FK_TABLE_ID_FK` (`FK_TABLE_ID`),
@@ -1037,11 +1037,11 @@ CREATE TABLE `table_indexes` (
   `INDEX_NAME` varchar(255) DEFAULT NULL,
   `INDEX_TYPE_ID` bigint(20) DEFAULT NULL,
   `INDEX_COLUMNS` varchar(255) NOT NULL DEFAULT 'ID',
-  `DESCRIPTION` text DEFAULT NULL,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `DESCRIPTION` text,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `phpapps_table_indexes_TABLE_ID_FK` (`TABLE_ID`),
   KEY `phpapps_table_indexes_INDEX_TYPE_FK` (`INDEX_TYPE_ID`),
@@ -1075,14 +1075,14 @@ CREATE TABLE `tables` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `ORIGIN_ID` bigint(20) NOT NULL,
   `MODULE_ID` bigint(20) NOT NULL,
-  `SCHEMA_ID` bigint(20) NOT NULL DEFAULT 0,
+  `SCHEMA_ID` bigint(20) NOT NULL DEFAULT '0',
   `TABLE_NAME` varchar(255) NOT NULL DEFAULT '',
   `TABLE_TYPE` bigint(20) DEFAULT NULL,
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `tables_table_name_module_id_idx` (`TABLE_NAME`,`MODULE_ID`),
   UNIQUE KEY `phpapps_tables_MODULE_ID_SCHEMA_ID_TABLE_NAME_UIDX` (`MODULE_ID`,`SCHEMA_ID`,`TABLE_NAME`),
@@ -1121,7 +1121,7 @@ DROP TABLE IF EXISTS `test_cols`;
 CREATE TABLE `test_cols` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `MUMUSA` bigint(20) DEFAULT NULL,
-  `NUME` text DEFAULT NULL,
+  `NUME` text,
   `VIEW_ID2` bigint(20) DEFAULT NULL,
   `GOGU` bigint(15) DEFAULT NULL,
   PRIMARY KEY (`ID`),
@@ -1175,13 +1175,13 @@ DROP TABLE IF EXISTS `user_profiles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_profiles` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SCRIPT_ID` bigint(20) NOT NULL DEFAULT 0,
+  `SCRIPT_ID` bigint(20) NOT NULL DEFAULT '0',
   `PROFILE_NAME` varchar(255) NOT NULL DEFAULT '',
-  `THEME` bigint(10) NOT NULL DEFAULT 0,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `THEME` bigint(10) NOT NULL DEFAULT '0',
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `user_profiles_ibfk_1` (`SCRIPT_ID`),
   KEY `user_profiles_ibfk_2` (`MODIFY_UID`),
@@ -1211,12 +1211,12 @@ DROP TABLE IF EXISTS `user_roles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_roles` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `UID` bigint(20) NOT NULL DEFAULT 0,
-  `ROLE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `UID` bigint(20) NOT NULL DEFAULT '0',
+  `ROLE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `user_roles_user_role_idx` (`UID`,`ROLE_ID`),
   KEY `UID` (`UID`),
@@ -1254,13 +1254,13 @@ CREATE TABLE `users` (
   `FIRSTNAME` varchar(255) NOT NULL DEFAULT '',
   `LASTNAME` varchar(255) NOT NULL DEFAULT '',
   `EMAIL` varchar(255) NOT NULL DEFAULT '',
-  `USER_TYPE` bigint(20) NOT NULL DEFAULT 1,
+  `USER_TYPE` bigint(20) NOT NULL DEFAULT '1',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `PROFILE_ID` bigint(20) NOT NULL DEFAULT 0,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `PROFILE_ID` bigint(20) NOT NULL DEFAULT '0',
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `users_username_unique_idx` (`USERNAME`),
   KEY `USER_TYPE` (`USER_TYPE`),
@@ -1285,266 +1285,255 @@ INSERT INTO `users` VALUES (1,'victor','alcatraz','Gigi','Fanica','',1,'bb',2,1,
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `view_forms`
+-- Temporary view structure for view `view_forms`
 --
 
 DROP TABLE IF EXISTS `view_forms`;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_forms` (
-  `ID` tinyint NOT NULL,
-  `FORM_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `FORM_QUERY` tinyint NOT NULL,
-  `FORM_PHP_DIR` tinyint NOT NULL,
-  `FORM_TPL_DIR` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_forms` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `FORM_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `FORM_QUERY`,
+ 1 AS `FORM_PHP_DIR`,
+ 1 AS `FORM_TPL_DIR`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_modules`
+-- Temporary view structure for view `view_modules`
 --
 
 DROP TABLE IF EXISTS `view_modules`;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_modules` (
-  `ID` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `APP_SCHEMA` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `MODULE_TITLE` tinyint NOT NULL,
-  `MODULE_DATE` tinyint NOT NULL,
-  `MODULE_SCHEMA` tinyint NOT NULL,
-  `SCHEMA_NAME` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `SCRIPT_ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_modules` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `APP_SCHEMA`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `MODULE_TITLE`,
+ 1 AS `MODULE_DATE`,
+ 1 AS `MODULE_SCHEMA`,
+ 1 AS `SCHEMA_NAME`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `SCRIPT_ID`,
+ 1 AS `SCRIPT_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_permissions`
+-- Temporary view structure for view `view_permissions`
 --
 
 DROP TABLE IF EXISTS `view_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_permissions` (
-  `ID` tinyint NOT NULL,
-  `PERMISSION_NAME` tinyint NOT NULL,
-  `PERMISSION_NAME_ID` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `PERMISSION_TYPE` tinyint NOT NULL,
-  `PERMISSION_TYPE_ID` tinyint NOT NULL,
-  `OBJECT_TYPE` tinyint NOT NULL,
-  `OBJECT_TYPE_ID` tinyint NOT NULL,
-  `OBJECT_NAME` tinyint NOT NULL,
-  `OBJECT_ID` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_permissions` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `PERMISSION_NAME`,
+ 1 AS `PERMISSION_NAME_ID`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `PERMISSION_TYPE`,
+ 1 AS `PERMISSION_TYPE_ID`,
+ 1 AS `OBJECT_TYPE`,
+ 1 AS `OBJECT_TYPE_ID`,
+ 1 AS `OBJECT_NAME`,
+ 1 AS `OBJECT_ID`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_role_permissions`
+-- Temporary view structure for view `view_role_permissions`
 --
 
 DROP TABLE IF EXISTS `view_role_permissions`;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_role_permissions` (
-  `ID` tinyint NOT NULL,
-  `ROLE_ID` tinyint NOT NULL,
-  `ROLE_NAME` tinyint NOT NULL,
-  `PERMISSION_ID` tinyint NOT NULL,
-  `PERMISSION_NAME` tinyint NOT NULL,
-  `PERMISSION_NAME_ID` tinyint NOT NULL,
-  `PERMISSION_DESC` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_role_permissions` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `ROLE_ID`,
+ 1 AS `ROLE_NAME`,
+ 1 AS `PERMISSION_ID`,
+ 1 AS `PERMISSION_NAME`,
+ 1 AS `PERMISSION_NAME_ID`,
+ 1 AS `PERMISSION_DESC`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_scripts`
+-- Temporary view structure for view `view_scripts`
 --
 
 DROP TABLE IF EXISTS `view_scripts`;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_scripts` (
-  `ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_scripts` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCRIPT_NAME`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_details`
+-- Temporary view structure for view `view_table_details`
 --
 
 DROP TABLE IF EXISTS `view_table_details`;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_details` (
-  `ID` tinyint NOT NULL,
-  `SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `COLUMN_NAME` tinyint NOT NULL,
-  `COLUMN_TYPE_ID` tinyint NOT NULL,
-  `COLUMN_TYPE_LABEl` tinyint NOT NULL,
-  `UNSIGN` tinyint NOT NULL,
-  `COLUMN_SIZE` tinyint NOT NULL,
-  `ACCEPT_NULL` tinyint NOT NULL,
-  `COLUMN_DEFAULT_VALUE` tinyint NOT NULL,
-  `AUTOINCREMENT` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `ORD` tinyint NOT NULL,
-  `MODIFY_UID` tinyint NOT NULL,
-  `MODIFIED_BY` tinyint NOT NULL,
-  `CREATE_UID` tinyint NOT NULL,
-  `CREATED_BY` tinyint NOT NULL,
-  `MODIFY_DATE` tinyint NOT NULL,
-  `CREATE_DATE` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_details` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `COLUMN_NAME`,
+ 1 AS `COLUMN_TYPE_ID`,
+ 1 AS `COLUMN_TYPE_LABEl`,
+ 1 AS `UNSIGN`,
+ 1 AS `COLUMN_SIZE`,
+ 1 AS `ACCEPT_NULL`,
+ 1 AS `COLUMN_DEFAULT_VALUE`,
+ 1 AS `AUTOINCREMENT`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `ORD`,
+ 1 AS `MODIFY_UID`,
+ 1 AS `MODIFIED_BY`,
+ 1 AS `CREATE_UID`,
+ 1 AS `CREATED_BY`,
+ 1 AS `MODIFY_DATE`,
+ 1 AS `CREATE_DATE`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_fks`
+-- Temporary view structure for view `view_table_fks`
 --
 
 DROP TABLE IF EXISTS `view_table_fks`;
 /*!50001 DROP VIEW IF EXISTS `view_table_fks`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_fks` (
-  `ID` tinyint NOT NULL,
-  `COLUMN_ID` tinyint NOT NULL,
-  `COLUMN_NAME` tinyint NOT NULL,
-  `SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `FK_NAME` tinyint NOT NULL,
-  `FK_SCHEMA_ID` tinyint NOT NULL,
-  `FK_TABLE_SCHEMA` tinyint NOT NULL,
-  `FK_TABLE_ID` tinyint NOT NULL,
-  `FK_TABLE_NAME` tinyint NOT NULL,
-  `FK_COLUMN_ID` tinyint NOT NULL,
-  `FK_COLUMN_NAME` tinyint NOT NULL,
-  `ON_UPDATE` tinyint NOT NULL,
-  `ON_DELETE` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_fks` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `COLUMN_ID`,
+ 1 AS `COLUMN_NAME`,
+ 1 AS `SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `FK_NAME`,
+ 1 AS `FK_SCHEMA_ID`,
+ 1 AS `FK_TABLE_SCHEMA`,
+ 1 AS `FK_TABLE_ID`,
+ 1 AS `FK_TABLE_NAME`,
+ 1 AS `FK_COLUMN_ID`,
+ 1 AS `FK_COLUMN_NAME`,
+ 1 AS `ON_UPDATE`,
+ 1 AS `ON_DELETE`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_table_indexes`
+-- Temporary view structure for view `view_table_indexes`
 --
 
 DROP TABLE IF EXISTS `view_table_indexes`;
 /*!50001 DROP VIEW IF EXISTS `view_table_indexes`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_table_indexes` (
-  `ID` tinyint NOT NULL,
-  `SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_ID` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `INDEX_NAME` tinyint NOT NULL,
-  `INDEX_TYPE_ID` tinyint NOT NULL,
-  `INDEX_TYPE` tinyint NOT NULL,
-  `INDEX_COLUMNS` tinyint NOT NULL,
-  `INDEX_COLUMNS_LABELS` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `MODIFY_UID` tinyint NOT NULL,
-  `CREATE_UID` tinyint NOT NULL,
-  `MODIFY_DATE` tinyint NOT NULL,
-  `CREATE_DATE` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_table_indexes` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_ID`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `INDEX_NAME`,
+ 1 AS `INDEX_TYPE_ID`,
+ 1 AS `INDEX_TYPE`,
+ 1 AS `INDEX_COLUMNS`,
+ 1 AS `INDEX_COLUMNS_LABELS`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `MODIFY_UID`,
+ 1 AS `CREATE_UID`,
+ 1 AS `MODIFY_DATE`,
+ 1 AS `CREATE_DATE`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_tables`
+-- Temporary view structure for view `view_tables`
 --
 
 DROP TABLE IF EXISTS `view_tables`;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_tables` (
-  `ID` tinyint NOT NULL,
-  `ORIGIN_ID` tinyint NOT NULL,
-  `TABLE_TYPE` tinyint NOT NULL,
-  `TABLE_TYPE_LABEL` tinyint NOT NULL,
-  `TABLE_SCHEMA_ID` tinyint NOT NULL,
-  `TABLE_SCHEMA` tinyint NOT NULL,
-  `TABLE_NAME` tinyint NOT NULL,
-  `APP_SCHEMA` tinyint NOT NULL,
-  `APP_ID` tinyint NOT NULL,
-  `APP_NAME` tinyint NOT NULL,
-  `MODULE_ID` tinyint NOT NULL,
-  `MODULE_NAME` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_tables` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `ORIGIN_ID`,
+ 1 AS `TABLE_TYPE`,
+ 1 AS `TABLE_TYPE_LABEL`,
+ 1 AS `TABLE_SCHEMA_ID`,
+ 1 AS `TABLE_SCHEMA`,
+ 1 AS `TABLE_NAME`,
+ 1 AS `APP_SCHEMA`,
+ 1 AS `APP_ID`,
+ 1 AS `APP_NAME`,
+ 1 AS `MODULE_ID`,
+ 1 AS `MODULE_NAME`,
+ 1 AS `DESCRIPTION`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_user_roles`
+-- Temporary view structure for view `view_user_roles`
 --
 
 DROP TABLE IF EXISTS `view_user_roles`;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_user_roles` (
-  `ID` tinyint NOT NULL,
-  `UID` tinyint NOT NULL,
-  `USERNAME` tinyint NOT NULL,
-  `ROLE_ID` tinyint NOT NULL,
-  `ROLE_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_user_roles` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `UID`,
+ 1 AS `USERNAME`,
+ 1 AS `ROLE_ID`,
+ 1 AS `ROLE_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `view_users`
+-- Temporary view structure for view `view_users`
 --
 
 DROP TABLE IF EXISTS `view_users`;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-/*!50001 CREATE TABLE `view_users` (
-  `ID` tinyint NOT NULL,
-  `USERNAME` tinyint NOT NULL,
-  `PASSWORD` tinyint NOT NULL,
-  `FIRSTNAME` tinyint NOT NULL,
-  `LASTNAME` tinyint NOT NULL,
-  `EMAIL` tinyint NOT NULL,
-  `USER_TYPE` tinyint NOT NULL,
-  `DESCRIPTION` tinyint NOT NULL,
-  `PROFILE_ID` tinyint NOT NULL,
-  `PROFILE_NAME` tinyint NOT NULL,
-  `SCRIPT_ID` tinyint NOT NULL,
-  `SCRIPT_NAME` tinyint NOT NULL
-) ENGINE=MyISAM */;
+/*!50001 CREATE VIEW `view_users` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `USERNAME`,
+ 1 AS `PASSWORD`,
+ 1 AS `FIRSTNAME`,
+ 1 AS `LASTNAME`,
+ 1 AS `EMAIL`,
+ 1 AS `USER_TYPE`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `PROFILE_ID`,
+ 1 AS `PROFILE_NAME`,
+ 1 AS `SCRIPT_ID`,
+ 1 AS `SCRIPT_NAME`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -1556,14 +1545,14 @@ DROP TABLE IF EXISTS `views`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `views` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `MODULE_ID` bigint(20) NOT NULL DEFAULT 0,
+  `MODULE_ID` bigint(20) NOT NULL DEFAULT '0',
   `VIEW_NAME` varchar(255) NOT NULL DEFAULT '',
   `CREATE_VIEW_QUERY` tinytext NOT NULL,
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `views_view_name_module_id_idx` (`VIEW_NAME`,`MODULE_ID`),
   KEY `MODULE_ID` (`MODULE_ID`),
@@ -1589,7 +1578,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_forms`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_forms`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forms`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1599,7 +1587,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_forms` AS select `f`.`ID` AS `ID`,`f`.`FORM_NAME` AS `FORM_NAME`,`f`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`f`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `TABLE_SCHEMA`,`f`.`FORM_QUERY` AS `FORM_QUERY`,`f`.`FORM_PHP_DIR` AS `FORM_PHP_DIR`,`f`.`FORM_TPL_DIR` AS `FORM_TPL_DIR`,`f`.`DESCRIPTION` AS `DESCRIPTION` from ((((`forms` `f` join `modules` `m`) join `applications` `a`) join `tables` `t`) join `list_databases` `d`) where `f`.`MODULE_ID` = `m`.`ID` and `m`.`APP_ID` = `a`.`ID` and `f`.`TABLE_ID` = `t`.`ID` and `t`.`SCHEMA_ID` = `d`.`ID` */;
+/*!50001 VIEW `view_forms` AS select `f`.`ID` AS `ID`,`f`.`FORM_NAME` AS `FORM_NAME`,`f`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`f`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `TABLE_SCHEMA`,`f`.`FORM_QUERY` AS `FORM_QUERY`,`f`.`FORM_PHP_DIR` AS `FORM_PHP_DIR`,`f`.`FORM_TPL_DIR` AS `FORM_TPL_DIR`,`f`.`DESCRIPTION` AS `DESCRIPTION` from ((((`forms` `f` join `modules` `m`) join `applications` `a`) join `tables` `t`) join `list_databases` `d`) where ((`f`.`MODULE_ID` = `m`.`ID`) and (`m`.`APP_ID` = `a`.`ID`) and (`f`.`TABLE_ID` = `t`.`ID`) and (`t`.`SCHEMA_ID` = `d`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1608,7 +1596,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_modules`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_modules`*/;
 /*!50001 DROP VIEW IF EXISTS `view_modules`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1618,7 +1605,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_modules` AS select `m`.`ID` AS `ID`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`a`.`APP_SCHEMA` AS `APP_SCHEMA`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`m`.`MODULE_TITLE` AS `MODULE_TITLE`,`m`.`MODULE_DATE` AS `MODULE_DATE`,`a`.`APP_SCHEMA` AS `MODULE_SCHEMA`,`d`.`VALUE` AS `SCHEMA_NAME`,`m`.`DESCRIPTION` AS `DESCRIPTION`,`m`.`SCRIPT_ID` AS `SCRIPT_ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME` from (((`modules` `m` join `applications` `a`) join `scripts` `s`) join `list_databases` `d`) where `m`.`APP_ID` = `a`.`ID` and `a`.`APP_SCHEMA` = `d`.`ID` and `m`.`SCRIPT_ID` = `s`.`ID` */;
+/*!50001 VIEW `view_modules` AS select `m`.`ID` AS `ID`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`a`.`APP_SCHEMA` AS `APP_SCHEMA`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`m`.`MODULE_TITLE` AS `MODULE_TITLE`,`m`.`MODULE_DATE` AS `MODULE_DATE`,`a`.`APP_SCHEMA` AS `MODULE_SCHEMA`,`d`.`VALUE` AS `SCHEMA_NAME`,`m`.`DESCRIPTION` AS `DESCRIPTION`,`m`.`SCRIPT_ID` AS `SCRIPT_ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME` from (((`modules` `m` join `applications` `a`) join `scripts` `s`) join `list_databases` `d`) where ((`m`.`APP_ID` = `a`.`ID`) and (`a`.`APP_SCHEMA` = `d`.`ID`) and (`m`.`SCRIPT_ID` = `s`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1627,7 +1614,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_permissions`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1637,7 +1623,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_permissions` AS select `p`.`ID` AS `ID`,`pn`.`VALUE` AS `PERMISSION_NAME`,`pn`.`ID` AS `PERMISSION_NAME_ID`,`p`.`DESCRIPTION` AS `DESCRIPTION`,`pt`.`VALUE` AS `PERMISSION_TYPE`,`pt`.`ID` AS `PERMISSION_TYPE_ID`,`ot`.`VALUE` AS `OBJECT_TYPE`,`ot`.`ID` AS `OBJECT_TYPE_ID`,case `ot`.`VALUE` when _latin1'table' then (select `tables`.`TABLE_NAME` AS `TABLE_NAME` from `tables` where `tables`.`ID` = `p`.`OBJECT_ID`) when _latin1'view' then (select `views`.`VIEW_NAME` AS `VIEW_NAME` from `views` where `views`.`ID` = `p`.`OBJECT_ID`) when _latin1'form' then (select `forms`.`FORM_NAME` AS `FORM_NAME` from `forms` where `forms`.`ID` = `p`.`OBJECT_ID`) when _latin1'script' then (select `scripts`.`SCRIPT_NAME` AS `SCRIPT_NAME` from `scripts` where `scripts`.`ID` = `p`.`OBJECT_ID`) end AS `OBJECT_NAME`,`p`.`OBJECT_ID` AS `OBJECT_ID` from (((`permissions` `p` join `list_permission_types` `pt`) join `list_object_types` `ot`) join `list_permission_names` `pn`) where `p`.`PERMISSION_TYPE` = `pt`.`ID` and `p`.`OBJECT_TYPE` = `ot`.`ID` and `p`.`PERMISSION_NAME` = `pn`.`ID` */;
+/*!50001 VIEW `view_permissions` AS select `p`.`ID` AS `ID`,`pn`.`VALUE` AS `PERMISSION_NAME`,`pn`.`ID` AS `PERMISSION_NAME_ID`,`p`.`DESCRIPTION` AS `DESCRIPTION`,`pt`.`VALUE` AS `PERMISSION_TYPE`,`pt`.`ID` AS `PERMISSION_TYPE_ID`,`ot`.`VALUE` AS `OBJECT_TYPE`,`ot`.`ID` AS `OBJECT_TYPE_ID`,(case `ot`.`VALUE` when _latin1'table' then (select `tables`.`TABLE_NAME` AS `TABLE_NAME` from `tables` where (`tables`.`ID` = `p`.`OBJECT_ID`)) when _latin1'view' then (select `views`.`VIEW_NAME` AS `VIEW_NAME` from `views` where (`views`.`ID` = `p`.`OBJECT_ID`)) when _latin1'form' then (select `forms`.`FORM_NAME` AS `FORM_NAME` from `forms` where (`forms`.`ID` = `p`.`OBJECT_ID`)) when _latin1'script' then (select `scripts`.`SCRIPT_NAME` AS `SCRIPT_NAME` from `scripts` where (`scripts`.`ID` = `p`.`OBJECT_ID`)) end) AS `OBJECT_NAME`,`p`.`OBJECT_ID` AS `OBJECT_ID` from (((`permissions` `p` join `list_permission_types` `pt`) join `list_object_types` `ot`) join `list_permission_names` `pn`) where ((`p`.`PERMISSION_TYPE` = `pt`.`ID`) and (`p`.`OBJECT_TYPE` = `ot`.`ID`) and (`p`.`PERMISSION_NAME` = `pn`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1646,7 +1632,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_role_permissions`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_role_permissions`*/;
 /*!50001 DROP VIEW IF EXISTS `view_role_permissions`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1656,7 +1641,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_role_permissions` AS select `rp`.`ID` AS `ID`,`rp`.`ROLE_ID` AS `ROLE_ID`,`r`.`ROLE_NAME` AS `ROLE_NAME`,`rp`.`PERMISSION_ID` AS `PERMISSION_ID`,(select `list_permission_names`.`VALUE` AS `VALUE` from `list_permission_names` where `list_permission_names`.`ID` = `p`.`PERMISSION_NAME`) AS `PERMISSION_NAME`,`p`.`PERMISSION_NAME` AS `PERMISSION_NAME_ID`,`p`.`DESCRIPTION` AS `PERMISSION_DESC` from ((`role_permissions` `rp` join `roles` `r`) join `permissions` `p`) where `rp`.`ROLE_ID` = `r`.`ID` and `rp`.`PERMISSION_ID` = `p`.`ID` */;
+/*!50001 VIEW `view_role_permissions` AS select `rp`.`ID` AS `ID`,`rp`.`ROLE_ID` AS `ROLE_ID`,`r`.`ROLE_NAME` AS `ROLE_NAME`,`rp`.`PERMISSION_ID` AS `PERMISSION_ID`,(select `list_permission_names`.`VALUE` AS `VALUE` from `list_permission_names` where (`list_permission_names`.`ID` = `p`.`PERMISSION_NAME`)) AS `PERMISSION_NAME`,`p`.`PERMISSION_NAME` AS `PERMISSION_NAME_ID`,`p`.`DESCRIPTION` AS `PERMISSION_DESC` from ((`role_permissions` `rp` join `roles` `r`) join `permissions` `p`) where ((`rp`.`ROLE_ID` = `r`.`ID`) and (`rp`.`PERMISSION_ID` = `p`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1665,7 +1650,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_scripts`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_scripts`*/;
 /*!50001 DROP VIEW IF EXISTS `view_scripts`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1675,7 +1659,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_scripts` AS select `s`.`ID` AS `ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME`,`a`.`ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`m`.`ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME` from ((`scripts` `s` join `modules` `m`) join `applications` `a`) where `s`.`MODULE_ID` = `m`.`ID` and `m`.`APP_ID` = `a`.`ID` */;
+/*!50001 VIEW `view_scripts` AS select `s`.`ID` AS `ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME`,`a`.`ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`m`.`ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME` from ((`scripts` `s` join `modules` `m`) join `applications` `a`) where ((`s`.`MODULE_ID` = `m`.`ID`) and (`m`.`APP_ID` = `a`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1684,7 +1668,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_details`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_details`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_details`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1694,7 +1677,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_table_details` AS select `d`.`ID` AS `ID`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where `list_databases`.`ID` = `t`.`SCHEMA_ID`) AS `TABLE_SCHEMA`,`d`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`COLUMN_NAME` AS `COLUMN_NAME`,`d`.`COLUMN_TYPE_ID` AS `COLUMN_TYPE_ID`,(select `list_mysql_column_types`.`VALUE` from `list_mysql_column_types` where `list_mysql_column_types`.`ID` = `d`.`COLUMN_TYPE_ID`) AS `COLUMN_TYPE_LABEl`,`d`.`UNSIGN` AS `UNSIGN`,`d`.`COLUMN_SIZE` AS `COLUMN_SIZE`,`d`.`ACCEPT_NULL` AS `ACCEPT_NULL`,`d`.`COLUMN_DEFAULT_VALUE` AS `COLUMN_DEFAULT_VALUE`,`d`.`AUTOINCREMENT` AS `AUTOINCREMENT`,`d`.`DESCRIPTION` AS `DESCRIPTION`,`d`.`ORD` AS `ORD`,`d`.`MODIFY_UID` AS `MODIFY_UID`,(select `users`.`USERNAME` from `users` where `users`.`ID` = `d`.`MODIFY_UID`) AS `MODIFIED_BY`,`d`.`CREATE_UID` AS `CREATE_UID`,(select `users`.`USERNAME` from `users` where `users`.`ID` = `d`.`CREATE_UID`) AS `CREATED_BY`,`d`.`MODIFY_DATE` AS `MODIFY_DATE`,`d`.`CREATE_DATE` AS `CREATE_DATE` from (`table_details` `d` left join `tables` `t` on(`d`.`TABLE_ID` = `t`.`ID`)) */;
+/*!50001 VIEW `view_table_details` AS select `d`.`ID` AS `ID`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`d`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`COLUMN_NAME` AS `COLUMN_NAME`,`d`.`COLUMN_TYPE_ID` AS `COLUMN_TYPE_ID`,(select `list_mysql_column_types`.`VALUE` from `list_mysql_column_types` where (`list_mysql_column_types`.`ID` = `d`.`COLUMN_TYPE_ID`)) AS `COLUMN_TYPE_LABEl`,`d`.`UNSIGN` AS `UNSIGN`,`d`.`COLUMN_SIZE` AS `COLUMN_SIZE`,`d`.`ACCEPT_NULL` AS `ACCEPT_NULL`,`d`.`COLUMN_DEFAULT_VALUE` AS `COLUMN_DEFAULT_VALUE`,`d`.`AUTOINCREMENT` AS `AUTOINCREMENT`,`d`.`DESCRIPTION` AS `DESCRIPTION`,`d`.`ORD` AS `ORD`,`d`.`MODIFY_UID` AS `MODIFY_UID`,(select `users`.`USERNAME` from `users` where (`users`.`ID` = `d`.`MODIFY_UID`)) AS `MODIFIED_BY`,`d`.`CREATE_UID` AS `CREATE_UID`,(select `users`.`USERNAME` from `users` where (`users`.`ID` = `d`.`CREATE_UID`)) AS `CREATED_BY`,`d`.`MODIFY_DATE` AS `MODIFY_DATE`,`d`.`CREATE_DATE` AS `CREATE_DATE` from (`table_details` `d` left join `tables` `t` on((`d`.`TABLE_ID` = `t`.`ID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1703,7 +1686,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_fks`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_fks`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_fks`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1713,7 +1695,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_table_fks` AS select `fk`.`ID` AS `ID`,`fk`.`COLUMN_ID` AS `COLUMN_ID`,`td`.`COLUMN_NAME` AS `COLUMN_NAME`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where `list_databases`.`ID` = `t`.`SCHEMA_ID`) AS `TABLE_SCHEMA`,`td`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`fk`.`FK_NAME` AS `FK_NAME`,`tf`.`SCHEMA_ID` AS `FK_SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where `list_databases`.`ID` = `tf`.`SCHEMA_ID`) AS `FK_TABLE_SCHEMA`,`fk`.`FK_TABLE_ID` AS `FK_TABLE_ID`,`tf`.`TABLE_NAME` AS `FK_TABLE_NAME`,`fk`.`FK_COLUMN_ID` AS `FK_COLUMN_ID`,`tdf`.`COLUMN_NAME` AS `FK_COLUMN_NAME`,(select `list_foreign_key_options`.`VALUE` from `list_foreign_key_options` where `list_foreign_key_options`.`ID` = `fk`.`ON_UPDATE`) AS `ON_UPDATE`,(select `list_foreign_key_options`.`VALUE` from `list_foreign_key_options` where `list_foreign_key_options`.`ID` = `fk`.`ON_DELETE`) AS `ON_DELETE`,`fk`.`DESCRIPTION` AS `DESCRIPTION` from ((((`table_fks` `fk` left join `table_details` `td` on(`fk`.`COLUMN_ID` = `td`.`ID`)) left join `tables` `t` on(`td`.`TABLE_ID` = `t`.`ID`)) left join `tables` `tf` on(`fk`.`FK_TABLE_ID` = `tf`.`ID`)) left join `table_details` `tdf` on(`fk`.`FK_COLUMN_ID` = `tdf`.`ID`)) */;
+/*!50001 VIEW `view_table_fks` AS select `fk`.`ID` AS `ID`,`fk`.`COLUMN_ID` AS `COLUMN_ID`,`td`.`COLUMN_NAME` AS `COLUMN_NAME`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`td`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`fk`.`FK_NAME` AS `FK_NAME`,`tf`.`SCHEMA_ID` AS `FK_SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where (`list_databases`.`ID` = `tf`.`SCHEMA_ID`)) AS `FK_TABLE_SCHEMA`,`fk`.`FK_TABLE_ID` AS `FK_TABLE_ID`,`tf`.`TABLE_NAME` AS `FK_TABLE_NAME`,`fk`.`FK_COLUMN_ID` AS `FK_COLUMN_ID`,`tdf`.`COLUMN_NAME` AS `FK_COLUMN_NAME`,(select `list_foreign_key_options`.`VALUE` from `list_foreign_key_options` where (`list_foreign_key_options`.`ID` = `fk`.`ON_UPDATE`)) AS `ON_UPDATE`,(select `list_foreign_key_options`.`VALUE` from `list_foreign_key_options` where (`list_foreign_key_options`.`ID` = `fk`.`ON_DELETE`)) AS `ON_DELETE`,`fk`.`DESCRIPTION` AS `DESCRIPTION` from ((((`table_fks` `fk` left join `table_details` `td` on((`fk`.`COLUMN_ID` = `td`.`ID`))) left join `tables` `t` on((`td`.`TABLE_ID` = `t`.`ID`))) left join `tables` `tf` on((`fk`.`FK_TABLE_ID` = `tf`.`ID`))) left join `table_details` `tdf` on((`fk`.`FK_COLUMN_ID` = `tdf`.`ID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1722,7 +1704,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_table_indexes`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_table_indexes`*/;
 /*!50001 DROP VIEW IF EXISTS `view_table_indexes`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1732,7 +1713,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_table_indexes` AS select `ti`.`ID` AS `ID`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where `list_databases`.`ID` = `t`.`SCHEMA_ID`) AS `TABLE_SCHEMA`,`ti`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`ti`.`INDEX_NAME` AS `INDEX_NAME`,`ti`.`INDEX_TYPE_ID` AS `INDEX_TYPE_ID`,(select `list_index_types`.`VALUE` from `list_index_types` where `list_index_types`.`ID` = `ti`.`INDEX_TYPE_ID`) AS `INDEX_TYPE`,`ti`.`INDEX_COLUMNS` AS `INDEX_COLUMNS`,(select group_concat(`td`.`COLUMN_NAME` separator ',') from `table_details` `td` where `ti`.`INDEX_COLUMNS` regexp convert(concat(',?',`td`.`ID`,',?') using latin1) group by `td`.`TABLE_ID`) AS `INDEX_COLUMNS_LABELS`,`ti`.`DESCRIPTION` AS `DESCRIPTION`,`ti`.`MODIFY_UID` AS `MODIFY_UID`,`ti`.`CREATE_UID` AS `CREATE_UID`,`ti`.`MODIFY_DATE` AS `MODIFY_DATE`,`ti`.`CREATE_DATE` AS `CREATE_DATE` from (`table_indexes` `ti` left join `tables` `t` on(`ti`.`TABLE_ID` = `t`.`ID`)) */;
+/*!50001 VIEW `view_table_indexes` AS select `ti`.`ID` AS `ID`,`t`.`SCHEMA_ID` AS `SCHEMA_ID`,(select `list_databases`.`VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`ti`.`TABLE_ID` AS `TABLE_ID`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`ti`.`INDEX_NAME` AS `INDEX_NAME`,`ti`.`INDEX_TYPE_ID` AS `INDEX_TYPE_ID`,(select `list_index_types`.`VALUE` from `list_index_types` where (`list_index_types`.`ID` = `ti`.`INDEX_TYPE_ID`)) AS `INDEX_TYPE`,`ti`.`INDEX_COLUMNS` AS `INDEX_COLUMNS`,(select group_concat(`td`.`COLUMN_NAME` separator ',') from `table_details` `td` where (`ti`.`INDEX_COLUMNS` regexp convert(concat(',?',`td`.`ID`,',?') using latin1)) group by `td`.`TABLE_ID`) AS `INDEX_COLUMNS_LABELS`,`ti`.`DESCRIPTION` AS `DESCRIPTION`,`ti`.`MODIFY_UID` AS `MODIFY_UID`,`ti`.`CREATE_UID` AS `CREATE_UID`,`ti`.`MODIFY_DATE` AS `MODIFY_DATE`,`ti`.`CREATE_DATE` AS `CREATE_DATE` from (`table_indexes` `ti` left join `tables` `t` on((`ti`.`TABLE_ID` = `t`.`ID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1741,7 +1722,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_tables`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_tables`*/;
 /*!50001 DROP VIEW IF EXISTS `view_tables`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1751,7 +1731,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_tables` AS select `t`.`ID` AS `ID`,`t`.`ORIGIN_ID` AS `ORIGIN_ID`,`t`.`TABLE_TYPE` AS `TABLE_TYPE`,`ty`.`VALUE` AS `TABLE_TYPE_LABEL`,`t`.`SCHEMA_ID` AS `TABLE_SCHEMA_ID`,(select `list_databases`.`VALUE` AS `VALUE` from `list_databases` where `list_databases`.`ID` = `t`.`SCHEMA_ID`) AS `TABLE_SCHEMA`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `APP_SCHEMA`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`t`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`t`.`DESCRIPTION` AS `DESCRIPTION` from ((((`tables` `t` join `modules` `m`) join `applications` `a`) join `list_databases` `d`) join `list_table_types` `ty` on(`t`.`TABLE_TYPE` = `ty`.`ID`)) where `t`.`MODULE_ID` = `m`.`ID` and `m`.`APP_ID` = `a`.`ID` and `a`.`APP_SCHEMA` = `d`.`ID` */;
+/*!50001 VIEW `view_tables` AS select `t`.`ID` AS `ID`,`t`.`ORIGIN_ID` AS `ORIGIN_ID`,`t`.`TABLE_TYPE` AS `TABLE_TYPE`,`ty`.`VALUE` AS `TABLE_TYPE_LABEL`,`t`.`SCHEMA_ID` AS `TABLE_SCHEMA_ID`,(select `list_databases`.`VALUE` AS `VALUE` from `list_databases` where (`list_databases`.`ID` = `t`.`SCHEMA_ID`)) AS `TABLE_SCHEMA`,`t`.`TABLE_NAME` AS `TABLE_NAME`,`d`.`VALUE` AS `APP_SCHEMA`,`m`.`APP_ID` AS `APP_ID`,`a`.`APP_NAME` AS `APP_NAME`,`t`.`MODULE_ID` AS `MODULE_ID`,`m`.`MODULE_NAME` AS `MODULE_NAME`,`t`.`DESCRIPTION` AS `DESCRIPTION` from ((((`tables` `t` join `modules` `m`) join `applications` `a`) join `list_databases` `d`) join `list_table_types` `ty` on((`t`.`TABLE_TYPE` = `ty`.`ID`))) where ((`t`.`MODULE_ID` = `m`.`ID`) and (`m`.`APP_ID` = `a`.`ID`) and (`a`.`APP_SCHEMA` = `d`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1760,7 +1740,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_user_roles`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_user_roles`*/;
 /*!50001 DROP VIEW IF EXISTS `view_user_roles`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1770,7 +1749,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_user_roles` AS select `ur`.`ID` AS `ID`,`ur`.`UID` AS `UID`,`u`.`USERNAME` AS `USERNAME`,`ur`.`ROLE_ID` AS `ROLE_ID`,`r`.`ROLE_NAME` AS `ROLE_NAME` from ((`user_roles` `ur` join `users` `u`) join `roles` `r`) where `ur`.`UID` = `u`.`ID` and `ur`.`ROLE_ID` = `r`.`ID` */;
+/*!50001 VIEW `view_user_roles` AS select `ur`.`ID` AS `ID`,`ur`.`UID` AS `UID`,`u`.`USERNAME` AS `USERNAME`,`ur`.`ROLE_ID` AS `ROLE_ID`,`r`.`ROLE_NAME` AS `ROLE_NAME` from ((`user_roles` `ur` join `users` `u`) join `roles` `r`) where ((`ur`.`UID` = `u`.`ID`) and (`ur`.`ROLE_ID` = `r`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1779,7 +1758,6 @@ UNLOCK TABLES;
 -- Final view structure for view `view_users`
 --
 
-/*!50001 DROP TABLE IF EXISTS `view_users`*/;
 /*!50001 DROP VIEW IF EXISTS `view_users`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -1789,7 +1767,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_users` AS select `u`.`ID` AS `ID`,`u`.`USERNAME` AS `USERNAME`,`u`.`PASSWORD` AS `PASSWORD`,`u`.`FIRSTNAME` AS `FIRSTNAME`,`u`.`LASTNAME` AS `LASTNAME`,`u`.`EMAIL` AS `EMAIL`,`u`.`USER_TYPE` AS `USER_TYPE`,`u`.`DESCRIPTION` AS `DESCRIPTION`,`u`.`PROFILE_ID` AS `PROFILE_ID`,`up`.`PROFILE_NAME` AS `PROFILE_NAME`,`up`.`SCRIPT_ID` AS `SCRIPT_ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME` from ((`users` `u` join `user_profiles` `up`) join `scripts` `s`) where `u`.`PROFILE_ID` = `up`.`ID` and `up`.`SCRIPT_ID` = `s`.`ID` */;
+/*!50001 VIEW `view_users` AS select `u`.`ID` AS `ID`,`u`.`USERNAME` AS `USERNAME`,`u`.`PASSWORD` AS `PASSWORD`,`u`.`FIRSTNAME` AS `FIRSTNAME`,`u`.`LASTNAME` AS `LASTNAME`,`u`.`EMAIL` AS `EMAIL`,`u`.`USER_TYPE` AS `USER_TYPE`,`u`.`DESCRIPTION` AS `DESCRIPTION`,`u`.`PROFILE_ID` AS `PROFILE_ID`,`up`.`PROFILE_NAME` AS `PROFILE_NAME`,`up`.`SCRIPT_ID` AS `SCRIPT_ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME` from ((`users` `u` join `user_profiles` `up`) join `scripts` `s`) where ((`u`.`PROFILE_ID` = `up`.`ID`) and (`up`.`SCRIPT_ID` = `s`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1803,4 +1781,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-08 13:02:35
+-- Dump completed on 2017-10-09 16:10:01

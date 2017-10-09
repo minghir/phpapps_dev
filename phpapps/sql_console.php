@@ -17,7 +17,7 @@ $descr = trim($_POST["descr"]);
 $_SESSION["_SQL_QUERY"] = $query;
 $_SESSION["_SQL_DESCR"] = $descr;
 
-
+$dbs = _lst("phpapps.list_databases");
         
 switch($_POST["act"]){
     case "Query":
@@ -126,7 +126,7 @@ switch($_POST["act"]){
 //echo "AICIII:$db";
 //echo "AICIII:$hdb";
 
-$dbs = _lst("phpapps.list_databases");
+//$dbs = _lst("phpapps.list_databases");
 $dbs_sel[$dbs[$db]] = "selected";
 $dbs=array_flip($dbs);
 

@@ -32,11 +32,11 @@
         <li {if $CURRENT_PAGE == "about"} class="active" {/if}><a href="about.php">Despre noi</a></li>
         <li {if $CURRENT_PAGE == "articles"} class="active" {/if}><a href="articles.php">Noutati</a></li>
         <li {if $CURRENT_PAGE == "forum"} class="active" {/if}><a href="forum_categs.php">Forum</a></li>
-        <li {if $CURRENT_PAGE == "contact"} class="active" {/if}><a href="#">Contact</a></li>
+        <li {if $CURRENT_PAGE == "contact"} class="active" {/if}><a href="contact.php">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li {if $CURRENT_PAGE == "login"} class="active" {/if}><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li {if $CURRENT_PAGE == "sign_up"} class="active" {/if}><a href="sign_up.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       </ul>
     </div>
   </div>

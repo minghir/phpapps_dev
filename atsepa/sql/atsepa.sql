@@ -100,7 +100,7 @@ CREATE TABLE `forum_categories` (
   UNIQUE KEY `atsepa_categories_130_IDX` (`NAME`),
   KEY `atsepa_categories_PID_FK` (`PID`),
   CONSTRAINT `atsepa_categories_PID_FK` FOREIGN KEY (`PID`) REFERENCES `forum_categories` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `forum_categories` (
 
 LOCK TABLES `forum_categories` WRITE;
 /*!40000 ALTER TABLE `forum_categories` DISABLE KEYS */;
-INSERT INTO `forum_categories` VALUES (0,0,'ROOT','DESC'),(6,0,'CATEGORIE 1',''),(7,0,'CATEGORIE 2',''),(8,6,'Sub categ 1.1',''),(9,6,'Sub categ 1.2',''),(10,7,'Sub categ 2.1',''),(11,7,'Sub categ 2.2','');
+INSERT INTO `forum_categories` VALUES (0,0,'ROOT','DESC'),(6,0,'CATEGORIE 1',''),(7,0,'CATEGORIE 2',''),(8,6,'Sub categ 1.1',''),(9,6,'Sub categ 1.2',''),(10,7,'Sub categ 2.1',''),(11,7,'Sub categ 2.2',''),(12,6,'Test subcateg 1.3',''),(13,0,'CATEGORIE 3','adas'),(14,13,'Subcateg 3',''),(15,13,'Subcateg 3.1',''),(16,0,'ACategorie 0',''),(17,16,'Subcat 0','');
 /*!40000 ALTER TABLE `forum_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,6 +246,23 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_forum_categories`
+--
+
+DROP TABLE IF EXISTS `view_forum_categories`;
+/*!50001 DROP VIEW IF EXISTS `view_forum_categories`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `view_forum_categories` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `PID`,
+ 1 AS `PARENT_NAME`,
+ 1 AS `NAME`,
+ 1 AS `NO_TOPICS`,
+ 1 AS `NO_POSTS`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Final view structure for view `view_articles`
 --
 
@@ -262,6 +279,24 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_forum_categories`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_forum_categories`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_forum_categories` AS select `a`.`ID` AS `ID`,`a`.`PID` AS `PID`,(select `b`.`NAME` from `forum_categories` `b` where (`b`.`ID` = `a`.`PID`)) AS `PARENT_NAME`,`a`.`NAME` AS `NAME`,(select count(0) from `topics` where (`topics`.`CAT_ID` = `a`.`ID`)) AS `NO_TOPICS`,(select count(0) from (`posts` left join `topics` on((`posts`.`TOPIC_ID` = `topics`.`ID`))) where (`topics`.`CAT_ID` = `a`.`ID`)) AS `NO_POSTS` from `forum_categories` `a` where (`a`.`PID` <> 0) order by concat(`PARENT_NAME`,`a`.`NAME`) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -272,4 +307,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-09 16:10:03
+-- Dump completed on 2017-10-10 15:49:56

@@ -25,15 +25,25 @@ class forum_topics extends phpapps_display_abs{
 
         $this->globals->con->query($sql);	
 	while($res=$this->globals->con->fetch_array()){
+            
+            $sql2 = new DB_Query( "SELECT COUNT(*) AS NO_POSTS FROM atsepa.posts 
+                                WHERE TOPIC_ID = :topic_id",array(":topic_id" => $res["ID"]));
+            
+            $this->globals->con->query($sql2,"2");
+            $this->globals->con->next("2");
+            $no_posts[] = $this->globals->con->get_field("NO_POSTS","2");
+            
             $topic_ids[] = $res["ID"];
             $topic_subjects[] = $res["SUBJECT"];
             $cat_name = $res["CAT_NAME"];
+            
         }
         
         $this->globals->sm->assign(array(
             "topic_ids" => $topic_ids,
             "topic_subjects" => $topic_subjects,
             "categ_name" => $cat_name,
+            "no_posts" => $no_posts,
             ));
         $this->globals->sm->assign("CURRENT_PAGE","forum");
         $this->displayTpl();

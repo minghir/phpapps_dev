@@ -1,3 +1,11 @@
-{extends file=$display_obj->layout}
-{include file="{$PHPAPPS_SMARTY_TPL_DIR}commun_header.tpl" }
-{$SCRIPT_CONTENT}
+<div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Trimite</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Inchide</button>
+        </div>

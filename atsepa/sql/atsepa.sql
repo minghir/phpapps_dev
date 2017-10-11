@@ -85,6 +85,35 @@ INSERT INTO `articles` VALUES (10,'Cerinte minime','','Cerinte minimale site:&lt
 UNLOCK TABLES;
 
 --
+-- Table structure for table `contact`
+--
+
+DROP TABLE IF EXISTS `contact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contact` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `EMAIL` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `MESSAGE` text COLLATE utf8_bin,
+  `DATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  KEY `atsepa_contact_146_IDX` (`NAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contact`
+--
+
+LOCK TABLES `contact` WRITE;
+/*!40000 ALTER TABLE `contact` DISABLE KEYS */;
+INSERT INTO `contact` VALUES (1,'dada','sdad','','dada','2017-10-11 09:03:59'),(2,'dada','sdad','','dada','2017-10-11 09:03:59'),(3,'dada','mimi','','dada','2017-10-11 09:04:31'),(4,'dada','mimi','','dada','2017-10-11 09:04:31'),(5,'','aaaaa','','das','2017-10-11 09:05:02'),(6,'','aaaaa','','das','2017-10-11 09:05:02'),(7,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(8,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(9,'asad','da','ddd','dada','2017-10-11 09:07:12'),(10,'asad','da','ddd','dada','2017-10-11 09:07:13'),(11,'','ddd','','','2017-10-11 09:08:18'),(12,'','ddd','','','2017-10-11 09:08:18'),(13,'','mumu','','','2017-10-11 09:08:57'),(14,'dada','da','dasda','dad','2017-10-11 09:10:05'),(15,'','dads','','','2017-10-11 09:12:59'),(16,'','Gogu','','','2017-10-11 09:13:09'),(17,'dasdas','das','dasd','dasdasd','2017-10-11 09:16:23'),(18,'','dadas','','','2017-10-11 09:20:25'),(19,'','dadas','','MOMOMOM','2017-10-11 09:21:43');
+/*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `forum_categories`
 --
 
@@ -263,6 +292,45 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary view structure for view `view_forum_posts`
+--
+
+DROP TABLE IF EXISTS `view_forum_posts`;
+/*!50001 DROP VIEW IF EXISTS `view_forum_posts`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `view_forum_posts` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `POST_DATE`,
+ 1 AS `TOPIC_ID`,
+ 1 AS `USER_ID`,
+ 1 AS `CONTENT`,
+ 1 AS `SUBJECT`,
+ 1 AS `USERNAME`,
+ 1 AS `NAME`,
+ 1 AS `CAT_ID`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `view_forum_topics`
+--
+
+DROP TABLE IF EXISTS `view_forum_topics`;
+/*!50001 DROP VIEW IF EXISTS `view_forum_topics`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `view_forum_topics` AS SELECT 
+ 1 AS `ID`,
+ 1 AS `SUBJECT`,
+ 1 AS `DESCRIPTION`,
+ 1 AS `TOPIC_DATE`,
+ 1 AS `CAT_ID`,
+ 1 AS `NAME`,
+ 1 AS `USERNAME`,
+ 1 AS `NO_POSTS`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Final view structure for view `view_articles`
 --
 
@@ -297,6 +365,42 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_forum_posts`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_forum_posts`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_forum_posts` AS select `p`.`ID` AS `ID`,`p`.`POST_DATE` AS `POST_DATE`,`p`.`TOPIC_ID` AS `TOPIC_ID`,`p`.`USER_ID` AS `USER_ID`,`p`.`CONTENT` AS `CONTENT`,`t`.`SUBJECT` AS `SUBJECT`,`u`.`USERNAME` AS `USERNAME`,`c`.`NAME` AS `NAME`,`c`.`ID` AS `CAT_ID` from (((`posts` `p` left join `topics` `t` on((`p`.`TOPIC_ID` = `t`.`ID`))) left join `app_users` `u` on((`p`.`USER_ID` = `u`.`ID`))) left join `forum_categories` `c` on((`t`.`CAT_ID` = `c`.`ID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `view_forum_topics`
+--
+
+/*!50001 DROP VIEW IF EXISTS `view_forum_topics`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_forum_topics` AS select `t`.`ID` AS `ID`,`t`.`SUBJECT` AS `SUBJECT`,`t`.`DESCRIPTION` AS `DESCRIPTION`,`t`.`TOPIC_DATE` AS `TOPIC_DATE`,`t`.`CAT_ID` AS `CAT_ID`,`c`.`NAME` AS `NAME`,`u`.`USERNAME` AS `USERNAME`,(select count(0) AS `NO_POSTS` from `posts` `p` where (`p`.`TOPIC_ID` = `t`.`ID`)) AS `NO_POSTS` from ((`topics` `t` left join `forum_categories` `c` on((`t`.`CAT_ID` = `c`.`ID`))) left join `app_users` `u` on((`t`.`USER_ID` = `u`.`ID`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -307,4 +411,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-10 15:49:56
+-- Dump completed on 2017-10-11 15:57:40

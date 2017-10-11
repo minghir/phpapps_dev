@@ -7,7 +7,7 @@ require_once(DB_LIBS_DIR . 'DB_pgsql_db.php');
 
 require_once(DB_LIBS_DIR . 'DB_query.php');
 require_once(DB_LIBS_DIR . 'DB_list.php');
-require_once(DB_LIBS_DIR . 'DB_grid_v3.php');
+require_once(DB_LIBS_DIR . 'DB_grid_v4.php');
 require_once(DB_LIBS_DIR . 'DB_select.php');
 require_once(DB_LIBS_DIR . 'DB_column_def.php');
 require_once(DB_LIBS_DIR . 'DB_table_def.php');

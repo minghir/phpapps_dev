@@ -14,39 +14,19 @@ class forum_topics extends phpapps_display_abs{
         $this->app_id = $app_id;
         $this->CAT_ID = $_GET["categ_id"];
         
-         $sql = new DB_Query( "SELECT "
-                 . "ID, "
-                 . "SUBJECT, "
-                 . "DESCRIPTION, "
-                 . "TOPIC_DATE, "
-                 . "(SELECT NAME FROM atsepa.forum_categories WHERE atsepa.forum_categories.ID = atsepa.topics.CAT_ID) AS CAT_NAME " 
-                 . "FROM atsepa.topics "
-                 . "WHERE atsepa.topics.CAT_ID = :cat_id",array(":cat_id"=>$this->CAT_ID));
-
-        $this->globals->con->query($sql);	
-	while($res=$this->globals->con->fetch_array()){
-            
-            $sql2 = new DB_Query( "SELECT COUNT(*) AS NO_POSTS FROM atsepa.posts 
-                                WHERE TOPIC_ID = :topic_id",array(":topic_id" => $res["ID"]));
-            
-            $this->globals->con->query($sql2,"2");
-            $this->globals->con->next("2");
-            $no_posts[] = $this->globals->con->get_field("NO_POSTS","2");
-            
-            $topic_ids[] = $res["ID"];
-            $topic_subjects[] = $res["SUBJECT"];
-            $cat_name = $res["CAT_NAME"];
-            
-        }
-        
-        $this->globals->sm->assign(array(
-            "topic_ids" => $topic_ids,
-            "topic_subjects" => $topic_subjects,
-            "categ_name" => $cat_name,
-            "no_posts" => $no_posts,
-            ));
+        $sql = new DB_Query( "SELECT * FROM atsepa.view_forum_topics
+                                WHERE CAT_ID = :cat_id",array(":cat_id" => $this->CAT_ID));
+        $articles_grid =  new DB_grid($this->globals->con, "query",$sql,"topics_grid");
+        //$articles_grid->cols = (array("ID","PID","PARENT_NAME","NAME","NO_TOPICS","NO_POSTS"));
+        $articles_grid->paginable = false;
+        $articles_grid->editable = false;
+        $articles_grid->filterable = false;
+        $articles_grid->template = CURRENT_APP_TPL_DIR . "forum_topics_grid.tpl";
+        $this->globals->sm->assign("FORUM_TOPICS_GRID",$articles_grid->get_grid_str());
+        $this->globals->sm->assign("categ_name",  _tbl("atsepa.forum_categories", "NAME", $this->CAT_ID, "ID"));
         $this->globals->sm->assign("CURRENT_PAGE","forum");
         $this->displayTpl();
+         
     }
 }
 

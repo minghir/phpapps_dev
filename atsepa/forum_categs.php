@@ -8,7 +8,7 @@ class forum_categs extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-		$this->layout = CURRENT_APP_LAYOUTS_DIR . "atsepa.lay";
+	$this->layout = CURRENT_APP_LAYOUTS_DIR . "atsepa.lay";
         $this->tpl = "forum_categs.tpl";        
         $this->app_id = $app_id;
         

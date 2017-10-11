@@ -1,2 +1,4 @@
 {extends file=$display_obj->layout}
-{block name=body}{$SCRIPT_CONTENT}{/block}
+{block name=body}
+    {include file='contact_form.tpl'}
+{/block}

@@ -7,20 +7,5 @@
         </ul>
         <p class="navbar-text">{$topic_name}</p>
     </div>
-
-{section name=posts loop=$posts_ids}
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <img src ="user_data/avatar_default.png" class="img-circle" width="20">
-        #{$smarty.section.posts.index + 1} {$posts_date[posts]}: {$posts_users[posts]}
-        </div>
-        <div class="panel-body">
-            {$posts_contents[posts]}
-        </div>
-        
-    </div>
-
-{/section}    
-
+    {$FORUM_POSTS_GRID}
 {/block}

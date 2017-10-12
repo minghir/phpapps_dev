@@ -15,18 +15,6 @@
 </head>
 <body class="container fill">
 
-<!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        
-      </div>
-      
-    </div>
-  </div>
-
 <div class="row fill">
 <div class="col-sm-10 text-left bg-1 fill"> 
 <nav class="navbar navbar-inverse ">
@@ -47,8 +35,13 @@
         <li {if $CURRENT_PAGE == "contact"} class="active" {/if}><a href="contact.php">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li {if $CURRENT_PAGE == "login"} class="active" {/if}><a href="login.php" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {if $LOGGED == true}
+        <li {if $CURRENT_PAGE == "home"} class="active" {/if}><a href="home.php"><span class="glyphicon glyphicon-log-in"></span>{$USERNAME}</a></li>
+        <li {if $CURRENT_PAGE == "sign_up"} class="active" {/if}><a href="sign_up.php"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+      {else}
+        <li {if $CURRENT_PAGE == "login"} class="active" {/if}><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li {if $CURRENT_PAGE == "sign_up"} class="active" {/if}><a href="sign_up.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+       {/if}
       </ul>
     </div>
   </div>

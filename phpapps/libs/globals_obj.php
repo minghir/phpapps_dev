@@ -106,7 +106,7 @@ class Globals_obj{
 		$this->set_paths();
 		
 		require_once(PHPAPPS_LIBS_DIR. 'phpapps_upload.php');
-        require_once(PHPAPPS_LIBS_DIR. 'auth.php');
+                require_once(PHPAPPS_LIBS_DIR. 'auth.php');
 		require_once(DB_LIBS_DIR . 'DB_PDO.php');
 		require_once(SMARTY_LIBS_DIR . 'Smarty.class.php');
                 

@@ -30,6 +30,12 @@ class auth{
     function authenticate(){
         
         if($this->public_script) {
+            
+            if(isset($_SESSION["_USER_ID"])){
+                $this->globals->sm->assign(array("LOGGED"=>true,
+                                 "USERNAME" => $_SESSION["_USER_NAME"]));
+            }
+            
             return true;
         }else{
             if($this->check_session()){
@@ -42,7 +48,7 @@ class auth{
                 }else{
                     $_USER_ID = $_SESSION["_USER_ID"]; 
                     $this->globals->sm->assign(array("LOGGED"=>true,
-                                                    "USERNAME" => $_SESSION["_USER_NAME"]));
+                                 "USERNAME" => $_SESSION["_USER_NAME"]));
                 }
         
                 $this->check_session();

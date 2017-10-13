@@ -8,17 +8,23 @@ class home extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        
-        require_once( 'auth.php');
-        $this->ath = new auth($this);
-        $this->ath->authenticate();
                 
         $this->layout = CURRENT_APP_LAYOUTS_DIR . "atsepa.lay";
         $this->tpl = "home.tpl";        
         $this->app_id = $app_id;
         $this->globals->sm->assign("CURRENT_PAGE","home");
         
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "home: Youre code here."));
+        $articles_grid =  new DB_grid($this->globals->con, "table","atsepa.view_articles","articles_grid");
+        $articles_grid->cols = (array("ARTICLE_DATE","NAME","CATEG_NAME","VISIBLE"));
+        $articles_grid->labels = (array("Data","Title","Categorie","Vizibil"));
+        $articles_grid->paginable = true;
+        $articles_grid->editable = false;
+        $articles_grid->filterable = false;
+        $articles_grid->rows_on_pg = 20;
+        //$articles_grid->template = CURRENT_APP_TPL_DIR . "articles_grid.tpl";
+        $this->globals->sm->assign("SCRIPT_CONTENT",$articles_grid->get_grid_str());
+        
+        //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "home: Youre code here."));
         
         $this->displayTpl();
     }

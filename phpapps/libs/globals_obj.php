@@ -54,6 +54,14 @@ if (!defined('PHPAPPS_LIBS_TPL_DIR')) {
 	define('PHPAPPS_LIBS_TPL_DIR', PHPAPPS_LIBS_DIR . 'tpl' . DIR_SEP);
 }
 
+if (!defined('CURRENT_APP_LIBS_DIR')) {
+	define('CURRENT_APP_LIBS_DIR', CURRENT_APP_DIR . 'libs' . DIR_SEP);
+}
+
+if (!defined('CURRENT_APP_LIBS_TPL_DIR')) {
+	define('CURRENT_APP_LIBS_TPL_DIR', CURRENT_APP_LIBS_DIR . 'tpl' . DIR_SEP);
+}
+
 if (!defined('DB_LIBS_DIR')) {
 	define('DB_LIBS_DIR', PHPAPPS_LIBS_DIR . 'DB' . DIR_SEP);
 }
@@ -106,7 +114,7 @@ class Globals_obj{
 		$this->set_paths();
 		
 		require_once(PHPAPPS_LIBS_DIR. 'phpapps_upload.php');
-                require_once(PHPAPPS_LIBS_DIR. 'auth.php');
+                require_once(CURRENT_APP_LIBS_DIR. 'auth.php');
 		require_once(DB_LIBS_DIR . 'DB_PDO.php');
 		require_once(SMARTY_LIBS_DIR . 'Smarty.class.php');
                 

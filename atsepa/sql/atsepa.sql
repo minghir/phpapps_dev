@@ -114,6 +114,31 @@ INSERT INTO `contact` VALUES (1,'dada','sdad','','dada','2017-10-11 09:03:59'),(
 UNLOCK TABLES;
 
 --
+-- Table structure for table `da_nu`
+--
+
+DROP TABLE IF EXISTS `da_nu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `da_nu` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION` text COLLATE utf8_bin,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `da_nu`
+--
+
+LOCK TABLES `da_nu` WRITE;
+/*!40000 ALTER TABLE `da_nu` DISABLE KEYS */;
+INSERT INTO `da_nu` VALUES (0,'','NU'),(1,'','DA');
+/*!40000 ALTER TABLE `da_nu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `forum_categories`
 --
 
@@ -271,7 +296,8 @@ SET character_set_client = utf8;
  1 AS `CATEG_NAME`,
  1 AS `LAST_NAME`,
  1 AS `FIRST_NAME`,
- 1 AS `USERNAME`*/;
+ 1 AS `USERNAME`,
+ 1 AS `VISIBLE`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -338,12 +364,12 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_articles` AS select `a`.`ID` AS `ID`,`a`.`NAME` AS `NAME`,if((`a`.`INTRO` <> ''),`a`.`INTRO`,substr(`a`.`BODY`,1,255)) AS `INTRO`,`a`.`BODY` AS `BODY`,`a`.`IMAGE` AS `IMAGE`,date_format(`a`.`ARTICLE_DATE`,'%d/%m/%Y') AS `ARTICLE_DATE`,(select `list_article_categories`.`VALUE` from `list_article_categories` where (`list_article_categories`.`ID` = `a`.`CATEG_ID`)) AS `CATEG_NAME`,`u`.`LAST_NAME` AS `LAST_NAME`,`u`.`FIRST_NAME` AS `FIRST_NAME`,`u`.`USERNAME` AS `USERNAME` from (`articles` `a` left join `app_users` `u` on((`a`.`USER_ID` = `u`.`ID`))) order by `a`.`ARTICLE_DATE` desc */;
+/*!50001 VIEW `view_articles` AS select `a`.`ID` AS `ID`,`a`.`NAME` AS `NAME`,if((`a`.`INTRO` <> ''),`a`.`INTRO`,substr(`a`.`BODY`,1,255)) AS `INTRO`,`a`.`BODY` AS `BODY`,`a`.`IMAGE` AS `IMAGE`,date_format(`a`.`ARTICLE_DATE`,'%d/%m/%Y') AS `ARTICLE_DATE`,(select `list_article_categories`.`VALUE` from `list_article_categories` where (`list_article_categories`.`ID` = `a`.`CATEG_ID`)) AS `CATEG_NAME`,`u`.`LAST_NAME` AS `LAST_NAME`,`u`.`FIRST_NAME` AS `FIRST_NAME`,`u`.`USERNAME` AS `USERNAME`,if((`a`.`VISIBLE` = '1'),'da','nu') AS `VISIBLE` from (`articles` `a` left join `app_users` `u` on((`a`.`USER_ID` = `u`.`ID`))) order by `a`.`ARTICLE_DATE` desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -411,4 +437,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-12 16:11:32
+-- Dump completed on 2017-10-13 13:31:48

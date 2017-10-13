@@ -29,3 +29,15 @@ c.ID AS CAT_ID FROM
 atsepa.posts p left join atsepa.topics t on (p.TOPIC_ID = t.ID) 
 left join atsepa.app_users u on (p.USER_ID = u.ID)
 left join atsepa.forum_categories c on (t.CAT_ID = c.ID)
+
+drop view view_articles;
+create view view_articles AS
+select `a`.`ID` AS `ID`,`a`.`NAME` AS `NAME`,
+if((`a`.`INTRO` <> ''),`a`.`INTRO`,substr(`a`.`BODY`,1,255)) AS `INTRO`,
+`a`.`BODY` AS `BODY`,`a`.`IMAGE` AS `IMAGE`,
+date_format(`a`.`ARTICLE_DATE`,'%d/%m/%Y') AS `ARTICLE_DATE`,
+(select `atsepa`.`list_article_categories`.`VALUE` from `atsepa`.`list_article_categories` where (`atsepa`.`list_article_categories`.`ID` = `a`.`CATEG_ID`)) AS `CATEG_NAME`,
+`u`.`LAST_NAME` AS `LAST_NAME`,`u`.`FIRST_NAME` AS `FIRST_NAME`,
+`u`.`USERNAME` AS `USERNAME`,
+if(`a`.`VISIBLE` ='1', 'da','nu') AS `VISIBLE`
+from (`atsepa`.`articles` `a` left join `atsepa`.`app_users` `u` on((`a`.`USER_ID` = `u`.`ID`))) order by `a`.`ARTICLE_DATE` desc 

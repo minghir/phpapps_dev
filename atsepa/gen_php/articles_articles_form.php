@@ -29,6 +29,8 @@ class articles_articles_form{
 	public $ARTICLE_DATE;
         	            
 	public $INTRO;
+        	            
+	public $VISIBLE;
         		
 		 
 		 
@@ -39,7 +41,10 @@ class articles_articles_form{
 		 
 		 
 		 
+			public $VISIBLE_sel;
+	 
 			
+		 
 		 
 		 
 		 
@@ -66,7 +71,10 @@ class articles_articles_form{
 					 
 					 
 					 
+								$this->VISIBLE_sel = new DB_select("VISIBLE","atsepa.da_nu");
+                        			 
 				
+					 
 					 
 					 
 					 
@@ -100,7 +108,8 @@ class articles_articles_form{
 												IMAGE,
 												USER_ID,
 												ARTICLE_DATE,
-												INTRO
+												INTRO,
+												VISIBLE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -115,6 +124,7 @@ class articles_articles_form{
                                 			                                                                $this->USER_ID = stripslashes($this->globals->con->get_field("USER_ID"));
                                 			                                                                $this->ARTICLE_DATE = stripslashes($this->globals->con->get_field("ARTICLE_DATE"));
                                 			                                                                $this->INTRO = stripslashes($this->globals->con->get_field("INTRO"));
+                                			                                                                $this->VISIBLE = stripslashes($this->globals->con->get_field("VISIBLE"));
                                 						
 	}
 	
@@ -136,7 +146,8 @@ class articles_articles_form{
 																						IMAGE,
 																						USER_ID,
 																						ARTICLE_DATE,
-																						INTRO
+																						INTRO,
+																						VISIBLE
 										 ) VALUES (
 															:NAME,
 																						:ARTICLE_TAGS,
@@ -145,7 +156,8 @@ class articles_articles_form{
 																						:IMAGE,
 																						:USER_ID,
 																						:ARTICLE_DATE,
-																						:INTRO
+																						:INTRO,
+																						:VISIBLE
 													)",
 			array(
 									                                            
@@ -164,6 +176,8 @@ class articles_articles_form{
                                             ":ARTICLE_DATE" => $this->ARTICLE_DATE,
                                         														                                            
                                             ":INTRO" => $this->INTRO,
+                                        														                                            
+                                            ":VISIBLE" => $this->VISIBLE,
                                         												)
 			);
 
@@ -196,7 +210,8 @@ class articles_articles_form{
 												IMAGE = :IMAGE,
 												USER_ID = :USER_ID,
 												ARTICLE_DATE = :ARTICLE_DATE,
-												INTRO = :INTRO
+												INTRO = :INTRO,
+												VISIBLE = :VISIBLE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -208,6 +223,7 @@ class articles_articles_form{
                                         				                                                                                    ":USER_ID" => $this->USER_ID,
                                         				                                                                                    ":ARTICLE_DATE" => $this->ARTICLE_DATE,
                                         				                                                                                    ":INTRO" => $this->INTRO,
+                                        				                                                                                    ":VISIBLE" => $this->VISIBLE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -286,6 +302,7 @@ class articles_articles_form{
                         		                                                    $this->USER_ID  = htmlspecialchars(addslashes(trim($_POST["USER_ID"])));
                                                 		                                                    $this->ARTICLE_DATE  = htmlspecialchars(addslashes(trim($_POST["ARTICLE_DATE"])));
                                                 		                                                    $this->INTRO  = htmlspecialchars(addslashes(trim($_POST["INTRO"])));
+                                                		                                                    $this->VISIBLE  = htmlspecialchars(addslashes(trim($_POST["VISIBLE"])));
                                                 		        }
 		
         function takePostActions(){
@@ -324,7 +341,12 @@ class articles_articles_form{
 					 
 					 
 					 
+								//$this->VISIBLE_sel = new DB_select("VISIBLE",".atsepa.da_nu");
+			$this->VISIBLE_sel->selected_val = $this->VISIBLE;
+			$this->VISIBLE_sel->setup_select_options();
+			 
 				
+					 
 					 
 					 
 					 
@@ -344,6 +366,7 @@ class articles_articles_form{
 							"USER_ID" => $this->USER_ID,
 							"ARTICLE_DATE" => $this->ARTICLE_DATE,
 							"INTRO" => $this->INTRO,
+							"VISIBLE" => $this->VISIBLE,
 									 
 						 
 						 
@@ -353,7 +376,10 @@ class articles_articles_form{
 						 
 						 
 						 
+										"VISIBLE_sel" => $this->VISIBLE_sel->get_select_str(),
+			 
 									 
+						 
 						 
 						 
 						 

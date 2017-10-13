@@ -36,8 +36,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
       {if $LOGGED == true}
-        <li {if $CURRENT_PAGE == "home"} class="active" {/if}><a href="home.php"><span class="glyphicon glyphicon-log-in"></span>{$USERNAME}</a></li>
-        <li {if $CURRENT_PAGE == "sign_up"} class="active" {/if}><a href="sign_up.php"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+        <li {if $CURRENT_PAGE == "home"} class="active" {/if}><a href="home.php"><img src ="user_data/avatar_default.png" class="img-circle" width="15"> &nbsp;&nbsp;{$USERNAME}</a></li>
+        <li {if $CURRENT_PAGE == "logout"} class="active" {/if}><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
       {else}
         <li {if $CURRENT_PAGE == "login"} class="active" {/if}><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li {if $CURRENT_PAGE == "sign_up"} class="active" {/if}><a href="sign_up.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

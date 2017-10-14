@@ -18,10 +18,10 @@ class home extends phpapps_display_abs{
         $articles_grid->cols = (array("ARTICLE_DATE","NAME","CATEG_NAME","VISIBLE"));
         $articles_grid->labels = (array("Data","Title","Categorie","Vizibil"));
         $articles_grid->paginable = true;
-        $articles_grid->editable = false;
+        $articles_grid->editable = true;
         $articles_grid->filterable = false;
         $articles_grid->rows_on_pg = 20;
-        //$articles_grid->template = CURRENT_APP_TPL_DIR . "articles_grid.tpl";
+        $articles_grid->template = CURRENT_APP_TPL_DIR . "admin_articles_grid.tpl";
         $this->globals->sm->assign("SCRIPT_CONTENT",$articles_grid->get_grid_str());
         
         //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "home: Youre code here."));

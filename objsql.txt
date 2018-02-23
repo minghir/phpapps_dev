@@ -2,7 +2,7 @@ https://www.npmjs.com/package/jquery.flowchart
 http://jointjs.com/opensource
 https://www.npmjs.com/package/jointjs
 http://dinosaur.compilertools.net/bison/bison_6.html#SEC56
-
+ssss
 // CALC_BULCK_SPVS (active_par = '1')
 //////////////////////////////////////
 NAME CALC_BULCK_SPVS 

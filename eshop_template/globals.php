@@ -1,5 +1,9 @@
 <?php
-require_once("../phpapps/globals.php");
+if(!defined('CURRENT_APP')) {
+	define('CURRENT_APP', 'eshop_template');
+}
+
+require_once("../phpapps/libs/globals_obj.php");
 global $GLOBALS_OBJ;
-$GLOBALS_OBJ = new Globals("eshop_template");
+$GLOBALS_OBJ = new Globals_obj("eshop_template");
 ?>

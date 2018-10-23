@@ -20,10 +20,10 @@ function confirmation(url) {
 		</div>
   </div>
   </td></tr><tr><td>
-    <table valign="top" align="center" border=0 cellpadding=1 cellspacing=1>
+    <table valign="top" align="center">
     <tr bgcolor={if $mode_search == true }"#BFD4FF"{else}"#e8e8e8"{/if}>
            {section name=flds loop=$fields}
-              <td align="center">
+              <td>
 			  {if $sortable == 1}
 					  {if $current_order_field == $fields[flds] }
 						{if $current_order_rule == "ASC" }
@@ -74,7 +74,7 @@ function confirmation(url) {
            {/if}
 
            {section name=flds2 loop=$fields}
-              <td align="center">
+              <td>
                 {$values[vls][flds2]}
               </td>
             {/section}

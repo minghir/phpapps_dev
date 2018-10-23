@@ -16,11 +16,20 @@ body {
 	font-size: 100%;
 }
 
-table,td,th {
-	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
-	font-size: 100%;
+table {
 	border: 1px "BFD4FF";
 	border-collapse:collapse;
+	text-align: left;
+
+}
+
+td,th {
+	text-align: left;
+/*	padding: 0.125em 0.5em 0.25em 0.5em; */
+    line-height: 1;
+	background-color: lime;
+    margin: 12px 12px 12px 12px;
+    padding: 12px 12px 12px 12px;
 }
 
 .top_div{

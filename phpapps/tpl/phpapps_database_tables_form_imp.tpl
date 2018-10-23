@@ -130,12 +130,19 @@
 	<li><a href='#tab2'>Foreign Keys</a></li>
 	<li><a href='#tab3'>Indexes</a></li>
         <li><a href='#tab4'>Show Create Table</a></li>
+        <li><a href='#tab5'>Options</a></li>
+        
 	</ul>
         
 	<div id="tab1" class="adm_mod_div">{$table_details_grid}</div> 
         <div id="tab2" class="adm_mod_div">{$columns_fk_grid}</div>
         <div id="tab3" class="adm_mod_div">{$table_idx_grid}</div>
         <div id="tab4" ><textarea id="code" name="code">{$show_create_table}</textarea></div>
+        <div id="tab5" >
+            <input type="submit" value="rescan table"> <br>
+            <input type="submit" value="rescan indexes"> <br>
+            <input type="submit" value="rescan FK"> <br>
+        </div>
         
 
 

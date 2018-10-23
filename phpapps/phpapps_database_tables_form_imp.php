@@ -7,6 +7,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 		public $MODULE_ID;
 		public $SCHEMA_NAME;
 		public $TABLE_ID;
+                public $TABLE_NAME;
 	
 		function __construct(){
                     parent::__construct();
@@ -152,9 +153,10 @@ print_r($this->errors);
 		}
 		
 		function beforeDisplay(){	
+                    $this->TABLE_NAME = (new DB_table("tables"))->getValue("TABLE_NAME",$this->ID);
 			if($this->gact == "editRec"){
+                            
 				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_DDL_grid");
-                                
                                 $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
 				$table_details_grid->grid_title = "COLUMNS";
 				$table_details_grid->paginable = false;
@@ -179,8 +181,40 @@ print_r($this->errors);
                                 $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
 				$table_details_grid->where_params = array(":table_id" => $table_id);
 				$table_details_grid->edit_form = "phpapps_database_table_details_DDL_form_imp.php?table_id=".$this->ID;
+                                $this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
+                                
+                                /*
+                                $table_details_grid =  new DB_grid($this->globals->con, "table","INFORMATION_SCHEMA.COLUMNS","phpapps_table_details_DDL_grid");
+                                $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
+				$table_details_grid->grid_title = "COLUMNS";
+				$table_details_grid->paginable = false;
+				$table_details_grid->filterable = false;
+				$table_details_grid->exportable = false;
+				$table_details_grid->cols = array(
+						"COLUMN_NAME",
+						"DATA_TYPE",
+						"CHARACTER_MAXIMUM_LENGTH",
+						"COLUMN_DEFAULT",
+						"COLUMN_COMMENT");
+				$table_details_grid->labels = array(
+						"NAME",
+						"TYPE",
+						"SIZE",
+						"DEFAULT VALUE",
+						"DESCRIPTION");
+                                $table_details_grid->current_order_field = "ORD";
+                                $table_details_grid->current_order_rule = "ASC";
+                                $table_details_grid->sortable = FALSE;
+				$table_details_grid->where_rules = array("TABLE_NAME = :table_name");
+                                $table_id = $this->ORIGIN_ID == 0 ? $this->ID : $this->ORIGIN_ID;
+                         echo "AICI:" . $this->TABLE_NAME ."<br>";       
+				$table_details_grid->where_params = array(":table_name" => $this->TABLE_NAME);
+				$table_details_grid->edit_form = "phpapps_database_table_details_DDL_form_imp.php?table_id=".$this->ID;
+                                
 				$this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
                                 
+                        echo "AICIC:" . $table_details_grid->query->query_str ."<br>";
+                                */
                                 $columns_fk_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_fks","phpapps_view_table_fks_DDL_grid");
                                 $columns_fk_grid->grid_title = "FOREIGN KEYS";
 				$columns_fk_grid->paginable = false;

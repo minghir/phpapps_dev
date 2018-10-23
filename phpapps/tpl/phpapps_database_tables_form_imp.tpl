@@ -139,9 +139,9 @@
         <div id="tab3" class="adm_mod_div">{$table_idx_grid}</div>
         <div id="tab4" ><textarea id="code" name="code">{$show_create_table}</textarea></div>
         <div id="tab5" >
-            <input type="submit" value="rescan table"> <br>
-            <input type="submit" value="rescan indexes"> <br>
-            <input type="submit" value="rescan FK"> <br>
+            <a href="phpapps_database_table_rescan_columns.php">rescan columns</a> <br>
+            <a href="phpapps_database_table_rescan_indexes.php">rescan indexes</a> <br>
+            <a href="phpapps_database_table_rescan_FKs.php">rescan FKs</a> <br>
         </div>
         
 

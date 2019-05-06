@@ -5,8 +5,12 @@ $globals = &$GLOBALS_OBJ;
 $con = &$globals->con;
 $sm = &$globals->sm;
 
+
+echo "AICI:" . $_USER_ID;
+
 //session_start();
 $query = $_SESSION["_SQL_QUERY"];
+$_USER_ID = $_SESSION["_USER_ID"];
 
 $db = $_POST["db"] == "" ? $_SESSION["_SQL_DB"] : $_POST["db"];
 $con->select_db($db);

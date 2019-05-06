@@ -1,7 +1,7 @@
 <?php
 require_once ("globals.php");
 include ("gen_php/phpapps_admin_applications_form.php");
-	class phpapps_admin_applications_form_impl  extends phpapps_admin_applications_form{
+	class phpapps_admin_applications_form_impl  extends phpapps_admin_applications_form2{
             
                 public function __construct() {
                     parent::__construct();
@@ -18,6 +18,12 @@ include ("gen_php/phpapps_admin_applications_form.php");
 			$this->display();
 		}
 		
+                function afterSaveRec(){
+                    echo "<h1>Salvat</h1>";
+                }
+                
+                
+                
 		function create_dir_struct(){
 			$structures[] = $_POST["BASE_DIR"] . $_POST["APP_NAME"];
 			$structures[] = $_POST["BASE_DIR"] . $_POST["APP_NAME"] . DIR_SEP . "gen_php";

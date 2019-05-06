@@ -1,29 +1,37 @@
 {extends file=$display_obj->layout}
+
 {block name=body}{$SCRIPT_CONTENT}
 
-<a href="phpapps_admin_applications_form_imp.php?gact=editRec&gfield=ID&gfield_value=1" class="modalPopup">comment #1</a><br>
 
+<button id="demo5" class="btn btn-primary" >iFrame content</button>
+<button id="demo4" class="btn btn-primary">Ajax content</button>
 
-    <iframe id="thedialog" style="display:none;" width="390"></iframe>
-
-
-
- 
 <script>
-$(document).ready(function () {
-    $(".modalPopup").click(function () {
-        $("#thedialog").attr('src', $(this).attr("href"));
-        $("#thedialog").dialog({
-            width: 400,
-            height: 450,
-            modal: true,
-            close: function () {
-                $("#thedialog").attr('src', "about:blank");
-            }
-        });
-        return false;
-    });
+
+$('#demo4').click(function(){
+	var p = new Popelt({
+		contentType: 'ajax',
+		loadUrl: 'http://localhost/phpapps_dev/phpapps/phpapps_admin_applications_form_imp.php?gact=editRec&gfield=ID&gfield_value=1',
+		focus: true
+	});
+	//p.addCloseButton();
+	p.show();
 });
+$('#demo5').click(function(){
+	var p = new Popelt({
+		contentType: 'iframe',
+		loadUrl: 'http://localhost/phpapps_dev/phpapps/phpapps_admin_applications_form_imp.php?gact=editRec&gfield=ID&gfield_value=1',
+		iframeWidth: '100%',
+	    iframeHeight: '300px'
+	});
+	//p.addCloseButton();
+	p.show();
+});
+
 </script>
+
+
+
+
 
 {/block}

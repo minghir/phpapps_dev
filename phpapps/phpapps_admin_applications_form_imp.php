@@ -5,7 +5,7 @@ include ("gen_php/phpapps_admin_applications_form.php");
             
                 public function __construct() {
                     parent::__construct();
-                                   
+                    $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";               
                     $this->template = "phpapps_admin_applications_form_imp.tpl";
 			
 			if ($_SERVER['REQUEST_METHOD'] === 'POST'){

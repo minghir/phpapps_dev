@@ -252,6 +252,7 @@ class phpapps_admin_applications_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -262,14 +263,14 @@ class phpapps_admin_applications_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->USER_ID  = addslashes(trim($_POST["USER_ID"]));
-                        		                                                    $this->APP_NAME  = addslashes(trim($_POST["APP_NAME"]));
-                        		                                                    $this->APP_TITLE  = addslashes(trim($_POST["APP_TITLE"]));
-                        		                                                    $this->APP_SCHEMA  = addslashes(trim($_POST["APP_SCHEMA"]));
-                        		                                                    $this->BASE_DIR  = addslashes(trim($_POST["BASE_DIR"]));
-                        		                                                    $this->APP_DATE  = addslashes(trim($_POST["APP_DATE"]));
-                        		                                                    $this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-                        		        }
+		                                                    $this->USER_ID  = htmlspecialchars(addslashes(trim($_POST["USER_ID"])));
+                                                		                                                    $this->APP_NAME  = htmlspecialchars(addslashes(trim($_POST["APP_NAME"])));
+                                                		                                                    $this->APP_TITLE  = htmlspecialchars(addslashes(trim($_POST["APP_TITLE"])));
+                                                		                                                    $this->APP_SCHEMA  = htmlspecialchars(addslashes(trim($_POST["APP_SCHEMA"])));
+                                                		                                                    $this->BASE_DIR  = htmlspecialchars(addslashes(trim($_POST["BASE_DIR"])));
+                                                		                                                    $this->APP_DATE  = htmlspecialchars(addslashes(trim($_POST["APP_DATE"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){

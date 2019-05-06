@@ -20,15 +20,23 @@ if (!defined('PHPEXCEL_LIBS_DIR')) {
 }
 
 if (!defined('CODEMIRROR_DIR')) {
-	define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/JS/codemirror-5.30.0');
+	define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/JS/codemirror-5.46.0');
 }
 
 //jquery 
+if (!defined('JQUERY_PATH')) {
+	define('JQUERY_PATH', WEB_BASE_DIR . 'phpapps/3rd_party/JS/jquery');
+}
+
 if (!defined('JQUERY_FILE')) {
-	define('JQUERY_FILE', WEB_BASE_DIR . 'phpapps/3rd_party/JS/jquery-1.11.3.min.js');
+	define('JQUERY_FILE', JQUERY_PATH . '/jquery-3.4.1.js');
 }
 
 if (!defined('JQUERY_UI')) {
-	define('JQUERY_UI', WEB_BASE_DIR . 'phpapps/3rd_party/JS/jquery-ui-1.11.4/jquery-ui.js');
+	define('JQUERY_UI',JQUERY_PATH . '/jquery-ui-1.12.1/jquery-ui.js');
+}
+
+if (!defined('JQUERY_UI_CSS')) {
+	define('JQUERY_UI_CSS',JQUERY_PATH . '/jquery-ui-1.12.1/jquery-ui.css');
 }
 ?>

@@ -127,7 +127,7 @@ class Globals_obj{
 		$this->con->connect("mysql");
                 $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
                 $this->con->query($sql);
-			
+	//print_r($this->con);	
 		$this->sm = new Smarty;
 		//$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;
                 $this->sm->template_dir = CURRENT_APP_TPL_DIR;
@@ -149,7 +149,6 @@ class Globals_obj{
 	}
 	
 	function set_paths(){
-			
 		$this->__APP_DIR = GLOBALS_DIR . $this->APP_NAME . DIR_SEP;
 		$this->__JS_DIR = $this->__APP_DIR . 'js' . DIR_SEP;
 		$this->__CSS_DIR = $this->__APP_DIR . 'css' . DIR_SEP;

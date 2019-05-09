@@ -5,7 +5,8 @@ include ("phpapps_admin_formgen.php");
 class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 	var $globals;
 	
-function phpapps_admin_formgen_imp(){
+ public function __construct() {
+                    parent::__construct();
 	global $GLOBALS_OBJ;
 	$this->globals = $GLOBALS_OBJ;
 

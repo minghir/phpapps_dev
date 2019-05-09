@@ -3,6 +3,7 @@
 require_once ("globals.php");
 
 class {$form_name}{ldelim}
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "{$form_schema}";
 	public $form_table = "{$form_table}";
@@ -36,6 +37,8 @@ class {$form_name}{ldelim}
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){ldelim}
 		global $GLOBALS_OBJ;
@@ -144,6 +147,8 @@ class {$form_name}{ldelim}
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){ldelim}
                             $this->errors[] = $this->globals->con->get_error();
+                        {rdelim}else{ldelim}
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         {rdelim}
 		}
 		
@@ -186,6 +191,8 @@ class {$form_name}{ldelim}
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){ldelim}
                             $this->errors[] = $this->globals->con->get_error();
+                        {rdelim}else{ldelim}
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         {rdelim}
 		};
 		
@@ -208,6 +215,8 @@ class {$form_name}{ldelim}
 		if(count($this->errors) == 0) {ldelim}
 			if( $this->globals->con->query($sql) == -1){ldelim}
                             $this->errors[] = $this->globals->con->get_error();
+                        {rdelim}else{ldelim}
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         {rdelim}
 		{rdelim}
 		
@@ -330,7 +339,11 @@ class {$form_name}{ldelim}
 	function display(){ldelim}	
                 $this->beforeDisplay();
 		$this->setup_display();
-		$this->globals->sm->display($this->template);
+                if($this->form_com_type == "ajax" && $this->pact != ""){ldelim}
+                    $this->ajax_server_resp();
+                {rdelim}else{ldelim}
+                    $this->globals->sm->display($this->template);
+                {rdelim}
 		$this->afterDisplay();
 	{rdelim}
 	
@@ -343,5 +356,11 @@ class {$form_name}{ldelim}
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	{rdelim}
+        
+        function ajax_server_resp(){ldelim}
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        {rdelim}    
+            
+        
 {rdelim}
 ?>

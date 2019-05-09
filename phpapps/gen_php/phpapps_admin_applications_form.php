@@ -3,6 +3,7 @@
 require_once ("globals.php");
 
 class phpapps_admin_applications_form{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "applications";
@@ -49,6 +50,8 @@ class phpapps_admin_applications_form{
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
@@ -160,6 +163,8 @@ class phpapps_admin_applications_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -203,6 +208,8 @@ class phpapps_admin_applications_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -225,6 +232,8 @@ class phpapps_admin_applications_form{
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -359,7 +368,11 @@ class phpapps_admin_applications_form{
 	function display(){	
                 $this->beforeDisplay();
 		$this->setup_display();
-		$this->globals->sm->display($this->template);
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -372,5 +385,11 @@ class phpapps_admin_applications_form{
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

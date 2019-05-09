@@ -2,96 +2,188 @@
 // includes
 require_once ("globals.php");
 
-
 class phpapps_admin_test2_form{
-
-	var $globals;
-	var $schema = "phpapps";
-	var $table = "test2";
-	var $template = "gen_tpl/phpapps_admin_test2_form.tpl";
+        public $form_com_type = "html"; // html | ajax
+	public $globals;
+	public $form_schema = "phpapps";
+	public $form_table = "test2";
+	public $template = "gen_tpl/phpapps_admin_test2_form.tpl";
 	//get values
-	var $gact;
-	var $gfield;
-	var $gfield_value;
+	public $gact;
+	public $gfield;
+	public $gfield_value;
 	//post values
-	var $pact;
+	public $pact;
+	            
+	public $ID;
+        	            
+	public $nume;
+        		
+		 
+		 
+			
+		 
+		 
+	        
+        
+
+	public $errors = array();
+        
+        public $resp_msgs = array();
 	
-	///////////////////??????????
-	var $select_lists;
-	/////////////??????????????
-		var $TEST_ID;
-	
-	var $errors = array();
-	
-	function phpapps_admin_test2_form(){
-		//$this->display();
+	function __construct(){
+		global $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
+                
+                			 
+					 
+				
+					 
+					 
+		                
 	}
 		
 	function init(){
-		//print_r($_POST);
-		//$this->globals = new Globals(".");
-		$this->globals = new Globals();
-		if($_POST["pact"] != "") {
+		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$this->parsePostVars();
+                        $this->takePostActions();
 		} else {
 			$this->parseGetVars();
+                        $this->takeGetActions();
 		}
 	}
 	
+	function beforeGetRec(){
+	}
+	
 	function getRec(){
-		$sql = "SELECT 
-									TEST_ID
+		$sql = new DB_query( "SELECT 
+									ID,
+												nume
 							
-				FROM ".$this->schema.".".$this->table." WHERE ".$this->gfield." = '".$this->gfield_value."'";
+				FROM ".$this->form_schema.".".$this->form_table." 
+				WHERE ".$this->gfield." = :".$this->gfield." ",
+				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->TEST_ID = $this->globals->con->get_field("TEST_ID");
-						
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
+                                						
+	}
+	
+	function afterGetRec(){
+	}
+	
+	function beforeAddRec(){
 	}
 	
 	function addRec(){
-		$sql = "INSERT INTO ".$this->schema.".".$this->table." (
-									TEST_ID
-						 ) VALUES (
-									'$this->TEST_ID'
-									)";
-				
-		$this->globals->con->exec($sql);
-		header("Location:win_close.html");
+		$this->beforeAddRec();
+	
+		$this->check_errors();
+		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+																					nume
+										 ) VALUES (
+																					:nume
+													)",
+			array(
+																		                                            
+                                            ":nume" => $this->nume,
+                                        												)
+			);
+
+		if(count($this->errors) == 0) {	
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
+                        }
+		}
+		
+		$this->afterAddRec();
+	}
+	
+	function afterAddRec(){
+		//header("Location:win_close.html");
+	}
+	
+	function beforeSaveRec(){
 	}
 	
 	function saveRec(){
-		$sql = "UPDATE ".$this->schema.".".$this->table." SET 
-									TEST_ID = '$this->TEST_ID'
+		$this->beforeSaveRec();
+		
+		$this->check_errors();
+		
+		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+									ID = :ID,
+												nume = :nume
 							
-				WHERE ".$this->gfield." = '".$this->gfield_value."'";
+				WHERE ".$this->gfield." = :".$this->gfield,
+			array(	
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":nume" => $this->nume,
+                                        								":".$this->gfield => $this->gfield_value
+			)	
+			);
 				
-		$this->globals->con->exec($sql);
-		header("Location:win_close.html");
+		if(count($this->errors) == 0) {	
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
+                        }
+		};
+		
+		$this->afterSaveRec();
+	}
+	
+	function afterSaveRec(){
+		//header("Location:win_close.html");
 	}
 
+	function beforeDeleteRec(){
+	}
+	
 	function deleteRec(){
-		$sql = "DELETE FROM ".$this->schema.".".$this->table."
-				WHERE ".$this->gfield." = '".$this->gfield_value."'";
+		$this->beforeDeleteRec();
+		
+		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
-		$this->globals->con->exec($sql);
-		header("Location:win_close.html");
+		if(count($this->errors) == 0) {
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
+                        }
+		}
+		
+		$this->afterDeleteRec();
+	}
+	
+	function afterDeleteRec(){
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
 		$this->gact = trim($_GET["gact"]);
 		$this->gfield = trim($_GET["gfield"]);
 		$this->gfield_value = trim($_GET["gfield_value"]);
-		
+        }
+        
+        function takeGetActions(){
 			switch($this->gact){
 			case "editRec":
+				$this->beforeGetRec();
 				$this->getRec();
+				$this->afterGetRec();
 			break;
 			case "deleteRec":
 				$this->deleteRec();
 			break;
 			case "addRec":
-				//$this->deleteRec();
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -102,63 +194,82 @@ class phpapps_admin_test2_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->TEST_ID  = addslashes(trim($_POST["TEST_ID"]));
-				
-				
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
+                                                		        }
+		
+        function takePostActions(){
 		switch($this->pact){
 			case "addRec":
-				if(count($this->errors) == 0) $this->addRec();
+				$this->addRec();
 			break;
 			case "saveRec":
-				if(count($this->errors) == 0) $this->saveRec();
+				$this->saveRec();
 			break;
 			case "deleteRec":
 				$this->deleteRec();
 			break;
 		}
+		
 	}
 	
-	function display(){
-								/////////////////??????????????
-			$tmp_list_ob = new DB_select("$this->TEST_ID","phpapps.list_databases");
-			$tmp_list_ob->setup_select_options();
-			
-			$this->select_lists[] = $tmp_list_ob->get_select_str();
-			///////////////?????????????????
-			
-				$sql = "SELECT ID, VALUE FROM phpapps.list_databases";
-				$this->globals->con->query($sql);
-				 while($res=$this->globals->con->fetch_array()){
-					$list_databases_id[] = $res["ID"];
-					$list_databases_value[] = $res["VALUE"];
-					$list_databases_sel[] = $res["ID"] == $this->TEST_ID ? "selected" : "";
-				 }
-				 
-				
+	function check_errors(){
+				if($this->nume == "") {
+			$this->errors[] = "Campul nume este obligatoriu!";
+		}
+			}
+	
+	function setup_display(){
+					 
 					 
 				
-	
+					 
+					 
+			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
 		$this->globals->sm->assign(array(
-							"TEST_ID" => $this->TEST_ID,
-						
-										"list_databases_id" => $list_databases_id,
-				"list_databases_value" => $list_databases_value,
-				"list_databases_sel" => $list_databases_sel,
-			 
-						
+							"ID" => $this->ID,
+							"nume" => $this->nume,
+									 
 						 
-						
-			"select_lists" =>  $this->select_lists,
-			
-			"pact" => $this->pact,
+									 
+						 
+						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,
 			"gfield_value" => $this->gfield_value,
 			"error_msg" => $error_msg,
 		));
-		
-		$this->globals->sm->display($this->template);
 	}
-};
+	
+	function beforeDisplay(){	
+	}
+	
+	function display(){	
+                $this->beforeDisplay();
+		$this->setup_display();
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
+		$this->afterDisplay();
+	}
+	
+	function afterDisplay(){	
+	}
+	
+	function get_html_str(){	
+                $this->beforeDisplay();
+		$this->setup_display();
+		$this->globals->sm->fetch($this->template);
+                $this->afterDisplay();
+	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
+}
 ?>

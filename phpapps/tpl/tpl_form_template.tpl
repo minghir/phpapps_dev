@@ -1,11 +1,3 @@
-{ldelim}literal{rdelim}{literal}
-<script>
-function submitDetailsForm(op){
-		$("#pact").val(op);
-		$("#{/literal}{$form_name}{literal}").submit();
-}
-  </script>
-{/literal}{ldelim}/literal{rdelim}
 {literal}{$error_msg}{/literal}
 <hr><form name="{$form_name}" id="{$form_name}" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{ldelim}$pact{rdelim}">

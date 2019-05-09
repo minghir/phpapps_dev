@@ -1,7 +1,8 @@
 <?php
 require_once ("globals.php");
+//include ("gen_php/phpapps_admin_applications_form.php");
 include ("gen_php/phpapps_admin_applications_form.php");
-	class phpapps_admin_applications_form_impl  extends phpapps_admin_applications_form2{
+	class phpapps_admin_applications_form_impl  extends phpapps_admin_applications_form{
             
                 public function __construct() {
                     parent::__construct();
@@ -13,13 +14,13 @@ include ("gen_php/phpapps_admin_applications_form.php");
 					$this->create_dir_struct();
 				}
 			}
-			
+			$this->form_com_type = "ajax";
 			$this->init();
 			$this->display();
 		}
 		
                 function afterSaveRec(){
-                    echo "<h1>Salvat</h1>";
+                   echo  $this->ajax_server_resp();
                 }
                 
                 

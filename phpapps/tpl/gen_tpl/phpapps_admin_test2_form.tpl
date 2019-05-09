@@ -1,30 +1,5 @@
-{literal}
-<script>
-/*
- $(function() {
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        event.preventDefault();
-      });
-  });
-*/
-    function submitDetailsForm(op)
-    {
-		$("#pact").val(op);
-		$("#phpapps_admin_test2_form").submit();
-    }
-/*
-	$(function() {
-		$( "#datepicker" ).datepicker();
-		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		$( "#datepicker" ).datepicker( "setDate", new Date(2008,9,03)  );
-	});
-*/
-  </script>
-{/literal}
 {$error_msg}
-<hr><form name="phpapps_admin_test2_form" id="phpapps_admin_test2_form" method="POST">
+<hr><form name="phpapps_admin_test2_form" id="phpapps_admin_test2_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -32,11 +7,16 @@
 	<table border="1">
 	
 		 
-				<tr><td align="right">TEST_ID :</td><td> <input type="text" name="TEST_ID" value="{$TEST_ID}"></td></tr>
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
+			
+		                
+		                				 
+				<tr><td align="right">nume :</td><td> <input type="text" id="nume" name="nume" value="{$nume}"></td></tr>
 																
-				
-				
-				{$FROM_IMP_CLASS}
+			
+		                
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

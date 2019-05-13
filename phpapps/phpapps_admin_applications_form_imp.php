@@ -11,6 +11,7 @@ include ("gen_php/phpapps_admin_applications_form.php");
 			
 			if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 				if($_POST["BASE_DIR"] != ""){
+                                    // cred ca trebuie la after rec
 					$this->create_dir_struct();
 				}
 			}

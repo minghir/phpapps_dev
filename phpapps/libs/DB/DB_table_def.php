@@ -109,7 +109,7 @@ echo "<br><h1>".$sql->sql()."</h1><br>";
             // daca e null trebuie sa returneze FALSE
             
             $this->CURRENT_COLUMN->setColumnAcceptNull(FALSE);
-            $this->CURRENT_COLUMN->setColumnDefaultVal("0");
+            //$this->CURRENT_COLUMN->setColumnDefaultVal("0");
             return $this->execQuery("ALTER_TABLE_ADD_PK");
         }
         

@@ -27,7 +27,9 @@ include ("gen_php/phpapps_database_tables_form.php");
 	
 		function beforeAddRec(){
 			$sql = new DB_query("SELECT SCHEMA_NAME, MODULE_SCHEMA FROM view_modules WHERE ID = :module_id",array(":module_id"=>$this->MODULE_ID));
+                        print_r($sql);
 			if( $this->globals->con->query($sql) == -1 ){
+                           // echo "AICI EROARE 1";
 				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
 			}else{
 				$this->globals->con->next();
@@ -39,6 +41,9 @@ include ("gen_php/phpapps_database_tables_form.php");
 			$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                         if(!$this->table_definition->createIDTable()){
                             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
+                            //echo "AICI EROARE 2" . "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors() ."<br>";
+                            
+                            
                         }
                         
                         if(count($this->errors) > 0){

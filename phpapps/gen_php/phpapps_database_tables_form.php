@@ -3,9 +3,10 @@
 require_once ("globals.php");
 
 class phpapps_database_tables_form{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $schema = "phpapps";
-	public $table = "tables";
+	public $form_schema = "phpapps";
+	public $form_table = "tables";
 	public $template = "gen_tpl/phpapps_database_tables_form.tpl";
 	//get values
 	public $gact;
@@ -13,14 +14,21 @@ class phpapps_database_tables_form{
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $ID;
-		public $ORIGIN_ID;
-		public $MODULE_ID;
-		public $SCHEMA_ID;
-		public $TABLE_NAME;
-		public $TABLE_TYPE;
-		public $DESCRIPTION;
-		
+	            
+	public $ID;
+        	            
+	public $ORIGIN_ID;
+        	            
+	public $MODULE_ID;
+        	            
+	public $SCHEMA_ID;
+        	            
+	public $TABLE_NAME;
+        	            
+	public $TABLE_TYPE;
+        	            
+	public $DESCRIPTION;
+        		
 		 
 		 
 		 
@@ -37,12 +45,34 @@ class phpapps_database_tables_form{
 		 
 		 
 		 
-	
+	        
+        
+
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                			 
+					 
+					 
+					 
+					 
+								$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE","phpapps.list_table_types");
+                        			 
+					 
+				
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+		                
 	}
 		
 	function init(){
@@ -68,19 +98,19 @@ class phpapps_database_tables_form{
 												TABLE_TYPE,
 												DESCRIPTION
 							
-				FROM ".$this->schema.".".$this->table." 
+				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->ID = stripslashes($this->globals->con->get_field("ID"));
-							$this->ORIGIN_ID = stripslashes($this->globals->con->get_field("ORIGIN_ID"));
-							$this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
-							$this->SCHEMA_ID = stripslashes($this->globals->con->get_field("SCHEMA_ID"));
-							$this->TABLE_NAME = stripslashes($this->globals->con->get_field("TABLE_NAME"));
-							$this->TABLE_TYPE = stripslashes($this->globals->con->get_field("TABLE_TYPE"));
-							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-						
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->ORIGIN_ID = stripslashes($this->globals->con->get_field("ORIGIN_ID"));
+                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
+                                			                                                                $this->SCHEMA_ID = stripslashes($this->globals->con->get_field("SCHEMA_ID"));
+                                			                                                                $this->TABLE_NAME = stripslashes($this->globals->con->get_field("TABLE_NAME"));
+                                			                                                                $this->TABLE_TYPE = stripslashes($this->globals->con->get_field("TABLE_TYPE"));
+                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                						
 	}
 	
 	function afterGetRec(){
@@ -93,37 +123,42 @@ class phpapps_database_tables_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
-									ID,
-												ORIGIN_ID,
-												MODULE_ID,
-												SCHEMA_ID,
-												TABLE_NAME,
-												TABLE_TYPE,
-												DESCRIPTION
-						 ) VALUES (
-									:ID,
-												:ORIGIN_ID,
-												:MODULE_ID,
-												:SCHEMA_ID,
-												:TABLE_NAME,
-												:TABLE_TYPE,
-												:DESCRIPTION
-									)",
+		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+																					ORIGIN_ID,
+																						MODULE_ID,
+																						SCHEMA_ID,
+																						TABLE_NAME,
+																						TABLE_TYPE,
+																						DESCRIPTION
+										 ) VALUES (
+																					:ORIGIN_ID,
+																						:MODULE_ID,
+																						:SCHEMA_ID,
+																						:TABLE_NAME,
+																						:TABLE_TYPE,
+																						:DESCRIPTION
+													)",
 			array(
-									":ID" => $this->ID,
-									":ORIGIN_ID" => $this->ORIGIN_ID,
-									":MODULE_ID" => $this->MODULE_ID,
-									":SCHEMA_ID" => $this->SCHEMA_ID,
-									":TABLE_NAME" => $this->TABLE_NAME,
-									":TABLE_TYPE" => $this->TABLE_TYPE,
-									":DESCRIPTION" => $this->DESCRIPTION,
-							)
+																		                                            
+                                            ":ORIGIN_ID" => $this->ORIGIN_ID,
+                                        														                                            
+                                            ":MODULE_ID" => $this->MODULE_ID,
+                                        														                                            
+                                            ":SCHEMA_ID" => $this->SCHEMA_ID,
+                                        														                                            
+                                            ":TABLE_NAME" => $this->TABLE_NAME,
+                                        														                                            
+                                            ":TABLE_TYPE" => $this->TABLE_TYPE,
+                                        														                                            
+                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                        												)
 			);
 
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -142,7 +177,7 @@ class phpapps_database_tables_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
+		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												ORIGIN_ID = :ORIGIN_ID,
 												MODULE_ID = :MODULE_ID,
@@ -153,20 +188,22 @@ class phpapps_database_tables_form{
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-									":ID" => $this->ID,
-									":ORIGIN_ID" => $this->ORIGIN_ID,
-									":MODULE_ID" => $this->MODULE_ID,
-									":SCHEMA_ID" => $this->SCHEMA_ID,
-									":TABLE_NAME" => $this->TABLE_NAME,
-									":TABLE_TYPE" => $this->TABLE_TYPE,
-									":DESCRIPTION" => $this->DESCRIPTION,
-								":".$this->gfield => $this->gfield_value
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":ORIGIN_ID" => $this->ORIGIN_ID,
+                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
+                                        				                                                                                    ":SCHEMA_ID" => $this->SCHEMA_ID,
+                                        				                                                                                    ":TABLE_NAME" => $this->TABLE_NAME,
+                                        				                                                                                    ":TABLE_TYPE" => $this->TABLE_TYPE,
+                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -183,12 +220,14 @@ class phpapps_database_tables_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
+		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -216,6 +255,7 @@ class phpapps_database_tables_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -226,14 +266,14 @@ class phpapps_database_tables_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->ID  = addslashes(trim($_POST["ID"]));
-					$this->ORIGIN_ID  = addslashes(trim($_POST["ORIGIN_ID"]));
-					$this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
-					$this->SCHEMA_ID  = addslashes(trim($_POST["SCHEMA_ID"]));
-					$this->TABLE_NAME  = addslashes(trim($_POST["TABLE_NAME"]));
-					$this->TABLE_TYPE  = addslashes(trim($_POST["TABLE_TYPE"]));
-					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-		        }
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->ORIGIN_ID  = htmlspecialchars(addslashes(trim($_POST["ORIGIN_ID"])));
+                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
+                                                		                                                    $this->SCHEMA_ID  = htmlspecialchars(addslashes(trim($_POST["SCHEMA_ID"])));
+                                                		                                                    $this->TABLE_NAME  = htmlspecialchars(addslashes(trim($_POST["TABLE_NAME"])));
+                                                		                                                    $this->TABLE_TYPE  = htmlspecialchars(addslashes(trim($_POST["TABLE_TYPE"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -271,7 +311,7 @@ class phpapps_database_tables_form{
 					 
 					 
 					 
-								$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE","phpapps.list_table_types");
+								//$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE",".phpapps.list_table_types");
 			$this->TABLE_TYPE_sel->selected_val = $this->TABLE_TYPE;
 			$this->TABLE_TYPE_sel->setup_select_options();
 			 
@@ -321,12 +361,13 @@ class phpapps_database_tables_form{
 	}
 	
 	function display(){	
+                $this->beforeDisplay();
 		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
-		$this->globals->sm->display($this->template);
-		
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -334,11 +375,16 @@ class phpapps_database_tables_form{
 	}
 	
 	function get_html_str(){	
+                $this->beforeDisplay();
 		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
 		$this->globals->sm->fetch($this->template);
+                $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

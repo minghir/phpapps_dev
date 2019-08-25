@@ -3,6 +3,7 @@
 require_once ("globals.php");
 
 class phpapps_database_table_details_DDL_form{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "table_details";
@@ -13,17 +14,27 @@ class phpapps_database_table_details_DDL_form{
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $ID;
-		public $TABLE_ID;
-		public $COLUMN_NAME;
-		public $COLUMN_TYPE_ID;
-		public $UNSIGN;
-		public $COLUMN_SIZE;
-		public $ACCEPT_NULL;
-		public $COLUMN_DEFAULT_VALUE;
-		public $AUTOINCREMENT;
-		public $DESCRIPTION;
-		
+	            
+	public $ID;
+        	            
+	public $TABLE_ID;
+        	            
+	public $COLUMN_NAME;
+        	            
+	public $COLUMN_TYPE_ID;
+        	            
+	public $UNSIGN;
+        	            
+	public $COLUMN_SIZE;
+        	            
+	public $ACCEPT_NULL;
+        	            
+	public $COLUMN_DEFAULT_VALUE;
+        	            
+	public $AUTOINCREMENT;
+        	            
+	public $DESCRIPTION;
+        		
 		 
 		 
 		 
@@ -49,8 +60,12 @@ class phpapps_database_table_details_DDL_form{
 		 
 		 
 		 
-	
+	        
+        
+
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
@@ -59,16 +74,16 @@ class phpapps_database_table_details_DDL_form{
                 			 
 					 
 					 
-								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".list_mysql_column_types");
-			 
-								$this->UNSIGN_sel = new DB_select("UNSIGN",".list_no_yes");
-			 
+								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","phpapps.list_mysql_column_types");
+                        			 
+								$this->UNSIGN_sel = new DB_select("UNSIGN","phpapps.list_no_yes");
+                        			 
 					 
-								$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL",".list_no_yes");
-			 
+								$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL","phpapps.list_no_yes");
+                        			 
 					 
-								$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT",".list_no_yes");
-			 
+								$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT","phpapps.list_no_yes");
+                        			 
 					 
 				
 					 
@@ -115,17 +130,17 @@ class phpapps_database_table_details_DDL_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->ID = stripslashes($this->globals->con->get_field("ID"));
-							$this->TABLE_ID = stripslashes($this->globals->con->get_field("TABLE_ID"));
-							$this->COLUMN_NAME = stripslashes($this->globals->con->get_field("COLUMN_NAME"));
-							$this->COLUMN_TYPE_ID = stripslashes($this->globals->con->get_field("COLUMN_TYPE_ID"));
-							$this->UNSIGN = stripslashes($this->globals->con->get_field("UNSIGN"));
-							$this->COLUMN_SIZE = stripslashes($this->globals->con->get_field("COLUMN_SIZE"));
-							$this->ACCEPT_NULL = stripslashes($this->globals->con->get_field("ACCEPT_NULL"));
-							$this->COLUMN_DEFAULT_VALUE = stripslashes($this->globals->con->get_field("COLUMN_DEFAULT_VALUE"));
-							$this->AUTOINCREMENT = stripslashes($this->globals->con->get_field("AUTOINCREMENT"));
-							$this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-						
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->TABLE_ID = stripslashes($this->globals->con->get_field("TABLE_ID"));
+                                			                                                                $this->COLUMN_NAME = stripslashes($this->globals->con->get_field("COLUMN_NAME"));
+                                			                                                                $this->COLUMN_TYPE_ID = stripslashes($this->globals->con->get_field("COLUMN_TYPE_ID"));
+                                			                                                                $this->UNSIGN = stripslashes($this->globals->con->get_field("UNSIGN"));
+                                			                                                                $this->COLUMN_SIZE = stripslashes($this->globals->con->get_field("COLUMN_SIZE"));
+                                			                                                                $this->ACCEPT_NULL = stripslashes($this->globals->con->get_field("ACCEPT_NULL"));
+                                			                                                                $this->COLUMN_DEFAULT_VALUE = stripslashes($this->globals->con->get_field("COLUMN_DEFAULT_VALUE"));
+                                			                                                                $this->AUTOINCREMENT = stripslashes($this->globals->con->get_field("AUTOINCREMENT"));
+                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                						
 	}
 	
 	function afterGetRec(){
@@ -139,45 +154,53 @@ class phpapps_database_table_details_DDL_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-									ID,
-												TABLE_ID,
-												COLUMN_NAME,
-												COLUMN_TYPE_ID,
-												UNSIGN,
-												COLUMN_SIZE,
-												ACCEPT_NULL,
-												COLUMN_DEFAULT_VALUE,
-												AUTOINCREMENT,
-												DESCRIPTION
-						 ) VALUES (
-									:ID,
-												:TABLE_ID,
-												:COLUMN_NAME,
-												:COLUMN_TYPE_ID,
-												:UNSIGN,
-												:COLUMN_SIZE,
-												:ACCEPT_NULL,
-												:COLUMN_DEFAULT_VALUE,
-												:AUTOINCREMENT,
-												:DESCRIPTION
-									)",
+																					TABLE_ID,
+																						COLUMN_NAME,
+																						COLUMN_TYPE_ID,
+																						UNSIGN,
+																						COLUMN_SIZE,
+																						ACCEPT_NULL,
+																						COLUMN_DEFAULT_VALUE,
+																						AUTOINCREMENT,
+																						DESCRIPTION
+										 ) VALUES (
+																					:TABLE_ID,
+																						:COLUMN_NAME,
+																						:COLUMN_TYPE_ID,
+																						:UNSIGN,
+																						:COLUMN_SIZE,
+																						:ACCEPT_NULL,
+																						:COLUMN_DEFAULT_VALUE,
+																						:AUTOINCREMENT,
+																						:DESCRIPTION
+													)",
 			array(
-									":ID" => $this->ID,
-									":TABLE_ID" => $this->TABLE_ID,
-									":COLUMN_NAME" => $this->COLUMN_NAME,
-									":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
-									":UNSIGN" => $this->UNSIGN,
-									":COLUMN_SIZE" => $this->COLUMN_SIZE,
-									":ACCEPT_NULL" => $this->ACCEPT_NULL,
-									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
-									":AUTOINCREMENT" => $this->AUTOINCREMENT,
-									":DESCRIPTION" => $this->DESCRIPTION,
-							)
+																		                                            
+                                            ":TABLE_ID" => $this->TABLE_ID,
+                                        														                                            
+                                            ":COLUMN_NAME" => $this->COLUMN_NAME,
+                                        														                                            
+                                            ":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
+                                        														                                            
+                                            ":UNSIGN" => $this->UNSIGN,
+                                        														                                            
+                                            ":COLUMN_SIZE" => $this->COLUMN_SIZE,
+                                        														                                            
+                                            ":ACCEPT_NULL" => $this->ACCEPT_NULL,
+                                        														                                            
+                                            ":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
+                                        														                                            
+                                            ":AUTOINCREMENT" => $this->AUTOINCREMENT,
+                                        														                                            
+                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                        												)
 			);
 
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -210,23 +233,25 @@ class phpapps_database_table_details_DDL_form{
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-									":ID" => $this->ID,
-									":TABLE_ID" => $this->TABLE_ID,
-									":COLUMN_NAME" => $this->COLUMN_NAME,
-									":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
-									":UNSIGN" => $this->UNSIGN,
-									":COLUMN_SIZE" => $this->COLUMN_SIZE,
-									":ACCEPT_NULL" => $this->ACCEPT_NULL,
-									":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
-									":AUTOINCREMENT" => $this->AUTOINCREMENT,
-									":DESCRIPTION" => $this->DESCRIPTION,
-								":".$this->gfield => $this->gfield_value
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":TABLE_ID" => $this->TABLE_ID,
+                                        				                                                                                    ":COLUMN_NAME" => $this->COLUMN_NAME,
+                                        				                                                                                    ":COLUMN_TYPE_ID" => $this->COLUMN_TYPE_ID,
+                                        				                                                                                    ":UNSIGN" => $this->UNSIGN,
+                                        				                                                                                    ":COLUMN_SIZE" => $this->COLUMN_SIZE,
+                                        				                                                                                    ":ACCEPT_NULL" => $this->ACCEPT_NULL,
+                                        				                                                                                    ":COLUMN_DEFAULT_VALUE" => $this->COLUMN_DEFAULT_VALUE,
+                                        				                                                                                    ":AUTOINCREMENT" => $this->AUTOINCREMENT,
+                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -249,6 +274,8 @@ class phpapps_database_table_details_DDL_form{
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -276,6 +303,7 @@ class phpapps_database_table_details_DDL_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -286,17 +314,17 @@ class phpapps_database_table_details_DDL_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->ID  = addslashes(trim($_POST["ID"]));
-					$this->TABLE_ID  = addslashes(trim($_POST["TABLE_ID"]));
-					$this->COLUMN_NAME  = addslashes(trim($_POST["COLUMN_NAME"]));
-					$this->COLUMN_TYPE_ID  = addslashes(trim($_POST["COLUMN_TYPE_ID"]));
-					$this->UNSIGN  = addslashes(trim($_POST["UNSIGN"]));
-					$this->COLUMN_SIZE  = addslashes(trim($_POST["COLUMN_SIZE"]));
-					$this->ACCEPT_NULL  = addslashes(trim($_POST["ACCEPT_NULL"]));
-					$this->COLUMN_DEFAULT_VALUE  = addslashes(trim($_POST["COLUMN_DEFAULT_VALUE"]));
-					$this->AUTOINCREMENT  = addslashes(trim($_POST["AUTOINCREMENT"]));
-					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-		        }
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->TABLE_ID  = htmlspecialchars(addslashes(trim($_POST["TABLE_ID"])));
+                                                		                                                    $this->COLUMN_NAME  = htmlspecialchars(addslashes(trim($_POST["COLUMN_NAME"])));
+                                                		                                                    $this->COLUMN_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["COLUMN_TYPE_ID"])));
+                                                		                                                    $this->UNSIGN  = htmlspecialchars(addslashes(trim($_POST["UNSIGN"])));
+                                                		                                                    $this->COLUMN_SIZE  = htmlspecialchars(addslashes(trim($_POST["COLUMN_SIZE"])));
+                                                		                                                    $this->ACCEPT_NULL  = htmlspecialchars(addslashes(trim($_POST["ACCEPT_NULL"])));
+                                                		                                                    $this->COLUMN_DEFAULT_VALUE  = htmlspecialchars(addslashes(trim($_POST["COLUMN_DEFAULT_VALUE"])));
+                                                		                                                    $this->AUTOINCREMENT  = htmlspecialchars(addslashes(trim($_POST["AUTOINCREMENT"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -335,21 +363,21 @@ class phpapps_database_table_details_DDL_form{
 					 
 					 
 					 
-								//$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".list_mysql_column_types");
+								//$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".phpapps.list_mysql_column_types");
 			$this->COLUMN_TYPE_ID_sel->selected_val = $this->COLUMN_TYPE_ID;
 			$this->COLUMN_TYPE_ID_sel->setup_select_options();
 			 
-								//$this->UNSIGN_sel = new DB_select("UNSIGN",".list_no_yes");
+								//$this->UNSIGN_sel = new DB_select("UNSIGN",".phpapps.list_no_yes");
 			$this->UNSIGN_sel->selected_val = $this->UNSIGN;
 			$this->UNSIGN_sel->setup_select_options();
 			 
 					 
-								//$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL",".list_no_yes");
+								//$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL",".phpapps.list_no_yes");
 			$this->ACCEPT_NULL_sel->selected_val = $this->ACCEPT_NULL;
 			$this->ACCEPT_NULL_sel->setup_select_options();
 			 
 					 
-								//$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT",".list_no_yes");
+								//$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT",".phpapps.list_no_yes");
 			$this->AUTOINCREMENT_sel->selected_val = $this->AUTOINCREMENT;
 			$this->AUTOINCREMENT_sel->setup_select_options();
 			 
@@ -416,7 +444,11 @@ class phpapps_database_table_details_DDL_form{
 	function display(){	
                 $this->beforeDisplay();
 		$this->setup_display();
-		$this->globals->sm->display($this->template);
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -429,5 +461,11 @@ class phpapps_database_table_details_DDL_form{
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

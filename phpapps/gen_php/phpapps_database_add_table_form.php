@@ -3,6 +3,7 @@
 require_once ("globals.php");
 
 class phpapps_database_add_table_form{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "tables";
@@ -37,13 +38,14 @@ class phpapps_database_add_table_form{
 		 
 		 
 		 
-			public $TABLE_NAME_sel;
-	 
+		 
 		 
 	        
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
@@ -60,8 +62,7 @@ class phpapps_database_add_table_form{
 					 
 					 
 					 
-									$this->TABLE_NAME_sel = new DB_select("TABLE_NAME",".tables");
-                                			 
+					 
 					 
 		                
 	}
@@ -142,6 +143,8 @@ class phpapps_database_add_table_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -183,6 +186,8 @@ class phpapps_database_add_table_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -205,6 +210,8 @@ class phpapps_database_add_table_form{
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -232,6 +239,7 @@ class phpapps_database_add_table_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -242,13 +250,13 @@ class phpapps_database_add_table_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->ID  = addslashes(trim($_POST["ID"]));
-                        		                                                    $this->ORIGIN_ID  = addslashes(trim($_POST["ORIGIN_ID"]));
-                        		                                                    $this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
-                        		                                                    $this->SCHEMA_ID  = addslashes(trim($_POST["SCHEMA_ID"]));
-                        		                                                    $this->TABLE_NAME  = addslashes(trim($_POST["TABLE_NAME"]));
-                        		                                                    $this->TABLE_TYPE  = addslashes(trim($_POST["TABLE_TYPE"]));
-                        		        }
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->ORIGIN_ID  = htmlspecialchars(addslashes(trim($_POST["ORIGIN_ID"])));
+                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
+                                                		                                                    $this->SCHEMA_ID  = htmlspecialchars(addslashes(trim($_POST["SCHEMA_ID"])));
+                                                		                                                    $this->TABLE_NAME  = htmlspecialchars(addslashes(trim($_POST["TABLE_NAME"])));
+                                                		                                                    $this->TABLE_TYPE  = htmlspecialchars(addslashes(trim($_POST["TABLE_TYPE"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -292,11 +300,7 @@ class phpapps_database_add_table_form{
 					 
 					 
 					 
-									//$this->TABLE_NAME_sel = new DB_select("TABLE_NAME",".tables");
-				$this->TABLE_NAME_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM .tables ORDER BY TABLE_NAME";
-				$this->TABLE_NAME_sel->selected_val = $this->TABLE_NAME;
-				$this->TABLE_NAME_sel->setup_select_options();
-			 
+					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
@@ -317,8 +321,7 @@ class phpapps_database_add_table_form{
 						 
 						 
 						 
-										"TABLE_NAME_sel" => $this->TABLE_NAME_sel->get_select_str(),
-			 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
@@ -334,7 +337,11 @@ class phpapps_database_add_table_form{
 	function display(){	
                 $this->beforeDisplay();
 		$this->setup_display();
-		$this->globals->sm->display($this->template);
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -347,5 +354,11 @@ class phpapps_database_add_table_form{
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

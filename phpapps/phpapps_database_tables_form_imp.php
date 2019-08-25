@@ -26,6 +26,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 		}
 	
 		function beforeAddRec(){
+                    echo "beforeAddRec<br>";
 			$sql = new DB_query("SELECT SCHEMA_NAME, MODULE_SCHEMA FROM view_modules WHERE ID = :module_id",array(":module_id"=>$this->MODULE_ID));
                         print_r($sql);
 			if( $this->globals->con->query($sql) == -1 ){
@@ -41,7 +42,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 			$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                         if(!$this->table_definition->createIDTable()){
                             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
-                            //echo "AICI EROARE 2" . "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors() ."<br>";
+                            echo "AICI EROARE 2" . "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors() ."<br>";
                             
                             
                         }
@@ -53,6 +54,9 @@ include ("gen_php/phpapps_database_tables_form.php");
 		}
 		
 		function afterAddRec(){
+                    echo "AICI 4";
+                    print_r($this->errors);
+                    echo "AICI GATA 4";
                     if(count($this->errors) > 0){
                         $this->table_definition->dropTable();
                         $this->globals->con->rollback();
@@ -89,9 +93,11 @@ include ("gen_php/phpapps_database_tables_form.php");
 							":COLUMN_TYPE_ID"=>(new DB_list("list_mysql_column_types"))->getID("BIGINT"),
 							":COLUMN_SIZE"=>"20"
 						));
+                                                
 						print_r($sql);
 					if( $this->globals->con->query($sql) == -1 ){
 						$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
+                                                echo "AICI EROARE 3" ."<br>";
                                                 $this->globals->con->rollback();
 					}else{
 						//header("Location:phpapps_admin_tables_form_imp.php?module_id=".$this->MODULE_ID."&gact=editRec&gfield=ID&gfield_value=".$this->TABLE_ID);
@@ -159,6 +165,7 @@ print_r($this->errors);
 		
 		function beforeDisplay(){	
                     $this->TABLE_NAME = (new DB_table("tables"))->getValue("TABLE_NAME",$this->ID);
+                    echo "TABLE NAME:" . $this->TABLE_NAME . "<br>";
 			if($this->gact == "editRec"){
                             
 				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_DDL_grid");
@@ -267,7 +274,7 @@ print_r($this->errors);
                                 $this->globals->sm->assign("columns_fk_grid",$columns_fk_grid->get_grid_str());
                                 
                                 $table_idx_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_indexes","phpapps_view_table_indexes_DDL_grid");
-                                $table_idx_grid->grid_title = "FOREIGN KEYS";
+                                $table_idx_grid->grid_title = "INDEX";
                                 $table_idx_grid->cols = array(
 						"INDEX_NAME",
 						"INDEX_TYPE",

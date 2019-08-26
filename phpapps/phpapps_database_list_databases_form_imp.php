@@ -16,6 +16,7 @@ include ("gen_php/phpapps_database_list_databases_form.php");
 		}
 	
 		function beforeAddRec(){
+                    
                     $sql = new DB_query("CREATE DATABASE IF NOT EXISTS :db_name", array(":db_name" => $this->VALUE));
                     $this->globals->con->query($sql);
 		}

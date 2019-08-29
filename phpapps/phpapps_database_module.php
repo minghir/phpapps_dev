@@ -162,12 +162,12 @@ class phpapps_database_module extends phpapps_display_abs{
 		$databases_grid->cols = (array("VALUE","DESCRIPTION"));
 		$databases_grid->labels = (array("DATABASE","DESCRIPTION"));
                 $databases_grid->paginable = true;
-		$databases_grid->editable = true;
+		$databases_grid->editable = false;
 		$databases_grid->filterable = false;
 		$databases_grid->exportable = false;
 		$databases_grid->rows_on_pg = 20;
                 $databases_grid->edit_form = "phpapps_database_list_databases_form_imp.php?module_id=".$this->ID;
-                /*
+                
                 $dga = new HrefActions();
 		$dga->act_script = "phpapps_database_list_databases_form_imp.php?gact=newRec&module_id=".$this->ID;
 		$dga->popup = true;
@@ -183,7 +183,7 @@ class phpapps_database_module extends phpapps_display_abs{
 		$dgn->action = "newDB";
 		$dgn->fields = array("ID");
 		$databases_grid->add_grid_acction($dgn);
-                */
+                
                 
                 $queries_grid = new DB_grid($this->globals->con, "table","phpapps.queries","phpapps_queries_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";

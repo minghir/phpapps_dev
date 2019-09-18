@@ -3,17 +3,15 @@
 class DB_grid
       {
     var $grid_types = array("table","query");
-	var $grid_type;
-	
-	var $grid_title;
-    
-	var $db_grid_name;
-	var $init_query;
+    var $grid_type;
+    var $grid_title;
+    var $db_grid_name;
+    var $init_query;
     var $query;
     var $table;
     var $error;
 		
-	var $mode_search = false;
+    var $mode_search = false;
 		
     var $con;
     var $sm; //smarty

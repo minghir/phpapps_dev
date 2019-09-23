@@ -50,25 +50,25 @@ class DB_grid
 	var $grid_title;
 	var $db_grid_name;
 	var $init_query;
-        var $query;
+    var $query;
 
-        var $table;
-        var $error;
+    var $table;
+    var $error;
 	var $mode_search = false;
-        var $con;
-        var $sm; //smarty
-        var $editable = true;
+    var $con;
+    var $sm; //smarty
+    var $editable = true;
 	var $paginable = true;
 	var $filterable = true;
 	var $exportable = true;
 	var $sortable = true;
 	var $edit_form;
-        var $get_pg = 1;
+    var $get_pg = 1;
 	var $last_page = 1;
 	var $rows_on_pg = 25;
-        var $req_uri;
-        var $act;
-        var $id;
+    var $req_uri;
+    var $act;
+    var $id;
 	var $cols = array("*");
 	var $labels = array();
 	var $get_vars = array();
@@ -112,7 +112,7 @@ class DB_grid
                case "query":
                     $this->grid_type = $g_type;
                     $this->query =  $str_sql;
-                    $this->init_query = $str_sql->query_str;
+                    $this->init_query = $str_sql->sql();
                     $this->db_grid_name = $grid_name == "" ? "str_sql" : $grid_name;
                break;
                default:
@@ -180,6 +180,7 @@ echo"</h1><br>----------------<br>";
 
         function setup_query_query(){
 		   $this->filterable = false;
+		   /*
 		   // $this->query =  $str_sql;
                    if(strpos($this->query->query_str,"FROM") !== FALSE ){
                        
@@ -187,6 +188,7 @@ echo"</h1><br>----------------<br>";
                             $this->init_query = str_ireplace("FROM", ",ID FROM", $this->init_query);
                         }
                         
+						
                         if($this->sortable){
 			   if($this->current_order_field != ""){
 				$this->order_rule  = " ORDER BY " . $this->current_order_field . " " . $this->current_order_rule;
@@ -201,9 +203,12 @@ echo"</h1><br>----------------<br>";
 			if($this->paginable){
 				$this->query->query_str  = $this->init_query ." ". $this->order_rule . " limit " . $limit ."," . $this->rows_on_pg ;
 			}else{
-				$this->query->query_str  = $this->init_query . " " . $this->order_rule;
+				print_r($this->init_query);
+				$this->query  = $this->init_query;
 			}
                    }
+			*/
+				$this->query  = $this->init_query;
         }
 
         function setup_grid(){
@@ -246,18 +251,20 @@ echo"</h1><br>----------------<br>";
 				$this->add_grid_acction($ga);
 			}
 //echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
+//print_r($this->query);
 			//$sql = new DB_query($this->query);
 			
 			$this->con->query($this->query, $this->db_grid_name);
 			
+			
                         if($this->grid_type == "query"){
                             for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 1; $i++){ // fara ultimul camp care este id
-				$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
+								$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
                             }
                             
                         }else{
                             for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 2; $i++){ // fara ultimul camp care este id
-				$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
+								$fields[] = $this->con->get_field_name($i,$this->db_grid_name);
                             }
                         }
 			//print_r($fields);

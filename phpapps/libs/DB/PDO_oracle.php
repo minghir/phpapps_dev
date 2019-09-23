@@ -1,6 +1,6 @@
 <?php
-// Clasa pentru baze de date mysql
-class mysql
+// Clasa pentru baze de date oracle
+class oracle
  {
 		
     var $Log;
@@ -21,10 +21,12 @@ class mysql
     function __construct($con_str,$Log){
 		$this->Log = &$Log;
 		$this->con_str = $con_str;
-		$dsn = "mysql:host=".$this->con_str["host"].";port=".$this->con_str["port"].";dbname=".$this->con_str["db"].";charset=utf8";
-
+		
 		try{
-			$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"]);
+			//$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"]);
+			$this->conn = new PDO("oci:dbname=".$this->con_str["tns"],$this->con_str["user"],$this->con_str["pass"]);
+			
+			
 		} catch (PDOException $err) {
 			$this->Log->do_log("Connection ERROR: " . $err->getMessage());
 			$this->Log->print_log();
@@ -45,10 +47,10 @@ class mysql
 			$this->conn = null;
 		}
 		
-		$dsn = "mysql:host=".$this->con_str["host"].";port=".$this->con_str["port"].";dbname=".$this->con_str["db"].";charset=utf8";
-		
+				
 		try{
-			$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"]);
+			//$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"]);
+			$this->conn = new PDO("oci:dbname=".$this->con_str["tns"],$this->con_str["user"],$this->con_str["pass"]);
 		} catch (PDOException $err) {
 			$this->Log->do_log("Connection ERROR: " . $err->getMessage());
 			$this->Log->print_log();
@@ -83,25 +85,39 @@ class mysql
 		if($this->conn){
 			$this->free_result($res_id);
 			//$this->res[$res_id]=$this->conn->query($sql);
-			$this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
-                                                                                        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", 
-                                                                                        PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET utf8"));
+			echo "-----------------------------------<br>";
+			print_r($db_query);
+			echo "-----------------------------------<br>";
+			$this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 		
 //echo"<br>===========<br>";			
-//print_r($db_query);			
+//print_r($this->res[$res_id]);			
 //echo $db_query->sql();
-//echo"<br>==========<br>";
 
 			//$this->res[$res_id]->execute($db_query->getParams());
 			//if($this->res[$res_id]){
 			
-			if($this->res[$res_id]->execute($db_query->getParams())){
-//print_r($this->res[$res_id]);				
+				if($this->res[$res_id]->execute($db_query->getParams())){
+
+ //print_r($aa= $this->res[$res_id]->fetch(PDO::FETCH_ASSOC));
+ //echo "|<h2>" . $aa['NUME'] . "|";
+ 
+				
+				//ATENTIE !!!!!!!!!!!!!!!!!!!!!
+				//$this->recordcount[$res_id] = count($this->res[$res_id]->fetchAll());
+				
+				//$this->res[$res_id]->fetch(PDO::FETCH_ASSOC,PDO::FETCH_ORI_REL, 1 - $this->recordcount[$res_id]);
+				//$this->res[$res_id]->setFetchMode(PDO::FETCH_NUM,PDO::FETCH_ORI_FIRST);
+				
+				//$this->res[$res_id]->execute($db_query->getParams());
+				
 				$this->recordcount[$res_id] = $this->res[$res_id]->rowCount();
 				$this->columncount[$res_id] = $this->res[$res_id]->columnCount();
 				$this->Log->do_log("Query OK: \"". $this->SQL[$res_id] ."\" got: " . $this->recordcount[$res_id] . " rows");
+				//return $this->columncount[$res_id];
 				return $this->recordcount[$res_id];
 			}else{
+//print_r($this->res[$res_id]);
 				$this->recordcount[$res_id] = 0;
 				$this->columncount[$res_id] = 0;
 				$this->Log->do_log("Query ERROR: " . $this->SQL[$res_id] . " got: ". $this->get_error($res_id));
@@ -307,7 +323,6 @@ class mysql
     */
 	/*PDO*/
     function insert_id($res_id){
-       // return @mysql_insert_id($this->conn);   
 		return $this->res[$res_id]->lastInsertId();
     }
 

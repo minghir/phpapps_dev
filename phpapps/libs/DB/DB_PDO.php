@@ -6,6 +6,7 @@ require_once(DB_LIBS_DIR . 'DB_query.php');
 require_once(DB_LIBS_DIR . 'DB_list.php');
 require_once(DB_LIBS_DIR . 'DB_table.php');
 require_once(DB_LIBS_DIR . 'PDO_mysql.php');
+require_once(DB_LIBS_DIR . 'PDO_oracle.php');
 
 require_once(DB_LIBS_DIR . 'DB_query.php');
 require_once(DB_LIBS_DIR . 'DB_grid_v4.php');
@@ -21,7 +22,7 @@ require_once(DB_LIBS_DIR . 'DB_index_def.php');
     class DB
     {
 	var $drivers = array("PDO","DB");
-	var $known_types = array("mysql","pgsql"); // known types
+	var $known_types = array("mysql","pgsql","oracle"); // known types
 	var $types; // vector types for connections
 	var $type; // curent type
 	var $Log; // log object

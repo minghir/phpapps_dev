@@ -60,7 +60,7 @@ class auth{
                             WHERE username = :USER AND 
 				password = :PASS",
 				array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
-	
+	print_r($sql);
             if($this->globals->con->query($sql)==1){
                 $res=$this->globals->con->fetch_array();
                 $_SESSION["_USER_ID"] = $res["ID"];

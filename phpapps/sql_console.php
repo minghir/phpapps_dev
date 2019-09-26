@@ -6,7 +6,7 @@ $con = &$globals->con;
 $sm = &$globals->sm;
 
 
-echo "AICI:" . $_USER_ID;
+//echo "AICI:" . $_USER_ID;
 
 //session_start();
 $query = $_SESSION["_SQL_QUERY"];

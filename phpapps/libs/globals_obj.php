@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
 
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'phpapps');

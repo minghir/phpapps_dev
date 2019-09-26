@@ -78,7 +78,7 @@ class mysql
     /*PDO*/    
     //function query($sql,$res_id){ //return false on error or number of rows on succes
 	function query($db_query,$res_id){ //return false on error or number of rows on succes
-		$this->SQL[$res_id] = $db_query->sql();
+        $this->SQL[$res_id] = $db_query->sql();
 
 		if($this->conn){
 			$this->free_result($res_id);
@@ -94,7 +94,6 @@ class mysql
 
 			//$this->res[$res_id]->execute($db_query->getParams());
 			//if($this->res[$res_id]){
-			
 			if($this->res[$res_id]->execute($db_query->getParams())){
 //print_r($this->res[$res_id]);				
 				$this->recordcount[$res_id] = $this->res[$res_id]->rowCount();

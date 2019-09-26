@@ -1,11 +1,4 @@
 
-<script>
-function submitDetailsForm(op){
-		$("#pact").val(op);
-		$("#{$form_name}").submit();
-}
-</script>
-
 {literal}{$error_msg}{/literal}
 <hr><form name="{$form_name}" id="{$form_name}" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{ldelim}$pact{rdelim}">

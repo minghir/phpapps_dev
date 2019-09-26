@@ -31,11 +31,6 @@
 		</td></tr>
                         
 		                				 
-				<tr><td align="right">Application Directory :</td><td> <input type="text" id="BASE_DIR" name="BASE_DIR" value="{$BASE_DIR}"></td></tr>
-																
-			
-		                
-		                				 
 																<!-- <tr><td align="right">APP_DATE :</td><td> <input type="text" class="tcal" name="APP_DATE" value="{$APP_DATE}"></td></tr> -->
 		<tr><td align="right">APP_DATE :</td><td> <input id="APP_DATE" type="date" name="APP_DATE" value="{$APP_DATE}"></td></tr>
         		

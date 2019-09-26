@@ -23,8 +23,6 @@ class phpapps_admin_applications_form{
         	            
 	public $APP_SCHEMA;
         	            
-	public $BASE_DIR;
-        	            
 	public $APP_DATE;
         	            
 	public $DESCRIPTION;
@@ -36,11 +34,9 @@ class phpapps_admin_applications_form{
 	 
 		 
 		 
-		 
 			
 			public $USER_ID_sel;
 	 
-		 
 		 
 		 
 		 
@@ -64,11 +60,9 @@ class phpapps_admin_applications_form{
                         			 
 					 
 					 
-					 
 				
 									$this->USER_ID_sel = new DB_select("USER_ID","phpapps.users");
                                 			 
-					 
 					 
 					 
 					 
@@ -96,7 +90,6 @@ class phpapps_admin_applications_form{
 												APP_NAME,
 												APP_TITLE,
 												APP_SCHEMA,
-												BASE_DIR,
 												APP_DATE,
 												DESCRIPTION
 							
@@ -109,7 +102,6 @@ class phpapps_admin_applications_form{
                                 			                                                                $this->APP_NAME = stripslashes($this->globals->con->get_field("APP_NAME"));
                                 			                                                                $this->APP_TITLE = stripslashes($this->globals->con->get_field("APP_TITLE"));
                                 			                                                                $this->APP_SCHEMA = stripslashes($this->globals->con->get_field("APP_SCHEMA"));
-                                			                                                                $this->BASE_DIR = stripslashes($this->globals->con->get_field("BASE_DIR"));
                                 			                                                                $this->APP_DATE = stripslashes($this->globals->con->get_field("APP_DATE"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
                                 						
@@ -130,7 +122,6 @@ class phpapps_admin_applications_form{
 																						APP_NAME,
 																						APP_TITLE,
 																						APP_SCHEMA,
-																						BASE_DIR,
 																						APP_DATE,
 																						DESCRIPTION
 										 ) VALUES (
@@ -138,7 +129,6 @@ class phpapps_admin_applications_form{
 																						:APP_NAME,
 																						:APP_TITLE,
 																						:APP_SCHEMA,
-																						:BASE_DIR,
 																						:APP_DATE,
 																						:DESCRIPTION
 													)",
@@ -151,8 +141,6 @@ class phpapps_admin_applications_form{
                                             ":APP_TITLE" => $this->APP_TITLE,
                                         														                                            
                                             ":APP_SCHEMA" => $this->APP_SCHEMA,
-                                        														                                            
-                                            ":BASE_DIR" => $this->BASE_DIR,
                                         														                                            
                                             ":APP_DATE" => $this->APP_DATE,
                                         														                                            
@@ -188,7 +176,6 @@ class phpapps_admin_applications_form{
 												APP_NAME = :APP_NAME,
 												APP_TITLE = :APP_TITLE,
 												APP_SCHEMA = :APP_SCHEMA,
-												BASE_DIR = :BASE_DIR,
 												APP_DATE = :APP_DATE,
 												DESCRIPTION = :DESCRIPTION
 							
@@ -198,7 +185,6 @@ class phpapps_admin_applications_form{
                                         				                                                                                    ":APP_NAME" => $this->APP_NAME,
                                         				                                                                                    ":APP_TITLE" => $this->APP_TITLE,
                                         				                                                                                    ":APP_SCHEMA" => $this->APP_SCHEMA,
-                                        				                                                                                    ":BASE_DIR" => $this->BASE_DIR,
                                         				                                                                                    ":APP_DATE" => $this->APP_DATE,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
                                         								":".$this->gfield => $this->gfield_value
@@ -276,7 +262,6 @@ class phpapps_admin_applications_form{
                                                 		                                                    $this->APP_NAME  = htmlspecialchars(addslashes(trim($_POST["APP_NAME"])));
                                                 		                                                    $this->APP_TITLE  = htmlspecialchars(addslashes(trim($_POST["APP_TITLE"])));
                                                 		                                                    $this->APP_SCHEMA  = htmlspecialchars(addslashes(trim($_POST["APP_SCHEMA"])));
-                                                		                                                    $this->BASE_DIR  = htmlspecialchars(addslashes(trim($_POST["BASE_DIR"])));
                                                 		                                                    $this->APP_DATE  = htmlspecialchars(addslashes(trim($_POST["APP_DATE"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
                                                 		        }
@@ -315,14 +300,12 @@ class phpapps_admin_applications_form{
 			 
 					 
 					 
-					 
 				
 									//$this->USER_ID_sel = new DB_select("USER_ID",".phpapps.users");
 				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME");
 				$this->USER_ID_sel->selected_val = $this->USER_ID;
 				$this->USER_ID_sel->setup_select_options();
 			 
-					 
 					 
 					 
 					 
@@ -335,7 +318,6 @@ class phpapps_admin_applications_form{
 							"APP_NAME" => $this->APP_NAME,
 							"APP_TITLE" => $this->APP_TITLE,
 							"APP_SCHEMA" => $this->APP_SCHEMA,
-							"BASE_DIR" => $this->BASE_DIR,
 							"APP_DATE" => $this->APP_DATE,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
@@ -345,10 +327,8 @@ class phpapps_admin_applications_form{
 			 
 						 
 						 
-						 
 													"USER_ID_sel" => $this->USER_ID_sel->get_select_str(),
 			 
-						 
 						 
 						 
 						 

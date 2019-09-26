@@ -14,6 +14,7 @@ function submitDetailsForm(op){
 {ldelim}include file="{$tpl_form_template}" {rdelim}
 {ldelim}literal{rdelim}{literal}
 <div id="server-results"><!-- For server results --></div>    
+<!--
 <script>
 $("#{/literal}{$form_name}{literal}").submit(function(event){
 	event.preventDefault(); //prevent default action 
@@ -31,6 +32,7 @@ $("#{/literal}{$form_name}{literal}").submit(function(event){
 	});
 });
 </script>
+-->
 {/literal}{ldelim}/literal{rdelim} 
 
 </body>

@@ -85,9 +85,6 @@ class oracle
 		if($this->conn){
 			$this->free_result($res_id);
 			//$this->res[$res_id]=$this->conn->query($sql);
-			echo "-----------------------------------<br>";
-			print_r($db_query);
-			echo "-----------------------------------<br>";
 			$this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 		
 //echo"<br>===========<br>";			
@@ -227,7 +224,7 @@ class oracle
     
 	/* PDO */
 	function get_field_name($field,$res_id){
-			if($this->res[$res_id]){
+		if($this->res[$res_id]){
 			$tmp = $this->res[$res_id]->getColumnMeta($field);
 			return $tmp["name"];
 		}else{

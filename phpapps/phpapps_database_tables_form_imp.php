@@ -43,8 +43,6 @@ include ("gen_php/phpapps_database_tables_form.php");
                         if(!$this->table_definition->createIDTable()){
                             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors();
                             echo "AICI EROARE 2" . "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors() ."<br>";
-                            
-                            
                         }
                         
                         if(count($this->errors) > 0){

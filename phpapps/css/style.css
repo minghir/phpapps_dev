@@ -1,80 +1,41 @@
-html {
-        background: #dddddd;
-}
-
 a{
 	color: #145A78;
-        text-decoration: none;
 }
 p{
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
 	font-size: 150%;
 }
 body {
-        background: #dddddd;
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
 	font-size: 100%;
 }
 
-table {
-	border: 1px "BFD4FF";
+table,td,th {
+	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
+	font-size: 100%;
+	border: 1px;
 	border-collapse:collapse;
-	text-align: left;
-
 }
-
-td,th {
-	text-align: left;
-/*	padding: 0.125em 0.5em 0.25em 0.5em; */
-    line-height: 1;
-	background-color: lime;
-    margin: 12px 12px 12px 12px;
-    padding: 12px 12px 12px 12px;
-}
-
-.top_div{
-        /*border:1px solid #a1a1a1;*/
-        float: left;
-        background-color:#c9c9c9;
-	padding:8px 10px; 
-	width:100%;
-	border-radius:2px;
-	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
-	font-size: 100%;
-	box-shadow: 1px 1px 2px #888888;
-} 
 
 .test_div{
-        /*border:1px solid #a1a1a1;*/
-        float: left;
-        vertical-align: top;
-        background: white;
-	padding:10px 10px; 
-	width:100%;
-	/*border-radius:2px;*/
+	border:1px solid #a1a1a1;
+	padding:10px 40px; 
+	background:#ddddd;
+	width:600px;
+	border-radius:15px;
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
 	font-size: 100%;
-	/*box-shadow: 1px 1px 2px #888888;*/
+	box-shadow: 2px 2px 5px #888888;
 } 
 
 .adm_mod_div{
-	/*border:1px solid #a1a1a1;*/
-	padding:10px 10px; 
-	background:white;
-	width:100%;
+	border:1px solid #a1a1a1;
+	padding:10px 40px; 
+	background:#ddddd;
+	width:90%;
 	height:70%;
+	border-radius:15px;
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
 	font-size: 100%;
-	box-shadow: 1px 1px 2px #888888;
+	box-shadow: 2px 2px 5px #888888;
 } 
-
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}

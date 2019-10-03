@@ -10,7 +10,8 @@ function confirmation(url) {
 //-->
 </script>
 {/literal}
-  <table valign="top" border=0 cellpadding=0 cellspacing=0 bgcolor="#C0C0C0"><tr><td bgcolor="#FFFFFF">
+  <table valign="top" border=0 cellpadding=0 cellspacing=0 bgcolor="#C0C0C0">
+     <tr><td bgcolor="#FFFFFF">
   <div>
 		<div style="float:left;">
 		{$grid_title}

@@ -13,7 +13,7 @@ body {
 table,td,th {
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
 	font-size: 100%;
-	border: 1px "BFD4FF";
+	border: 1px;
 	border-collapse:collapse;
 }
 

@@ -23,11 +23,12 @@ table {
 
 }
 
-td,th {
+table,td,th {
 	text-align: left;
 /*	padding: 0.125em 0.5em 0.25em 0.5em; */
     line-height: 1;
-	background-color: white;
+    border: 1px solid gray;
+    background-color: white;
     margin: 12px 12px 12px 12px;
     padding: 12px 12px 12px 12px;
 }

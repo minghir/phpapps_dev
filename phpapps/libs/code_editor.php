@@ -14,9 +14,9 @@
 			
 			$this->sm = new Smarty;
             $this->sm->template_dir = PHPAPPS_LIBS_TPL_DIR;
-			;
-			echo PHPAPPS_LIBS_TPL_DIR . "<br>";
-			print_r( $this->sm->template_dir );
+			
+			//echo PHPAPPS_LIBS_TPL_DIR . "<br>";
+			//print_r( $this->sm->template_dir );
             $this->sm->compile_dir = SMARTY_COMPILE_DIR;
 			
 			$this->file_path=$file_name;
@@ -50,8 +50,6 @@
 		
 		function saveFile(){
 			$this->backupFile();
-			
-			
 		}
 		
 		function backupFile(){
@@ -84,6 +82,7 @@
 								"file_content" => $this->file_content,
 								"file_name" => $this->file_path,
 								"file_path" => $this->file_path,
+                                                                "file" => $this->file,
 								"CODEMIRROR_DIR" => CODEMIRROR_DIR,
 			));
 			$this->globals->sm->display("libs/tpl/code_editor.tpl");
@@ -94,6 +93,7 @@
 								"file_content" => $this->file_content,
 								"file_name" => $this->file_path,
 								"file_path" => $this->file_path,
+                                                                "file" => $this->file,
 								"CODEMIRROR_DIR" => CODEMIRROR_DIR,
 			));
 			return $this->globals->sm->fetch("libs/tpl/code_editor.tpl");

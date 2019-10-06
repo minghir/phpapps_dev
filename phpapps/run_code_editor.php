@@ -5,6 +5,8 @@
 		
 		private $globals;
 		private $file_path;
+                private $php_file_path;
+                private $tpl_file_path;
 		
 		function __construct(){
 		
@@ -18,6 +20,12 @@
 					$this->globals->con->query($sql);
 					$this->globals->con->next();
 					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("FORM_NAME") . "_imp.php";
+                                        $this->php_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("FORM_NAME") . "_imp.php";
+                                        
+                                        $sql = new DB_query("SELECT FORM_NAME,APP_NAME FROM phpapps.view_forms WHERE ID = :id ",array(":id"=>$_GET["gfield_value"]));
+					$this->globals->con->query($sql);
+					$this->globals->con->next();
+					$this->tpl_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("FORM_NAME") . "_imp.tpl";
 				break;
 				case "editImpTpl":
 					$sql = new DB_query("SELECT FORM_NAME,APP_NAME FROM phpapps.view_forms WHERE ID = :id ",array(":id"=>$_GET["gfield_value"]));
@@ -31,6 +39,12 @@
 					$this->globals->con->query($sql);
 					$this->globals->con->next();
 					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("SCRIPT_NAME") . ".php";
+                                        $this->php_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("SCRIPT_NAME") . ".php";
+                                        
+                                        $sql = new DB_query("SELECT SCRIPT_NAME,APP_NAME FROM phpapps.view_scripts WHERE ID = :id ",array(":id"=>$_GET["gfield_value"]));
+					$this->globals->con->query($sql);
+					$this->globals->con->next();
+					$this->tpl_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("SCRIPT_NAME") . ".tpl";
 				break;
 				case "editScriptTpl":
 					$sql = new DB_query("SELECT SCRIPT_NAME,APP_NAME FROM phpapps.view_scripts WHERE ID = :id ",array(":id"=>$_GET["gfield_value"]));
@@ -41,6 +55,15 @@
 			}
 			$ce = new code_editor($this->file_path);
 			$ce->display();
+                        //echo $ce->get_str();
+                        
+                        //$ce_php = new code_editor($this->php_file_path);
+			//$ce->display();
+                        //echo $ce_php->get_str();
+                        
+                        //$ce_tpl = new code_editor($this->tpl_file_path);
+			//$ce->display();
+                        //echo $ce_tpl->get_str();
 		}
 	}	
 

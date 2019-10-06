@@ -6,6 +6,7 @@ include ("gen_php/phpapps_database_mysql_column_defs_form.php");
 			parent::__construct();
 			$this->template = "phpapps_database_mysql_column_defs_form_imp.tpl";
 			$this->init();
+			
 			$this->display();
 		}
 		

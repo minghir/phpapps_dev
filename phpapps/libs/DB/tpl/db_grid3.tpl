@@ -40,8 +40,8 @@ function confirmation(url) {
 				{/if}
               </td>
            {/section}
-           {if $row_href_actions[vls]  == "" } 
-           <td>&nbsp;</td>
+           {if $row_href_actions[1] != ""  } 
+               <td><a><b>ACTIONS</b></a></td>
            {/if}
        </tr>
 	   <form name="filter" method="POST" action="">
@@ -79,11 +79,13 @@ function confirmation(url) {
                 {$values[vls][flds2]}
               </td>
             {/section}
-           
+         
+            {if $row_href_actions[vls]  != "" } 
 			  <td>
 				{$row_href_actions[vls]}
              </td>
-              
+             {/if}
+         
        </tr>
        {/section}
 </table>

@@ -60,7 +60,8 @@ class Log
 	@fclose($fd);
 
 	switch ($this->log_type){
-		 case "file":
+            case "file":
+            break;    
 	    case "screen":
 			echo "<br><br><a href=\"#Math.random()\" onClick=\"window.open('$file_tmp','1','toolbar=no,location=0,directories=no,status=no,menubar=0,scrollbars=yes,resizable=no,width=600,height=250,top=150,left=200')\">DB debug</a>";
 	    break;

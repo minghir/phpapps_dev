@@ -105,7 +105,7 @@ include ("gen_php/phpapps_database_tables_form.php");
                              
 			}
                         
-print_r($this->errors);
+//print_r($this->errors);
                 }
                     
 		

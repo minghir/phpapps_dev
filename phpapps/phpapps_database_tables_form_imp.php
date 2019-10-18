@@ -28,7 +28,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 		function beforeAddRec(){
                     echo "beforeAddRec<br>";
 			$sql = new DB_query("SELECT SCHEMA_NAME, MODULE_SCHEMA FROM view_modules WHERE ID = :module_id",array(":module_id"=>$this->MODULE_ID));
-                        print_r($sql);
+                        //print_r($sql);
 			if( $this->globals->con->query($sql) == -1 ){
                            // echo "AICI EROARE 1";
 				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
@@ -52,9 +52,9 @@ include ("gen_php/phpapps_database_tables_form.php");
 		}
 		
 		function afterAddRec(){
-                    echo "AICI 4";
-                    print_r($this->errors);
-                    echo "AICI GATA 4";
+                   // echo "AICI 4";
+                   // print_r($this->errors);
+                   // echo "AICI GATA 4";
                     if(count($this->errors) > 0){
                         $this->table_definition->dropTable();
                         $this->globals->con->rollback();
@@ -73,7 +73,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 					$this->globals->con->next();
 					$this->TABLE_ID = $this->globals->con->get_field("ID");
 					
-					echo "<h1> AICI:".$this->TABLE_ID."</h1>";
+					//echo "<h1> AICI:".$this->TABLE_ID."</h1>";
 					
 					$sql = new DB_query("INSERT INTO phpapps.table_details(
 						TABLE_ID,
@@ -192,6 +192,7 @@ print_r($this->errors);
 				$table_details_grid->where_params = array(":table_id" => $table_id);
 				$table_details_grid->edit_form = "phpapps_database_table_details_DDL_form_imp.php?table_id=".$this->ID;
                                 $this->globals->sm->assign("table_details_grid",$table_details_grid->get_grid_str());
+                                $this->globals->sm->assign("table_id",$table_id);
                                 
                                 /*
                                 $table_details_grid =  new DB_grid($this->globals->con, "table","INFORMATION_SCHEMA.COLUMNS","phpapps_table_details_DDL_grid");
@@ -313,7 +314,7 @@ print_r($this->errors);
                                 //$this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                                 $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA", $this->ID);
                                 $sql = new DB_query("SHOW CREATE TABLE " . $this->SCHEMA_NAME . "." . $this->TABLE_NAME);
-                                print_r($sql);
+                                //print_r($sql);
                                 $this->globals->con->query($sql);
                                 $this->globals->con->next();
                                 $show_create_table = str_replace("`","", $this->globals->con->get_field("Create Table") );

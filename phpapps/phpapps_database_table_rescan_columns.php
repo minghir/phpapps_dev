@@ -5,6 +5,9 @@ require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 class phpapps_database_table_rescan_columns extends phpapps_display_abs{
 
     private $app_id;
+    public $TABLE_ID;
+    public $SCHEMA_NAME;
+    public $TABLE_NAME;
     
     function __construct($app_id) {
         parent::__construct();

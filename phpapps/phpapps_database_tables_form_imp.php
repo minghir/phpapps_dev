@@ -278,13 +278,13 @@ include ("gen_php/phpapps_database_tables_form.php");
 						"INDEX_NAME",
 						"INDEX_TYPE",
 						"INDEX_COLUMNS",
-                                                "INDEX_COLUMNS_LABELS",
+                                                //"INDEX_COLUMNS_LABELS",
 						"DESCRIPTION");
 				$table_idx_grid->labels = array(
 						"INDEX_NAME",
 						"INDEX_TYPE",
 						"INDEX_COLUMNS",
-                                                "INDEX_COLUMNS_LABELS",
+                                                //"INDEX_COLUMNS_LABELS",
 						"DESCRIPTION");
                                 $table_idx_grid->where_params = array(":table_id" => $table_id);
                                 $table_idx_grid->where_rules = array("TABLE_ID = :table_id");

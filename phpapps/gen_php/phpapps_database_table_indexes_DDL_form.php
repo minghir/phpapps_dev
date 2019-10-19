@@ -3,6 +3,7 @@
 require_once ("globals.php");
 
 class phpapps_database_table_indexes_DDL_form{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "table_indexes";
@@ -44,6 +45,8 @@ class phpapps_database_table_indexes_DDL_form{
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
@@ -52,7 +55,7 @@ class phpapps_database_table_indexes_DDL_form{
                 			 
 					 
 					 
-								$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID",".list_index_types");
+								$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID","phpapps.list_index_types");
                         			 
 					 
 					 
@@ -61,7 +64,7 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 					 
-									$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS",".table_details");
+									$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS","phpapps.table_details");
                                                                     $this->INDEX_COLUMNS_sel->set_multiple(TRUE);
                                 			 
 					 
@@ -143,6 +146,8 @@ class phpapps_database_table_indexes_DDL_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -184,6 +189,8 @@ class phpapps_database_table_indexes_DDL_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -206,6 +213,8 @@ class phpapps_database_table_indexes_DDL_form{
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -233,6 +242,7 @@ class phpapps_database_table_indexes_DDL_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -243,13 +253,13 @@ class phpapps_database_table_indexes_DDL_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->ID  = addslashes(trim($_POST["ID"]));
-                        		                                                    $this->TABLE_ID  = addslashes(trim($_POST["TABLE_ID"]));
-                        		                                                    $this->INDEX_NAME  = addslashes(trim($_POST["INDEX_NAME"]));
-                        		                                                    $this->INDEX_TYPE_ID  = addslashes(trim($_POST["INDEX_TYPE_ID"]));
-                        		                                                     $this->INDEX_COLUMNS  = $_POST["INDEX_COLUMNS"];
-                        		                                                    $this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-                        		        }
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->TABLE_ID  = htmlspecialchars(addslashes(trim($_POST["TABLE_ID"])));
+                                                		                                                    $this->INDEX_NAME  = htmlspecialchars(addslashes(trim($_POST["INDEX_NAME"])));
+                                                		                                                    $this->INDEX_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["INDEX_TYPE_ID"])));
+                                                		                                                     $this->INDEX_COLUMNS  = $_POST["INDEX_COLUMNS"];
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -285,7 +295,7 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 					 
-								//$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID",".list_index_types");
+								//$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID",".phpapps.list_index_types");
 			$this->INDEX_TYPE_ID_sel->selected_val = $this->INDEX_TYPE_ID;
 			$this->INDEX_TYPE_ID_sel->setup_select_options();
 			 
@@ -296,8 +306,8 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 					 
-									//$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS",".table_details");
-				$this->INDEX_COLUMNS_sel->query = "SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM .table_details ORDER BY COLUMN_NAME";
+									//$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS",".phpapps.table_details");
+				$this->INDEX_COLUMNS_sel->db_query = new DB_query("SELECT ID AS VALUE,  AS LABEL FROM phpapps.table_details ORDER BY ");
 				$this->INDEX_COLUMNS_sel->selected_val = $this->INDEX_COLUMNS;
 				$this->INDEX_COLUMNS_sel->setup_select_options();
 			 
@@ -339,7 +349,11 @@ class phpapps_database_table_indexes_DDL_form{
 	function display(){	
                 $this->beforeDisplay();
 		$this->setup_display();
-		$this->globals->sm->display($this->template);
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -352,5 +366,11 @@ class phpapps_database_table_indexes_DDL_form{
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

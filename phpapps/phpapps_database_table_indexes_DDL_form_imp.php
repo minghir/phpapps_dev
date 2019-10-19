@@ -94,9 +94,11 @@ include ("gen_php/phpapps_database_table_indexes_DDL_form.php");
                     $this->INDEX_COLUMNS_sel->set_query(new DB_query("SELECT ID, COLUMN_NAME AS VALUE FROM"
                             . " phpapps.table_details WHERE TABLE_ID = :table_id ORDER BY ORD",
                             array(":table_id" => $this->TABLE_ID)));
+                    $this->INDEX_COLUMNS_sel->setup_select_options();
 		}
 		
 		function afterDisplay(){	
+                    print_r($this->errors);
 		}
 		
 	};

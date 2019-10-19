@@ -107,7 +107,9 @@ class Globals_obj{
 	public $__LIBS_TPL_DIR;
 	public $__SMARTY_TPL_DIR;
         
+               
         public $ath;
+        public $USER_ID;
 
 	function __construct($APP_NM){
 		$this->APP_NAME = $APP_NM;

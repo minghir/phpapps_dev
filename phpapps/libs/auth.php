@@ -40,7 +40,10 @@ class auth{
                     //    $this->logout();
                     //}
                 }else{
+                    //print_r($_SESSION);
                     $_USER_ID = $_SESSION["_USER_ID"]; 
+                    $this->globals->USER_ID = $_USER_ID;
+                    //echo "<h2>$_USER_ID</h2>";
                 }
         
                 $this->check_session();

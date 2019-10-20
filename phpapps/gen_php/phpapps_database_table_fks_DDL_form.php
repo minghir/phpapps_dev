@@ -3,6 +3,7 @@
 require_once ("globals.php");
 
 class phpapps_database_table_fks_DDL_form{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "table_fks";
@@ -35,10 +36,8 @@ class phpapps_database_table_fks_DDL_form{
 		 
 		 
 		 
-			public $ON_UPDATE_sel;
-	 
-			public $ON_DELETE_sel;
-	 
+		 
+		 
 		 
 			
 		 
@@ -55,6 +54,8 @@ class phpapps_database_table_fks_DDL_form{
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
 		global $GLOBALS_OBJ;
@@ -65,17 +66,15 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 					 
-								$this->ON_UPDATE_sel = new DB_select("ON_UPDATE",".list_foreign_key_options");
-                        			 
-								$this->ON_DELETE_sel = new DB_select("ON_DELETE",".list_foreign_key_options");
-                        			 
+					 
+					 
 					 
 				
 					 
-									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".table_details");
+									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID","phpapps.table_details");
                                 			 
 					 
-									$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID",".tables");
+									$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID","phpapps.tables");
                                 			 
 					 
 					 
@@ -172,6 +171,8 @@ class phpapps_database_table_fks_DDL_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -217,6 +218,8 @@ class phpapps_database_table_fks_DDL_form{
 		if(count($this->errors) == 0) {	
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -239,6 +242,8 @@ class phpapps_database_table_fks_DDL_form{
 		if(count($this->errors) == 0) {
 			if( $this->globals->con->query($sql) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -266,6 +271,7 @@ class phpapps_database_table_fks_DDL_form{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -276,15 +282,15 @@ class phpapps_database_table_fks_DDL_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->ID  = addslashes(trim($_POST["ID"]));
-                        		                                                    $this->COLUMN_ID  = addslashes(trim($_POST["COLUMN_ID"]));
-                        		                                                    $this->FK_NAME  = addslashes(trim($_POST["FK_NAME"]));
-                        		                                                    $this->FK_TABLE_ID  = addslashes(trim($_POST["FK_TABLE_ID"]));
-                        		                                                    $this->FK_COLUMN_ID  = addslashes(trim($_POST["FK_COLUMN_ID"]));
-                        		                                                    $this->ON_UPDATE  = addslashes(trim($_POST["ON_UPDATE"]));
-                        		                                                    $this->ON_DELETE  = addslashes(trim($_POST["ON_DELETE"]));
-                        		                                                    $this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-                        		        }
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->COLUMN_ID  = htmlspecialchars(addslashes(trim($_POST["COLUMN_ID"])));
+                                                		                                                    $this->FK_NAME  = htmlspecialchars(addslashes(trim($_POST["FK_NAME"])));
+                                                		                                                    $this->FK_TABLE_ID  = htmlspecialchars(addslashes(trim($_POST["FK_TABLE_ID"])));
+                                                		                                                    $this->FK_COLUMN_ID  = htmlspecialchars(addslashes(trim($_POST["FK_COLUMN_ID"])));
+                                                		                                                    $this->ON_UPDATE  = htmlspecialchars(addslashes(trim($_POST["ON_UPDATE"])));
+                                                		                                                    $this->ON_DELETE  = htmlspecialchars(addslashes(trim($_POST["ON_DELETE"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -319,25 +325,19 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 					 
-								//$this->ON_UPDATE_sel = new DB_select("ON_UPDATE",".list_foreign_key_options");
-			$this->ON_UPDATE_sel->selected_val = $this->ON_UPDATE;
-			$this->ON_UPDATE_sel->setup_select_options();
-			 
-								//$this->ON_DELETE_sel = new DB_select("ON_DELETE",".list_foreign_key_options");
-			$this->ON_DELETE_sel->selected_val = $this->ON_DELETE;
-			$this->ON_DELETE_sel->setup_select_options();
-			 
+					 
+					 
 					 
 				
 					 
-									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".table_details");
-				$this->COLUMN_ID_sel->query = "SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM .table_details ORDER BY COLUMN_NAME";
+									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".phpapps.table_details");
+				$this->COLUMN_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM phpapps.table_details ORDER BY COLUMN_NAME");
 				$this->COLUMN_ID_sel->selected_val = $this->COLUMN_ID;
 				$this->COLUMN_ID_sel->setup_select_options();
 			 
 					 
-									//$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID",".tables");
-				$this->FK_TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM .tables ORDER BY TABLE_NAME";
+									//$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID",".phpapps.tables");
+				$this->FK_TABLE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME");
 				$this->FK_TABLE_ID_sel->selected_val = $this->FK_TABLE_ID;
 				$this->FK_TABLE_ID_sel->setup_select_options();
 			 
@@ -361,10 +361,8 @@ class phpapps_database_table_fks_DDL_form{
 						 
 						 
 						 
-										"ON_UPDATE_sel" => $this->ON_UPDATE_sel->get_select_str(),
-			 
-										"ON_DELETE_sel" => $this->ON_DELETE_sel->get_select_str(),
-			 
+						 
+						 
 						 
 									 
 										"COLUMN_ID_sel" => $this->COLUMN_ID_sel->get_select_str(),
@@ -390,7 +388,11 @@ class phpapps_database_table_fks_DDL_form{
 	function display(){	
                 $this->beforeDisplay();
 		$this->setup_display();
-		$this->globals->sm->display($this->template);
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -403,5 +405,11 @@ class phpapps_database_table_fks_DDL_form{
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

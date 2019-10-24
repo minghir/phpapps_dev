@@ -38,7 +38,8 @@ class phpapps_database_add_table_form{
 		 
 		 
 		 
-		 
+			public $TABLE_NAME_sel;
+	 
 		 
 	        
         
@@ -62,7 +63,8 @@ class phpapps_database_add_table_form{
 					 
 					 
 					 
-					 
+									$this->TABLE_NAME_sel = new DB_select("TABLE_NAME","phpapps.tables");
+                                			 
 					 
 		                
 	}
@@ -300,10 +302,17 @@ class phpapps_database_add_table_form{
 					 
 					 
 					 
-					 
+									//$this->TABLE_NAME_sel = new DB_select("TABLE_NAME",".phpapps.tables");
+				$this->TABLE_NAME_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME");
+				$this->TABLE_NAME_sel->selected_val = $this->TABLE_NAME;
+				$this->TABLE_NAME_sel->setup_select_options();
+			 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
 							"ORIGIN_ID" => $this->ORIGIN_ID,
@@ -321,7 +330,8 @@ class phpapps_database_add_table_form{
 						 
 						 
 						 
-						 
+										"TABLE_NAME_sel" => $this->TABLE_NAME_sel->get_select_str(),
+			 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
@@ -334,9 +344,11 @@ class phpapps_database_add_table_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
+		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
@@ -349,8 +361,8 @@ class phpapps_database_add_table_form{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}

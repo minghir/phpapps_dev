@@ -31,5 +31,15 @@
 		function getParams(){
 			return $this->paramaters;
 		}
+                
+                function prnt(){
+                    $str_to_print = $this->query_str;
+                    if(count($this->paramaters) > 0){
+                        foreach($this->paramaters as $key=>$value){
+                            $str_to_print =  str_replace($key, "'$value'", $str_to_print);
+                        }
+                    } 
+                    return $str_to_print;
+                }
 	};
 ?>

@@ -44,6 +44,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
 		}
 	
 		function beforeAddRec(){
+                    echo "AICIC";
                     $tbl = new DB_table("phpapps.view_table_details");
                     $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME"),"ID",$this->COLUMN_ID);
                     
@@ -119,16 +120,16 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                     if(!$this->table_definition->alterTblDropFK($arr["FK_NAME"])){
                         $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
                     }else{
-                        if(!$this->table_definition->alterTblDropIdx($arr["FK_NAME"])){
-                            $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
-                        }else{
+                       // if(!$this->table_definition->alterTblDropIdx($arr["FK_NAME"])){
+                       //     $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
+                       // }else{
                             $sql = new DB_query("DELETE FROM phpapps.table_indexes WHERE ID = :id",array(":id"=>$index_id));
                             print_r($sql);
                             if($this->globals->con->query($sql) == -1){
                                 $this->errors[] = "EROARE DELETE DIN table_indexes " . $this->globals->con->get_error();
                             }else{
                             }
-                        }
+                        //}
                     }
                 }
 		function afterDeleteRec(){
@@ -137,6 +138,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
 		}
 		
 		function beforeDisplay(){	
+                    
                     $this->TABLE_ID = $this->get_table_id;
                     $this->COLUMN_ID_sel->set_query( new DB_query(
                             "SELECT ID,"
@@ -144,18 +146,23 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                             . "FROM phpapps.view_table_details "
                             . "WHERE TABLE_ID = :table_id ORDER BY ORD",
                     array(":table_id"=>$this->TABLE_ID)));
-                    $this->COLUMN_ID_sel->set_empty_option(FALSE);
                     
+                    $this->COLUMN_ID_sel->set_empty_option(FALSE);
+                    $this->COLUMN_ID_sel->setup_select_options();
+                    
+                    /*
                     $this->FK_TABLE_ID_sel->set_query( new DB_query(
                             "SELECT ID AS ID,"
                             . "CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS VALUE "
                             . "FROM phpapps.view_tables "
-                            . "WHERE MODULE_ID = :module_id ORDER BY TABLE_TYPE,TABLE_NAME",
-                    array(":module_id"=>$this->MODULE_ID)));
+                            . "WHERE MODULE_ID = :module_id AND TABLE_ID = :table_id ORDER BY TABLE_TYPE,TABLE_NAME",
+                    array(":module_id"=>$this->MODULE_ID,":table_id"=>$this->TABLE_ID)));
                    // print_r($this->FK_TABLE_ID_sel->db_query);
                     $this->FK_TABLE_ID_sel->set_empty_option(FALSE);
                     
                     $this->FK_COLUMN_ID_sel;
+                     * 
+                     */
 		}
 		
 		function afterDisplay(){	

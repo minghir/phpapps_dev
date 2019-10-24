@@ -39,7 +39,7 @@ class DB_table_def{
                 $sql = new DB_query($this->globals->sm->fetch(
                          'string:'.  stripslashes((new DB_table("phpapps.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("phpapps.list_sql_sintax_types"))->getID($sql_sintax))))
                      );
-echo "<br><h1>".$sql->sql()."</h1><br>";
+echo "<br><h1>".$sql->prnt()."</h1><br>";
                if( $this->globals->con->query($sql) != -1){
                    return TRUE;
                }else{

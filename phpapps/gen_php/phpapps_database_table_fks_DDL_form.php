@@ -36,8 +36,10 @@ class phpapps_database_table_fks_DDL_form{
 		 
 		 
 		 
-		 
-		 
+			public $ON_UPDATE_sel;
+	 
+			public $ON_DELETE_sel;
+	 
 		 
 			
 		 
@@ -66,8 +68,10 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 					 
-					 
-					 
+								$this->ON_UPDATE_sel = new DB_select("ON_UPDATE","phpapps.list_foreign_key_options");
+                        			 
+								$this->ON_DELETE_sel = new DB_select("ON_DELETE","phpapps.list_foreign_key_options");
+                        			 
 					 
 				
 					 
@@ -325,8 +329,14 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 					 
-					 
-					 
+								//$this->ON_UPDATE_sel = new DB_select("ON_UPDATE",".phpapps.list_foreign_key_options");
+			$this->ON_UPDATE_sel->selected_val = $this->ON_UPDATE;
+			$this->ON_UPDATE_sel->setup_select_options();
+			 
+								//$this->ON_DELETE_sel = new DB_select("ON_DELETE",".phpapps.list_foreign_key_options");
+			$this->ON_DELETE_sel->selected_val = $this->ON_DELETE;
+			$this->ON_DELETE_sel->setup_select_options();
+			 
 					 
 				
 					 
@@ -347,6 +357,9 @@ class phpapps_database_table_fks_DDL_form{
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
 							"COLUMN_ID" => $this->COLUMN_ID,
@@ -361,8 +374,10 @@ class phpapps_database_table_fks_DDL_form{
 						 
 						 
 						 
-						 
-						 
+										"ON_UPDATE_sel" => $this->ON_UPDATE_sel->get_select_str(),
+			 
+										"ON_DELETE_sel" => $this->ON_DELETE_sel->get_select_str(),
+			 
 						 
 									 
 										"COLUMN_ID_sel" => $this->COLUMN_ID_sel->get_select_str(),
@@ -385,9 +400,11 @@ class phpapps_database_table_fks_DDL_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
+		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
@@ -400,8 +417,8 @@ class phpapps_database_table_fks_DDL_form{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}

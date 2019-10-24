@@ -311,6 +311,9 @@ class {$form_name}{ldelim}
 		{/section}
 	
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 			{section name=ds loop=$fields}
 				"{$fields[ds]}" => $this->{$fields[ds]},
@@ -336,9 +339,11 @@ class {$form_name}{ldelim}
 	function beforeDisplay(){ldelim}	
 	{rdelim}
 	
-	function display(){ldelim}	
+	function display(){ldelim}
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
+		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){ldelim}
                     $this->ajax_server_resp();
                 {rdelim}else{ldelim}
@@ -351,8 +356,8 @@ class {$form_name}{ldelim}
 	{rdelim}
 	
 	function get_html_str(){ldelim}	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	{rdelim}

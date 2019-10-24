@@ -20,15 +20,29 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
         $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA",$this->TABLE_ID);
         $this->TABLE_NAME = (new DB_table("view_tables"))->getValue("TABLE_NAME",$this->TABLE_ID);
         
-        $sql = new DB_query("DELETE FROM phpapps.table_details WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
+        // deleting Foreign KEYS
+        $sql = new DB_query("DELETE FROM phpapps.table_fks WHERE COLUMN_ID IN (SELECT ID FROM phpapps.table_details WHERE TABLE_ID = :table_id)",
+                    array(":table_id" => $this->TABLE_ID));
+        if( ( $del_nr_fks = $this->globals->con->query($sql) ) == -1 ){
+            echo "<h1> DEL FK ERROR:</h1><br>";
+        }
         
-        if( ( $nr_res = $this->globals->con->query($sql) ) == -1 ){
+        // deleting Foreign INDEXES
+        $sql = new DB_query("DELETE FROM phpapps.table_indexes WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
+        if( ( $del_nr_idxs = $this->globals->con->query($sql) ) == -1 ){
+            echo "<h1> DEL IDX ERROR:</h1><br>";
+        }
+        
+        // deleting TABLE DETAILS
+        $sql = new DB_query("DELETE FROM phpapps.table_details WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
+        if( ( $del_nr_cols = $this->globals->con->query($sql) ) == -1 ){
             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
             echo "<h1> DEL ERROR:<br>";
-            print_r($this->errors);
+            //print_r($this->errors);
+            echo "<br><h1>". $sql->prnt() ."</h1><br>";
 	}else{
                 echo "<br> DELETED $nr_res ";
-                // $sql = "",""
+                // insert COLUMNS  table_details
                  $sql = new DB_query( "INSERT INTO phpapps.table_details 
                         (TABLE_ID,
                          COLUMN_NAME,
@@ -59,18 +73,56 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                          NOW() AS MODIFY_DATE,
                          NOW() AS CREATE_DATE
                 FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = :table_name and table_schema = :schema_name",
-                       array(":table_id" => $this->TABLE_ID,
+                      array(":table_id" => $this->TABLE_ID,
                              ":table_name" => $this->TABLE_NAME,
                              ":schema_name" => $this->SCHEMA_NAME,
                              ":user_id" => $this->globals->USER_ID  ));
-                 print_r($sql);
-                 //
-                 if( $this->globals->con->query($sql) == -1 ){
+                
+                 echo "<br><h1>". $sql->prnt() ."</h1><br>";
+                
+                    
+                if( $ins_nr_cols = $this->globals->con->query($sql) == -1 ){
                     $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
-                    echo "<h1> ins ERROR:<br>";
-                    print_r($this->errors);
-                }else{
-                    echo "<br><h1>SUCCESS</h1>";
+                }
+                
+                // insert Foreign KEYS
+                $sql = new DB_query("INSERT INTO phpapps.table_fks (COLUMN_ID,FK_NAME,FK_TABLE_ID,FK_COLUMN_ID,MODIFY_UID,CREATE_UID,MODIFY_DATE,CREATE_DATE)
+                                    SELECT 
+                                    ( SELECT ID FROM phpapps.view_table_details WHERE phpapps.view_table_details.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_NAME AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.COLUMN_NAME = phpapps.view_table_details.COLUMN_NAME ) AS COLUMN_ID,
+                                    CONSTRAINT_NAME AS FK_NAME,
+                                    (SELECT ID FROM phpapps.tables WHERE phpapps.tables.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME AND ORIGIN_ID = '0') AS FK_TABLE_ID,
+                                    ( SELECT ID FROM phpapps.view_table_details WHERE phpapps.view_table_details.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME = phpapps.view_table_details.COLUMN_NAME ) AS FK_COLUMN_ID,
+	                            :user_id AS MODIFY_UID,
+                                    :user_id AS CREATE_UID,
+                                    NOW() AS MODIFY_DATE,
+                                    NOW() AS CREATE_DATE
+                                    FROM
+                                        INFORMATION_SCHEMA.KEY_COLUMN_USAGE where TABLE_SCHEMA = :schema_name AND table_name = :table_name AND REFERENCED_TABLE_NAME <> '' ",
+                        array(":table_id" => $this->TABLE_ID,
+                             ":table_name" => $this->TABLE_NAME,
+                             ":schema_name" => $this->SCHEMA_NAME,
+                             ":user_id" => $this->globals->USER_ID  ));
+                echo $sql->prnt();
+                if( $ins_nr_fks = $this->globals->con->query($sql) == -1 ){
+                    $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
+                }
+                /*
+                // insert INDEXEZ
+                $sql = new DB_query();
+                if( $ins_nr_idxs = $this->globals->con->query($sql) == -1 ){
+                    $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
+                }
+                 * 
+                 */
+                if(count($this->errors) == 0) {
+                    echo "<br><h1>SUCCESS:<br>"
+                    . " - DELETED: $del_nr_cols COLS<br>"
+                    . " - DELETED: $del_nr_fks FKS<br>"
+                    . " - DELETED: $del_nr_idxs IDXS<br>"
+                    . " - INSERTED: $ins_nr_cols COLS<br>"
+                    . " - INSERTED: $ins_nr_fks FKS<br>"
+                    . " - INSERTED: $ins_nr_idxs IDXS<br>"
+                    . "    </h1>";
                 }
         }
         echo "<h1>" . $this->SCHEMA_NAME .".".$this->TABLE_NAME."</h1><br>";

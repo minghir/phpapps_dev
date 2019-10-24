@@ -1,10 +1,3 @@
-<script>
-function submitDetailsForm(op){
-		$("#pact").val(op);
-		$("#phpapps_database_add_table_form").submit();
-}
-</script>
-
 {$error_msg}
 <hr><form name="phpapps_database_add_table_form" id="phpapps_database_add_table_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">

@@ -307,13 +307,16 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 									//$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS",".phpapps.table_details");
-				$this->INDEX_COLUMNS_sel->db_query = new DB_query("SELECT ID AS VALUE,  AS LABEL FROM phpapps.table_details ORDER BY ");
+				$this->INDEX_COLUMNS_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM phpapps.table_details ORDER BY COLUMN_NAME");
 				$this->INDEX_COLUMNS_sel->selected_val = $this->INDEX_COLUMNS;
 				$this->INDEX_COLUMNS_sel->setup_select_options();
 			 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
 							"TABLE_ID" => $this->TABLE_ID,
@@ -346,9 +349,11 @@ class phpapps_database_table_indexes_DDL_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
+		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
@@ -361,8 +366,8 @@ class phpapps_database_table_indexes_DDL_form{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}

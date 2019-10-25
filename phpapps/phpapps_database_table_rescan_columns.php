@@ -37,9 +37,9 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
         $sql = new DB_query("DELETE FROM phpapps.table_details WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_cols = $this->globals->con->query($sql) ) == -1 ){
             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
-            echo "<h1> DEL ERROR:<br>";
+            //echo "<h1> DEL ERROR:<br>";
             //print_r($this->errors);
-            echo "<br><h1>". $sql->prnt() ."</h1><br>";
+            //echo "<br><h1>". $sql->prnt() ."</h1><br>";
 	}else{
                 echo "<br> DELETED $nr_res ";
                 // insert COLUMNS  table_details
@@ -78,7 +78,7 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                              ":schema_name" => $this->SCHEMA_NAME,
                              ":user_id" => $this->globals->USER_ID  ));
                 
-                 echo "<br><h1>". $sql->prnt() ."</h1><br>";
+                 //echo "<br><h1>". $sql->prnt() ."</h1><br>";
                 
                     
                 if( $ins_nr_cols = $this->globals->con->query($sql) == -1 ){
@@ -102,18 +102,61 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                              ":table_name" => $this->TABLE_NAME,
                              ":schema_name" => $this->SCHEMA_NAME,
                              ":user_id" => $this->globals->USER_ID  ));
-                echo $sql->prnt();
+                //echo $sql->prnt();
                 if( $ins_nr_fks = $this->globals->con->query($sql) == -1 ){
                     $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
                 }
-                /*
+                
                 // insert INDEXEZ
-                $sql = new DB_query();
+                $sql = new DB_query("INSERT INTO phpapps.table_indexes (
+                                            TABLE_ID,	
+                                            INDEX_NAME,	
+                                            INDEX_TYPE_ID,	
+                                            INDEX_COLUMNS,	
+                                            DESCRIPTION,	
+                                            MODIFY_UID,	CREATE_UID,	
+                                            MODIFY_DATE,	
+                                            CREATE_DATE)
+                                    SELECT 
+                                        :table_id AS TABLE_ID,
+                                        s.INDEX_NAME,
+                                        (SELECT i.ID FROM phpapps.list_index_types i WHERE i.VALUE =  IF(s.INDEX_NAME = 'PRIMARY','PRIMARY',IF(s.NON_UNIQUE = 1,IF(s.INDEX_TYPE = 'FULLTEXT','FULLTEXT','INDEX'),'UNIQUE')) ) AS INDEX_TYPE,
+                                        GROUP_CONCAT(s.COLUMN_NAME) AS INDEX_COLUMNS,
+                                        s.COMMENT AS DESCRIPTION,
+                                        :user_id AS MODIFY_UID,
+                                        :user_id AS CREATE_UID,
+                                        NOW() AS MODIFY_DATE,
+                                        NOW() AS CREATE_DATE
+                                    FROM INFORMATION_SCHEMA.STATISTICS s
+                                    WHERE s.TABLE_SCHEMA = :schema_name AND s.TABLE_NAME = :table_name GROUP BY s.INDEX_NAME",
+                                    array(":table_id" => $this->TABLE_ID,
+                             ":table_name" => $this->TABLE_NAME,
+                             ":schema_name" => $this->SCHEMA_NAME,
+                             ":user_id" => $this->globals->USER_ID  ));
+                
+/*SELECT 
+                                        :table_id AS TABLE_ID,
+                                        s.INDEX_NAME,
+                                        IF(s.index_name = 'PRIMARY','PRIMARY',if(s.NON_UNIQUE = 1,IF(s.INDEX_TYPE = 'FULLTEXT','FULLTEXT','INDEX'),'UNIQUE')) AS INDEX_TYPE,
+                                        GROUP_CONCAT(\"'\",s.COLUMN_NAME,\"'\") AS INDEX_COLUMNS,
+--	(SELECT td.ID  from phpapps.table_details td 
+			-- WHERE  td.TABLE_ID ='275' AND td.COLUMN_NAME IN  
+				--		(SELECT bb.COLUMN_NAME FROM INFORMATION_SCHEMA.STATISTICS bb WHERE bb.INDEX_NAME = s.INDEX_NAME )) AS INDEX_COLUMNS
+                                        s.COMMENT AS DESCRIPTION,
+                                        :user_id AS MODIFY_UID,
+                                        :user_id AS CREATE_UID,
+                                        NOW() AS MODIFY_DATE,
+                                        NOW() AS CREATE_DATE
+                                    FROM INFORMATION_SCHEMA.STATISTICS s
+                                    WHERE s.TABLE_SCHEMA = :schema_name AND s.TABLE_NAME = :table_name GROUP BY s.INDEX_NAME;", */                
+                
+                
+                echo $sql->prnt();
+                
                 if( $ins_nr_idxs = $this->globals->con->query($sql) == -1 ){
                     $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
                 }
-                 * 
-                 */
+                
                 if(count($this->errors) == 0) {
                     echo "<br><h1>SUCCESS:<br>"
                     . " - DELETED: $del_nr_cols COLS<br>"

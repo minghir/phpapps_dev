@@ -78,7 +78,7 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                              ":schema_name" => $this->SCHEMA_NAME,
                              ":user_id" => $this->globals->USER_ID  ));
                 
-                 //echo "<br><h1>". $sql->prnt() ."</h1><br>";
+                 echo "<br><h1>". $sql->prnt() ."</h1><br>";
                 
                     
                 if( $ins_nr_cols = $this->globals->con->query($sql) == -1 ){
@@ -128,7 +128,7 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                                         NOW() AS MODIFY_DATE,
                                         NOW() AS CREATE_DATE
                                     FROM INFORMATION_SCHEMA.STATISTICS s
-                                    WHERE s.TABLE_SCHEMA = :schema_name AND s.TABLE_NAME = :table_name GROUP BY s.INDEX_NAME",
+                                    WHERE s.TABLE_SCHEMA = :schema_name AND s.TABLE_NAME = :table_name GROUP BY s.INDEX_NAME,s.NON_UNIQUE,s.INDEX_TYPE,s.COMMENT",
                                     array(":table_id" => $this->TABLE_ID,
                              ":table_name" => $this->TABLE_NAME,
                              ":schema_name" => $this->SCHEMA_NAME,
@@ -166,6 +166,8 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                     . " - INSERTED: $ins_nr_fks FKS<br>"
                     . " - INSERTED: $ins_nr_idxs IDXS<br>"
                     . "    </h1>";
+                }else{
+                    print_r($this->errors);
                 }
         }
         echo "<h1>" . $this->SCHEMA_NAME .".".$this->TABLE_NAME."</h1><br>";

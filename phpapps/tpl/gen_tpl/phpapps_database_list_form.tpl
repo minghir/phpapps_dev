@@ -1,11 +1,3 @@
-{literal}
-<script>
-function submitDetailsForm(op){
-		$("#pact").val(op);
-		$("#phpapps_database_list_form").submit();
-}
-  </script>
-{/literal}
 {$error_msg}
 <hr><form name="phpapps_database_list_form" id="phpapps_database_list_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
@@ -18,18 +10,18 @@ function submitDetailsForm(op){
 										<input id="ID" type="hidden" name="ID" value="{$ID}">
         								
 			
-		
-						 
+		                
+		                				 
 				<tr><td align="right">VALUE :</td><td> <input type="text" id="VALUE" name="VALUE" value="{$VALUE}"></td></tr>
 																
 			
-		
-						 
+		                
+		                				 
 								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			
-		
-						{$FROM_IMP_CLASS}
+		                
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

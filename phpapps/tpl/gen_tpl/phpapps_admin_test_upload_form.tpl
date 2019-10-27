@@ -1,5 +1,5 @@
 {$error_msg}
-<hr><form name="phpapps_admin_test2_form" id="phpapps_admin_test2_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_admin_test_upload_form" id="phpapps_admin_test_upload_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -7,15 +7,15 @@
 	<table border="1">
 	
 		 
-										<input id="ID" type="hidden" name="ID" value="{$ID}">
-        								
+				<tr><td align="right">ID :</td><td> <input type="text" id="ID" name="ID" value="{$ID}"></td></tr>
+																
 			
 		                
 		                				 
 																
 			
 		                
-		                				<tr><td align="right">nume :</td><td> <input type="file" id="nume" name="nume" value="{$nume}"></td></tr>
+		                				<tr><td align="right">UPLD_FILE :</td><td> <input type="file" id="UPLD_FILE" name="UPLD_FILE" value="{$UPLD_FILE}"></td></tr>
 				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

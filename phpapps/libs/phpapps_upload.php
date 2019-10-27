@@ -37,10 +37,12 @@ class phpapps_upload {
         }
         
         function upload(){
+            print_r($_FILES);
             return move_uploaded_file($_FILES[$this->post_var]["tmp_name"], $this->file_path . $this->file_name );
         }
         
         function getFilePath(){
+            
             return $this->file_path . $this->file_name;
         }
 }

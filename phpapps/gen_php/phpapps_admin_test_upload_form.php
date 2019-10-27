@@ -2,12 +2,12 @@
 // includes
 require_once ("globals.php");
 
-class phpapps_admin_test2_form{
+class phpapps_admin_test_upload_form{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "test2";
-	public $template = "gen_tpl/phpapps_admin_test2_form.tpl";
+	public $form_table = "test_upload";
+	public $template = "gen_tpl/phpapps_admin_test_upload_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -17,7 +17,7 @@ class phpapps_admin_test2_form{
 	            
 	public $ID;
         	            
-	public $nume;
+	public $UPLD_FILE;
         		
 		 
 		 
@@ -59,7 +59,7 @@ class phpapps_admin_test2_form{
 	function getRec(){
 		$sql = new DB_query( "SELECT 
 									ID,
-												nume
+												UPLD_FILE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -67,7 +67,7 @@ class phpapps_admin_test2_form{
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
+                                			                                                                $this->UPLD_FILE = stripslashes($this->globals->con->get_field("UPLD_FILE"));
                                 						
 	}
 	
@@ -82,13 +82,13 @@ class phpapps_admin_test2_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					nume
+																					UPLD_FILE
 										 ) VALUES (
-																					:nume
+																					:UPLD_FILE
 													)",
 			array(
 																		                                            
-                                            ":nume" => $this->nume,
+                                            ":UPLD_FILE" => $this->UPLD_FILE,
                                         												)
 			);
 
@@ -117,12 +117,12 @@ class phpapps_admin_test2_form{
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												nume = :nume
+												UPLD_FILE = :UPLD_FILE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":nume" => $this->nume,
+                                        				                                                                                    ":UPLD_FILE" => $this->UPLD_FILE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -194,13 +194,10 @@ class phpapps_admin_test2_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		            $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                            $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
-                            print_r($_FILES);
-                            $tmp_upload = new phpapps_upload("nume");
-                            $this->nume = $tmp_upload->getFilePath();
-                            
-                            echo "INCARC:" . $this->nume;
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->UPLD_FILE  = htmlspecialchars(addslashes(trim($_POST["UPLD_FILE"])));
+                                                                            $tmp_upload = new phpapps_upload(UPLD_FILE);
+                            $this->UPLD_FILE = $tmp_upload->getFilePath();
                             unset($tmp_upload);
                         		        }
 		
@@ -220,8 +217,8 @@ class phpapps_admin_test2_form{
 	}
 	
 	function check_errors(){
-				if($this->nume == "") {
-			$this->errors[] = "Campul nume este obligatoriu!";
+				if($this->UPLD_FILE == "") {
+			$this->errors[] = "Campul UPLD_FILE este obligatoriu!";
 		}
 			}
 	
@@ -238,7 +235,7 @@ class phpapps_admin_test2_form{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"nume" => $this->nume,
+							"UPLD_FILE" => $this->UPLD_FILE,
 									 
 						 
 									 

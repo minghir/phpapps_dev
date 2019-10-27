@@ -45,6 +45,10 @@ include ("gen_php/phpapps_database_tables_form.php");
                             echo "AICI EROARE 2" . "SQL error: (".$sql->sql().")" . $this->table_definition->getErrors() ."<br>";
                         }
                         
+                        if($this->ORIGIN_ID == ""){
+                            $this->ORIGIN_ID = 0;
+                        }
+                        
                         if(count($this->errors) > 0){
                             $this->table_definition->dropTable();
                         }

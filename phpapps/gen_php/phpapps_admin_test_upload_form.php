@@ -17,7 +17,7 @@ class phpapps_admin_test_upload_form{
 	            
 	public $ID;
         	            
-	public $UPLD_FILE;
+	public $upload_file;
         		
 		 
 		 
@@ -59,7 +59,7 @@ class phpapps_admin_test_upload_form{
 	function getRec(){
 		$sql = new DB_query( "SELECT 
 									ID,
-												UPLD_FILE
+												upload_file
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -67,7 +67,7 @@ class phpapps_admin_test_upload_form{
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->UPLD_FILE = stripslashes($this->globals->con->get_field("UPLD_FILE"));
+                                			                                                                $this->upload_file = stripslashes($this->globals->con->get_field("upload_file"));
                                 						
 	}
 	
@@ -82,13 +82,13 @@ class phpapps_admin_test_upload_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					UPLD_FILE
+																					upload_file
 										 ) VALUES (
-																					:UPLD_FILE
+																					:upload_file
 													)",
 			array(
 																		                                            
-                                            ":UPLD_FILE" => $this->UPLD_FILE,
+                                            ":upload_file" => $this->upload_file,
                                         												)
 			);
 
@@ -117,12 +117,12 @@ class phpapps_admin_test_upload_form{
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												UPLD_FILE = :UPLD_FILE
+												upload_file = :upload_file
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":UPLD_FILE" => $this->UPLD_FILE,
+                                        				                                                                                    ":upload_file" => $this->upload_file,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -195,9 +195,9 @@ class phpapps_admin_test_upload_form{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->UPLD_FILE  = htmlspecialchars(addslashes(trim($_POST["UPLD_FILE"])));
-                                                                            $tmp_upload = new phpapps_upload(UPLD_FILE);
-                            $this->UPLD_FILE = $tmp_upload->getFilePath();
+                                                		                                                    $this->upload_file  = htmlspecialchars(addslashes(trim($_POST["upload_file"])));
+                                                                            $tmp_upload = new phpapps_upload(upload_file);
+                            $this->upload_file = $tmp_upload->getFilePath();
                             unset($tmp_upload);
                         		        }
 		
@@ -217,8 +217,8 @@ class phpapps_admin_test_upload_form{
 	}
 	
 	function check_errors(){
-				if($this->UPLD_FILE == "") {
-			$this->errors[] = "Campul UPLD_FILE este obligatoriu!";
+				if($this->upload_file == "") {
+			$this->errors[] = "Campul upload_file este obligatoriu!";
 		}
 			}
 	
@@ -235,7 +235,7 @@ class phpapps_admin_test_upload_form{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"UPLD_FILE" => $this->UPLD_FILE,
+							"upload_file" => $this->upload_file,
 									 
 						 
 									 

@@ -9,11 +9,12 @@ include ("gen_php/phpapps_database_list_form.php");
                         $this->form_table = $_GET["list_name"];
                         echo "<h1>" .$this->table ."</h1><br>";
                         $sql = new DB_query("SELECT TABLE_SCHEMA FROM phpapps.view_tables"
-                                . " WHERE TABLE_NAME = :tbl_name AND ORIGIN_ID = '0'", array(":tbl_name"=>$this->table));
-                        print_r($sql);
+                                . " WHERE TABLE_NAME = :tbl_name AND ORIGIN_ID = '0'", array(":tbl_name"=>$this->form_table));
+                        echo $sql->prnt();
                         $this->globals->con->query($sql);	
                         $this->globals->con->next();
                         $this->schema = $this->globals->con->get_field("TABLE_SCHEMA");
+                        $this->form_schema = $this->globals->con->get_field("TABLE_SCHEMA");
                         //echo "AICI:" . $this->schema;
 			$this->init();
 			$this->display();

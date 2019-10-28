@@ -67,7 +67,7 @@
 		</td></tr>
         {/if}
 		{if $input_types[fl] == "file" }
-		<tr><td align="right">{$labels[fl]} :</td><td> <input type="file" id="{$fields[fl]}" name="{$fields[fl]}" value="{literal}{${/literal}{$fields[fl]}}"></td></tr>
+		<tr><td align="right">{$labels[fl]} :</td><td> <input type="file" id="{$fields[fl]}" name="{$fields[fl]}" value="{literal}{${/literal}{$fields[fl]}}"><a href="{literal}{${/literal}{$fields[fl]}}">{literal}{${/literal}{$fields[fl]}}</a></td></tr>
 		{/if}
 	{/section}
 	{ldelim}$FROM_IMP_CLASS{rdelim}

@@ -365,7 +365,7 @@ REFERENCE_FIELD
 							
 							));
 			$this->globals->con->query($sql);
-				
+			echo $sql->prnt();	
 			$sql = new DB_query("SELECT ID FROM phpapps.forms
 									WHERE FORM_NAME = :form_name AND
 											MODULE_ID = :module_id",

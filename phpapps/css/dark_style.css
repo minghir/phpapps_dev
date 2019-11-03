@@ -13,12 +13,14 @@ p{
         background-color: #12363b;
 }
 body {
+        color: #ffffff;
         background: #12363b;
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
 	font-size: 100%;
 }
 
 table {
+        color: #ffffff;
         background-color: #12363b;
 	border: 1px "BFD4FF";
 	border-collapse:collapse;
@@ -66,7 +68,7 @@ table,td,th {
 .adm_mod_div{
 	/*border:1px solid #a1a1a1;*/
 	padding:10px 10px; 
-	background:white;
+	background-color:#12363b;
 	width:100%;
 	height:70%;
 	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";

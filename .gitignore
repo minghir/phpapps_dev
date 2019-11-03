@@ -2,3 +2,5 @@
 /phpapps/tmp/
 /phpapps/tpl_c/
 /phpapps/lib/DB/DB_cfg.php
+/emanag/
+/phpapps/user_data/

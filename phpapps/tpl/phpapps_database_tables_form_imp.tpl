@@ -139,9 +139,7 @@
         <div id="tab3" class="adm_mod_div">{$table_idx_grid}</div>
         <div id="tab4" ><textarea id="code" name="code">{$show_create_table}</textarea></div>
         <div id="tab5" >
-            <a href="phpapps_database_table_rescan_columns.php?gfield=ID&gfield_value={$table_id}">rescan columns</a> <br>
-            <a href="phpapps_database_table_rescan_indexes.php?gfield=ID&gfield_value={$table_id}">rescan indexes</a> <br>
-            <a href="phpapps_database_table_rescan_FKs.php?gfield=ID&gfield_value={$table_id}">rescan FKs</a> <br>
+            <h1><a href="phpapps_database_table_rescan_columns.php?gfield=ID&gfield_value={$table_id}">rescan columns</a> </h1>
         </div>
         
 

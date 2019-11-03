@@ -7,15 +7,15 @@
 	<table border="1">
 	
 		 
-				<tr><td align="right">ID :</td><td> <input type="text" id="ID" name="ID" value="{$ID}"></td></tr>
-																
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
 			
 		                
 		                				 
 																
 			
 		                
-		                				<tr><td align="right">UPLD_FILE :</td><td> <input type="file" id="UPLD_FILE" name="UPLD_FILE" value="{$UPLD_FILE}"></td></tr>
+		                				<tr><td align="right">upload_file :</td><td> <input type="file" id="upload_file" name="upload_file" value="{$upload_file}"><a href="{$upload_file}">{$upload_file}</a></td></tr>
 				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

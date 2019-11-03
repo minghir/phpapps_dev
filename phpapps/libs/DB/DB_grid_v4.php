@@ -253,8 +253,7 @@ echo"</h1><br>----------------<br>";
 //print_r($this->query);
 			//$sql = new DB_query($this->query);
 			
-			$this->con->query($this->query, $this->db_grid_name);
-			
+			$nr_res = $this->con->query($this->query, $this->db_grid_name);
 			
                         if($this->grid_type == "query"){
                             for($i = 0;$i <= $this->con->get_num_fields($this->db_grid_name) - 1; $i++){ // fara ultimul camp care este id
@@ -362,7 +361,7 @@ echo"</h1><br>----------------<br>";
 					$this->setup_grid();
 				break;
 				case "query":
-                    $this->setup_query_query();
+                    //$this->setup_query_query();
 					$this->setup_grid();
 				break;
 				default:

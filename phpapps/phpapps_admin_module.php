@@ -127,6 +127,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$tables_grid->add_row_acction($dt);
                  * 
                  */
+                
+                
 	
 		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
@@ -234,6 +236,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
 		$this->globals->sm->assign("scripts_grid",$scripts_grid->get_grid_str());
 		
+                print_r($tables_grid->query->prnt());
+                
 		$this->globals->sm->assign("module",$this);
 		$this->globals->sm->display("phpapps_admin_module.tpl");
 	}

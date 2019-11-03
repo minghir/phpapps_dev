@@ -15,11 +15,8 @@ class auth{
         
         $this->script_name =  basename($_SERVER["SCRIPT_FILENAME"],".php");
         
-        //echo $this->script_name . "<br>";
-        
         $tst = new DB_table("scripts");
         $tst->globals = $this->globals;
-       // echo $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name);
         if( $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name) == 2 ){
             $this->public_script = true;
         }else{
@@ -34,16 +31,10 @@ class auth{
         }else{
             if($this->check_session()){
                 if(!isset($_SESSION["_USER_ID"])){
-                   // if($_POST["user"] != "" && $_POST["pass"] != ""){
                         $this->login();
-                    //}else{
-                    //    $this->logout();
-                    //}
                 }else{
-                    //print_r($_SESSION);
                     $_USER_ID = $_SESSION["_USER_ID"]; 
                     $this->globals->USER_ID = $_USER_ID;
-                    //echo "<h2>$_USER_ID</h2>";
                 }
         
                 $this->check_session();
@@ -76,7 +67,6 @@ class auth{
     }
     
     function logout(){
-        //session_start();
         session_destroy();
         $this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );
         exit;

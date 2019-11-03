@@ -1,4 +1,4 @@
- <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}style.css" /> 
+ <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}{$THEME_CSS}" /> 
 <!-- <link rel="stylesheet" href="{$smarty.const.JQUERY_PATH}jquery-ui.css" /> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <script src="{$smarty.const.JQUERY_FILE}"></script>

@@ -1,9 +1,10 @@
 <?php
 require_once ("globals.php");
-
-class phpapps_applications{
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+class phpapps_applications extends phpapps_display_abs{
 	
 	public function __construct($uid){
+             parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = $GLOBALS_OBJ;
 		$this->globals->con->select_db("phpapps");

@@ -117,8 +117,8 @@ class Globals_obj{
 		$this->set_paths();
 		
 		require_once(PHPAPPS_LIBS_DIR . 'phpapps_upload.php');
-                //require_once(CURRENT_APP_LIBS_DIR. 'auth.php');
                 require_once(PHPAPPS_LIBS_DIR . 'auth.php');
+                require_once(PHPAPPS_LIBS_DIR . 'user_profile.php');
 		require_once(DB_LIBS_DIR . 'DB_PDO.php');
 		require_once(SMARTY_LIBS_DIR . 'Smarty.class.php');
                 
@@ -129,8 +129,8 @@ class Globals_obj{
 		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
 		$this->con->clear_log();
 		$this->con->connect("mysql");
-        $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
-        $this->con->query($sql);
+                $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
+                $this->con->query($sql);
 		
 		
 		$this->con2 = new DB(DB_LIBS_DIR . "DB_cfg.php");
@@ -142,7 +142,7 @@ class Globals_obj{
 	//print_r($this->con);	
 		$this->sm = new Smarty;
 		//$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;
-        $this->sm->template_dir = CURRENT_APP_TPL_DIR;
+                $this->sm->template_dir = CURRENT_APP_TPL_DIR;
                 
 		$this->sm->compile_dir = SMARTY_COMPILE_DIR;
 		//$this->sm->config_dir = 'configs/';
@@ -158,6 +158,7 @@ class Globals_obj{
                 
                 $this->ath = new auth($this);
                 $this->ath->authenticate();
+                $user_profile = new user_profile($this, $_USER_ID);
 	}
 	
 	function set_paths(){

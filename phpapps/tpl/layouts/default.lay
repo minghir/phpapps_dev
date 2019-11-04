@@ -2,6 +2,8 @@
     <head>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}style.css" /> -->
+        
+        <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}{$THEME_CSS}" /> 
         <link rel="stylesheet" href="{$smarty.const.JQUERY_UI_CSS}" />
 
         <link rel="stylesheet" href="http://localhost:89/phpapps_dev/phpapps/3rd_party/JS/popelt/css/normalize.css" />

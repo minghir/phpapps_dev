@@ -86,3 +86,34 @@ table,td,th {
     display: inline-block;
     font-size: 16px;
 }
+
+
+/* vertical menu style */
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a.main {
+  background-color: #999;
+  font-size: 16px;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #ccc;
+  color: white;
+}

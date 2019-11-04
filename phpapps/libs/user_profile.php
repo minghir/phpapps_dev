@@ -9,7 +9,7 @@
 class user_profile{
         public $globals;
         public $USER_THEME_NAME = "DARK";
-        public $THEME_CSS = "style.css";
+        public $THEME_CSS = "dark_style.css";
         private $user_id;
                 
         function __construct($glb, $usr_id){

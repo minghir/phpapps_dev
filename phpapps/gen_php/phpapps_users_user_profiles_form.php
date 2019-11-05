@@ -3,9 +3,10 @@
 require_once ("globals.php");
 
 class phpapps_users_user_profiles_form{
-	private $globals;
-	public $schema = "phpapps";
-	public $table = "user_profiles";
+        public $form_com_type = "html"; // html | ajax
+	public $globals;
+	public $form_schema = "phpapps";
+	public $form_table = "user_profiles";
 	public $template = "gen_tpl/phpapps_users_user_profiles_form.tpl";
 	//get values
 	public $gact;
@@ -13,49 +14,91 @@ class phpapps_users_user_profiles_form{
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $SCRIPT_ID;
-		public $PROFILE_NAME;
-		public $THEME;
-		
+	            
+	public $SCRIPT_ID;
+        	            
+	public $PROFILE_NAME;
+        	            
+	public $THEME;
+        	            
+	public $USER_ID;
+        	            
+	public $THEME_ID;
+        		
+		 
+		 
 		 
 		 
 		 
 			
-			public $SCRIPT_ID_sel;
+		 
+		 
+		 
+			public $USER_ID_sel;
 	 
 		 
-		 
-	
+	        
+        
+
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
-	function __contruct(){
+	function __construct(){
+		global $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
+                
+                			 
+					 
+					 
+					 
+					 
+				
+					 
+					 
+					 
+									$this->USER_ID_sel = new DB_select("USER_ID","phpapps.users");
+                                			 
+					 
+		                
 	}
 		
 	function init(){
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$this->parsePostVars();
+                        $this->takePostActions();
 		} else {
 			$this->parseGetVars();
+                        $this->takeGetActions();
 		}
+	}
+	
+	function beforeGetRec(){
 	}
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
 									SCRIPT_ID,
 												PROFILE_NAME,
-												THEME
+												THEME,
+												USER_ID,
+												THEME_ID
 							
-				FROM ".$this->schema.".".$this->table." WHERE ".$this->gfield." = '".$this->gfield_value."'");
-			$this->globals->con->query($sql->sql());
+				FROM ".$this->form_schema.".".$this->form_table." 
+				WHERE ".$this->gfield." = :".$this->gfield." ",
+				array((":".$this->gfield) => $this->gfield_value));
+			$this->globals->con->query($sql);
 			$this->globals->con->next();
-							$this->SCRIPT_ID = $this->globals->con->get_field("SCRIPT_ID");
-							$this->PROFILE_NAME = $this->globals->con->get_field("PROFILE_NAME");
-							$this->THEME = $this->globals->con->get_field("THEME");
-						
+			                                                                $this->SCRIPT_ID = stripslashes($this->globals->con->get_field("SCRIPT_ID"));
+                                			                                                                $this->PROFILE_NAME = stripslashes($this->globals->con->get_field("PROFILE_NAME"));
+                                			                                                                $this->THEME = stripslashes($this->globals->con->get_field("THEME"));
+                                			                                                                $this->USER_ID = stripslashes($this->globals->con->get_field("USER_ID"));
+                                			                                                                $this->THEME_ID = stripslashes($this->globals->con->get_field("THEME_ID"));
+                                						
 	}
 	
+	function afterGetRec(){
+	}
 	
 	function beforeAddRec(){
 	}
@@ -64,25 +107,46 @@ class phpapps_users_user_profiles_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
-									SCRIPT_ID,
-												PROFILE_NAME,
-												THEME
-						 ) VALUES (
-									'$this->SCRIPT_ID',
-												'$this->PROFILE_NAME',
-												'$this->THEME'
-									)");
+		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+															SCRIPT_ID,
+																						PROFILE_NAME,
+																						THEME,
+																						USER_ID,
+																						THEME_ID
+										 ) VALUES (
+															:SCRIPT_ID,
+																						:PROFILE_NAME,
+																						:THEME,
+																						:USER_ID,
+																						:THEME_ID
+													)",
+			array(
+									                                            
+                                            ":SCRIPT_ID" => $this->SCRIPT_ID,
+                                        														                                            
+                                            ":PROFILE_NAME" => $this->PROFILE_NAME,
+                                        														                                            
+                                            ":THEME" => $this->THEME,
+                                        														                                            
+                                            ":USER_ID" => $this->USER_ID,
+                                        														                                            
+                                            ":THEME_ID" => $this->THEME_ID,
+                                        												)
+			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->exec($sql->sql());
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
+                        }
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -92,22 +156,38 @@ class phpapps_users_user_profiles_form{
 		$this->beforeSaveRec();
 		
 		$this->check_errors();
-		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
-									SCRIPT_ID = '$this->SCRIPT_ID',
-												PROFILE_NAME = '$this->PROFILE_NAME',
-												THEME = '$this->THEME'
+		
+		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+									SCRIPT_ID = :SCRIPT_ID,
+												PROFILE_NAME = :PROFILE_NAME,
+												THEME = :THEME,
+												USER_ID = :USER_ID,
+												THEME_ID = :THEME_ID
 							
-				WHERE ".$this->gfield." = '".$this->gfield_value."'");
+				WHERE ".$this->gfield." = :".$this->gfield,
+			array(	
+				                                                                                    ":SCRIPT_ID" => $this->SCRIPT_ID,
+                                        				                                                                                    ":PROFILE_NAME" => $this->PROFILE_NAME,
+                                        				                                                                                    ":THEME" => $this->THEME,
+                                        				                                                                                    ":USER_ID" => $this->USER_ID,
+                                        				                                                                                    ":THEME_ID" => $this->THEME_ID,
+                                        								":".$this->gfield => $this->gfield_value
+			)	
+			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->exec($sql->sql());
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
+                        }
 		};
 		
 		$this->afterSaveRec();
 	}
 	
 	function afterSaveRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 
 	function beforeDeleteRec(){
@@ -116,30 +196,42 @@ class phpapps_users_user_profiles_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
-				WHERE ".$this->gfield." = '".$this->gfield_value."'");
-		$this->globals->con->exec($sql->sql());
+		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
+				
+		if(count($this->errors) == 0) {
+			if( $this->globals->con->query($sql) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
+                        }
+		}
 		
 		$this->afterDeleteRec();
 	}
 	
 	function afterDeleteRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
 		$this->gact = trim($_GET["gact"]);
 		$this->gfield = trim($_GET["gfield"]);
 		$this->gfield_value = trim($_GET["gfield_value"]);
-		
+        }
+        
+        function takeGetActions(){
 			switch($this->gact){
 			case "editRec":
+				$this->beforeGetRec();
 				$this->getRec();
+				$this->afterGetRec();
 			break;
 			case "deleteRec":
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -150,10 +242,14 @@ class phpapps_users_user_profiles_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->SCRIPT_ID  = addslashes(trim($_POST["SCRIPT_ID"]));
-					$this->PROFILE_NAME  = addslashes(trim($_POST["PROFILE_NAME"]));
-					$this->THEME  = addslashes(trim($_POST["THEME"]));
-				
+		                                                    $this->SCRIPT_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_ID"])));
+                                                		                                                    $this->PROFILE_NAME  = htmlspecialchars(addslashes(trim($_POST["PROFILE_NAME"])));
+                                                		                                                    $this->THEME  = htmlspecialchars(addslashes(trim($_POST["THEME"])));
+                                                		                                                    $this->USER_ID  = htmlspecialchars(addslashes(trim($_POST["USER_ID"])));
+                                                		                                                    $this->THEME_ID  = htmlspecialchars(addslashes(trim($_POST["THEME_ID"])));
+                                                		        }
+		
+        function takePostActions(){
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -178,26 +274,39 @@ class phpapps_users_user_profiles_form{
 					 
 					 
 					 
-				
-									$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID","phpapps.scripts");
-				$this->SCRIPT_ID_sel->query = "SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM phpapps.scripts ORDER BY SCRIPT_NAME";
-				$this->SCRIPT_ID_sel->selected_val = $this->SCRIPT_ID;
-				$this->SCRIPT_ID_sel->setup_select_options();
-			 
 					 
+					 
+				
+					 
+					 
+					 
+									//$this->USER_ID_sel = new DB_select("USER_ID",".phpapps.users");
+				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME");
+				$this->USER_ID_sel->selected_val = $this->USER_ID;
+				$this->USER_ID_sel->setup_select_options();
+			 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"SCRIPT_ID" => $this->SCRIPT_ID,
 							"PROFILE_NAME" => $this->PROFILE_NAME,
 							"THEME" => $this->THEME,
+							"USER_ID" => $this->USER_ID,
+							"THEME_ID" => $this->THEME_ID,
 									 
 						 
 						 
-													"SCRIPT_ID_sel" => $this->SCRIPT_ID_sel->get_select_str(),
-			 
 						 
+						 
+									 
+						 
+						 
+										"USER_ID_sel" => $this->USER_ID_sel->get_select_str(),
+			 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
@@ -210,20 +319,33 @@ class phpapps_users_user_profiles_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
-		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
-		$this->globals->sm->display($this->template);
+	function display(){
+        
+                $this->setup_display();
+                $this->beforeDisplay();
+		$this->assign_vars_tpl();
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
+		$this->afterDisplay();
+	}
+	
+	function afterDisplay(){	
 	}
 	
 	function get_html_str(){	
-		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
+                $this->setup_display();
+                $this->beforeDisplay();
 		$this->globals->sm->fetch($this->template);
+                $this->afterDisplay();
 	}
-};
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
+}
 ?>

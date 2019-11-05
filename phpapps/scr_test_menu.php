@@ -1,5 +1,6 @@
 <?php
 require_once ("globals.php");
+require_once(DB_LIBS_DIR . 'DB_menu.php');
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
 class scr_test_menu extends phpapps_display_abs{
@@ -12,6 +13,7 @@ class scr_test_menu extends phpapps_display_abs{
         $this->tpl = "scr_test_menu.tpl";        
         $this->app_id = $app_id;
         
+       
         
         global $GLOBALS_OBJ;
 		$this->globals = $GLOBALS_OBJ;
@@ -46,7 +48,7 @@ class scr_test_menu extends phpapps_display_abs{
 		$this->globals->sm->assign("rows",$rows);
 		$this->globals->sm->assign("modules",$modules);
         
-        
+       
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "scr_test_menu: Youre code here."));
         

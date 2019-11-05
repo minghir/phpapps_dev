@@ -1,97 +1,55 @@
 <?php
-class HrefActions{
-	var $act_script;
-	var $label;
-	var $action;
-	var $fields = array();
-	var $confirm_msg;
-	var $popup = false;
-	
-	function getFieldHref($res,$flds){
-		$href = strpos($this->act_script,'?') === false ? $this->act_script ."?gact=". $this->action : $this->act_script ."&gact=". $this->action;
-		$flipped = array_flip($flds);
-		for($i = 0; $i < count($this->fields); $i++){
-			$gfield = $this->fields[$i];
-			// ID-ul se afla intodeauna pe ultima pozitie
-			$gfield_value = $this->fields[$i] == "ID" ? $res[count($res) - 1] :$res[$flipped[$this->fields[$i]]];
-			$href .= ($i > 0 ) ?  "&gfield$i=$gfield&gfield_value$i=$gfield_value" : "&gfield=$gfield&gfield_value=$gfield_value";
-		}
-		
-		if( $this->popup == true ){
-			if($this->confirm_msg != ""){
-				return "<a href=\"".$href."\" onclick=\"if(confirm('".$this->confirm_msg."')) window.open('".$href."','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
-			}else{
-				return "<a href=\"".$href."\" onclick=\"window.open('".$href."','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
-			}
-		}else{
-			return "<a href=\"".$href."\">".$this->label."</a>";
-		}
-	}
-	
-	function getHref(){
-		$href = strpos($this->act_script,'?') === false ? $this->act_script ."?gact=". $this->action : $this->act_script ."&gact=". $this->action;
-	
-		if( $this->popup == true ){
-			if($this->confirm_msg != ""){
-				return "<a href=\"".$href."\" onclick=\"if(confirm('".$this->confirm_msg."')) window.open('".$href."','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
-			}else{
-				return "<a href=\"".$href."\" onclick=\"window.open('".$href."','popup','width=0,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
-			}
-		}else{
-			return "<a href=\"".$href."\">".$this->label."</a>";
-		}
-	}
-};
+require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 
-class DB_grid
-      {
+class DB_grid {
+    
     var $grid_types = array("table","query");
-	var $grid_type;
-	var $grid_title;
-	var $db_grid_name;
-	var $init_query;
+    var $grid_type;
+    var $grid_title;
+    var $db_grid_name;
+    var $init_query;
     var $query;
 
     var $table;
     var $error;
-	var $mode_search = false;
+    var $mode_search = false;
     var $con;
     var $sm; //smarty
     var $editable = true;
-	var $paginable = true;
-	var $filterable = true;
-	var $exportable = true;
-	var $sortable = true;
-	var $edit_form;
+    var $paginable = true;
+    var $filterable = true;
+    var $exportable = true;
+    var $sortable = true;
+    var $edit_form;
     var $get_pg = 1;
-	var $last_page = 1;
-	var $rows_on_pg = 25;
+    var $last_page = 1;
+    var $rows_on_pg = 25;
     var $req_uri;
     var $act;
     var $id;
-	var $cols = array("*");
-	var $labels = array();
-	var $get_vars = array();
-	var $fields = array();
-	var $filter_fld = array();
-	var $filter_val = array();
-	var $filter_rle = array();
-	var $row_actions =  array();
-	var $grid_actions =  array();
-	var $where_rules = array(); // clauze where 
-	var $where_params = array(); // parametri din where
-	var $order_fld = array("ID");
-	var $order_rle = array("DESC");
-	var $current_order_field;
-	var $current_order_rule;
-	var $order_rule;
-	var $where_rule;
+    var $cols = array("*");
+    var $labels = array();
+    var $get_vars = array();
+    var $fields = array();
+    var $filter_fld = array();
+    var $filter_val = array();
+    var $filter_rle = array();
+    var $row_actions =  array();
+    var $grid_actions =  array();
+    var $where_rules = array(); // clauze where 
+    var $where_params = array(); // parametri din where
+    var $order_fld = array("ID");
+    var $order_rle = array("DESC");
+    var $current_order_field;
+    var $current_order_rule;
+    var $order_rule;
+    var $where_rule;
 
-	var $num_rows = 0;
+    var $num_rows = 0;
 	
-	public $template = 'db_grid3.tpl';
+    public $template = 'db_grid3.tpl';
 
-      function __construct($conn, $g_type, $str_sql, $grid_name = ""){
+    function __construct($conn, $g_type, $str_sql, $grid_name = ""){
 	  
             session_start();
             $this->sm = new Smarty;
@@ -124,7 +82,7 @@ class DB_grid
 			 $this->parse_http_post_vars();
         }
 
-        function setup_table_query(){
+    function setup_table_query(){
 			
 			$filter_where_rls = $this->where_rules; 
 			$filter_where_params = $this->where_params; 

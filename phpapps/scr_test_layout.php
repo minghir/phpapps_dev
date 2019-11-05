@@ -1,5 +1,6 @@
 <?php
 require_once ("globals.php");
+require_once(DB_LIBS_DIR . 'DB_menu.php');
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
 class scr_test_layout extends phpapps_display_abs{
@@ -41,9 +42,16 @@ class scr_test_layout extends phpapps_display_abs{
 		$this->globals->sm->assign("rows",$rows);
 		$this->globals->sm->assign("modules",$modules);
         
+                $menu_query = new DB_query("SELECT "
+                        . "CONCAT('<a href=\"SCRIPT_NAME,'.php?module_id=',ID,'\">',MODULE_TITLE,'</a>) AS ITEM"
+                        . "FROM view_modules "
+                        . "WHERE APP_ID = :app_id",array(":app_id"=>$this->app_id));
+          echo $menu_query->prnt();      
+         $menu1 = new DB_menu("main_menu",$menu_query);
+        echo $menu1->get_menu_str();
         
-        
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "scr_test_layout: Youre code here."));
+        //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "scr_test_layout: Youre code here."));
+                
         
         $this->displayTpl();
     }

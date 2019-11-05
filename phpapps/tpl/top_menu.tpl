@@ -1,4 +1,3 @@
-
 <div class="top_div">
     <div style="float: left;"><a href="index.php"><font size=5>PHPApps</font></a></div>
     <div style="float: right;">

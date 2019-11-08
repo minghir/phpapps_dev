@@ -1,7 +1,7 @@
 <?php
 require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 
-class DB_grid {
+class DB_grid_oci {
     
     var $grid_types = array("table","query");
     var $grid_type;
@@ -69,7 +69,7 @@ class DB_grid {
                case "query":
                     $this->grid_type = $g_type;
                     $this->query =  $str_sql;
-                    $this->init_query = $str_sql->sql();
+                    $this->init_query = $str_sql;
                     $this->db_grid_name = $grid_name == "" ? "str_sql" : $grid_name;
                break;
                default:
@@ -210,7 +210,7 @@ echo"</h1><br>----------------<br>";
 //echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
 //print_r($this->query);
 			//$sql = new DB_query($this->query);
-			
+			echo "AICI<br>" . $this->query->prnt();
 			$nr_res = $this->con->query($this->query, $this->db_grid_name);
 			
                         if($this->grid_type == "query"){

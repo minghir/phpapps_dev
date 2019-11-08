@@ -141,7 +141,7 @@ class Globals_obj{
 		$this->con2->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
 		$this->con2->clear_log();
 		$this->con2->connect("oracle");
-		//print_r($this->con2);
+		print_r($this->con2);
 		
 	//print_r($this->con);	
 		$this->sm = new Smarty;

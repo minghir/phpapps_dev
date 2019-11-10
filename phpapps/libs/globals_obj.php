@@ -1,6 +1,6 @@
 <?php
-//error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
-error_reporting(E_ALL  );
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
+//error_reporting(E_ALL  );
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'phpapps');
 }

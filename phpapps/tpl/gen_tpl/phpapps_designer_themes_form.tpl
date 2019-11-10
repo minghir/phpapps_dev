@@ -17,7 +17,7 @@
 			
 		                
 		                				 
-				<tr><td align="right">THEME_CSS_FILE :</td><td> <input type="text" id="THEME_CSS_FILE" name="THEME_CSS_FILE" value="{$THEME_CSS_FILE}"></td></tr>
+				<tr><td align="right">CSS_FILE :</td><td> <input type="text" id="CSS_FILE" name="CSS_FILE" value="{$CSS_FILE}"></td></tr>
 																
 			
 		                

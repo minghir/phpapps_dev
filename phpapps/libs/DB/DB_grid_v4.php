@@ -29,7 +29,7 @@ class DB_grid {
     var $id;
     var $cols = array("*");
     var $labels = array();
-    var $get_vars = array();
+    var $get_vars = array("pg"=>"","gact"=>"","current_order_field"=>"","current_order_rule"=>"");
     var $fields = array();
     var $filter_fld = array();
     var $filter_val = array();
@@ -371,6 +371,7 @@ echo"</h1><br>----------------<br>";
 		}
 
         function make_get_string(){
+                          $get_string = "";  
 			  if(!is_array($_GET) ) return "";
 			  foreach($_GET as $key=>$val){
 				if($key == $this->db_grid_name) continue;
@@ -430,37 +431,50 @@ echo"</h1><br>----------------<br>";
 //$this->con->print_log();
 			$this->last_page = ($this->num_rows / $this->rows_on_pg);
 			$this->last_page = $this->last_page <= 0 ? 0 : ceil($this->last_page);
-			$this->get_pg = $this->get_vars["pg"] == "" ? 1 : $this->get_vars["pg"];
+			$this->get_pg =  $this->get_vars["pg"] == "" ? 1 : $this->get_vars["pg"];
 			$this->get_pg =  $this->get_pg <= 0 ? 1 : $this->get_pg;
 			$this->get_pg =  $this->get_pg > $this->last_page  && $this->get_pg != 1 ? $this->last_page : $this->get_pg;
 		}
 		
 		function set_session_vars(){
-			$_SESSION[$this->db_grid_name . "_" . get_pg] = $this->get_pg;
-			$_SESSION[$this->db_grid_name . "_" . filter_fld] = $this->filter_fld;
-			$_SESSION[$this->db_grid_name . "_" . filter_val] = $this->filter_val;
-			$_SESSION[$this->db_grid_name . "_" . filter_rle] = $this->filter_rle;
-			$_SESSION[$this->db_grid_name . "_" . mode_search] = $this->mode_search;
-			//$_SESSION[$this->db_grid_name . "_" . order_fld] = $this->order_fld;
-			//$_SESSION[$this->db_grid_name . "_" . order_rle] = $this->order_rle;
-			$_SESSION[$this->db_grid_name . "_" . current_order_field] = $this->current_order_field;
-			$_SESSION[$this->db_grid_name . "_" . current_order_rule] = $this->current_order_rule;
-			$_SESSION[$this->db_grid_name . "_" . current_where_rules] = $this->where_rules;
-			//print_r($_SESSION);
+                        $_get_pg = $this->db_grid_name . "_get_pg";
+                        $_filter_fld = $this->db_grid_name . "_filter_fld";
+                        $_filter_val = $this->db_grid_name . "_filter_val";
+                        $_filter_rle = $this->db_grid_name . "_filter_rle";
+                        $_mode_search = $this->db_grid_name . "_mode_search";
+                        $_current_order_field = $this->db_grid_name . "_current_order_field";
+                        $_current_order_rule = $this->db_grid_name . "_current_order_field";
+                        $_current_where_rules = $this->db_grid_name . "_current_where_rules";
+                        
+                        
+			$_SESSION[$_get_pg] = $this->get_pg;
+			$_SESSION[$_filter_fld] = $this->filter_fld;
+                        $_SESSION[$_filter_val] = $this->filter_val;
+			$_SESSION[$_filter_rle] = $this->filter_rle;
+			$_SESSION[$_mode_search] = $this->mode_search;
+			$_SESSION[$_current_order_field] = $this->current_order_field;
+			$_SESSION[$_current_order_rule] = $this->current_order_rule;
+			$_SESSION[$_current_where_rules] = $this->where_rules;
 		}
 		
 		function get_session_vars(){
-			
-			$this->get_pg = $_SESSION[$this->db_grid_name . "_" . get_pg];
-			$this->filter_fld = $_SESSION[$this->db_grid_name . "_" . filter_fld];
-			$this->filter_val = $_SESSION[$this->db_grid_name . "_" . filter_val];
-			$this->filter_rle = $_SESSION[$this->db_grid_name . "_" . filter_rle];
-			$this->mode_search = $_SESSION[$this->db_grid_name . "_" . mode_search];
-			//$this->order_fld = $_SESSION[$this->db_grid_name . "_" . order_fld];
-			//$this->order_rle = $_SESSION[$this->db_grid_name . "_" . order_rle];
-			$this->current_order_field = $_SESSION[$this->db_grid_name . "_" . current_order_field];
-			$this->current_order_rule = $_SESSION[$this->db_grid_name . "_" . current_order_rule];
-			$this->where_rules = $_SESSION[$this->db_grid_name . "_" . current_where_rules];
+                        $_get_pg = $this->db_grid_name . "_get_pg";
+                        $_filter_fld = $this->db_grid_name . "_filter_fld";
+                        $_filter_val = $this->db_grid_name . "_filter_val";
+                        $_filter_rle = $this->db_grid_name . "_filter_rle";
+                        $_mode_search = $this->db_grid_name . "_mode_search";
+                        $_current_order_field = $this->db_grid_name . "_current_order_field";
+                        $_current_order_rule = $this->db_grid_name . "_current_order_field";
+                        $_current_where_rules = $this->db_grid_name . "_current_where_rules";
+                        
+			$this->get_pg = $_SESSION[$_get_pg];
+			$this->filter_fld = $_SESSION[$_filter_fld];
+                        $this->filter_val = $_SESSION[$_filter_val];
+			$this->filter_rle = $_SESSION[$_filter_rle];
+			$this->mode_search = $_SESSION[$_mode_search];
+			$this->current_order_field = $_SESSION[$_current_order_field];
+			$this->current_order_rule = $_SESSION[$_current_order_rule];
+			$this->where_rules = $_SESSION[$_current_where_rules];
 		}
 
 		/*		

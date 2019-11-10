@@ -1,11 +1,11 @@
-{extends file=$display_obj->layout}
-{block name=header}{include file="top_menu.tpl" }{/block}
+<html>
+<head>
+{include file="commun_header.tpl" }
+</head>
 
-{block name=nav}
-    {$vertical_menu}
-{/block}
+<body bgcolor="#dddddd"><br>
+{include file="top_menu.tpl" }
 
-{block name=content}
 <div class="test_div">
 <a href="phpapps_admin_applications_form_imp.php?gact=addRec"  style="text-decoration:none">
   Add new empty application
@@ -32,4 +32,5 @@
 		{/foreach}
 	</div><br>
 {/foreach}
-{/block}
+</body>
+</html>

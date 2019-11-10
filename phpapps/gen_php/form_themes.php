@@ -2,7 +2,7 @@
 // includes
 require_once ("globals.php");
 
-class {
+class themes{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";

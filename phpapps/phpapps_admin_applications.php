@@ -1,12 +1,14 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once(DB_LIBS_DIR . 'DB_menu.php');
 class phpapps_applications extends phpapps_display_abs{
 	
 	public function __construct($uid){
              parent::__construct();
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+                $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
+		//global $GLOBALS_OBJ;
+		//$this->globals = $GLOBALS_OBJ;
 		$this->globals->con->select_db("phpapps");
 		
 		$sql = new DB_query("SELECT 	ID, 
@@ -37,6 +39,17 @@ class phpapps_applications extends phpapps_display_abs{
 		}
 		$this->globals->sm->assign("rows",$rows);
 		$this->globals->sm->assign("modules",$modules);
+                
+                
+                 $menu_query = new DB_query("SELECT "
+                        . "CONCAT('<a href=\"SCRIPT_NAME,'.php?module_id=',ID,'\">',MODULE_TITLE,'</a>) AS ITEM"
+                        . "FROM view_modules "
+                       // . "WHERE APP_ID = :app_id",array(":app_id"=>$this->app_id));
+                          . "WHERE APP_ID = :app_id",array(":app_id"=>"1"));
+               $menu_query->prnt();
+                $menu1 = new DB_menu("main_menu",$menu_query);
+                       
+                $this->globals->sm->assign("vertical_menu",$menu1->get_menu_str());
 	}
 	
 	public function displayTpl(){

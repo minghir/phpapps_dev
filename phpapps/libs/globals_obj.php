@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
-
+//error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
+error_reporting(E_ALL  );
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'phpapps');
 }
@@ -24,7 +24,6 @@ if (!defined('_3RDPARTY_WEB_DIR')) {
 if (!defined('GLOBALS_DIR')) { //pt fwrite
 	define('GLOBALS_DIR', $_SERVER["DOCUMENT_ROOT"] . DIR_SEP . 'phpapps_dev' . DIR_SEP);
 }
-
 
 if (!defined('PHPAPPS_APP_DIR')) {
 	define('PHPAPPS_APP_DIR', GLOBALS_DIR . 'phpapps' . DIR_SEP);
@@ -94,7 +93,8 @@ if (!defined('CURRENT_APP_JS_DIR')) {
 //	define('CURRENT_APP_USER_DATA_DIR', CURRENT_APP_DIR . '/user_data/');
 //}
 
-require_once(PHPAPPS_LIBS_DIR. '3rd_party.php');
+require_once(PHPAPPS_LIBS_DIR . '3rd_party.php');
+require_once(PHPAPPS_LIBS_DIR . "user_profile.php");
 
 class Globals_obj{
 	//public $JQUERY_PATH = "js\jquery-ui-1.10.3";
@@ -114,6 +114,8 @@ class Globals_obj{
                
         public $ath;
         public $USER_ID;
+        public $USER_PROFILE_ID;
+        public $USER_PROFILE;
 
 	function __construct($APP_NM){
 		$this->APP_NAME = $APP_NM;
@@ -141,7 +143,7 @@ class Globals_obj{
 		$this->con2->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
 		$this->con2->clear_log();
 		$this->con2->connect("oracle");
-		print_r($this->con2);
+	//print_r($this->con2);
 		
 	//print_r($this->con);	
 		$this->sm = new Smarty;
@@ -162,7 +164,7 @@ class Globals_obj{
                 
                 $this->ath = new auth($this);
                 $this->ath->authenticate();
-                $user_profile = new user_profile($this, $_USER_ID);
+                $this->$USER_PROFILE = new user_profile($this);
 	}
 	
 	function set_paths(){

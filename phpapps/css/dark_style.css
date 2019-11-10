@@ -22,21 +22,20 @@ body {
 table {
         color: #ffffff;
         background-color: #12363b;
-	border: 1px "BFD4FF";
+	border: 0px solid gray;
 	border-collapse:collapse;
 	text-align: left;
-
 }
 
-table,td,th {
+td,th {
     background-color: #12363b;
 	text-align: left;
 /*	padding: 0.125em 0.5em 0.25em 0.5em; */
-    line-height: 1;
+    line-height: 0.5;
     border: 1px solid gray;
     background-color: #12363b;
-    margin: 12px 12px 12px 12px;
-    padding: 12px 12px 12px 12px;
+/*    margin: 12px 12px 12px 12px; */
+    padding: 10px 5px 10px 5px;
 }
 
 .top_div{

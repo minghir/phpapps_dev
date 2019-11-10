@@ -15,13 +15,13 @@ class phpapps_users_user_profiles_form{
 	//post values
 	public $pact;
 	            
+	public $ID;
+        	            
+	public $USER_ID;
+        	            
 	public $SCRIPT_ID;
         	            
 	public $PROFILE_NAME;
-        	            
-	public $THEME;
-        	            
-	public $USER_ID;
         	            
 	public $THEME_ID;
         		
@@ -32,11 +32,13 @@ class phpapps_users_user_profiles_form{
 		 
 			
 		 
-		 
-		 
 			public $USER_ID_sel;
 	 
+			public $SCRIPT_ID_sel;
+	 
 		 
+			public $THEME_ID_sel;
+	 
 	        
         
 
@@ -55,11 +57,13 @@ class phpapps_users_user_profiles_form{
 					 
 				
 					 
-					 
-					 
 									$this->USER_ID_sel = new DB_select("USER_ID","phpapps.users");
                                 			 
+									$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID","phpapps.scripts");
+                                			 
 					 
+									$this->THEME_ID_sel = new DB_select("THEME_ID","phpapps.themes");
+                                			 
 		                
 	}
 		
@@ -78,10 +82,10 @@ class phpapps_users_user_profiles_form{
 	
 	function getRec(){
 		$sql = new DB_query( "SELECT 
-									SCRIPT_ID,
-												PROFILE_NAME,
-												THEME,
+									ID,
 												USER_ID,
+												SCRIPT_ID,
+												PROFILE_NAME,
 												THEME_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -89,10 +93,10 @@ class phpapps_users_user_profiles_form{
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
-			                                                                $this->SCRIPT_ID = stripslashes($this->globals->con->get_field("SCRIPT_ID"));
-                                			                                                                $this->PROFILE_NAME = stripslashes($this->globals->con->get_field("PROFILE_NAME"));
-                                			                                                                $this->THEME = stripslashes($this->globals->con->get_field("THEME"));
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->USER_ID = stripslashes($this->globals->con->get_field("USER_ID"));
+                                			                                                                $this->SCRIPT_ID = stripslashes($this->globals->con->get_field("SCRIPT_ID"));
+                                			                                                                $this->PROFILE_NAME = stripslashes($this->globals->con->get_field("PROFILE_NAME"));
                                 			                                                                $this->THEME_ID = stripslashes($this->globals->con->get_field("THEME_ID"));
                                 						
 	}
@@ -108,27 +112,23 @@ class phpapps_users_user_profiles_form{
 	
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															SCRIPT_ID,
+																					USER_ID,
+																						SCRIPT_ID,
 																						PROFILE_NAME,
-																						THEME,
-																						USER_ID,
 																						THEME_ID
 										 ) VALUES (
-															:SCRIPT_ID,
+																					:USER_ID,
+																						:SCRIPT_ID,
 																						:PROFILE_NAME,
-																						:THEME,
-																						:USER_ID,
 																						:THEME_ID
 													)",
 			array(
-									                                            
+																		                                            
+                                            ":USER_ID" => $this->USER_ID,
+                                        														                                            
                                             ":SCRIPT_ID" => $this->SCRIPT_ID,
                                         														                                            
                                             ":PROFILE_NAME" => $this->PROFILE_NAME,
-                                        														                                            
-                                            ":THEME" => $this->THEME,
-                                        														                                            
-                                            ":USER_ID" => $this->USER_ID,
                                         														                                            
                                             ":THEME_ID" => $this->THEME_ID,
                                         												)
@@ -158,18 +158,18 @@ class phpapps_users_user_profiles_form{
 		$this->check_errors();
 		
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									SCRIPT_ID = :SCRIPT_ID,
-												PROFILE_NAME = :PROFILE_NAME,
-												THEME = :THEME,
+									ID = :ID,
 												USER_ID = :USER_ID,
+												SCRIPT_ID = :SCRIPT_ID,
+												PROFILE_NAME = :PROFILE_NAME,
 												THEME_ID = :THEME_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":SCRIPT_ID" => $this->SCRIPT_ID,
-                                        				                                                                                    ":PROFILE_NAME" => $this->PROFILE_NAME,
-                                        				                                                                                    ":THEME" => $this->THEME,
+				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":USER_ID" => $this->USER_ID,
+                                        				                                                                                    ":SCRIPT_ID" => $this->SCRIPT_ID,
+                                        				                                                                                    ":PROFILE_NAME" => $this->PROFILE_NAME,
                                         				                                                                                    ":THEME_ID" => $this->THEME_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
@@ -242,10 +242,10 @@ class phpapps_users_user_profiles_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->SCRIPT_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_ID"])));
-                                                		                                                    $this->PROFILE_NAME  = htmlspecialchars(addslashes(trim($_POST["PROFILE_NAME"])));
-                                                		                                                    $this->THEME  = htmlspecialchars(addslashes(trim($_POST["THEME"])));
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->USER_ID  = htmlspecialchars(addslashes(trim($_POST["USER_ID"])));
+                                                		                                                    $this->SCRIPT_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_ID"])));
+                                                		                                                    $this->PROFILE_NAME  = htmlspecialchars(addslashes(trim($_POST["PROFILE_NAME"])));
                                                 		                                                    $this->THEME_ID  = htmlspecialchars(addslashes(trim($_POST["THEME_ID"])));
                                                 		        }
 		
@@ -265,6 +265,9 @@ class phpapps_users_user_profiles_form{
 	}
 	
 	function check_errors(){
+				if($this->USER_ID == "") {
+			$this->errors[] = "Campul USER_ID este obligatoriu!";
+		}
 				if($this->PROFILE_NAME == "") {
 			$this->errors[] = "Campul PROFILE_NAME este obligatoriu!";
 		}
@@ -278,24 +281,32 @@ class phpapps_users_user_profiles_form{
 					 
 				
 					 
-					 
-					 
 									//$this->USER_ID_sel = new DB_select("USER_ID",".phpapps.users");
 				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME");
 				$this->USER_ID_sel->selected_val = $this->USER_ID;
 				$this->USER_ID_sel->setup_select_options();
 			 
+									//$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID",".phpapps.scripts");
+				$this->SCRIPT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM phpapps.scripts ORDER BY SCRIPT_NAME");
+				$this->SCRIPT_ID_sel->selected_val = $this->SCRIPT_ID;
+				$this->SCRIPT_ID_sel->setup_select_options();
+			 
 					 
+									//$this->THEME_ID_sel = new DB_select("THEME_ID",".phpapps.themes");
+				$this->THEME_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, THEME_NAME AS LABEL FROM phpapps.themes ORDER BY THEME_NAME");
+				$this->THEME_ID_sel->selected_val = $this->THEME_ID;
+				$this->THEME_ID_sel->setup_select_options();
+			 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
         }
         
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
+							"ID" => $this->ID,
+							"USER_ID" => $this->USER_ID,
 							"SCRIPT_ID" => $this->SCRIPT_ID,
 							"PROFILE_NAME" => $this->PROFILE_NAME,
-							"THEME" => $this->THEME,
-							"USER_ID" => $this->USER_ID,
 							"THEME_ID" => $this->THEME_ID,
 									 
 						 
@@ -303,11 +314,13 @@ class phpapps_users_user_profiles_form{
 						 
 						 
 									 
-						 
-						 
 										"USER_ID_sel" => $this->USER_ID_sel->get_select_str(),
 			 
+										"SCRIPT_ID_sel" => $this->SCRIPT_ID_sel->get_select_str(),
+			 
 						 
+										"THEME_ID_sel" => $this->THEME_ID_sel->get_select_str(),
+			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,

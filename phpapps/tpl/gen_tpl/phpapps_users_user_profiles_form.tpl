@@ -7,6 +7,18 @@
 	<table border="1">
 	
 		 
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
+			
+		                
+		                				 
+																
+			
+		                
+				<tr><td align="right">USER_ID  :</td><td>
+			{$USER_ID_sel}
+		</td></tr>
+                        				 
 																
 			
 		                
@@ -19,18 +31,6 @@
 			
 		                
 		                				 
-				<tr><td align="right">THEME :</td><td> <input type="text" id="THEME" name="THEME" value="{$THEME}"></td></tr>
-																
-			
-		                
-		                				 
-																
-			
-		                
-				<tr><td align="right">USER_ID  :</td><td>
-			{$USER_ID_sel}
-		</td></tr>
-                        				 
 																
 			
 		                

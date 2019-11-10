@@ -70,7 +70,9 @@ class phpapps_database_add_table_form{
 	}
 		
 	function init(){
+             
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    
 			$this->parsePostVars();
                         $this->takePostActions();
 		} else {
@@ -247,6 +249,7 @@ class phpapps_database_add_table_form{
 	}
 	
 	function parsePostVars(){
+       
 		$this->pact = $_POST["pact"];
 		$this->gact = $_POST["gact"];
 		$this->gfield = $_POST["gfield"];
@@ -261,8 +264,10 @@ class phpapps_database_add_table_form{
                                                 		        }
 		
         function takePostActions(){
+              
 		switch($this->pact){
 			case "addRec":
+                              echo "mmmmmmmmm";
 				$this->addRec();
 			break;
 			case "saveRec":

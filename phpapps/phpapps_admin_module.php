@@ -105,7 +105,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$tad->act_script = "phpapps_database_add_table_form_imp.php?table_type=".(new DB_list("list_table_types"))->getID("values_table")."&module_id=".$this->ID;
 		$tad->popup = true;
 		$tad->label = "add";
-		$tad->action = "newRec";
+		$tad->action = "addRec";
 		$tables_grid->add_grid_acction($tad);
 		
 				

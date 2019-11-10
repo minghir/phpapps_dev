@@ -19,7 +19,7 @@ class phpapps_designer_themes_form{
         	            
 	public $THEME_NAME;
         	            
-	public $THEME_CSS_FILE;
+	public $CSS_FILE;
         		
 		 
 		 
@@ -66,7 +66,7 @@ class phpapps_designer_themes_form{
 		$sql = new DB_query( "SELECT 
 									ID,
 												THEME_NAME,
-												THEME_CSS_FILE
+												CSS_FILE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -75,7 +75,7 @@ class phpapps_designer_themes_form{
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->THEME_NAME = stripslashes($this->globals->con->get_field("THEME_NAME"));
-                                			                                                                $this->THEME_CSS_FILE = stripslashes($this->globals->con->get_field("THEME_CSS_FILE"));
+                                			                                                                $this->CSS_FILE = stripslashes($this->globals->con->get_field("CSS_FILE"));
                                 						
 	}
 	
@@ -91,16 +91,16 @@ class phpapps_designer_themes_form{
 		$this->check_errors();
 		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					THEME_NAME,
-																						THEME_CSS_FILE
+																						CSS_FILE
 										 ) VALUES (
 																					:THEME_NAME,
-																						:THEME_CSS_FILE
+																						:CSS_FILE
 													)",
 			array(
 																		                                            
                                             ":THEME_NAME" => $this->THEME_NAME,
                                         														                                            
-                                            ":THEME_CSS_FILE" => $this->THEME_CSS_FILE,
+                                            ":CSS_FILE" => $this->CSS_FILE,
                                         												)
 			);
 
@@ -130,13 +130,13 @@ class phpapps_designer_themes_form{
 		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												THEME_NAME = :THEME_NAME,
-												THEME_CSS_FILE = :THEME_CSS_FILE
+												CSS_FILE = :CSS_FILE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":THEME_NAME" => $this->THEME_NAME,
-                                        				                                                                                    ":THEME_CSS_FILE" => $this->THEME_CSS_FILE,
+                                        				                                                                                    ":CSS_FILE" => $this->CSS_FILE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -210,7 +210,7 @@ class phpapps_designer_themes_form{
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->THEME_NAME  = htmlspecialchars(addslashes(trim($_POST["THEME_NAME"])));
-                                                		                                                    $this->THEME_CSS_FILE  = htmlspecialchars(addslashes(trim($_POST["THEME_CSS_FILE"])));
+                                                		                                                    $this->CSS_FILE  = htmlspecialchars(addslashes(trim($_POST["CSS_FILE"])));
                                                 		        }
 		
         function takePostActions(){
@@ -232,9 +232,6 @@ class phpapps_designer_themes_form{
 				if($this->THEME_NAME == "") {
 			$this->errors[] = "Campul THEME_NAME este obligatoriu!";
 		}
-				if($this->THEME_CSS_FILE == "") {
-			$this->errors[] = "Campul THEME_CSS_FILE este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
@@ -253,7 +250,7 @@ class phpapps_designer_themes_form{
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
 							"THEME_NAME" => $this->THEME_NAME,
-							"THEME_CSS_FILE" => $this->THEME_CSS_FILE,
+							"CSS_FILE" => $this->CSS_FILE,
 									 
 						 
 						 

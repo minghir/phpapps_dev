@@ -6,6 +6,7 @@ class auth{
     public $globals;
     public $public_script = false;
     public $script_name;
+
     
     
     function __construct($glb) {
@@ -33,8 +34,8 @@ class auth{
                 if(!isset($_SESSION["_USER_ID"])){
                         $this->login();
                 }else{
-                    $_USER_ID = $_SESSION["_USER_ID"]; 
-                    $this->globals->USER_ID = $_USER_ID;
+                    $this->globals->USER_ID = $_SESSION["_USER_ID"]; 
+                    $this->globals->USER_PROFILE_ID = $_SESSION["_USER_PROFILE_ID"];
                 }
         
                 $this->check_session();
@@ -48,17 +49,20 @@ class auth{
         if(isset($_POST)){
             $sql = new DB_Query("SELECT ID, 
 				USERNAME,
-				SCRIPT_NAME
+				SCRIPT_NAME,
+                                PROFILE_ID
                             FROM 
 				phpapps.view_users 
                             WHERE username = :USER AND 
 				password = :PASS",
 				array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
-	print_r($sql);
             if($this->globals->con->query($sql)==1){
                 $res=$this->globals->con->fetch_array();
                 $_SESSION["_USER_ID"] = $res["ID"];
                 $_SESSION["_USER_NAME"] = $res["USERNAME"];
+                $_SESSION["_USER_PROFILE_ID"] = $res["PROFILE_ID"];
+                
+                $this->authenticate();
             }else{
                 $this->globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
                 $this->logout();

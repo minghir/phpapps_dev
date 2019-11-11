@@ -10,6 +10,7 @@ require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 class DB_menu{
     
     var $globals;
+    var $template = "db_menu.tpl";
     var $db_query;
     var $sm;
     
@@ -31,7 +32,7 @@ class DB_menu{
     }
     
     function get_menu_str(){
-	return $this->sm->fetch('db_menu.tpl');
+	return $this->sm->fetch($this->template);
     }
     
     function setup_menu_options(){

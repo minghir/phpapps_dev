@@ -14,6 +14,9 @@ class {$form_name}{ldelim}
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
 	{section name=ds loop=$fields}
         {if $input_types[ds] == "select_table_multiple" || $input_types[ds] == "select_list_multiple"}
         public ${$fields[ds]} = array();    
@@ -78,7 +81,7 @@ class {$form_name}{ldelim}
 	{rdelim}
 	
 	function getRec(){ldelim}
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 			{section name=ds1 loop=$fields}
 			{if $smarty.section.ds1.last }
 			{$fields[ds1]}
@@ -89,7 +92,7 @@ class {$form_name}{ldelim}
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			{section name=ds loop=$fields}
                                 {if $input_types[ds] == "select_table_multiple" || $input_types[ds] == "select_list_multiple"}
@@ -111,7 +114,7 @@ class {$form_name}{ldelim}
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 			{section name=ds1 loop=$fields}
 			{if $fields[ds1] != "ID" }
 				{if $smarty.section.ds1.last }
@@ -145,7 +148,7 @@ class {$form_name}{ldelim}
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){ldelim}
+			if( $this->globals->con->query($this->query) == -1){ldelim}
                             $this->errors[] = $this->globals->con->get_error();
                         {rdelim}else{ldelim}
                             $this->resp_msgs[] = "Inregistrare adaugata cu succes";
@@ -167,7 +170,7 @@ class {$form_name}{ldelim}
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 			{section name=ds1 loop=$fields}
 			{if $smarty.section.ds1.last }
 			{$fields[ds1]} = :{$fields[ds1]}
@@ -189,7 +192,7 @@ class {$form_name}{ldelim}
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){ldelim}
+			if( $this->globals->con->query($this->query) == -1){ldelim}
                             $this->errors[] = $this->globals->con->get_error();
                         {rdelim}else{ldelim}
                             $this->resp_msgs[] = "Inregistrare salvata cu succes";
@@ -209,11 +212,11 @@ class {$form_name}{ldelim}
 	function deleteRec(){ldelim}
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {ldelim}
-			if( $this->globals->con->query($sql) == -1){ldelim}
+			if( $this->globals->con->query($this->query) == -1){ldelim}
                             $this->errors[] = $this->globals->con->get_error();
                         {rdelim}else{ldelim}
                             $this->resp_msgs[] = "Inregistrare stearsa cu succes";

@@ -2,12 +2,12 @@
 // includes
 require_once ("globals.php");
 
-class phpapps_database_views_form{
+class phpapps_designer_menu_items_form{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "views";
-	public $template = "gen_tpl/phpapps_database_views_form.tpl";
+	public $form_table = "menu_items";
+	public $template = "gen_tpl/phpapps_designer_menu_items_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -20,13 +20,13 @@ class phpapps_database_views_form{
 	            
 	public $ID;
         	            
-	public $MODULE_ID;
+	public $PID;
         	            
-	public $VIEW_NAME;
+	public $MENU_ID;
         	            
-	public $CREATE_VIEW_QUERY;
+	public $ACTION_ID;
         	            
-	public $DESCRIPTION;
+	public $LABEL;
         		
 		 
 		 
@@ -35,10 +35,12 @@ class phpapps_database_views_form{
 		 
 			
 		 
-			public $MODULE_ID_sel;
+			public $PID_sel;
 	 
-		 
-		 
+			public $MENU_ID_sel;
+	 
+			public $ACTION_ID_sel;
+	 
 		 
 	        
         
@@ -58,10 +60,12 @@ class phpapps_database_views_form{
 					 
 				
 					 
-									$this->MODULE_ID_sel = new DB_select("MODULE_ID","phpapps.modules");
+									$this->PID_sel = new DB_select("PID","phpapps.menu_items");
                                 			 
-					 
-					 
+									$this->MENU_ID_sel = new DB_select("MENU_ID","phpapps.menus");
+                                			 
+									$this->ACTION_ID_sel = new DB_select("ACTION_ID","view_actions");
+                                			 
 					 
 		                
 	}
@@ -82,10 +86,10 @@ class phpapps_database_views_form{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												MODULE_ID,
-												VIEW_NAME,
-												CREATE_VIEW_QUERY,
-												DESCRIPTION
+												PID,
+												MENU_ID,
+												ACTION_ID,
+												LABEL
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -93,10 +97,10 @@ class phpapps_database_views_form{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
-                                			                                                                $this->VIEW_NAME = stripslashes($this->globals->con->get_field("VIEW_NAME"));
-                                			                                                                $this->CREATE_VIEW_QUERY = stripslashes($this->globals->con->get_field("CREATE_VIEW_QUERY"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
+                                			                                                                $this->MENU_ID = stripslashes($this->globals->con->get_field("MENU_ID"));
+                                			                                                                $this->ACTION_ID = stripslashes($this->globals->con->get_field("ACTION_ID"));
+                                			                                                                $this->LABEL = stripslashes($this->globals->con->get_field("LABEL"));
                                 						
 	}
 	
@@ -111,25 +115,25 @@ class phpapps_database_views_form{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					MODULE_ID,
-																						VIEW_NAME,
-																						CREATE_VIEW_QUERY,
-																						DESCRIPTION
+																					PID,
+																						MENU_ID,
+																						ACTION_ID,
+																						LABEL
 										 ) VALUES (
-																					:MODULE_ID,
-																						:VIEW_NAME,
-																						:CREATE_VIEW_QUERY,
-																						:DESCRIPTION
+																					:PID,
+																						:MENU_ID,
+																						:ACTION_ID,
+																						:LABEL
 													)",
 			array(
 																		                                            
-                                            ":MODULE_ID" => $this->MODULE_ID,
+                                            ":PID" => $this->PID,
                                         														                                            
-                                            ":VIEW_NAME" => $this->VIEW_NAME,
+                                            ":MENU_ID" => $this->MENU_ID,
                                         														                                            
-                                            ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+                                            ":ACTION_ID" => $this->ACTION_ID,
                                         														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                            ":LABEL" => $this->LABEL,
                                         												)
 			);
 
@@ -158,18 +162,18 @@ class phpapps_database_views_form{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												MODULE_ID = :MODULE_ID,
-												VIEW_NAME = :VIEW_NAME,
-												CREATE_VIEW_QUERY = :CREATE_VIEW_QUERY,
-												DESCRIPTION = :DESCRIPTION
+												PID = :PID,
+												MENU_ID = :MENU_ID,
+												ACTION_ID = :ACTION_ID,
+												LABEL = :LABEL
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
-                                        				                                                                                    ":VIEW_NAME" => $this->VIEW_NAME,
-                                        				                                                                                    ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":PID" => $this->PID,
+                                        				                                                                                    ":MENU_ID" => $this->MENU_ID,
+                                        				                                                                                    ":ACTION_ID" => $this->ACTION_ID,
+                                        				                                                                                    ":LABEL" => $this->LABEL,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -242,10 +246,10 @@ class phpapps_database_views_form{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
-                                                		                                                    $this->VIEW_NAME  = htmlspecialchars(addslashes(trim($_POST["VIEW_NAME"])));
-                                                		                                                    $this->CREATE_VIEW_QUERY  = htmlspecialchars(addslashes(trim($_POST["CREATE_VIEW_QUERY"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
+                                                		                                                    $this->MENU_ID  = htmlspecialchars(addslashes(trim($_POST["MENU_ID"])));
+                                                		                                                    $this->ACTION_ID  = htmlspecialchars(addslashes(trim($_POST["ACTION_ID"])));
+                                                		                                                    $this->LABEL  = htmlspecialchars(addslashes(trim($_POST["LABEL"])));
                                                 		        }
 		
         function takePostActions(){
@@ -264,9 +268,6 @@ class phpapps_database_views_form{
 	}
 	
 	function check_errors(){
-				if($this->MODULE_ID == "") {
-			$this->errors[] = "Campul MODULE_ID este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
@@ -277,13 +278,21 @@ class phpapps_database_views_form{
 					 
 				
 					 
-									//$this->MODULE_ID_sel = new DB_select("MODULE_ID",".phpapps.modules");
-				$this->MODULE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM phpapps.modules ORDER BY MODULE_NAME");
-				$this->MODULE_ID_sel->selected_val = $this->MODULE_ID;
-				$this->MODULE_ID_sel->setup_select_options();
+									//$this->PID_sel = new DB_select("PID",".phpapps.menu_items");
+				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM phpapps.menu_items ORDER BY LABEL");
+				$this->PID_sel->selected_val = $this->PID;
+				$this->PID_sel->setup_select_options();
 			 
-					 
-					 
+									//$this->MENU_ID_sel = new DB_select("MENU_ID",".phpapps.menus");
+				$this->MENU_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.menus ORDER BY NAME");
+				$this->MENU_ID_sel->selected_val = $this->MENU_ID;
+				$this->MENU_ID_sel->setup_select_options();
+			 
+									//$this->ACTION_ID_sel = new DB_select("ACTION_ID",".view_actions");
+				$this->ACTION_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, ACTION_FILE AS LABEL FROM view_actions ORDER BY ACTION_FILE");
+				$this->ACTION_ID_sel->selected_val = $this->ACTION_ID;
+				$this->ACTION_ID_sel->setup_select_options();
+			 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
@@ -292,20 +301,22 @@ class phpapps_database_views_form{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"MODULE_ID" => $this->MODULE_ID,
-							"VIEW_NAME" => $this->VIEW_NAME,
-							"CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
-							"DESCRIPTION" => $this->DESCRIPTION,
+							"PID" => $this->PID,
+							"MENU_ID" => $this->MENU_ID,
+							"ACTION_ID" => $this->ACTION_ID,
+							"LABEL" => $this->LABEL,
 									 
 						 
 						 
 						 
 						 
 									 
-										"MODULE_ID_sel" => $this->MODULE_ID_sel->get_select_str(),
+										"PID_sel" => $this->PID_sel->get_select_str(),
 			 
-						 
-						 
+										"MENU_ID_sel" => $this->MENU_ID_sel->get_select_str(),
+			 
+										"ACTION_ID_sel" => $this->ACTION_ID_sel->get_select_str(),
+			 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

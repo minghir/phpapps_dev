@@ -1,39 +1,45 @@
 <?php
 require_once ("globals.php");
-$globals = new Globals("phpapps");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-if(count($_POST) > 0 ){
-	
-   if($_POST["user"] != "" && $_POST["pass"] != ""){
-     $sql = new DB_Query("SELECT ID, 
-					USERNAME,
-					SCRIPT_NAME
-					FROM 
-					phpapps.view_users 
-					WHERE username = :USER AND 
-					password = :PASS",
-					array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
-		$con = $globals->con;
-     if($globals->con->query($sql)==1){
-	 
-        $res=$globals->con->fetch_array();
-        session_start();
-        $_SESSION["_USER_ID"] = $res["ID"];
-        $_SESSION["_USER_NAME"] = $res["USERNAME"];
-			
-        header("Location:".$res["SCRIPT_NAME"].".php");
-         
-    }else{
-            $globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
+class login extends phpapps_display_abs{
+    public $globals;
+    public function __construct(){
+                    parent::__construct();
+            global $GLOBALS_OBJ;
+            $this->globals = &$GLOBALS_OBJ;
+           if(count($_POST) > 0 ){
+               if($_POST["user"] != "" && $_POST["pass"] != ""){
+                   $sql = new DB_Query("SELECT ID, 
+                                                   USERNAME,
+                                                   SCRIPT_NAME
+                                                   FROM 
+                                                   phpapps.view_users 
+                                                   WHERE username = :USER AND 
+                                                   password = :PASS",
+                                                   array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
+
+                if($this->globals->con->query($sql)==1){
+
+                   $res=$this->globals->con->fetch_array();
+                   session_start();
+                   $_SESSION["_USER_ID"] = $res["ID"];
+                   $_SESSION["_USER_NAME"] = $res["USERNAME"];
+
+                   header("Location:".$res["SCRIPT_NAME"].".php");
+
+               }else{
+                       $this->globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
+               }
+           }
+       }else{
+       }
+       //$con->print_log();
+       $this->tpl = "login.tpl";
+       $this->setLayoutFile(PHPAPPS_LAYOUTS_DIR . "phpapps_login.lay");
+       $this->displayTpl();
+       //$globals->sm->display('login.tpl');
     }
-//	$globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
-  }
-
-}else{
-    //$globals->sm->assign("ERROR","Introduceti USER si PAROLA!!!");
 }
-
-//$con->print_log();
-$globals->sm->display('login.tpl');
-
+new login();
 ?>

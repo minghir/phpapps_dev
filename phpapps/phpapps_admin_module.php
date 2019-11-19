@@ -1,6 +1,7 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once(DB_LIBS_DIR . 'DB_menu.php');
 
 class phpapps_admin_module extends phpapps_display_abs{
 	
@@ -16,9 +17,11 @@ class phpapps_admin_module extends phpapps_display_abs{
 	var $BASE_DIR;
 	
 	public function __construct($module_id){
+                 parent::__construct();
 		
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
+		//global $GLOBALS_OBJ;
+		//$this->globals = $GLOBALS_OBJ;
+                //$this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
 		
 		$this->globals->con->select_db("phpapps");
 		
@@ -236,9 +239,11 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
 		$this->globals->sm->assign("scripts_grid",$scripts_grid->get_grid_str());
 		
-                print_r($tables_grid->query->prnt());
+                //print_r($tables_grid->query->prnt());
                 
 		$this->globals->sm->assign("module",$this);
+                
+                $this->setupLayoutElements();
 		$this->globals->sm->display("phpapps_admin_module.tpl");
 	}
 }

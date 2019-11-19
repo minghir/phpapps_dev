@@ -14,6 +14,9 @@ class phpapps_admin_applications_form{
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
 	            
 	public $USER_ID;
         	            
@@ -26,12 +29,15 @@ class phpapps_admin_applications_form{
 	public $APP_DATE;
         	            
 	public $DESCRIPTION;
+        	            
+	public $LAYOUT_ID;
         		
 		 
 		 
 		 
 			public $APP_SCHEMA_sel;
 	 
+		 
 		 
 		 
 			
@@ -42,6 +48,8 @@ class phpapps_admin_applications_form{
 		 
 		 
 		 
+			public $LAYOUT_ID_sel;
+	 
 	        
         
 
@@ -60,6 +68,7 @@ class phpapps_admin_applications_form{
                         			 
 					 
 					 
+					 
 				
 									$this->USER_ID_sel = new DB_select("USER_ID","phpapps.users");
                                 			 
@@ -68,6 +77,8 @@ class phpapps_admin_applications_form{
 					 
 					 
 					 
+									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+                                			 
 		                
 	}
 		
@@ -85,18 +96,19 @@ class phpapps_admin_applications_form{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 									USER_ID,
 												APP_NAME,
 												APP_TITLE,
 												APP_SCHEMA,
 												APP_DATE,
-												DESCRIPTION
+												DESCRIPTION,
+												LAYOUT_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->USER_ID = stripslashes($this->globals->con->get_field("USER_ID"));
                                 			                                                                $this->APP_NAME = stripslashes($this->globals->con->get_field("APP_NAME"));
@@ -104,6 +116,7 @@ class phpapps_admin_applications_form{
                                 			                                                                $this->APP_SCHEMA = stripslashes($this->globals->con->get_field("APP_SCHEMA"));
                                 			                                                                $this->APP_DATE = stripslashes($this->globals->con->get_field("APP_DATE"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->LAYOUT_ID = stripslashes($this->globals->con->get_field("LAYOUT_ID"));
                                 						
 	}
 	
@@ -117,20 +130,22 @@ class phpapps_admin_applications_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 															USER_ID,
 																						APP_NAME,
 																						APP_TITLE,
 																						APP_SCHEMA,
 																						APP_DATE,
-																						DESCRIPTION
+																						DESCRIPTION,
+																						LAYOUT_ID
 										 ) VALUES (
 															:USER_ID,
 																						:APP_NAME,
 																						:APP_TITLE,
 																						:APP_SCHEMA,
 																						:APP_DATE,
-																						:DESCRIPTION
+																						:DESCRIPTION,
+																						:LAYOUT_ID
 													)",
 			array(
 									                                            
@@ -145,11 +160,13 @@ class phpapps_admin_applications_form{
                                             ":APP_DATE" => $this->APP_DATE,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
+                                        														                                            
+                                            ":LAYOUT_ID" => $this->LAYOUT_ID,
                                         												)
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare adaugata cu succes";
@@ -171,13 +188,14 @@ class phpapps_admin_applications_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									USER_ID = :USER_ID,
 												APP_NAME = :APP_NAME,
 												APP_TITLE = :APP_TITLE,
 												APP_SCHEMA = :APP_SCHEMA,
 												APP_DATE = :APP_DATE,
-												DESCRIPTION = :DESCRIPTION
+												DESCRIPTION = :DESCRIPTION,
+												LAYOUT_ID = :LAYOUT_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -187,12 +205,13 @@ class phpapps_admin_applications_form{
                                         				                                                                                    ":APP_SCHEMA" => $this->APP_SCHEMA,
                                         				                                                                                    ":APP_DATE" => $this->APP_DATE,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":LAYOUT_ID" => $this->LAYOUT_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare salvata cu succes";
@@ -212,11 +231,11 @@ class phpapps_admin_applications_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare stearsa cu succes";
@@ -264,6 +283,7 @@ class phpapps_admin_applications_form{
                                                 		                                                    $this->APP_SCHEMA  = htmlspecialchars(addslashes(trim($_POST["APP_SCHEMA"])));
                                                 		                                                    $this->APP_DATE  = htmlspecialchars(addslashes(trim($_POST["APP_DATE"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->LAYOUT_ID  = htmlspecialchars(addslashes(trim($_POST["LAYOUT_ID"])));
                                                 		        }
 		
         function takePostActions(){
@@ -300,6 +320,7 @@ class phpapps_admin_applications_form{
 			 
 					 
 					 
+					 
 				
 									//$this->USER_ID_sel = new DB_select("USER_ID",".phpapps.users");
 				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME");
@@ -311,8 +332,16 @@ class phpapps_admin_applications_form{
 					 
 					 
 					 
+									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".phpapps.layouts");
+				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.layouts ORDER BY NAME");
+				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
+				$this->LAYOUT_ID_sel->setup_select_options();
+			 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"USER_ID" => $this->USER_ID,
 							"APP_NAME" => $this->APP_NAME,
@@ -320,11 +349,13 @@ class phpapps_admin_applications_form{
 							"APP_SCHEMA" => $this->APP_SCHEMA,
 							"APP_DATE" => $this->APP_DATE,
 							"DESCRIPTION" => $this->DESCRIPTION,
+							"LAYOUT_ID" => $this->LAYOUT_ID,
 									 
 						 
 						 
 										"APP_SCHEMA_sel" => $this->APP_SCHEMA_sel->get_select_str(),
 			 
+						 
 						 
 						 
 													"USER_ID_sel" => $this->USER_ID_sel->get_select_str(),
@@ -334,6 +365,8 @@ class phpapps_admin_applications_form{
 						 
 						 
 						 
+										"LAYOUT_ID_sel" => $this->LAYOUT_ID_sel->get_select_str(),
+			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,
@@ -345,9 +378,11 @@ class phpapps_admin_applications_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
+		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
@@ -360,8 +395,8 @@ class phpapps_admin_applications_form{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}

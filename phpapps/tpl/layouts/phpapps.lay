@@ -9,9 +9,9 @@
 
 <link rel="shortcut icon" type="image/png" sizes="32x32" href="{$smarty.const.WEB_BASE_DIR}phpapps/imgs/database-black-icon.png">
     
-<title>CSS Template</title>
+<title>PHPApps</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 * {
   box-sizing: border-box;
@@ -24,19 +24,20 @@ body {
 /* Style the header */
 header {
   background-color: #666;
-  padding: 30px;
+  padding: 0px;
   text-align: center;
   font-size: 35px;
   color: white;
 }
 
 /* Create two columns/boxes that floats next to each other */
-nav {
+vertical_nav {
   float: left;
-  width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 20px;
+  width: 10%;
+  background: #12363b;
+  /*height: 100%; /* only for demonstration, should be removed */
+  
+  padding: 3px;
 }
 
 /* Style the list inside the menu */
@@ -45,12 +46,12 @@ nav ul {
   padding: 0;
 }
 
-article {
+main_content {
   float: left;
-  padding: 20px;
-  width: 70%;
+  padding: 0px;
+  width: 90%;
   background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
+ /* height: 100%; /* only for demonstration, should be removed */
 }
 
 /* Clear floats after the columns */
@@ -63,14 +64,14 @@ section:after {
 /* Style the footer */
 footer {
   background-color: #777;
-  padding: 10px;
+  padding: 0px;
   text-align: center;
   color: white;
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
-  nav, article {
+  vertical_nav, main_content {
     width: 100%;
     height: auto;
   }
@@ -79,30 +80,31 @@ footer {
 </head>
 <body>
 
-<header>
+<header style="overflow:auto">
   {block name=header}
-  <h2>Cities</h2>
+  {include file="top_menu.tpl" }
   {/block}
 </header>
 
 
 <section>
-  <nav>
+  <vertical_nav style="overflow:auto">
        {block name=nav}
-    <ul>
+    <!-- <ul>
       <li><a href="#">London</a></li>
       <li><a href="#">Paris</a></li>
       <li><a href="#">Tokyo</a></li>
-    </ul>
+    </ul>-->
+        {$vertical_menu}
        {/block}
-  </nav>
+  </vertical_nav>
   
-  <article>
+  <main_content style="overflow:auto">
        {block name=content}<h2>Cities</h2>{/block}
   </article>
 </section>
 
-<footer>
+<footer style="overflow:auto">
  {block name=footer}<p>Footer</p>{/block}
 </footer>
 

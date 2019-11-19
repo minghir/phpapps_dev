@@ -46,7 +46,8 @@ class phpapps_database_module extends phpapps_display_abs{
 		$this->APP_NAME = $this->globals->con->get_field("APP_NAME");
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
-
+                
+                
                 $this->displayTpl();
     }
     
@@ -226,7 +227,12 @@ class phpapps_database_module extends phpapps_display_abs{
                 
                 $this->globals->sm->assign("module",$this);
     }
-}
+    /*
+    public function displayTpl(){
+                $this->setupLayoutElements();
+		$this->globals->sm->display("phpapps_database_module.tpl");
+	}*/
+}   
 
 new phpapps_database_module($_GET["module_id"]);
 ?>

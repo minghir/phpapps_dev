@@ -1,42 +1,6 @@
-<html>
-<head>
-{include file="commun_header.tpl" }
-{literal}
-<style>
-			* {padding:0; margin:0;}
-
-			html {
-				background-color: #dddddd;
-				padding:15px 15px 0;
-				font-family:sans-serif;
-				font-size:14px;
-			}
-
-			p, h3 { 
-				margin-bottom:15px;
-			}
-
-			.tabs li {
-				list-style:none;
-				display:inline;
-                                background:#666666;
-			}
-
-			.tabs a {
-				padding:5px 10px;
-				display:inline-block;
-				background:#666666;
-				color:#666666;
-				text-decoration:none;
-                                background-color: #dddddd;
-			}
-
-			.tabs a.active {
-				background:#fff;
-				color:#000;
-			}
-
-		</style>
+{extends file=$display_obj->layout_file}
+{block name=content}
+{literal}    
 		<script>
 			// Wait until the DOM has loaded before querying the document
 			$(document).ready(function(){
@@ -78,13 +42,11 @@
 			});
 		</script>
 {/literal}
-</head>
-<body>
-{include file="top_menu.tpl" }
 	<div class="test_div">
 	<font style="font-size: 120%;"><a href="phpapps_admin_applications.php">{$module->APP_TITLE}</a> / {$module->MODULE_TITLE} </h1></font><br>
 	( <a href="phpapps_admin_modules_form_imp.php?gact=editRec&gfield=ID&gfield_value={$module->ID}">{$module->MODULE_NAME}</a> / {$module->MODULE_DATE} ) 
-	</div><br>
+        </div>
+        <div class="test_div">
 	<ul class='tabs'>
 	<li><a href='#tab1'>Tables</a></li>
 	<li><a href='#tab2'>Lists</a></li>
@@ -96,5 +58,5 @@
 	<div id="tab2" class="adm_mod_div"  >{$lists_grid}</div>
 	<div id="tab3" class="adm_mod_div"  >{$forms_grid}</div>
 	<div id="tab4" class="adm_mod_div"  >{$scripts_grid}</div>
-</body>
-</html>
+        </div>
+{/block}

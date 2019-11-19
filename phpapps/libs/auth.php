@@ -72,7 +72,8 @@ class auth{
     
     function logout(){
         session_destroy();
-        $this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );
+        //$this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );
+        header("Location:login.php");
         exit;
     }
     

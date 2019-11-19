@@ -1,47 +1,39 @@
-<html>
-<head>
-<title>PHP Applications Login</title>
-{include file='commun_header.tpl'}
-</head>
+{extends file=$display_obj->layout_file}
+{block name=content}
+    <style>
+    td,th {
 
-<body bgcolor="#dddddd">
-<form name="login_form" method="POST">
-    <p align="center"><font  style="color: red;" size=1>&nbsp;{$ERROR}</font></p>
-<table align="center" bgcolor="#dddddd">
+    background-color: #12363b;
+    text-align: left;
+/*	padding: 0.125em 0.5em 0.25em 0.5em; */
+    line-height: 0.5;
+    border: 0px solid gray;
+    background-color: #12363b;
+/*    margin: 12px 12px 12px 12px; */
+    padding: 10px 5px 10px 5px;
+}
+   </style>
+    <div class="test_div">    
+    <p align="center"><font  style="color: red;">&nbsp;{$ERROR}</font></p><br><br>
+    <table align="center" cellspacing="0" border="0">
+    <form name="login_form" method="POST">
     <tr>
-        <td colspan=2><font size=6 style="color: #145A78;">PHPApps: </font><br>
-            <a href="signup.php"><font size=2 style="color: #145A78;">Sign up</font></a>
-            <br><br>
-        </td>
+        <td colspan=2><font size=18 style="color: #ffffff;font-family: 'Helvetica'"><b>PHPApps</b></font></td>
     </tr>
-    <br><br><br><br><br>
-    <tr></tr><tr></tr>
     <tr>
-        <td class="text_alb"><font color="#145A78">Email or User ID</font><br>
+        <td colspan=2><font style="color=#fffffff;">&nbsp;Email:</font><br><br>
 	<input type="text" name="user" value="{$USER}" onclick="this.value='';this.form.pass.value=''"></td>
     </tr>
     <tr>
-        <td class="text_alb"><font color="#145A78">Password</font><br><input type="password" name="pass" value="{$pass}" onclick="this.value='';"></td>
+        <td class="text_alb"><font style="color: #ffffff;">&nbsp;Password:</font><br><br>
+            <input type="password" name="pass" value="{$pass}" onclick="this.value='';"></td>
     </tr>
     <tr>
-        <td ><button type="submit" name="Login" value="Login">Login</button></td>
-        <td class="text_alb">
+        <td ><button type="submit" name="Login" value="Login">Login</button><br><br><br>
+            <a href="signup.php"><font style="color: #ffffff;">Sign up</font></a></td>
     </tr>
+    </form>
 </table>
-</form>
 
-<table align =center valign=bottom>
-<tr><td>
-<!-- FOOTER -->
-<p align =center bottom=0>
-       
-</p>
-<!-- FOOTER -->
-</tr></td>
-</table>
-</body>
-</html>
-
-
-
-
+</div>
+{/block}

@@ -1,40 +1,6 @@
-<html>
-<head>
-{include file="commun_header.tpl" }
+{extends file=$display_obj->layout_file}
+{block name=content}
 {literal}
-<style>
-			* {padding:0; margin:0;}
-
-			html {
-				background:url(/img/tiles/wood.png) 0 0 repeat;
-				padding:15px 15px 0;
-				font-family:sans-serif;
-				font-size:14px;
-			}
-
-			p, h3 { 
-				margin-bottom:15px;
-			}
-
-			.tabs li {
-				list-style:none;
-				display:inline;
-			}
-
-			.tabs a {
-				padding:5px 10px;
-				display:inline-block;
-				background:#666;
-				color:#fff;
-				text-decoration:none;
-			}
-
-			.tabs a.active {
-				background:#fff;
-				color:#000;
-			}
-
-		</style>
 		<script>
 			// Wait until the DOM has loaded before querying the document
 			$(document).ready(function(){
@@ -76,17 +42,11 @@
 			});
 		</script>
 {/literal}
-</head>
-<body>
-    {include file="top_menu.tpl" }
-    <br>
-	
-	
-	
 	<div class="test_div">
 	<font style="font-size: 120%;"><a href="phpapps_admin_applications.php">{$module->APP_TITLE}</a> / {$module->MODULE_TITLE} </h1></font><br>
 	( <a href="phpapps_admin_modules_form_imp.php?gact=editRec&gfield=ID&gfield_value={$module->ID}">{$module->MODULE_NAME}</a> / {$module->MODULE_DATE} ) 
 	</div><br>
+        <div class="test_div">
 	<ul class='tabs'>
         <li><a href='#tab1'>Databases</a></li>
 	<li><a href='#tab2'>Tables</a></li>
@@ -95,10 +55,10 @@
 	<li><a href='#tab5'>Views</a></li>
 	</ul>
 	
-	<div id="tab1" class="adm_mod_div"  >{$databases_grid}</div>
-        <div id="tab2" class="adm_mod_div"  >{$tables_grid}</div>
-	<div id="tab3" class="test_div"  style="width: 90%;">{$lists_grid}</div>
-	<div id="tab4" class="test_div"  style="width: 90%;">{$queries_grid}</div>
-	<div id="tab5" class="test_div"  style="width: 90%;">{$views_grid}</div>
-</body>
-</html>
+	<div id="tab1" class="adm_mod_div">{$databases_grid}</div>
+        <div id="tab2" class="adm_mod_div">{$tables_grid}</div>
+	<div id="tab3" class="adm_mod_div">{$lists_grid}</div>
+	<div id="tab4" class="adm_mod_div">{$queries_grid}</div>
+	<div id="tab5" class="adm_mod_div">{$views_grid}</div>
+        </div>
+{/block}

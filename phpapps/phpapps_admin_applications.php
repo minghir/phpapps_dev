@@ -6,7 +6,7 @@ class phpapps_applications extends phpapps_display_abs{
 	
 	public function __construct($uid){
              parent::__construct();
-                $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
+               // $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
 		//global $GLOBALS_OBJ;
 		//$this->globals = $GLOBALS_OBJ;
 		$this->globals->con->select_db("phpapps");
@@ -39,20 +39,10 @@ class phpapps_applications extends phpapps_display_abs{
 		}
 		$this->globals->sm->assign("rows",$rows);
 		$this->globals->sm->assign("modules",$modules);
-                
-                
-                 $menu_query = new DB_query("SELECT "
-                        . "CONCAT('<a href=\"SCRIPT_NAME,'.php?module_id=',ID,'\">',MODULE_TITLE,'</a>) AS ITEM"
-                        . "FROM view_modules "
-                       // . "WHERE APP_ID = :app_id",array(":app_id"=>$this->app_id));
-                          . "WHERE APP_ID = :app_id",array(":app_id"=>"1"));
-               $menu_query->prnt();
-                $menu1 = new DB_menu("main_menu",$menu_query);
-                       
-                $this->globals->sm->assign("vertical_menu",$menu1->get_menu_str());
 	}
 	
 	public function displayTpl(){
+                $this->setupLayoutElements();
 		$this->globals->sm->display("phpapps_admin_applications.tpl");
 	}
 };

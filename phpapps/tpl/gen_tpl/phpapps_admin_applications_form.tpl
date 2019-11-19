@@ -1,3 +1,10 @@
+<script>
+function submitDetailsForm(op){
+		$("#pact").val(op);
+		$("#phpapps_designer_themes_form").submit();
+}
+  </script>
+ 
 {$error_msg}
 <hr><form name="phpapps_admin_applications_form" id="phpapps_admin_applications_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
@@ -41,7 +48,14 @@
         										
 			
 		                
-		                				{$FROM_IMP_CLASS}
+		                				 
+																
+			
+		                
+				<tr><td align="right">LAYOUT_ID  :</td><td>
+			{$LAYOUT_ID_sel}
+		</td></tr>
+                        				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

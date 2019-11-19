@@ -13,15 +13,19 @@
  */
 
 require_once ("globals.php");
+require_once ("application_layout.php");
 
-abstract class phpapps_display_abs {
+abstract class phpapps_display_abs extends  application_layout {
     public $tpl;
     public $layout;
+    public $globals;
     
     public function __construct() {
+        parent::__construct();
         
         $this->tpl = PHPAPPS_LIBS_TPL_DIR . "phpapps_display_abs.tpl";
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay.tpl";
+        //$this->layout = new application_layout();
+        //$this->layout->setupLayoutElements();
         
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
@@ -30,6 +34,7 @@ abstract class phpapps_display_abs {
     }
     
     function setupDisplay(){
+        //$this->
     }
     
     public function displayTpl() {

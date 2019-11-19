@@ -1,10 +1,4 @@
-{extends file=$display_obj->layout}
-{block name=header}{include file="top_menu.tpl" }{/block}
-
-{block name=nav}
-    {$vertical_menu}
-{/block}
-
+{extends file=$display_obj->layout_file}
 {block name=content}
 <div class="test_div">
 <a href="phpapps_admin_applications_form_imp.php?gact=addRec"  style="text-decoration:none">

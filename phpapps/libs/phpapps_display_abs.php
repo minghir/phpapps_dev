@@ -13,7 +13,7 @@
  */
 
 require_once ("globals.php");
-require_once ("application_layout.php");
+require_once (PHPAPPS_LIBS_DIR . "application_layout.php");
 
 abstract class phpapps_display_abs extends  application_layout {
     public $tpl;

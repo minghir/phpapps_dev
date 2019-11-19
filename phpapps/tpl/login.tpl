@@ -21,7 +21,7 @@
         <td colspan=2><font size=18 style="color: #ffffff;font-family: 'Helvetica'"><b>PHPApps</b></font></td>
     </tr>
     <tr>
-        <td colspan=2><font style="color=#fffffff;">&nbsp;Email:</font><br><br>
+        <td colspan=2><font style="color: #fffffff;">&nbsp;Email:</font><br><br>
 	<input type="text" name="user" value="{$USER}" onclick="this.value='';this.form.pass.value=''"></td>
     </tr>
     <tr>

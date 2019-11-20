@@ -6,16 +6,16 @@ create database atsepa;
 use atsepa;
 
 
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
 --
 -- Host: localhost    Database: atsepa
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	5.6.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,14 +29,14 @@ use atsepa;
 
 DROP TABLE IF EXISTS `app_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `app_users` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `USERNAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `PASSWORD` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `EMAIL` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `LAST_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `FIRST_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `USERNAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `PASSWORD` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `EMAIL` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `LAST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FIRST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `USER_TYPE` bigint(20) NOT NULL DEFAULT '4',
   `JOIN_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
@@ -62,16 +62,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `articles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `articles` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `ARTICLE_TAGS` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `BODY` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `INTRO` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `ARTICLE_TAGS` text COLLATE utf8_bin,
+  `BODY` text COLLATE utf8_bin,
+  `INTRO` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `CATEG_ID` bigint(20) NOT NULL DEFAULT '0',
   `VISIBLE` bigint(1) NOT NULL DEFAULT '0',
-  `IMAGE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `IMAGE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `USER_ID` bigint(20) NOT NULL DEFAULT '0',
   `ARTICLE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
@@ -98,13 +98,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SUBJECT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `EMAIL` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `MESSAGE` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `EMAIL` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `MESSAGE` text COLLATE utf8_bin,
   `DATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `atsepa_contact_146_IDX` (`NAME`)
@@ -127,11 +127,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `da_nu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `da_nu` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -152,12 +152,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `forum_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forum_categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `PID` bigint(20) NOT NULL DEFAULT '0',
-  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `DESCRIPTION` text COLLATE utf8_bin,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `atsepa_categories_130_IDX` (`NAME`),
   KEY `atsepa_categories_PID_FK` (`PID`),
@@ -181,11 +181,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_article_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list_article_categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -206,11 +206,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_user_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list_user_types` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -231,13 +231,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `POST_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `TOPIC_ID` bigint(20) DEFAULT NULL,
   `USER_ID` bigint(20) DEFAULT NULL,
-  `CONTENT` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `CONTENT` text COLLATE utf8_bin,
   PRIMARY KEY (`ID`),
   KEY `atsepa_posts_TOPIC_ID_FK` (`TOPIC_ID`),
   CONSTRAINT `atsepa_posts_TOPIC_ID_FK` FOREIGN KEY (`TOPIC_ID`) REFERENCES `topics` (`ID`)
@@ -260,11 +260,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `topics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `topics` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SUBJECT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin,
   `TOPIC_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `CAT_ID` bigint(20) NOT NULL DEFAULT '0',
   `USER_ID` bigint(20) NOT NULL DEFAULT '0',
@@ -293,7 +293,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `view_articles`;
 /*!50001 DROP VIEW IF EXISTS `view_articles`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `view_articles` AS SELECT 
  1 AS `ID`,
  1 AS `NAME`,
@@ -315,7 +315,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `view_forum_categories`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_categories`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `view_forum_categories` AS SELECT 
  1 AS `ID`,
  1 AS `PID`,
@@ -332,7 +332,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `view_forum_posts`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_posts`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `view_forum_posts` AS SELECT 
  1 AS `ID`,
  1 AS `POST_DATE`,
@@ -352,7 +352,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `view_forum_topics`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_topics`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
+SET character_set_client = utf8;
 /*!50001 CREATE VIEW `view_forum_topics` AS SELECT 
  1 AS `ID`,
  1 AS `SUBJECT`,
@@ -445,7 +445,7 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-20  0:06:33
+-- Dump completed on 2019-11-20 16:18:45
 
 SET FOREIGN_KEY_CHECKS=1;
 

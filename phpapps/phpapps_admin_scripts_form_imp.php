@@ -4,7 +4,10 @@ require_once ("globals.php");
 include ("gen_php/phpapps_admin_scripts_form.php");
 	class phpapps_admin_scripts_form_impl  extends phpapps_admin_scripts_form{
 		public $app_name;
+                public $app_id;
+                public $module_id;
                 public $old_script_name;
+                public $script_id;
 	
 		function __construct(){
                     parent::__construct();
@@ -12,43 +15,68 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 			$this->globals = $GLOBALS_OBJ;
 			$this->MODULE_ID = $_GET["module_id"];
 			$sql = new DB_query("SELECT 
-						APP_NAME 
+                                                ID,
+                                                APP_ID,
+						APP_NAME
 						FROM phpapps.view_modules 
 						WHERE ID = :module_id", array(":module_id" => $this->MODULE_ID));
+                        echo $sql->prnt();
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			$this->app_name = $this->globals->con->get_field("APP_NAME");
+                        $this->app_id = $this->globals->con->get_field("APP_ID");
+                        $this->module_id = $this->globals->con->get_field("MODULE_ID");
 			$this->template = "phpapps_admin_scripts_form_imp.tpl";
 			$this->init();
 			$this->display();
 		}
 		
 		function afterAddRec(){
-			$this->globals->sm->assign(array(
-				"CLASS_NAME" => $this->SCRIPT_NAME,
-			));
-			
-			$php_content = $this->globals->sm->fetch('php_new_script_template.tpl');
-			$php_file_name = $this->SCRIPT_NAME . ".php";
-			$php_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . $php_file_name;
-			if(!file_exists($php_file_path)){
-				$fp = fopen($php_file_path, 'w');
-				fwrite($fp, $php_content);
-				fclose($fp);
-			}else{
-				$this->errors[] = "PHP SCRIPT FILE EXISTS!";
-			}
-			
-			$tpl_content = $this->globals->sm->fetch('tpl_new_script_template.tpl');
-			$tpl_file_name = $this->SCRIPT_NAME . ".tpl";
-			$tpl_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $tpl_file_name;
-			if(!file_exists($tpl_file_path)){
-				$ft = fopen($tpl_file_path, 'w');
-				fwrite($ft, $tpl_content);
-				fclose($ft);
-			}else{
-				$this->errors[] = "TPL SCRIPT FILE EXISTS!";
-			}
+                        if(count($this->errors) == 0){
+                            $sql = new DB_query("SELECT 
+                                                    ID
+                                                    FROM phpapps.scripts
+                                                    WHERE MODULE_ID = :module_id AND SCRIPT_NAME = :script_name", 
+                                            array(":module_id" => $this->MODULE_ID,
+                                                  ":script_name" => $this->SCRIPT_NAME));
+                           
+                            $this->globals->con->query($sql);
+                            $this->globals->con->next();
+
+                            $this->script_id = $this->globals->con->get_field("ID");
+
+                            $this->globals->sm->assign(array(
+                                    "CLASS_NAME" => $this->SCRIPT_NAME,
+                                    "APP_ID" => $this->app_id,
+                                    "MODULE_ID" => $this->MODULE_ID,
+                                    "SCRIPT_ID" => $this->script_id
+                            ));
+
+                            $php_content = $this->globals->sm->fetch('php_new_script_template.tpl');
+                            $php_file_name = $this->SCRIPT_NAME . ".php";
+                            $php_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . $php_file_name;
+                            if(!file_exists($php_file_path)){
+                                    $fp = fopen($php_file_path, 'w');
+                                    fwrite($fp, $php_content);
+                                    fclose($fp);
+                            }else{
+                                    $this->errors[] = "PHP SCRIPT FILE EXISTS!:$php_file_path ";
+                            }
+
+                            $tpl_content = $this->globals->sm->fetch('tpl_new_script_template.tpl');
+                            $tpl_file_name = $this->SCRIPT_NAME . ".tpl";
+                            $tpl_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $tpl_file_name;
+                            if(!file_exists($tpl_file_path)){
+                                    $ft = fopen($tpl_file_path, 'w');
+                                    fwrite($ft, $tpl_content);
+                                    fclose($ft);
+                            }else{
+                                    $this->errors[] = "TPL SCRIPT FILE EXISTS!:$tpl_file_path";
+                            }
+                        }else{
+                            print_r($this->errors);
+                        }
+                         print_r($this->errors);
 		}
                 
                 function beforeSaveRec(){

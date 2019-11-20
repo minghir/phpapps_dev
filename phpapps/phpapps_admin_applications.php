@@ -31,7 +31,7 @@ class phpapps_applications extends phpapps_display_abs{
 						SCRIPT_NAME,
                                                 CONCAT('".WEB_BASE_DIR."' ,APP_NAME,'/',SCRIPT_NAME) AS SCRIPT_PATH
 					FROM phpapps.view_modules WHERE APP_ID = :app_id ORDER BY MODULE_NAME",array(':app_id'=>$res["ID"]));
-					
+				
 				$this->globals->con->query($sql,"modules");	
 				while($res_mod=$this->globals->con->fetch_array("modules")){
 					$modules[$res["ID"]][] = $res_mod;

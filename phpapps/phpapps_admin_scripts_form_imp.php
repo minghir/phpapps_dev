@@ -4,8 +4,10 @@ require_once ("globals.php");
 include ("gen_php/phpapps_admin_scripts_form.php");
 	class phpapps_admin_scripts_form_impl  extends phpapps_admin_scripts_form{
 		public $app_name;
+                public $old_script_name;
 	
 		function __construct(){
+                    parent::__construct();
 			global $GLOBALS_OBJ;
 			$this->globals = $GLOBALS_OBJ;
 			$this->MODULE_ID = $_GET["module_id"];
@@ -48,6 +50,46 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 				$this->errors[] = "TPL SCRIPT FILE EXISTS!";
 			}
 		}
+                
+                function beforeSaveRec(){
+                    $sql = new DB_query("SELECT SCRIPT_NAME FROM SCRIPTS WHERE ID = :script_id",array(":script_id"=>$this->ID));
+                    $this->globals->con->query($sql);
+                    $this->globals->con->next();
+                    $this->old_script_name = $this->globals->con->get_field("SCRIPT_NAME");
+                }
+                
+                function afterSaveRec(){
+                    if(count($this->errors) == 0 ){
+                        $old_tpl_file_name_tpl = $this->old_script_name . ".tpl";
+			$old_tpl_file_path_tpl = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $old_tpl_file_name_tpl;
+                        
+                        $new_tpl_file_name_tpl = $this->SCRIPT_NAME . ".tpl";
+			$new_tpl_file_path_tpl = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $new_tpl_file_name_tpl;
+                        
+                        
+                        $old_tpl_file_name_php = $this->old_script_name . ".php";
+			$old_tpl_file_path_php = GLOBALS_DIR . $this->app_name .  DIR_SEP . $old_tpl_file_name_php;
+                        
+                        $new_tpl_file_name_php = $this->SCRIPT_NAME . ".php";
+			$new_tpl_file_path_php = GLOBALS_DIR . $this->app_name  . DIR_SEP . $new_tpl_file_name_php;
+                      
+                        echo "<br>RENAME:$old_tpl_file_path_tpl - IN $new_tpl_file_path_tpl<br><br>" ;
+                        echo "<br>RENAME:$old_tpl_file_path_php - IN $new_tpl_file_path_php<br><br>" ;
+                        
+                        if( !rename($old_tpl_file_path_tpl, $new_tpl_file_path_tpl) ){
+                            $this->errors[] = "FILES TPL RENAME FAILD !!!!";
+                             print_r($this->errors);
+                        }
+                        
+                        if( !rename($old_tpl_file_path_php, $new_tpl_file_path_php) ){
+                            $this->errors[] = "FILES PHP RENAME FAILD !!!!";
+                          print_r($this->errors);
+                        }
+                    }else{
+                        print_r($this->errors);
+                    }
+                }
+                
 		
 		function beforeDeleteRec(){
                         $this->getRec();

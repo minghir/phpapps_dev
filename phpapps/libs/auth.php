@@ -13,20 +13,19 @@ class auth{
         session_start();
         GLOBAL $globals;
         $this->globals = $glb;
-        
         $this->script_name =  basename($_SERVER["SCRIPT_FILENAME"],".php");
-        
         $tst = new DB_table("scripts");
         $tst->globals = $this->globals;
-        if( $tst->getValueByField("SCRIPT_TYPE","SCRIPT_NAME",$this->script_name) == 2 ){
+        if( $tst->getValueByField("SCRIPT_TYPE_ID","SCRIPT_NAME",$this->script_name) == 2 ){
             $this->public_script = true;
         }else{
             $this->public_script = false;
         }
+        //echo $tst->prnt();
+        //exit;
     }    
         
     function authenticate(){
-        
         if($this->public_script) {
             return true;
         }else{
@@ -73,7 +72,7 @@ class auth{
     function logout(){
         session_destroy();
         //$this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );
-        header("Location:login.php");
+        header("Location:phpapps_login.php");
         exit;
     }
     

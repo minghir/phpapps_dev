@@ -14,6 +14,9 @@ class phpapps_admin_test2_form{
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
 	            
 	public $ID;
         	            
@@ -57,14 +60,14 @@ class phpapps_admin_test2_form{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 									ID,
 												nume
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
@@ -81,7 +84,7 @@ class phpapps_admin_test2_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					nume
 										 ) VALUES (
 																					:nume
@@ -93,7 +96,7 @@ class phpapps_admin_test2_form{
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare adaugata cu succes";
@@ -115,7 +118,7 @@ class phpapps_admin_test2_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												nume = :nume
 							
@@ -128,7 +131,7 @@ class phpapps_admin_test2_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare salvata cu succes";
@@ -148,11 +151,11 @@ class phpapps_admin_test2_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare stearsa cu succes";
@@ -194,15 +197,9 @@ class phpapps_admin_test2_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		            $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                            $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
-                            print_r($_FILES);
-                            $tmp_upload = new phpapps_upload("nume");
-                            $this->nume = $tmp_upload->getFilePath();
-                            
-                            echo "INCARC:" . $this->nume;
-                            unset($tmp_upload);
-                        		        }
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
+                                                		        }
 		
         function takePostActions(){
 		switch($this->pact){
@@ -220,9 +217,6 @@ class phpapps_admin_test2_form{
 	}
 	
 	function check_errors(){
-				if($this->nume == "") {
-			$this->errors[] = "Campul nume este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){

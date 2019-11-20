@@ -7,8 +7,10 @@ class DB_grid {
     var $grid_type;
     var $grid_title;
     var $db_grid_name;
+    
     var $init_query;
     var $query;
+
 
     var $table;
     var $error;
@@ -58,6 +60,7 @@ class DB_grid {
             $this->con = &$conn;
 			
             $this->query = new DB_query("");
+            
 
              switch ($g_type)
              {
@@ -210,7 +213,7 @@ echo"</h1><br>----------------<br>";
 //echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
 //print_r($this->query);
 			//$sql = new DB_query($this->query);
-			
+			$this->print_query = $this->query;
 			$nr_res = $this->con->query($this->query, $this->db_grid_name);
 			
                         if($this->grid_type == "query"){
@@ -542,6 +545,10 @@ echo"</h1><br>----------------<br>";
 		function add_grid_acction(HrefActions $act){
 			$this->grid_actions[] = $act;
 		}
+                
+                function prnt(){
+                    return $this->query->prnt();
+                }
 		
       };
 ?>

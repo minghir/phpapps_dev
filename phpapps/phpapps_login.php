@@ -18,7 +18,7 @@ class login extends phpapps_display_abs{
                                                    WHERE username = :USER AND 
                                                    password = :PASS",
                                                    array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
-
+//echo $sql->prnt();
                 if($this->globals->con->query($sql)==1){
 
                    $res=$this->globals->con->fetch_array();
@@ -35,7 +35,7 @@ class login extends phpapps_display_abs{
        }else{
        }
        //$con->print_log();
-       $this->tpl = "login.tpl";
+       $this->tpl = "phpapps_login.tpl";
        $this->setLayoutFile(PHPAPPS_LAYOUTS_DIR . "phpapps_login.lay");
        $this->displayTpl();
        //$globals->sm->display('login.tpl');

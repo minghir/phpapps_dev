@@ -195,7 +195,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$lad->action = "newRec";
 		$lists_grid->add_grid_acction($lad);
 			
-		$scripts_grid = new DB_grid($this->globals->con, "table","phpapps.scripts","phpapps_scripts_grid");
+		$scripts_grid = new DB_grid($this->globals->con, "table","phpapps.view_scripts","phpapps_scripts_grid");
 		$scripts_grid->grid_title = "SCRIPTS";
 		$scripts_grid->paginable = true;
 		$scripts_grid->editable = true;
@@ -203,7 +203,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$scripts_grid->exportable = false;
 		$scripts_grid->rows_on_pg = 20;
 		$scripts_grid->edit_form = "phpapps_admin_scripts_form_imp.php?module_id=".$this->ID;
-		$scripts_grid->cols = (array("SCRIPT_NAME","(SELECT VALUE FROM list_script_types WHERE ID = SCRIPT_TYPE) AS SCRIPT_TYPE","DESCRIPTION"));
+		$scripts_grid->cols = (array("SCRIPT_NAME","(SELECT VALUE FROM list_script_types WHERE ID = SCRIPT_TYPE_ID) AS SCRIPT_TYPE_ID","DESCRIPTION"));
 		$scripts_grid->labels = (array("NAME","TYPE","DESCRIPTION"));
 		//$scripts_grid->where_rules = array(" MODULE_ID = '".$this->ID."'");
 		$scripts_grid->where_rules = array(" MODULE_ID = :module_id ");
@@ -238,6 +238,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$this->globals->sm->assign("tables_grid",$tables_grid->get_grid_str());
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
 		$this->globals->sm->assign("scripts_grid",$scripts_grid->get_grid_str());
+                
+                echo $scripts_grid->prnt();
 		
                 //print_r($tables_grid->query->prnt());
                 

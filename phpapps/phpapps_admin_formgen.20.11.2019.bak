@@ -95,7 +95,7 @@ class phpapps_admin_formgen{
 			$sql = new DB_query("SELECT
 									fd.ID,
 									fd.FORM_ID,
-									f.SCRIPT_NAME,
+									f.FORM_NAME,
 									fd.FIELD,
 									fd.FIELD_TYPE,
 									fd.HIDDEN,
@@ -106,7 +106,7 @@ class phpapps_admin_formgen{
 									fd.REFERENCE_TABLE,
 									fd.REFERENCE_FIELD
 								FROM 	phpapps.form_details fd, 
-										scripts f
+										forms f
 								WHERE 	fd.FORM_ID = f.ID AND 
 										FORM_ID = :form_id",array(":form_id"=>$this->form_id));
 										
@@ -123,7 +123,7 @@ class phpapps_admin_formgen{
 				$this->selected_schema_list[] = $res["REFERENCE_LIST"];
 				$this->selected_schema_table[] = $res["REFERENCE_TABLE"];
 				$this->selected_schema_field[] = $res["REFERENCE_FIELD"];
-				$this->form_name = $res["SCRIPT_NAME"];	
+				$this->form_name = $res["FORM_NAME"];	
 			}
 		}
 		$this->form_name == "" ? ( $this->module_name . "_" . $this->form_table . "_form" ) : $this->form_name;
@@ -345,34 +345,29 @@ REFERENCE_FIELD
 		if($this->form_id == ""){
                    
 		//print_r($_POST);
-			$sql = new DB_query("INSERT INTO phpapps.scripts 
+			$sql = new DB_query("INSERT INTO phpapps.forms 
 							(MODULE_ID, 
-							SCRIPT_NAME, 
+							FORM_NAME, 
 							TABLE_ID, 
 							FORM_PHP_DIR, 
-							FORM_TPL_DIR,
-                                                        WEB_TYPE_ID,
-                                                        SCRIPT_TYPE_ID)
+							FORM_TPL_DIR)
 							VALUES(
 							:module_id, 
 							:form_name,
 							:form_table_id,
 							:deploy_location,
-							:deploy_location,
-                                                        :web_type_id,
-                                                        :script_type_id)",
+							:deploy_location)",
 							array(
 							":module_id"=>$this->module_id, 
 							":form_name"=>$this->form_name,
 							":form_table_id"=>$this->form_table_id,
-							":deploy_location"=>addslashes($this->deploy_location),
-                                                        ":web_type_id"=>'1',
-                                                        ":script_type_id"					
+							":deploy_location"=>addslashes($this->deploy_location)
+							
 							));
 			$this->globals->con->query($sql);
 			echo $sql->prnt();	
-			$sql = new DB_query("SELECT ID FROM phpapps.scripts
-									WHERE SCRIPT_NAME = :form_name AND
+			$sql = new DB_query("SELECT ID FROM phpapps.forms
+									WHERE FORM_NAME = :form_name AND
 											MODULE_ID = :module_id",
 											array(":form_name"=>$this->form_name,":module_id"=>$this->module_id));
 			$this->globals->con->query($sql);	
@@ -417,7 +412,7 @@ REFERENCE_FIELD
 		}else{/*
 			$sql =new DB_query( "UPDATE phpapps.forms SET
 									MODULE_ID = '".$this->module_id."', 
-									SCRIPT_NAME = '".$this->form_name."', 
+									FORM_NAME = '".$this->form_name."', 
 									TABLE_ID = '".$this->form_table_id."', 
 									FORM_PHP_DIR = '".addslashes($this->deploy_location)."', 
 									FORM_TPL_DIR = '".addslashes($this->deploy_location)."'	
@@ -425,8 +420,8 @@ REFERENCE_FIELD
                                                      
                  * 
                  */
-                        $sql =new DB_query( "UPDATE phpapps.scripts SET
-							SCRIPT_NAME = '".$this->form_name."' 
+                        $sql =new DB_query( "UPDATE phpapps.forms SET
+							FORM_NAME = '".$this->form_name."' 
 							WHERE ID = '".$this->form_id."'" );
 				$this->globals->con->query($sql);
 				

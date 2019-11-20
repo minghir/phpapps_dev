@@ -3,9 +3,10 @@
 require_once ("globals.php");
 
 class phpapps_admin_scripts_form{
-	private $globals;
-	public $schema = "phpapps";
-	public $table = "scripts";
+        public $form_com_type = "html"; // html | ajax
+	public $globals;
+	public $form_schema = "phpapps";
+	public $form_table = "scripts";
 	public $template = "gen_tpl/phpapps_admin_scripts_form.tpl";
 	//get values
 	public $gact;
@@ -13,56 +14,104 @@ class phpapps_admin_scripts_form{
 	public $gfield_value;
 	//post values
 	public $pact;
-		public $MODULE_ID;
-		public $SCRIPT_TYPE;
-		public $SCRIPT_NAME;
-		public $DESCRIPTION;
-		
+        
+        public $query;
+        
+	            
+	public $ID;
+        	            
+	public $MODULE_ID;
+        	            
+	public $SCRIPT_NAME;
+        	            
+	public $DESCRIPTION;
+        	            
+	public $WEB_TYPE_ID;
+        	            
+	public $SCRIPT_TYPE_ID;
+        		
 		 
-			public $SCRIPT_TYPE_sel;
+		 
+		 
+		 
+			public $WEB_TYPE_ID_sel;
 	 
-		 
-		 
+			public $SCRIPT_TYPE_ID_sel;
+	 
 			
 		 
 		 
 		 
 		 
-	
+		 
+		 
+	        
+        
+
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
-	function __contruct(){
+	function __construct(){
+		global $GLOBALS_OBJ;
+		$this->globals = &$GLOBALS_OBJ;
+                
+                			 
+					 
+					 
+					 
+								$this->WEB_TYPE_ID_sel = new DB_select("WEB_TYPE_ID","phpapps.list_web_script_type");
+                        			 
+								$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID","phpapps.list_script_types");
+                        			 
+				
+					 
+					 
+					 
+					 
+					 
+					 
+		                
 	}
 		
 	function init(){
-		global $GLOBALS_OBJ;
-		$this->globals = $GLOBALS_OBJ;
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$this->parsePostVars();
+                        $this->takePostActions();
 		} else {
 			$this->parseGetVars();
+                        $this->takeGetActions();
 		}
 	}
 	
-	function getRec(){
-		$sql = new DB_query( "SELECT 
-									MODULE_ID,
-												SCRIPT_TYPE,
-												SCRIPT_NAME,
-												DESCRIPTION
-							
-				FROM ".$this->schema.".".$this->table." 
-				WHERE ".$this->gfield." = :".$this->gfield." ",
-				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
-			$this->globals->con->next();
-							$this->MODULE_ID = $this->globals->con->get_field("MODULE_ID");
-							$this->SCRIPT_TYPE = $this->globals->con->get_field("SCRIPT_TYPE");
-							$this->SCRIPT_NAME = $this->globals->con->get_field("SCRIPT_NAME");
-							$this->DESCRIPTION = $this->globals->con->get_field("DESCRIPTION");
-						
+	function beforeGetRec(){
 	}
 	
+	function getRec(){
+		$this->query = new DB_query( "SELECT 
+									ID,
+												MODULE_ID,
+												SCRIPT_NAME,
+												DESCRIPTION,
+												WEB_TYPE_ID,
+												SCRIPT_TYPE_ID
+							
+				FROM ".$this->form_schema.".".$this->form_table." 
+				WHERE ".$this->gfield." = :".$this->gfield." ",
+				array((":".$this->gfield) => $this->gfield_value));
+			$this->globals->con->query($this->query);
+			$this->globals->con->next();
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
+                                			                                                                $this->SCRIPT_NAME = stripslashes($this->globals->con->get_field("SCRIPT_NAME"));
+                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->WEB_TYPE_ID = stripslashes($this->globals->con->get_field("WEB_TYPE_ID"));
+                                			                                                                $this->SCRIPT_TYPE_ID = stripslashes($this->globals->con->get_field("SCRIPT_TYPE_ID"));
+                                						
+	}
+	
+	function afterGetRec(){
+	}
 	
 	function beforeAddRec(){
 	}
@@ -71,34 +120,46 @@ class phpapps_admin_scripts_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->schema.".".$this->table." (
-									MODULE_ID,
-												SCRIPT_TYPE,
-												SCRIPT_NAME,
-												DESCRIPTION
-						 ) VALUES (
-									:MODULE_ID,
-												:SCRIPT_TYPE,
-												:SCRIPT_NAME,
-												:DESCRIPTION
-									)",
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+																					MODULE_ID,
+																						SCRIPT_NAME,
+																						DESCRIPTION,
+																						WEB_TYPE_ID,
+																						SCRIPT_TYPE_ID
+										 ) VALUES (
+																					:MODULE_ID,
+																						:SCRIPT_NAME,
+																						:DESCRIPTION,
+																						:WEB_TYPE_ID,
+																						:SCRIPT_TYPE_ID
+													)",
 			array(
-									":MODULE_ID" => $this->MODULE_ID,
-									":SCRIPT_TYPE" => $this->SCRIPT_TYPE,
-									":SCRIPT_NAME" => $this->SCRIPT_NAME,
-									":DESCRIPTION" => $this->DESCRIPTION,
-							)
+																		                                            
+                                            ":MODULE_ID" => $this->MODULE_ID,
+                                        														                                            
+                                            ":SCRIPT_NAME" => $this->SCRIPT_NAME,
+                                        														                                            
+                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                        														                                            
+                                            ":WEB_TYPE_ID" => $this->WEB_TYPE_ID,
+                                        														                                            
+                                            ":SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
+                                        												)
 			);
 
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($this->query) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
+                        }
 		}
 		
 		$this->afterAddRec();
 	}
 	
 	function afterAddRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function beforeSaveRec(){
@@ -109,31 +170,39 @@ class phpapps_admin_scripts_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->schema.".".$this->table." SET 
-									MODULE_ID = :MODULE_ID,
-												SCRIPT_TYPE = :SCRIPT_TYPE,
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+									ID = :ID,
+												MODULE_ID = :MODULE_ID,
 												SCRIPT_NAME = :SCRIPT_NAME,
-												DESCRIPTION = :DESCRIPTION
+												DESCRIPTION = :DESCRIPTION,
+												WEB_TYPE_ID = :WEB_TYPE_ID,
+												SCRIPT_TYPE_ID = :SCRIPT_TYPE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-									":MODULE_ID" => $this->MODULE_ID,
-									":SCRIPT_TYPE" => $this->SCRIPT_TYPE,
-									":SCRIPT_NAME" => $this->SCRIPT_NAME,
-									":DESCRIPTION" => $this->DESCRIPTION,
-								":".$this->gfield => $this->gfield_value
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
+                                        				                                                                                    ":SCRIPT_NAME" => $this->SCRIPT_NAME,
+                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":WEB_TYPE_ID" => $this->WEB_TYPE_ID,
+                                        				                                                                                    ":SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
+                                        								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
 		if(count($this->errors) == 0) {	
-			$this->globals->con->query($sql);
+			if( $this->globals->con->query($this->query) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
+                        }
 		};
 		
 		$this->afterSaveRec();
 	}
 	
 	function afterSaveRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 
 	function beforeDeleteRec(){
@@ -142,30 +211,42 @@ class phpapps_admin_scripts_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->schema.".".$this->table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
-		$this->globals->con->query($sql);
+				
+		if(count($this->errors) == 0) {
+			if( $this->globals->con->query($this->query) == -1){
+                            $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
+                        }
+		}
 		
 		$this->afterDeleteRec();
 	}
 	
 	function afterDeleteRec(){
-		header("Location:win_close.html");
+		//header("Location:win_close.html");
 	}
 	
 	function parseGetVars(){
 		$this->gact = trim($_GET["gact"]);
 		$this->gfield = trim($_GET["gfield"]);
 		$this->gfield_value = trim($_GET["gfield_value"]);
-		
+        }
+        
+        function takeGetActions(){
 			switch($this->gact){
 			case "editRec":
+				$this->beforeGetRec();
 				$this->getRec();
+				$this->afterGetRec();
 			break;
 			case "deleteRec":
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -176,11 +257,15 @@ class phpapps_admin_scripts_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-					$this->MODULE_ID  = addslashes(trim($_POST["MODULE_ID"]));
-					$this->SCRIPT_TYPE  = addslashes(trim($_POST["SCRIPT_TYPE"]));
-					$this->SCRIPT_NAME  = addslashes(trim($_POST["SCRIPT_NAME"]));
-					$this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-				
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
+                                                		                                                    $this->SCRIPT_NAME  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_NAME"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->WEB_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["WEB_TYPE_ID"])));
+                                                		                                                    $this->SCRIPT_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_TYPE_ID"])));
+                                                		        }
+		
+        function takePostActions(){
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -206,30 +291,47 @@ class phpapps_admin_scripts_form{
 	
 	function setup_display(){
 					 
-								$this->SCRIPT_TYPE_sel = new DB_select("SCRIPT_TYPE","phpapps.list_script_types");
-			$this->SCRIPT_TYPE_sel->selected_val = $this->SCRIPT_TYPE;
-			$this->SCRIPT_TYPE_sel->setup_select_options();
+					 
+					 
+					 
+								//$this->WEB_TYPE_ID_sel = new DB_select("WEB_TYPE_ID",".phpapps.list_web_script_type");
+			$this->WEB_TYPE_ID_sel->selected_val = $this->WEB_TYPE_ID;
+			$this->WEB_TYPE_ID_sel->setup_select_options();
 			 
-					 
-					 
+								//$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID",".phpapps.list_script_types");
+			$this->SCRIPT_TYPE_ID_sel->selected_val = $this->SCRIPT_TYPE_ID;
+			$this->SCRIPT_TYPE_ID_sel->setup_select_options();
+			 
 				
+					 
+					 
 					 
 					 
 					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
+							"ID" => $this->ID,
 							"MODULE_ID" => $this->MODULE_ID,
-							"SCRIPT_TYPE" => $this->SCRIPT_TYPE,
 							"SCRIPT_NAME" => $this->SCRIPT_NAME,
 							"DESCRIPTION" => $this->DESCRIPTION,
+							"WEB_TYPE_ID" => $this->WEB_TYPE_ID,
+							"SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
 									 
-										"SCRIPT_TYPE_sel" => $this->SCRIPT_TYPE_sel->get_select_str(),
+						 
+						 
+						 
+										"WEB_TYPE_ID_sel" => $this->WEB_TYPE_ID_sel->get_select_str(),
 			 
-						 
-						 
+										"SCRIPT_TYPE_ID_sel" => $this->SCRIPT_TYPE_ID_sel->get_select_str(),
+			 
 									 
+						 
+						 
 						 
 						 
 						 
@@ -244,20 +346,33 @@ class phpapps_admin_scripts_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
-		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
-		$this->globals->sm->display($this->template);
+	function display(){
+        
+                $this->setup_display();
+                $this->beforeDisplay();
+		$this->assign_vars_tpl();
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
+		$this->afterDisplay();
+	}
+	
+	function afterDisplay(){	
 	}
 	
 	function get_html_str(){	
-		$this->setup_display();
-		
-		$this->beforeDisplay();
-		
+                $this->setup_display();
+                $this->beforeDisplay();
 		$this->globals->sm->fetch($this->template);
+                $this->afterDisplay();
 	}
-};
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
+}
 ?>

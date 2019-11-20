@@ -1,11 +1,10 @@
-{literal}
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_admin_scripts_form").submit();
+		$("#phpapps_designer_themes_form").submit();
 }
   </script>
-{/literal}
+ 
 {$error_msg}
 <hr><form name="phpapps_admin_scripts_form" id="phpapps_admin_scripts_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
@@ -15,28 +14,40 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
+			
+		                
+		                				 
 										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
         								
 			
-		
-						 
-																
-			
-				<tr><td align="right">SCRIPT_TYPE  :</td><td>
-			{$SCRIPT_TYPE_sel}
-		</td></tr>
-        
-						 
+		                
+		                				 
 				<tr><td align="right">SCRIPT_NAME :</td><td> <input type="text" id="SCRIPT_NAME" name="SCRIPT_NAME" value="{$SCRIPT_NAME}"></td></tr>
 																
 			
-		
-						 
+		                
+		                				 
 								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			
-		
-						{$FROM_IMP_CLASS}
+		                
+		                				 
+																
+			
+				<tr><td align="right">WEB_TYPE_ID  :</td><td>
+			{$WEB_TYPE_ID_sel}
+		</td></tr>
+                        
+		                				 
+																
+			
+				<tr><td align="right">SCRIPT_TYPE_ID  :</td><td>
+			{$SCRIPT_TYPE_ID_sel}
+		</td></tr>
+                        
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

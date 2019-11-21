@@ -4,19 +4,19 @@
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_admin_test2_form").submit();
+		$("#test_app_aaa_form").submit();
 }
   </script>
 {/literal}    
-{include file="gen_tpl/phpapps_admin_test2_form.tpl" }
+{include file="gen_tpl/test_app_aaa_form.tpl" }
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--
 <script>
-$("#phpapps_admin_test2_form").submit(function(event){
+$("#test_app_aaa_form").submit(function(event){
 	event.preventDefault(); //prevent default action 
 	//var post_url = $(this).attr("action"); //get form action url
-        var post_url="phpapps_admin_test2_form_imp.php"
+        var post_url="test_app_aaa_form_imp.php"
 	var request_method = $(this).attr("method"); //get form GET/POST method
 	var form_data = $(this).serialize(); //Encode form elements for submission
 	

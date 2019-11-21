@@ -1,10 +1,10 @@
 <?php
 require_once ("globals.php");
-include ("gen_php/phpapps_admin_test2_form.php");
-	class phpapps_admin_test2_form_impl  extends phpapps_admin_test2_form{
+include ("gen_php/phpapps_admin_test2s_form.php");
+	class phpapps_admin_test2s_form_impl  extends phpapps_admin_test2s_form{
 		function __construct(){
 			parent::__construct();
-			$this->template = "phpapps_admin_test2_form_imp.tpl";
+			$this->template = "phpapps_admin_test2s_form_imp.tpl";
 			$this->init();
 			$this->display();
 		}
@@ -44,5 +44,5 @@ include ("gen_php/phpapps_admin_test2_form.php");
 		
 	};
 	
-	$phpapps_admin_test2_form_Impl = new phpapps_admin_test2_form_impl();
+	$phpapps_admin_test2s_form_Impl = new phpapps_admin_test2s_form_impl();
 ?>

@@ -1,30 +1,12 @@
-{literal}
 <script>
-/*
- $(function() {
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        event.preventDefault();
-      });
-  });
-*/
-    function submitDetailsForm(op)
-    {
+function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_admin_test3_form").submit();
-    }
-/*
-	$(function() {
-		$( "#datepicker" ).datepicker();
-		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		$( "#datepicker" ).datepicker( "setDate", new Date(2008,9,03)  );
-	});
-*/
+		$("#phpapps_designer_themes_form").submit();
+}
   </script>
-{/literal}
+ 
 {$error_msg}
-<hr><form name="phpapps_admin_test3_form" id="phpapps_admin_test3_form" method="POST">
+<hr><form name="phpapps_admin_test3_form" id="phpapps_admin_test3_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -32,25 +14,16 @@
 	<table border="1">
 	
 		 
+				<tr><td align="right">ID :</td><td> <input type="text" id="ID" name="ID" value="{$ID}"></td></tr>
 																
 			
-		
-				<tr><td align="right">Application name  :</td><td>
-			{$APP_ID_sel}
-		</td></tr>
-        		 
+		                
+		                				 
+				<tr><td align="right">nume :</td><td> <input type="text" id="nume" name="nume" value="{$nume}"></td></tr>
 																
 			
-		
-				<tr><td align="right">Module name  :</td><td>
-			{$MOD_ID_sel}
-		</td></tr>
-        		 
-				<tr><td align="right">NUME Cool :</td><td> <input type="text" name="NUME" value="{$NUME}"></td></tr>
-																
-			
-		
-				{$FROM_IMP_CLASS}
+		                
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

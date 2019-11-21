@@ -10,6 +10,9 @@ class phpapps_database_browse_tables extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
+        
+        $this->setLayoutFile("phpapps_popup.lay");
+        
         $this->tpl = "phpapps_database_browse_tables.tpl";        
         $this->app_id = $app_id;
         

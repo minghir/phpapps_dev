@@ -1,8 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class {$form_name}{ldelim}
+class {$form_name} extends phpapps_display_abs{ldelim}
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "{$form_schema}";
@@ -44,6 +45,7 @@ class {$form_name}{ldelim}
         public $resp_msgs = array();
 	
 	function __construct(){ldelim}
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 

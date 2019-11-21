@@ -21,7 +21,7 @@ function confirmation(url) {
 		</div>
   </div>
   </td></tr><tr><td>
-    <table valign="top" align="center">
+    <table valign="top" align="center" class="width: 100%; height: auto;">
     <tr bgcolor={if $mode_search == true }"#BFD4FF"{else}"#e8e8e8"{/if}>
            {section name=flds loop=$fields}
               <td>

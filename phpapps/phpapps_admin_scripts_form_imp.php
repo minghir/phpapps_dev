@@ -124,7 +124,14 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                         if( !( unlink($this->SCRIPT_NAME . ".php") && unlink("tpl" . DIR_SEP . $this->SCRIPT_NAME . ".tpl") ) ){
                             $this->errors[] = "FILES UNLINK FAILD !!!!";
                         }
+                        $this->errors[] = "FILES UNLINK FAILD !!!!";
+                       
 		}
+                
+                function afterDeleteRec() {
+                     echo $this->query->prnt();
+                     print_r($this->errors);
+                }
 	}
 	$phpapps_admin_scripts_form_Impl = new phpapps_admin_scripts_form_impl();
 ?>

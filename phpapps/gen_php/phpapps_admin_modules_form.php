@@ -1,8 +1,10 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_admin_modules_form{
+
+class phpapps_admin_modules_form extends phpapps_display_abs{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "modules";
@@ -46,6 +48,7 @@ class phpapps_admin_modules_form{
 	public $errors = array();
 	
 	function __construct(){
+            parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 

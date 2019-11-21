@@ -1,8 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_admin_applications_form{
+class phpapps_admin_applications_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";

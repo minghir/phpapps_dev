@@ -1,8 +1,5 @@
-<html>
-<head>
-{ldelim}include file="commun_header.tpl" {rdelim}
-</head>
-<body>
+{ldelim}extends file=$display_obj->layout{rdelim}
+{ldelim}block name=content{rdelim}{ldelim}
 {ldelim}literal{rdelim}{literal}
 <script>
 function submitDetailsForm(op){
@@ -35,5 +32,4 @@ $("#{/literal}{$form_name}{literal}").submit(function(event){
 -->
 {/literal}{ldelim}/literal{rdelim} 
 
-</body>
-</html>
+{ldelim}/block{rdelim}

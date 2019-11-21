@@ -239,7 +239,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
 		$this->globals->sm->assign("scripts_grid",$scripts_grid->get_grid_str());
                 
-                echo $scripts_grid->prnt();
+                //echo $scripts_grid->prnt();
 		
                 //print_r($tables_grid->query->prnt());
                 

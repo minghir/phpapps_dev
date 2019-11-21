@@ -1,3 +1,5 @@
+{extends file=$display_obj->layout_file}
+{block name=content}
 {literal}
 <script>
 function submitDetailsForm(op){
@@ -56,3 +58,4 @@ function submitDetailsForm(op){
 		
 	</table>
 	</form><hr>
+{/block}

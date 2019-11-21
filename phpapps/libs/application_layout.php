@@ -25,7 +25,7 @@ class application_layout {
      }   
      
     function setLayoutFile($file){
-        $this->layout_file =  $file ;
+        $this->layout_file = PHPAPPS_LAYOUTS_DIR . $file ;
      /*
         if($lay_id  != -1 ){
             $this->layout_id = $lay_id;

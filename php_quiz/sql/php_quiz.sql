@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: php_quiz
 -- ------------------------------------------------------
--- Server version	5.6.26
+-- Server version	8.0.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CATEG_TYPE` bigint(1) DEFAULT NULL,
@@ -48,7 +48,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_category_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `list_category_type` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `DESCRIPTION` text,
@@ -73,7 +73,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_da_nu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `list_da_nu` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `DESCRIPTION` text,
@@ -98,24 +98,24 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `questions` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `NO` bigint(10) NOT NULL DEFAULT '0',
   `CATEG_ID` bigint(20) DEFAULT NULL,
-  `QUESTION` text COLLATE utf8_bin,
-  `ANSWER_1` text COLLATE utf8_bin,
+  `QUESTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `ANSWER_1` text CHARACTER SET utf8 COLLATE utf8_bin,
   `CORRECT_1` bigint(1) DEFAULT NULL,
-  `IMAGE_1` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ANSWER_2` text COLLATE utf8_bin,
+  `IMAGE_1` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_2` text CHARACTER SET utf8 COLLATE utf8_bin,
   `CORRECT_2` bigint(1) DEFAULT NULL,
-  `IMAGE_2` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ANSWER_3` text COLLATE utf8_bin,
+  `IMAGE_2` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_3` text CHARACTER SET utf8 COLLATE utf8_bin,
   `CORRECT_3` bigint(1) DEFAULT NULL,
-  `IMAGE_3` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `ANSWER_4` text COLLATE utf8_bin,
+  `IMAGE_3` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ANSWER_4` text CHARACTER SET utf8 COLLATE utf8_bin,
   `CORRECT_4` bigint(1) DEFAULT NULL,
-  `IMAGE_4` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `IMAGE_4` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `php_quiz_questions_CATEG_ID_FK` (`CATEG_ID`),
   CONSTRAINT `php_quiz_questions_CATEG_ID_FK` FOREIGN KEY (`CATEG_ID`) REFERENCES `categories` (`ID`)
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-20 16:18:44
+-- Dump completed on 2019-11-22 20:06:00

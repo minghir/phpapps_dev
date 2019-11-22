@@ -134,10 +134,21 @@ class Globals_obj{
 		$this->con = new DB(DB_LIBS_DIR . "DB_cfg.php");
 		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
 		$this->con->clear_log();
+                
 		if(!$this->con->connect("mysql")){
                     echo "CHECK DB CONN!";
                     exit();
                 }
+                
+                $this->con->query(new DB_query("SELECT 7 + 3 AS TEST FROM dual"));
+                $this->con->next();
+                if( $this->con->get_field("TEST") != 10 ){
+                    echo "SQL TEST NOT ok<br>";
+                    echo $this->con->get_error();
+                    exit();
+                }
+                 
+                
                 $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
                 $this->con->query($sql);
 		

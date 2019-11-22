@@ -14,7 +14,7 @@ if (!defined('WEB_BASE_DIR')) { // pt link-uri
 }			
 
 if (!defined('WEB_APP_DIR')) { // pt link-uri
-        define('WEB_APP_DIR', WEB_BASE_DIR . CURRENT_APP );
+        define('WEB_APP_DIR', WEB_BASE_DIR . CURRENT_APP . "/");
 }
 
 if (!defined('_3RDPARTY_WEB_DIR')) {
@@ -137,6 +137,7 @@ class Globals_obj{
                 
 		if(!$this->con->connect("mysql")){
                     echo "CHECK DB CONN!";
+                    echo $this->con->get_error();
                     exit();
                 }
                 

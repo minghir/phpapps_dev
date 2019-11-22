@@ -31,13 +31,25 @@ class auth{
         }else{
             if($this->check_session()){
                 if(!isset($_SESSION["_USER_ID"])){
-                        $this->login();
+                        $this->logout();
                 }else{
-                    $this->globals->USER_ID = $_SESSION["_USER_ID"]; 
-                    $this->globals->USER_PROFILE_ID = $_SESSION["_USER_PROFILE_ID"];
+                    
+                    $sql = new DB_Query("SELECT ID, 
+                                                   USERNAME,
+                                                   PASSWORD,
+                                                   SCRIPT_NAME
+                                                   FROM 
+                                                   phpapps.view_users 
+                                                   WHERE username = :USER AND 
+                                                   PASSWORD = :PASS",
+                                                   array(":USER" => trim($_SESSION['_USER_NAME']),":PASS"=>trim($_SESSION['_USER_PASS'])));
+//echo $sql->prnt();
+                if($this->globals->con->query($sql)==1){
+                    return true;
+                }else{
+                    $this->logout();
                 }
-        
-                $this->check_session();
+            }
             }else{
                 $this->logout();
             }
@@ -48,18 +60,20 @@ class auth{
         if(isset($_POST)){
             $sql = new DB_Query("SELECT ID, 
 				USERNAME,
+                                PASSWORD,
 				SCRIPT_NAME,
                                 PROFILE_ID
                             FROM 
 				phpapps.view_users 
                             WHERE username = :USER AND 
-				password = :PASS",
+				PASSWORD = :PASS",
 				array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
             if($this->globals->con->query($sql)==1){
                 $res=$this->globals->con->fetch_array();
                 $_SESSION["_USER_ID"] = $res["ID"];
                 $_SESSION["_USER_NAME"] = $res["USERNAME"];
                 $_SESSION["_USER_PROFILE_ID"] = $res["PROFILE_ID"];
+                $_SESSION["_USER_PASS"] = $res["PASSWORD"];
                 
                 $this->authenticate();
             }else{

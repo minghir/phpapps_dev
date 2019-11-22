@@ -13,11 +13,12 @@ class login extends phpapps_display_abs{
                if($_POST["user"] != "" && $_POST["pass"] != ""){
                    $sql = new DB_Query("SELECT ID, 
                                                    USERNAME,
+                                                   PASSWORD,
                                                    SCRIPT_NAME
                                                    FROM 
                                                    phpapps.view_users 
                                                    WHERE username = :USER AND 
-                                                   password = :PASS",
+                                                   PASSWORD = :PASS",
                                                    array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));
 //echo $sql->prnt();
                 if($this->globals->con->query($sql)==1){
@@ -26,8 +27,9 @@ class login extends phpapps_display_abs{
                    session_start();
                    $_SESSION["_USER_ID"] = $res["ID"];
                    $_SESSION["_USER_NAME"] = $res["USERNAME"];
+                   $_SESSION["_USER_PASS"] = $res["PASSWORD"];
 
-                   header("Location:".$res["SCRIPT_NAME"].".php");
+                   header("Location:". WEB_APP_DIR . $res["SCRIPT_NAME"].".php");
 
                }else{
                        $this->globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");

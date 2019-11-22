@@ -1,13 +1,14 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
-
+echo "AICI";
 class login extends phpapps_display_abs{
     public $globals;
     public function __construct(){
-                    parent::__construct();
-            global $GLOBALS_OBJ;
+               parent::__construct();
+                global $GLOBALS_OBJ;
             $this->globals = &$GLOBALS_OBJ;
+            
            if(count($_POST) > 0 ){
                if($_POST["user"] != "" && $_POST["pass"] != ""){
                    $sql = new DB_Query("SELECT ID, 
@@ -36,7 +37,7 @@ class login extends phpapps_display_abs{
        }
        //$con->print_log();
        $this->tpl = "phpapps_login.tpl";
-       $this->setLayoutFile(PHPAPPS_LAYOUTS_DIR . "phpapps_login.lay");
+       $this->setLayoutFile("phpapps_login");
        $this->displayTpl();
        //$globals->sm->display('login.tpl');
     }

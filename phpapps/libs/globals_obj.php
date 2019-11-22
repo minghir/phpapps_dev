@@ -134,7 +134,10 @@ class Globals_obj{
 		$this->con = new DB(DB_LIBS_DIR . "DB_cfg.php");
 		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
 		$this->con->clear_log();
-		$this->con->connect("mysql");
+		if(!$this->con->connect("mysql")){
+                    echo "CHECK DB CONN!";
+                    exit();
+                }
                 $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
                 $this->con->query($sql);
 		

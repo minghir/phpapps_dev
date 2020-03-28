@@ -56,6 +56,7 @@ Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_
 <input type="hidden" name="form_table" value="{$form_table}">
 
 
+
 <table border="1"><tr>
            <td>Field</td>
            <td>Type</td>

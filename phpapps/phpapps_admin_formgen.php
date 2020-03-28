@@ -85,6 +85,7 @@ class phpapps_admin_formgen{
 			$this->form_schema = $this->globals->con->get_field("TABLE_SCHEMA");
 		
 			$this->deploy_location = GLOBALS_DIR .  $this->app_name; 
+echo "<h1>".$this->deploy_location."</h1></br>";
 			$this->deploy_location_php = $this->deploy_location . DIR_SEP ;
 			$this->deploy_location_tpl = $this->deploy_location_php . DIR_SEP . "tpl" . DIR_SEP;
 			$this->deploy_location_gen_php = $this->deploy_location . DIR_SEP . "gen_php" . DIR_SEP;
@@ -367,10 +368,10 @@ REFERENCE_FIELD
 							":form_table_id"=>$this->form_table_id,
 							":deploy_location"=>addslashes($this->deploy_location),
                                                         ":web_type_id"=>'1',
-                                                        ":script_type_id"					
+                                                        ":script_type_id"=>'1'					
 							));
 			$this->globals->con->query($sql);
-			echo $sql->prnt();	
+			echo "ASAVE FORM <h1>" . $sql->prnt() ."</h1><BR>";	
 			$sql = new DB_query("SELECT ID FROM phpapps.scripts
 									WHERE SCRIPT_NAME = :form_name AND
 											MODULE_ID = :module_id",

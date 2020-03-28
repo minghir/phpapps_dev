@@ -1,10 +1,10 @@
 <?php
 require_once ("globals.php");
-include ("gen_php/.php");
-	class form_themes_impl  extends form_themes{
+include ("gen_php/phpapps_test_app_test1_form.php");
+	class phpapps_test_app_test1_form_impl  extends phpapps_test_app_test1_form{
 		function __construct(){
 			parent::__construct();
-			$this->template = "_imp.tpl";
+			$this->template = "phpapps_test_app_test1_form_imp.tpl";
 			$this->init();
 			$this->display();
 		}
@@ -44,5 +44,5 @@ include ("gen_php/.php");
 		
 	};
 	
-	$_Impl = new _impl();
+	$phpapps_test_app_test1_form_Impl = new phpapps_test_app_test1_form_impl();
 ?>

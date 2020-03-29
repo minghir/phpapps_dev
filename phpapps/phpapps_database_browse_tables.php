@@ -42,7 +42,7 @@ class phpapps_database_browse_tables extends phpapps_display_abs{
 		WHERE 	ID = :id AND 
 		MODULE_ID = :module_id",
 	array(":id"=>$this->get_table_id,":module_id"=>$this->get_module_id));
-        echo $sql->prnt();
+        //echo $sql->prnt();
         $this->globals->con->query($sql);	
         $this->globals->con->next();
         //echo $this->globals->con->get_field("TABLE_SCHEMA") . "." . $this->globals->con->get_field("TABLE_NAME");

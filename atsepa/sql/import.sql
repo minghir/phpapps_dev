@@ -6,16 +6,16 @@ create database atsepa;
 use atsepa;
 
 
--- MySQL dump 10.13  Distrib 5.6.26, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: atsepa
 -- ------------------------------------------------------
--- Server version	5.6.26
+-- Server version	8.0.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -29,14 +29,14 @@ use atsepa;
 
 DROP TABLE IF EXISTS `app_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `app_users` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `USERNAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `PASSWORD` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `EMAIL` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `LAST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `FIRST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USERNAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `PASSWORD` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `EMAIL` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `LAST_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `FIRST_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `USER_TYPE` bigint(20) NOT NULL DEFAULT '4',
   `JOIN_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
@@ -62,16 +62,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `articles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `articles` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `ARTICLE_TAGS` text COLLATE utf8_bin,
-  `BODY` text COLLATE utf8_bin,
-  `INTRO` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `ARTICLE_TAGS` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `BODY` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `INTRO` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `CATEG_ID` bigint(20) NOT NULL DEFAULT '0',
   `VISIBLE` bigint(1) NOT NULL DEFAULT '0',
-  `IMAGE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `IMAGE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `USER_ID` bigint(20) NOT NULL DEFAULT '0',
   `ARTICLE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
@@ -98,17 +98,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contact` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `EMAIL` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `MESSAGE` text COLLATE utf8_bin,
+  `SUBJECT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `EMAIL` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `MESSAGE` text CHARACTER SET utf8 COLLATE utf8_bin,
   `DATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `atsepa_contact_146_IDX` (`NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,'dada','sdad','','dada','2017-10-11 09:03:59'),(2,'dada','sdad','','dada','2017-10-11 09:03:59'),(3,'dada','mimi','','dada','2017-10-11 09:04:31'),(4,'dada','mimi','','dada','2017-10-11 09:04:31'),(5,'','aaaaa','','das','2017-10-11 09:05:02'),(6,'','aaaaa','','das','2017-10-11 09:05:02'),(7,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(8,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(9,'asad','da','ddd','dada','2017-10-11 09:07:12'),(10,'asad','da','ddd','dada','2017-10-11 09:07:13'),(11,'','ddd','','','2017-10-11 09:08:18'),(12,'','ddd','','','2017-10-11 09:08:18'),(13,'','mumu','','','2017-10-11 09:08:57'),(14,'dada','da','dasda','dad','2017-10-11 09:10:05'),(15,'','dads','','','2017-10-11 09:12:59'),(16,'','Gogu','','','2017-10-11 09:13:09'),(17,'dasdas','das','dasd','dasdasd','2017-10-11 09:16:23'),(18,'','dadas','','','2017-10-11 09:20:25'),(19,'','dadas','','MOMOMOM','2017-10-11 09:21:43');
+INSERT INTO `contact` VALUES (1,'dada','sdad','','dada','2017-10-11 09:03:59'),(2,'dada','sdad','','dada','2017-10-11 09:03:59'),(3,'dada','mimi','','dada','2017-10-11 09:04:31'),(4,'dada','mimi','','dada','2017-10-11 09:04:31'),(5,'','aaaaa','','das','2017-10-11 09:05:02'),(6,'','aaaaa','','das','2017-10-11 09:05:02'),(7,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(8,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(9,'asad','da','ddd','dada','2017-10-11 09:07:12'),(10,'asad','da','ddd','dada','2017-10-11 09:07:13'),(11,'','ddd','','','2017-10-11 09:08:18'),(12,'','ddd','','','2017-10-11 09:08:18'),(13,'','mumu','','','2017-10-11 09:08:57'),(14,'dada','da','dasda','dad','2017-10-11 09:10:05'),(15,'','dads','','','2017-10-11 09:12:59'),(16,'','Gogu','','','2017-10-11 09:13:09'),(17,'dasdas','das','dasd','dasdasd','2017-10-11 09:16:23'),(18,'','dadas','','','2017-10-11 09:20:25'),(19,'','dadas','','MOMOMOM','2017-10-11 09:21:43'),(20,'','MAIN_MENU','','','2019-11-23 10:08:32');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,11 +127,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `da_nu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `da_nu` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text COLLATE utf8_bin,
-  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -152,12 +152,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `forum_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `forum_categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `PID` bigint(20) NOT NULL DEFAULT '0',
-  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `DESCRIPTION` text COLLATE utf8_bin,
+  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `atsepa_categories_130_IDX` (`NAME`),
   KEY `atsepa_categories_PID_FK` (`PID`),
@@ -181,11 +181,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_article_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `list_article_categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text COLLATE utf8_bin,
-  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -206,11 +206,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_user_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `list_user_types` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text COLLATE utf8_bin,
-  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -231,13 +231,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posts` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `POST_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `TOPIC_ID` bigint(20) DEFAULT NULL,
   `USER_ID` bigint(20) DEFAULT NULL,
-  `CONTENT` text COLLATE utf8_bin,
+  `CONTENT` text CHARACTER SET utf8 COLLATE utf8_bin,
   PRIMARY KEY (`ID`),
   KEY `atsepa_posts_TOPIC_ID_FK` (`TOPIC_ID`),
   CONSTRAINT `atsepa_posts_TOPIC_ID_FK` FOREIGN KEY (`TOPIC_ID`) REFERENCES `topics` (`ID`)
@@ -260,11 +260,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `topics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `topics` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `DESCRIPTION` text COLLATE utf8_bin,
+  `SUBJECT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
   `TOPIC_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `CAT_ID` bigint(20) NOT NULL DEFAULT '0',
   `USER_ID` bigint(20) NOT NULL DEFAULT '0',
@@ -293,7 +293,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `view_articles`;
 /*!50001 DROP VIEW IF EXISTS `view_articles`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `view_articles` AS SELECT 
  1 AS `ID`,
  1 AS `NAME`,
@@ -315,7 +315,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `view_forum_categories`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_categories`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `view_forum_categories` AS SELECT 
  1 AS `ID`,
  1 AS `PID`,
@@ -332,7 +332,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `view_forum_posts`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_posts`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `view_forum_posts` AS SELECT 
  1 AS `ID`,
  1 AS `POST_DATE`,
@@ -352,7 +352,7 @@ SET character_set_client = @saved_cs_client;
 DROP TABLE IF EXISTS `view_forum_topics`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_topics`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50001 CREATE VIEW `view_forum_topics` AS SELECT 
  1 AS `ID`,
  1 AS `SUBJECT`,
@@ -445,7 +445,7 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-20 16:18:45
+-- Dump completed on 2020-03-28 11:11:43
 
 SET FOREIGN_KEY_CHECKS=1;
 

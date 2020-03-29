@@ -1,4 +1,4 @@
-SET PATH_TO_MYSQL=D:\linuxport\mysql-8.0.17-winx64\bin
+SET PATH_TO_MYSQL=D:\linuxport\mariadb-10.4.10-winx64\bin
 SET PATH_TO_IMP_FILES=D:\work\www\phpapps_dev
 
 rem set list = "phpapps" "eshop_template"

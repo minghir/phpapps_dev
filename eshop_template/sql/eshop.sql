@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MariaDB dump 10.17  Distrib 10.4.12-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: eshop
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	10.4.12-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,17 +21,17 @@
 
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `PID` bigint(20) NOT NULL,
   `NAME` varchar(20) NOT NULL DEFAULT '',
   `TITLE` varchar(255) NOT NULL DEFAULT '',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `PID` (`PID`),
   KEY `categories_ibfk_2` (`MODIFY_UID`),
@@ -58,16 +58,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `CATEG_ID` bigint(20) NOT NULL DEFAULT '0',
+  `CATEG_ID` bigint(20) NOT NULL DEFAULT 0,
   `PRODUCT_NAME` varchar(255) NOT NULL DEFAULT '',
   `DESCRIPTION` tinytext NOT NULL,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT '1',
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT '1',
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `CREATE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
+  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
+  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `CATEG_ID` (`CATEG_ID`),
   KEY `products_ibfk_2` (`MODIFY_UID`),
@@ -97,4 +97,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-28 11:11:42
+-- Dump completed on 2020-04-05 20:15:37

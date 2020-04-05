@@ -6,6 +6,7 @@ class auth{
     public $globals;
     public $public_script = false;
     public $script_name;
+    public $script_id;
 
     
     
@@ -21,6 +22,8 @@ class auth{
         }else{
             $this->public_script = false;
         }
+        
+        $this->script_id = $tst->getValueByField("ID","SCRIPT_NAME",$this->script_name);
         //echo $tst->prnt();
         //exit;
     }    

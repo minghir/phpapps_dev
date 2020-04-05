@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MariaDB dump 10.17  Distrib 10.4.12-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: atsepa
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	10.4.12-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,16 +21,16 @@
 
 DROP TABLE IF EXISTS `app_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `app_users` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `USERNAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `PASSWORD` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `EMAIL` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `LAST_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `FIRST_NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `USER_TYPE` bigint(20) NOT NULL DEFAULT '4',
-  `JOIN_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `USERNAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `PASSWORD` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `EMAIL` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `LAST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `FIRST_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USER_TYPE` bigint(20) NOT NULL DEFAULT 4,
+  `JOIN_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   UNIQUE KEY `atsepa_users_113_IDX` (`USERNAME`),
   KEY `atsepa_users_USERTIPE_FK` (`USER_TYPE`),
@@ -54,18 +54,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `articles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `articles` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `ARTICLE_TAGS` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `BODY` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `INTRO` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `CATEG_ID` bigint(20) NOT NULL DEFAULT '0',
-  `VISIBLE` bigint(1) NOT NULL DEFAULT '0',
-  `IMAGE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `USER_ID` bigint(20) NOT NULL DEFAULT '0',
-  `ARTICLE_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `ARTICLE_TAGS` text COLLATE utf8_bin DEFAULT NULL,
+  `BODY` text COLLATE utf8_bin DEFAULT NULL,
+  `INTRO` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CATEG_ID` bigint(20) NOT NULL DEFAULT 0,
+  `VISIBLE` bigint(1) NOT NULL DEFAULT 0,
+  `IMAGE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `USER_ID` bigint(20) NOT NULL DEFAULT 0,
+  `ARTICLE_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `atsepa_articles_CATEG_ID_FK` (`CATEG_ID`),
   KEY `atsepa_articles_USER_ID_FK` (`USER_ID`),
@@ -90,14 +90,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SUBJECT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `EMAIL` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `MESSAGE` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `DATA` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `EMAIL` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `MESSAGE` text COLLATE utf8_bin DEFAULT NULL,
+  `DATA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `atsepa_contact_146_IDX` (`NAME`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -119,11 +119,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `da_nu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `da_nu` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -144,12 +144,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `forum_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `forum_categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `PID` bigint(20) NOT NULL DEFAULT '0',
-  `NAME` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '''''',
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `PID` bigint(20) NOT NULL DEFAULT 0,
+  `NAME` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '''''',
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `atsepa_categories_130_IDX` (`NAME`),
   KEY `atsepa_categories_PID_FK` (`PID`),
@@ -173,11 +173,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_article_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list_article_categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -198,11 +198,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `list_user_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `list_user_types` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `VALUE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -223,13 +223,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `POST_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `POST_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `TOPIC_ID` bigint(20) DEFAULT NULL,
   `USER_ID` bigint(20) DEFAULT NULL,
-  `CONTENT` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `CONTENT` text COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `atsepa_posts_TOPIC_ID_FK` (`TOPIC_ID`),
   CONSTRAINT `atsepa_posts_TOPIC_ID_FK` FOREIGN KEY (`TOPIC_ID`) REFERENCES `topics` (`ID`)
@@ -252,14 +252,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `topics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `topics` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `SUBJECT` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `DESCRIPTION` text CHARACTER SET utf8 COLLATE utf8_bin,
-  `TOPIC_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `CAT_ID` bigint(20) NOT NULL DEFAULT '0',
-  `USER_ID` bigint(20) NOT NULL DEFAULT '0',
+  `SUBJECT` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `TOPIC_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `CAT_ID` bigint(20) NOT NULL DEFAULT 0,
+  `USER_ID` bigint(20) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`),
   KEY `atsepa_topics_CAT_ID_FK` (`CAT_ID`),
   KEY `atsepa_topics_USER_ID_FK` (`USER_ID`),
@@ -279,87 +279,92 @@ INSERT INTO `topics` VALUES (2,'dadas 1','dasdsa','2017-10-09 12:28:48',8,1),(3,
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `view_articles`
+-- Temporary table structure for view `view_articles`
 --
 
 DROP TABLE IF EXISTS `view_articles`;
 /*!50001 DROP VIEW IF EXISTS `view_articles`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `view_articles` AS SELECT 
- 1 AS `ID`,
- 1 AS `NAME`,
- 1 AS `INTRO`,
- 1 AS `BODY`,
- 1 AS `IMAGE`,
- 1 AS `ARTICLE_DATE`,
- 1 AS `CATEG_NAME`,
- 1 AS `LAST_NAME`,
- 1 AS `FIRST_NAME`,
- 1 AS `USERNAME`,
- 1 AS `VISIBLE`*/;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_articles` (
+  `ID` tinyint NOT NULL,
+  `NAME` tinyint NOT NULL,
+  `INTRO` tinyint NOT NULL,
+  `BODY` tinyint NOT NULL,
+  `IMAGE` tinyint NOT NULL,
+  `ARTICLE_DATE` tinyint NOT NULL,
+  `CATEG_NAME` tinyint NOT NULL,
+  `LAST_NAME` tinyint NOT NULL,
+  `FIRST_NAME` tinyint NOT NULL,
+  `USERNAME` tinyint NOT NULL,
+  `VISIBLE` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_forum_categories`
+-- Temporary table structure for view `view_forum_categories`
 --
 
 DROP TABLE IF EXISTS `view_forum_categories`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_categories`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `view_forum_categories` AS SELECT 
- 1 AS `ID`,
- 1 AS `PID`,
- 1 AS `PARENT_NAME`,
- 1 AS `NAME`,
- 1 AS `NO_TOPICS`,
- 1 AS `NO_POSTS`*/;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_forum_categories` (
+  `ID` tinyint NOT NULL,
+  `PID` tinyint NOT NULL,
+  `PARENT_NAME` tinyint NOT NULL,
+  `NAME` tinyint NOT NULL,
+  `NO_TOPICS` tinyint NOT NULL,
+  `NO_POSTS` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_forum_posts`
+-- Temporary table structure for view `view_forum_posts`
 --
 
 DROP TABLE IF EXISTS `view_forum_posts`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_posts`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `view_forum_posts` AS SELECT 
- 1 AS `ID`,
- 1 AS `POST_DATE`,
- 1 AS `TOPIC_ID`,
- 1 AS `USER_ID`,
- 1 AS `CONTENT`,
- 1 AS `SUBJECT`,
- 1 AS `USERNAME`,
- 1 AS `NAME`,
- 1 AS `CAT_ID`*/;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_forum_posts` (
+  `ID` tinyint NOT NULL,
+  `POST_DATE` tinyint NOT NULL,
+  `TOPIC_ID` tinyint NOT NULL,
+  `USER_ID` tinyint NOT NULL,
+  `CONTENT` tinyint NOT NULL,
+  `SUBJECT` tinyint NOT NULL,
+  `USERNAME` tinyint NOT NULL,
+  `NAME` tinyint NOT NULL,
+  `CAT_ID` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary view structure for view `view_forum_topics`
+-- Temporary table structure for view `view_forum_topics`
 --
 
 DROP TABLE IF EXISTS `view_forum_topics`;
 /*!50001 DROP VIEW IF EXISTS `view_forum_topics`*/;
 SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `view_forum_topics` AS SELECT 
- 1 AS `ID`,
- 1 AS `SUBJECT`,
- 1 AS `DESCRIPTION`,
- 1 AS `TOPIC_DATE`,
- 1 AS `CAT_ID`,
- 1 AS `NAME`,
- 1 AS `USERNAME`,
- 1 AS `NO_POSTS`*/;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_forum_topics` (
+  `ID` tinyint NOT NULL,
+  `SUBJECT` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL,
+  `TOPIC_DATE` tinyint NOT NULL,
+  `CAT_ID` tinyint NOT NULL,
+  `NAME` tinyint NOT NULL,
+  `USERNAME` tinyint NOT NULL,
+  `NO_POSTS` tinyint NOT NULL
+) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
 -- Final view structure for view `view_articles`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_articles`*/;
 /*!50001 DROP VIEW IF EXISTS `view_articles`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -369,7 +374,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_articles` AS select `a`.`ID` AS `ID`,`a`.`NAME` AS `NAME`,if((`a`.`INTRO` <> ''),`a`.`INTRO`,substr(`a`.`BODY`,1,255)) AS `INTRO`,`a`.`BODY` AS `BODY`,`a`.`IMAGE` AS `IMAGE`,date_format(`a`.`ARTICLE_DATE`,'%d/%m/%Y') AS `ARTICLE_DATE`,(select `list_article_categories`.`VALUE` from `list_article_categories` where (`list_article_categories`.`ID` = `a`.`CATEG_ID`)) AS `CATEG_NAME`,`u`.`LAST_NAME` AS `LAST_NAME`,`u`.`FIRST_NAME` AS `FIRST_NAME`,`u`.`USERNAME` AS `USERNAME`,if((`a`.`VISIBLE` = '1'),'da','nu') AS `VISIBLE` from (`articles` `a` left join `app_users` `u` on((`a`.`USER_ID` = `u`.`ID`))) order by `a`.`ARTICLE_DATE` desc */;
+/*!50001 VIEW `view_articles` AS select `a`.`ID` AS `ID`,`a`.`NAME` AS `NAME`,if(`a`.`INTRO` <> '',`a`.`INTRO`,substr(`a`.`BODY`,1,255)) AS `INTRO`,`a`.`BODY` AS `BODY`,`a`.`IMAGE` AS `IMAGE`,date_format(`a`.`ARTICLE_DATE`,'%d/%m/%Y') AS `ARTICLE_DATE`,(select `list_article_categories`.`VALUE` from `list_article_categories` where `list_article_categories`.`ID` = `a`.`CATEG_ID`) AS `CATEG_NAME`,`u`.`LAST_NAME` AS `LAST_NAME`,`u`.`FIRST_NAME` AS `FIRST_NAME`,`u`.`USERNAME` AS `USERNAME`,if(`a`.`VISIBLE` = '1','da','nu') AS `VISIBLE` from (`articles` `a` left join `app_users` `u` on(`a`.`USER_ID` = `u`.`ID`)) order by `a`.`ARTICLE_DATE` desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -378,6 +383,7 @@ SET character_set_client = @saved_cs_client;
 -- Final view structure for view `view_forum_categories`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_forum_categories`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forum_categories`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -387,7 +393,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_forum_categories` AS select `a`.`ID` AS `ID`,`a`.`PID` AS `PID`,(select `b`.`NAME` from `forum_categories` `b` where (`b`.`ID` = `a`.`PID`)) AS `PARENT_NAME`,`a`.`NAME` AS `NAME`,(select count(0) from `topics` where (`topics`.`CAT_ID` = `a`.`ID`)) AS `NO_TOPICS`,(select count(0) from (`posts` left join `topics` on((`posts`.`TOPIC_ID` = `topics`.`ID`))) where (`topics`.`CAT_ID` = `a`.`ID`)) AS `NO_POSTS` from `forum_categories` `a` where (`a`.`PID` <> 0) order by concat(`PARENT_NAME`,`a`.`NAME`) */;
+/*!50001 VIEW `view_forum_categories` AS select `a`.`ID` AS `ID`,`a`.`PID` AS `PID`,(select `b`.`NAME` from `forum_categories` `b` where `b`.`ID` = `a`.`PID`) AS `PARENT_NAME`,`a`.`NAME` AS `NAME`,(select count(0) from `topics` where `topics`.`CAT_ID` = `a`.`ID`) AS `NO_TOPICS`,(select count(0) from (`posts` left join `topics` on(`posts`.`TOPIC_ID` = `topics`.`ID`)) where `topics`.`CAT_ID` = `a`.`ID`) AS `NO_POSTS` from `forum_categories` `a` where `a`.`PID` <> 0 order by concat(`PARENT_NAME`,`a`.`NAME`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -396,6 +402,7 @@ SET character_set_client = @saved_cs_client;
 -- Final view structure for view `view_forum_posts`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_forum_posts`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forum_posts`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -405,7 +412,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_forum_posts` AS select `p`.`ID` AS `ID`,`p`.`POST_DATE` AS `POST_DATE`,`p`.`TOPIC_ID` AS `TOPIC_ID`,`p`.`USER_ID` AS `USER_ID`,`p`.`CONTENT` AS `CONTENT`,`t`.`SUBJECT` AS `SUBJECT`,`u`.`USERNAME` AS `USERNAME`,`c`.`NAME` AS `NAME`,`c`.`ID` AS `CAT_ID` from (((`posts` `p` left join `topics` `t` on((`p`.`TOPIC_ID` = `t`.`ID`))) left join `app_users` `u` on((`p`.`USER_ID` = `u`.`ID`))) left join `forum_categories` `c` on((`t`.`CAT_ID` = `c`.`ID`))) */;
+/*!50001 VIEW `view_forum_posts` AS select `p`.`ID` AS `ID`,`p`.`POST_DATE` AS `POST_DATE`,`p`.`TOPIC_ID` AS `TOPIC_ID`,`p`.`USER_ID` AS `USER_ID`,`p`.`CONTENT` AS `CONTENT`,`t`.`SUBJECT` AS `SUBJECT`,`u`.`USERNAME` AS `USERNAME`,`c`.`NAME` AS `NAME`,`c`.`ID` AS `CAT_ID` from (((`posts` `p` left join `topics` `t` on(`p`.`TOPIC_ID` = `t`.`ID`)) left join `app_users` `u` on(`p`.`USER_ID` = `u`.`ID`)) left join `forum_categories` `c` on(`t`.`CAT_ID` = `c`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -414,6 +421,7 @@ SET character_set_client = @saved_cs_client;
 -- Final view structure for view `view_forum_topics`
 --
 
+/*!50001 DROP TABLE IF EXISTS `view_forum_topics`*/;
 /*!50001 DROP VIEW IF EXISTS `view_forum_topics`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
@@ -423,7 +431,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_forum_topics` AS select `t`.`ID` AS `ID`,`t`.`SUBJECT` AS `SUBJECT`,`t`.`DESCRIPTION` AS `DESCRIPTION`,`t`.`TOPIC_DATE` AS `TOPIC_DATE`,`t`.`CAT_ID` AS `CAT_ID`,`c`.`NAME` AS `NAME`,`u`.`USERNAME` AS `USERNAME`,(select count(0) AS `NO_POSTS` from `posts` `p` where (`p`.`TOPIC_ID` = `t`.`ID`)) AS `NO_POSTS` from ((`topics` `t` left join `forum_categories` `c` on((`t`.`CAT_ID` = `c`.`ID`))) left join `app_users` `u` on((`t`.`USER_ID` = `u`.`ID`))) */;
+/*!50001 VIEW `view_forum_topics` AS select `t`.`ID` AS `ID`,`t`.`SUBJECT` AS `SUBJECT`,`t`.`DESCRIPTION` AS `DESCRIPTION`,`t`.`TOPIC_DATE` AS `TOPIC_DATE`,`t`.`CAT_ID` AS `CAT_ID`,`c`.`NAME` AS `NAME`,`u`.`USERNAME` AS `USERNAME`,(select count(0) AS `NO_POSTS` from `posts` `p` where `p`.`TOPIC_ID` = `t`.`ID`) AS `NO_POSTS` from ((`topics` `t` left join `forum_categories` `c` on(`t`.`CAT_ID` = `c`.`ID`)) left join `app_users` `u` on(`t`.`USER_ID` = `u`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -437,4 +445,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-28 11:11:43
+-- Dump completed on 2020-04-05 20:15:37

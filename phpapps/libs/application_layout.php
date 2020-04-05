@@ -22,24 +22,25 @@ class application_layout {
      public function __construct( $lay_id = -1 ) {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
-        //echo $this->layout_file;
+        $this->setLayoutFile();
+       // echo "<h1>" . $this->globals->ath->script_id ."</h1>";
+       // echo "<br>".$this->layout_file."</br>";
      }   
      
-    function setLayoutFile($file){
-        $this->layout_file = PHPAPPS_LAYOUTS_DIR . $file .".tpl";
-     /*
-        if($lay_id  != -1 ){
-            $this->layout_id = $lay_id;
-            $this->layout_file = PHPAPPS_LAYOUTS_DIR . "phpapps_login.lay";
-        }else{
-            $sql = new DB_query("SELECT LAYOUT_NAME FROM phpapps.view_applications WHERE app_name = :app_name",array(":app_name"=> CURRENT_APP ));
-            $this->globals->con->query($sql,"layout_sql");
-            $this->globals->con->next("layout_sql");
-            $this->layout_file = PHPAPPS_LAYOUTS_DIR . $this->globals->con->get_field("LAYOUT_NAME","layout_sql") .".lay";
-            $this->setupLayoutElements();
+    function setLayoutFile(){
+        $sql = new DB_query("select l.NAME,l.APP_NAME from view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :script_id",
+                array(":script_id"=> $this->globals->ath->script_id ));
+        if( $this->globals->con->query($sql,"layout_sql") != 1){
+            return;
         }
-      *
-      */
+        
+        $this->globals->con->next("layout_sql");
+        $this->layout_file = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->globals->con->get_field("NAME","layout_sql") . '.tpl';
+
+     }
+     
+     function setLayoutID($id){
+         $this->layout_id = $id;
      }
      
      function setupLayoutElements(){

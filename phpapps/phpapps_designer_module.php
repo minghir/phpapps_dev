@@ -18,7 +18,7 @@ class phpapps_designer_module extends phpapps_display_abs{
     
     function __construct($module_id) {
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";
+        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "phpapps_designer_module.tpl";        
         $this->app_id = $app_id;
         $this->setupDisplay();
@@ -57,11 +57,11 @@ class phpapps_designer_module extends phpapps_display_abs{
     }
 	
 	function setupDisplay(){
-		$layouts_grid = new DB_grid($this->globals->con, "table","phpapps.layouts","phpapps_layouts_grid");
+		$layouts_grid = new DB_grid($this->globals->con, "table","phpapps.view_layouts","phpapps_layouts_grid");
 		$layouts_grid->grid_title = "LAYOUTS";
 
-		$layouts_grid->cols = (array("NAME","DESCRIPTION"));
-		$layouts_grid->labels = (array("LAYOUT NAME","DESCRIPTION"));
+		$layouts_grid->cols = (array("NAME","APP_NAME","DESCRIPTION"));
+		$layouts_grid->labels = (array("LAYOUT NAME","APP NAME","DESCRIPTION"));
 		
 		$layouts_grid->paginable = true;
 		$layouts_grid->filterable = false;

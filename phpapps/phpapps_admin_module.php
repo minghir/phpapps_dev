@@ -86,6 +86,15 @@ class phpapps_admin_module extends phpapps_display_abs{
 			$bb->fields = array("ID","FORM_NAME");
 			$bb->popup = true;
 			$forms_grid->add_row_acction($bb);
+                        
+                        //phpapps_admin_scripts_form_imp.php?module_id=1&gact=editRec&gfield=ID&gfield_value=163
+                        $es = new HrefActions();
+			$es->act_script = "phpapps_admin_scripts_form_imp.php?module_id=".$this->ID;
+			$es->label = "edit as script";
+			$es->action = "editRec";
+			$es->fields = array("ID","FORM_NAME");
+			$es->popup = true;
+			$forms_grid->add_row_acction($es);
 			
 		
 		$tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
@@ -245,7 +254,7 @@ class phpapps_admin_module extends phpapps_display_abs{
                 
 		$this->globals->sm->assign("module",$this);
                 
-                $this->setupLayoutElements();
+                //$this->setupLayoutElements();
 		$this->globals->sm->display("phpapps_admin_module.tpl");
 	}
 }

@@ -54,8 +54,8 @@
 	</ul>
 	
 	<div id="tab1" class="adm_mod_div">{$layouts_grid}</div>
-        <div id="tab2" class="adm_mod_div">aa</div>
-	<div id="tab3" class="adm_mod_div">aa</div>
+        <div id="tab2" class="adm_mod_div">{$themes_grid}</div>
+	<div id="tab3" class="adm_mod_div">{$menus_grid}</div>
         </div>
 
 {/block}

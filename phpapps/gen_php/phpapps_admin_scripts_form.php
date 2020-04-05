@@ -1,8 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_admin_scripts_form{
+class phpapps_admin_scripts_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
@@ -29,6 +30,8 @@ class phpapps_admin_scripts_form{
 	public $WEB_TYPE_ID;
         	            
 	public $SCRIPT_TYPE_ID;
+        	            
+	public $LAYOUT_ID;
         		
 		 
 		 
@@ -38,6 +41,7 @@ class phpapps_admin_scripts_form{
 	 
 			public $SCRIPT_TYPE_ID_sel;
 	 
+		 
 			
 		 
 		 
@@ -45,6 +49,8 @@ class phpapps_admin_scripts_form{
 		 
 		 
 		 
+			public $LAYOUT_ID_sel;
+	 
 	        
         
 
@@ -53,6 +59,7 @@ class phpapps_admin_scripts_form{
         public $resp_msgs = array();
 	
 	function __construct(){
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
@@ -64,6 +71,7 @@ class phpapps_admin_scripts_form{
                         			 
 								$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID","phpapps.list_script_types");
                         			 
+					 
 				
 					 
 					 
@@ -71,6 +79,8 @@ class phpapps_admin_scripts_form{
 					 
 					 
 					 
+									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+                                			 
 		                
 	}
 		
@@ -94,7 +104,8 @@ class phpapps_admin_scripts_form{
 												SCRIPT_NAME,
 												DESCRIPTION,
 												WEB_TYPE_ID,
-												SCRIPT_TYPE_ID
+												SCRIPT_TYPE_ID,
+												LAYOUT_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -107,6 +118,7 @@ class phpapps_admin_scripts_form{
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
                                 			                                                                $this->WEB_TYPE_ID = stripslashes($this->globals->con->get_field("WEB_TYPE_ID"));
                                 			                                                                $this->SCRIPT_TYPE_ID = stripslashes($this->globals->con->get_field("SCRIPT_TYPE_ID"));
+                                			                                                                $this->LAYOUT_ID = stripslashes($this->globals->con->get_field("LAYOUT_ID"));
                                 						
 	}
 	
@@ -125,13 +137,15 @@ class phpapps_admin_scripts_form{
 																						SCRIPT_NAME,
 																						DESCRIPTION,
 																						WEB_TYPE_ID,
-																						SCRIPT_TYPE_ID
+																						SCRIPT_TYPE_ID,
+																						LAYOUT_ID
 										 ) VALUES (
 																					:MODULE_ID,
 																						:SCRIPT_NAME,
 																						:DESCRIPTION,
 																						:WEB_TYPE_ID,
-																						:SCRIPT_TYPE_ID
+																						:SCRIPT_TYPE_ID,
+																						:LAYOUT_ID
 													)",
 			array(
 																		                                            
@@ -144,6 +158,8 @@ class phpapps_admin_scripts_form{
                                             ":WEB_TYPE_ID" => $this->WEB_TYPE_ID,
                                         														                                            
                                             ":SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
+                                        														                                            
+                                            ":LAYOUT_ID" => $this->LAYOUT_ID,
                                         												)
 			);
 
@@ -176,7 +192,8 @@ class phpapps_admin_scripts_form{
 												SCRIPT_NAME = :SCRIPT_NAME,
 												DESCRIPTION = :DESCRIPTION,
 												WEB_TYPE_ID = :WEB_TYPE_ID,
-												SCRIPT_TYPE_ID = :SCRIPT_TYPE_ID
+												SCRIPT_TYPE_ID = :SCRIPT_TYPE_ID,
+												LAYOUT_ID = :LAYOUT_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -186,6 +203,7 @@ class phpapps_admin_scripts_form{
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
                                         				                                                                                    ":WEB_TYPE_ID" => $this->WEB_TYPE_ID,
                                         				                                                                                    ":SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
+                                        				                                                                                    ":LAYOUT_ID" => $this->LAYOUT_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -263,6 +281,7 @@ class phpapps_admin_scripts_form{
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
                                                 		                                                    $this->WEB_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["WEB_TYPE_ID"])));
                                                 		                                                    $this->SCRIPT_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_TYPE_ID"])));
+                                                		                                                    $this->LAYOUT_ID  = htmlspecialchars(addslashes(trim($_POST["LAYOUT_ID"])));
                                                 		        }
 		
         function takePostActions(){
@@ -287,6 +306,9 @@ class phpapps_admin_scripts_form{
 				if($this->SCRIPT_NAME == "") {
 			$this->errors[] = "Campul SCRIPT_NAME este obligatoriu!";
 		}
+				if($this->LAYOUT_ID == "") {
+			$this->errors[] = "Campul LAYOUT_ID este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
@@ -302,6 +324,7 @@ class phpapps_admin_scripts_form{
 			$this->SCRIPT_TYPE_ID_sel->selected_val = $this->SCRIPT_TYPE_ID;
 			$this->SCRIPT_TYPE_ID_sel->setup_select_options();
 			 
+					 
 				
 					 
 					 
@@ -309,6 +332,11 @@ class phpapps_admin_scripts_form{
 					 
 					 
 					 
+									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".phpapps.layouts");
+				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.layouts ORDER BY NAME");
+				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
+				$this->LAYOUT_ID_sel->setup_select_options();
+			 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
         }
@@ -321,6 +349,7 @@ class phpapps_admin_scripts_form{
 							"DESCRIPTION" => $this->DESCRIPTION,
 							"WEB_TYPE_ID" => $this->WEB_TYPE_ID,
 							"SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
+							"LAYOUT_ID" => $this->LAYOUT_ID,
 									 
 						 
 						 
@@ -329,12 +358,15 @@ class phpapps_admin_scripts_form{
 			 
 										"SCRIPT_TYPE_ID_sel" => $this->SCRIPT_TYPE_ID_sel->get_select_str(),
 			 
+						 
 									 
 						 
 						 
 						 
 						 
 						 
+										"LAYOUT_ID_sel" => $this->LAYOUT_ID_sel->get_select_str(),
+			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,

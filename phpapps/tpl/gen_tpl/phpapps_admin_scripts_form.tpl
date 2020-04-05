@@ -47,7 +47,14 @@ function submitDetailsForm(op){
 			{$SCRIPT_TYPE_ID_sel}
 		</td></tr>
                         
-		                				{$FROM_IMP_CLASS}
+		                				 
+																
+			
+		                
+				<tr><td align="right">LAYOUT_ID  :</td><td>
+			{$LAYOUT_ID_sel}
+		</td></tr>
+                        				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

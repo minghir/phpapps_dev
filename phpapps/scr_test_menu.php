@@ -9,7 +9,7 @@ class scr_test_menu extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";
+        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "scr_test_menu.tpl";        
         $this->app_id = $app_id;
         

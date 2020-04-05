@@ -237,8 +237,11 @@ echo "<h1>".$this->deploy_location."</h1></br>";
 	function getFields(){
 		$sql = new DB_query("DESC ".$this->form_schema_table);
 		$this->globals->con->query($sql);
+        
+                //print_r($this->fields);
 		while($res=$this->globals->con->fetch_array()){
                     if ( in_array( $res["Field"],$this->fields)) {
+                  //      echo $res["Field"] ."<br>";
                         continue;
                     }
 			$this->fields[] = $res["Field"];

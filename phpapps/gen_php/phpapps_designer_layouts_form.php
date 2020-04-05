@@ -70,6 +70,7 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	}
 	
 	function getRec(){
+             
 		$this->query = new DB_query( "SELECT 
 									NAME,
 												DESCRIPTION,
@@ -83,7 +84,7 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
                                 			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
-                                						
+             
 	}
 	
 	function afterGetRec(){

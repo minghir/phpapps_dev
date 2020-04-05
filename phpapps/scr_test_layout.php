@@ -9,7 +9,7 @@ class scr_test_layout extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
+        $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.tpl";
         $this->tpl = "scr_test_layout.tpl";        
         $this->app_id = $app_id;
         

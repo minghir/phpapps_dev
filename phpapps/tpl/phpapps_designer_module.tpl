@@ -1,40 +1,7 @@
-{include file="commun_header.tpl" }
 {extends file=$display_obj->layout}
+{block name=content}
 {literal}
-<style>
-			* {padding:0; margin:0;}
-
-			html {
-				background:url(/img/tiles/wood.png) 0 0 repeat;
-				padding:15px 15px 0;
-				font-family:sans-serif;
-				font-size:14px;
-			}
-
-			p, h3 { 
-				margin-bottom:15px;
-			}
-
-			.tabs li {
-				list-style:none;
-				display:inline;
-			}
-
-			.tabs a {
-				padding:5px 10px;
-				display:inline-block;
-				background:#666;
-				color:#fff;
-				text-decoration:none;
-			}
-
-			.tabs a.active {
-				background:#fff;
-				color:#000;
-			}
-
-		</style>
-		<script>
+                <script>
 			// Wait until the DOM has loaded before querying the document
 			$(document).ready(function(){
 				$('ul.tabs').each(function(){
@@ -75,7 +42,20 @@
 			});
 		</script>
 {/literal}
-{block name=body}
-{include file="top_menu.tpl" }
-{$layouts_grid}
+	<div class="test_div">
+	<font style="font-size: 120%;"><a href="phpapps_admin_applications.php">{$module->APP_TITLE}</a> / {$module->MODULE_TITLE} </h1></font><br>
+	( <a href="phpapps_admin_modules_form_imp.php?gact=editRec&gfield=ID&gfield_value={$module->ID}">{$module->MODULE_NAME}</a> / {$module->MODULE_DATE} ) 
+	</div><br>
+<div class="test_div">
+	<ul class='tabs'>
+        <li><a href='#tab1'>Layouts</a></li>
+	<li><a href='#tab2'>Themes</a></li>
+	<li><a href='#tab3'>Menus</a></li>
+	</ul>
+	
+	<div id="tab1" class="adm_mod_div">{$layouts_grid}</div>
+        <div id="tab2" class="adm_mod_div">aa</div>
+	<div id="tab3" class="adm_mod_div">aa</div>
+        </div>
+
 {/block}

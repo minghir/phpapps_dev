@@ -18,20 +18,8 @@ class phpapps_database_browse_tables extends phpapps_display_abs{
         
         $this->get_table_id = $_GET["gfield_value"];
         $this->get_module_id = $_GET["module_id"];
- /*       
+         
         $sql = new DB_query("SELECT 
-				ID, 
-				APP_NAME,
-				TABLE_NAME,
-				TABLE_SCHEMA 
-		FROM phpapps.view_tables
-		WHERE 	ID = :id AND 
-		MODULE_ID = :module_id AND
-                ORIGIN_ID = '0'",
-  * 
-  */
-        
-                $sql = new DB_query("SELECT 
 				ID, 
 				APP_NAME,
 				TABLE_NAME,
@@ -66,8 +54,9 @@ class phpapps_database_browse_tables extends phpapps_display_abs{
 					FROM phpapps.view_forms f
 					WHERE f.TABLE_NAME = :table_name 
 					AND f.MODULE_ID = :module_id ORDER BY f.ID ASC",
-					array(":table_name" => $this->globals->con->get_field("TABLE_NAME"),":module_id"=>$this->globals->con->get_field("ORIGIN_MODULE_ID")));
-        
+					//array(":table_name" => $this->globals->con->get_field("TABLE_NAME"),":module_id"=>$this->globals->con->get_field("ORIGIN_MODULE_ID")));
+                                        array(":table_name" => $this->globals->con->get_field("TABLE_NAME"),":module_id"=>$this->get_module_id));
+        echo $sql->prnt();
         $this->globals->con->query($sql);	
         $this->globals->con->next();
         

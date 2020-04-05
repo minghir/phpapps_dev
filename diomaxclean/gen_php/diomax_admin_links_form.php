@@ -3,12 +3,12 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_designer_layouts_form extends phpapps_display_abs{
+class diomax_admin_links_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "phpapps";
-	public $form_table = "layouts";
-	public $template = "gen_tpl/phpapps_designer_layouts_form.tpl";
+	public $form_schema = "diomax";
+	public $form_table = "links";
+	public $template = "gen_tpl/diomax_admin_links_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -19,20 +19,11 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
         public $query;
         
 	            
-	public $NAME;
-        	            
-	public $DESCRIPTION;
-        	            
-	public $APP_ID;
+	public $LINKS;
         		
-		 
-		 
 		 
 			
 		 
-		 
-			public $APP_ID_sel;
-	 
 	        
         
 
@@ -46,13 +37,8 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		$this->globals = &$GLOBALS_OBJ;
                 
                 			 
-					 
-					 
 				
 					 
-					 
-									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
-                                			 
 		                
 	}
 		
@@ -71,18 +57,14 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
-									NAME,
-												DESCRIPTION,
-												APP_ID
+									LINKS
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
-			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-                                			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
+			                                                                $this->LINKS = stripslashes($this->globals->con->get_field("LINKS"));
                                 						
 	}
 	
@@ -97,21 +79,13 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															NAME,
-																						DESCRIPTION,
-																						APP_ID
+															LINKS
 										 ) VALUES (
-															:NAME,
-																						:DESCRIPTION,
-																						:APP_ID
+															:LINKS
 													)",
 			array(
 									                                            
-                                            ":NAME" => $this->NAME,
-                                        														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
-                                        														                                            
-                                            ":APP_ID" => $this->APP_ID,
+                                            ":LINKS" => $this->LINKS,
                                         												)
 			);
 
@@ -139,15 +113,11 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		$this->check_errors();
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									NAME = :NAME,
-												DESCRIPTION = :DESCRIPTION,
-												APP_ID = :APP_ID
+									LINKS = :LINKS
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":NAME" => $this->NAME,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
-                                        				                                                                                    ":APP_ID" => $this->APP_ID,
+				                                                                                    ":LINKS" => $this->LINKS,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -219,9 +189,7 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
-                                                		                                                    $this->APP_ID  = htmlspecialchars(addslashes(trim($_POST["APP_ID"])));
+		                                                    $this->LINKS  = htmlspecialchars(addslashes(trim($_POST["LINKS"])));
                                                 		        }
 		
         function takePostActions(){
@@ -240,42 +208,21 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	}
 	
 	function check_errors(){
-				if($this->NAME == "") {
-			$this->errors[] = "Campul NAME este obligatoriu!";
-		}
-				if($this->APP_ID == "") {
-			$this->errors[] = "Campul APP_ID este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
 					 
-					 
-					 
 				
 					 
-					 
-									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
-				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
-				$this->APP_ID_sel->selected_val = $this->APP_ID;
-				$this->APP_ID_sel->setup_select_options();
-			 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
         }
         
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
-							"NAME" => $this->NAME,
-							"DESCRIPTION" => $this->DESCRIPTION,
-							"APP_ID" => $this->APP_ID,
+							"LINKS" => $this->LINKS,
 									 
-						 
-						 
 									 
-						 
-										"APP_ID_sel" => $this->APP_ID_sel->get_select_str(),
-			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,

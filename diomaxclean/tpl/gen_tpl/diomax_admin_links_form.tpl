@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$error_msg}
-<hr><form name="phpapps_designer_layouts_form" id="phpapps_designer_layouts_form" method="POST" enctype="multipart/form-data">
+<hr><form name="diomax_admin_links_form" id="diomax_admin_links_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -14,23 +14,11 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
+				<tr><td align="right">LINKS :</td><td> <input type="text" id="LINKS" name="LINKS" value="{$LINKS}"></td></tr>
 																
 			
 		                
-		                				 
-								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
-        										
-			
-		                
-		                				 
-																
-			
-		                
-				<tr><td align="right">APPLICATION  :</td><td>
-			{$APP_ID_sel}
-		</td></tr>
-                        				{$FROM_IMP_CLASS}
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

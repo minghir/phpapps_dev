@@ -15,17 +15,18 @@ require_once ("globals.php");
 
 class application_layout {
     //put your code here
-    var $layout_file = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
+    var $layout_file = PHPAPPS_LAYOUTS_DIR . "default.tpl";
     var $globals;
     var $layout_id;
     
      public function __construct( $lay_id = -1 ) {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
+        //echo $this->layout_file;
      }   
      
     function setLayoutFile($file){
-        $this->layout_file = PHPAPPS_LAYOUTS_DIR . $file .".lay";
+        $this->layout_file = PHPAPPS_LAYOUTS_DIR . $file .".tpl";
      /*
         if($lay_id  != -1 ){
             $this->layout_id = $lay_id;

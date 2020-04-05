@@ -1,0 +1,204 @@
+BODY, P, TD, DIV {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #000000}
+/*
+INPUT, SELECT, TEXTAREA {font-family: sans-serif, Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000}
+*/
+hr {
+    background-color: dimgrey !important;
+    color: dimgrey !important;
+    border: solid 0.6px dimgrey !important;
+    height: 1px !important;
+    width: 100% !important;
+}
+textarea
+{
+    width:100%;
+}
+.textwrapper
+{
+    border:1px solid #999999;
+    margin:5px 0;
+    padding:3px;
+}
+
+.text { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 16px; color: #000000; text-decoration: none }
+.text_it { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 14px; color: #000000; text-decoration: none; font-style:italic; }
+.text_alb { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 14px; color: #ffffff; text-decoration: none }
+.text_nr { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #303030; text-decoration: none }
+.text_mic { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; text-decoration: underline }
+.text_a { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #151435; text-decoration: underline }
+
+.titlu_alb { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 14px; color: #ffffff; text-decoration: none }
+
+.capuri {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-style: normal; font-weight: bold; color: #FFFFFF; text-decoration: none}
+.suspoza {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #004e8c; text-decoration: none}
+.sapou {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-decoration: none}
+A.visited { color: #004e8c; text-decoration:none} 
+
+/*link Matrix in footer*/
+.footer { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-decoration: none; font-weight: bold}
+
+/*coloana CANALE*/
+.canale {  background-color:#E4E4E4; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #004e8c; text-decoration: none; font-weight: bold}
+A:link.canale  {  color: #004e8c; text-decoration: none;}
+A:hover.canale  { color: #004e8c; text-decoration: underline;}
+.canale_selectate { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #FF9F48; text-decoration: none; font-weight: bold }
+
+/*linkuri SMALL CAPS*/
+.linkmic { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; text-decoration: none ; font-weight: normal }
+A:link.linkmic { text-decoration:none}
+A:hover.linkmic { color: #004e8c; text-decoration:underline}
+
+/*linkuri SMALL CAPS*/
+.linkmic2 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #004e8c; text-decoration: none ; font-weight: normal }
+.linkmic2n { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; text-decoration: none ; font-weight: normal }
+A:link.linkmic2 { text-decoration:none}
+A:hover.linkmic2 { text-decoration:underline}
+
+/*linkuri SMALL CAPS*/
+.linkmic3 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #004e8c; text-decoration: none ; font-weight: normal }
+A:link.linkmic3 { text-decoration:underline}
+A:hover.linkmic3 { text-decoration:none}
+
+/*linkuri SMALL CAPS PORTOCALIU*/
+.linkmicportocaliu { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FF8A20; text-decoration: underline ; font-weight: normal }
+A:link.linkmicportocaliu { text-decoration:none}
+A:hover.linkmicportocaliu {  text-decoration:underline}
+
+/*linkuri TITLU STIRE*/
+.linktitlu { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #004e8c; font-weight: 600;}
+A.linktitlu  { text-decoration:none}
+A:hover.linktitlu  { color: #004e8c; text-decoration:underline}
+
+/*linkuri WEB DIRECTORY*/
+.linkwebdir { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #004e8c; text-decoration: underline }
+A:link.linkwebdir { color: #004e8c; text-decoration:underline}
+A:hover.linkwebdir {  color: #004e8c; text-decoration:none}
+
+/*linkuri TITLU ARTICOLE*/
+.articole { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #004e8c; font-weight: bold}
+A:link.articole  { color: #004e8c; text-decoration:none}
+A:hover.articole  {  color: #004e8c; text-decoration:underline}
+
+/*linkuri TITLU ARTICOLE 2*/
+.articole2 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; font-weight: bold; text-decoration: none}
+A:link.articole2  { color: #000000; text-decoration:none}
+A:hover.articole2  {  color: #004e8c; text-decoration:underline}
+
+/*linkuri TITLU ARTICOLE 3*/
+.articole3 { font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #000000; font-weight: bold; text-decoration: none}
+A:link.articole3  { color: #000000; text-decoration:none}
+A:hover.articole3  {  color: #004e8c; text-decoration:underline}
+
+/*linkuri TITLU ARTICOLE TOP*/
+.articole-top { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; font-weight: normal; text-decoration: none}
+A:link.articole-top  { color: #000000; text-decoration:none}
+A:hover.articole-top  {  color: #004e8c; text-decoration:underline}
+
+/*linkuri TITLU STIRI TOP*/
+.stiri-top { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-decoration: none; font-weight: bold}
+
+/*linkuri TITLU STIRI*/
+.stiri { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #004e8c; text-decoration: none; font-weight: bold}
+A:link.stiri  { color: #000000; text-decoration:none}
+A:hover.stiri  {  color: #004e8c; text-decoration:underline}
+/*.stiri { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #004E8C; text-decoration: none; font-weight: bold}
+A.stiri  { text-decoration:none}
+A:hover.stiri  {  text-decoration:underline}*/
+
+/*linkuri LINK STIRI*/
+.stiri-link {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; text-decoration: none}
+A.stiri-link  { text-decoration:none}
+A:hover.stiri-link  { color: #004e8c; text-decoration:underline}
+
+/*LEFT BOX*/
+.left-box {background-color: #EAEAEA}
+
+/*RIGHT BOX*/
+.right-box {background-color: #EAEAEA}
+
+/*RIGHT ADS*/
+.right-ads {background-color: #F4F4F4}
+
+/*linkuri ARTICOLE SUBLINIATE*/
+.articoleculinie { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #1D4D81; text-decoration: underline; font-weight: bold}
+A:link.articoleculinie  { color: #1D4D81; text-decoration:underline}
+A:hover.articoleculinie {  color: #1D4D81; text-decoration:none}
+
+/*linkuri CAP TABEL*/
+.altlinkblack { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font-weight: normal; color: #FFFFFF; text-decoration: none;}
+A:link.altlinkblack  {  text-decoration:none}
+A:hover.altlinkblack { text-decoration:underline}
+
+/*linkuri ALB PE BACKGROUND*/
+.linkmicalb { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FFFFFF; font-weight: normal }
+A:link.linkmicalb  {  text-decoration:underline}
+A:hover.linkmicalb { text-decoration:none}
+
+/*titlu teatre*/
+.titlu-teatre { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #2863a4; font-weight: bold; text-decoration: none}
+A:link.titlu-teatre  {  text-decoration:none}
+A:hover.titlu-teatre { text-decoration:underline}
+
+/*titlu filme*/
+.titlufilme { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #000000; font-weight: bold; text-decoration: none}
+A:link.titlufilme  {  text-decoration:none}
+A:hover.titlufilme { color: #2863a4; text-decoration:underline}
+
+.buline { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #34497A; text-decoration: none; font-weight: bold}
+.bulinemari { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #2863a4; text-decoration: none; font-weight: bold }
+.bulineportocalii { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #FF8A20; text-decoration: none; font-weight: bold }
+.paranteze { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #FF8A20; text-decoration: none ; font-style: italic}
+.paradrepte { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #233254; text-decoration: none; font-weight: normal}
+
+.categ {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #0066CC; text-decoration: none}
+A:link.categ  {  text-decoration:none}
+A:hover.categ { text-decoration:underline}
+
+
+.titlu { font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: #3D64A5; font-weight: bold}
+A:link.titlu  {  text-decoration:none}
+A:hover.titlu { text-decoration:underline}
+
+
+.text_body_mic { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 16px; color: #000000; text-decoration: none }
+.text_body { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 20px; color: #000000; text-decoration: none }
+
+
+.titlumare { font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: #2863a4; text-decoration: none ; font-weight: bold}.bulinealbastre {  color: #004e8c; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; font-weight: bold; text-decoration: none}
+.text_bodybold { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #2863a4; text-decoration: none }
+.capurimari { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; color: #FFFFFF; text-decoration: none }
+.titlu-portoc {  font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #FF912D; text-decoration: none; font-weight: bold}
+.titlu-teatre { font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #2863a4; text-decoration: none; font-weight: bold }
+.linkmicportocaliu2 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FF8A20; text-decoration: none; font-weight: normal }
+.canale_selectate2 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #004e8c; text-decoration: underline; font-weight: bold }
+.linkmic2port { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #FF8A20; text-decoration: none ; font-weight: normal }
+
+.linkfilme { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #2863a4; text-decoration: none }
+A:link.linkfilme {  text-decoration:none}
+A:hover.linkfilme { text-decoration:underline}
+
+.canale2 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #004e8c; text-decoration: none; font-weight: bold}
+A:link.canale2 { color: #004e8c; text-decoration: none;}
+A:hover.canale2 { color: #004e8c; text-decoration: underline;}
+.linkboxnew { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #004e8c; text-decoration: none}
+.linkboxnew:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; text-decoration: underline; color: #004e8c}
+.linkbancuri { font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #2863a4; text-decoration: none ; font-weight: bold; background-color: #E6E6E6; }
+
+.titlu_rosu {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ff0000; font-weight: bold}
+A:link.titlu_rosu  {  text-decoration:none}
+A:hover.titlu_rosu { text-decoration:underline}
+
+.linkmic_rosu {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #CC0000; text-decoration: none; font-weight: normal }
+A:link.linkmic_rosu { text-decoration:none}
+A:hover.linkmic_rosu { color: #CC0000; text-decoration:underline}
+
+.linkmic2nou { font-family: sans-serif, Arial, Helvetica, sans-serif; font-size: 18px; color: #01408B; text-decoration: none ; font-weight: normal }
+A:link.linkmic2nou { text-decoration:none}
+A:hover.linkmic2nou { text-decoration:underline}
+.textmicb { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; color: #000000; text-decoration: none ; font-weight: bold}
+.linkmic4 { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #004e8c; text-decoration: underline; font-weight: normal }
+A:link.linkmic4 { text-decoration:none}
+A:hover.linkmic4 { text-decoration:underline}
+
+.linkmic2b { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #01408B; text-decoration: none ; font-weight: bold}
+a.linkmic2b:hover { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #01408B; text-decoration: underline; font-weight: bold}

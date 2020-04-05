@@ -30,14 +30,17 @@ abstract class phpapps_display_abs extends  application_layout {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         $this->globals->sm->assign(array("display_obj"=>$this));
+        
         return $this;
     }
     
     function setupDisplay(){
+        //echo "<br>AICI DISP ABS" . $this->tpl;
         //$this->
     }
     
     public function displayTpl() {
+       
         $this->setupDisplay();
         $this->globals->sm->display($this->tpl);
     }

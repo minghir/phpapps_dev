@@ -1,7 +1,7 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
-echo "AICI";
+
 class login extends phpapps_display_abs{
     public $globals;
     public function __construct(){

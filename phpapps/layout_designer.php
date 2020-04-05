@@ -8,7 +8,7 @@ class layout_designer extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "layout_designer.lay";
+        $this->layout = PHPAPPS_LAYOUTS_DIR . "layout_designer.tpl";
         $this->tpl = "layout_designer.tpl";        
         $this->app_id = $app_id;
         

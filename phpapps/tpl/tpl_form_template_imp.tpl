@@ -1,5 +1,5 @@
-{ldelim}extends file=$display_obj->layout{rdelim}
-{ldelim}block name=content{rdelim}{ldelim}
+{ldelim}extends file=$display_obj->layout_file{rdelim}
+{ldelim}block name=content{rdelim}
 {ldelim}literal{rdelim}{literal}
 <script>
 function submitDetailsForm(op){

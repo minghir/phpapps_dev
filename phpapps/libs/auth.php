@@ -48,6 +48,7 @@ class auth{
                                                    array(":USER" => trim($_SESSION['_USER_NAME']),":PASS"=>trim($_SESSION['_USER_PASS'])));
 //echo $sql->prnt();
                 if($this->globals->con->query($sql)==1){
+                    $this->globals->USER_ID = $_SESSION["_USER_ID"];
                     return true;
                 }else{
                     $this->logout();

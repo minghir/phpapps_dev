@@ -1,8 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_designer_themes_form{
+class phpapps_designer_themes_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
@@ -14,6 +15,9 @@ class phpapps_designer_themes_form{
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
 	            
 	public $ID;
         	            
@@ -36,6 +40,7 @@ class phpapps_designer_themes_form{
         public $resp_msgs = array();
 	
 	function __construct(){
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
@@ -63,7 +68,7 @@ class phpapps_designer_themes_form{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 									ID,
 												THEME_NAME,
 												CSS_FILE
@@ -71,7 +76,7 @@ class phpapps_designer_themes_form{
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->THEME_NAME = stripslashes($this->globals->con->get_field("THEME_NAME"));
@@ -89,7 +94,7 @@ class phpapps_designer_themes_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					THEME_NAME,
 																						CSS_FILE
 										 ) VALUES (
@@ -105,7 +110,7 @@ class phpapps_designer_themes_form{
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare adaugata cu succes";
@@ -127,7 +132,7 @@ class phpapps_designer_themes_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												THEME_NAME = :THEME_NAME,
 												CSS_FILE = :CSS_FILE
@@ -142,7 +147,7 @@ class phpapps_designer_themes_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare salvata cu succes";
@@ -162,11 +167,11 @@ class phpapps_designer_themes_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare stearsa cu succes";
@@ -229,9 +234,6 @@ class phpapps_designer_themes_form{
 	}
 	
 	function check_errors(){
-				if($this->THEME_NAME == "") {
-			$this->errors[] = "Campul THEME_NAME este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){

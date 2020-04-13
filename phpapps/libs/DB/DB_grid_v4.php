@@ -49,7 +49,7 @@ class DB_grid {
 
     var $num_rows = 0;
 	
-    public $template = 'db_grid3.tpl';
+    public $template = 'db_grid4.tpl';
 
     function __construct($conn, $g_type, $str_sql, $grid_name = ""){
 	  

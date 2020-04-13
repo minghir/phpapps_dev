@@ -1,3 +1,10 @@
+<script>
+function submitDetailsForm(op){
+		$("#pact").val(op);
+		$("#phpapps_designer_themes_form").submit();
+}
+  </script>
+ 
 {$error_msg}
 <hr><form name="phpapps_designer_themes_form" id="phpapps_designer_themes_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">

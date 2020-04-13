@@ -1,8 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_designer_menus_form{
+class phpapps_designer_menus_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
@@ -14,21 +15,34 @@ class phpapps_designer_menus_form{
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
 	            
 	public $ID;
         	            
 	public $NAME;
         	            
+	public $MENU_TYPE;
+        	            
 	public $ORIENTATION;
+        	            
+	public $QUERY_ID;
         		
 		 
 		 
+			public $MENU_TYPE_sel;
+	 
 			public $ORIENTATION_sel;
 	 
+		 
 			
 		 
 		 
 		 
+		 
+			public $QUERY_ID_sel;
+	 
 	        
         
 
@@ -37,17 +51,24 @@ class phpapps_designer_menus_form{
         public $resp_msgs = array();
 	
 	function __construct(){
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
                 			 
 					 
+								$this->MENU_TYPE_sel = new DB_select("MENU_TYPE","phpapps.list_menu_types");
+                        			 
 								$this->ORIENTATION_sel = new DB_select("ORIENTATION","phpapps.list_menu_orientation");
                         			 
+					 
 				
 					 
 					 
 					 
+					 
+									$this->QUERY_ID_sel = new DB_select("QUERY_ID","phpapps.queries");
+                                			 
 		                
 	}
 		
@@ -65,19 +86,23 @@ class phpapps_designer_menus_form{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 									ID,
 												NAME,
-												ORIENTATION
+												MENU_TYPE,
+												ORIENTATION,
+												QUERY_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                                			                                                                $this->MENU_TYPE = stripslashes($this->globals->con->get_field("MENU_TYPE"));
                                 			                                                                $this->ORIENTATION = stripslashes($this->globals->con->get_field("ORIENTATION"));
+                                			                                                                $this->QUERY_ID = stripslashes($this->globals->con->get_field("QUERY_ID"));
                                 						
 	}
 	
@@ -91,23 +116,31 @@ class phpapps_designer_menus_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					NAME,
-																						ORIENTATION
+																						MENU_TYPE,
+																						ORIENTATION,
+																						QUERY_ID
 										 ) VALUES (
 																					:NAME,
-																						:ORIENTATION
+																						:MENU_TYPE,
+																						:ORIENTATION,
+																						:QUERY_ID
 													)",
 			array(
 																		                                            
                                             ":NAME" => $this->NAME,
                                         														                                            
+                                            ":MENU_TYPE" => $this->MENU_TYPE,
+                                        														                                            
                                             ":ORIENTATION" => $this->ORIENTATION,
+                                        														                                            
+                                            ":QUERY_ID" => $this->QUERY_ID,
                                         												)
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare adaugata cu succes";
@@ -129,22 +162,26 @@ class phpapps_designer_menus_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												NAME = :NAME,
-												ORIENTATION = :ORIENTATION
+												MENU_TYPE = :MENU_TYPE,
+												ORIENTATION = :ORIENTATION,
+												QUERY_ID = :QUERY_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":NAME" => $this->NAME,
+                                        				                                                                                    ":MENU_TYPE" => $this->MENU_TYPE,
                                         				                                                                                    ":ORIENTATION" => $this->ORIENTATION,
+                                        				                                                                                    ":QUERY_ID" => $this->QUERY_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare salvata cu succes";
@@ -164,11 +201,11 @@ class phpapps_designer_menus_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare stearsa cu succes";
@@ -212,7 +249,9 @@ class phpapps_designer_menus_form{
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
+                                                		                                                    $this->MENU_TYPE  = htmlspecialchars(addslashes(trim($_POST["MENU_TYPE"])));
                                                 		                                                    $this->ORIENTATION  = htmlspecialchars(addslashes(trim($_POST["ORIENTATION"])));
+                                                		                                                    $this->QUERY_ID  = htmlspecialchars(addslashes(trim($_POST["QUERY_ID"])));
                                                 		        }
 		
         function takePostActions(){
@@ -234,19 +273,36 @@ class phpapps_designer_menus_form{
 				if($this->NAME == "") {
 			$this->errors[] = "Campul NAME este obligatoriu!";
 		}
+				if($this->MENU_TYPE == "") {
+			$this->errors[] = "Campul MENU_TYPE este obligatoriu!";
+		}
+				if($this->ORIENTATION == "") {
+			$this->errors[] = "Campul ORIENTATION este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
 					 
 					 
+								//$this->MENU_TYPE_sel = new DB_select("MENU_TYPE",".phpapps.list_menu_types");
+			$this->MENU_TYPE_sel->selected_val = $this->MENU_TYPE;
+			$this->MENU_TYPE_sel->setup_select_options();
+			 
 								//$this->ORIENTATION_sel = new DB_select("ORIENTATION",".phpapps.list_menu_orientation");
 			$this->ORIENTATION_sel->selected_val = $this->ORIENTATION;
 			$this->ORIENTATION_sel->setup_select_options();
 			 
+					 
 				
 					 
 					 
 					 
+					 
+									//$this->QUERY_ID_sel = new DB_select("QUERY_ID",".phpapps.queries");
+				$this->QUERY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, QUERY_NAME AS LABEL FROM phpapps.queries ORDER BY QUERY_NAME");
+				$this->QUERY_ID_sel->selected_val = $this->QUERY_ID;
+				$this->QUERY_ID_sel->setup_select_options();
+			 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
         }
@@ -255,14 +311,22 @@ class phpapps_designer_menus_form{
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
 							"NAME" => $this->NAME,
+							"MENU_TYPE" => $this->MENU_TYPE,
 							"ORIENTATION" => $this->ORIENTATION,
+							"QUERY_ID" => $this->QUERY_ID,
 									 
 						 
+										"MENU_TYPE_sel" => $this->MENU_TYPE_sel->get_select_str(),
+			 
 										"ORIENTATION_sel" => $this->ORIENTATION_sel->get_select_str(),
 			 
+						 
 									 
 						 
 						 
+						 
+										"QUERY_ID_sel" => $this->QUERY_ID_sel->get_select_str(),
+			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,

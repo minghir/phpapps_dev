@@ -20,8 +20,8 @@ if (!defined('PHPEXCEL_LIBS_DIR')) {
 }
 
 if (!defined('CODEMIRROR_DIR')) {
-	//define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/JS/codemirror-5.46.0');
-    define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/JS/codemirror-5.49.0');
+    define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/codemirror-5.52.2');
+    //define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/JS/codemirror-5.49.0');
 }
 
 //jquery 
@@ -39,5 +39,11 @@ if (!defined('JQUERY_UI')) {
 
 if (!defined('JQUERY_UI_CSS')) {
 	define('JQUERY_UI_CSS',JQUERY_PATH . '/jquery-ui-1.12.1/jquery-ui.css');
+}
+
+// bootstrap
+if (!defined('BOOTSTRAP_PATH')) {
+	//define('BOOTSTRAP_PATH', WEB_BASE_DIR . 'phpapps/3rd_party/bootstrap-4.0.0-dist');
+    define('BOOTSTRAP_PATH', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css');
 }
 ?>

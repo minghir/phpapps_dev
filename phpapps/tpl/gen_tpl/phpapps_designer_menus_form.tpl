@@ -26,11 +26,25 @@ function submitDetailsForm(op){
 		                				 
 																
 			
+				<tr><td align="right">MENU_TYPE  :</td><td>
+			{$MENU_TYPE_sel}
+		</td></tr>
+                        
+		                				 
+																
+			
 				<tr><td align="right">ORIENTATION  :</td><td>
 			{$ORIENTATION_sel}
 		</td></tr>
                         
-		                				{$FROM_IMP_CLASS}
+		                				 
+																
+			
+		                
+				<tr><td align="right">QUERY_ID  :</td><td>
+			{$QUERY_ID_sel}
+		</td></tr>
+                        				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

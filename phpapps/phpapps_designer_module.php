@@ -59,17 +59,46 @@ class phpapps_designer_module extends phpapps_display_abs{
 	function setupDisplay(){
 		$layouts_grid = new DB_grid($this->globals->con, "table","phpapps.view_layouts","phpapps_layouts_grid");
 		$layouts_grid->grid_title = "LAYOUTS";
-
 		$layouts_grid->cols = (array("NAME","APP_NAME","DESCRIPTION"));
 		$layouts_grid->labels = (array("LAYOUT NAME","APP NAME","DESCRIPTION"));
-		
 		$layouts_grid->paginable = true;
 		$layouts_grid->filterable = false;
 		$layouts_grid->exportable = false;
-		//$tables_grid->editable = false;
 		$layouts_grid->rows_on_pg = 20;
 		$layouts_grid->edit_form = "phpapps_designer_layouts_form_imp.php?module_id=".$this->ID;
-		$this->globals->sm->assign("layouts_grid",$layouts_grid->get_grid_str());
+		
+                $as2 = new HrefActions();
+		$as2->act_script = "run_code_editor.php?module_id=".$this->ID;
+		$as2->label = "edit layout tpl";
+		$as2->action = "editLayoutTpl";
+		$as2->fields = array("ID");
+		$layouts_grid->add_row_acction($as2);
+
+                $this->globals->sm->assign("layouts_grid",$layouts_grid->get_grid_str());
+
+                
+                $themes_grid = new DB_grid($this->globals->con, "table","phpapps.themes","phpapps_themes_grid");
+		$themes_grid->grid_title = "THEMES";
+		$themes_grid->cols = (array("THEME_NAME","CSS_FILE"));
+		$themes_grid->labels = (array("THEME NAME","CSS FILE"));
+		$themes_grid->paginable = true;
+		$themes_grid->filterable = false;
+		$themes_grid->exportable = false;
+		$themes_grid->rows_on_pg = 20;
+		$themes_grid->edit_form = "phpapps_designer_themes_form_imp.php?module_id=".$this->ID;
+                $this->globals->sm->assign("themes_grid",$themes_grid->get_grid_str());
+
+                
+                $menus_grid = new DB_grid($this->globals->con, "table","phpapps.menus","phpapps_menus_grid");
+		$menus_grid->grid_title = "MENUS";
+		$menus_grid->cols = (array("NAME","MENU_TYPE"));
+		$menus_grid->labels = (array("MENU NAME","TYPE"));
+		$menus_grid->paginable = true;
+		$menus_grid->filterable = false;
+		$menus_grid->exportable = false;
+		$menus_grid->rows_on_pg = 20;
+		$menus_grid->edit_form = "phpapps_designer_menus_form_imp.php?module_id=".$this->ID;
+                $this->globals->sm->assign("menus_grid",$menus_grid->get_grid_str());
                 
                 $this->globals->sm->assign("module",$this);
 	}

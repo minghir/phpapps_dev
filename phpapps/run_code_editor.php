@@ -52,6 +52,15 @@
 					$this->globals->con->next();
 					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("SCRIPT_NAME") . ".tpl";
 				break;
+                                case "editLayoutTpl":
+                                         $sql = new DB_query("select NAME,APP_NAME from view_layouts where ID = :layout_id",
+                                                array(":layout_id"=> $_GET["gfield_value"] ));
+                                        if( $this->globals->con->query($sql,"layout_sql") != 1){
+                                            return;
+                                        }
+                                        $this->globals->con->next("layout_sql");
+                                        $this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->globals->con->get_field("NAME","layout_sql") . '.tpl';
+				break;
 			}
 			$ce = new code_editor($this->file_path);
 			$ce->display();

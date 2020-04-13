@@ -1,20 +1,32 @@
-<html>
-    <head>
-        <!-- <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
-        <!-- <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}style.css" /> -->
-        
-        <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}{$THEME_CSS}" /> 
-        <link rel="stylesheet" href="{$smarty.const.JQUERY_UI_CSS}" />
-<!--
-        <link rel="stylesheet" href="http://localhost:89/phpapps_dev/phpapps/3rd_party/JS/popelt/css/normalize.css" />
-        <link rel="stylesheet" href="http://localhost:89/phpapps_dev/phpapps/3rd_party/JS/popelt/css/popelt.css" />
-        <link rel="stylesheet" href="http://localhost:89/phpapps_dev/phpapps/3rd_party/JS/popelt/css/demo.css" />
--->      
+<!doctype html>
+<html lang="en">
+  <head>
+	  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{$smarty.const.BOOTSTRAP_PATH}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+    
+
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+     
+	   <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}{$THEME_CSS}" />
+        
+	  <!--
+		<link rel="stylesheet" href="{$smarty.const.JQUERY_UI_CSS}" /> 
+		-->
+
+	  <!--
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <script src="{$smarty.const.JQUERY_FILE}"></script>
-        <script src="{$smarty.const.JQUERY_UI}"></script>
-<!--        <script src="http://localhost:89/phpapps_dev/phpapps/3rd_party/JS/popelt/source/popelt-v1.0-source.js"></script> -->
+         <script src="{$smarty.const.JQUERY_FILE}"></script>
+        <script src="{$smarty.const.JQUERY_UI}"></script> 
+		-->
+
         <title>{block name=title}Default Page Title{/block}</title>
     </head>
     <body bgcolor="#000000">

@@ -4,7 +4,7 @@ if (!defined('_3RDPARTY_DIR')) {
 }
 
 if (!defined('SMARTY_LIBS_DIR')) {
-	define('SMARTY_LIBS_DIR', _3RDPARTY_DIR . 'smarty-3.1.34'. DIR_SEP .'libs'  . DIR_SEP);
+	define('SMARTY_LIBS_DIR', _3RDPARTY_DIR . 'smarty-3.1.35'. DIR_SEP .'libs'  . DIR_SEP);
 }
 
 if (!defined('PHPAPPS_SMARTY_TPL_DIR')) {

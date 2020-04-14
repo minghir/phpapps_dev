@@ -80,6 +80,10 @@ include ("gen_php/phpapps_admin_applications_form.php");
                     fwrite($fp, $tpl_content);
                     fclose($fp);
                 }
+                
+                function afterDeleteRec(){
+                    print_r($this->errors);
+                }
 		
 	};
         

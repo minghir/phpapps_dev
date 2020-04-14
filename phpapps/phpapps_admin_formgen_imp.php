@@ -54,7 +54,7 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 			case "deleteRec":
                                 
 				$sql = new DB_query(
-				"DELETE FROM phpapps.forms WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
+				"DELETE FROM phpapps.scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
 				$this->globals->con->query($sql);	
 				//$this->globals->con->print_log();	
 				header("Location:win_close.html");

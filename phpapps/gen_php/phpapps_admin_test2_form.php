@@ -26,20 +26,12 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 	public $ID;
         	            
 	public $nume;
-        	            
-	public $ID;
-        	            
-	public $nume;
         		
 		 
 		 
 		 
 		 
-		 
-		 
 			
-		 
-		 
 		 
 		 
 		 
@@ -60,11 +52,7 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 					 
 					 
 					 
-					 
-					 
 				
-					 
-					 
 					 
 					 
 					 
@@ -90,8 +78,6 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 									ID,
 												nume,
 												ID,
-												nume,
-												ID,
 												nume
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -100,8 +86,6 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
-                                			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
                                 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
@@ -120,17 +104,13 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					nume,
-																												nume,
 																												nume
 										 ) VALUES (
 																					:nume,
-																												:nume,
 																												:nume
 													)",
 			array(
 																		                                            
-                                            ":nume" => $this->nume,
-                                        																							                                            
                                             ":nume" => $this->nume,
                                         																							                                            
                                             ":nume" => $this->nume,
@@ -164,15 +144,11 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 									ID = :ID,
 												nume = :nume,
 												ID = :ID,
-												nume = :nume,
-												ID = :ID,
 												nume = :nume
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":nume" => $this->nume,
-                                        				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":nume" => $this->nume,
                                         				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":nume" => $this->nume,
@@ -251,8 +227,6 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
                                                 		                                                    $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
                                                 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
-                                                		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
                                                 		        }
 		
         function takePostActions(){
@@ -277,9 +251,6 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 				if($this->nume == "") {
 			$this->errors[] = "Campul nume este obligatoriu!";
 		}
-				if($this->nume == "") {
-			$this->errors[] = "Campul nume este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
@@ -287,11 +258,7 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 					 
 					 
 					 
-					 
-					 
 				
-					 
-					 
 					 
 					 
 					 
@@ -306,17 +273,11 @@ class phpapps_admin_test2_form extends phpapps_display_abs{
 							"nume" => $this->nume,
 							"ID" => $this->ID,
 							"nume" => $this->nume,
-							"ID" => $this->ID,
-							"nume" => $this->nume,
 									 
 						 
 						 
 						 
-						 
-						 
 									 
-						 
-						 
 						 
 						 
 						 

@@ -30,7 +30,7 @@ if (!defined('JQUERY_PATH')) {
 }
 
 if (!defined('JQUERY_FILE')) {
-	define('JQUERY_FILE', JQUERY_PATH . '/jquery-3.4.1.js');
+	define('JQUERY_FILE', JQUERY_PATH . '/jquery-3.5.0.min.js');
 }
 
 if (!defined('JQUERY_UI')) {

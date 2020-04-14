@@ -1,11 +1,10 @@
-{literal}
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#eshop_admin_categories_form").submit();
+		$("#phpapps_designer_themes_form").submit();
 }
   </script>
-{/literal}
+ 
 {$error_msg}
 <hr><form name="eshop_admin_categories_form" id="eshop_admin_categories_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
@@ -15,6 +14,11 @@ function submitDetailsForm(op){
 	<table border="1">
 	
 		 
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
+			
+		                
+		                				 
 																
 			
 		                
@@ -32,8 +36,8 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" id="DESCRIPTION" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
-																
+								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
+        										
 			
 		                
 		                				{$FROM_IMP_CLASS}

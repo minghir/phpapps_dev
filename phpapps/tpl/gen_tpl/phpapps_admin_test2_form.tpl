@@ -33,16 +33,6 @@ function submitDetailsForm(op){
 																
 			
 		                
-		                				 
-				<tr><td align="right">ID :</td><td> <input type="text" id="ID" name="ID" value="{$ID}"></td></tr>
-																
-			
-		                
-		                				 
-				<tr><td align="right">nume :</td><td> <input type="text" id="nume" name="nume" value="{$nume}"></td></tr>
-																
-			
-		                
 		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

@@ -1,8 +1,10 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class eshop_admin_categories_form{
+class eshop_admin_categories_form extends phpapps_display_abs{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "eshop";
 	public $form_table = "categories";
@@ -13,7 +15,12 @@ class eshop_admin_categories_form{
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
 	            
+	public $ID;
+        	            
 	public $PID;
         	            
 	public $NAME;
@@ -26,8 +33,11 @@ class eshop_admin_categories_form{
 		 
 		 
 		 
+		 
 			
 		 
+			public $PID_sel;
+	 
 		 
 		 
 		 
@@ -35,8 +45,11 @@ class eshop_admin_categories_form{
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
@@ -44,8 +57,11 @@ class eshop_admin_categories_form{
 					 
 					 
 					 
+					 
 				
 					 
+									$this->PID_sel = new DB_select("PID","eshop.categories");
+                                			 
 					 
 					 
 					 
@@ -66,8 +82,9 @@ class eshop_admin_categories_form{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
-									PID,
+		$this->query = new DB_query( "SELECT 
+									ID,
+												PID,
 												NAME,
 												TITLE,
 												DESCRIPTION
@@ -75,9 +92,10 @@ class eshop_admin_categories_form{
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
-			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
                                 			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
                                 			                                                                $this->TITLE = stripslashes($this->globals->con->get_field("TITLE"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
@@ -94,19 +112,19 @@ class eshop_admin_categories_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															PID,
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+																					PID,
 																						NAME,
 																						TITLE,
 																						DESCRIPTION
 										 ) VALUES (
-															:PID,
+																					:PID,
 																						:NAME,
 																						:TITLE,
 																						:DESCRIPTION
 													)",
 			array(
-									                                            
+																		                                            
                                             ":PID" => $this->PID,
                                         														                                            
                                             ":NAME" => $this->NAME,
@@ -118,8 +136,10 @@ class eshop_admin_categories_form{
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -138,15 +158,17 @@ class eshop_admin_categories_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									PID = :PID,
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+									ID = :ID,
+												PID = :PID,
 												NAME = :NAME,
 												TITLE = :TITLE,
 												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":PID" => $this->PID,
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":PID" => $this->PID,
                                         				                                                                                    ":NAME" => $this->NAME,
                                         				                                                                                    ":TITLE" => $this->TITLE,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
@@ -155,8 +177,10 @@ class eshop_admin_categories_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -173,12 +197,14 @@ class eshop_admin_categories_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -217,7 +243,8 @@ class eshop_admin_categories_form{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
                                                 		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
                                                 		                                                    $this->TITLE  = htmlspecialchars(addslashes(trim($_POST["TITLE"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
@@ -249,14 +276,24 @@ class eshop_admin_categories_form{
 					 
 					 
 					 
+					 
 				
 					 
+									//$this->PID_sel = new DB_select("PID",".eshop.categories");
+				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
+				$this->PID_sel->selected_val = $this->PID;
+				$this->PID_sel->setup_select_options();
+			 
 					 
 					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+        }
+        
+        function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
+							"ID" => $this->ID,
 							"PID" => $this->PID,
 							"NAME" => $this->NAME,
 							"TITLE" => $this->TITLE,
@@ -265,7 +302,10 @@ class eshop_admin_categories_form{
 						 
 						 
 						 
+						 
 									 
+										"PID_sel" => $this->PID_sel->get_select_str(),
+			 
 						 
 						 
 						 
@@ -280,10 +320,16 @@ class eshop_admin_categories_form{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
-		$this->globals->sm->display($this->template);
+		$this->assign_vars_tpl();
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    $this->globals->sm->display($this->template);
+                }
 		$this->afterDisplay();
 	}
 	
@@ -291,10 +337,16 @@ class eshop_admin_categories_form{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
 		$this->globals->sm->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

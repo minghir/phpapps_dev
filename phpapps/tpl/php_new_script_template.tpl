@@ -10,7 +10,7 @@ class {$CLASS_NAME} extends phpapps_display_abs{ldelim}
     
     function __construct($app_id) {ldelim}
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";
+        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "{$CLASS_NAME}.tpl";        
         $this->app_id = {$APP_ID};
         $this->module_id = {$MODULE_ID};

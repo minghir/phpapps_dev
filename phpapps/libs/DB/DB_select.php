@@ -99,6 +99,8 @@ class DB_select{
 		}
                 
 		//print_r($this->db_query);
+                //echo "<br>" . $this->db_query->prnt();
+                
 		$nrs = $this->globals->con->query($this->db_query, $this->name);
 		while($res=$this->globals->con->fetch_row($this->name)){
 			$this->options[] =  (array)(new DB_select_option( $res[0],$res[1],($this->selected_val == $res[0] ) ));

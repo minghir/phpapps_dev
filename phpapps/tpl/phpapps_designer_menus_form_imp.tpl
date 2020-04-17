@@ -34,6 +34,6 @@ $("#phpapps_designer_menus_form").submit(function(event){
 </script>
 -->
 {/literal} 
-
+{$menu_items_grid}
 </body>
 </html>

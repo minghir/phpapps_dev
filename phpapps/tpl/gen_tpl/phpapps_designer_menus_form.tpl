@@ -24,6 +24,11 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
+				<tr><td align="right">MENU_TITLE :</td><td> <input type="text" id="MENU_TITLE" name="MENU_TITLE" value="{$MENU_TITLE}"></td></tr>
+																
+			
+		                
+		                				 
 																
 			
 				<tr><td align="right">MENU_TYPE  :</td><td>
@@ -44,7 +49,12 @@ function submitDetailsForm(op){
 				<tr><td align="right">QUERY_ID  :</td><td>
 			{$QUERY_ID_sel}
 		</td></tr>
-                        				{$FROM_IMP_CLASS}
+                        				 
+								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
+        										
+			
+		                
+		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

@@ -5,6 +5,9 @@ include ("gen_php/phpapps_designer_menu_items_form.php");
 		function __construct(){
 			parent::__construct();
 			$this->template = "phpapps_designer_menu_items_form_imp.tpl";
+                        
+                        $this->MENU_ID = $_GET["menu_id"];
+                        
 			$this->init();
 			$this->display();
 		}
@@ -16,6 +19,10 @@ include ("gen_php/phpapps_designer_menu_items_form.php");
 		}
 	
 		function beforeAddRec(){
+                    if($this->PID == ''){
+                        $this->PID = '0';
+                    }
+                        
 		}
 		
 		function afterAddRec(){
@@ -26,6 +33,9 @@ include ("gen_php/phpapps_designer_menu_items_form.php");
 		}
 		
 		function beforeSaveRec(){
+                    if($this->PID == ''){
+                        $this->PID = '0';
+                    }
 		}
 		
 		function afterSaveRec(){
@@ -40,6 +50,9 @@ include ("gen_php/phpapps_designer_menu_items_form.php");
 		}
 		
 		function beforeDisplay(){	
+                    //echo "<h1>".$this->MENU_ID."</h1>";
+                     $this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL FROM phpapps.menu_items WHERE MENU_ID = :menu_id ORDER BY ID",array(":menu_id"=>$this->MENU_ID));
+                     $this->PID_sel->setup_select_options();
 		}
 		
 		function afterDisplay(){	

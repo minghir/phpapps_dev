@@ -32,6 +32,7 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 		}
 		
 		function afterAddRec(){
+                    print_r($this->errors);
                         if(count($this->errors) == 0){
                             $sql = new DB_query("SELECT 
                                                     ID

@@ -89,15 +89,23 @@ class phpapps_designer_module extends phpapps_display_abs{
                 $this->globals->sm->assign("themes_grid",$themes_grid->get_grid_str());
 
                 
-                $menus_grid = new DB_grid($this->globals->con, "table","phpapps.menus","phpapps_menus_grid");
+                $menus_grid = new DB_grid($this->globals->con, "table","phpapps.view_menus","phpapps_menus_grid");
 		$menus_grid->grid_title = "MENUS";
-		$menus_grid->cols = (array("NAME","MENU_TYPE"));
-		$menus_grid->labels = (array("MENU NAME","TYPE"));
+		$menus_grid->cols = (array("NAME","MENU_TYPE","ORIENTATION","QUERY_NAME"));
+		$menus_grid->labels = (array("MENU NAME","TYPE","ORIENTATION","QUERY"));
 		$menus_grid->paginable = true;
 		$menus_grid->filterable = false;
 		$menus_grid->exportable = false;
 		$menus_grid->rows_on_pg = 20;
 		$menus_grid->edit_form = "phpapps_designer_menus_form_imp.php?module_id=".$this->ID;
+
+                $as3 = new HrefActions();
+		$as3->act_script = "phpapps_designer_menu_run.php?module_id=".$this->ID;
+		$as3->label = "test menu";
+		$as3->action = "test";
+		$as3->fields = array("ID");
+		$menus_grid->add_row_acction($as3);
+                
                 $this->globals->sm->assign("menus_grid",$menus_grid->get_grid_str());
                 
                 $this->globals->sm->assign("module",$this);

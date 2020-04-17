@@ -1,8 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_designer_menu_items_form{
+class phpapps_designer_menu_items_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
@@ -24,7 +25,7 @@ class phpapps_designer_menu_items_form{
         	            
 	public $MENU_ID;
         	            
-	public $ACTION_ID;
+	public $ACTION;
         	            
 	public $LABEL;
         		
@@ -39,8 +40,7 @@ class phpapps_designer_menu_items_form{
 	 
 			public $MENU_ID_sel;
 	 
-			public $ACTION_ID_sel;
-	 
+		 
 		 
 	        
         
@@ -50,6 +50,7 @@ class phpapps_designer_menu_items_form{
         public $resp_msgs = array();
 	
 	function __construct(){
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
@@ -64,8 +65,7 @@ class phpapps_designer_menu_items_form{
                                 			 
 									$this->MENU_ID_sel = new DB_select("MENU_ID","phpapps.menus");
                                 			 
-									$this->ACTION_ID_sel = new DB_select("ACTION_ID","view_actions");
-                                			 
+					 
 					 
 		                
 	}
@@ -88,7 +88,7 @@ class phpapps_designer_menu_items_form{
 									ID,
 												PID,
 												MENU_ID,
-												ACTION_ID,
+												ACTION,
 												LABEL
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -99,7 +99,7 @@ class phpapps_designer_menu_items_form{
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
                                 			                                                                $this->MENU_ID = stripslashes($this->globals->con->get_field("MENU_ID"));
-                                			                                                                $this->ACTION_ID = stripslashes($this->globals->con->get_field("ACTION_ID"));
+                                			                                                                $this->ACTION = stripslashes($this->globals->con->get_field("ACTION"));
                                 			                                                                $this->LABEL = stripslashes($this->globals->con->get_field("LABEL"));
                                 						
 	}
@@ -117,12 +117,12 @@ class phpapps_designer_menu_items_form{
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					PID,
 																						MENU_ID,
-																						ACTION_ID,
+																						ACTION,
 																						LABEL
 										 ) VALUES (
 																					:PID,
 																						:MENU_ID,
-																						:ACTION_ID,
+																						:ACTION,
 																						:LABEL
 													)",
 			array(
@@ -131,7 +131,7 @@ class phpapps_designer_menu_items_form{
                                         														                                            
                                             ":MENU_ID" => $this->MENU_ID,
                                         														                                            
-                                            ":ACTION_ID" => $this->ACTION_ID,
+                                            ":ACTION" => $this->ACTION,
                                         														                                            
                                             ":LABEL" => $this->LABEL,
                                         												)
@@ -164,7 +164,7 @@ class phpapps_designer_menu_items_form{
 									ID = :ID,
 												PID = :PID,
 												MENU_ID = :MENU_ID,
-												ACTION_ID = :ACTION_ID,
+												ACTION = :ACTION,
 												LABEL = :LABEL
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
@@ -172,7 +172,7 @@ class phpapps_designer_menu_items_form{
 				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":PID" => $this->PID,
                                         				                                                                                    ":MENU_ID" => $this->MENU_ID,
-                                        				                                                                                    ":ACTION_ID" => $this->ACTION_ID,
+                                        				                                                                                    ":ACTION" => $this->ACTION,
                                         				                                                                                    ":LABEL" => $this->LABEL,
                                         								":".$this->gfield => $this->gfield_value
 			)	
@@ -248,7 +248,7 @@ class phpapps_designer_menu_items_form{
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
                                                 		                                                    $this->MENU_ID  = htmlspecialchars(addslashes(trim($_POST["MENU_ID"])));
-                                                		                                                    $this->ACTION_ID  = htmlspecialchars(addslashes(trim($_POST["ACTION_ID"])));
+                                                		                                                    $this->ACTION  = htmlspecialchars(addslashes(trim($_POST["ACTION"])));
                                                 		                                                    $this->LABEL  = htmlspecialchars(addslashes(trim($_POST["LABEL"])));
                                                 		        }
 		
@@ -288,11 +288,7 @@ class phpapps_designer_menu_items_form{
 				$this->MENU_ID_sel->selected_val = $this->MENU_ID;
 				$this->MENU_ID_sel->setup_select_options();
 			 
-									//$this->ACTION_ID_sel = new DB_select("ACTION_ID",".view_actions");
-				$this->ACTION_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, ACTION_FILE AS LABEL FROM view_actions ORDER BY ACTION_FILE");
-				$this->ACTION_ID_sel->selected_val = $this->ACTION_ID;
-				$this->ACTION_ID_sel->setup_select_options();
-			 
+					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
@@ -303,7 +299,7 @@ class phpapps_designer_menu_items_form{
 							"ID" => $this->ID,
 							"PID" => $this->PID,
 							"MENU_ID" => $this->MENU_ID,
-							"ACTION_ID" => $this->ACTION_ID,
+							"ACTION" => $this->ACTION,
 							"LABEL" => $this->LABEL,
 									 
 						 
@@ -315,8 +311,7 @@ class phpapps_designer_menu_items_form{
 			 
 										"MENU_ID_sel" => $this->MENU_ID_sel->get_select_str(),
 			 
-										"ACTION_ID_sel" => $this->ACTION_ID_sel->get_select_str(),
-			 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

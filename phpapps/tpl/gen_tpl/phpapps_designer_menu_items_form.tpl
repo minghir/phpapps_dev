@@ -26,20 +26,16 @@ function submitDetailsForm(op){
 			{$PID_sel}
 		</td></tr>
                         				 
+										<input id="MENU_ID" type="hidden" name="MENU_ID" value="{$MENU_ID}">
+        								
+			
+		                
+		                				 
+				<tr><td align="right">ACTION :</td><td> <input type="text" id="ACTION" name="ACTION" value="{$ACTION}"></td></tr>
 																
 			
 		                
-				<tr><td align="right">MENU_ID  :</td><td>
-			{$MENU_ID_sel}
-		</td></tr>
-                        				 
-																
-			
-		                
-				<tr><td align="right">ACTION_ID  :</td><td>
-			{$ACTION_ID_sel}
-		</td></tr>
-                        				 
+		                				 
 				<tr><td align="right">LABEL :</td><td> <input type="text" id="LABEL" name="LABEL" value="{$LABEL}"></td></tr>
 																
 			

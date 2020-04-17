@@ -29,7 +29,7 @@
             <input type="password" name="pass" value="{$pass}" onclick="this.value='';"></td>
     </tr>
     <tr>
-        <td ><button type="submit" name="Login" value="Login">Login</button><br><br><br>
+        <td ><button type="submit" name="Login" value="Login" class="btn btn-primary">Login</button><br><br><br>
             <a href="signup.php"><font style="color: #ffffff;">Sign up</font></a></td>
     </tr>
     </form>

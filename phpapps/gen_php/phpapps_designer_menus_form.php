@@ -23,12 +23,17 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
         	            
 	public $NAME;
         	            
+	public $MENU_TITLE;
+        	            
 	public $MENU_TYPE;
         	            
 	public $ORIENTATION;
         	            
 	public $QUERY_ID;
+        	            
+	public $DESCRIPTION;
         		
+		 
 		 
 		 
 			public $MENU_TYPE_sel;
@@ -36,13 +41,16 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 			public $ORIENTATION_sel;
 	 
 		 
+		 
 			
+		 
 		 
 		 
 		 
 		 
 			public $QUERY_ID_sel;
 	 
+		 
 	        
         
 
@@ -57,18 +65,22 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                 
                 			 
 					 
+					 
 								$this->MENU_TYPE_sel = new DB_select("MENU_TYPE","phpapps.list_menu_types");
                         			 
 								$this->ORIENTATION_sel = new DB_select("ORIENTATION","phpapps.list_menu_orientation");
                         			 
+					 
 					 
 				
 					 
 					 
 					 
 					 
+					 
 									$this->QUERY_ID_sel = new DB_select("QUERY_ID","phpapps.queries");
                                 			 
+					 
 		                
 	}
 		
@@ -89,9 +101,11 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		$this->query = new DB_query( "SELECT 
 									ID,
 												NAME,
+												MENU_TITLE,
 												MENU_TYPE,
 												ORIENTATION,
-												QUERY_ID
+												QUERY_ID,
+												DESCRIPTION
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -100,9 +114,11 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                                			                                                                $this->MENU_TITLE = stripslashes($this->globals->con->get_field("MENU_TITLE"));
                                 			                                                                $this->MENU_TYPE = stripslashes($this->globals->con->get_field("MENU_TYPE"));
                                 			                                                                $this->ORIENTATION = stripslashes($this->globals->con->get_field("ORIENTATION"));
                                 			                                                                $this->QUERY_ID = stripslashes($this->globals->con->get_field("QUERY_ID"));
+                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
                                 						
 	}
 	
@@ -118,24 +134,32 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					NAME,
+																						MENU_TITLE,
 																						MENU_TYPE,
 																						ORIENTATION,
-																						QUERY_ID
+																						QUERY_ID,
+																						DESCRIPTION
 										 ) VALUES (
 																					:NAME,
+																						:MENU_TITLE,
 																						:MENU_TYPE,
 																						:ORIENTATION,
-																						:QUERY_ID
+																						:QUERY_ID,
+																						:DESCRIPTION
 													)",
 			array(
 																		                                            
                                             ":NAME" => $this->NAME,
+                                        														                                            
+                                            ":MENU_TITLE" => $this->MENU_TITLE,
                                         														                                            
                                             ":MENU_TYPE" => $this->MENU_TYPE,
                                         														                                            
                                             ":ORIENTATION" => $this->ORIENTATION,
                                         														                                            
                                             ":QUERY_ID" => $this->QUERY_ID,
+                                        														                                            
+                                            ":DESCRIPTION" => $this->DESCRIPTION,
                                         												)
 			);
 
@@ -165,17 +189,21 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												NAME = :NAME,
+												MENU_TITLE = :MENU_TITLE,
 												MENU_TYPE = :MENU_TYPE,
 												ORIENTATION = :ORIENTATION,
-												QUERY_ID = :QUERY_ID
+												QUERY_ID = :QUERY_ID,
+												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":NAME" => $this->NAME,
+                                        				                                                                                    ":MENU_TITLE" => $this->MENU_TITLE,
                                         				                                                                                    ":MENU_TYPE" => $this->MENU_TYPE,
                                         				                                                                                    ":ORIENTATION" => $this->ORIENTATION,
                                         				                                                                                    ":QUERY_ID" => $this->QUERY_ID,
+                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -249,9 +277,11 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
+                                                		                                                    $this->MENU_TITLE  = htmlspecialchars(addslashes(trim($_POST["MENU_TITLE"])));
                                                 		                                                    $this->MENU_TYPE  = htmlspecialchars(addslashes(trim($_POST["MENU_TYPE"])));
                                                 		                                                    $this->ORIENTATION  = htmlspecialchars(addslashes(trim($_POST["ORIENTATION"])));
                                                 		                                                    $this->QUERY_ID  = htmlspecialchars(addslashes(trim($_POST["QUERY_ID"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
                                                 		        }
 		
         function takePostActions(){
@@ -284,6 +314,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 	function setup_display(){
 					 
 					 
+					 
 								//$this->MENU_TYPE_sel = new DB_select("MENU_TYPE",".phpapps.list_menu_types");
 			$this->MENU_TYPE_sel->selected_val = $this->MENU_TYPE;
 			$this->MENU_TYPE_sel->setup_select_options();
@@ -293,7 +324,9 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 			$this->ORIENTATION_sel->setup_select_options();
 			 
 					 
+					 
 				
+					 
 					 
 					 
 					 
@@ -303,6 +336,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 				$this->QUERY_ID_sel->selected_val = $this->QUERY_ID;
 				$this->QUERY_ID_sel->setup_select_options();
 			 
+					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
         }
@@ -311,22 +345,28 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
 							"NAME" => $this->NAME,
+							"MENU_TITLE" => $this->MENU_TITLE,
 							"MENU_TYPE" => $this->MENU_TYPE,
 							"ORIENTATION" => $this->ORIENTATION,
 							"QUERY_ID" => $this->QUERY_ID,
+							"DESCRIPTION" => $this->DESCRIPTION,
 									 
+						 
 						 
 										"MENU_TYPE_sel" => $this->MENU_TYPE_sel->get_select_str(),
 			 
 										"ORIENTATION_sel" => $this->ORIENTATION_sel->get_select_str(),
 			 
 						 
+						 
 									 
+						 
 						 
 						 
 						 
 										"QUERY_ID_sel" => $this->QUERY_ID_sel->get_select_str(),
 			 
+						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,

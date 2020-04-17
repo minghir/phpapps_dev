@@ -2,5 +2,5 @@ D:\linuxport\mariadb-10.4.12-winx64\bin\mysqldump --user=root -palcatraz phpapps
 D:\linuxport\mariadb-10.4.12-winx64\bin\mysqldump --user=root -palcatraz eshop >   D:\work\www\phpapps_dev\eshop_template\sql\eshop.sql
 D:\linuxport\mariadb-10.4.12-winx64\bin\mysqldump --user=root -palcatraz php_quiz >   D:\work\www\phpapps_dev\php_quiz\sql\php_quiz.sql
 D:\linuxport\mariadb-10.4.12-winx64\bin\mysqldump --user=root -palcatraz atsepa >   D:\work\www\phpapps_dev\atsepa\sql\atsepa.sql
-D:\linuxport\mariadb-10.4.12-winx64\bin\mysqldump --user=root -palcatraz diomax >   D:\work\www\phpapps_dev\diomaxclean\sql\diomaxclean.sql
+rem D:\linuxport\mariadb-10.4.12-winx64\bin\mysqldump --user=root -palcatraz diomax >   D:\work\www\phpapps_dev\diomaxclean\sql\diomaxclean.sql
 pause

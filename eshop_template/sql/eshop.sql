@@ -38,7 +38,8 @@ CREATE TABLE `categories` (
   KEY `categories_ibfk_3` (`CREATE_UID`),
   CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `categories` (`ID`),
   CONSTRAINT `categories_ibfk_2` FOREIGN KEY (`MODIFY_UID`) REFERENCES `phpapps`.`users` (`ID`),
-  CONSTRAINT `categories_ibfk_3` FOREIGN KEY (`CREATE_UID`) REFERENCES `phpapps`.`users` (`ID`)
+  CONSTRAINT `categories_ibfk_3` FOREIGN KEY (`CREATE_UID`) REFERENCES `phpapps`.`users` (`ID`),
+  CONSTRAINT `eshop_categories_PID_FK` FOREIGN KEY (`PID`) REFERENCES `categories` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,4 +98,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-05 22:26:42
+-- Dump completed on 2020-04-17 17:26:18

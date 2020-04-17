@@ -100,7 +100,7 @@ CREATE TABLE `contact` (
   `DATA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `atsepa_contact_146_IDX` (`NAME`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,'dada','sdad','','dada','2017-10-11 09:03:59'),(2,'dada','sdad','','dada','2017-10-11 09:03:59'),(3,'dada','mimi','','dada','2017-10-11 09:04:31'),(4,'dada','mimi','','dada','2017-10-11 09:04:31'),(5,'','aaaaa','','das','2017-10-11 09:05:02'),(6,'','aaaaa','','das','2017-10-11 09:05:02'),(7,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(8,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(9,'asad','da','ddd','dada','2017-10-11 09:07:12'),(10,'asad','da','ddd','dada','2017-10-11 09:07:13'),(11,'','ddd','','','2017-10-11 09:08:18'),(12,'','ddd','','','2017-10-11 09:08:18'),(13,'','mumu','','','2017-10-11 09:08:57'),(14,'dada','da','dasda','dad','2017-10-11 09:10:05'),(15,'','dads','','','2017-10-11 09:12:59'),(16,'','Gogu','','','2017-10-11 09:13:09'),(17,'dasdas','das','dasd','dasdasd','2017-10-11 09:16:23'),(18,'','dadas','','','2017-10-11 09:20:25'),(19,'','dadas','','MOMOMOM','2017-10-11 09:21:43'),(20,'','MAIN_MENU','','','2019-11-23 10:08:32');
+INSERT INTO `contact` VALUES (1,'dada','sdad','','dada','2017-10-11 09:03:59'),(2,'dada','sdad','','dada','2017-10-11 09:03:59'),(3,'dada','mimi','','dada','2017-10-11 09:04:31'),(4,'dada','mimi','','dada','2017-10-11 09:04:31'),(5,'','aaaaa','','das','2017-10-11 09:05:02'),(6,'','aaaaa','','das','2017-10-11 09:05:02'),(7,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(8,'dasdas','das','da','dadas','2017-10-11 09:06:36'),(9,'asad','da','ddd','dada','2017-10-11 09:07:12'),(10,'asad','da','ddd','dada','2017-10-11 09:07:13'),(11,'','ddd','','','2017-10-11 09:08:18'),(12,'','ddd','','','2017-10-11 09:08:18'),(13,'','mumu','','','2017-10-11 09:08:57'),(14,'dada','da','dasda','dad','2017-10-11 09:10:05'),(15,'','dads','','','2017-10-11 09:12:59'),(16,'','Gogu','','','2017-10-11 09:13:09'),(17,'dasdas','das','dasd','dasdasd','2017-10-11 09:16:23'),(18,'','dadas','','','2017-10-11 09:20:25'),(19,'','dadas','','MOMOMOM','2017-10-11 09:21:43'),(20,'','MAIN_MENU','','','2019-11-23 10:08:32'),(21,'','test_cpy_lay3','','','2020-04-12 14:18:16');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,4 +445,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-05 22:26:42
+-- Dump completed on 2020-04-17 17:26:18

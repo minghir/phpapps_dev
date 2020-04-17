@@ -1,10 +1,10 @@
 
    
 
-<div class="list-group {if $menu_obj->orientation == "horizontal"}list-group-horizontal{/if}">
+<div class="list-group {if $menu_obj->orientation == "HORIZONTAL"}list-group-horizontal{/if}">
   {if $menu_obj->title != ""}{$menu_obj->title}{/if}
-  <a href="#" class="list-group-item list-group-item-action">First item</a>
-  <a href="#" class="list-group-item list-group-item-action">Second item</a>
-  <a href="#" class="list-group-item list-group-item-action">Third item</a>
+  {foreach $menu_obj->menu_items as $item}
+  <a href="{$item->ACTION}" class="list-group-item list-group-item-action">{$item->LABEL}</a>
+  {/foreach}
 </div> 
 

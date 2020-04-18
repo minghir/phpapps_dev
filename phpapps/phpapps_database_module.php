@@ -200,6 +200,7 @@ class phpapps_database_module extends phpapps_display_abs{
 		$queries_grid->rows_on_pg = 20;
                 
                 
+                
                 $tsq = new HrefActions();
 		$tsq->act_script = "phpapps_database_browse_queries.php?module_id=".$this->ID;
 		$tsq->popup = true;
@@ -214,10 +215,19 @@ class phpapps_database_module extends phpapps_display_abs{
 		$views_grid->cols = (array("VIEW_NAME","DESCRIPTION"));
 		$views_grid->labels = (array("VIEW_NAME","DESCRIPTION"));
                 $views_grid->paginable = true;
-		$views_grid->editable = false;
+		$views_grid->editable = true;
 		$views_grid->filterable = false;
 		$views_grid->exportable = false;
 		$views_grid->rows_on_pg = 20;
+                $views_grid->edit_form = "phpapps_database_views_form_imp.php?module_id=".$this->ID;
+                
+                $tsv = new HrefActions();
+		$tsv->act_script = "phpapps_database_browse_views.php?module_id=".$this->ID;
+		$tsv->popup = true;
+		$tsv->label = "browse";
+		$tsv->action = "runGrid";
+		$tsv->fields = array("ID");
+		$views_grid->add_row_acction($tsv);
                 
                 $this->globals->sm->assign("databases_grid",$databases_grid->get_grid_str());
                 $this->globals->sm->assign("tables_grid",$tables_grid->get_grid_str());

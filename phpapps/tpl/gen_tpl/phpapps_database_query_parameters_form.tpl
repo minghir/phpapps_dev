@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$error_msg}
-<hr><form name="phpapps_database_queries_form" id="phpapps_database_queries_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_database_query_parameters_form" id="phpapps_database_query_parameters_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -19,23 +19,18 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
+										<input id="QUERY_ID" type="hidden" name="QUERY_ID" value="{$QUERY_ID}">
         								
 			
 		                
 		                				 
-				<tr><td align="right">QUERY_NAME :</td><td> <input type="text" id="QUERY_NAME" name="QUERY_NAME" value="{$QUERY_NAME}"></td></tr>
+				<tr><td align="right">PARAMETER_NAME :</td><td> <input type="text" id="PARAMETER_NAME" name="PARAMETER_NAME" value="{$PARAMETER_NAME}"></td></tr>
 																
 			
 		                
 		                				 
-								<tr><td align="right">QUERY_BODY  :</td><td> <textarea id="QUERY_BODY" name="QUERY_BODY">{$QUERY_BODY}</textarea></td></tr>
-        										
-			
-		                
-		                				 
-								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
-        										
+				<tr><td align="right">PARAMETER_VALUE :</td><td> <input type="text" id="PARAMETER_VALUE" name="PARAMETER_VALUE" value="{$PARAMETER_VALUE}"></td></tr>
+																
 			
 		                
 		                				{$FROM_IMP_CLASS}

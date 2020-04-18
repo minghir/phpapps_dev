@@ -19,13 +19,11 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-																
+										<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
+        								
 			
 		                
-				<tr><td align="right">MODULE_ID  :</td><td>
-			{$MODULE_ID_sel}
-		</td></tr>
-                        				 
+		                				 
 				<tr><td align="right">VIEW_NAME :</td><td> <input type="text" id="VIEW_NAME" name="VIEW_NAME" value="{$VIEW_NAME}"></td></tr>
 																
 			

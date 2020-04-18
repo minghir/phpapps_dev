@@ -71,9 +71,10 @@ class DB_grid {
                break;
                case "query":
                     $this->grid_type = $g_type;
-                    $this->query =  $str_sql;
-                    $this->init_query = $str_sql->sql();
-                    $this->db_grid_name = $grid_name == "" ? "str_sql" : $grid_name;
+                    $this->query = new DB_query($str_sql);
+                    $this->init_query = new DB_query($str_sql);
+                    $this->db_grid_name = $grid_name == "" ? $str_sql : $grid_name;
+                    $this->grid_title = $this->grid_title == "" ? $this->db_grid_name : $this->grid_title;
                break;
                default:
                      $this->error = "WRONG grid type!";

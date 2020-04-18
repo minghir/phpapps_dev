@@ -4,5 +4,6 @@
 </head>
 <body>
 {include file="gen_tpl/phpapps_database_queries_form.tpl" }
+{$parameters_grid}
 </body>
 </html>

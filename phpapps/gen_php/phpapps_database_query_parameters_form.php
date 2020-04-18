@@ -3,12 +3,12 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_database_views_form extends phpapps_display_abs{
+class phpapps_database_query_parameters_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "views";
-	public $template = "gen_tpl/phpapps_database_views_form.tpl";
+	public $form_table = "query_parameters";
+	public $template = "gen_tpl/phpapps_database_query_parameters_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -21,21 +21,17 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $MODULE_ID;
+	public $QUERY_ID;
         	            
-	public $VIEW_NAME;
+	public $PARAMETER_NAME;
         	            
-	public $CREATE_VIEW_QUERY;
-        	            
-	public $DESCRIPTION;
+	public $PARAMETER_VALUE;
         		
 		 
 		 
 		 
 		 
-		 
 			
-		 
 		 
 		 
 		 
@@ -56,9 +52,7 @@ class phpapps_database_views_form extends phpapps_display_abs{
 					 
 					 
 					 
-					 
 				
-					 
 					 
 					 
 					 
@@ -82,10 +76,9 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												MODULE_ID,
-												VIEW_NAME,
-												CREATE_VIEW_QUERY,
-												DESCRIPTION
+												QUERY_ID,
+												PARAMETER_NAME,
+												PARAMETER_VALUE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -93,10 +86,9 @@ class phpapps_database_views_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
-                                			                                                                $this->VIEW_NAME = stripslashes($this->globals->con->get_field("VIEW_NAME"));
-                                			                                                                $this->CREATE_VIEW_QUERY = stripslashes($this->globals->con->get_field("CREATE_VIEW_QUERY"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->QUERY_ID = stripslashes($this->globals->con->get_field("QUERY_ID"));
+                                			                                                                $this->PARAMETER_NAME = stripslashes($this->globals->con->get_field("PARAMETER_NAME"));
+                                			                                                                $this->PARAMETER_VALUE = stripslashes($this->globals->con->get_field("PARAMETER_VALUE"));
                                 						
 	}
 	
@@ -111,25 +103,21 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					MODULE_ID,
-																						VIEW_NAME,
-																						CREATE_VIEW_QUERY,
-																						DESCRIPTION
+																					QUERY_ID,
+																						PARAMETER_NAME,
+																						PARAMETER_VALUE
 										 ) VALUES (
-																					:MODULE_ID,
-																						:VIEW_NAME,
-																						:CREATE_VIEW_QUERY,
-																						:DESCRIPTION
+																					:QUERY_ID,
+																						:PARAMETER_NAME,
+																						:PARAMETER_VALUE
 													)",
 			array(
 																		                                            
-                                            ":MODULE_ID" => $this->MODULE_ID,
+                                            ":QUERY_ID" => $this->QUERY_ID,
                                         														                                            
-                                            ":VIEW_NAME" => $this->VIEW_NAME,
+                                            ":PARAMETER_NAME" => $this->PARAMETER_NAME,
                                         														                                            
-                                            ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
-                                        														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                            ":PARAMETER_VALUE" => $this->PARAMETER_VALUE,
                                         												)
 			);
 
@@ -158,18 +146,16 @@ class phpapps_database_views_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												MODULE_ID = :MODULE_ID,
-												VIEW_NAME = :VIEW_NAME,
-												CREATE_VIEW_QUERY = :CREATE_VIEW_QUERY,
-												DESCRIPTION = :DESCRIPTION
+												QUERY_ID = :QUERY_ID,
+												PARAMETER_NAME = :PARAMETER_NAME,
+												PARAMETER_VALUE = :PARAMETER_VALUE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
-                                        				                                                                                    ":VIEW_NAME" => $this->VIEW_NAME,
-                                        				                                                                                    ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":QUERY_ID" => $this->QUERY_ID,
+                                        				                                                                                    ":PARAMETER_NAME" => $this->PARAMETER_NAME,
+                                        				                                                                                    ":PARAMETER_VALUE" => $this->PARAMETER_VALUE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -242,10 +228,9 @@ class phpapps_database_views_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
-                                                		                                                    $this->VIEW_NAME  = htmlspecialchars(addslashes(trim($_POST["VIEW_NAME"])));
-                                                		                                                    $this->CREATE_VIEW_QUERY  = htmlspecialchars(addslashes(trim($_POST["CREATE_VIEW_QUERY"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->QUERY_ID  = htmlspecialchars(addslashes(trim($_POST["QUERY_ID"])));
+                                                		                                                    $this->PARAMETER_NAME  = htmlspecialchars(addslashes(trim($_POST["PARAMETER_NAME"])));
+                                                		                                                    $this->PARAMETER_VALUE  = htmlspecialchars(addslashes(trim($_POST["PARAMETER_VALUE"])));
                                                 		        }
 		
         function takePostActions(){
@@ -264,11 +249,11 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	}
 	
 	function check_errors(){
-				if($this->VIEW_NAME == "") {
-			$this->errors[] = "Campul VIEW_NAME este obligatoriu!";
+				if($this->PARAMETER_NAME == "") {
+			$this->errors[] = "Campul PARAMETER_NAME este obligatoriu!";
 		}
-				if($this->CREATE_VIEW_QUERY == "") {
-			$this->errors[] = "Campul CREATE_VIEW_QUERY este obligatoriu!";
+				if($this->PARAMETER_VALUE == "") {
+			$this->errors[] = "Campul PARAMETER_VALUE este obligatoriu!";
 		}
 			}
 	
@@ -277,9 +262,7 @@ class phpapps_database_views_form extends phpapps_display_abs{
 					 
 					 
 					 
-					 
 				
-					 
 					 
 					 
 					 
@@ -291,17 +274,14 @@ class phpapps_database_views_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"MODULE_ID" => $this->MODULE_ID,
-							"VIEW_NAME" => $this->VIEW_NAME,
-							"CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
-							"DESCRIPTION" => $this->DESCRIPTION,
+							"QUERY_ID" => $this->QUERY_ID,
+							"PARAMETER_NAME" => $this->PARAMETER_NAME,
+							"PARAMETER_VALUE" => $this->PARAMETER_VALUE,
 									 
 						 
 						 
 						 
-						 
 									 
-						 
 						 
 						 
 						 

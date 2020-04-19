@@ -4,6 +4,7 @@ include ("gen_php/{$form_name}.php");
 	class {$form_name}_impl  extends {$form_name}{ldelim}
 		function __construct(){ldelim}
 			parent::__construct();
+                        $this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
 			$this->template = "{$form_name}_imp.tpl";
 			$this->init();
 			$this->display();

@@ -60,7 +60,6 @@ class DB_grid {
             $this->con = &$conn;
 			
             $this->query = new DB_query("");
-            
 
              switch ($g_type)
              {
@@ -92,18 +91,19 @@ class DB_grid {
 			$filter_where_params = $this->where_params; 
 			$this->cols[] = "ID";
 			$select_cols = implode(", ",$this->cols);
-	
-			for ($i = 0; $i < count($this->filter_fld); $i++){
-				if($this->filter_val[$i] == "") {
-					continue;
-				}
-//				$filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." '".$this->filter_val[$i]."' ";
+                        if( is_array($this->filter_fld) ){
+                            for ($i = 0; $i < count($this->filter_fld); $i++){
+                                    if($this->filter_val[$i] == "") {
+                                            continue;
+                                    }
+    //				$filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." '".$this->filter_val[$i]."' ";
 
 
-				$filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." :".$this->filter_fld[$i]." "; 
-				$filter_where_params[":".$this->filter_fld[$i]] = $this->filter_val[$i];
-				//'".$this->filter_val[$i]."' ";
-			}
+                                    $filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." :".$this->filter_fld[$i]." "; 
+                                    $filter_where_params[":".$this->filter_fld[$i]] = $this->filter_val[$i];
+                                    //'".$this->filter_val[$i]."' ";
+                            }
+                        }
 			$this->where_params = $filter_where_params;
 /*			
 echo "<br>--------------<br><h1>";
@@ -112,11 +112,13 @@ echo"<br>";
 print_r($filter_where_params);
 echo"</h1><br>----------------<br>";	
 */
-			if(count($filter_where_rls) > 0){
-				$this->where_rule = " WHERE " . implode(" AND ", $filter_where_rls);
-			}else{
-				$this->where_rule = "";
-			}
+			if( is_array($filter_where_rls) ){
+                            if(count($filter_where_rls) > 0){
+                                    $this->where_rule = " WHERE " . implode(" AND ", $filter_where_rls);
+                            }else{
+                                    $this->where_rule = "";
+                            }
+                        }
 //echo "<h1>".$this->where_rule."</h1>			";
 			if($this->current_order_field != ""){
 				$this->order_rule  = " ORDER BY " . $this->current_order_field . " " . $this->current_order_rule;

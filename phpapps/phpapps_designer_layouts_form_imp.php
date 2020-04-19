@@ -7,6 +7,7 @@ include ("gen_php/phpapps_designer_layouts_form.php");
             
 		function __construct(){
 			parent::__construct();
+			$this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps_form.tpl";
 			$this->template = "phpapps_designer_layouts_form_imp.tpl";
 			$this->init();
 			$this->display();

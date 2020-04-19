@@ -10,11 +10,15 @@ require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 class menu_item{
     
     public $ID;
+    public $PID;
     public $ACTION;
     public $LABEL;
+    //public $sub_menu_items = array ();
+    public $menu_items = array ();
     
     function __construct($obj){
         $this->ID = $obj->ID;
+        $this->PID = $obj->PID;
         $this->ACTION = $obj->ACTION;
         $this->LABEL = $obj->LABEL;
     }
@@ -34,6 +38,8 @@ class DB_menu{
     public $menu_type;
     public $db_query;
     public $menu_items;
+    
+    private $from_str = "phpapps.menu_items";
     
     var $items = array();
     
@@ -61,7 +67,7 @@ class DB_menu{
     }
     
     function setup_menu_options(){
-        $sql = new DB_query("SELECT NAME,MENU_TITLE,MENU_TYPE,ORIENTATION FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
+        $sql = new DB_query("SELECT NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
         $this->globals->con->query($sql);	
         $tmp_data_obj = $this->globals->con->fetch_object();
         $this->name = $tmp_data_obj->NAME;
@@ -70,14 +76,38 @@ class DB_menu{
         $this->orientation = $tmp_data_obj->ORIENTATION;
         
         if($this->menu_type == "STATIC"){
-            $sql = new DB_query("SELECT ID,ACTION,LABEL FROM phpapps.menu_items WHERE MENU_ID = :menu_id",array(":menu_id"=>$this->menu_id));
-            $this->globals->con->query($sql);
-            while($tmp_data_obj = $this->globals->con->fetch_object()){
-                $this->menu_items[] = new  menu_item($tmp_data_obj);
-            }
+            $this->from_str = "phpapps.menu_items";
+            $sql = new DB_query("SELECT ID,PID,ACTION,LABEL FROM ".$this->from_str." WHERE PID = '0' AND MENU_ID = :menu_id",array(":menu_id"=>$this->menu_id));
         }else{
-            
+            $this->from_str = " ( ". $tmp_data_obj->QUERY_BODY ." ) AS menu_items ";
+            //$this->from_str = $tmp_data_obj->QUERY_BODY;
+            $sql = new DB_query("SELECT ID,PID,ACTION,LABEL FROM ".$this->from_str." WHERE PID = '0'" );
         }
+        
+        $this->globals->con->query($sql);
+        echo $sql->prnt();
+        while($tmp_data_obj = $this->globals->con->fetch_object()){
+            $tmp_menu_item = new  menu_item($tmp_data_obj);
+            //$tmp_menu_item->sub_menu_items = $this->recursive_load_sub_items($tmp_data_obj->ID);
+            $tmp_menu_item->menu_items = $this->recursive_load_sub_items($tmp_data_obj->ID);
+            $this->menu_items[] = $tmp_menu_item;
+        }
+        //print_r($this->menu_items);
+    }
+    
+    function recursive_load_sub_items($pid){
+            $ssub_menu_items = array();
+             $sql2 = new DB_query("SELECT ID,PID,ACTION,LABEL FROM ".$this->from_str." WHERE PID = :pid",array(":pid"=>$pid));
+             //echo "<h1>".$sql2->prnt()."|sub_".$pid."<br></h1>";
+                $this->globals->con->query($sql2,"sub".$pid);
+                while($tmp_data_obj2 = $this->globals->con->fetch_object("sub".$pid)){
+                    $tmp_menu_item = new  menu_item($tmp_data_obj2);
+                    //echo "INCARC:pt pid" .$tmp_data_obj2->ID ."<br>";
+                    //$tmp_menu_item->sub_menu_items = $this->recursive_load_sub_items($tmp_data_obj2->ID);
+                    $tmp_menu_item->menu_items = $this->recursive_load_sub_items($tmp_data_obj2->ID);
+                      $ssub_menu_items[] = $tmp_menu_item;
+                }
+            return $ssub_menu_items;
     }
 };
 ?>

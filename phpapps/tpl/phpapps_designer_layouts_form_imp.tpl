@@ -1,8 +1,4 @@
-<html>
-<head>
-{include file="commun_header.tpl" }
-</head>
-<body>
+{extends file=$display_obj->layout}
+{block name=content}
 {include file="gen_tpl/phpapps_designer_layouts_form.tpl" }
-</body>
-</html>
+{/block}

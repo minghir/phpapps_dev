@@ -9,7 +9,11 @@ if(!defined('CURRENT_APP')) {
 if(!defined('DIR_SEP')) {
 	define('DIR_SEP', DIRECTORY_SEPARATOR);
 }
-			
+
+if (!defined('SERVER_HOST_NAME')) { // pt link-uri
+        define('SERVER_HOST_NAME', 'http://' . $_SERVER["HTTP_HOST"] );
+}	
+
 if (!defined('WEB_BASE_DIR')) { // pt link-uri
         define('WEB_BASE_DIR', 'http://' . $_SERVER["HTTP_HOST"] . '/phpapps_dev/');
 }			
@@ -111,6 +115,9 @@ class Globals_obj{
 	public $__LIBS_DIR;
 	public $__LIBS_TPL_DIR;
 	public $__SMARTY_TPL_DIR;
+        
+        //Directories vars
+        public $PHPAPPS_APP_DIR = PHPAPPS_APP_DIR;
         
                
         public $ath;

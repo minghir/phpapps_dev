@@ -16,6 +16,7 @@ class phpapps_database_browse_views extends phpapps_display_abs{
         $this->get_table_id = $_GET["gfield_value"];
         $this->get_module_id = $_GET["module_id"];
         
+        /*
         $sql = new DB_query("SELECT 
 				ID, 
 				MODULE_ID,
@@ -26,6 +27,17 @@ class phpapps_database_browse_views extends phpapps_display_abs{
 		WHERE 	ID = :id AND 
 		MODULE_ID = :module_id ",
 	array(":id"=>$this->get_table_id,":module_id"=>$this->get_module_id));
+         * 
+         */
+        $sql = new DB_query("SELECT 
+				ID, 
+				MODULE_ID,
+				VIEW_NAME,
+				CREATE_VIEW_QUERY,
+                                DESCRIPTION
+		FROM phpapps.views
+		WHERE 	ID = :id ",
+	array(":id"=>$this->get_table_id));
         
         //print_r($sql);
         echo $sql->prnt();

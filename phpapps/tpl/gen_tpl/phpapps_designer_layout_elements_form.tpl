@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$error_msg}
-<hr><form name="phpapps_database_views_form" id="phpapps_database_views_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_designer_layout_elements_form" id="phpapps_designer_layout_elements_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -22,17 +22,26 @@ function submitDetailsForm(op){
 																
 			
 		                
-				<tr><td align="right">MODULE_ID  :</td><td>
-			{$MODULE_ID_sel}
+				<tr><td align="right">LAYOUT_ID  :</td><td>
+			{$LAYOUT_ID_sel}
 		</td></tr>
                         				 
-				<tr><td align="right">VIEW_NAME :</td><td> <input type="text" id="VIEW_NAME" name="VIEW_NAME" value="{$VIEW_NAME}"></td></tr>
 																
 			
 		                
+				<tr><td align="right">ELEMENT_ID  :</td><td>
+			{$ELEMENT_ID_sel}
+		</td></tr>
+                        				 
+																
+			
+				<tr><td align="right">ELEMENT_TYPE  :</td><td>
+			{$ELEMENT_TYPE_sel}
+		</td></tr>
+                        
 		                				 
-								<tr><td align="right">CREATE_VIEW_QUERY  :</td><td> <textarea id="CREATE_VIEW_QUERY" name="CREATE_VIEW_QUERY">{$CREATE_VIEW_QUERY}</textarea></td></tr>
-        										
+				<tr><td align="right">LAYOUT_VARIABLE_NAME :</td><td> <input type="text" id="LAYOUT_VARIABLE_NAME" name="LAYOUT_VARIABLE_NAME" value="{$LAYOUT_VARIABLE_NAME}"></td></tr>
+																
 			
 		                
 		                				 

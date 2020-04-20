@@ -3,12 +3,12 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_database_views_form extends phpapps_display_abs{
+class phpapps_designer_layout_elements_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "views";
-	public $template = "gen_tpl/phpapps_database_views_form.tpl";
+	public $form_table = "layout_elements";
+	public $template = "gen_tpl/phpapps_designer_layout_elements_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -21,22 +21,28 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $MODULE_ID;
+	public $LAYOUT_ID;
         	            
-	public $VIEW_NAME;
+	public $ELEMENT_ID;
         	            
-	public $CREATE_VIEW_QUERY;
+	public $ELEMENT_TYPE;
+        	            
+	public $LAYOUT_VARIABLE_NAME;
         	            
 	public $DESCRIPTION;
         		
 		 
 		 
 		 
+			public $ELEMENT_TYPE_sel;
+	 
 		 
 		 
 			
 		 
-			public $MODULE_ID_sel;
+			public $LAYOUT_ID_sel;
+	 
+			public $ELEMENT_ID_sel;
 	 
 		 
 		 
@@ -56,11 +62,15 @@ class phpapps_database_views_form extends phpapps_display_abs{
                 			 
 					 
 					 
+								$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE","phpapps.list_layout_elements_types");
+                        			 
 					 
 					 
 				
 					 
-									$this->MODULE_ID_sel = new DB_select("MODULE_ID","phpapps.modules");
+									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+                                			 
+									$this->ELEMENT_ID_sel = new DB_select("ELEMENT_ID","VIEW_POSIBLE_LAYOUT_ELEMENTS");
                                 			 
 					 
 					 
@@ -84,9 +94,10 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												MODULE_ID,
-												VIEW_NAME,
-												CREATE_VIEW_QUERY,
+												LAYOUT_ID,
+												ELEMENT_ID,
+												ELEMENT_TYPE,
+												LAYOUT_VARIABLE_NAME,
 												DESCRIPTION
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -95,9 +106,10 @@ class phpapps_database_views_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
-                                			                                                                $this->VIEW_NAME = stripslashes($this->globals->con->get_field("VIEW_NAME"));
-                                			                                                                $this->CREATE_VIEW_QUERY = stripslashes($this->globals->con->get_field("CREATE_VIEW_QUERY"));
+                                			                                                                $this->LAYOUT_ID = stripslashes($this->globals->con->get_field("LAYOUT_ID"));
+                                			                                                                $this->ELEMENT_ID = stripslashes($this->globals->con->get_field("ELEMENT_ID"));
+                                			                                                                $this->ELEMENT_TYPE = stripslashes($this->globals->con->get_field("ELEMENT_TYPE"));
+                                			                                                                $this->LAYOUT_VARIABLE_NAME = stripslashes($this->globals->con->get_field("LAYOUT_VARIABLE_NAME"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
                                 						
 	}
@@ -113,23 +125,27 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					MODULE_ID,
-																						VIEW_NAME,
-																						CREATE_VIEW_QUERY,
+																					LAYOUT_ID,
+																						ELEMENT_ID,
+																						ELEMENT_TYPE,
+																						LAYOUT_VARIABLE_NAME,
 																						DESCRIPTION
 										 ) VALUES (
-																					:MODULE_ID,
-																						:VIEW_NAME,
-																						:CREATE_VIEW_QUERY,
+																					:LAYOUT_ID,
+																						:ELEMENT_ID,
+																						:ELEMENT_TYPE,
+																						:LAYOUT_VARIABLE_NAME,
 																						:DESCRIPTION
 													)",
 			array(
 																		                                            
-                                            ":MODULE_ID" => $this->MODULE_ID,
+                                            ":LAYOUT_ID" => $this->LAYOUT_ID,
                                         														                                            
-                                            ":VIEW_NAME" => $this->VIEW_NAME,
+                                            ":ELEMENT_ID" => $this->ELEMENT_ID,
                                         														                                            
-                                            ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+                                            ":ELEMENT_TYPE" => $this->ELEMENT_TYPE,
+                                        														                                            
+                                            ":LAYOUT_VARIABLE_NAME" => $this->LAYOUT_VARIABLE_NAME,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
                                         												)
@@ -160,17 +176,19 @@ class phpapps_database_views_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												MODULE_ID = :MODULE_ID,
-												VIEW_NAME = :VIEW_NAME,
-												CREATE_VIEW_QUERY = :CREATE_VIEW_QUERY,
+												LAYOUT_ID = :LAYOUT_ID,
+												ELEMENT_ID = :ELEMENT_ID,
+												ELEMENT_TYPE = :ELEMENT_TYPE,
+												LAYOUT_VARIABLE_NAME = :LAYOUT_VARIABLE_NAME,
 												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
-                                        				                                                                                    ":VIEW_NAME" => $this->VIEW_NAME,
-                                        				                                                                                    ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+                                        				                                                                                    ":LAYOUT_ID" => $this->LAYOUT_ID,
+                                        				                                                                                    ":ELEMENT_ID" => $this->ELEMENT_ID,
+                                        				                                                                                    ":ELEMENT_TYPE" => $this->ELEMENT_TYPE,
+                                        				                                                                                    ":LAYOUT_VARIABLE_NAME" => $this->LAYOUT_VARIABLE_NAME,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
                                         								":".$this->gfield => $this->gfield_value
 			)	
@@ -244,9 +262,10 @@ class phpapps_database_views_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
-                                                		                                                    $this->VIEW_NAME  = htmlspecialchars(addslashes(trim($_POST["VIEW_NAME"])));
-                                                		                                                    $this->CREATE_VIEW_QUERY  = htmlspecialchars(addslashes(trim($_POST["CREATE_VIEW_QUERY"])));
+                                                		                                                    $this->LAYOUT_ID  = htmlspecialchars(addslashes(trim($_POST["LAYOUT_ID"])));
+                                                		                                                    $this->ELEMENT_ID  = htmlspecialchars(addslashes(trim($_POST["ELEMENT_ID"])));
+                                                		                                                    $this->ELEMENT_TYPE  = htmlspecialchars(addslashes(trim($_POST["ELEMENT_TYPE"])));
+                                                		                                                    $this->LAYOUT_VARIABLE_NAME  = htmlspecialchars(addslashes(trim($_POST["LAYOUT_VARIABLE_NAME"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
                                                 		        }
 		
@@ -266,29 +285,29 @@ class phpapps_database_views_form extends phpapps_display_abs{
 	}
 	
 	function check_errors(){
-				if($this->MODULE_ID == "") {
-			$this->errors[] = "Campul MODULE_ID este obligatoriu!";
-		}
-				if($this->VIEW_NAME == "") {
-			$this->errors[] = "Campul VIEW_NAME este obligatoriu!";
-		}
-				if($this->CREATE_VIEW_QUERY == "") {
-			$this->errors[] = "Campul CREATE_VIEW_QUERY este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
 					 
 					 
 					 
+								//$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE",".phpapps.list_layout_elements_types");
+			$this->ELEMENT_TYPE_sel->selected_val = $this->ELEMENT_TYPE;
+			$this->ELEMENT_TYPE_sel->setup_select_options();
+			 
 					 
 					 
 				
 					 
-									//$this->MODULE_ID_sel = new DB_select("MODULE_ID",".phpapps.modules");
-				$this->MODULE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM phpapps.modules ORDER BY MODULE_NAME");
-				$this->MODULE_ID_sel->selected_val = $this->MODULE_ID;
-				$this->MODULE_ID_sel->setup_select_options();
+									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".phpapps.layouts");
+				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.layouts ORDER BY NAME");
+				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
+				$this->LAYOUT_ID_sel->setup_select_options();
+			 
+									//$this->ELEMENT_ID_sel = new DB_select("ELEMENT_ID",".VIEW_POSIBLE_LAYOUT_ELEMENTS");
+				$this->ELEMENT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, ELEMENT_NAME AS LABEL FROM VIEW_POSIBLE_LAYOUT_ELEMENTS ORDER BY ELEMENT_NAME");
+				$this->ELEMENT_ID_sel->selected_val = $this->ELEMENT_ID;
+				$this->ELEMENT_ID_sel->setup_select_options();
 			 
 					 
 					 
@@ -300,17 +319,22 @@ class phpapps_database_views_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"MODULE_ID" => $this->MODULE_ID,
-							"VIEW_NAME" => $this->VIEW_NAME,
-							"CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+							"LAYOUT_ID" => $this->LAYOUT_ID,
+							"ELEMENT_ID" => $this->ELEMENT_ID,
+							"ELEMENT_TYPE" => $this->ELEMENT_TYPE,
+							"LAYOUT_VARIABLE_NAME" => $this->LAYOUT_VARIABLE_NAME,
 							"DESCRIPTION" => $this->DESCRIPTION,
 									 
 						 
 						 
+										"ELEMENT_TYPE_sel" => $this->ELEMENT_TYPE_sel->get_select_str(),
+			 
 						 
 						 
 									 
-										"MODULE_ID_sel" => $this->MODULE_ID_sel->get_select_str(),
+										"LAYOUT_ID_sel" => $this->LAYOUT_ID_sel->get_select_str(),
+			 
+										"ELEMENT_ID_sel" => $this->ELEMENT_ID_sel->get_select_str(),
 			 
 						 
 						 

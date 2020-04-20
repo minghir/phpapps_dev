@@ -79,6 +79,7 @@ class DB_menu{
        
         
         $MENU_ID =  $this->menu_id;
+        $SERVER_HOST_NAME = SERVER_HOST_NAME;
         $sql2 = new DB_query("SELECT PARAMETER_NAME, PARAMETER_VALUE FROM phpapps.query_parameters WHERE QUERY_ID = :query_id",
                             array(":query_id"=>$tmp_data_obj->QUERY_ID));
         
@@ -86,18 +87,8 @@ class DB_menu{
         while($res = $this->globals->con->fetch_array("sql2") ){
             $query_parameters[$res["PARAMETER_NAME"]] = $res["PARAMETER_VALUE"][0] == '$' ? ${ltrim($res["PARAMETER_VALUE"],'$')} : $res["PARAMETER_VALUE"];
         }
-       
         
-        /*
-        if($this->menu_type == "STATIC"){
-            //$this->from_str = "SELECT ID,PID,ACTION,LABEL FROM phpapps.menu_items WHERE MENU_ID = '".$this->menu_id."'";
-            $this->from_str = (new DB_query($tmp_data_obj->QUERY_BODY,$query_parameters))->prnt();
-        }else{
-            $this->from_str = (new DB_query($tmp_data_obj->QUERY_BODY,$query_parameters))->prnt();
-        }
-        */
-        
-        $this->from_str = (new DB_query($tmp_data_obj->QUERY_BODY,$query_parameters))->prnt();
+        $this->from_str = (new DB_query(stripslashes($tmp_data_obj->QUERY_BODY),$query_parameters))->prnt();
         $this->menu_items = $this->recursive_load_sub_items();
         
     }
@@ -106,7 +97,7 @@ class DB_menu{
             $ssub_menu_items = array();
             $sql2 = new DB_query("SELECT ID,PID,ACTION,LABEL FROM ( ".$this->from_str." ) AS menu_items WHERE PID = :pid",array(":pid"=>$pid));
             
-            //echo $sql2->prnt();
+            //echo $sql2->prnt() ."<br><br>";
             
             $this->globals->con->query($sql2,"sub".$pid);
             while($tmp_data_obj2 = $this->globals->con->fetch_object("sub".$pid)){

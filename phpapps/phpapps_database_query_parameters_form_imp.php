@@ -9,6 +9,9 @@ include ("gen_php/phpapps_database_query_parameters_form.php");
                         $this->QUERY_ID = $_GET["query_id"];
                         
 			$this->init();
+                        
+                        $this->PARAMETER_TYPE_sel->set_empty_option(false);
+                        
 			$this->display();
 		}
 		

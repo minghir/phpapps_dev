@@ -33,6 +33,13 @@ function submitDetailsForm(op){
 																
 			
 		                
+		                				 
+																
+			
+				<tr><td align="right">PARAMETER_TYPE  :</td><td>
+			{$PARAMETER_TYPE_sel}
+		</td></tr>
+                        
 		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

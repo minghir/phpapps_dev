@@ -16,6 +16,8 @@ class phpapps_database_browse_queries extends phpapps_display_abs{
         $this->get_table_id = $_GET["gfield_value"];
         $this->get_module_id = $_GET["module_id"];
         
+        
+        
         $sql = new DB_query("SELECT 
 				ID, 
 				MODULE_ID,
@@ -26,16 +28,24 @@ class phpapps_database_browse_queries extends phpapps_display_abs{
 		WHERE 	ID = :id AND 
 		MODULE_ID = :module_id ",
 	array(":id"=>$this->get_table_id,":module_id"=>$this->get_module_id));
-        
-        //print_r($sql);
         $this->globals->con->query($sql);	
         $this->globals->con->next();
-        //echo $this->globals->con->get_field("TABLE_SCHEMA") . "." . $this->globals->con->get_field("TABLE_NAME");
-        //$phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table",$this->globals->con->get_field("TABLE_SCHEMA") . "." . $this->globals->con->get_field("TABLE_NAME"),"phpapps_".$this->globals->con->get_field("TABLE_NAME")."_grid");
-        $grid_name =  "phpapps_".$this->globals->con->get_field("QUERY_NAME")."_grid";
         
-        $phpapps_admin_queries_grid =  new DB_grid($this->globals->con, "query", $this->globals->con->get_field("QUERY_BODY"), $grid_name);
-      //$phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table","phpapps.table_details","aaaa");
+        $sql2 = new DB_query("SELECT PARAMETER_NAME, PARAMETER_VALUE FROM phpapps.query_parameters WHERE QUERY_ID = :QUERY_ID",
+                            array(":QUERY_ID"=>$this->globals->con->get_field("ID")));
+        $this->globals->con->query($sql2,"sql2");
+        while($res = $this->globals->con->fetch_array("sql2") ){
+            $query_parameters[$res["PARAMETER_NAME"]] = $res["PARAMETER_VALUE"][0] == '$' ? ${ltrim($res["PARAMETER_VALUE"],'$')} : $res["PARAMETER_VALUE"];
+            
+        }
+        //print_r($query_parameters);
+
+        $grid_name =  "phpapps_".$this->globals->con->get_field("QUERY_NAME")."_grid";
+        $query_to_run = new DB_query($this->globals->con->get_field("QUERY_BODY"),$query_parameters);
+        
+        echo $query_to_run->prnt() ."<br>";
+       
+        $phpapps_admin_queries_grid =  new DB_grid($this->globals->con, "query", $query_to_run, $grid_name);
         $phpapps_admin_queries_grid->paginable = false;
         $phpapps_admin_queries_grid->sortable = false;
         $phpapps_admin_queries_grid->editable = false;

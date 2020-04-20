@@ -26,12 +26,17 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 	public $PARAMETER_NAME;
         	            
 	public $PARAMETER_VALUE;
+        	            
+	public $PARAMETER_TYPE;
         		
 		 
 		 
 		 
 		 
+			public $PARAMETER_TYPE_sel;
+	 
 			
+		 
 		 
 		 
 		 
@@ -52,7 +57,10 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 					 
 					 
 					 
+								$this->PARAMETER_TYPE_sel = new DB_select("PARAMETER_TYPE","phpapps.list_query_parameter_type");
+                        			 
 				
+					 
 					 
 					 
 					 
@@ -78,7 +86,8 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 									ID,
 												QUERY_ID,
 												PARAMETER_NAME,
-												PARAMETER_VALUE
+												PARAMETER_VALUE,
+												PARAMETER_TYPE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -89,6 +98,7 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
                                 			                                                                $this->QUERY_ID = stripslashes($this->globals->con->get_field("QUERY_ID"));
                                 			                                                                $this->PARAMETER_NAME = stripslashes($this->globals->con->get_field("PARAMETER_NAME"));
                                 			                                                                $this->PARAMETER_VALUE = stripslashes($this->globals->con->get_field("PARAMETER_VALUE"));
+                                			                                                                $this->PARAMETER_TYPE = stripslashes($this->globals->con->get_field("PARAMETER_TYPE"));
                                 						
 	}
 	
@@ -105,11 +115,13 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					QUERY_ID,
 																						PARAMETER_NAME,
-																						PARAMETER_VALUE
+																						PARAMETER_VALUE,
+																						PARAMETER_TYPE
 										 ) VALUES (
 																					:QUERY_ID,
 																						:PARAMETER_NAME,
-																						:PARAMETER_VALUE
+																						:PARAMETER_VALUE,
+																						:PARAMETER_TYPE
 													)",
 			array(
 																		                                            
@@ -118,6 +130,8 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
                                             ":PARAMETER_NAME" => $this->PARAMETER_NAME,
                                         														                                            
                                             ":PARAMETER_VALUE" => $this->PARAMETER_VALUE,
+                                        														                                            
+                                            ":PARAMETER_TYPE" => $this->PARAMETER_TYPE,
                                         												)
 			);
 
@@ -148,7 +162,8 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 									ID = :ID,
 												QUERY_ID = :QUERY_ID,
 												PARAMETER_NAME = :PARAMETER_NAME,
-												PARAMETER_VALUE = :PARAMETER_VALUE
+												PARAMETER_VALUE = :PARAMETER_VALUE,
+												PARAMETER_TYPE = :PARAMETER_TYPE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -156,6 +171,7 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
                                         				                                                                                    ":QUERY_ID" => $this->QUERY_ID,
                                         				                                                                                    ":PARAMETER_NAME" => $this->PARAMETER_NAME,
                                         				                                                                                    ":PARAMETER_VALUE" => $this->PARAMETER_VALUE,
+                                        				                                                                                    ":PARAMETER_TYPE" => $this->PARAMETER_TYPE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -231,6 +247,7 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
                                                 		                                                    $this->QUERY_ID  = htmlspecialchars(addslashes(trim($_POST["QUERY_ID"])));
                                                 		                                                    $this->PARAMETER_NAME  = htmlspecialchars(addslashes(trim($_POST["PARAMETER_NAME"])));
                                                 		                                                    $this->PARAMETER_VALUE  = htmlspecialchars(addslashes(trim($_POST["PARAMETER_VALUE"])));
+                                                		                                                    $this->PARAMETER_TYPE  = htmlspecialchars(addslashes(trim($_POST["PARAMETER_TYPE"])));
                                                 		        }
 		
         function takePostActions(){
@@ -255,6 +272,9 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 				if($this->PARAMETER_VALUE == "") {
 			$this->errors[] = "Campul PARAMETER_VALUE este obligatoriu!";
 		}
+				if($this->PARAMETER_TYPE == "") {
+			$this->errors[] = "Campul PARAMETER_TYPE este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
@@ -262,7 +282,12 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 					 
 					 
 					 
+								//$this->PARAMETER_TYPE_sel = new DB_select("PARAMETER_TYPE",".phpapps.list_query_parameter_type");
+			$this->PARAMETER_TYPE_sel->selected_val = $this->PARAMETER_TYPE;
+			$this->PARAMETER_TYPE_sel->setup_select_options();
+			 
 				
+					 
 					 
 					 
 					 
@@ -277,11 +302,15 @@ class phpapps_database_query_parameters_form extends phpapps_display_abs{
 							"QUERY_ID" => $this->QUERY_ID,
 							"PARAMETER_NAME" => $this->PARAMETER_NAME,
 							"PARAMETER_VALUE" => $this->PARAMETER_VALUE,
+							"PARAMETER_TYPE" => $this->PARAMETER_TYPE,
 									 
 						 
 						 
 						 
+										"PARAMETER_TYPE_sel" => $this->PARAMETER_TYPE_sel->get_select_str(),
+			 
 									 
+						 
 						 
 						 
 						 

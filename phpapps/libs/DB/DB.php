@@ -4,7 +4,7 @@
 //require_once(DB_LIBS_DIR . 'DB_log.php');
 //require_once(DB_LIBS_DIR . 'DB_mysql_db.php');
 //require_once(DB_LIBS_DIR . 'DB_pgsql_db.php');
-
+require_once(DB_LIBS_DIR . 'DB_menu.php');
 require_once(DB_LIBS_DIR . 'DB_query.php');
 require_once(DB_LIBS_DIR . 'DB_list.php');
 require_once(DB_LIBS_DIR . 'DB_grid_v4.php');

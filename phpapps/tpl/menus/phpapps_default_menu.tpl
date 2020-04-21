@@ -1,4 +1,3 @@
-
 {function name=menu level=0}
   <ul class="level{$level}">
   {foreach $data as $entry}

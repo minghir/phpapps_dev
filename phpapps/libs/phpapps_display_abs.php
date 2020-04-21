@@ -17,7 +17,7 @@ require_once (PHPAPPS_LIBS_DIR . "application_layout.php");
 
 abstract class phpapps_display_abs extends  application_layout {
     public $tpl;
-    public $layout;
+    //public $layout;
     public $globals;
     
     public function __construct() {
@@ -40,7 +40,7 @@ abstract class phpapps_display_abs extends  application_layout {
     }
     
     public function displayTpl() {
-       
+     
         $this->setupDisplay();
         $this->globals->sm->display($this->tpl);
     }

@@ -1,111 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}{$THEME_CSS}" /> 
-<!-- <link rel="stylesheet" href="{$smarty.const.JQUERY_PATH}jquery-ui.css" /> -->
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<script src="{$smarty.const.JQUERY_FILE}"></script>
-<script src="{$smarty.const.JQUERY_UI}"></script>
-
-<link rel="shortcut icon" type="image/png" sizes="32x32" href="{$smarty.const.WEB_BASE_DIR}phpapps/imgs/database-black-icon.png">
-    
-<title>PHPApps</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 0px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-
-/* Create two columns/boxes that floats next to each other */
-vertical_nav {
-  float: left;
-  width: 10%;
-  background: #12363b;
-  /*height: 100%; /* only for demonstration, should be removed */
-  
-  padding: 3px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-main_content {
-  float: left;
-  padding: 0px;
-  width: 90%;
-  background-color: #f1f1f1;
- /* height: 100%; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 0px;
-  text-align: center;
-  color: white;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  vertical_nav, main_content {
-    width: 100%;
-    height: auto;
-  }
-}
-</style>
-</head>
-<body>
-
-<header style="overflow:auto">
-  {block name=header}
-  {include file="top_menu.tpl" }
-  {/block}
-</header>
-
-
-<section>
-  <vertical_nav style="overflow:auto">
-       {block name=nav}
-    <!-- <ul>
-      <li><a href="#">London</a></li>
-      <li><a href="#">Paris</a></li>
-      <li><a href="#">Tokyo</a></li>
-    </ul>-->
-        {$vertical_menu}
-       {/block}
-  </vertical_nav>
-  
-  <main_content style="overflow:auto">
-       {block name=content}<h2>Cities</h2>{/block}
-  </article>
-</section>
-
-<footer style="overflow:auto">
- {block name=footer}<p>Footer</p>{/block}
-</footer>
-
-</body>
+  <head>
+<!--       
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="{$smarty.const.BOOTSTRAP_PATH}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+-->
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      
+    <title>{$PAGE_TITLE}</title>
+    </head>
+    <body>
+        {$PHPAPPS_MAIN_NAVBAR}
+	<div class="container-expand-lg">
+            {block name=content}CONTENT BLOCK{/block}
+	</div>
+    </body> 
+</html>

@@ -42,7 +42,9 @@ class phpapps_applications extends phpapps_display_abs{
 	}
 	
 	public function displayTpl(){
+            
                 $this->setupLayoutElements();
+               
 		$this->globals->sm->display("phpapps_admin_applications.tpl");
 	}
 };

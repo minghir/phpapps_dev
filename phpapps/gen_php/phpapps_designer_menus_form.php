@@ -32,6 +32,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 	public $QUERY_ID;
         	            
 	public $DESCRIPTION;
+        	            
+	public $TEMPLATE_FILE;
         		
 		 
 		 
@@ -42,6 +44,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 	 
 		 
 		 
+		 
 			
 		 
 		 
@@ -50,6 +53,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		 
 			public $QUERY_ID_sel;
 	 
+		 
 		 
 	        
         
@@ -72,6 +76,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                         			 
 					 
 					 
+					 
 				
 					 
 					 
@@ -80,6 +85,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 					 
 									$this->QUERY_ID_sel = new DB_select("QUERY_ID","phpapps.queries");
                                 			 
+					 
 					 
 		                
 	}
@@ -105,7 +111,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 												MENU_TYPE,
 												ORIENTATION,
 												QUERY_ID,
-												DESCRIPTION
+												DESCRIPTION,
+												TEMPLATE_FILE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -119,6 +126,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                 			                                                                $this->ORIENTATION = stripslashes($this->globals->con->get_field("ORIENTATION"));
                                 			                                                                $this->QUERY_ID = stripslashes($this->globals->con->get_field("QUERY_ID"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->TEMPLATE_FILE = stripslashes($this->globals->con->get_field("TEMPLATE_FILE"));
                                 						
 	}
 	
@@ -138,14 +146,16 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 																						MENU_TYPE,
 																						ORIENTATION,
 																						QUERY_ID,
-																						DESCRIPTION
+																						DESCRIPTION,
+																						TEMPLATE_FILE
 										 ) VALUES (
 																					:NAME,
 																						:MENU_TITLE,
 																						:MENU_TYPE,
 																						:ORIENTATION,
 																						:QUERY_ID,
-																						:DESCRIPTION
+																						:DESCRIPTION,
+																						:TEMPLATE_FILE
 													)",
 			array(
 																		                                            
@@ -160,6 +170,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                             ":QUERY_ID" => $this->QUERY_ID,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
+                                        														                                            
+                                            ":TEMPLATE_FILE" => $this->TEMPLATE_FILE,
                                         												)
 			);
 
@@ -193,7 +205,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 												MENU_TYPE = :MENU_TYPE,
 												ORIENTATION = :ORIENTATION,
 												QUERY_ID = :QUERY_ID,
-												DESCRIPTION = :DESCRIPTION
+												DESCRIPTION = :DESCRIPTION,
+												TEMPLATE_FILE = :TEMPLATE_FILE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -204,6 +217,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                         				                                                                                    ":ORIENTATION" => $this->ORIENTATION,
                                         				                                                                                    ":QUERY_ID" => $this->QUERY_ID,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":TEMPLATE_FILE" => $this->TEMPLATE_FILE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -282,6 +296,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                                 		                                                    $this->ORIENTATION  = htmlspecialchars(addslashes(trim($_POST["ORIENTATION"])));
                                                 		                                                    $this->QUERY_ID  = htmlspecialchars(addslashes(trim($_POST["QUERY_ID"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->TEMPLATE_FILE  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_FILE"])));
                                                 		        }
 		
         function takePostActions(){
@@ -325,6 +340,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 			 
 					 
 					 
+					 
 				
 					 
 					 
@@ -336,6 +352,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 				$this->QUERY_ID_sel->selected_val = $this->QUERY_ID;
 				$this->QUERY_ID_sel->setup_select_options();
 			 
+					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
@@ -350,6 +367,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 							"ORIENTATION" => $this->ORIENTATION,
 							"QUERY_ID" => $this->QUERY_ID,
 							"DESCRIPTION" => $this->DESCRIPTION,
+							"TEMPLATE_FILE" => $this->TEMPLATE_FILE,
 									 
 						 
 						 
@@ -359,6 +377,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 			 
 						 
 						 
+						 
 									 
 						 
 						 
@@ -366,6 +385,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 						 
 										"QUERY_ID_sel" => $this->QUERY_ID_sel->get_select_str(),
 			 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

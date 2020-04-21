@@ -27,7 +27,7 @@ class menu_item{
 class DB_menu{
     
     private $globals;
-    private $template = "db_menu.tpl";
+    private $template;
     private $sm;
     
     public $menu_id;
@@ -50,7 +50,7 @@ class DB_menu{
                 //$this->name = $menu_name; 
                 
                 $this->sm = new Smarty;
-                $this->sm->template_dir = DB_LIBS_TPL_DIR;
+                $this->sm->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . 'menus' . DIR_SEP;
                 $this->sm->compile_dir = SMARTY_COMPILE_DIR;
                 
                 $this->setup_menu_options();
@@ -62,12 +62,12 @@ class DB_menu{
     
     function get_menu_str(){
         $this->sm->assign(array("menu_obj"=>$this));
-	return $this->sm->fetch($this->template);
+	return $this->sm->fetch($this->template . '.tpl');
     }
     
     function setup_menu_options(){
-        $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
-        
+        $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_FILE FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
+        //echo $sql->prnt() . "<br>";
         $this->globals->con->query($sql);	
         $tmp_data_obj = $this->globals->con->fetch_object();
         $this->menu_id = $tmp_data_obj->ID;
@@ -75,6 +75,7 @@ class DB_menu{
         $this->title = $tmp_data_obj->MENU_TITLE;
         $this->menu_type = $tmp_data_obj->MENU_TYPE;
         $this->orientation = $tmp_data_obj->ORIENTATION;
+        $this->template = $tmp_data_obj->TEMPLATE_FILE;
         
        
         

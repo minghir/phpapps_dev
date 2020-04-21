@@ -1,8 +1,10 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
 class phpapps_designer_module extends phpapps_display_abs{
+
 
         private $app_id;
         var $ID;
@@ -17,7 +19,7 @@ class phpapps_designer_module extends phpapps_display_abs{
         var $MODULE_ID;
     
     function __construct($module_id) {
-        parent::__construct();
+        parent::__construct($module_id);
         $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "phpapps_designer_module.tpl";        
         $this->app_id = $app_id;
@@ -108,8 +110,15 @@ class phpapps_designer_module extends phpapps_display_abs{
                 
                 $this->globals->sm->assign("menus_grid",$menus_grid->get_grid_str());
                 
+                
+                $base_grds = new phpapps_modules_base_grids($this->ID);
+                $base_grds->baseGrids();
+                
+                
                 $this->globals->sm->assign("module",$this);
 	}
+        
+        
 }
 
 new phpapps_designer_module($_GET["module_id"]);

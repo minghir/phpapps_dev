@@ -13,7 +13,7 @@ class phpapps_designer_menu_run extends phpapps_display_abs{
     
     function __construct($app_id) {
         parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
+        //$this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "phpapps_designer_menu_run.tpl";        
         $this->app_id = 1;
         $this->module_id = 21;

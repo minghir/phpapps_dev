@@ -77,7 +77,7 @@ class DB_table{
 }
 
 
-function _tbl($table_name,$fld,$val,$search_fld = "ID"){
-    return (new DB_table($table_name))->getValueByField($fld,$search_fld,$val);
+function _tbl($table_name,$fld,$serach_val,$search_fld = "ID"){
+    return (new DB_table($table_name))->getValueByField($fld,$search_fld,$serach_val);
 }
 

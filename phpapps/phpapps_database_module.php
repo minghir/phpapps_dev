@@ -189,7 +189,7 @@ class phpapps_database_module extends phpapps_display_abs{
                 $queries_grid = new DB_grid($this->globals->con, "table","phpapps.queries","phpapps_queries_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$queries_grid->grid_title = "QUERIES";
-		$queries_grid->cols = (array("QUERY_NAME","QUERY_BODY","DESCRIPTION"));
+		$queries_grid->cols = (array("QUERY_NAME","CONCAT(SUBSTR(QUERY_BODY,1,50),' ...') AS QUERY_BODY","DESCRIPTION"));
 		$queries_grid->labels = (array("NAME","QUERY","DESCRIPTION"));
                 $queries_grid->paginable = true;
 		$queries_grid->editable = true;
@@ -234,6 +234,10 @@ class phpapps_database_module extends phpapps_display_abs{
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
                 $this->globals->sm->assign("queries_grid",$queries_grid->get_grid_str());
                 $this->globals->sm->assign("views_grid",$views_grid->get_grid_str());
+                
+                
+                //$base_grds = new phpapps_modules_base_grids($this->ID);
+                //$base_grds->baseGrids();
                 
                 $this->globals->sm->assign("module",$this);
     }

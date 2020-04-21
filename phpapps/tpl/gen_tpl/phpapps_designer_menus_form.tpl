@@ -54,6 +54,11 @@ function submitDetailsForm(op){
         										
 			
 		                
+		                				 
+				<tr><td align="right">TEMPLATE_FILE :</td><td> <input type="text" id="TEMPLATE_FILE" name="TEMPLATE_FILE" value="{$TEMPLATE_FILE}"></td></tr>
+																
+			
+		                
 		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

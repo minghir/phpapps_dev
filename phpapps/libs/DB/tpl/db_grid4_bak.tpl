@@ -22,19 +22,19 @@
                         {if $sortable == 1}
                            {if $current_order_field == $fields[flds] }
                                 {if $current_order_rule == "ASC" }
-                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=DESC">{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}&nbsp;<img src="imgs/up.gif" border="0"></a>
+                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=DESC"><b>{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</b>&nbsp;<img src="imgs/up.gif" border="0"></a>
                                 {else}
-                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=ASC">{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}&nbsp;<img src="imgs/dn.gif" border="0"></a>
+                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=ASC"><b>{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</b>&nbsp;<img src="imgs/dn.gif" border="0"></a>
                                 {/if}
                             {else}
-                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=ASC">{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</a>
+                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=ASC"><b>{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</b></a>
                             {/if}
                         {else}
                             <b>{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</b>
                         {/if}
                         </th>
                         {/section}
-                        {if $row_href_actions[0] != ""  } 
+                        {if $row_href_actions[1] != ""  } 
                             <td><a><b>ACTIONS</b></a></td>
                         {/if}
                     </tr>
@@ -89,4 +89,5 @@
     </tr>
 </table>
 </div>
+    
 

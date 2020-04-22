@@ -13,13 +13,14 @@ include ("gen_php/phpapps_designer_menus_form.php");
                             $menu_items_grid->labels = (array("LABEL","ACTION","PARENT"));
                             $menu_items_grid->where_rules = array("MENU_ID = :menu_id");
                             $menu_items_grid->where_params = array(":menu_id" => $this->ID);
+                            //$menu_items_grid->editable = true;
                             $menu_items_grid->paginable = true;
                             $menu_items_grid->filterable = false;
                             $menu_items_grid->exportable = false;
                             $menu_items_grid->rows_on_pg = 20;
-                            $menu_items_grid->edit_form = "phpapps_designer_menu_items_form_imp.php?menu_id=".$this->ID;
+                            $menu_items_grid->edit_form = "phpapps_designer_menu_items_form_imp.php?dobj_id=".$this->ID;
                             $this->globals->sm->assign("menu_items_grid",$menu_items_grid->get_grid_str());
-                            echo "<br>".$menu_items_grid->prnt();
+                            //echo "<br>".$menu_items_grid->prnt();
                         }
                         
 			$this->display();

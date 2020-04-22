@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$error_msg}
-<hr><form name="phpapps_designer_layouts_form" id="phpapps_designer_layouts_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_designer_grid_columns_form" id="phpapps_designer_grid_columns_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -19,20 +19,30 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
-																
+										<input id="GRID_ID" type="hidden" name="GRID_ID" value="{$GRID_ID}">
+        								
 			
 		                
 		                				 
 																
 			
 		                
-				<tr><td align="right">APP_ID  :</td><td>
-			{$APP_ID_sel}
+				<tr><td align="right">COLUMN_ID  :</td><td>
+			{$COLUMN_ID_sel}
 		</td></tr>
                         				 
-				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" id="DESCRIPTION" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
+				<tr><td align="right">LABEL :</td><td> <input type="text" id="LABEL" name="LABEL" value="{$LABEL}"></td></tr>
 																
+			
+		                
+		                				 
+				<tr><td align="right">ACTION :</td><td> <input type="text" id="ACTION" name="ACTION" value="{$ACTION}"></td></tr>
+																
+			
+		                
+		                				 
+								<tr><td align="right">ALT_COLUMN_TEXT  :</td><td> <textarea id="ALT_COLUMN_TEXT" name="ALT_COLUMN_TEXT">{$ALT_COLUMN_TEXT}</textarea></td></tr>
+        										
 			
 		                
 		                				{$FROM_IMP_CLASS}

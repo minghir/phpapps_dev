@@ -40,7 +40,7 @@ class phpapps_database_browse_queries extends phpapps_display_abs{
         }
         //echo "AA".${"$this->globals->PHPAPPS_APP_DIR"} ."AA<br>";
         //echo "BB".$this->globals->PHPAPPS_APP_DIR ."BB<br>";
-        print_r($query_parameters);
+        //print_r($query_parameters);
 
         $grid_name =  "phpapps_".$this->globals->con->get_field("QUERY_NAME")."_grid";
         $query_to_run = new DB_query(stripslashes($this->globals->con->get_field("QUERY_BODY")),$query_parameters);

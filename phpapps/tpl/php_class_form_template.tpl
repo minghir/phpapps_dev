@@ -273,8 +273,12 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                         {/if}
 		{/section}
         {rdelim}
-		
+	
+        function beforePostActions(){ldelim}
+        {rdelim}
+        
         function takePostActions(){ldelim}
+                $this->beforePostActions();
 		switch($this->pact){ldelim}
 			case "addRec":
 				$this->addRec();
@@ -286,8 +290,11 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 				$this->deleteRec();
 			break;
 		{rdelim}
-		
+                $this->afterPostActions();
 	{rdelim}
+        
+        function afterPostActions(){ldelim}
+        {rdelim}
 	
 	function check_errors(){ldelim}
 		{section name=md loop=$mandatories}

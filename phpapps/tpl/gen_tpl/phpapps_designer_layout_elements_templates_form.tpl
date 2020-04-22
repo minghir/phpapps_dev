@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$error_msg}
-<hr><form name="phpapps_designer_layouts_form" id="phpapps_designer_layouts_form" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_designer_layout_elements_templates_form" id="phpapps_designer_layout_elements_templates_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -19,7 +19,7 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
+				<tr><td align="right">TEMPLATE_NAME :</td><td> <input type="text" id="TEMPLATE_NAME" name="TEMPLATE_NAME" value="{$TEMPLATE_NAME}"></td></tr>
 																
 			
 		                
@@ -31,10 +31,12 @@ function submitDetailsForm(op){
 			{$APP_ID_sel}
 		</td></tr>
                         				 
-				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" id="DESCRIPTION" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
 																
 			
-		                
+				<tr><td align="right">ELEMENT_TYPE_ID  :</td><td>
+			{$ELEMENT_TYPE_ID_sel}
+		</td></tr>
+                        
 		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

@@ -6,20 +6,24 @@
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href='#tab1'>Layouts</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab2'>Themes</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab3'>Menus</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab4'>Tables</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab5'>Lists</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab6'>Forms</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab7'>Scripts</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab4'>Grids</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab5'>Templates</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab6'>Tables</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab7'>Lists</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab8'>Forms</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab9'>Scripts</a></li>
     </ul>
 	
         <div class="tab-content container-fluid">    
             <div id="tab1" class="container-fluid tab-pane active"><p>{$layouts_grid}</p></div>
             <div id="tab2" class="container-fluid tab-pane fade"><p>{$themes_grid}</p></div>
             <div id="tab3" class="container-fluid tab-pane fade"><p>{$menus_grid}</p></div>
-            <div id="tab4" class="container-fluid tab-pane fade"><p>{$tables_grid}</p></div>
-            <div id="tab5" class="container-fluid tab-pane fade"><p>{$lists_grid}</p></div>
-            <div id="tab6" class="container-fluid tab-pane fade"><p>{$forms_grid}</p></div>
-            <div id="tab7" class="container-fluid tab-pane fade"><p>{$scripts_grid}</p></div>
+            <div id="tab4" class="container-fluid tab-pane fade"><p>{$grids_grid}</p></div>
+            <div id="tab5" class="container-fluid tab-pane fade"><p>{$templates_grid}</p></div>
+            <div id="tab6" class="container-fluid tab-pane fade"><p>{$tables_grid}</p></div>
+            <div id="tab7" class="container-fluid tab-pane fade"><p>{$lists_grid}</p></div>
+            <div id="tab8" class="container-fluid tab-pane fade"><p>{$forms_grid}</p></div>
+            <div id="tab9" class="container-fluid tab-pane fade"><p>{$scripts_grid}</p></div>
         </div>
 </div>
 {/block}

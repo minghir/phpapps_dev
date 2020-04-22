@@ -3,12 +3,12 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_designer_layouts_form extends phpapps_display_abs{
+class phpapps_designer_layout_elements_templates_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "layouts";
-	public $template = "gen_tpl/phpapps_designer_layouts_form.tpl";
+	public $form_table = "layout_elements_templates";
+	public $template = "gen_tpl/phpapps_designer_layout_elements_templates_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -21,16 +21,17 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $NAME;
+	public $TEMPLATE_NAME;
         	            
 	public $APP_ID;
         	            
-	public $DESCRIPTION;
+	public $ELEMENT_TYPE_ID;
         		
 		 
 		 
 		 
-		 
+			public $ELEMENT_TYPE_ID_sel;
+	 
 			
 		 
 		 
@@ -52,7 +53,8 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
                 			 
 					 
 					 
-					 
+								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","phpapps.list_layout_elements_types");
+                        			 
 				
 					 
 					 
@@ -78,9 +80,9 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												NAME,
+												TEMPLATE_NAME,
 												APP_ID,
-												DESCRIPTION
+												ELEMENT_TYPE_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -88,9 +90,9 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                                			                                                                $this->TEMPLATE_NAME = stripslashes($this->globals->con->get_field("TEMPLATE_NAME"));
                                 			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->ELEMENT_TYPE_ID = stripslashes($this->globals->con->get_field("ELEMENT_TYPE_ID"));
                                 						
 	}
 	
@@ -105,21 +107,21 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					NAME,
+																					TEMPLATE_NAME,
 																						APP_ID,
-																						DESCRIPTION
+																						ELEMENT_TYPE_ID
 										 ) VALUES (
-																					:NAME,
+																					:TEMPLATE_NAME,
 																						:APP_ID,
-																						:DESCRIPTION
+																						:ELEMENT_TYPE_ID
 													)",
 			array(
 																		                                            
-                                            ":NAME" => $this->NAME,
+                                            ":TEMPLATE_NAME" => $this->TEMPLATE_NAME,
                                         														                                            
                                             ":APP_ID" => $this->APP_ID,
                                         														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                            ":ELEMENT_TYPE_ID" => $this->ELEMENT_TYPE_ID,
                                         												)
 			);
 
@@ -148,16 +150,16 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												NAME = :NAME,
+												TEMPLATE_NAME = :TEMPLATE_NAME,
 												APP_ID = :APP_ID,
-												DESCRIPTION = :DESCRIPTION
+												ELEMENT_TYPE_ID = :ELEMENT_TYPE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":NAME" => $this->NAME,
+                                        				                                                                                    ":TEMPLATE_NAME" => $this->TEMPLATE_NAME,
                                         				                                                                                    ":APP_ID" => $this->APP_ID,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":ELEMENT_TYPE_ID" => $this->ELEMENT_TYPE_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -230,16 +232,12 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
+                                                		                                                    $this->TEMPLATE_NAME  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_NAME"])));
                                                 		                                                    $this->APP_ID  = htmlspecialchars(addslashes(trim($_POST["APP_ID"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->ELEMENT_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["ELEMENT_TYPE_ID"])));
                                                 		        }
-	
-        function beforePostActions(){
-        }
-        
+		
         function takePostActions(){
-                $this->beforePostActions();
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -251,18 +249,15 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 				$this->deleteRec();
 			break;
 		}
-                $this->afterPostActions();
+		
 	}
-        
-        function afterPostActions(){
-        }
 	
 	function check_errors(){
-				if($this->NAME == "") {
-			$this->errors[] = "Campul NAME este obligatoriu!";
-		}
 				if($this->APP_ID == "") {
 			$this->errors[] = "Campul APP_ID este obligatoriu!";
+		}
+				if($this->ELEMENT_TYPE_ID == "") {
+			$this->errors[] = "Campul ELEMENT_TYPE_ID este obligatoriu!";
 		}
 			}
 	
@@ -270,7 +265,10 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 					 
 					 
 					 
-					 
+								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".phpapps.list_layout_elements_types");
+			$this->ELEMENT_TYPE_ID_sel->selected_val = $this->ELEMENT_TYPE_ID;
+			$this->ELEMENT_TYPE_ID_sel->setup_select_options();
+			 
 				
 					 
 					 
@@ -287,13 +285,14 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"NAME" => $this->NAME,
+							"TEMPLATE_NAME" => $this->TEMPLATE_NAME,
 							"APP_ID" => $this->APP_ID,
-							"DESCRIPTION" => $this->DESCRIPTION,
+							"ELEMENT_TYPE_ID" => $this->ELEMENT_TYPE_ID,
 									 
 						 
 						 
-						 
+										"ELEMENT_TYPE_ID_sel" => $this->ELEMENT_TYPE_ID_sel->get_select_str(),
+			 
 									 
 						 
 										"APP_ID_sel" => $this->APP_ID_sel->get_select_str(),

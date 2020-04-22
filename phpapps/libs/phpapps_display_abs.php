@@ -20,6 +20,12 @@ abstract class phpapps_display_abs extends  application_layout {
     //public $layout;
     public $globals;
     
+    public $display_objects_type_id;
+    public $display_objects_type;
+    public $display_objects_id;
+    
+    var $display_object_display_elements_loader;
+    
     public function __construct() {
         parent::__construct();
         
@@ -30,18 +36,30 @@ abstract class phpapps_display_abs extends  application_layout {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         $this->globals->sm->assign(array("display_obj"=>$this));
-        
         return $this;
     }
     
     function setupDisplay(){
+        //$this->loadDisplayObjectElements();
         //echo "<br>AICI DISP ABS" . $this->tpl;
         //$this->
     }
     
     public function displayTpl() {
-     
+         //$this->display_object_display_elements_loader->tplAssignDisplayObjectElements();
+        $this->loadDisplayObjectElements();
+        $this->tplAssignDisplayObjectElements();
         $this->setupDisplay();
+       
         $this->globals->sm->display($this->tpl);
     }
+       
+    function loadDisplayObjectElements(){
+        $this->display_object_display_elements_loader = new display_elements_loader($this->display_objects_type_id,$this->display_objects_id);
+    }
+    
+    function tplAssignDisplayObjectElements(){
+         $this->display_object_display_elements_loader->assignTemplateElements();
+     }
+    
 }

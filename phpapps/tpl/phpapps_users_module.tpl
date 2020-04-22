@@ -1,16 +1,29 @@
-<html>
-<head>
-{include file="commun_header.tpl" }
-</head>
-<body><br>
-	<div class="test_div">
-	<font style="font-size: 120%;"><a href="phpapps_admin_applications.php">{$module->APP_TITLE}</a> / {$module->MODULE_TITLE} </h1></font><br>
-	( <a href="phpapps_admin_modules_form_imp.php?gact=editRec&gfield=ID&gfield_value={$module->ID}">{$module->MODULE_NAME}</a> / {$module->MODULE_DATE} ) 
-	</div><br>
-	<div class="test_div"  style="width: 90%;">{$users_grid}</div>
-	<br>
-	<div class="test_div"  style="width: 90%;">{$roles_grid}</div>
-	<br>
-	<div class="test_div"  style="width: 90%;">{$permissions}</div>
-</body>
-</html>
+{extends file=$display_obj->layout_file}
+{block name=content}
+<div class="container-fluid">	
+<h2>{$module->APP_NAME}: {$module->MODULE_TITLE} </h2>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href='#tab1'>Users</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab2'>Roles</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab3'>Permissions</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab4'>Groups</a></li>
+        
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab6'>Tables</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab7'>Lists</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab8'>Forms</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab9'>Scripts</a></li>
+    </ul>
+	
+        <div class="tab-content container-fluid">    
+            <div id="tab1" class="container-fluid tab-pane active"><p>{$users_grid}</p></div>
+            <div id="tab2" class="container-fluid tab-pane fade"><p>{$roles_grid}</p></div>
+            <div id="tab3" class="container-fluid tab-pane fade"><p>{$permissions}</p></div>
+            <div id="tab4" class="container-fluid tab-pane fade"><p>{$groups_grid}</p></div>
+        
+            <div id="tab6" class="container-fluid tab-pane fade"><p>{$tables_grid}</p></div>
+            <div id="tab7" class="container-fluid tab-pane fade"><p>{$lists_grid}</p></div>
+            <div id="tab8" class="container-fluid tab-pane fade"><p>{$forms_grid}</p></div>
+            <div id="tab9" class="container-fluid tab-pane fade"><p>{$scripts_grid}</p></div>
+        </div>
+</div>
+{/block}

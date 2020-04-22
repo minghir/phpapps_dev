@@ -1,6 +1,7 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
 class phpapps_database_module extends phpapps_display_abs{
 
@@ -236,8 +237,8 @@ class phpapps_database_module extends phpapps_display_abs{
                 $this->globals->sm->assign("views_grid",$views_grid->get_grid_str());
                 
                 
-                //$base_grds = new phpapps_modules_base_grids($this->ID);
-                //$base_grds->baseGrids();
+                $base_grds = new phpapps_modules_base_grids($this->ID);
+                $base_grds->baseGrids();
                 
                 $this->globals->sm->assign("module",$this);
     }

@@ -27,7 +27,7 @@ class phpapps_database_browse_list extends phpapps_display_abs{
         $this->globals->con->query($sql);	
         $this->globals->con->next();
         $phpapps_admin_browse_lists =  new DB_grid($this->globals->con, "table",$this->globals->con->get_field("TABLE_NAME"),"phpapps_list_grid");
-        $phpapps_admin_browse_lists->cols = (array("VALUE","DESCRIPTION"));
+        $phpapps_admin_browse_lists->cols = (array("ID","VALUE","DESCRIPTION"));
         $phpapps_admin_browse_lists->paginable = true;
         $phpapps_admin_browse_lists->filterable = false;
         $phpapps_admin_browse_lists->rows_on_pg = 20;

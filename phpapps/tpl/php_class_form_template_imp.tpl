@@ -15,6 +15,9 @@ include ("gen_php/{$form_name}.php");
 		
 		function afterGetRec(){ldelim}
 		{rdelim}
+                
+                function beforePostActions(){ldelim}
+                {rdelim}
 	
 		function beforeAddRec(){ldelim}
 		{rdelim}
@@ -37,6 +40,9 @@ include ("gen_php/{$form_name}.php");
 		//	header("Location:win_close.html");
 		{rdelim}
 		
+                function afterPostActions(){ldelim}
+                {rdelim}
+                
 		function beforeDisplay(){ldelim}	
 		{rdelim}
 		

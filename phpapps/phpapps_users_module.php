@@ -1,6 +1,7 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
 class phpapps_users_module extends phpapps_display_abs{
 	
@@ -219,6 +220,9 @@ class phpapps_users_module extends phpapps_display_abs{
 		$this->globals->sm->assign("roles_grid",$roles_grid->get_grid_str());
 		//$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
 //		$this->globals->sm->assign("scripts_grid",$scripts_grid->get_grid_str());
+                
+                $base_grds = new phpapps_modules_base_grids($this->ID);
+                $base_grds->baseGrids();
 		
 		$this->globals->sm->assign("module",$this);
 		$this->globals->sm->display("phpapps_users_module.tpl");

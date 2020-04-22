@@ -16,6 +16,9 @@ class {$CLASS_NAME} extends phpapps_display_abs{ldelim}
         $this->module_id = {$MODULE_ID};
         $this->script_id = {$SCRIPT_ID};
         $this->app_id = $app_id;
+        $this->display_objects_type_id = '2';
+    	$this->display_objects_type = 'SCRIPT';
+    	$this->display_objects_id = $this->script_id;
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "{$CLASS_NAME}: Youre code here."));
         

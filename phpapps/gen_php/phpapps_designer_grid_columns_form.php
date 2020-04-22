@@ -3,12 +3,12 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_designer_layouts_form extends phpapps_display_abs{
+class phpapps_designer_grid_columns_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "layouts";
-	public $template = "gen_tpl/phpapps_designer_layouts_form.tpl";
+	public $form_table = "grid_columns";
+	public $template = "gen_tpl/phpapps_designer_grid_columns_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -21,12 +21,18 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $NAME;
+	public $GRID_ID;
         	            
-	public $APP_ID;
+	public $COLUMN_ID;
         	            
-	public $DESCRIPTION;
+	public $LABEL;
+        	            
+	public $ACTION;
+        	            
+	public $ALT_COLUMN_TEXT;
         		
+		 
+		 
 		 
 		 
 		 
@@ -34,8 +40,10 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 			
 		 
 		 
-			public $APP_ID_sel;
+			public $COLUMN_ID_sel;
 	 
+		 
+		 
 		 
 	        
         
@@ -53,11 +61,15 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 					 
 					 
 					 
+					 
+					 
 				
 					 
 					 
-									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID","phpapps.table_details");
                                 			 
+					 
+					 
 					 
 		                
 	}
@@ -78,9 +90,11 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												NAME,
-												APP_ID,
-												DESCRIPTION
+												GRID_ID,
+												COLUMN_ID,
+												LABEL,
+												ACTION,
+												ALT_COLUMN_TEXT
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -88,9 +102,11 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
-                                			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->GRID_ID = stripslashes($this->globals->con->get_field("GRID_ID"));
+                                			                                                                $this->COLUMN_ID = stripslashes($this->globals->con->get_field("COLUMN_ID"));
+                                			                                                                $this->LABEL = stripslashes($this->globals->con->get_field("LABEL"));
+                                			                                                                $this->ACTION = stripslashes($this->globals->con->get_field("ACTION"));
+                                			                                                                $this->ALT_COLUMN_TEXT = stripslashes($this->globals->con->get_field("ALT_COLUMN_TEXT"));
                                 						
 	}
 	
@@ -105,21 +121,29 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					NAME,
-																						APP_ID,
-																						DESCRIPTION
+																					GRID_ID,
+																						COLUMN_ID,
+																						LABEL,
+																						ACTION,
+																						ALT_COLUMN_TEXT
 										 ) VALUES (
-																					:NAME,
-																						:APP_ID,
-																						:DESCRIPTION
+																					:GRID_ID,
+																						:COLUMN_ID,
+																						:LABEL,
+																						:ACTION,
+																						:ALT_COLUMN_TEXT
 													)",
 			array(
 																		                                            
-                                            ":NAME" => $this->NAME,
+                                            ":GRID_ID" => $this->GRID_ID,
                                         														                                            
-                                            ":APP_ID" => $this->APP_ID,
+                                            ":COLUMN_ID" => $this->COLUMN_ID,
                                         														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                            ":LABEL" => $this->LABEL,
+                                        														                                            
+                                            ":ACTION" => $this->ACTION,
+                                        														                                            
+                                            ":ALT_COLUMN_TEXT" => $this->ALT_COLUMN_TEXT,
                                         												)
 			);
 
@@ -148,16 +172,20 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												NAME = :NAME,
-												APP_ID = :APP_ID,
-												DESCRIPTION = :DESCRIPTION
+												GRID_ID = :GRID_ID,
+												COLUMN_ID = :COLUMN_ID,
+												LABEL = :LABEL,
+												ACTION = :ACTION,
+												ALT_COLUMN_TEXT = :ALT_COLUMN_TEXT
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":NAME" => $this->NAME,
-                                        				                                                                                    ":APP_ID" => $this->APP_ID,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":GRID_ID" => $this->GRID_ID,
+                                        				                                                                                    ":COLUMN_ID" => $this->COLUMN_ID,
+                                        				                                                                                    ":LABEL" => $this->LABEL,
+                                        				                                                                                    ":ACTION" => $this->ACTION,
+                                        				                                                                                    ":ALT_COLUMN_TEXT" => $this->ALT_COLUMN_TEXT,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -230,9 +258,11 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
-                                                		                                                    $this->APP_ID  = htmlspecialchars(addslashes(trim($_POST["APP_ID"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->GRID_ID  = htmlspecialchars(addslashes(trim($_POST["GRID_ID"])));
+                                                		                                                    $this->COLUMN_ID  = htmlspecialchars(addslashes(trim($_POST["COLUMN_ID"])));
+                                                		                                                    $this->LABEL  = htmlspecialchars(addslashes(trim($_POST["LABEL"])));
+                                                		                                                    $this->ACTION  = htmlspecialchars(addslashes(trim($_POST["ACTION"])));
+                                                		                                                    $this->ALT_COLUMN_TEXT  = htmlspecialchars(addslashes(trim($_POST["ALT_COLUMN_TEXT"])));
                                                 		        }
 	
         function beforePostActions(){
@@ -258,12 +288,6 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
         }
 	
 	function check_errors(){
-				if($this->NAME == "") {
-			$this->errors[] = "Campul NAME este obligatoriu!";
-		}
-				if($this->APP_ID == "") {
-			$this->errors[] = "Campul APP_ID este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
@@ -271,14 +295,18 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
 					 
 					 
 					 
+					 
+					 
 				
 					 
 					 
-									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
-				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
-				$this->APP_ID_sel->selected_val = $this->APP_ID;
-				$this->APP_ID_sel->setup_select_options();
+									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".phpapps.table_details");
+				$this->COLUMN_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM phpapps.table_details ORDER BY COLUMN_NAME");
+				$this->COLUMN_ID_sel->selected_val = $this->COLUMN_ID;
+				$this->COLUMN_ID_sel->setup_select_options();
 			 
+					 
+					 
 					 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
@@ -287,17 +315,23 @@ class phpapps_designer_layouts_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"NAME" => $this->NAME,
-							"APP_ID" => $this->APP_ID,
-							"DESCRIPTION" => $this->DESCRIPTION,
+							"GRID_ID" => $this->GRID_ID,
+							"COLUMN_ID" => $this->COLUMN_ID,
+							"LABEL" => $this->LABEL,
+							"ACTION" => $this->ACTION,
+							"ALT_COLUMN_TEXT" => $this->ALT_COLUMN_TEXT,
 									 
 						 
 						 
 						 
+						 
+						 
 									 
 						 
-										"APP_ID_sel" => $this->APP_ID_sel->get_select_str(),
+										"COLUMN_ID_sel" => $this->COLUMN_ID_sel->get_select_str(),
 			 
+						 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

@@ -56,17 +56,20 @@ class phpapps_database_module extends phpapps_display_abs{
         $tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 
-		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","TABLE_TYPE_LABEL","DESCRIPTION"));
-		$tables_grid->labels = (array("SCHEMA","TABLE","TABLE_TYPE","DESCRIPTION"));
+		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","CONCAT(APP_NAME,'/',MODULE_NAME) AS OWNER","TABLE_TYPE_LABEL","DESCRIPTION"));
+		$tables_grid->labels = (array("SCHEMA","TABLE","OWNER","TABLE_TYPE","DESCRIPTION"));
 		
-		$tables_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE != :table_type ");
-		$tables_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("list_table"));
+		//$tables_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE != :table_type ");
+		//$tables_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("list_table"));
+                
+                $tables_grid->where_rules = array(" TABLE_TYPE != :table_type ","ORIGIN_ID = :org_id");
+		$tables_grid->where_params = array(":table_type"=>(new DB_list("list_table_types"))->getID("list_table"),":org_id" => 0);
 		
 		$tables_grid->paginable = true;
 		$tables_grid->filterable = false;
 		$tables_grid->exportable = false;
 		//$tables_grid->editable = false;
-		$tables_grid->rows_on_pg = 20;
+		$tables_grid->rows_on_pg = 10;
 		$tables_grid->edit_form = "phpapps_database_tables_form_imp.php?module_id=".$this->ID;
                 
                 $tad = new HrefActions();
@@ -96,23 +99,23 @@ class phpapps_database_module extends phpapps_display_abs{
                  * 
                  */
 	
-		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.tables","phpapps_lists_grid");
+		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$lists_grid->grid_title = "LISTS";
-		$lists_grid->cols = (array("TABLE_NAME","DESCRIPTION"));
-		$lists_grid->labels = (array("NAME","DESCRIPTION"));
+		$lists_grid->cols = (array("TABLE_NAME","CONCAT(APP_NAME,'/',MODULE_NAME) AS OWNER","DESCRIPTION"));
+		$lists_grid->labels = (array("NAME","OWNER","DESCRIPTION"));
 		
 		//$lists_grid->where_rules = array(" MODULE_ID = '".$this->ID."' AND TABLE_NAME LIKE 'LIST%'");
 		
-		$lists_grid->where_rules = array(" MODULE_ID = :module_id ", " TABLE_TYPE = :table_type ");
-		$lists_grid->where_params = array(":module_id" => $this->ID,":table_type"=>(new DB_list("list_table_types"))->getID("list_table"));
+		$lists_grid->where_rules = array(" TABLE_TYPE = :table_type ","ORIGIN_ID = :org_id");
+		$lists_grid->where_params = array(":table_type"=>(new DB_list("list_table_types"))->getID("list_table"),":org_id" => 0);
 		
 		
 		$lists_grid->paginable = true;
 		$lists_grid->editable = false;
 		$lists_grid->filterable = false;
 		$lists_grid->exportable = false;
-		$lists_grid->rows_on_pg = 20;
+		$lists_grid->rows_on_pg = 10;
 		$lists_grid->edit_form = "phpapps_database_lists_form_imp.php?module_id=".$this->ID;
 		
                 $lad = new HrefActions();
@@ -167,7 +170,7 @@ class phpapps_database_module extends phpapps_display_abs{
 		$databases_grid->editable = false;
 		$databases_grid->filterable = false;
 		$databases_grid->exportable = false;
-		$databases_grid->rows_on_pg = 20;
+		$databases_grid->rows_on_pg = 10;
                 $databases_grid->edit_form = "phpapps_database_list_databases_form_imp.php?module_id=".$this->ID;
                 
                 $dga = new HrefActions();
@@ -198,7 +201,7 @@ class phpapps_database_module extends phpapps_display_abs{
                 $queries_grid->edit_form = "phpapps_database_queries_form_imp.php?module_id=".$this->ID;
 		$queries_grid->filterable = false;
 		$queries_grid->exportable = false;
-		$queries_grid->rows_on_pg = 20;
+		$queries_grid->rows_on_pg = 10;
                 
                 
                 
@@ -219,7 +222,7 @@ class phpapps_database_module extends phpapps_display_abs{
 		$views_grid->editable = true;
 		$views_grid->filterable = false;
 		$views_grid->exportable = false;
-		$views_grid->rows_on_pg = 20;
+		$views_grid->rows_on_pg = 10;
                 $views_grid->edit_form = "phpapps_database_views_form_imp.php?module_id=".$this->ID;
                 
                 $tsv = new HrefActions();
@@ -231,8 +234,8 @@ class phpapps_database_module extends phpapps_display_abs{
 		$views_grid->add_row_acction($tsv);
                 
                 $this->globals->sm->assign("databases_grid",$databases_grid->get_grid_str());
-                $this->globals->sm->assign("tables_grid",$tables_grid->get_grid_str());
-		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
+                $this->globals->sm->assign("db_tables_grid",$tables_grid->get_grid_str());
+		$this->globals->sm->assign("db_lists_grid",$lists_grid->get_grid_str());
                 $this->globals->sm->assign("queries_grid",$queries_grid->get_grid_str());
                 $this->globals->sm->assign("views_grid",$views_grid->get_grid_str());
                 

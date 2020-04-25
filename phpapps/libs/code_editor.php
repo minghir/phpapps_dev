@@ -7,10 +7,13 @@
 		private $file_content;
 		private $globals;
 		private $sm;
+                
+                public $code_editor_tpl;
 		
 		function __construct($file_name){
 			global $GLOBALS_OBJ;
 			$this->globals = $GLOBALS_OBJ;
+                        $this->code_editor_tpl = "code_editor.tpl";
 			
 			$this->sm = new Smarty;
             $this->sm->template_dir = PHPAPPS_LIBS_TPL_DIR;
@@ -20,6 +23,7 @@
             $this->sm->compile_dir = SMARTY_COMPILE_DIR;
 			
 			$this->file_path=$file_name;
+                        
 			
 			if($_POST["pact"] == "save"){
 				$this->file_content = trim($_POST["code"]);
@@ -78,25 +82,25 @@
 		
 		
 		function display(){
-			$this->globals->sm->assign(array(
+			$this->sm->assign(array(
 								"file_content" => $this->file_content,
 								"file_name" => $this->file_path,
 								"file_path" => $this->file_path,
                                                                 "file" => $this->file,
 								"CODEMIRROR_DIR" => CODEMIRROR_DIR,
 			));
-			$this->globals->sm->display("libs/tpl/code_editor.tpl");
+			$this->sm->display($this->code_editor_tpl);
 		}
 		
 		function get_str(){
-			$this->globals->sm->assign(array(
+			$this->sm->assign(array(
 								"file_content" => $this->file_content,
 								"file_name" => $this->file_path,
 								"file_path" => $this->file_path,
                                                                 "file" => $this->file,
 								"CODEMIRROR_DIR" => CODEMIRROR_DIR,
 			));
-			return $this->globals->sm->fetch("libs/tpl/code_editor.tpl");
+			return $this->sm->fetch($this->code_editor_tpl);
 		}
 	}	
 ?>

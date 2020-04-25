@@ -76,6 +76,9 @@
                                                 case 'GRID':
                                                     $path_to = 'grids';
                                                 break;
+                                                 case 'CUSTOM_ELEMENT':
+                                                    $path_to = 'custom_elements';
+                                                break;
                                         }
                                         $this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $this->globals->con->get_field("TEMPLATE_NAME","layout_sql") . '.tpl';
                                 break;

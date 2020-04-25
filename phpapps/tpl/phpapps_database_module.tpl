@@ -14,8 +14,8 @@
 	
         <div class="tab-content container-fluid">    
             <div id="tab1" class="container-fluid tab-pane active"><p>{$databases_grid}</p></div>
-            <div id="tab2" class="container-fluid tab-pane fade"><p>{$lists_grid}</p></div>
-            <div id="tab3" class="container-fluid tab-pane fade"><p>{$tables_grid}</p></div>
+            <div id="tab2" class="container-fluid tab-pane fade"><p>{$db_lists_grid}</p></div>
+            <div id="tab3" class="container-fluid tab-pane fade"><p>{$db_tables_grid}</p></div>
             <div id="tab4" class="container-fluid tab-pane fade"><p>{$queries_grid}</p></div>
             <div id="tab5" class="container-fluid tab-pane fade"><p>{$views_grid}</p></div>
             <div id="tab6" class="container-fluid tab-pane fade"><p>{$forms_grid}</p></div>

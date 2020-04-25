@@ -41,11 +41,11 @@ class display_elements_loader {
         //FORM              2
         //LAYOUT_VARIABLE   3
          
-         $sql = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements "
+         $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
-        // echo $sql->prnt() ."<br>";
-        $this->globals->con->query($sql,"display_elements_sql");
+         //echo $sql1->prnt() ."<br>";
+        $this->globals->con->query($sql1,"display_elements_sql");
         
         while($res = $this->globals->con->fetch_object("display_elements_sql")){
             
@@ -61,6 +61,9 @@ class display_elements_loader {
                 break;
                 case '4'://GRIDS
                     $this->display_elements['grids'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadGrid($res->ELEMENT_ID);
+                break;
+                case '5'://CUSTOM ELEMENTS
+                    $this->display_elements['custom_elements'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadCustomElement($res->ELEMENT_ID);
                 break;
             }
             
@@ -103,6 +106,14 @@ class display_elements_loader {
                  $this->globals->sm->assign($key,$val->get_grid_str());
              }
          }
+         
+         if(is_array($this->display_elements['custom_elements'])){
+             //echo "ASSIGN:" . $val->GRID_NAME;
+             foreach($this->display_elements['custom_elements'] as $key=>$val){
+                 $this->globals->sm->assign($key,$val->get_custom_element_str());
+             }
+         }
+         
           //print_r($this->display_elements['grids']);
      }
      
@@ -120,5 +131,23 @@ class display_elements_loader {
      
      function loadGrid($grid_id){
        return new DB_grid_imp($grid_id);
+     }
+     
+     function loadCustomElement($el_id){
+            $sql2 = new DB_query("SELECT ID,
+			NAME,
+			APP_ID,
+            (SELECT APP_NAME FROM phpapps.applications WHERE phpapps.applications.ID = phpapps.custom_elements.APP_ID) AS APP_NAME
+            FROM phpapps.custom_elements
+            WHERE ID = :ce_id", 
+                array(":ce_id" => $el_id));
+        //echo $sql2->prnt() ."<br>";
+                $this->globals->con->query($sql2,"load_ce" . $el_id);
+		$this->globals->con->next("load_ce" . $el_id);
+		$app_name = $this->globals->con->get_field("APP_NAME","load_ce" . $el_id);
+		$custom_element_name = $this->globals->con->get_field("NAME","load_ce" . $el_id);
+		require_once (GLOBALS_DIR . $app_name . DIR_SEP ."custom_elements" . DIR_SEP. $custom_element_name .".php");
+                //echo "LOAD:" .$custom_element_name ."<br>";
+		return  ( new $custom_element_name() );
      }
 }

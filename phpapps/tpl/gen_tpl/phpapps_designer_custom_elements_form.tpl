@@ -36,11 +36,6 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-				<tr><td align="right">PHP_CLASS_NAME :</td><td> <input type="text" id="PHP_CLASS_NAME" name="PHP_CLASS_NAME" value="{$PHP_CLASS_NAME}"></td></tr>
-																
-			
-		                
-		                				 
 																
 			
 		                

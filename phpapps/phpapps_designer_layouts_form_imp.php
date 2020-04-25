@@ -5,11 +5,21 @@ include ("gen_php/phpapps_designer_layouts_form.php");
             
                 private $OLD_LAYOUT_NAME;
                 private $APP_NAME;
+                public $ID;
             
 		function __construct(){
 			parent::__construct();
 			$this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps_form.tpl";
 			$this->template = "phpapps_designer_layouts_form_imp.tpl";
+			
+                        
+                        $this->ID = 261;
+			$this->script_id = 261;
+			$this->display_objects_type_id = '2'; //?????
+                        $this->display_objects_type = 'SCRIPT';
+                        $this->display_objects_id = $this->script_id;
+                        
+                        
 			$this->init();
                         
                         $display_object_elements_grid = new DB_grid($this->globals->con, "table","phpapps.view_display_object_elements","display_object_elements_grid");
@@ -92,10 +102,12 @@ include ("gen_php/phpapps_designer_layouts_form.php");
 		//	header("Location:win_close.html");
 		}
 		
-		function beforeDisplay(){	
+		function beforeDisplay(){
+                   //  parent::displayTpl();
 		}
 		
 		function afterDisplay(){	
+                    
 		}
 		
 	};

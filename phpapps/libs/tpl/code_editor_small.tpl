@@ -23,7 +23,7 @@
 <textarea id="code" name="code">
 {$file_content}
 </textarea>
-<input type="submit" name="pact" value="reload"> | <input type="submit" name="pact" value="save">
+<input type="submit" name="pact" value="save">
 </form>
 
 {literal}
@@ -35,7 +35,7 @@
         indentUnit: 4,
         indentWithTabs: true
       });
-	  editor.setSize("100%", 800);
+	  editor.setSize("100%", 450);
     </script>
   
 

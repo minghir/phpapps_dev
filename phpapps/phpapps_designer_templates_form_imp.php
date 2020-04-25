@@ -42,6 +42,12 @@ include ("gen_php/phpapps_designer_templates_form.php");
                             case 'GRID':
                                 $path_to = 'grids';
                             break;
+                            case 'CUSTOM_ELEMENT':
+                                $path_to = 'custom_elements';
+                            break;
+                            default:
+                                    $this->errors[] = "UNKNOWN ELEMENT";
+                            break;    
                         }
                          
                         copy( GLOBALS_DIR . 'phpapps' . DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . 'default.tpl', 
@@ -49,6 +55,7 @@ include ("gen_php/phpapps_designer_templates_form.php");
                         
 			//header("Location:win_close.html");
                     }
+                    echo $this->query->prnt();
 		}
 		
 		function beforeSaveRec(){
@@ -66,6 +73,12 @@ include ("gen_php/phpapps_designer_templates_form.php");
                                 case 'GRID':
                                     $path_to = 'grids';
                                 break;
+                                case 'CUSTOM_ELEMENT':
+                                    $path_to = 'custom_elements';
+                                break;
+                                default:
+                                    $this->errors[] = "UNKNOWN ELEMENT";
+                                break;    
                             }
                             rename( GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $_SESSION["OLD_TEMPLATE_NAME"] . '.tpl', 
 					 GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $this->TEMPLATE_NAME . '.tpl' ); 
@@ -93,6 +106,12 @@ include ("gen_php/phpapps_designer_templates_form.php");
                                 case 'GRID':
                                     $path_to = 'grids';
                                 break;
+                                case 'CUSTOM_ELEMENT':
+                                    $path_to = 'custom_elements';
+                                break;
+                                default:
+                                    $this->errors[] = "UNKNOWN ELEMENT";
+                                break;    
                         }
                         echo "$<h1>$path_to </h1>";
                         $file_del = GLOBALS_DIR . $this->APP_NAME . DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $this->TEMPLATE_NAME . '.tpl';

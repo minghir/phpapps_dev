@@ -118,31 +118,7 @@ class phpapps_designer_module extends phpapps_display_abs{
 		$menus_grid->add_row_acction($as3);
                 
                 $this->globals->sm->assign("menus_grid",$menus_grid->get_grid_str());
-                
-                
-                
-                $grids_grid = new DB_grid($this->globals->con, "table","phpapps.view_grids","phpapps_menus_grid");
-		$grids_grid->grid_title = "GRIDS";
-		$grids_grid->cols = (array("GRID_NAME","GRID_TYPE"));
-		$grids_grid->labels = (array("GRID NAME","TYPE"));
-		$grids_grid->paginable = true;
-		$grids_grid->filterable = false;
-		$grids_grid->exportable = false;
-		$grids_grid->rows_on_pg = 20;
-		$grids_grid->edit_form = "phpapps_designer_grids_form_imp.php?module_id=".$this->ID;
 
-                $gg = new HrefActions();
-		$gg->act_script = "phpapps_designer_grid_run.php?module_id=".$this->ID;
-		$gg->label = "test grid";
-		$gg->action = "test";
-		$gg->fields = array("ID");
-		$grids_grid->add_row_acction($gg);
-                
-                $this->globals->sm->assign("grids_grid",$grids_grid->get_grid_str());
-                
-               //$templates_grid = new DB_grid_imp(2);
-               //$this->globals->sm->assign("templates_grid",$templates_grid->get_grid_str());
-                
                 $base_grds = new phpapps_modules_base_grids($this->ID);
                 $base_grds->baseGrids();
                 

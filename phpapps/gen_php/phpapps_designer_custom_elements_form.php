@@ -27,11 +27,8 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
         	            
 	public $DESCRIPTION;
         	            
-	public $PHP_CLASS_NAME;
-        	            
 	public $TEMPLATE_ID;
         		
-		 
 		 
 		 
 		 
@@ -42,7 +39,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 		 
 			public $APP_ID_sel;
 	 
-		 
 		 
 			public $TEMPLATE_ID_sel;
 	 
@@ -63,13 +59,11 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 					 
 					 
 					 
-					 
 				
 					 
 					 
 									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
                                 			 
-					 
 					 
 									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
                                 			 
@@ -95,7 +89,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 												NAME,
 												APP_ID,
 												DESCRIPTION,
-												PHP_CLASS_NAME,
 												TEMPLATE_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -107,7 +100,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
                                 			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
                                 			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-                                			                                                                $this->PHP_CLASS_NAME = stripslashes($this->globals->con->get_field("PHP_CLASS_NAME"));
                                 			                                                                $this->TEMPLATE_ID = stripslashes($this->globals->con->get_field("TEMPLATE_ID"));
                                 						
 	}
@@ -126,13 +118,11 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 																					NAME,
 																						APP_ID,
 																						DESCRIPTION,
-																						PHP_CLASS_NAME,
 																						TEMPLATE_ID
 										 ) VALUES (
 																					:NAME,
 																						:APP_ID,
 																						:DESCRIPTION,
-																						:PHP_CLASS_NAME,
 																						:TEMPLATE_ID
 													)",
 			array(
@@ -142,8 +132,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
                                             ":APP_ID" => $this->APP_ID,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
-                                        														                                            
-                                            ":PHP_CLASS_NAME" => $this->PHP_CLASS_NAME,
                                         														                                            
                                             ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         												)
@@ -177,7 +165,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 												NAME = :NAME,
 												APP_ID = :APP_ID,
 												DESCRIPTION = :DESCRIPTION,
-												PHP_CLASS_NAME = :PHP_CLASS_NAME,
 												TEMPLATE_ID = :TEMPLATE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
@@ -186,7 +173,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
                                         				                                                                                    ":NAME" => $this->NAME,
                                         				                                                                                    ":APP_ID" => $this->APP_ID,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
-                                        				                                                                                    ":PHP_CLASS_NAME" => $this->PHP_CLASS_NAME,
                                         				                                                                                    ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
@@ -263,7 +249,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
                                                 		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
                                                 		                                                    $this->APP_ID  = htmlspecialchars(addslashes(trim($_POST["APP_ID"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
-                                                		                                                    $this->PHP_CLASS_NAME  = htmlspecialchars(addslashes(trim($_POST["PHP_CLASS_NAME"])));
                                                 		                                                    $this->TEMPLATE_ID  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_ID"])));
                                                 		        }
 	
@@ -296,13 +281,9 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 				if($this->APP_ID == "") {
 			$this->errors[] = "Campul APP_ID este obligatoriu!";
 		}
-				if($this->PHP_CLASS_NAME == "") {
-			$this->errors[] = "Campul PHP_CLASS_NAME este obligatoriu!";
-		}
 			}
 	
 	function setup_display(){
-					 
 					 
 					 
 					 
@@ -316,7 +297,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 				$this->APP_ID_sel->selected_val = $this->APP_ID;
 				$this->APP_ID_sel->setup_select_options();
 			 
-					 
 					 
 									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
 				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
@@ -333,10 +313,8 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 							"NAME" => $this->NAME,
 							"APP_ID" => $this->APP_ID,
 							"DESCRIPTION" => $this->DESCRIPTION,
-							"PHP_CLASS_NAME" => $this->PHP_CLASS_NAME,
 							"TEMPLATE_ID" => $this->TEMPLATE_ID,
 									 
-						 
 						 
 						 
 						 
@@ -345,7 +323,6 @@ class phpapps_designer_custom_elements_form extends phpapps_display_abs{
 						 
 										"APP_ID_sel" => $this->APP_ID_sel->get_select_str(),
 			 
-						 
 						 
 										"TEMPLATE_ID_sel" => $this->TEMPLATE_ID_sel->get_select_str(),
 			 

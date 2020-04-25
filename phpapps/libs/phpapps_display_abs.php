@@ -36,6 +36,7 @@ abstract class phpapps_display_abs extends  application_layout {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         $this->globals->sm->assign(array("display_obj"=>$this));
+        
         return $this;
     }
     
@@ -43,6 +44,7 @@ abstract class phpapps_display_abs extends  application_layout {
         //$this->loadDisplayObjectElements();
         //echo "<br>AICI DISP ABS" . $this->tpl;
         //$this->
+        
     }
     
     public function displayTpl() {
@@ -55,6 +57,7 @@ abstract class phpapps_display_abs extends  application_layout {
     }
        
     function loadDisplayObjectElements(){
+       // echo "AICI:<h1>Type:" . $this->display_objects_type_id ."| ID:" . $this->display_objects_id ."</h1>";
         $this->display_object_display_elements_loader = new display_elements_loader($this->display_objects_type_id,$this->display_objects_id);
     }
     

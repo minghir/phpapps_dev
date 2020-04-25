@@ -44,7 +44,7 @@ class display_elements_loader {
          $sql = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
-         //echo $sql->prnt();
+        // echo $sql->prnt() ."<br>";
         $this->globals->con->query($sql,"display_elements_sql");
         
         while($res = $this->globals->con->fetch_object("display_elements_sql")){
@@ -59,7 +59,7 @@ class display_elements_loader {
                 case '3'://LAYOUT_VARIABLE
                     $this->display_elements['layout_variables'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadLayoutVariable($res->ELEMENT_ID);
                 break;
-                case '4'://LAYOUT_VARIABLE
+                case '4'://GRIDS
                     $this->display_elements['grids'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadGrid($res->ELEMENT_ID);
                 break;
             }
@@ -98,6 +98,7 @@ class display_elements_loader {
          }
          
          if(is_array($this->display_elements['grids'])){
+             //echo "ASSIGN:" . $val->GRID_NAME;
              foreach($this->display_elements['grids'] as $key=>$val){
                  $this->globals->sm->assign($key,$val->get_grid_str());
              }

@@ -61,6 +61,24 @@
                                         $this->globals->con->next("layout_sql");
                                         $this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->globals->con->get_field("NAME","layout_sql") . '.tpl';
 				break;
+                                case "editTpl":
+                                        $sql = new DB_query("select TEMPLATE_NAME,APP_NAME,ELEMENT_TYPE from view_templates where ID = :layout_id",
+                                                array(":layout_id"=> $_GET["gfield_value"] ));
+                                   
+                                        if( $this->globals->con->query($sql,"layout_sql") != 1){
+                                            return;
+                                        }
+                                        $this->globals->con->next("layout_sql");
+                                         switch($this->globals->con->get_field("ELEMENT_TYPE","layout_sql")){
+                                                case 'MENU':
+                                                    $path_to = 'menus';
+                                                break;
+                                                case 'GRID':
+                                                    $path_to = 'grids';
+                                                break;
+                                        }
+                                        $this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $this->globals->con->get_field("TEMPLATE_NAME","layout_sql") . '.tpl';
+                                break;
 			}
 			$ce = new code_editor($this->file_path);
 			$ce->display();

@@ -3,12 +3,12 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_users_users_form extends phpapps_display_abs{
+class phpapps_designer_custom_elements_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "users";
-	public $template = "gen_tpl/phpapps_users_users_form.tpl";
+	public $form_table = "custom_elements";
+	public $template = "gen_tpl/phpapps_designer_custom_elements_form.tpl";
 	//get values
 	public $gact;
 	public $gfield;
@@ -21,21 +21,15 @@ class phpapps_users_users_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $USERNAME;
+	public $NAME;
         	            
-	public $PASSWORD;
-        	            
-	public $FIRSTNAME;
-        	            
-	public $LASTNAME;
-        	            
-	public $EMAIL;
-        	            
-	public $USER_TYPE;
+	public $APP_ID;
         	            
 	public $DESCRIPTION;
         	            
-	public $PROFILE_ID;
+	public $PHP_CLASS_NAME;
+        	            
+	public $TEMPLATE_ID;
         		
 		 
 		 
@@ -43,20 +37,15 @@ class phpapps_users_users_form extends phpapps_display_abs{
 		 
 		 
 		 
-			public $USER_TYPE_sel;
-	 
-		 
-		 
 			
 		 
 		 
+			public $APP_ID_sel;
+	 
 		 
 		 
-		 
-		 
-		 
-		 
-		 
+			public $TEMPLATE_ID_sel;
+	 
 	        
         
 
@@ -75,20 +64,15 @@ class phpapps_users_users_form extends phpapps_display_abs{
 					 
 					 
 					 
-								$this->USER_TYPE_sel = new DB_select("USER_TYPE","phpapps.list_user_types");
-                        			 
-					 
-					 
 				
 					 
 					 
+									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+                                			 
 					 
 					 
-					 
-					 
-					 
-					 
-					 
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
+                                			 
 		                
 	}
 		
@@ -108,14 +92,11 @@ class phpapps_users_users_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												USERNAME,
-												PASSWORD,
-												FIRSTNAME,
-												LASTNAME,
-												EMAIL,
-												USER_TYPE,
+												NAME,
+												APP_ID,
 												DESCRIPTION,
-												PROFILE_ID
+												PHP_CLASS_NAME,
+												TEMPLATE_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -123,14 +104,11 @@ class phpapps_users_users_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->USERNAME = stripslashes($this->globals->con->get_field("USERNAME"));
-                                			                                                                $this->PASSWORD = stripslashes($this->globals->con->get_field("PASSWORD"));
-                                			                                                                $this->FIRSTNAME = stripslashes($this->globals->con->get_field("FIRSTNAME"));
-                                			                                                                $this->LASTNAME = stripslashes($this->globals->con->get_field("LASTNAME"));
-                                			                                                                $this->EMAIL = stripslashes($this->globals->con->get_field("EMAIL"));
-                                			                                                                $this->USER_TYPE = stripslashes($this->globals->con->get_field("USER_TYPE"));
+                                			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                                			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-                                			                                                                $this->PROFILE_ID = stripslashes($this->globals->con->get_field("PROFILE_ID"));
+                                			                                                                $this->PHP_CLASS_NAME = stripslashes($this->globals->con->get_field("PHP_CLASS_NAME"));
+                                			                                                                $this->TEMPLATE_ID = stripslashes($this->globals->con->get_field("TEMPLATE_ID"));
                                 						
 	}
 	
@@ -145,41 +123,29 @@ class phpapps_users_users_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					USERNAME,
-																						PASSWORD,
-																						FIRSTNAME,
-																						LASTNAME,
-																						EMAIL,
-																						USER_TYPE,
+																					NAME,
+																						APP_ID,
 																						DESCRIPTION,
-																						PROFILE_ID
+																						PHP_CLASS_NAME,
+																						TEMPLATE_ID
 										 ) VALUES (
-																					:USERNAME,
-																						:PASSWORD,
-																						:FIRSTNAME,
-																						:LASTNAME,
-																						:EMAIL,
-																						:USER_TYPE,
+																					:NAME,
+																						:APP_ID,
 																						:DESCRIPTION,
-																						:PROFILE_ID
+																						:PHP_CLASS_NAME,
+																						:TEMPLATE_ID
 													)",
 			array(
 																		                                            
-                                            ":USERNAME" => $this->USERNAME,
+                                            ":NAME" => $this->NAME,
                                         														                                            
-                                            ":PASSWORD" => $this->PASSWORD,
-                                        														                                            
-                                            ":FIRSTNAME" => $this->FIRSTNAME,
-                                        														                                            
-                                            ":LASTNAME" => $this->LASTNAME,
-                                        														                                            
-                                            ":EMAIL" => $this->EMAIL,
-                                        														                                            
-                                            ":USER_TYPE" => $this->USER_TYPE,
+                                            ":APP_ID" => $this->APP_ID,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
                                         														                                            
-                                            ":PROFILE_ID" => $this->PROFILE_ID,
+                                            ":PHP_CLASS_NAME" => $this->PHP_CLASS_NAME,
+                                        														                                            
+                                            ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         												)
 			);
 
@@ -208,26 +174,20 @@ class phpapps_users_users_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												USERNAME = :USERNAME,
-												PASSWORD = :PASSWORD,
-												FIRSTNAME = :FIRSTNAME,
-												LASTNAME = :LASTNAME,
-												EMAIL = :EMAIL,
-												USER_TYPE = :USER_TYPE,
+												NAME = :NAME,
+												APP_ID = :APP_ID,
 												DESCRIPTION = :DESCRIPTION,
-												PROFILE_ID = :PROFILE_ID
+												PHP_CLASS_NAME = :PHP_CLASS_NAME,
+												TEMPLATE_ID = :TEMPLATE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":USERNAME" => $this->USERNAME,
-                                        				                                                                                    ":PASSWORD" => $this->PASSWORD,
-                                        				                                                                                    ":FIRSTNAME" => $this->FIRSTNAME,
-                                        				                                                                                    ":LASTNAME" => $this->LASTNAME,
-                                        				                                                                                    ":EMAIL" => $this->EMAIL,
-                                        				                                                                                    ":USER_TYPE" => $this->USER_TYPE,
+                                        				                                                                                    ":NAME" => $this->NAME,
+                                        				                                                                                    ":APP_ID" => $this->APP_ID,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
-                                        				                                                                                    ":PROFILE_ID" => $this->PROFILE_ID,
+                                        				                                                                                    ":PHP_CLASS_NAME" => $this->PHP_CLASS_NAME,
+                                        				                                                                                    ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -300,14 +260,11 @@ class phpapps_users_users_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->USERNAME  = htmlspecialchars(addslashes(trim($_POST["USERNAME"])));
-                                                		                                                    $this->PASSWORD  = htmlspecialchars(addslashes(trim($_POST["PASSWORD"])));
-                                                		                                                    $this->FIRSTNAME  = htmlspecialchars(addslashes(trim($_POST["FIRSTNAME"])));
-                                                		                                                    $this->LASTNAME  = htmlspecialchars(addslashes(trim($_POST["LASTNAME"])));
-                                                		                                                    $this->EMAIL  = htmlspecialchars(addslashes(trim($_POST["EMAIL"])));
-                                                		                                                    $this->USER_TYPE  = htmlspecialchars(addslashes(trim($_POST["USER_TYPE"])));
+                                                		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
+                                                		                                                    $this->APP_ID  = htmlspecialchars(addslashes(trim($_POST["APP_ID"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
-                                                		                                                    $this->PROFILE_ID  = htmlspecialchars(addslashes(trim($_POST["PROFILE_ID"])));
+                                                		                                                    $this->PHP_CLASS_NAME  = htmlspecialchars(addslashes(trim($_POST["PHP_CLASS_NAME"])));
+                                                		                                                    $this->TEMPLATE_ID  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_ID"])));
                                                 		        }
 	
         function beforePostActions(){
@@ -333,11 +290,14 @@ class phpapps_users_users_form extends phpapps_display_abs{
         }
 	
 	function check_errors(){
-				if($this->USERNAME == "") {
-			$this->errors[] = "Campul USERNAME este obligatoriu!";
+				if($this->NAME == "") {
+			$this->errors[] = "Campul NAME este obligatoriu!";
 		}
-				if($this->PASSWORD == "") {
-			$this->errors[] = "Campul PASSWORD este obligatoriu!";
+				if($this->APP_ID == "") {
+			$this->errors[] = "Campul APP_ID este obligatoriu!";
+		}
+				if($this->PHP_CLASS_NAME == "") {
+			$this->errors[] = "Campul PHP_CLASS_NAME este obligatoriu!";
 		}
 			}
 	
@@ -348,22 +308,21 @@ class phpapps_users_users_form extends phpapps_display_abs{
 					 
 					 
 					 
-								//$this->USER_TYPE_sel = new DB_select("USER_TYPE",".phpapps.list_user_types");
-			$this->USER_TYPE_sel->selected_val = $this->USER_TYPE;
-			$this->USER_TYPE_sel->setup_select_options();
-			 
-					 
-					 
 				
 					 
 					 
+									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
+				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
+				$this->APP_ID_sel->selected_val = $this->APP_ID;
+				$this->APP_ID_sel->setup_select_options();
+			 
 					 
 					 
-					 
-					 
-					 
-					 
-					 
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
+				$this->TEMPLATE_ID_sel->setup_select_options();
+			 
 			
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
         }
@@ -371,33 +330,25 @@ class phpapps_users_users_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->globals->sm->assign(array(
 							"ID" => $this->ID,
-							"USERNAME" => $this->USERNAME,
-							"PASSWORD" => $this->PASSWORD,
-							"FIRSTNAME" => $this->FIRSTNAME,
-							"LASTNAME" => $this->LASTNAME,
-							"EMAIL" => $this->EMAIL,
-							"USER_TYPE" => $this->USER_TYPE,
+							"NAME" => $this->NAME,
+							"APP_ID" => $this->APP_ID,
 							"DESCRIPTION" => $this->DESCRIPTION,
-							"PROFILE_ID" => $this->PROFILE_ID,
+							"PHP_CLASS_NAME" => $this->PHP_CLASS_NAME,
+							"TEMPLATE_ID" => $this->TEMPLATE_ID,
 									 
 						 
 						 
 						 
 						 
 						 
-										"USER_TYPE_sel" => $this->USER_TYPE_sel->get_select_str(),
+									 
+						 
+										"APP_ID_sel" => $this->APP_ID_sel->get_select_str(),
 			 
 						 
 						 
-									 
-						 
-						 
-						 
-						 
-						 
-						 
-						 
-						 
+										"TEMPLATE_ID_sel" => $this->TEMPLATE_ID_sel->get_select_str(),
+			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,

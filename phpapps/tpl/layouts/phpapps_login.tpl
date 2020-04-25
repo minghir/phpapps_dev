@@ -1,52 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}{$THEME_CSS}" /> 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<link rel="shortcut icon" type="image/png" sizes="32x32" href="{$smarty.const.WEB_BASE_DIR}phpapps/imgs/database-black-icon.png">
+  <head>
+	  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{$smarty.const.BOOTSTRAP_PATH}" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
     
-<title>PHPApps</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-main_content {
-  float: left;
-  padding: 0px;
-  width: 100%;
-  background-color: #f1f1f1;
- /* height: 100%; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  vertical_nav, main_content {
-    width: 100%;
-    height: auto;
-  }
-}
-</style>
-</head>
-<body>
-  <main_content style="overflow:auto; width: 100%;">
-       {block name=content}<h2>Cities</h2>{/block}
-  </article>
-
-
-</body>
-  </html>
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<title>{block name=title}WABCO Login{/block}</title>
+    </head>
+    <body bgcolor="#000000">
+        {block name=content}fifi{/block}
+    </body> 
+</html>

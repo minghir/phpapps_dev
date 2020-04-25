@@ -32,7 +32,7 @@ class login extends phpapps_display_abs{
                    header("Location:". WEB_APP_DIR . $res["SCRIPT_NAME"].".php");
 
                }else{
-                       $this->globals->sm->assign("ERROR","USER si/sau PAROLA gresite!!!");
+                       $this->globals->sm->assign("ERROR","Wrong USER or/and PASSWORD !!!");
                }
            }
        }else{

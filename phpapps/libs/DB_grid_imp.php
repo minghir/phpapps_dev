@@ -60,7 +60,6 @@ class DB_grid_imp{// extends phpapps_display_abs{
                     EDIT_FORM_ID,
                     ROWS_ON_PAGE,
                     ELEMENT_TEMPLATE_ID,
-                    EDIT_FORM_RUN_PATH,
                     EDIT_FORM_FILE_NAME,
                     TABLE_NAME 
         FROM phpapps.view_grids WHERE ID = :grid_id", array(':grid_id'=>$this->ID));
@@ -85,30 +84,34 @@ class DB_grid_imp{// extends phpapps_display_abs{
                     $this->EDIT_FORM_RUN_PATH = $res_obj->EDIT_FORM_RUN_PATH;
                     $this->EDIT_FORM_FILE_NAME = $res_obj->EDIT_FORM_FILE_NAME;
                     $this->TABLE_NAME = $res_obj->TABLE_NAME;
-                    
              $this->grid_obj = new DB_grid($this->globals->con, $this->GRID_TYPE, $this->TABLE_NAME ,$this->GRID_NAME);
              $this->grid_obj->grid_title = $this->GRID_TITLE;
-             $this->grid_obj->editable = $this->EDITABLE;
-             $this->grid_obj->filterable = $this->FILTERABLE;
-             $this->grid_obj->paginable = $this->PAGINABLE;
-             $this->grid_obj->exportable = $this->EXPORTABLE;
-             $this->grid_obj->edit_form = $this->EDIT_FORM_FILE_NAME;
+             
+             $this->grid_obj->editable = boolval($this->EDITABLE);
+             $this->grid_obj->filterable = boolval($this->FILTERABLE);
+             $this->grid_obj->paginable = boolval($this->PAGINABLE);
+             $this->grid_obj->exportable = boolval($this->EXPORTABLE);
+             $this->grid_obj->edit_form = $this->EDIT_FORM_FILE_NAME . "_imp.php";
              $this->grid_obj->rows_on_pg = $this->ROWS_ON_PAGE; 
              
              $sql = new DB_query("SELECT COLUMN_NAME, ALT_COLUMN_TEXT, LABEL, ACTION FROM phpapps.view_grid_columns WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
              if( $this->globals->con->query($sql) > 0){
                  $tmp_cols = array();
                  $tmp_labels = array();
+                 $tmp_cell_act = array();
                 while($tmp_obj = $this->globals->con->fetch_object()){
                     //echo $sql->prnt();
                     $this->GRID_COLS[$tmp_obj->LABEL] = $tmp_obj->ALT_COLUMN_TEXT != '' ? $tmp_obj->ALT_COLUMN_TEXT : $tmp_obj->COLUMN_NAME;
                     $tmp_cols[] = stripslashes($tmp_obj->ALT_COLUMN_TEXT != '' ? $tmp_obj->ALT_COLUMN_TEXT : $tmp_obj->COLUMN_NAME);
                     $tmp_labels[] = stripslashes($tmp_obj->LABEL);
+                    $tmp_cell_act[] = stripslashes($tmp_obj->ACTION);
                 }
                 $this->grid_obj->cols = $tmp_cols;
                 $this->grid_obj->labels = $tmp_labels;
+                $this->grid_obj->cell_actions = $tmp_cell_act;
                 //print_r($this->grid_obj->cols);
              }
+             //print_r($this->grid_obj->cell_actions);
         }
         
         //print_r($this);

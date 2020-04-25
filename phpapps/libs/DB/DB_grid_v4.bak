@@ -38,7 +38,7 @@ class DB_grid {
     var $filter_rle = array();
     
     var $row_actions =  array();
-    var $cell_actions =  array();
+    //var $cell_actions =  array();
     
     var $grid_actions =  array();
     var $where_rules = array(); // clauze where 
@@ -244,9 +244,7 @@ echo"</h1><br>----------------<br>";
                         //while($res=$this->con->fetch_array($this->db_grid_name)){
 				//print_r($res);
 			//	$vals_key_fields[] = $res;
-                            //$values[] = $res;
-                            $values[] = $this->add_cell_acction($res);
-                            //$this->cell_actions[] = 
+                            $values[] = $res;
                             
                             foreach($this->fields as $key=>$fld){
                                 $values_fields_tmp[$fld] = $res[$key];
@@ -558,24 +556,6 @@ echo"</h1><br>----------------<br>";
 		function add_grid_acction(HrefActions $act){
 			$this->grid_actions[] = $act;
 		}
-                
-                function add_cell_acction($res){
-                    if(is_array($this->cell_actions)){
-                        foreach($this->cell_actions as $key=>$val){
-                            if($val != ''){
-                                $cell_action = new HrefActions();
-				$cell_action->act_script = $val;
-				$cell_action->label = $res[$key];
-				$cell_action->popup = true;
-				//$cell_action->confirm_msg = "Sigur stergeti inregistrarea?";
-				//$cell_action->action = "deleteRec";
-				$cell_action->fields = array("ID");
-                                $res[$key] = $cell_action->getFieldHref($res, array("ID"));
-                            }
-                        }
-                    }
-                    return $res;
-                }
                 
                 function prnt(){
                     return $this->query->prnt();

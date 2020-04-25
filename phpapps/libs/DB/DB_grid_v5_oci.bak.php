@@ -1,16 +1,14 @@
 <?php
 require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 
-class DB_grid {
+class DB_grid_oci {
     
     var $grid_types = array("table","query");
     var $grid_type;
     var $grid_title;
     var $db_grid_name;
-    
     var $init_query;
     var $query;
-
 
     var $table;
     var $error;
@@ -31,15 +29,12 @@ class DB_grid {
     var $id;
     var $cols = array("*");
     var $labels = array();
-    var $get_vars = array("pg"=>"","gact"=>"","current_order_field"=>"","current_order_rule"=>"");
+    var $get_vars = array();
     var $fields = array();
     var $filter_fld = array();
     var $filter_val = array();
     var $filter_rle = array();
-    
     var $row_actions =  array();
-    var $cell_actions =  array();
-    
     var $grid_actions =  array();
     var $where_rules = array(); // clauze where 
     var $where_params = array(); // parametri din where
@@ -52,7 +47,7 @@ class DB_grid {
 
     var $num_rows = 0;
 	
-    public $template = 'db_grid4.tpl';
+    public $template = 'db_grid3.tpl';
 
     function __construct($conn, $g_type, $str_sql, $grid_name = ""){
 	  
@@ -73,15 +68,9 @@ class DB_grid {
                break;
                case "query":
                     $this->grid_type = $g_type;
-                    
-                    //$this->query = new DB_query($str_sql);
-                    //$this->init_query = new DB_query($str_sql);
-                   
-                   $this->query = $str_sql;
-                   $this->init_query = $str_sql;
-                    
-                    $this->db_grid_name = $grid_name == "" ? $str_sql : $grid_name;
-                    $this->grid_title = $this->grid_title == "" ? $this->db_grid_name : $this->grid_title;
+                    $this->query =  $str_sql;
+                    $this->init_query = $str_sql;
+                    $this->db_grid_name = $grid_name == "" ? "str_sql" : $grid_name;
                break;
                default:
                      $this->error = "WRONG grid type!";
@@ -99,19 +88,18 @@ class DB_grid {
 			$filter_where_params = $this->where_params; 
 			$this->cols[] = "ID";
 			$select_cols = implode(", ",$this->cols);
-                        if( is_array($this->filter_fld) ){
-                            for ($i = 0; $i < count($this->filter_fld); $i++){
-                                    if($this->filter_val[$i] == "") {
-                                            continue;
-                                    }
-    //				$filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." '".$this->filter_val[$i]."' ";
+	
+			for ($i = 0; $i < count($this->filter_fld); $i++){
+				if($this->filter_val[$i] == "") {
+					continue;
+				}
+//				$filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." '".$this->filter_val[$i]."' ";
 
 
-                                    $filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." :".$this->filter_fld[$i]." "; 
-                                    $filter_where_params[":".$this->filter_fld[$i]] = $this->filter_val[$i];
-                                    //'".$this->filter_val[$i]."' ";
-                            }
-                        }
+				$filter_where_rls[] = " ".$this->filter_fld[$i]." ".$this->filter_rle[$i]." :".$this->filter_fld[$i]." "; 
+				$filter_where_params[":".$this->filter_fld[$i]] = $this->filter_val[$i];
+				//'".$this->filter_val[$i]."' ";
+			}
 			$this->where_params = $filter_where_params;
 /*			
 echo "<br>--------------<br><h1>";
@@ -120,13 +108,11 @@ echo"<br>";
 print_r($filter_where_params);
 echo"</h1><br>----------------<br>";	
 */
-			if( is_array($filter_where_rls) ){
-                            if(count($filter_where_rls) > 0){
-                                    $this->where_rule = " WHERE " . implode(" AND ", $filter_where_rls);
-                            }else{
-                                    $this->where_rule = "";
-                            }
-                        }
+			if(count($filter_where_rls) > 0){
+				$this->where_rule = " WHERE " . implode(" AND ", $filter_where_rls);
+			}else{
+				$this->where_rule = "";
+			}
 //echo "<h1>".$this->where_rule."</h1>			";
 			if($this->current_order_field != ""){
 				$this->order_rule  = " ORDER BY " . $this->current_order_field . " " . $this->current_order_rule;
@@ -224,7 +210,7 @@ echo"</h1><br>----------------<br>";
 //echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
 //print_r($this->query);
 			//$sql = new DB_query($this->query);
-			$this->print_query = $this->query;
+			echo "AICI<br>" . $this->query->prnt();
 			$nr_res = $this->con->query($this->query, $this->db_grid_name);
 			
                         if($this->grid_type == "query"){
@@ -244,9 +230,7 @@ echo"</h1><br>----------------<br>";
                         //while($res=$this->con->fetch_array($this->db_grid_name)){
 				//print_r($res);
 			//	$vals_key_fields[] = $res;
-                            //$values[] = $res;
-                            $values[] = $this->add_cell_acction($res);
-                            //$this->cell_actions[] = 
+                            $values[] = $res;
                             
                             foreach($this->fields as $key=>$fld){
                                 $values_fields_tmp[$fld] = $res[$key];
@@ -387,7 +371,6 @@ echo"</h1><br>----------------<br>";
 		}
 
         function make_get_string(){
-                          $get_string = "";  
 			  if(!is_array($_GET) ) return "";
 			  foreach($_GET as $key=>$val){
 				if($key == $this->db_grid_name) continue;
@@ -447,50 +430,37 @@ echo"</h1><br>----------------<br>";
 //$this->con->print_log();
 			$this->last_page = ($this->num_rows / $this->rows_on_pg);
 			$this->last_page = $this->last_page <= 0 ? 0 : ceil($this->last_page);
-			$this->get_pg =  $this->get_vars["pg"] == "" ? 1 : $this->get_vars["pg"];
+			$this->get_pg = $this->get_vars["pg"] == "" ? 1 : $this->get_vars["pg"];
 			$this->get_pg =  $this->get_pg <= 0 ? 1 : $this->get_pg;
 			$this->get_pg =  $this->get_pg > $this->last_page  && $this->get_pg != 1 ? $this->last_page : $this->get_pg;
 		}
 		
 		function set_session_vars(){
-                        $_get_pg = $this->db_grid_name . "_get_pg";
-                        $_filter_fld = $this->db_grid_name . "_filter_fld";
-                        $_filter_val = $this->db_grid_name . "_filter_val";
-                        $_filter_rle = $this->db_grid_name . "_filter_rle";
-                        $_mode_search = $this->db_grid_name . "_mode_search";
-                        $_current_order_field = $this->db_grid_name . "_current_order_field";
-                        $_current_order_rule = $this->db_grid_name . "_current_order_field";
-                        $_current_where_rules = $this->db_grid_name . "_current_where_rules";
-                        
-                        
-			$_SESSION[$_get_pg] = $this->get_pg;
-			$_SESSION[$_filter_fld] = $this->filter_fld;
-                        $_SESSION[$_filter_val] = $this->filter_val;
-			$_SESSION[$_filter_rle] = $this->filter_rle;
-			$_SESSION[$_mode_search] = $this->mode_search;
-			$_SESSION[$_current_order_field] = $this->current_order_field;
-			$_SESSION[$_current_order_rule] = $this->current_order_rule;
-			$_SESSION[$_current_where_rules] = $this->where_rules;
+			$_SESSION[$this->db_grid_name . "_" . get_pg] = $this->get_pg;
+			$_SESSION[$this->db_grid_name . "_" . filter_fld] = $this->filter_fld;
+			$_SESSION[$this->db_grid_name . "_" . filter_val] = $this->filter_val;
+			$_SESSION[$this->db_grid_name . "_" . filter_rle] = $this->filter_rle;
+			$_SESSION[$this->db_grid_name . "_" . mode_search] = $this->mode_search;
+			//$_SESSION[$this->db_grid_name . "_" . order_fld] = $this->order_fld;
+			//$_SESSION[$this->db_grid_name . "_" . order_rle] = $this->order_rle;
+			$_SESSION[$this->db_grid_name . "_" . current_order_field] = $this->current_order_field;
+			$_SESSION[$this->db_grid_name . "_" . current_order_rule] = $this->current_order_rule;
+			$_SESSION[$this->db_grid_name . "_" . current_where_rules] = $this->where_rules;
+			//print_r($_SESSION);
 		}
 		
 		function get_session_vars(){
-                        $_get_pg = $this->db_grid_name . "_get_pg";
-                        $_filter_fld = $this->db_grid_name . "_filter_fld";
-                        $_filter_val = $this->db_grid_name . "_filter_val";
-                        $_filter_rle = $this->db_grid_name . "_filter_rle";
-                        $_mode_search = $this->db_grid_name . "_mode_search";
-                        $_current_order_field = $this->db_grid_name . "_current_order_field";
-                        $_current_order_rule = $this->db_grid_name . "_current_order_field";
-                        $_current_where_rules = $this->db_grid_name . "_current_where_rules";
-                        
-			$this->get_pg = $_SESSION[$_get_pg];
-			$this->filter_fld = $_SESSION[$_filter_fld];
-                        $this->filter_val = $_SESSION[$_filter_val];
-			$this->filter_rle = $_SESSION[$_filter_rle];
-			$this->mode_search = $_SESSION[$_mode_search];
-			$this->current_order_field = $_SESSION[$_current_order_field];
-			$this->current_order_rule = $_SESSION[$_current_order_rule];
-			$this->where_rules = $_SESSION[$_current_where_rules];
+			
+			$this->get_pg = $_SESSION[$this->db_grid_name . "_" . get_pg];
+			$this->filter_fld = $_SESSION[$this->db_grid_name . "_" . filter_fld];
+			$this->filter_val = $_SESSION[$this->db_grid_name . "_" . filter_val];
+			$this->filter_rle = $_SESSION[$this->db_grid_name . "_" . filter_rle];
+			$this->mode_search = $_SESSION[$this->db_grid_name . "_" . mode_search];
+			//$this->order_fld = $_SESSION[$this->db_grid_name . "_" . order_fld];
+			//$this->order_rle = $_SESSION[$this->db_grid_name . "_" . order_rle];
+			$this->current_order_field = $_SESSION[$this->db_grid_name . "_" . current_order_field];
+			$this->current_order_rule = $_SESSION[$this->db_grid_name . "_" . current_order_rule];
+			$this->where_rules = $_SESSION[$this->db_grid_name . "_" . current_where_rules];
 		}
 
 		/*		
@@ -558,28 +528,6 @@ echo"</h1><br>----------------<br>";
 		function add_grid_acction(HrefActions $act){
 			$this->grid_actions[] = $act;
 		}
-                
-                function add_cell_acction($res){
-                    if(is_array($this->cell_actions)){
-                        foreach($this->cell_actions as $key=>$val){
-                            if($val != ''){
-                                $cell_action = new HrefActions();
-				$cell_action->act_script = $val;
-				$cell_action->label = $res[$key];
-				$cell_action->popup = true;
-				//$cell_action->confirm_msg = "Sigur stergeti inregistrarea?";
-				//$cell_action->action = "deleteRec";
-				$cell_action->fields = array("ID");
-                                $res[$key] = $cell_action->getFieldHref($res, array("ID"));
-                            }
-                        }
-                    }
-                    return $res;
-                }
-                
-                function prnt(){
-                    return $this->query->prnt();
-                }
 		
       };
 ?>

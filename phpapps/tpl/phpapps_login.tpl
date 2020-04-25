@@ -1,39 +1,25 @@
 {extends file=$display_obj->layout_file}
 {block name=content}
-    <style>
-    td,th {
-
-    background-color: #12363b;
-    text-align: left;
-/*	padding: 0.125em 0.5em 0.25em 0.5em; */
-    line-height: 0.5;
-    border: 0px solid gray;
-    background-color: #12363b;
-/*    margin: 12px 12px 12px 12px; */
-    padding: 10px 5px 10px 5px;
-}
-   </style>
-    <div class="test_div">    
-    <p align="center"><font  style="color: red;">&nbsp;{$ERROR}</font></p><br><br>
-    <table align="center" cellspacing="0" border="0">
-    <form name="login_form" method="POST">
-    <tr>
-        <td colspan=2><font size=18 style="color: #ffffff;font-family: 'Helvetica'"><b>PHPApps</b></font></td>
-    </tr>
-    <tr>
-        <td colspan=2><font style="color: #fffffff;">&nbsp;Email:</font><br><br>
-	<input type="text" name="user" value="{$USER}" onclick="this.value='';this.form.pass.value=''"></td>
-    </tr>
-    <tr>
-        <td class="text_alb"><font style="color: #ffffff;">&nbsp;Password:</font><br><br>
-            <input type="password" name="pass" value="{$pass}" onclick="this.value='';"></td>
-    </tr>
-    <tr>
-        <td ><button type="submit" name="Login" value="Login" class="btn btn-primary">Login</button><br><br><br>
-            <a href="signup.php"><font style="color: #ffffff;">Sign up</font></a></td>
-    </tr>
-    </form>
-</table>
-
+<br><br><br><br><br><br>
+<div class="d-flex justify-content-around">        
+<div >
+<h1><b>WABCO</b></h1>
+<p class="text-secondary"><h6><b>W</b><small class="text-secondary">eb</small> <b>A</b><small class="text-secondary">pplications</small> <b>B</b><small class="text-secondary">uilder</small> <b>C</b><small class="text-secondary">loud</small> <b>O</b><small class="text-secondary">riented</small></h6></p>
+  <form class="form-inline" action="phpapps_login.php" method="POST">
+    <label for="email2" class="mb-2 mr-sm-2">Email:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="email2" placeholder="Enter email" name="user" value="{$USER}">
+    <label for="pwd2" class="mb-2 mr-sm-2">Password:</label>
+    <input type="password" class="form-control mb-2 mr-sm-2" id="pwd2" placeholder="Enter password" name="pass">
+    <button type="submit" class="btn btn-primary mb-2">Login</button>
+  </form>
+  <p><a href>Sign-up</a></p>
+  <hr>
+  {if $ERROR != ''}
+   <div class="alert alert-danger">
+    <strong>Error!</strong> {$ERROR}
+  </div>
+  {/if}
 </div>
+</div>
+    
 {/block}

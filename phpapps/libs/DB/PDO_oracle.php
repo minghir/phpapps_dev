@@ -30,6 +30,7 @@ class oracle
 		} catch (PDOException $err) {
 			$this->Log->do_log("Connection ERROR: " . $err->getMessage());
 			$this->Log->print_log();
+                        echo "<h1>" . $err->getMessage() ."</h1><br>";
 		}
 /*
 		if (!$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"])) {

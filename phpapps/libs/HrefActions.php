@@ -20,7 +20,22 @@ class HrefActions{
 	var $popup = false;
 	
 	function getFieldHref($res,$flds){
-		$href = strpos($this->act_script,'?') === false ? $this->act_script ."?gact=". $this->action : $this->act_script ."&gact=". $this->action;
+            
+                if( strpos($this->act_script,'?') === false ){
+                    if($this->action == ''){
+                        $href = $this->act_script ."?";
+                    }else{
+                        $href = $this->act_script ."?gact=".$this->action;
+                    }
+                }else{
+                    if($this->action == ''){
+                        $href = $this->act_script;
+                    }else{
+                        $href = $this->act_script ."&gact=".$this->action;
+                    }
+                }
+                
+                
 		$flipped = array_flip($flds);
 		for($i = 0; $i < count($this->fields); $i++){
 			$gfield = $this->fields[$i];

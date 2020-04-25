@@ -140,11 +140,11 @@ class Globals_obj{
 		date_default_timezone_set('UTC');
 		//session_start();
 		$this->con = new DB(DB_LIBS_DIR . "DB_cfg.php");
-		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
+		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=false);
 		$this->con->clear_log();
                 
 		if(!$this->con->connect("mysql")){
-                    echo "CHECK DB CONN!";
+                    echo "CHECK DB CONNECTION!";
                     echo $this->con->get_error();
                     exit();
                 }
@@ -156,18 +156,29 @@ class Globals_obj{
                     echo $this->con->get_error();
                     exit();
                 }
-                 
-                
+
                 $sql = new DB_query('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
                 $this->con->query($sql);
 		
-		
+		/*
 		$this->con2 = new DB(DB_LIBS_DIR . "DB_cfg.php");
-		$this->con2->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=true);
+		$this->con2->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=false);
 		$this->con2->clear_log();
-		$this->con2->connect("oracle");
+		if(!$this->con2->connect("oracle")){
+                    echo "CHECK DB CONNECTION!";
+                    echo $this->con->get_error();
+                    exit();
+                }
+                $this->con2->query(new DB_query("SELECT 7 + 3 AS TEST FROM dual"));
+                $this->con2->next();
+                if( $this->con2->get_field("TEST") != 10 ){
+                    echo "SQL TEST NOT ok<br>";
+                    echo $this->con2->get_error();
+                    exit();
+                }
+                */
+                 
 	//print_r($this->con2);
-		
 	//print_r($this->con);	
 		$this->sm = new Smarty;
 		//$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;

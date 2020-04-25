@@ -8,8 +8,8 @@
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab3'>Tables</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab4'>Queries</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab5'>Views</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab6'>Forms</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab7'>Scripts</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab6'><small>Forms</small></a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab7'><small>Scripts</small></a></li>
     </ul>
 	
         <div class="tab-content container-fluid">    

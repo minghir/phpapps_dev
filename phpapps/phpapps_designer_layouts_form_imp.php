@@ -4,6 +4,7 @@ include ("gen_php/phpapps_designer_layouts_form.php");
 	class phpapps_designer_layouts_form_impl  extends phpapps_designer_layouts_form{
             
                 private $OLD_LAYOUT_NAME;
+                private $APP_NAME;
             
 		function __construct(){
 			parent::__construct();
@@ -77,15 +78,16 @@ include ("gen_php/phpapps_designer_layouts_form.php");
 		}
 
 		function beforeDeleteRec(){
-			if(count($this->errors) == 0){
-                                $layout_name = _tbl("view_layouts","NAME",$this->gfield_value);
-				$app_name = _tbl("view_layouts","APP_NAME",$this->gfield_value);
-                                $file_del = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $layout_name . '.tpl';
-                                unlink($file_del);
-			}
+			$this->ID = $this->gfield_value;
+                        $this->NAME  = _tbl("view_layouts","NAME",$this->ID);
+			$this->APP_NAME = _tbl("view_layouts","APP_NAME",$this->ID);
 		}
 		
 		function afterDeleteRec(){
+                    if(count($this->errors) == 0){
+                        $file_del = GLOBALS_DIR . $this->APP_NAME . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
+                        unlink($file_del);
+        	}
 			
 		//	header("Location:win_close.html");
 		}

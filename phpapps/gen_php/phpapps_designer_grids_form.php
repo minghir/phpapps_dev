@@ -126,7 +126,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 									$this->EDIT_FORM_ID_sel = new DB_select("EDIT_FORM_ID","phpapps.scripts");
                                 			 
 					 
-									$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID","phpapps.layout_elements_templates");
+									$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID","phpapps.templates");
                                 			 
 					 
 		                
@@ -470,8 +470,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 				$this->EDIT_FORM_ID_sel->setup_select_options();
 			 
 					 
-									//$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID",".phpapps.layout_elements_templates");
-				$this->ELEMENT_TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.layout_elements_templates ORDER BY TEMPLATE_NAME");
+									//$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID",".phpapps.templates");
+				$this->ELEMENT_TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
 				$this->ELEMENT_TEMPLATE_ID_sel->selected_val = $this->ELEMENT_TEMPLATE_ID;
 				$this->ELEMENT_TEMPLATE_ID_sel->setup_select_options();
 			 

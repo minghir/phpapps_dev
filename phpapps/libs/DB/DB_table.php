@@ -76,7 +76,7 @@ class DB_table{
         }
 }
 
-
+// returns $fld from $table_name where $search_fld = $serach_val
 function _tbl($table_name,$fld,$serach_val,$search_fld = "ID"){
     return (new DB_table($table_name))->getValueByField($fld,$search_fld,$serach_val);
 }

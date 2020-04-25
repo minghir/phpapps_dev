@@ -18,12 +18,19 @@ class phpapps_designer_module extends phpapps_display_abs{
 	var $APP_NAME;
 	var $APP_TITLE;
         var $MODULE_ID;
+        var $script_id;
     
     function __construct($module_id) {
         parent::__construct($module_id);
         $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "phpapps_designer_module.tpl";        
         $this->app_id = $app_id;
+        $this->script_id = 174;
+        $this->display_objects_type_id = '2';
+    	$this->display_objects_type = 'SCRIPT';
+    	$this->display_objects_id = $this->script_id;
+        
+        
         $this->setupDisplay();
         
         $this->MODULE_ID = $module_id;
@@ -88,7 +95,8 @@ class phpapps_designer_module extends phpapps_display_abs{
 		$themes_grid->filterable = false;
 		$themes_grid->exportable = false;
 		$themes_grid->rows_on_pg = 20;
-		$themes_grid->edit_form = "phpapps_designer_themes_form_imp.php?module_id=".$this->ID;
+		//$themes_grid->edit_form = "phpapps_designer_themes_form_imp.php?module_id=".$this->ID;
+                $themes_grid->edit_form = "phpapps_designer_themes_form_imp.php";
                 $this->globals->sm->assign("themes_grid",$themes_grid->get_grid_str());
 
                 
@@ -132,8 +140,8 @@ class phpapps_designer_module extends phpapps_display_abs{
                 
                 $this->globals->sm->assign("grids_grid",$grids_grid->get_grid_str());
                 
-               $templates_grid = new DB_grid_imp(2);
-               $this->globals->sm->assign("templates_grid",$templates_grid->get_grid_str());
+               //$templates_grid = new DB_grid_imp(2);
+               //$this->globals->sm->assign("templates_grid",$templates_grid->get_grid_str());
                 
                 $base_grds = new phpapps_modules_base_grids($this->ID);
                 $base_grds->baseGrids();

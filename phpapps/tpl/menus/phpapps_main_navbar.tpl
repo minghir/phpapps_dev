@@ -20,9 +20,11 @@
 {/function}
 
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-{* run the array through the function *}
-<a class="navbar-brand" href="phpapps_admin_applications.php">{$menu_obj->title}</a>
- <ul class="navbar-nav level{$level} ">
+<a class="navbar-brand" href="phpapps_admin_applications.php"><h1>{$menu_obj->title}</h1></a>
+<div class="collapse navbar-collapse" id="navbardrop">
+<ul class="navbar-nav mr-auto level{$level} ">
 {menu data=$menu_obj->menu_items}
- </ul>
+</ul>
+<a href="logout.php" class="nav-link my-2 my-sm-0" type="button"><small class="text-secondary">Logout</small></a>
+</div>
 </nav>

@@ -8,8 +8,12 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "grids";
-	public $template = "gen_tpl/phpapps_designer_grids_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_designer_grids_form.tpl";
+        
+        public $tpl = "phpapps_designer_grids_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
@@ -17,6 +21,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 	public $pact;
         
         public $query;
+        
+        public $smarty;
         
 	            
 	public $ID;
@@ -92,6 +98,11 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
                 
                 			 
 					 
@@ -476,12 +487,14 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 				$this->ELEMENT_TEMPLATE_ID_sel->setup_select_options();
 			 
 					 
-			
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+                
+                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
-		$this->globals->sm->assign(array(
+		$this->smarty->assign(array(
 							"ID" => $this->ID,
 							"GRID_NAME" => $this->GRID_NAME,
 							"GRID_TYPE" => $this->GRID_TYPE,
@@ -549,7 +562,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 }
 		$this->afterDisplay();
 	}
@@ -560,7 +574,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 	function get_html_str(){	
                 $this->setup_display();
                 $this->beforeDisplay();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
         

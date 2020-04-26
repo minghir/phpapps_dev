@@ -8,8 +8,12 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "scripts";
-	public $template = "gen_tpl/phpapps_admin_scripts_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_admin_scripts_form.tpl";
+        
+        public $tpl = "phpapps_admin_scripts_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
@@ -17,6 +21,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 	public $pact;
         
         public $query;
+        
+        public $smarty;
         
 	            
 	public $ID;
@@ -32,6 +38,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 	public $SCRIPT_TYPE_ID;
         	            
 	public $LAYOUT_ID;
+        	            
+	public $TEMPLATE_ID;
         		
 		 
 		 
@@ -42,6 +50,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 			public $SCRIPT_TYPE_ID_sel;
 	 
 		 
+		 
 			
 		 
 		 
@@ -50,6 +59,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 		 
 		 
 			public $LAYOUT_ID_sel;
+	 
+			public $TEMPLATE_ID_sel;
 	 
 	        
         
@@ -63,6 +74,11 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
+                
                 			 
 					 
 					 
@@ -72,6 +88,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 								$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID","phpapps.list_script_types");
                         			 
 					 
+					 
 				
 					 
 					 
@@ -80,6 +97,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 					 
 					 
 									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+                                			 
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
                                 			 
 		                
 	}
@@ -105,7 +124,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 												DESCRIPTION,
 												WEB_TYPE_ID,
 												SCRIPT_TYPE_ID,
-												LAYOUT_ID
+												LAYOUT_ID,
+												TEMPLATE_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -119,6 +139,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
                                 			                                                                $this->WEB_TYPE_ID = stripslashes($this->globals->con->get_field("WEB_TYPE_ID"));
                                 			                                                                $this->SCRIPT_TYPE_ID = stripslashes($this->globals->con->get_field("SCRIPT_TYPE_ID"));
                                 			                                                                $this->LAYOUT_ID = stripslashes($this->globals->con->get_field("LAYOUT_ID"));
+                                			                                                                $this->TEMPLATE_ID = stripslashes($this->globals->con->get_field("TEMPLATE_ID"));
                                 						
 	}
 	
@@ -138,14 +159,16 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 																						DESCRIPTION,
 																						WEB_TYPE_ID,
 																						SCRIPT_TYPE_ID,
-																						LAYOUT_ID
+																						LAYOUT_ID,
+																						TEMPLATE_ID
 										 ) VALUES (
 																					:MODULE_ID,
 																						:SCRIPT_NAME,
 																						:DESCRIPTION,
 																						:WEB_TYPE_ID,
 																						:SCRIPT_TYPE_ID,
-																						:LAYOUT_ID
+																						:LAYOUT_ID,
+																						:TEMPLATE_ID
 													)",
 			array(
 																		                                            
@@ -160,6 +183,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
                                             ":SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
                                         														                                            
                                             ":LAYOUT_ID" => $this->LAYOUT_ID,
+                                        														                                            
+                                            ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         												)
 			);
 
@@ -193,7 +218,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 												DESCRIPTION = :DESCRIPTION,
 												WEB_TYPE_ID = :WEB_TYPE_ID,
 												SCRIPT_TYPE_ID = :SCRIPT_TYPE_ID,
-												LAYOUT_ID = :LAYOUT_ID
+												LAYOUT_ID = :LAYOUT_ID,
+												TEMPLATE_ID = :TEMPLATE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -204,6 +230,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
                                         				                                                                                    ":WEB_TYPE_ID" => $this->WEB_TYPE_ID,
                                         				                                                                                    ":SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
                                         				                                                                                    ":LAYOUT_ID" => $this->LAYOUT_ID,
+                                        				                                                                                    ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -282,9 +309,14 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
                                                 		                                                    $this->WEB_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["WEB_TYPE_ID"])));
                                                 		                                                    $this->SCRIPT_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_TYPE_ID"])));
                                                 		                                                    $this->LAYOUT_ID  = htmlspecialchars(addslashes(trim($_POST["LAYOUT_ID"])));
+                                                		                                                    $this->TEMPLATE_ID  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_ID"])));
                                                 		        }
-		
+	
+        function beforePostActions(){
+        }
+        
         function takePostActions(){
+                $this->beforePostActions();
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -296,8 +328,11 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 				$this->deleteRec();
 			break;
 		}
-		
+                $this->afterPostActions();
 	}
+        
+        function afterPostActions(){
+        }
 	
 	function check_errors(){
 				if($this->MODULE_ID == "") {
@@ -325,6 +360,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 			$this->SCRIPT_TYPE_ID_sel->setup_select_options();
 			 
 					 
+					 
 				
 					 
 					 
@@ -337,12 +373,19 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
 				$this->LAYOUT_ID_sel->setup_select_options();
 			 
-			
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
+				$this->TEMPLATE_ID_sel->setup_select_options();
+			 
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+                
+                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
-		$this->globals->sm->assign(array(
+		$this->smarty->assign(array(
 							"ID" => $this->ID,
 							"MODULE_ID" => $this->MODULE_ID,
 							"SCRIPT_NAME" => $this->SCRIPT_NAME,
@@ -350,6 +393,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 							"WEB_TYPE_ID" => $this->WEB_TYPE_ID,
 							"SCRIPT_TYPE_ID" => $this->SCRIPT_TYPE_ID,
 							"LAYOUT_ID" => $this->LAYOUT_ID,
+							"TEMPLATE_ID" => $this->TEMPLATE_ID,
 									 
 						 
 						 
@@ -359,6 +403,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 										"SCRIPT_TYPE_ID_sel" => $this->SCRIPT_TYPE_ID_sel->get_select_str(),
 			 
 						 
+						 
 									 
 						 
 						 
@@ -366,6 +411,8 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 						 
 						 
 										"LAYOUT_ID_sel" => $this->LAYOUT_ID_sel->get_select_str(),
+			 
+										"TEMPLATE_ID_sel" => $this->TEMPLATE_ID_sel->get_select_str(),
 			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
@@ -379,14 +426,14 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 	}
 	
 	function display(){
-        
                 $this->setup_display();
                 $this->beforeDisplay();
 		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 }
 		$this->afterDisplay();
 	}
@@ -397,7 +444,7 @@ class phpapps_admin_scripts_form extends phpapps_display_abs{
 	function get_html_str(){	
                 $this->setup_display();
                 $this->beforeDisplay();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
         

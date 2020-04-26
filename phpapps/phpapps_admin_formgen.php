@@ -551,6 +551,7 @@ REFERENCE_FIELD
 	function generateImpClass(){
 		$this->globals->sm->assign(array(
 			"form_name" => $this->form_name,
+                        "script_id" => $this->form_id,
 		));
 		$php_content = $this->globals->sm->fetch('php_class_form_template_imp.tpl');
 		$file_name = $this->form_name == "" ? "form_".$this->form_table."_imp.php" : $this->form_name."_imp.php";

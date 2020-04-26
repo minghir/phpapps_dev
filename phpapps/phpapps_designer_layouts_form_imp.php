@@ -1,16 +1,19 @@
 <?php
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_layouts_form.php");
+	
 	class phpapps_designer_layouts_form_impl  extends phpapps_designer_layouts_form{
-            
+            	var $script_id = 261;
                 private $OLD_LAYOUT_NAME;
                 private $APP_NAME;
                 public $ID;
+		  		public $display_objects_type_id = '2';
+                public $display_objects_type = 'SCRIPT';
             
 		function __construct(){
 			parent::__construct();
-			$this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps_form.tpl";
-			$this->template = "phpapps_designer_layouts_form_imp.tpl";
+			//$this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps_form.tpl";
+			$this->tpl = "phpapps_designer_layouts_form_imp.tpl";
 			
                         
                         $this->ID = 261;
@@ -38,6 +41,10 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                         $display_object_elements_grid->rows_on_pg = 20;
                         $display_object_elements_grid->edit_form = "phpapps_designer_display_object_elements_form_imp.php?obj_id=".$this->ID."&obj_type=1";
                         $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
+                        $this->loadElements(); // parent function  
+                        $app_name = _tbl("applications","APP_NAME",$this->APP_ID);
+                        $file_to_edit = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
+                        $this->display_elements_loader->display_elements['custom_elements']["LAYOUT_TEMPLATE_EDITOR"]->file_to_edit = $file_to_edit;
                         
 			$this->display();
 		}

@@ -7,26 +7,41 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                 public $app_id;
                 public $module_id;
                 public $old_script_name;
-                public $script_id;
+                public $script_id = 60;
 	
 		function __construct(){
                     parent::__construct();
 			global $GLOBALS_OBJ;
 			$this->globals = $GLOBALS_OBJ;
+			
+                    //$this->script_id = 60;
+                    $this->display_objects_type_id = '2';
+                    $this->display_objects_type = 'SCRIPT';
+                    $this->display_objects_id = $this->script_id;
+                        
+			
 			$this->MODULE_ID = $_GET["module_id"];
+			
+			
+			
+			
 			$sql = new DB_query("SELECT 
                                                 ID,
                                                 APP_ID,
 						APP_NAME
 						FROM phpapps.view_modules 
 						WHERE ID = :module_id", array(":module_id" => $this->MODULE_ID));
-                        echo $sql->prnt();
+                        //echo $sql->prnt();
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 			$this->app_name = $this->globals->con->get_field("APP_NAME");
                         $this->app_id = $this->globals->con->get_field("APP_ID");
                         $this->module_id = $this->globals->con->get_field("MODULE_ID");
-			$this->template = "phpapps_admin_scripts_form_imp.tpl";
+                       
+                        
+			$this->tpl = "phpapps_admin_scripts_form_imp.tpl";
+                        $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.tpl";
+                        
 			$this->init();
                         
                         $display_object_elements_grid = new DB_grid($this->globals->con, "table","phpapps.view_display_object_elements","display_object_elements_grid");
@@ -45,8 +60,10 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                         $display_object_elements_grid->rows_on_pg = 20;
                         $display_object_elements_grid->edit_form = "phpapps_designer_display_object_elements_form_imp.php?obj_id=".$this->ID."&obj_type=2";
                         $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
-                                
+                                    
+                        $this->loadElements(); // parent function
 			$this->display();
+                 
 		}
 		
 		function afterAddRec(){
@@ -103,6 +120,7 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                     $this->globals->con->query($sql);
                     $this->globals->con->next();
                     $this->old_script_name = $this->globals->con->get_field("SCRIPT_NAME");
+                    
                 }
                 
                 function afterSaveRec(){
@@ -140,16 +158,32 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 		
 		function beforeDeleteRec(){
                         $this->getRec();
-                        if( !( unlink($this->SCRIPT_NAME . ".php") && unlink("tpl" . DIR_SEP . $this->SCRIPT_NAME . ".tpl") ) ){
-                            $this->errors[] = "FILES UNLINK FAILD !!!!";
-                        }
-                        $this->errors[] = "FILES UNLINK FAILD !!!!";
-                       
 		}
                 
                 function afterDeleteRec() {
+                    
+                    $php_file_name = $this->SCRIPT_NAME . ".php";
+                    $php_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . $php_file_name;
+                    
+                    $tpl_file_name = $this->SCRIPT_NAME . ".tpl";
+                    $tpl_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $tpl_file_name;
+                    
+                    if( !( unlink($php_file_path) ) ){
+                        $this->errors[] = "FILES UNLINK FAILD !!!!";
+                    }
+                    
+                    if( !( unlink($tpl_file_path) ) ){
+                        $this->errors[] = "FILES UNLINK FAILD !!!!";
+                    }
+                    
                      echo $this->query->prnt();
                      print_r($this->errors);
+                }
+                
+                function beforeDisplay() {
+                        $this->TEMPLATE_ID_sel->set_empty_option_value(0);
+                        $this->TEMPLATE_ID_sel->setup_select_options();
+                   
                 }
 	}
 	$phpapps_admin_scripts_form_Impl = new phpapps_admin_scripts_form_impl();

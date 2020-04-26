@@ -31,5 +31,4 @@ $("#phpapps_designer_templates_form").submit(function(event){
 </script>
 -->
 {/literal} 
-
 {/block}

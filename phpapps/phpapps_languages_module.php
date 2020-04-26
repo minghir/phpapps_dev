@@ -7,7 +7,7 @@ class phpapps_languages_module extends phpapps_display_abs{
 
     private $app_id;
     private $module_id;
-    private $script_id;
+    //private $script_id;
         var $ID;
 	var $APP_ID;
 	var $MODULE_NAME;
@@ -18,13 +18,16 @@ class phpapps_languages_module extends phpapps_display_abs{
 	var $APP_NAME;
 	var $APP_TITLE;
 	var $BASE_DIR;
+        
+        var $script_id = 252;
+        
     function __construct($module_id) {
         parent::__construct();
         //$this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
-        $this->tpl = "phpapps_languages_module.tpl";        
+        $this->tpl = PHPAPPS_TPL_DIR . "phpapps_languages_module.tpl";        
         $this->app_id = 1;
         $this->module_id = 8;
-        $this->script_id = 252;
+        
         $this->app_id = $app_id;
         
         $this->globals->con->select_db("phpapps");
@@ -59,7 +62,7 @@ class phpapps_languages_module extends phpapps_display_abs{
                 $base_grds = new phpapps_modules_base_grids($this->ID);
                 $base_grds->baseGrids();
                 $this->globals->sm->assign("module",$this);
-                
+         $this->loadElements();       
         $this->displayTpl();
     }
 }

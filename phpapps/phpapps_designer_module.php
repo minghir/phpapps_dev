@@ -18,14 +18,14 @@ class phpapps_designer_module extends phpapps_display_abs{
 	var $APP_NAME;
 	var $APP_TITLE;
         var $MODULE_ID;
-        var $script_id;
+        var $script_id = 174;
     
     function __construct($module_id) {
         parent::__construct($module_id);
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
+        //$this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
         $this->tpl = "phpapps_designer_module.tpl";        
         $this->app_id = $app_id;
-        $this->script_id = 174;
+       //$this->script_id = 174;
         $this->display_objects_type_id = '2';
     	$this->display_objects_type = 'SCRIPT';
     	$this->display_objects_id = $this->script_id;
@@ -62,7 +62,8 @@ class phpapps_designer_module extends phpapps_display_abs{
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
         
-        
+        $this->loadElements();
+        $this->setupDisplay();
         $this->displayTpl();
     }
 	

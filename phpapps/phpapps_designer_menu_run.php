@@ -7,7 +7,7 @@ class phpapps_designer_menu_run extends phpapps_display_abs{
 
     private $app_id;
     private $module_id;
-    private $script_id;
+    public $script_id = 238;
     private $menu_id;
     private $tested_menu_obj;
     
@@ -23,7 +23,7 @@ class phpapps_designer_menu_run extends phpapps_display_abs{
         
         $this->tested_menu_obj = new DB_menu($this->menu_id);
         
-        
+        $this->loadElements();
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => $this->tested_menu_obj->get_menu_str()));
         $this->displayTpl();
         

@@ -6,7 +6,7 @@ class test_laura extends phpapps_display_abs{
 
     private $app_id;
     private $module_id;
-    private $script_id;
+    public  $script_id = 253;
     
     function __construct($app_id) {
         parent::__construct();
@@ -22,7 +22,7 @@ class test_laura extends phpapps_display_abs{
     	$this->display_objects_id = $this->script_id;
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "test_laura: Youre code here."));
-        
+        $this->loadElements();
         $this->displayTpl();
     }
 }

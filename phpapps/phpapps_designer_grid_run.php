@@ -7,7 +7,7 @@ class phpapps_designer_grid_run extends phpapps_display_abs{
 
     private $app_id;
     private $module_id;
-    private $script_id;
+    public $script_id = 258;
     private $grid_id;
     
     function __construct($app_id) {
@@ -20,9 +20,11 @@ class phpapps_designer_grid_run extends phpapps_display_abs{
         $this->app_id = $app_id;
         $this->grid_id = $_GET["gfield_value"];
         
-	$this->tested_grid_obj = new DB_grid_imp($this->grid_id);
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => $this->tested_grid_obj->get_grid_str()));
+	
         
+        $this->loadElements();
+		$this->tested_grid_obj = new DB_grid_imp($this->grid_id);
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => $this->tested_grid_obj->get_grid_str()));
         $this->displayTpl();
     }
 }

@@ -2,17 +2,18 @@
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_custom_elements_form.php");
 	class phpapps_designer_custom_elements_form_impl  extends phpapps_designer_custom_elements_form{
-                
-            private $old_custom_element_name;
-            private $file_to_delete_php;
+            public $script_id = 263;   
+            public $old_custom_element_name;
+            public $file_to_delete_php;
             private $file_to_delete_tpl;
             private $APP_NAME;
             
 		function __construct(){
 			parent::__construct();
-                        $this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
-			$this->template = "phpapps_designer_custom_elements_form_imp.tpl";
+                        //$this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
+			$this->tpl = "phpapps_designer_custom_elements_form_imp.tpl";
 			$this->init();
+			$this->LoadElements();
 			$this->display();
 		}
 		

@@ -43,6 +43,7 @@ class DB_select{
 	var $multiple = false;
 	var $options = array();
 	var $empty_option = true;
+        var $empty_option_value;
 	
 	
 	var $table;
@@ -111,6 +112,7 @@ class DB_select{
 						"db_select_name" => $this->name,
 						"db_select_multiple" => $this->multiple,
 						"empty_option" => $this->empty_option,
+                                                "empty_option_value" => $this->empty_option_value,
 						"disabled" => ($this->disabled ? "disabled" : ""),
 						"html_id" => ( $this->html_id == "" ? $this->name : $this->html_id ),
 		));
@@ -125,8 +127,12 @@ class DB_select{
             $this->empty_option = $empt;
         }
         
+        function set_empty_option_value($empt){
+            $this->empty_option_value = $empt;
+        }
+        
 	function get_select_str(){
-			return $this->sm->fetch('db_select.tpl');
+		return $this->sm->fetch('db_select.tpl');
 	}
         
         function set_multiple($bool_val){

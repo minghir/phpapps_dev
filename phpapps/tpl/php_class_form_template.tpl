@@ -8,8 +8,12 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 	public $globals;
 	public $form_schema = "{$form_schema}";
 	public $form_table = "{$form_table}";
-	public $template = "gen_tpl/{$form_name}.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/{$form_name}.tpl";
+        
+        public $tpl = "{$form_name}";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
@@ -17,6 +21,8 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 	public $pact;
         
         public $query;
+        
+        public $smarty;
         
 	{section name=ds loop=$fields}
         {if $input_types[ds] == "select_table_multiple" || $input_types[ds] == "select_list_multiple"}
@@ -48,6 +54,11 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
                 
                 {section name=lis loop=$selected_schema_list}
 			{if $selected_schema_list[lis] != "" }
@@ -321,12 +332,14 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 				$this->{$fields[lis]}_sel->setup_select_options();
 			{/if} 
 		{/section}
-	
+                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+                
+                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
-		$this->globals->sm->assign(array(
+		$this->smarty->assign(array(
 			{section name=ds loop=$fields}
 				"{$fields[ds]}" => $this->{$fields[ds]},
 			{/section}
@@ -359,7 +372,8 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                 if($this->form_com_type == "ajax" && $this->pact != ""){ldelim}
                     $this->ajax_server_resp();
                 {rdelim}else{ldelim}
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 {rdelim}
 		$this->afterDisplay();
 	{rdelim}
@@ -370,7 +384,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 	function get_html_str(){ldelim}	
                 $this->setup_display();
                 $this->beforeDisplay();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	{rdelim}
         

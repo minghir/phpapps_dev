@@ -16,6 +16,7 @@ class phpapps_admin_module extends phpapps_display_abs{
 	var $APP_TITLE;
 	var $BASE_DIR;
 	
+        var $script_id = 154;
 	public function __construct($module_id){
                  parent::__construct();
 		

@@ -2,10 +2,15 @@
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_grids_form.php");
 	class phpapps_designer_grids_form_impl  extends phpapps_designer_grids_form{
+                
+                        public $display_objects_type_id = '2';
+                        public $display_objects_type = 'SCRIPT';
+                        public $display_objects_id = 256;
+                        public $script_id = 256;
 		function __construct(){
 			parent::__construct();
-                        $this->layout_file = PHPAPPS_LAYOUTS_DIR . "phpapps_form.tpl";
-			$this->template = "phpapps_designer_grids_form_imp.tpl";
+                        //$this->layout_file = PHPAPPS_LAYOUTS_DIR . "phpapps_form.tpl";
+			$this->tpl = "phpapps_designer_grids_form_imp.tpl";
 			$this->init();
                         //{$grid_grid_columns}
                         
@@ -26,7 +31,13 @@ include ("gen_php/phpapps_designer_grids_form.php");
                         $grid_grid_columns->edit_form = "phpapps_designer_grid_columns_form_imp.php?grid_id=".$this->ID."&table_id=$this->TABLE_ID";
                         $this->globals->sm->assign("grid_grid_columns",$grid_grid_columns->get_grid_str());
                         
-                        
+                        $this->loadElements();
+                        /*
+                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->where_rules = array("GRID_ID = :grid_id");
+                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->where_params = array(":grid_id" => $this->ID);
+                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->edit_form = "phpapps_designer_grid_actions_form_imp.php?grid_id=".$this->ID;
+                        //echo "<h1>AICIL:" . $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->edit_form . "</a>";
+                        */
 			$this->display();
 		}
 		
@@ -40,6 +51,7 @@ include ("gen_php/phpapps_designer_grids_form.php");
                     $this->QUERY_ID = $this->QUERY_ID == '' ? 0 : $this->QUERY_ID;
                     $this->TABLE_ID = $this->TABLE_ID == '' ? 0 : $this->TABLE_ID;
                     $this->EDIT_FORM_ID = $this->EDIT_FORM_ID == '' ? 0 : $this->EDIT_FORM_ID;
+                    $this->ELEMENT_TEMPLATE_ID = $this->ELEMENT_TEMPLATE_ID == '' ? 0 : $this->ELEMENT_TEMPLATE_ID;
                 }
 	
 		function beforeAddRec(){
@@ -68,8 +80,10 @@ include ("gen_php/phpapps_designer_grids_form.php");
 		}
 		
 		function afterDisplay(){
-                   // print_r($this->errors);
-		}
+                    if(count($this->errors)>0){
+                        print_r($this->errors);
+                    }
+                }
 		
 	};
 	

@@ -15,7 +15,7 @@
 <script src="{$smarty.const.CODEMIRROR_DIR}/mode/php/php.js"></script>
 <script src="{$smarty.const.CODEMIRROR_DIR}/mode/sql/sql.js"></script>
 {literal}
-<style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
+<style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black; height: auto;}</style>
 {/literal}
 <h2>PHPApps Code Editor: <b>{$file_name}</b></h2>
 <form method="POST">
@@ -35,7 +35,7 @@
         indentUnit: 4,
         indentWithTabs: true
       });
-	  editor.setSize("100%", 450);
+	 editor.setSize("100%", 450);
     </script>
   
 

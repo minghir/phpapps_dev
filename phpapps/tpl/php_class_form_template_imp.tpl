@@ -2,12 +2,22 @@
 require_once ("globals.php");
 include ("gen_php/{$form_name}.php");
 	class {$form_name}_impl  extends {$form_name}{ldelim}
+                        public $script_id = {$script_id};
+                        public $display_objects_type_id = '2';
+                        public $display_objects_type = 'SCRIPT';
+                        public $display_objects_id = {$script_id};
+                
 		function __construct(){ldelim}
 			parent::__construct();
-                        $this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
-			$this->template = "{$form_name}_imp.tpl";
-			$this->init();
+                        
+                        
+                        $this->tpl = "{$form_name}_imp.tpl";
+                        $this->display_objects_id = $this->script_id;
+                        
+                        $this->init();
+                        $this->loadElements(); // parent function
 			$this->display();
+                        
 		{rdelim}
 		
 		function beforeGetRec(){ldelim}

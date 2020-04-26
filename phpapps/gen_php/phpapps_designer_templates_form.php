@@ -8,8 +8,12 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "templates";
-	public $template = "gen_tpl/phpapps_designer_templates_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_designer_templates_form.tpl";
+        
+        public $tpl = "phpapps_designer_templates_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
@@ -17,6 +21,8 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
 	public $pact;
         
         public $query;
+        
+        public $smarty;
         
 	            
 	public $ID;
@@ -54,11 +60,16 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
+                
                 			 
 					 
 					 
 					 
-								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","phpapps.list_display_elements_types");
+								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","phpapps.list_template_types");
                         			 
 				
 					 
@@ -291,7 +302,7 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
 					 
 					 
 					 
-								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".phpapps.list_display_elements_types");
+								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".phpapps.list_template_types");
 			$this->ELEMENT_TYPE_ID_sel->selected_val = $this->ELEMENT_TYPE_ID;
 			$this->ELEMENT_TYPE_ID_sel->setup_select_options();
 			 
@@ -305,12 +316,14 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
 			 
 					 
 					 
-			
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+                
+                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
-		$this->globals->sm->assign(array(
+		$this->smarty->assign(array(
 							"ID" => $this->ID,
 							"TEMPLATE_NAME" => $this->TEMPLATE_NAME,
 							"APP_ID" => $this->APP_ID,
@@ -347,7 +360,8 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 }
 		$this->afterDisplay();
 	}
@@ -358,7 +372,7 @@ class phpapps_designer_templates_form extends phpapps_display_abs{
 	function get_html_str(){	
                 $this->setup_display();
                 $this->beforeDisplay();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
         

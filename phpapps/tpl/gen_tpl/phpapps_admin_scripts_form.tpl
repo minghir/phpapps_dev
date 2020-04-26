@@ -54,6 +54,13 @@ function submitDetailsForm(op){
 				<tr><td align="right">LAYOUT_ID  :</td><td>
 			{$LAYOUT_ID_sel}
 		</td></tr>
+                        				 
+																
+			
+		                
+				<tr><td align="right">TEMPLATE_ID  :</td><td>
+			{$TEMPLATE_ID_sel}
+		</td></tr>
                         				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

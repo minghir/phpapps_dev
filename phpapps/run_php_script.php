@@ -5,7 +5,7 @@
 		var $globals;
 		var $FORM_ID;
 		var $script_type; // imp or grid
-		
+		var $script_id = 283;
 		var $script_name;
 		var $script_path;
 		

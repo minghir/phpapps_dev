@@ -21,7 +21,7 @@ if (!defined('PHPEXCEL_LIBS_DIR')) {
 
 if (!defined('CODEMIRROR_DIR')) {
     define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/codemirror-5.52.2');
-    //define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/JS/codemirror-5.49.0');
+    //define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/codemirror.next-master');
 }
 
 //jquery 

@@ -111,7 +111,40 @@ class DB_grid_imp{// extends phpapps_display_abs{
                 $this->grid_obj->cell_actions = $tmp_cell_act;
                 //print_r($this->grid_obj->cols);
              }
-             //print_r($this->grid_obj->cell_actions);
+             
+             $sql = new DB_query("SELECT NAME, LABEL, ACTION, ACTION_SCRIPT, POPUP_PAGE FROM phpapps.grid_actions WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
+             if( $this->globals->con->query($sql) > 0){
+                 while($tmp_obj = $this->globals->con->fetch_object()){
+                    $tad = new HrefActions();
+                    $tad->act_script = $tmp_obj->ACTION_SCRIPT;
+                    $tad->popup = boolval($tmp_obj->POPUP_PAGE);
+                    $tad->label = $tmp_obj->LABEL;
+                    $tad->action = $tmp_obj->ACTION_SCRIPT;
+                    $this->grid_obj->add_grid_acction($tad);
+                 }
+             }
+             
+             
+             /*
+             $sql = new DB_query("SELECT COLUMN_NAME, ALT_COLUMN_TEXT, LABEL, ACTION FROM phpapps.view_grid_columns WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
+             if( $this->globals->con->query($sql) > 0){
+                 $tmp_cols = array();
+                 $tmp_labels = array();
+                 $tmp_cell_act = array();
+                while($tmp_obj = $this->globals->con->fetch_object()){
+                    //echo $sql->prnt();
+                    $this->GRID_COLS[$tmp_obj->LABEL] = $tmp_obj->ALT_COLUMN_TEXT != '' ? $tmp_obj->ALT_COLUMN_TEXT : $tmp_obj->COLUMN_NAME;
+                    $tmp_cols[] = stripslashes($tmp_obj->ALT_COLUMN_TEXT != '' ? $tmp_obj->ALT_COLUMN_TEXT : $tmp_obj->COLUMN_NAME);
+                    $tmp_labels[] = stripslashes($tmp_obj->LABEL);
+                    $tmp_cell_act[] = stripslashes($tmp_obj->ACTION);
+                }
+                $this->grid_obj->cols = $tmp_cols;
+                $this->grid_obj->labels = $tmp_labels;
+                $this->grid_obj->cell_actions = $tmp_cell_act;
+                //print_r($this->grid_obj->cols);
+             }
+              * 
+              */
         }
         
         //print_r($this);

@@ -6,8 +6,9 @@ class phpapps_designer_custom_element_run extends phpapps_display_abs{
 
     private $app_id;
     private $module_id;
-    private $script_id;
-	private $custom_element_id;
+    //private $script_id;
+	public $custom_element_id;
+        public $script_id = 265;
     
     function __construct($app_id) {
         parent::__construct();
@@ -40,6 +41,7 @@ class phpapps_designer_custom_element_run extends phpapps_display_abs{
                 
                 
                 $this->globals->sm->assign(array("SCRIPT_CONTENT" => $custom_obj1->get_custom_element_str()));
+                $this->loadElements();
         $this->displayTpl();
     }
 }

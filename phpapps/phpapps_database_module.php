@@ -15,6 +15,9 @@ class phpapps_database_module extends phpapps_display_abs{
 	var $APP_NAME;
 	var $APP_TITLE;
         var $MODULE_ID;
+        
+        var $script_id =  165;
+        
     
     function __construct($module_id) {
         parent::__construct();
@@ -48,11 +51,14 @@ class phpapps_database_module extends phpapps_display_abs{
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
                 
-                
+                $this->loadElements();
+                $this->setupDisplay();
                 $this->displayTpl();
+                //parent::displayTpl();
     }
     
     function setupDisplay(){
+        //parent::setupDisplay();
         $tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 

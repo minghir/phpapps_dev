@@ -407,16 +407,16 @@ echo"</h1><br>----------------<br>";
 			$url = $this->req_uri."?".$this->make_get_string();
 //echo $url;
 			$ord_href = ":current_order_field=".$this->current_order_field.":current_order_rule=".$this->current_order_rule;
-			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=1$ord_href\"><|</a>";
-			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=". ( $this->get_pg - 5 <= 0 ? 1 : $this->get_pg - 5 ) ."$ord_href\"><</a>";
+			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=1$ord_href\" class=\"page-link\"><|</a>";
+			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=". ( $this->get_pg - 5 <= 0 ? 1 : $this->get_pg - 5 ) ."$ord_href\" class=\"page-link\"><</a>";
 			
 			for($i = $this->get_pg - 2 ; $i<= $this->get_pg + 2 ; $i++){
 				if($i <= 0 || $i > $this->last_page ) continue;
-				$hrefs[] = $i == $this->get_pg ? '<a href=>[' . $this->get_pg  . ']</a>' : "<a href=\"".$url.$this->db_grid_name."=pg=$i$ord_href\">$i</a>";
+				$hrefs[] = $i == $this->get_pg ? '<a  href=>[' . $this->get_pg  . ']</a>' : "<a href=\"".$url.$this->db_grid_name."=pg=$i$ord_href\" class=\"page-link\">$i</a>";
 			}
 			
-			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=". ($this->get_pg + 5 > $this->last_page ? $this->last_page : $this->get_pg + 5) ."$ord_href\">></a>";
-			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=".$this->last_page."$ord_href\">|></a>";
+			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=". ($this->get_pg + 5 > $this->last_page ? $this->last_page : $this->get_pg + 5) ."$ord_href\" class=\"page-link\">></a>";
+			$hrefs[] = "<a href=\"".$url.$this->db_grid_name."=pg=".$this->last_page."$ord_href\" class=\"page-link\">|></a>";
 			return $hrefs;
 		}
 		

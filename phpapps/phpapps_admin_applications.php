@@ -4,6 +4,7 @@ require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 require_once(DB_LIBS_DIR . 'DB_menu.php');
 class phpapps_applications extends phpapps_display_abs{
 	
+	public $script_id = 163;
 	public function __construct($uid){
              parent::__construct();
                // $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
@@ -39,6 +40,7 @@ class phpapps_applications extends phpapps_display_abs{
 		}
 		$this->globals->sm->assign("rows",$rows);
 		$this->globals->sm->assign("modules",$modules);
+		$this->loadElements();
 	}
 	
 	public function displayTpl(){

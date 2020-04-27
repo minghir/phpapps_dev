@@ -83,8 +83,12 @@
      </tr>
      <tr>
         <td>
+            <ul class="pagination pagination-sm">
             {if $paginable == 1 }({if $mode_search == true }<font color="blue"><b>Found:</b>{/if}{$num_rows} recs/{$pages} pgs</font>){/if}&nbsp;
-            {if $pages > 1 }{section name=pgs loop=$pgs_hrefs} {$pgs_hrefs[pgs]} {/section}{/if}
+            {if $pages > 1 }
+                {section name=pgs loop=$pgs_hrefs} <li class="page-item">{$pgs_hrefs[pgs]}</li>{/section}
+            {/if}
+        </ul>
          </td>
     </tr>
 </table>

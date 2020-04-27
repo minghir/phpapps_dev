@@ -31,5 +31,5 @@ $("#phpapps_designer_custom_elements_form").submit(function(event){
 </script>
 -->
 {/literal} 
-
+{$display_object_elements_grid}
 {/block}

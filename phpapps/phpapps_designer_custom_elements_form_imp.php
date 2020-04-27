@@ -13,6 +13,26 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
                         //$this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
 			$this->tpl = "phpapps_designer_custom_elements_form_imp.tpl";
 			$this->init();
+                        
+                        $display_object_elements_grid = new DB_grid($this->globals->con, "table","phpapps.view_display_object_elements","display_object_elements_grid");
+                        $display_object_elements_grid->grid_title = "OBJECT ELEMENTS";
+                            
+                        //$display_object_elements_grid->cols = (array("DISPLAY_OBJECT_NAME","DISPLAY_OBJECT_TYPE","ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));
+                        //$display_object_elements_grid->labels = (array("DISPLAY_OBJECT_NAME","DISPLAY_OBJECT_TYPE","ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));
+                        $display_object_elements_grid->cols = (array("ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));
+                        $display_object_elements_grid->labels = (array("ELEMENT NAME","ELEMENT TYPE","TEMPLATE VARIABLE"));
+                        
+                        $display_object_elements_grid->where_rules = array("DISPLAY_OBJECT_ID = :script_id","DISPLAY_OBJECT_TYPE_ID = :obj_type_id");
+                        $display_object_elements_grid->where_params = array(":script_id" => $this->ID,":obj_type_id" => '4');
+                        $display_object_elements_grid->paginable = true;
+                        $display_object_elements_grid->filterable = false;
+                        $display_object_elements_grid->exportable = false;
+                        $display_object_elements_grid->rows_on_pg = 20;
+                        $display_object_elements_grid->edit_form = "phpapps_designer_display_object_elements_form_imp.php?obj_id=".$this->ID."&obj_type=4";
+                        $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
+                        
+                        
+                        
 			$this->LoadElements();
 			$this->display();
 		}

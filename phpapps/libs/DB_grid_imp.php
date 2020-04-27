@@ -43,6 +43,7 @@ class DB_grid_imp{// extends phpapps_display_abs{
         
         $this->ID = $grid_id;
         $this->loadDbGrid();
+        
     }
     
     public function loadDbGrid(){

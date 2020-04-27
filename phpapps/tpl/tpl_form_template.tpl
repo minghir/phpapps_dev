@@ -12,7 +12,7 @@ function submitDetailsForm(op){
 			<input type="hidden" name="gact" value="{ldelim}$gact{rdelim}">
 			<input type="hidden" name="gfield" value="{ldelim}$gfield{rdelim}">
 			<input type="hidden" name="gfield_value" value="{ldelim}$gfield_value{rdelim}">	
-	<table border="1">
+	<table class="table-borderless">
 	
 	{section name=fl loop=$fields}
 	 

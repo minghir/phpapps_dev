@@ -4,10 +4,12 @@ require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
 class login extends phpapps_display_abs{
     public $globals;
+    public $script_id = 161;
     public function __construct(){
-               parent::__construct();
-                global $GLOBALS_OBJ;
+            parent::__construct();
+            global $GLOBALS_OBJ;
             $this->globals = &$GLOBALS_OBJ;
+            $this->loadElements();
             
            if(count($_POST) > 0 ){
                if($_POST["user"] != "" && $_POST["pass"] != ""){
@@ -32,7 +34,7 @@ class login extends phpapps_display_abs{
                    header("Location:". WEB_APP_DIR . $res["SCRIPT_NAME"].".php");
 
                }else{
-                       $this->globals->sm->assign("ERROR","Wrong USER or/and PASSWORD !!!");
+                   $this->globals->sm->assign("ERROR","Wrong USER or/and PASSWORD !!!");
                }
            }
        }else{

@@ -40,6 +40,7 @@ class display_elements_loader {
         //MENU              1
         //FORM              2
         //LAYOUT_VARIABLE   3
+        //CUSTOM_ELEMER     4
          
          $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
@@ -130,7 +131,8 @@ class display_elements_loader {
      }
      
      function loadGrid($grid_id){
-       return new DB_grid_imp($grid_id);
+       return (new DB_grid_imp($grid_id))->grid_obj;
+       //  return new DB_grid_imp($grid_id);
      }
      
      function loadCustomElement($el_id){

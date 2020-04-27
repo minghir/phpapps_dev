@@ -50,6 +50,8 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$this->APP_NAME = $this->globals->con->get_field("APP_NAME");
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
+		
+		$this->loadElements();
 	}
 	
 	public function displayTpl(){

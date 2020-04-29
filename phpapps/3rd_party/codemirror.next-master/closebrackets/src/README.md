@@ -1,7 +1,0 @@
-@CloseBracketConfig
-
-@closeBrackets
-
-@handleBackspace
-
-@handleInsertion

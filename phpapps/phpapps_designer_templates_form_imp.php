@@ -6,13 +6,13 @@ include ("gen_php/phpapps_designer_templates_form.php");
                 private $OLD_TEMPLATE_NAME;
                 private $APP_NAME;
                 public $ID;
-            
+            	public $script_id = 274;
 		function __construct(){
 			parent::__construct();
                         $this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
 			$this->tpl = "phpapps_designer_templates_form_imp.tpl";
                         
-                        $this->script_id = 274;
+                        
                         $this->display_objects_type_id = '2';
                         $this->display_objects_type = 'SCRIPT';
                         $this->display_objects_id = $this->script_id;

@@ -40,6 +40,8 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 	public $POPUP_PAGE;
         	            
 	public $DESCRIPTION;
+        	            
+	public $GRID_ACTION_TYPE_ID;
         		
 		 
 		 
@@ -50,7 +52,10 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 			public $POPUP_PAGE_sel;
 	 
 		 
+			public $GRID_ACTION_TYPE_ID_sel;
+	 
 			
+		 
 		 
 		 
 		 
@@ -85,7 +90,10 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 								$this->POPUP_PAGE_sel = new DB_select("POPUP_PAGE","phpapps.list_true_false");
                         			 
 					 
+								$this->GRID_ACTION_TYPE_ID_sel = new DB_select("GRID_ACTION_TYPE_ID","phpapps.list_grid_action_types");
+                        			 
 				
+					 
 					 
 					 
 					 
@@ -119,7 +127,8 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 												ACTION,
 												ACTION_SCRIPT,
 												POPUP_PAGE,
-												DESCRIPTION
+												DESCRIPTION,
+												GRID_ACTION_TYPE_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -134,6 +143,7 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
                                 			                                                                $this->ACTION_SCRIPT = stripslashes($this->globals->con->get_field("ACTION_SCRIPT"));
                                 			                                                                $this->POPUP_PAGE = stripslashes($this->globals->con->get_field("POPUP_PAGE"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->GRID_ACTION_TYPE_ID = stripslashes($this->globals->con->get_field("GRID_ACTION_TYPE_ID"));
                                 						
 	}
 	
@@ -154,7 +164,8 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 																						ACTION,
 																						ACTION_SCRIPT,
 																						POPUP_PAGE,
-																						DESCRIPTION
+																						DESCRIPTION,
+																						GRID_ACTION_TYPE_ID
 										 ) VALUES (
 																					:GRID_ID,
 																						:NAME,
@@ -162,7 +173,8 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 																						:ACTION,
 																						:ACTION_SCRIPT,
 																						:POPUP_PAGE,
-																						:DESCRIPTION
+																						:DESCRIPTION,
+																						:GRID_ACTION_TYPE_ID
 													)",
 			array(
 																		                                            
@@ -179,6 +191,8 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
                                             ":POPUP_PAGE" => $this->POPUP_PAGE,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
+                                        														                                            
+                                            ":GRID_ACTION_TYPE_ID" => $this->GRID_ACTION_TYPE_ID,
                                         												)
 			);
 
@@ -213,7 +227,8 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 												ACTION = :ACTION,
 												ACTION_SCRIPT = :ACTION_SCRIPT,
 												POPUP_PAGE = :POPUP_PAGE,
-												DESCRIPTION = :DESCRIPTION
+												DESCRIPTION = :DESCRIPTION,
+												GRID_ACTION_TYPE_ID = :GRID_ACTION_TYPE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -225,6 +240,7 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
                                         				                                                                                    ":ACTION_SCRIPT" => $this->ACTION_SCRIPT,
                                         				                                                                                    ":POPUP_PAGE" => $this->POPUP_PAGE,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":GRID_ACTION_TYPE_ID" => $this->GRID_ACTION_TYPE_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -304,6 +320,7 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
                                                 		                                                    $this->ACTION_SCRIPT  = htmlspecialchars(addslashes(trim($_POST["ACTION_SCRIPT"])));
                                                 		                                                    $this->POPUP_PAGE  = htmlspecialchars(addslashes(trim($_POST["POPUP_PAGE"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->GRID_ACTION_TYPE_ID  = htmlspecialchars(addslashes(trim($_POST["GRID_ACTION_TYPE_ID"])));
                                                 		        }
 	
         function beforePostActions(){
@@ -329,6 +346,12 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
         }
 	
 	function check_errors(){
+				if($this->GRID_ID == "") {
+			$this->errors[] = "Campul GRID_ID este obligatoriu!";
+		}
+				if($this->LABEL == "") {
+			$this->errors[] = "Campul LABEL este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
@@ -343,7 +366,12 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 			$this->POPUP_PAGE_sel->setup_select_options();
 			 
 					 
+								//$this->GRID_ACTION_TYPE_ID_sel = new DB_select("GRID_ACTION_TYPE_ID",".phpapps.list_grid_action_types");
+			$this->GRID_ACTION_TYPE_ID_sel->selected_val = $this->GRID_ACTION_TYPE_ID;
+			$this->GRID_ACTION_TYPE_ID_sel->setup_select_options();
+			 
 				
+					 
 					 
 					 
 					 
@@ -368,6 +396,7 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 							"ACTION_SCRIPT" => $this->ACTION_SCRIPT,
 							"POPUP_PAGE" => $this->POPUP_PAGE,
 							"DESCRIPTION" => $this->DESCRIPTION,
+							"GRID_ACTION_TYPE_ID" => $this->GRID_ACTION_TYPE_ID,
 									 
 						 
 						 
@@ -377,7 +406,10 @@ class phpapps_designer_grid_actions_form extends phpapps_display_abs{
 										"POPUP_PAGE_sel" => $this->POPUP_PAGE_sel->get_select_str(),
 			 
 						 
+										"GRID_ACTION_TYPE_ID_sel" => $this->GRID_ACTION_TYPE_ID_sel->get_select_str(),
+			 
 									 
+						 
 						 
 						 
 						 

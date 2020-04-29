@@ -8,8 +8,12 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "display_object_elements";
-	public $template = "gen_tpl/phpapps_designer_display_object_elements_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_designer_display_object_elements_form.tpl";
+        
+        public $tpl = "phpapps_designer_display_object_elements_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
@@ -17,6 +21,8 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
 	public $pact;
         
         public $query;
+        
+        public $smarty;
         
 	            
 	public $ID;
@@ -61,6 +67,11 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
                 
                 			 
 					 
@@ -317,6 +328,9 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
 				if($this->ELEMENT_TYPE_ID == "") {
 			$this->errors[] = "Campul ELEMENT_TYPE_ID este obligatoriu!";
 		}
+				if($this->TEMPLATE_VARIABLE_NAME == "") {
+			$this->errors[] = "Campul TEMPLATE_VARIABLE_NAME este obligatoriu!";
+		}
 			}
 	
 	function setup_display(){
@@ -342,12 +356,14 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
 					 
 					 
 					 
-			
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+                
+                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
-		$this->globals->sm->assign(array(
+		$this->smarty->assign(array(
 							"ID" => $this->ID,
 							"DISPLAY_OBJECT_ID" => $this->DISPLAY_OBJECT_ID,
 							"DISPLAY_OBJECT_TYPE_ID" => $this->DISPLAY_OBJECT_TYPE_ID,
@@ -390,7 +406,8 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 }
 		$this->afterDisplay();
 	}
@@ -401,7 +418,7 @@ class phpapps_designer_display_object_elements_form extends phpapps_display_abs{
 	function get_html_str(){	
                 $this->setup_display();
                 $this->beforeDisplay();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
         

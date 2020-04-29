@@ -31,8 +31,8 @@ function submitDetailsForm(op){
 			{$APP_ID_sel}
 		</td></tr>
                         				 
-				<tr><td align="right">DESCRIPTION :</td><td> <input type="text" id="DESCRIPTION" name="DESCRIPTION" value="{$DESCRIPTION}"></td></tr>
-																
+								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
+        										
 			
 		                
 		                				 

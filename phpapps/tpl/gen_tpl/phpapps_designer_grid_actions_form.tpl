@@ -11,7 +11,7 @@ function submitDetailsForm(op){
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
-	<table border="1">
+	<table class="table-borderless">
 	
 		 
 										<input id="ID" type="hidden" name="ID" value="{$ID}">
@@ -55,6 +55,13 @@ function submitDetailsForm(op){
         										
 			
 		                
+		                				 
+																
+			
+				<tr><td align="right">GRID_ACTION_TYPE_ID  :</td><td>
+			{$GRID_ACTION_TYPE_ID_sel}
+		</td></tr>
+                        
 		                				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

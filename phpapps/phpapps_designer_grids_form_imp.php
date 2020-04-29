@@ -32,12 +32,12 @@ include ("gen_php/phpapps_designer_grids_form.php");
                         $this->globals->sm->assign("grid_grid_columns",$grid_grid_columns->get_grid_str());
                         
                         $this->loadElements();
-                        /*
-                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->where_rules = array("GRID_ID = :grid_id");
-                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->where_params = array(":grid_id" => $this->ID);
-                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->edit_form = "phpapps_designer_grid_actions_form_imp.php?grid_id=".$this->ID;
+                        
+                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_rules = array("GRID_ID = :grid_id");
+                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_params = array(":grid_id" => $this->ID);
+                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->edit_form = "phpapps_designer_grid_actions_form_imp.php?grid_id=".$this->ID;
                         //echo "<h1>AICIL:" . $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->edit_form . "</a>";
-                        */
+                        
 			$this->display();
 		}
 		

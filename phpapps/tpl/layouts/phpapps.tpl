@@ -23,9 +23,18 @@
     <title>{$PAGE_TITLE}</title>
     </head>
     <body>
+	<header class="container-expand-lg">	
         {$PHPAPPS_MAIN_NAVBAR}
-	<div class="container-expand-lg">
-            {block name=content}CONTENT BLOCK{/block}
-	</div>
+	</header>
+        <br><br><br><br>
+	<main role="main" class="container-expand-lg">	
+           {block name=content}CONTENT BLOCK{/block}
+        </main>
+	<footer class="footer container-expand-lg"">
+            <div class="container">
+            <span class="text-muted">Place sticky footer content here.{$PHPAPPS_LAYOUTS_BOOTSTRAP_LINKS}</span>
+            </div>
+    </footer>
+		
     </body> 
 </html>

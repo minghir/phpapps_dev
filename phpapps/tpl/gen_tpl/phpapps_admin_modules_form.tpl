@@ -1,27 +1,26 @@
-{extends file=$display_obj->layout_file}
-{block name=content}
-{literal}
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_admin_modules_form").submit();
+		$("#phpapps_designer_themes_form").submit();
 }
   </script>
-{/literal}
+ 
 {$error_msg}
 <hr><form name="phpapps_admin_modules_form" id="phpapps_admin_modules_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
-	<table border="1">
+	<table class="table-borderless">
 	
 		 
-										<input id="APP_ID" type="hidden" name="APP_ID" value="{$APP_ID}">
-        								
+																
 			
 		                
-		                				 
+				<tr><td align="right">APP_ID  :</td><td>
+			{$APP_ID_sel}
+		</td></tr>
+                        				 
 																
 			
 		                
@@ -58,4 +57,3 @@ function submitDetailsForm(op){
 		
 	</table>
 	</form><hr>
-{/block}

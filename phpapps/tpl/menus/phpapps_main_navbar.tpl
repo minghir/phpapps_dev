@@ -19,7 +19,7 @@
   {/foreach}
 {/function}
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+<nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
 <a class="navbar-brand" href="phpapps_admin_applications.php"><h1>{$menu_obj->title}</h1></a>
 <div class="collapse navbar-collapse" id="navbardrop">
 <ul class="navbar-nav mr-auto level{$level} ">

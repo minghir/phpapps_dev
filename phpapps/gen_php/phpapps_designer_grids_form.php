@@ -50,6 +50,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 	public $ELEMENT_TEMPLATE_ID;
         	            
 	public $GRID_TITLE;
+        	            
+	public $SORTABLE;
         		
 		 
 		 
@@ -69,6 +71,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 		 
 		 
 		 
+			public $SORTABLE_sel;
+	 
 			
 		 
 		 
@@ -86,6 +90,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 		 
 			public $ELEMENT_TEMPLATE_ID_sel;
 	 
+		 
 		 
 	        
         
@@ -122,6 +127,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 					 
 					 
 					 
+								$this->SORTABLE_sel = new DB_select("SORTABLE","phpapps.list_true_false");
+                        			 
 				
 					 
 					 
@@ -139,6 +146,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 					 
 									$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID","phpapps.templates");
                                 			 
+					 
 					 
 		                
 	}
@@ -170,7 +178,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 												EDIT_FORM_ID,
 												ROWS_ON_PAGE,
 												ELEMENT_TEMPLATE_ID,
-												GRID_TITLE
+												GRID_TITLE,
+												SORTABLE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -190,6 +199,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
                                 			                                                                $this->ROWS_ON_PAGE = stripslashes($this->globals->con->get_field("ROWS_ON_PAGE"));
                                 			                                                                $this->ELEMENT_TEMPLATE_ID = stripslashes($this->globals->con->get_field("ELEMENT_TEMPLATE_ID"));
                                 			                                                                $this->GRID_TITLE = stripslashes($this->globals->con->get_field("GRID_TITLE"));
+                                			                                                                $this->SORTABLE = stripslashes($this->globals->con->get_field("SORTABLE"));
                                 						
 	}
 	
@@ -215,7 +225,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 																						EDIT_FORM_ID,
 																						ROWS_ON_PAGE,
 																						ELEMENT_TEMPLATE_ID,
-																						GRID_TITLE
+																						GRID_TITLE,
+																						SORTABLE
 										 ) VALUES (
 																					:GRID_NAME,
 																						:GRID_TYPE,
@@ -228,7 +239,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 																						:EDIT_FORM_ID,
 																						:ROWS_ON_PAGE,
 																						:ELEMENT_TEMPLATE_ID,
-																						:GRID_TITLE
+																						:GRID_TITLE,
+																						:SORTABLE
 													)",
 			array(
 																		                                            
@@ -255,6 +267,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
                                             ":ELEMENT_TEMPLATE_ID" => $this->ELEMENT_TEMPLATE_ID,
                                         														                                            
                                             ":GRID_TITLE" => $this->GRID_TITLE,
+                                        														                                            
+                                            ":SORTABLE" => $this->SORTABLE,
                                         												)
 			);
 
@@ -294,7 +308,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 												EDIT_FORM_ID = :EDIT_FORM_ID,
 												ROWS_ON_PAGE = :ROWS_ON_PAGE,
 												ELEMENT_TEMPLATE_ID = :ELEMENT_TEMPLATE_ID,
-												GRID_TITLE = :GRID_TITLE
+												GRID_TITLE = :GRID_TITLE,
+												SORTABLE = :SORTABLE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -311,6 +326,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
                                         				                                                                                    ":ROWS_ON_PAGE" => $this->ROWS_ON_PAGE,
                                         				                                                                                    ":ELEMENT_TEMPLATE_ID" => $this->ELEMENT_TEMPLATE_ID,
                                         				                                                                                    ":GRID_TITLE" => $this->GRID_TITLE,
+                                        				                                                                                    ":SORTABLE" => $this->SORTABLE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -395,6 +411,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
                                                 		                                                    $this->ROWS_ON_PAGE  = htmlspecialchars(addslashes(trim($_POST["ROWS_ON_PAGE"])));
                                                 		                                                    $this->ELEMENT_TEMPLATE_ID  = htmlspecialchars(addslashes(trim($_POST["ELEMENT_TEMPLATE_ID"])));
                                                 		                                                    $this->GRID_TITLE  = htmlspecialchars(addslashes(trim($_POST["GRID_TITLE"])));
+                                                		                                                    $this->SORTABLE  = htmlspecialchars(addslashes(trim($_POST["SORTABLE"])));
                                                 		        }
 	
         function beforePostActions(){
@@ -457,6 +474,10 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 					 
 					 
 					 
+								//$this->SORTABLE_sel = new DB_select("SORTABLE",".phpapps.list_true_false");
+			$this->SORTABLE_sel->selected_val = $this->SORTABLE;
+			$this->SORTABLE_sel->setup_select_options();
+			 
 				
 					 
 					 
@@ -487,6 +508,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 				$this->ELEMENT_TEMPLATE_ID_sel->setup_select_options();
 			 
 					 
+					 
 		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
                 
@@ -508,6 +530,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 							"ROWS_ON_PAGE" => $this->ROWS_ON_PAGE,
 							"ELEMENT_TEMPLATE_ID" => $this->ELEMENT_TEMPLATE_ID,
 							"GRID_TITLE" => $this->GRID_TITLE,
+							"SORTABLE" => $this->SORTABLE,
 									 
 						 
 										"GRID_TYPE_sel" => $this->GRID_TYPE_sel->get_select_str(),
@@ -526,6 +549,8 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 						 
 						 
 						 
+										"SORTABLE_sel" => $this->SORTABLE_sel->get_select_str(),
+			 
 									 
 						 
 						 
@@ -542,6 +567,7 @@ class phpapps_designer_grids_form extends phpapps_display_abs{
 						 
 										"ELEMENT_TEMPLATE_ID_sel" => $this->ELEMENT_TEMPLATE_ID_sel->get_select_str(),
 			 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

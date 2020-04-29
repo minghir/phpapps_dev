@@ -5,7 +5,7 @@
  <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href='#tab1'>Details</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab2'>Columns</a></li>
-	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab3'>Main actions</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab3'>Actions</a></li>
 </ul>
 	   <div class="tab-content container-fluid">    
             <div id="tab1" class="container-fluid tab-pane active"><p>{include file="gen_tpl/phpapps_designer_grids_form.tpl"}</p></div>

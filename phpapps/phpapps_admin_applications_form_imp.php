@@ -3,11 +3,14 @@ require_once ("globals.php");
 
 include ("gen_php/phpapps_admin_applications_form.php");
 	class phpapps_admin_applications_form_impl  extends phpapps_admin_applications_form{
-            
+                 public $script_id = 288;
+                        public $display_objects_type_id = '2';
+                        public $display_objects_type = 'SCRIPT';
+                        public $display_objects_id = 288;
+                
                 public function __construct() {
                     parent::__construct();
-                    $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";               
-                    $this->template = "phpapps_admin_applications_form_imp.tpl";
+                    $this->tpl = "phpapps_admin_applications_form_imp.tpl";
 			
 			if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 				//if($_POST["BASE_DIR"] != ""){
@@ -22,8 +25,11 @@ include ("gen_php/phpapps_admin_applications_form.php");
 				//}
 			}
 			//$this->form_com_type = "ajax";
+                        $this->USER_ID = $this->globals->USER_ID;
 			$this->init();
+                        $this->loadElements();
 			$this->display();
+                        print_r($this->errors);
 		}
 		
                 function afterSaveRec(){

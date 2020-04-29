@@ -358,6 +358,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 			"gfield" => $this->gfield,
 			"gfield_value" => $this->gfield_value,
 			"error_msg" => $error_msg,
+                        "errors"=>$this->errors
 		));
 	{rdelim}
 	

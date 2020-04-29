@@ -8,13 +8,19 @@ include ("gen_php/phpapps_database_tables_form.php");
 		public $SCHEMA_NAME;
 		public $TABLE_ID;
                 public $TABLE_NAME;
-	
+                
+                public $scrip_id = 2;
+                public $display_objects_type_id = '2';
+                public $display_objects_type = 'SCRIPT';
+                public $display_objects_id = 2;
+                
 		function __construct(){
                     parent::__construct();
-			$this->template = "phpapps_database_tables_form_imp.tpl";
+			$this->tpl = "phpapps_database_tables_form_imp.tpl";
 			$this->MODULE_ID = $_GET["module_id"];
                         $this->TABLE_TYPE = (new DB_list("list_table_types"))->getID("values_table");
 			$this->init();
+                        $this->loadElements();
 			$this->display();
 		}
 		

@@ -19,7 +19,7 @@
       
     <title>{$PAGE_TITLE}</title>
     </head>
-    <body>
+    <body onBlur="self.focus();">
 	<div class="container-expand-lg">
             {block name=content}CONTENT BLOCK{/block}
 	</div>

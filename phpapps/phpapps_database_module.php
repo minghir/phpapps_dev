@@ -24,6 +24,10 @@ class phpapps_database_module extends phpapps_display_abs{
         $this->tpl = PHPAPPS_TPL_DIR . "phpapps_database_module.tpl";        
         $this->MODULE_ID = $module_id;
         
+        $this->display_objects_type_id = '2';
+    	$this->display_objects_type = 'SCRIPT';
+    	$this->display_objects_id = $this->script_id;
+        
         $this->globals->con->select_db("phpapps");
 		
 		$sql = new DB_query("SELECT 	m.ID,
@@ -104,6 +108,7 @@ class phpapps_database_module extends phpapps_display_abs{
 		$tables_grid->add_row_acction($dt);
                  * 
                  */
+                //echo "<h1>".$tables_grid->template."</h1><br>";
 	
 		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";

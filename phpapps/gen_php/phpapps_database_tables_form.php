@@ -1,19 +1,29 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_database_tables_form{
+class phpapps_database_tables_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "tables";
-	public $template = "gen_tpl/phpapps_database_tables_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_database_tables_form.tpl";
+        
+        public $tpl = "phpapps_database_tables_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
+        public $smarty;
+        
 	            
 	public $ID;
         	            
@@ -53,8 +63,14 @@ class phpapps_database_tables_form{
         public $resp_msgs = array();
 	
 	function __construct(){
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
                 
                 			 
 					 
@@ -89,7 +105,7 @@ class phpapps_database_tables_form{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 									ID,
 												ORIGIN_ID,
 												MODULE_ID,
@@ -101,7 +117,7 @@ class phpapps_database_tables_form{
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->ORIGIN_ID = stripslashes($this->globals->con->get_field("ORIGIN_ID"));
@@ -123,7 +139,7 @@ class phpapps_database_tables_form{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 																					ORIGIN_ID,
 																						MODULE_ID,
 																						SCHEMA_ID,
@@ -155,7 +171,7 @@ class phpapps_database_tables_form{
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare adaugata cu succes";
@@ -177,7 +193,7 @@ class phpapps_database_tables_form{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
 												ORIGIN_ID = :ORIGIN_ID,
 												MODULE_ID = :MODULE_ID,
@@ -200,7 +216,7 @@ class phpapps_database_tables_form{
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare salvata cu succes";
@@ -220,11 +236,11 @@ class phpapps_database_tables_form{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
                         }else{
                             $this->resp_msgs[] = "Inregistrare stearsa cu succes";
@@ -274,8 +290,12 @@ class phpapps_database_tables_form{
                                                 		                                                    $this->TABLE_TYPE  = htmlspecialchars(addslashes(trim($_POST["TABLE_TYPE"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
                                                 		        }
-		
+	
+        function beforePostActions(){
+        }
+        
         function takePostActions(){
+                $this->beforePostActions();
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -287,8 +307,11 @@ class phpapps_database_tables_form{
 				$this->deleteRec();
 			break;
 		}
-		
+                $this->afterPostActions();
 	}
+        
+        function afterPostActions(){
+        }
 	
 	function check_errors(){
 				if($this->MODULE_ID == "") {
@@ -324,9 +347,14 @@ class phpapps_database_tables_form{
 					 
 					 
 					 
-			
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
-		$this->globals->sm->assign(array(
+                
+                $this->setupDisplay();
+        }
+        
+        function assign_vars_tpl(){
+		$this->smarty->assign(array(
 							"ID" => $this->ID,
 							"ORIGIN_ID" => $this->ORIGIN_ID,
 							"MODULE_ID" => $this->MODULE_ID,
@@ -354,19 +382,23 @@ class phpapps_database_tables_form{
 			"gfield" => $this->gfield,
 			"gfield_value" => $this->gfield_value,
 			"error_msg" => $error_msg,
+                        "errors"=>$this->errors
 		));
 	}
 	
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
+		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 }
 		$this->afterDisplay();
 	}
@@ -375,9 +407,9 @@ class phpapps_database_tables_form{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
         

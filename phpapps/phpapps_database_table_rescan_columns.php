@@ -2,16 +2,25 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class phpapps_database_table_rescan_columns extends phpapps_display_abs{
+class phpapps_database_table_rescan_columns{// extends phpapps_display_abs{
 
     private $app_id;
     public $TABLE_ID;
     public $SCHEMA_NAME;
     public $TABLE_NAME;
     
+                public $scrip_id = 184;
+                public $display_objects_type_id = '2';
+                public $display_objects_type = 'SCRIPT';
+                public $display_objects_id = 184;
+    
     function __construct($app_id) {
-        parent::__construct();
-        $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";
+              //parent::__construct();
+        global $GLOBALS_OBJ;
+	$this->globals = &$GLOBALS_OBJ;
+        
+        echo "AAAAAAAAAAAA";
+
         $this->tpl = "phpapps_database_table_rescan_columns.tpl";        
         $this->app_id = $app_id;
 
@@ -20,28 +29,35 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
         $this->SCHEMA_NAME = (new DB_table("view_tables"))->getValue("TABLE_SCHEMA",$this->TABLE_ID);
         $this->TABLE_NAME = (new DB_table("view_tables"))->getValue("TABLE_NAME",$this->TABLE_ID);
         
+        echo "AICI:" .$this->SCHEMA_NAME . "." . $this->TABLE_NAME . "<br>";
+        
         // deleting Foreign KEYS
         $sql = new DB_query("DELETE FROM phpapps.table_fks WHERE COLUMN_ID IN (SELECT ID FROM phpapps.table_details WHERE TABLE_ID = :table_id)",
                     array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_fks = $this->globals->con->query($sql) ) == -1 ){
             echo "<h1> DEL FK ERROR:</h1><br>";
+        }else{
+            echo "<h1>DEL FK :" . $del_nr_fks . "</h1>";
         }
         
         // deleting Foreign INDEXES
         $sql = new DB_query("DELETE FROM phpapps.table_indexes WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_idxs = $this->globals->con->query($sql) ) == -1 ){
             echo "<h1> DEL IDX ERROR:</h1><br>";
+        }else{
+            echo "<h1> DEL IDX: $del_nr_idxs </h1><br>";
         }
         
         // deleting TABLE DETAILS
         $sql = new DB_query("DELETE FROM phpapps.table_details WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_cols = $this->globals->con->query($sql) ) == -1 ){
             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
-            //echo "<h1> DEL ERROR:<br>";
-            //print_r($this->errors);
-            //echo "<br><h1>". $sql->prnt() ."</h1><br>";
+            echo "<h1> DEL ERROR:<br>";
+            print_r($this->errors);
+            echo "<br><h1>". $sql->prnt() ."</h1><br>";
 	}else{
                 echo "<br> DELETED $nr_res ";
+                
                 // insert COLUMNS  table_details
                  $sql = new DB_query( "INSERT INTO phpapps.table_details 
                         (TABLE_ID,
@@ -102,7 +118,7 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                              ":table_name" => $this->TABLE_NAME,
                              ":schema_name" => $this->SCHEMA_NAME,
                              ":user_id" => $this->globals->USER_ID  ));
-                //echo $sql->prnt();
+                echo $sql->prnt();
                 if( $ins_nr_fks = $this->globals->con->query($sql) == -1 ){
                     $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
                 }
@@ -171,9 +187,11 @@ class phpapps_database_table_rescan_columns extends phpapps_display_abs{
                 }
         }
         echo "<h1>" . $this->SCHEMA_NAME .".".$this->TABLE_NAME."</h1><br>";
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "phpapps_database_table_rescan_columns: Youre code here."));
+        //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "phpapps_database_table_rescan_columns: Youre code here."));
         
-        $this->displayTpl();
+  
+        //$this->loadElements();
+        //$this->displayTpl();
     }
 }
 

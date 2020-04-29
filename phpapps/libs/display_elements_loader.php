@@ -47,7 +47,7 @@ class display_elements_loader {
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
          //echo $sql1->prnt() ."<br>";
         $this->globals->con->query($sql1,"display_elements_sql");
-        
+         
         while($res = $this->globals->con->fetch_object("display_elements_sql")){
             
             switch($res->ELEMENT_TYPE_ID){

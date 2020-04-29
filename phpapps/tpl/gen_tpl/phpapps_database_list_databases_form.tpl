@@ -1,20 +1,24 @@
-{literal}
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_database_list_databases_form").submit();
+		$("#phpapps_designer_themes_form").submit();
 }
   </script>
-{/literal}
+ 
 {$error_msg}
 <hr><form name="phpapps_database_list_databases_form" id="phpapps_database_list_databases_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
-	<table border="1">
+	<table class="table-borderless">
 	
 		 
+										<input id="ID" type="hidden" name="ID" value="{$ID}">
+        								
+			
+		                
+		                				 
 				<tr><td align="right">VALUE :</td><td> <input type="text" id="VALUE" name="VALUE" value="{$VALUE}"></td></tr>
 																
 			

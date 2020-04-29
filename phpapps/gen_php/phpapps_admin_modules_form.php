@@ -3,18 +3,27 @@
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-
 class phpapps_admin_modules_form extends phpapps_display_abs{
+        public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "modules";
-	public $template = "gen_tpl/phpapps_admin_modules_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_admin_modules_form.tpl";
+        
+        public $tpl = "phpapps_admin_modules_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
 	//post values
 	public $pact;
+        
+        public $query;
+        
+        public $smarty;
+        
 	            
 	public $APP_ID;
         	            
@@ -35,7 +44,8 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 		 
 		 
 			
-		 
+			public $APP_ID_sel;
+	 
 			public $SCRIPT_ID_sel;
 	 
 		 
@@ -46,11 +56,18 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
         
 
 	public $errors = array();
+        
+        public $resp_msgs = array();
 	
 	function __construct(){
-            parent::__construct();
+                parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
                 
                 			 
 					 
@@ -59,7 +76,8 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 					 
 					 
 				
-					 
+									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+                                			 
 									$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID","phpapps.scripts");
                                 			 
 					 
@@ -83,7 +101,7 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 	}
 	
 	function getRec(){
-		$sql = new DB_query( "SELECT 
+		$this->query = new DB_query( "SELECT 
 									APP_ID,
 												SCRIPT_ID,
 												MODULE_NAME,
@@ -94,7 +112,7 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
-			$this->globals->con->query($sql);
+			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->APP_ID = stripslashes($this->globals->con->get_field("APP_ID"));
                                 			                                                                $this->SCRIPT_ID = stripslashes($this->globals->con->get_field("SCRIPT_ID"));
@@ -115,7 +133,7 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 		$this->beforeAddRec();
 	
 		$this->check_errors();
-		$sql = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
+		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 															APP_ID,
 																						SCRIPT_ID,
 																						MODULE_NAME,
@@ -147,8 +165,10 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 			);
 
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
                         }
 		}
 		
@@ -167,7 +187,7 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 		
 		$this->check_errors();
 		
-		$sql = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
+		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									APP_ID = :APP_ID,
 												SCRIPT_ID = :SCRIPT_ID,
 												MODULE_NAME = :MODULE_NAME,
@@ -188,8 +208,10 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 			);
 				
 		if(count($this->errors) == 0) {	
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
                         }
 		};
 		
@@ -206,12 +228,14 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 	function deleteRec(){
 		$this->beforeDeleteRec();
 		
-		$sql = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
+		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
 		if(count($this->errors) == 0) {
-			if( $this->globals->con->query($sql) == -1){
+			if( $this->globals->con->query($this->query) == -1){
                             $this->errors[] = $this->globals->con->get_error();
+                        }else{
+                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
                         }
 		}
 		
@@ -239,6 +263,7 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 				$this->deleteRec();
 			break;
 			case "addRec":
+                                //$this->addRec();
 			break;
 		}
 	}
@@ -249,15 +274,19 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->APP_ID  = addslashes(trim($_POST["APP_ID"]));
-                        		                                                    $this->SCRIPT_ID  = addslashes(trim($_POST["SCRIPT_ID"]));
-                        		                                                    $this->MODULE_NAME  = addslashes(trim($_POST["MODULE_NAME"]));
-                        		                                                    $this->MODULE_TITLE  = addslashes(trim($_POST["MODULE_TITLE"]));
-                        		                                                    $this->MODULE_DATE  = addslashes(trim($_POST["MODULE_DATE"]));
-                        		                                                    $this->DESCRIPTION  = addslashes(trim($_POST["DESCRIPTION"]));
-                        		        }
-		
+		                                                    $this->APP_ID  = htmlspecialchars(addslashes(trim($_POST["APP_ID"])));
+                                                		                                                    $this->SCRIPT_ID  = htmlspecialchars(addslashes(trim($_POST["SCRIPT_ID"])));
+                                                		                                                    $this->MODULE_NAME  = htmlspecialchars(addslashes(trim($_POST["MODULE_NAME"])));
+                                                		                                                    $this->MODULE_TITLE  = htmlspecialchars(addslashes(trim($_POST["MODULE_TITLE"])));
+                                                		                                                    $this->MODULE_DATE  = htmlspecialchars(addslashes(trim($_POST["MODULE_DATE"])));
+                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		        }
+	
+        function beforePostActions(){
+        }
+        
         function takePostActions(){
+                $this->beforePostActions();
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -269,8 +298,11 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 				$this->deleteRec();
 			break;
 		}
-		
+                $this->afterPostActions();
 	}
+        
+        function afterPostActions(){
+        }
 	
 	function check_errors(){
 				if($this->APP_ID == "") {
@@ -292,7 +324,11 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 					 
 					 
 				
-					 
+									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
+				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
+				$this->APP_ID_sel->selected_val = $this->APP_ID;
+				$this->APP_ID_sel->setup_select_options();
+			 
 									//$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID",".phpapps.scripts");
 				$this->SCRIPT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM phpapps.scripts ORDER BY SCRIPT_NAME");
 				$this->SCRIPT_ID_sel->selected_val = $this->SCRIPT_ID;
@@ -302,9 +338,14 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 					 
 					 
 					 
-			
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
-		$this->globals->sm->assign(array(
+                
+                $this->setupDisplay();
+        }
+        
+        function assign_vars_tpl(){
+		$this->smarty->assign(array(
 							"APP_ID" => $this->APP_ID,
 							"SCRIPT_ID" => $this->SCRIPT_ID,
 							"MODULE_NAME" => $this->MODULE_NAME,
@@ -317,7 +358,8 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 						 
 						 
 						 
-									 
+													"APP_ID_sel" => $this->APP_ID_sel->get_select_str(),
+			 
 										"SCRIPT_ID_sel" => $this->SCRIPT_ID_sel->get_select_str(),
 			 
 						 
@@ -335,10 +377,17 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 	function beforeDisplay(){	
 	}
 	
-	function display(){	
+	function display(){
+        
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
-		$this->globals->sm->display($this->template);
+		$this->assign_vars_tpl();
+                if($this->form_com_type == "ajax" && $this->pact != ""){
+                    $this->ajax_server_resp();
+                }else{
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
+                }
 		$this->afterDisplay();
 	}
 	
@@ -346,10 +395,16 @@ class phpapps_admin_modules_form extends phpapps_display_abs{
 	}
 	
 	function get_html_str(){	
+                $this->setup_display();
                 $this->beforeDisplay();
-		$this->setup_display();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
+        
+        function ajax_server_resp(){
+            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+        }    
+            
+        
 }
 ?>

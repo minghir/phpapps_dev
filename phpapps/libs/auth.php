@@ -11,7 +11,7 @@ class auth{
     
     
     function __construct($glb) {
-        session_start();
+        //session_start();
         GLOBAL $globals;
         $this->globals = $glb;
         $this->script_name =  basename($_SERVER["SCRIPT_FILENAME"],".php");

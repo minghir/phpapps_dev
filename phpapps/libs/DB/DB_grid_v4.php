@@ -56,7 +56,7 @@ class DB_grid {
 
     function __construct($conn, $g_type, $str_sql, $grid_name = ""){
 	  
-            session_start();
+            //session_start();??????
             $this->sm = new Smarty;
             //$this->sm->template_dir = DB_LIBS_TPL_DIR;
             $this->sm->compile_dir = SMARTY_COMPILE_DIR;

@@ -26,7 +26,7 @@ class login extends phpapps_display_abs{
                 if($this->globals->con->query($sql)==1){
 
                    $res=$this->globals->con->fetch_array();
-                   session_start();
+                   //session_start();
                    $_SESSION["_USER_ID"] = $res["ID"];
                    $_SESSION["_USER_NAME"] = $res["USERNAME"];
                    $_SESSION["_USER_PASS"] = $res["PASSWORD"];

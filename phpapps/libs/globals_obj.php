@@ -127,9 +127,8 @@ class Globals_obj{
         public $USER_PROFILE;
 
 	function __construct($APP_NM){
-                require_once(PHPAPPS_LIBS_DIR . 'auth.php');
-                $this->ath = new auth($this);
-                $this->ath->authenticate();
+                
+                
                 
                 
                 //$this->$USER_PROFILE = new user_profile($this);
@@ -142,7 +141,7 @@ class Globals_obj{
                 require_once(PHPAPPS_LIBS_DIR . 'user_profile.php');
 		require_once(DB_LIBS_DIR . 'DB_PDO.php');
 		require_once(SMARTY_LIBS_DIR . 'Smarty.class.php');
-                
+                require_once(PHPAPPS_LIBS_DIR . 'auth.php');
 		
 		date_default_timezone_set('UTC');
 		
@@ -190,11 +189,10 @@ class Globals_obj{
 		$this->sm = new Smarty;
 		//$this->sm->template_dir = PHPAPPS_SMARTY_TPL_DIR;
                 $this->sm->template_dir = CURRENT_APP_TPL_DIR;
-                
 		$this->sm->compile_dir = SMARTY_COMPILE_DIR;
 		//$this->sm->config_dir = 'configs/';
 		//$this->sm->cache_dir = 'cache/';
-		$this->smarty_assign();
+		//$this->smarty_assign();
 		
 		$this->DB_sm = new Smarty;
 		$this->DB_sm->template_dir = DB_LIBS_TPL_DIR;
@@ -203,7 +201,8 @@ class Globals_obj{
 		//$this->DB_sm->cache_dir = 'cache/';
 		//$this->DB_smarty_assign();
                 
-                
+                $this->ath = new auth($this);
+                $this->ath->authenticate();
 	}
 	
 	function set_paths(){

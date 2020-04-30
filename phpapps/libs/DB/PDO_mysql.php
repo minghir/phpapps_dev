@@ -342,7 +342,7 @@ class mysql
 	/*PDO*/
     function get_error($res_id){
 		// doar sting error
-		return $this->res[$res_id]->errorInfo()[2];
+		return @$this->res[$res_id]->errorInfo()[2];
     }
     
     /*PDO*/

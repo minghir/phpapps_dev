@@ -100,7 +100,7 @@ if (!defined('CURRENT_APP_JS_DIR')) {
 //}
 
 require_once(PHPAPPS_LIBS_DIR . '3rd_party.php');
-require_once(PHPAPPS_LIBS_DIR . "user_profile.php");
+//require_once(PHPAPPS_LIBS_DIR . "user_profile.php");
 
 class Globals_obj{
 	//public $JQUERY_PATH = "js\jquery-ui-1.10.3";
@@ -127,12 +127,18 @@ class Globals_obj{
         public $USER_PROFILE;
 
 	function __construct($APP_NM){
+                require_once(PHPAPPS_LIBS_DIR . 'auth.php');
+                $this->ath = new auth($this);
+                $this->ath->authenticate();
+                
+                
+                //$this->$USER_PROFILE = new user_profile($this);
+            
 		$this->APP_NAME = $APP_NM;
 
 		$this->set_paths();
 		
 		require_once(PHPAPPS_LIBS_DIR . 'phpapps_upload.php');
-                require_once(PHPAPPS_LIBS_DIR . 'auth.php');
                 require_once(PHPAPPS_LIBS_DIR . 'user_profile.php');
 		require_once(DB_LIBS_DIR . 'DB_PDO.php');
 		require_once(SMARTY_LIBS_DIR . 'Smarty.class.php');
@@ -197,9 +203,7 @@ class Globals_obj{
 		//$this->DB_sm->cache_dir = 'cache/';
 		//$this->DB_smarty_assign();
                 
-                $this->ath = new auth($this);
-                $this->ath->authenticate();
-                $this->$USER_PROFILE = new user_profile($this);
+                
 	}
 	
 	function set_paths(){

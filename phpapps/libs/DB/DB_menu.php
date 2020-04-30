@@ -109,6 +109,5 @@ class DB_menu{
             }
             return $ssub_menu_items;
     }
-};
+}
 ?>
-

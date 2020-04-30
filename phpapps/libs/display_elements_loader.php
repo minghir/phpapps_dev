@@ -148,7 +148,7 @@ class display_elements_loader {
 		$this->globals->con->next("load_ce" . $el_id);
 		$app_name = $this->globals->con->get_field("APP_NAME","load_ce" . $el_id);
 		$custom_element_name = $this->globals->con->get_field("NAME","load_ce" . $el_id);
-		require_once (GLOBALS_DIR . $app_name . DIR_SEP ."custom_elements" . DIR_SEP. $custom_element_name .".php");
+		require_once (GLOBALS_DIR . $app_name . DIR_SEP ."custom_elements" . DIR_SEP. strtolower($custom_element_name) .".php");
                 //echo "LOAD:" .$custom_element_name ."<br>";
 		return  ( new $custom_element_name() );
      }

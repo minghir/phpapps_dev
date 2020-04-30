@@ -138,7 +138,7 @@ class Globals_obj{
                 
 		
 		date_default_timezone_set('UTC');
-		//session_start();
+		session_start();
 		$this->con = new DB(DB_LIBS_DIR . "DB_cfg.php");
 		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=false);
 		$this->con->clear_log();

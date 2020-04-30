@@ -1,4 +1,5 @@
 <?php
+session_start();
 //error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
 error_reporting(E_ALL & ~E_NOTICE  );
 //error_reporting(E_ALL  );
@@ -138,7 +139,7 @@ class Globals_obj{
                 
 		
 		date_default_timezone_set('UTC');
-		session_start();
+		
 		$this->con = new DB(DB_LIBS_DIR . "DB_cfg.php");
 		$this->con->set_log($log_type="file",$log_dir="tmp/aa.html",$debug=false);
 		$this->con->clear_log();

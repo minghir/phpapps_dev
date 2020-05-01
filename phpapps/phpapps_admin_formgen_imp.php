@@ -53,10 +53,18 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 			break;
 			case "deleteRec":
                                 echo "AICIAAAAAAAAAAAAA";
-                                $sql = new DB_query("SELECT ID, SCRIPT_NAME FROM phpapps.scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
+                                $sql = new DB_query("SELECT "
+                                                        . "ID, "
+                                                        . "SCRIPT_NAME,"
+                                                        . "APP_NAME "
+                                                    . "FROM phpapps.view_scripts "
+                                                    . "WHERE ID = :id",
+                                        array(":id"=>$_GET["gfield_value"]));
+                                
                                 $this->globals->con->query($sql);	
                                 $this->globals->con->next();	
                                 $SCRIPT_NAME = $this->globals->con->get_field("SCRIPT_NAME");
+                                $APP_NAME = $this->globals->con->get_field("APP_NAME");
                             
                                 $sql = new DB_query(
 				"DELETE FROM phpapps.form_details WHERE FORM_ID = :id",array(":id"=>$_GET["gfield_value"]));
@@ -66,11 +74,11 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 				"DELETE FROM phpapps.scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
 				$this->globals->con->query($sql);	
                                 
-                                unlink(CURRENT_APP_DIR . $SCRIPT_NAME . "_imp.php");
-                                unlink(CURRENT_APP_DIR . "tpl". DIR_SEP . $SCRIPT_NAME . "_imp.tpl");
+                                unlink(GLOBALS_DIR . $APP_NAME . DIR_SEP . $SCRIPT_NAME . "_imp.php");
+                                unlink(GLOBALS_DIR . $APP_NAME . DIR_SEP . "tpl". DIR_SEP . $SCRIPT_NAME . "_imp.tpl");
                                 
-                                unlink(CURRENT_APP_DIR . "gen_php" . DIR_SEP .$SCRIPT_NAME . ".php");
-                                unlink(CURRENT_APP_DIR . "tpl". DIR_SEP . "gen_tpl" . DIR_SEP . $SCRIPT_NAME . ".tpl");
+                                unlink(GLOBALS_DIR . $APP_NAME . DIR_SEP . "gen_php" . DIR_SEP .$SCRIPT_NAME . ".php");
+                                unlink(GLOBALS_DIR . $APP_NAME . DIR_SEP . "tpl". DIR_SEP . "gen_tpl" . DIR_SEP . $SCRIPT_NAME . ".tpl");
 				//$this->globals->con->print_log();	
 				//header("Location:win_close.html");
 			break;

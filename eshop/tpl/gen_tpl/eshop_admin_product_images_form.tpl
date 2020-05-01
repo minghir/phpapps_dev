@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$error_msg}
-<hr><form name="eshop_admin_categories_form" id="eshop_admin_categories_form" method="POST" enctype="multipart/form-data">
+<hr><form name="eshop_admin_product_images_form" id="eshop_admin_product_images_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -19,28 +19,16 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-																
-			
-		                
-				<tr><td align="right">PID  :</td><td>
-			{$PID_sel}
-		</td></tr>
-                        				 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
-																
+										<input id="PRODUCT_ID" type="hidden" name="PRODUCT_ID" value="{$PRODUCT_ID}">
+        								
 			
 		                
 		                				 
-				<tr><td align="right">TITLE :</td><td> <input type="text" id="TITLE" name="TITLE" value="{$TITLE}"></td></tr>
 																
 			
 		                
-		                				 
-								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
-        										
-			
-		                
-		                				{$FROM_IMP_CLASS}
+		                				<tr><td align="right">IMG_FILE_NAME :</td><td> <input type="file" id="IMG_FILE_NAME" name="IMG_FILE_NAME" value="{$IMG_FILE_NAME}"><a href="{$IMG_FILE_NAME}">{$IMG_FILE_NAME}</a></td></tr>
+				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

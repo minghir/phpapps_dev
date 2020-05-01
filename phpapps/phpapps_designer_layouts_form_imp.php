@@ -3,7 +3,7 @@ require_once ("globals.php");
 include ("gen_php/phpapps_designer_layouts_form.php");
 	
 	class phpapps_designer_layouts_form_impl  extends phpapps_designer_layouts_form{
-            	var $script_id = 261;
+            	public $script_id = 261;
                 private $OLD_LAYOUT_NAME;
                 private $APP_NAME;
                 public $ID;
@@ -43,8 +43,10 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                         $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
                         $this->loadElements(); // parent function  
                         $app_name = _tbl("applications","APP_NAME",$this->APP_ID);
-                        $file_to_edit = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
-                        $this->display_elements_loader->display_elements['custom_elements']["LAYOUT_TEMPLATE_EDITOR"]->file_to_edit = $file_to_edit;
+                        if($this->gact == "editRec"){
+                            $file_to_edit = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
+                            $this->display_elements_loader->display_elements['custom_elements']["LAYOUT_TEMPLATE_EDITOR"]->file_to_edit = $file_to_edit;
+                        }
                         
 			$this->display();
 		}
@@ -86,8 +88,10 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                                 
                         //echo "<br>" . GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $_SESSION["OLD_LAYOUT_NAME"] . '.tpl' ."<br>";
                         //echo GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
-				rename( GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $_SESSION["OLD_LAYOUT_NAME"] . '.tpl', 
+                                if($_SESSION["OLD_LAYOUT_NAME"] != $this->NAME){
+                                    rename( GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $_SESSION["OLD_LAYOUT_NAME"] . '.tpl', 
 					 GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl' ); 
+                                }
 				//header("Location:win_close.html");
 			}
 			//header("Location:win_close.html");

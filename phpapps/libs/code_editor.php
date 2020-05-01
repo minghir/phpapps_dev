@@ -12,15 +12,15 @@
 		
 		function __construct($file_name){
 			global $GLOBALS_OBJ;
-			$this->globals = $GLOBALS_OBJ;
+			$this->globals = &$GLOBALS_OBJ;
                         $this->code_editor_tpl = "code_editor.tpl";
 			
 			$this->sm = new Smarty;
-            $this->sm->template_dir = PHPAPPS_LIBS_TPL_DIR;
+                        $this->sm->template_dir = PHPAPPS_LIBS_TPL_DIR;
 			
 			//echo PHPAPPS_LIBS_TPL_DIR . "<br>";
 			//print_r( $this->sm->template_dir );
-            $this->sm->compile_dir = SMARTY_COMPILE_DIR;
+                        $this->sm->compile_dir = SMARTY_COMPILE_DIR;
 			
 			$this->file_path=$file_name;
                         

@@ -1,21 +1,26 @@
 <?php
 require_once ("globals.php");
-include ("gen_php/eshop_admin_categories_form.php");
-	class eshop_admin_categories_form_impl  extends eshop_admin_categories_form{
-                        public $script_id = 298;
+include ("gen_php/eshop_admin_product_images_form.php");
+	class eshop_admin_product_images_form_impl  extends eshop_admin_product_images_form{
+                        public $script_id = 302;
                         public $display_objects_type_id = '2';
                         public $display_objects_type = 'SCRIPT';
-                        public $display_objects_id = 298;
+                        public $display_objects_id = 302;
                 
 		function __construct(){
 			parent::__construct();
                         
+                        $this->PRODUCT_ID = $_GET["product_id"];
                         
-                        $this->tpl = "eshop_admin_categories_form_imp.tpl";
+                        
+                        $this->tpl = "eshop_admin_product_images_form_imp.tpl";
                         $this->display_objects_id = $this->script_id;
                         
                         $this->init();
                         $this->loadElements(); // parent function
+                        //$this->display_elements["grids"]["ESHOP_PRODUCT_IMGS"]->editForm = 
+                        
+                        
 			$this->display();
                         
 		}
@@ -53,9 +58,8 @@ include ("gen_php/eshop_admin_categories_form.php");
                 function afterPostActions(){
                 }
                 
-		function beforeDisplay(){	
-                    $this->PID_sel->set_empty_option_value(0);
-                     $this->PID_sel->setup_select_options();
+		function beforeDisplay(){
+                    print_r($this->errors);
 		}
 		
 		function afterDisplay(){	
@@ -63,5 +67,5 @@ include ("gen_php/eshop_admin_categories_form.php");
 		
 	};
 	
-	$eshop_admin_categories_form_Impl = new eshop_admin_categories_form_impl();
+	$eshop_admin_product_images_form_Impl = new eshop_admin_product_images_form_impl();
 ?>

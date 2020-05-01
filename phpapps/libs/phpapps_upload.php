@@ -37,7 +37,10 @@ class phpapps_upload {
             if(!is_dir($this->file_path)){
                 mkdir($this->file_path);
             }
+            
             $this->file_name = basename($_FILES[$this->post_var]["name"]);
+            
+            print_r($_FILES);
             
             $this->file_extension = pathinfo($this->file_name, PATHINFO_EXTENSION) != "" ? ( "." . pathinfo($this->file_name, PATHINFO_EXTENSION) ) : "";
             $this->new_unique_file_name = uniqid() . $this->file_extension;

@@ -278,7 +278,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                             $this->{$fields[ds]}  = htmlspecialchars(addslashes(trim($_POST["{$fields[ds]}"])));
                         {/if}
                         {if $input_types[ds] == "file" }
-                            $tmp_upload = new phpapps_upload({$fields[ds]});
+                            $tmp_upload = new phpapps_upload("{$fields[ds]}");
                             $this->{$fields[ds]} = $tmp_upload->getFilePath();
                             unset($tmp_upload);
                         {/if}

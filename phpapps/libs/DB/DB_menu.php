@@ -66,8 +66,8 @@ class DB_menu{
     }
     
     function setup_menu_options(){
-        $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_FILE FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
-        //echo $sql->prnt() . "<br>";
+        $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_NAME,APP_NAME FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
+        //echo "aici:<h1>" . $sql->prnt() . "</h1><br>";
         $this->globals->con->query($sql);	
         $tmp_data_obj = $this->globals->con->fetch_object();
         $this->menu_id = $tmp_data_obj->ID;
@@ -75,7 +75,8 @@ class DB_menu{
         $this->title = $tmp_data_obj->MENU_TITLE;
         $this->menu_type = $tmp_data_obj->MENU_TYPE;
         $this->orientation = $tmp_data_obj->ORIENTATION;
-        $this->template = $tmp_data_obj->TEMPLATE_FILE;
+        //$this->template = $tmp_data_obj->TEMPLATE_NAME;
+        $this->template = GLOBALS_DIR . $tmp_data_obj->APP_NAME . DIR_SEP . "tpl" . DIR_SEP . "menus" . DIR_SEP . $tmp_data_obj->TEMPLATE_NAME;
         
        
         

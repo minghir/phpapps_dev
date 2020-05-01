@@ -19,6 +19,9 @@
     <strong>Error!</strong> {$ERROR}
   </div>
   {/if}
+  
+  {$MESSAGE_BLOCK}
+  
 </div>
 </div>
     

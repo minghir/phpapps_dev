@@ -2,10 +2,16 @@
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_menus_form.php");
 	class phpapps_designer_menus_form_impl  extends phpapps_designer_menus_form{
+                public $script_id = 240;
+                public $display_objects_type_id = '2';
+                public $display_objects_type = 'SCRIPT';
+                public $display_objects_id = 240;
+                
 		function __construct(){
 			parent::__construct();
-			$this->template = "phpapps_designer_menus_form_imp.tpl";
+			$this->tpl = "phpapps_designer_menus_form_imp.tpl";
 			$this->init();
+                        
                         if($this->MENU_TYPE == 2){
                             $menu_items_grid = new DB_grid($this->globals->con, "table","phpapps.view_menu_items","phpapps_menu_items_grid");
                             $menu_items_grid->grid_title = "MENU ITEMS";
@@ -22,7 +28,8 @@ include ("gen_php/phpapps_designer_menus_form.php");
                             $this->globals->sm->assign("menu_items_grid",$menu_items_grid->get_grid_str());
                             //echo "<br>".$menu_items_grid->prnt();
                         }
-                        
+                       
+                        $this->loadElements();
 			$this->display();
 		}
 		

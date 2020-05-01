@@ -40,7 +40,12 @@ class custom_element {
           $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM phpapps.view_templates t "
                   . "LEFT JOIN phpapps.CUSTOM_ELEMENTS s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :cust_el_id",
                 array(":cust_el_id" => $this->ID));
-          //echo $sql->prnt();
+        $this->globals->con->query($sql);	
+        $tmp_data_obj = $this->globals->con->fetch_object();
+        
+        //$this->template = $tmp_data_obj->TEMPLATE_NAME;
+        $this->tpl = GLOBALS_DIR . $tmp_data_obj->APP_NAME . DIR_SEP . "tpl" . DIR_SEP . "custom_elements" . DIR_SEP . $tmp_data_obj->TEMPLATE_NAME;
+        
         
     }
     

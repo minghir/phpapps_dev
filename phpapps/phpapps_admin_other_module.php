@@ -1,11 +1,10 @@
 <?php
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
-//require_once(DB_LIBS_DIR . 'DB_menu.php');
 
-class phpapps_admin_module extends phpapps_display_abs{
-	
-	var $ID;
+class phpapps_admin_other_module extends phpapps_display_abs{
+
+        var $ID;
 	var $APP_ID;
 	var $MODULE_NAME;
 	var $MODULE_TITLE;
@@ -17,6 +16,10 @@ class phpapps_admin_module extends phpapps_display_abs{
 	var $BASE_DIR;
 	
         var $script_id = 154;
+          public $display_objects_type_id = '2';
+                public $display_objects_type = 'SCRIPT';
+                public $display_objects_id = 154;
+                
 	public function __construct($module_id){
                  parent::__construct();
 		
@@ -50,7 +53,6 @@ class phpapps_admin_module extends phpapps_display_abs{
 		$this->APP_NAME = $this->globals->con->get_field("APP_NAME");
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
-		
 		$this->loadElements();
 	}
 	
@@ -244,55 +246,21 @@ class phpapps_admin_module extends phpapps_display_abs{
 			$as3->popup = true;
 			$scripts_grid->add_row_acction($as3);
                         
-                $applications_grid = new DB_grid($this->globals->con, "table","phpapps.view_applications","phpapps_applications_grid");
-		$applications_grid->grid_title = "APPS";
-		$applications_grid->paginable = true;
-		$applications_grid->editable = true;
-		$applications_grid->filterable = false;
-		$applications_grid->exportable = false;
-		$applications_grid->rows_on_pg = 20;
-		$applications_grid->edit_form = "phpapps_admin_applications_form_imp.php?module_id=".$this->ID;
-		$applications_grid->cols = (array("APP_NAME","APP_TITLE","DESCRIPTION"));
-		$applications_grid->labels = (array("APPLICATION","TYPE","DESCRIPTION"));
-                
-                $modules_grid = new DB_grid($this->globals->con, "table","phpapps.view_modules","phpapps_modules_grid");
-		$modules_grid->grid_title = "MODULES";
-		$modules_grid->paginable = true;
-		$modules_grid->editable = true;
-		$modules_grid->filterable = false;
-		$modules_grid->exportable = false;
-		$modules_grid->rows_on_pg = 20;
-		$modules_grid->edit_form = "phpapps_admin_modules_form_imp.php?module_id=".$this->ID;
-		$modules_grid->cols = (array("APP_NAME","MODULE_NAME","MODULE_TITLE","DESCRIPTION"));
-		$modules_grid->labels = (array("APPLICATION","MODULE","TITLE","DESCRIPTION"));
-                
-                $am = new HrefActions();
-		$am->act_script = "phpapps_admin_other_module.php";
-		$am->label = "admin";
-		$am->action = "admin";
-		$am->fields = array("ID");
-		$modules_grid->add_row_acction($am);
                 
 		
 		$this->globals->sm->assign("forms_grid",$forms_grid->get_grid_str());
 		$this->globals->sm->assign("tables_grid",$tables_grid->get_grid_str());
 		$this->globals->sm->assign("lists_grid",$lists_grid->get_grid_str());
 		$this->globals->sm->assign("scripts_grid",$scripts_grid->get_grid_str());
-                $this->globals->sm->assign("applications_grid",$applications_grid->get_grid_str());
-                $this->globals->sm->assign("modules_grid",$modules_grid->get_grid_str());
-                
-                
-                //echo $scripts_grid->prnt();
-		
-                //print_r($tables_grid->query->prnt());
+               
                 
 		$this->globals->sm->assign("module",$this);
-                
-                //$this->setupLayoutElements();
-		$this->globals->sm->display("phpapps_admin_module.tpl");
+		$this->globals->sm->display("phpapps_admin_module_default.tpl");
 	}
+    
 }
 
-$aa  = new phpapps_admin_module(  $_GET["module_id"] );
+//new phpapps_default_admin_module($_GET["app_id"]);
+$aa  = new phpapps_admin_other_module( $_GET["gfield_value"] );
 $aa->displayTpl();
 ?>

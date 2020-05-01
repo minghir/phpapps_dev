@@ -1,22 +1,23 @@
 {extends file=$display_obj->layout_file}
 {block name=content}
+
 {literal}
 <script>
 function submitDetailsForm(op){
 		$("#pact").val(op);
-		$("#phpapps_designer_menus_form").submit();
+		$("#eshop_admin_product_images_form").submit();
 }
   </script>
 {/literal}    
-{include file="gen_tpl/phpapps_designer_menus_form.tpl" }
+{include file="gen_tpl/eshop_admin_product_images_form.tpl" }
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--
 <script>
-$("#phpapps_designer_menus_form").submit(function(event){
+$("#eshop_admin_product_images_form").submit(function(event){
 	event.preventDefault(); //prevent default action 
 	//var post_url = $(this).attr("action"); //get form action url
-        var post_url="phpapps_designer_menus_form_imp.php"
+        var post_url="eshop_admin_product_images_form_imp.php"
 	var request_method = $(this).attr("method"); //get form GET/POST method
 	var form_data = $(this).serialize(); //Encode form elements for submission
 	
@@ -31,5 +32,5 @@ $("#phpapps_designer_menus_form").submit(function(event){
 </script>
 -->
 {/literal} 
-{$menu_items_grid}
+
 {/block}

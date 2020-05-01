@@ -2,11 +2,66 @@
 require_once ("globals.php");
 include ("gen_php/eshop_admin_products_form.php");
 	class eshop_admin_products_form_impl  extends eshop_admin_products_form{
-		function eshop_admin_products_form_impl(){
-			$this->template = "eshop_admin_products_form_imp.tpl";
-			$this->init();
+                        public $script_id = 301;
+                        public $display_objects_type_id = '2';
+                        public $display_objects_type = 'SCRIPT';
+                        public $display_objects_id = 301;
+                
+		function __construct(){
+			parent::__construct();
+                        
+                        
+                        $this->tpl = "eshop_admin_products_form_imp.tpl";
+                        $this->display_objects_id = $this->script_id;
+                        
+                        $this->init();
+                        $this->loadElements(); // parent function
+                        $this->display_elements['grids']["ESHOP_PRODUCT_IMGS"]->where_rules = array("PRODUCT_ID = :prod_id");
+                        $this->display_elements['grids']["ESHOP_PRODUCT_IMGS"]->where_params = array(":prod_id" => $this->ID);
+                        $this->display_elements['grids']["ESHOP_PRODUCT_IMGS"]->edit_form = "eshop_admin_product_images_form_imp.php?product_id=".$this->ID;
 			$this->display();
+                        
 		}
+		
+		function beforeGetRec(){
+		}
+		
+		function afterGetRec(){
+		}
+                
+                function beforePostActions(){
+                }
+	
+		function beforeAddRec(){
+		}
+		
+		function afterAddRec(){
+			//header("Location:win_close.html");
+		}
+		
+		function beforeSaveRec(){
+		}
+		
+		function afterSaveRec(){
+			//header("Location:win_close.html");
+		}
+
+		function beforeDeleteRec(){
+		}
+		
+		function afterDeleteRec(){
+		//	header("Location:win_close.html");
+		}
+		
+                function afterPostActions(){
+                }
+                
+		function beforeDisplay(){	
+		}
+		
+		function afterDisplay(){	
+		}
+		
 	};
 	
 	$eshop_admin_products_form_Impl = new eshop_admin_products_form_impl();

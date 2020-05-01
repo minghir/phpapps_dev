@@ -8,8 +8,12 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "menus";
-	public $template = "gen_tpl/phpapps_designer_menus_form.tpl";
-	//get values
+        
+	public $template;// = "gen_tpl/phpapps_designer_menus_form.tpl";
+        
+        public $tpl = "phpapps_designer_menus_form";
+	
+        //get values
 	public $gact;
 	public $gfield;
 	public $gfield_value;
@@ -17,6 +21,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 	public $pact;
         
         public $query;
+        
+        public $smarty;
         
 	            
 	public $ID;
@@ -33,7 +39,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
         	            
 	public $DESCRIPTION;
         	            
-	public $TEMPLATE_FILE;
+	public $TEMPLATE_ID;
         		
 		 
 		 
@@ -54,7 +60,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 			public $QUERY_ID_sel;
 	 
 		 
-		 
+			public $TEMPLATE_ID_sel;
+	 
 	        
         
 
@@ -66,6 +73,11 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                
+                //$this->smarty = new Smarty;
+                //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
+                //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;
+                $this->smarty = $this->globals->sm;
                 
                 			 
 					 
@@ -86,7 +98,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 									$this->QUERY_ID_sel = new DB_select("QUERY_ID","phpapps.queries");
                                 			 
 					 
-					 
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
+                                			 
 		                
 	}
 		
@@ -112,7 +125,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 												ORIENTATION,
 												QUERY_ID,
 												DESCRIPTION,
-												TEMPLATE_FILE
+												TEMPLATE_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -126,7 +139,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                 			                                                                $this->ORIENTATION = stripslashes($this->globals->con->get_field("ORIENTATION"));
                                 			                                                                $this->QUERY_ID = stripslashes($this->globals->con->get_field("QUERY_ID"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-                                			                                                                $this->TEMPLATE_FILE = stripslashes($this->globals->con->get_field("TEMPLATE_FILE"));
+                                			                                                                $this->TEMPLATE_ID = stripslashes($this->globals->con->get_field("TEMPLATE_ID"));
                                 						
 	}
 	
@@ -147,7 +160,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 																						ORIENTATION,
 																						QUERY_ID,
 																						DESCRIPTION,
-																						TEMPLATE_FILE
+																						TEMPLATE_ID
 										 ) VALUES (
 																					:NAME,
 																						:MENU_TITLE,
@@ -155,7 +168,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 																						:ORIENTATION,
 																						:QUERY_ID,
 																						:DESCRIPTION,
-																						:TEMPLATE_FILE
+																						:TEMPLATE_ID
 													)",
 			array(
 																		                                            
@@ -171,7 +184,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
                                         														                                            
-                                            ":TEMPLATE_FILE" => $this->TEMPLATE_FILE,
+                                            ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         												)
 			);
 
@@ -206,7 +219,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 												ORIENTATION = :ORIENTATION,
 												QUERY_ID = :QUERY_ID,
 												DESCRIPTION = :DESCRIPTION,
-												TEMPLATE_FILE = :TEMPLATE_FILE
+												TEMPLATE_ID = :TEMPLATE_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
@@ -217,7 +230,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                         				                                                                                    ":ORIENTATION" => $this->ORIENTATION,
                                         				                                                                                    ":QUERY_ID" => $this->QUERY_ID,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
-                                        				                                                                                    ":TEMPLATE_FILE" => $this->TEMPLATE_FILE,
+                                        				                                                                                    ":TEMPLATE_ID" => $this->TEMPLATE_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -296,10 +309,14 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                                                 		                                                    $this->ORIENTATION  = htmlspecialchars(addslashes(trim($_POST["ORIENTATION"])));
                                                 		                                                    $this->QUERY_ID  = htmlspecialchars(addslashes(trim($_POST["QUERY_ID"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
-                                                		                                                    $this->TEMPLATE_FILE  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_FILE"])));
+                                                		                                                    $this->TEMPLATE_ID  = htmlspecialchars(addslashes(trim($_POST["TEMPLATE_ID"])));
                                                 		        }
-		
+	
+        function beforePostActions(){
+        }
+        
         function takePostActions(){
+                $this->beforePostActions();
 		switch($this->pact){
 			case "addRec":
 				$this->addRec();
@@ -311,8 +328,11 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 				$this->deleteRec();
 			break;
 		}
-		
+                $this->afterPostActions();
 	}
+        
+        function afterPostActions(){
+        }
 	
 	function check_errors(){
 				if($this->NAME == "") {
@@ -323,6 +343,9 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 		}
 				if($this->ORIENTATION == "") {
 			$this->errors[] = "Campul ORIENTATION este obligatoriu!";
+		}
+				if($this->TEMPLATE_ID == "") {
+			$this->errors[] = "Campul TEMPLATE_ID este obligatoriu!";
 		}
 			}
 	
@@ -353,13 +376,19 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 				$this->QUERY_ID_sel->setup_select_options();
 			 
 					 
-					 
-			
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
+				$this->TEMPLATE_ID_sel->setup_select_options();
+			 
+		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
+                
+                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
-		$this->globals->sm->assign(array(
+		$this->smarty->assign(array(
 							"ID" => $this->ID,
 							"NAME" => $this->NAME,
 							"MENU_TITLE" => $this->MENU_TITLE,
@@ -367,7 +396,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 							"ORIENTATION" => $this->ORIENTATION,
 							"QUERY_ID" => $this->QUERY_ID,
 							"DESCRIPTION" => $this->DESCRIPTION,
-							"TEMPLATE_FILE" => $this->TEMPLATE_FILE,
+							"TEMPLATE_ID" => $this->TEMPLATE_ID,
 									 
 						 
 						 
@@ -386,12 +415,14 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 										"QUERY_ID_sel" => $this->QUERY_ID_sel->get_select_str(),
 			 
 						 
-						 
+										"TEMPLATE_ID_sel" => $this->TEMPLATE_ID_sel->get_select_str(),
+			 
 						"pact" => $this->pact,
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,
 			"gfield_value" => $this->gfield_value,
 			"error_msg" => $error_msg,
+                        "errors"=>$this->errors
 		));
 	}
 	
@@ -406,7 +437,8 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
                 if($this->form_com_type == "ajax" && $this->pact != ""){
                     $this->ajax_server_resp();
                 }else{
-                    $this->globals->sm->display($this->template);
+                    //$this->smarty->display($this->template);
+                    $this->displayTpl();
                 }
 		$this->afterDisplay();
 	}
@@ -417,7 +449,7 @@ class phpapps_designer_menus_form extends phpapps_display_abs{
 	function get_html_str(){	
                 $this->setup_display();
                 $this->beforeDisplay();
-		$this->globals->sm->fetch($this->template);
+		$this->smarty->fetch($this->template);
                 $this->afterDisplay();
 	}
         

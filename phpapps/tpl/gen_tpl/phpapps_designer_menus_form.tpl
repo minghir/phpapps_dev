@@ -11,7 +11,7 @@ function submitDetailsForm(op){
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
-	<table border="1">
+	<table class="table-borderless">
 	
 		 
 										<input id="ID" type="hidden" name="ID" value="{$ID}">
@@ -55,11 +55,13 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-				<tr><td align="right">TEMPLATE_FILE :</td><td> <input type="text" id="TEMPLATE_FILE" name="TEMPLATE_FILE" value="{$TEMPLATE_FILE}"></td></tr>
 																
 			
 		                
-		                				{$FROM_IMP_CLASS}
+				<tr><td align="right">TEMPLATE_ID  :</td><td>
+			{$TEMPLATE_ID_sel}
+		</td></tr>
+                        				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>
 			<input type="submit" value="salveaza" onClick='submitDetailsForm("saveRec")'></td></tr>

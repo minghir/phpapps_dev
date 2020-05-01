@@ -40,6 +40,7 @@ class custom_element {
           $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM phpapps.view_templates t "
                   . "LEFT JOIN phpapps.CUSTOM_ELEMENTS s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :cust_el_id",
                 array(":cust_el_id" => $this->ID));
+        echo $sql->prnt();
         $this->globals->con->query($sql);	
         $tmp_data_obj = $this->globals->con->fetch_object();
         
@@ -66,8 +67,9 @@ class custom_element {
      
         
         $this->setTemplateFile();
-        // echo "<H1>ACUM SUNTAICI</h1>";
-	return $this->smarty->fetch($this->tpl . '.tpl');
+         echo "<H1>ACUM SUNTAICI</h1>";
+         echo $this->smarty->fetch($this->tpl . '.tpl');
+         return $this->smarty->fetch($this->tpl . '.tpl');
     }
     
      function assignTemplateElements(){

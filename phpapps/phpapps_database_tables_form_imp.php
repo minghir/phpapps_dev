@@ -33,8 +33,14 @@ include ("gen_php/phpapps_database_tables_form.php");
 	
 		function beforeAddRec(){
                     echo "beforeAddRec<br>";
-			$sql = new DB_query("SELECT SCHEMA_NAME, MODULE_SCHEMA FROM view_modules WHERE ID = :module_id",array(":module_id"=>$this->MODULE_ID));
-                        //print_r($sql);
+			$sql = new DB_query("SELECT "
+                                                . "SCHEMA_NAME, "
+                                                . "MODULE_SCHEMA "
+                                            . "FROM phpapps.view_modules "
+                                            . "WHERE ID = :module_id",
+                                array(":module_id"=>$this->MODULE_ID));
+                        
+                        echo "<h1>beforeAddRec1" . $sql->prnt()."</h1><br>";
 			if( $this->globals->con->query($sql) == -1 ){
                            // echo "AICI EROARE 1";
 				$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
@@ -76,12 +82,13 @@ include ("gen_php/phpapps_database_tables_form.php");
 										":module_id" => $this->MODULE_ID,
 										":schema_id" => $this->SCHEMA_ID,
 										":table_name" => $this->TABLE_NAME
-									)); 
+									));
+                        echo "<h1>afterAddRec1:" . $sql->prnt()."</h1><br>";
 				if( $this->globals->con->query($sql) == -1 ){
 					$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
 				}else{
 					$this->globals->con->next();
-					$this->TABLE_ID = $this->globals->con->get_field("ID");
+					$this->ID = $this->TABLE_ID = $this->globals->con->get_field("ID");
 					
 					//echo "<h1> AICI:".$this->TABLE_ID."</h1>";
 					
@@ -102,7 +109,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 							":COLUMN_SIZE"=>"20"
 						));
                                                 
-						print_r($sql);
+                                    echo "<h1>afterAddRec2:" . $sql->prnt()."</h1><br>";
 					if( $this->globals->con->query($sql) == -1 ){
 						$this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
                                                 echo "AICI EROARE 3" ."<br>";
@@ -110,6 +117,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 					}else{
 						//header("Location:phpapps_admin_tables_form_imp.php?module_id=".$this->MODULE_ID."&gact=editRec&gfield=ID&gfield_value=".$this->TABLE_ID);
                                             $this->globals->con->commit();
+                                            $this->gact = "editRec";
 					}
 				}
                              
@@ -172,8 +180,8 @@ include ("gen_php/phpapps_database_tables_form.php");
 		}
 		
 		function beforeDisplay(){	
-                    $this->TABLE_NAME = (new DB_table("tables"))->getValue("TABLE_NAME",$this->ID);
-                    echo "TABLE NAME:" . $this->TABLE_NAME . "<br>";
+                    $this->TABLE_NAME = (new DB_table("phpapps.tables"))->getValue("TABLE_NAME",$this->ID);
+                    echo "TABLE_ID:" .$this->ID. " - TABLE NAME:" . $this->TABLE_NAME . "<br>";
 			if($this->gact == "editRec"){
                             
 				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_DDL_grid");

@@ -4,15 +4,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "display_alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
-class eshop_admin_categories_form extends phpapps_display_abs{
+class test_app_test3s_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "eshop";
-	public $form_table = "categories";
+	public $form_schema = "phpapps";
+	public $form_table = "test3";
         
-	public $template;// = "gen_tpl/eshop_admin_categories_form.tpl";
+	public $template;// = "gen_tpl/test_app_test3s_form.tpl";
         
-        public $tpl = "eshop_admin_categories_form";
+        public $tpl = "test_app_test3s_form";
 	
         //get values
 	public $gact;
@@ -28,23 +28,14 @@ class eshop_admin_categories_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $PID;
+	public $COL1;
         	            
-	public $NAME;
-        	            
-	public $TITLE;
-        	            
-	public $DESCRIPTION;
+	public $COL2;
         		
 		 
 		 
 		 
-		 
-		 
 			
-		 
-			public $PID_sel;
-	 
 		 
 		 
 		 
@@ -65,12 +56,7 @@ class eshop_admin_categories_form extends phpapps_display_abs{
                 			 
 					 
 					 
-					 
-					 
 				
-					 
-									$this->PID_sel = new DB_select("PID","eshop.categories");
-                                			 
 					 
 					 
 					 
@@ -93,10 +79,8 @@ class eshop_admin_categories_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												PID,
-												NAME,
-												TITLE,
-												DESCRIPTION
+												COL1,
+												COL2
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -104,10 +88,8 @@ class eshop_admin_categories_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
-                                			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
-                                			                                                                $this->TITLE = stripslashes($this->globals->con->get_field("TITLE"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->COL1 = stripslashes($this->globals->con->get_field("COL1"));
+                                			                                                                $this->COL2 = stripslashes($this->globals->con->get_field("COL2"));
                                 						
 	}
 	
@@ -122,25 +104,17 @@ class eshop_admin_categories_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					PID,
-																						NAME,
-																						TITLE,
-																						DESCRIPTION
+																					COL1,
+																						COL2
 										 ) VALUES (
-																					:PID,
-																						:NAME,
-																						:TITLE,
-																						:DESCRIPTION
+																					:COL1,
+																						:COL2
 													)",
 			array(
 																		                                            
-                                            ":PID" => $this->PID,
+                                            ":COL1" => $this->COL1,
                                         														                                            
-                                            ":NAME" => $this->NAME,
-                                        														                                            
-                                            ":TITLE" => $this->TITLE,
-                                        														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                            ":COL2" => $this->COL2,
                                         												)
 			);
 
@@ -169,18 +143,14 @@ class eshop_admin_categories_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												PID = :PID,
-												NAME = :NAME,
-												TITLE = :TITLE,
-												DESCRIPTION = :DESCRIPTION
+												COL1 = :COL1,
+												COL2 = :COL2
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":PID" => $this->PID,
-                                        				                                                                                    ":NAME" => $this->NAME,
-                                        				                                                                                    ":TITLE" => $this->TITLE,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":COL1" => $this->COL1,
+                                        				                                                                                    ":COL2" => $this->COL2,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -253,10 +223,8 @@ class eshop_admin_categories_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
-                                                		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
-                                                		                                                    $this->TITLE  = htmlspecialchars(addslashes(trim($_POST["TITLE"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->COL1  = htmlspecialchars(addslashes(trim($_POST["COL1"])));
+                                                		                                                    $this->COL2  = htmlspecialchars(addslashes(trim($_POST["COL2"])));
                                                 		        }
 	
         function beforePostActions(){
@@ -282,21 +250,19 @@ class eshop_admin_categories_form extends phpapps_display_abs{
         }
 	
 	function check_errors(){
+				if($this->COL1 == "") {
+                        $this->alerts->add_alert("danger", "Campul <strong>COL1</strong> este obligatoriu!");
+		}
+				if($this->COL2 == "") {
+                        $this->alerts->add_alert("danger", "Campul <strong>COL2</strong> este obligatoriu!");
+		}
 			}
 	
 	function setup_display(){
 					 
 					 
 					 
-					 
-					 
 				
-					 
-									//$this->PID_sel = new DB_select("PID",".eshop.categories");
-				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
-				$this->PID_sel->selected_val = $this->PID;
-				$this->PID_sel->setup_select_options();
-			 
 					 
 					 
 					 
@@ -307,19 +273,12 @@ class eshop_admin_categories_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
 							"ID" => $this->ID,
-							"PID" => $this->PID,
-							"NAME" => $this->NAME,
-							"TITLE" => $this->TITLE,
-							"DESCRIPTION" => $this->DESCRIPTION,
+							"COL1" => $this->COL1,
+							"COL2" => $this->COL2,
 									 
 						 
 						 
-						 
-						 
 									 
-										"PID_sel" => $this->PID_sel->get_select_str(),
-			 
-						 
 						 
 						 
 						"pact" => $this->pact,

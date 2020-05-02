@@ -16,10 +16,12 @@ require_once ("globals.php");
 class message{
     public $type;
     public $message;
+    public $display_type = false;
     
-    public function __construct($typ,$msg) {
+    public function __construct($typ,$msg,$disp_type = false) {
         $this->type=$typ;
         $this->message = $msg;
+        $this->display_type = $disp_type;
     }
 }
 
@@ -27,7 +29,7 @@ class display_alerts {
 
     /// message type one of: success info warning danger primary secondary dark
     /// message to display
-    private $message_types = array("success","error","warning","danger","primary","secondary","dark");
+    private $message_types = array("success","info","warning","danger","primary","secondary","dark");
     public $messages = array();
     
     /// template should be concatenated with PHPAPPS_LIBS_TPL_DIR global var
@@ -48,13 +50,30 @@ class display_alerts {
         $this->smarty->compile_dir = SMARTY_COMPILE_DIR;
     }
     
-    function add_alert($type,$msg){
+    function add_alert($type,$msg,$disp_type = false){
+        $type  == "error" ? "danger" : $type;
         if(!in_array($type, $this->message_types)){
            //// wrong type 
             return -1;
         }
-        $this->messages[] = new message($type,$msg);
+        $this->messages[] = new message($type, $msg, boolval($disp_type));
         return 1;
+    }
+    
+    function get_no_errors(){
+        if(is_array($this->messages)){
+           return array_count_values(array_column($this->messages,"type"))["danger"];
+        }else{
+            return 0;
+        }
+    }
+    
+    function get_no_alerts(){
+        if(is_array($this->messages)){
+            return count($this->messages);
+        }else{
+            return 0;
+        }
     }
     
     public function get_message_str(){

@@ -14,14 +14,7 @@
   </form>
   <p><a href>Sign-up</a></p>
   <hr>
-  {if $ERROR != ''}
-   <div class="alert alert-danger">
-    <strong>Error!</strong> {$ERROR}
-  </div>
-  {/if}
-  
   {$MESSAGE_BLOCK}
-  
 </div>
 </div>
     

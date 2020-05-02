@@ -46,9 +46,9 @@ class HrefActions{
 		
 		if( $this->popup == true ){
 			if($this->confirm_msg != ""){
-				return "<a href=\"".$href."\" onclick=\"if(confirm('".$this->confirm_msg."')) window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
+				return "<a href=\"".$href."\" onclick=\"if(confirm('".$this->confirm_msg."')) window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');window.focus(); return false\">".$this->label."</a>";
 			}else{
-				return "<a href=\"".$href."\" onclick=\"window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
+				return "<a href=\"".$href."\" onclick=\"window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');window.focus(); return false\">".$this->label."</a>";
 			}
 		}else{
 			return "<a href=\"".$href."\">".$this->label."</a>";
@@ -60,9 +60,9 @@ class HrefActions{
 	
 		if( $this->popup == true ){
 			if($this->confirm_msg != ""){
-				return "<a href=\"".$href."\" onclick=\"if(confirm('".$this->confirm_msg."')) window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
+				return "<a href=\"".$href."\" onclick=\"if(confirm('".$this->confirm_msg."')) window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');window.focus(); return false\">".$this->label."</a>";
 			}else{
-				return "<a href=\"".$href."\" onclick=\"window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0'); return false\">".$this->label."</a>";
+				return "<a href=\"".$href."\" onclick=\"window.open('".$href."','popup','width=800,height=0,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');window.focus(); return false\">".$this->label."</a>";
 			}
 		}else{
 			return "<a href=\"".$href."\">".$this->label."</a>";

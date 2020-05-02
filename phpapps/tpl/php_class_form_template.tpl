@@ -1,6 +1,7 @@
 <?php
 // includes
 require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "display_alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 
 class {$form_name} extends phpapps_display_abs{ldelim}
@@ -43,17 +44,14 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 	public ${$fields[lis]}_sel;
 	{/if} 
 	{/section}
-        
-        
 
-	public $errors = array();
-        
-        public $resp_msgs = array();
+        public $alerts;
 	
 	function __construct(){ldelim}
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                $this->alerts = new display_alerts();
                 
                 //$this->smarty = new Smarty;
                 //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
@@ -160,13 +158,13 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 			)
 			);
 
-		if(count($this->errors) == 0) {	
+                if($this->alerts->get_no_errors() == 0) {ldelim}	
 			if( $this->globals->con->query($this->query) == -1){ldelim}
-                            $this->errors[] = $this->globals->con->get_error();
+                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
                         {rdelim}else{ldelim}
-                            $this->resp_msgs[] = "Inregistrare adaugata cu succes";
+                            $this->alerts->add_alert("success","Inregistrare adaugata cu succes");
                         {rdelim}
-		}
+		{rdelim}
 		
 		$this->afterAddRec();
 	{rdelim}
@@ -204,13 +202,13 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 			)	
 			);
 				
-		if(count($this->errors) == 0) {	
+		if($this->alerts->get_no_errors() == 0) {ldelim}	
 			if( $this->globals->con->query($this->query) == -1){ldelim}
-                            $this->errors[] = $this->globals->con->get_error();
+                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
                         {rdelim}else{ldelim}
-                            $this->resp_msgs[] = "Inregistrare salvata cu succes";
+                            $this->alerts->add_alert("success","Inregistrare salvata cu succes");
                         {rdelim}
-		};
+		{rdelim}
 		
 		$this->afterSaveRec();
 	{rdelim}
@@ -228,11 +226,11 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
 				
-		if(count($this->errors) == 0) {ldelim}
+		if($this->alerts->get_no_errors() == 0) {ldelim}	
 			if( $this->globals->con->query($this->query) == -1){ldelim}
-                            $this->errors[] = $this->globals->con->get_error();
+                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
                         {rdelim}else{ldelim}
-                            $this->resp_msgs[] = "Inregistrare stearsa cu succes";
+                            $this->alerts->add_alert("success","Inregistrare stearsa cu succes");
                         {rdelim}
 		{rdelim}
 		
@@ -257,7 +255,11 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 				$this->afterGetRec();
 			break;
 			case "deleteRec":
-				$this->deleteRec();
+				//$this->deleteRec();
+                                $this->alerts->add_alert("warning","Sigur stergeti inregistrarea?",true);
+                                $this->beforeGetRec();
+				$this->getRec();
+				$this->afterGetRec();
 			break;
 			case "addRec":
                                 //$this->addRec();
@@ -310,7 +312,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 	function check_errors(){ldelim}
 		{section name=md loop=$mandatories}
 		if($this->{$mandatories[md]} == "") {ldelim}
-			$this->errors[] = "Campul {$mandatories[md]} este obligatoriu!";
+                        $this->alerts->add_alert("danger", "Campul <strong>{$mandatories[md]}</strong> este obligatoriu!");
 		{rdelim}
 		{/section}
 	{rdelim}
@@ -332,8 +334,6 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 				$this->{$fields[lis]}_sel->setup_select_options();
 			{/if} 
 		{/section}
-                
-		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
                 
                 $this->setupDisplay();
         }
@@ -357,8 +357,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 			"gact" => $this->gact,
 			"gfield" => $this->gfield,
 			"gfield_value" => $this->gfield_value,
-			"error_msg" => $error_msg,
-                        "errors"=>$this->errors
+			"message_block" => $this->alerts->get_message_str(),
 		));
 	{rdelim}
 	
@@ -390,7 +389,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 	{rdelim}
         
         function ajax_server_resp(){ldelim}
-            return implode($this->errors,"<br>") ."<br>" . implode($this->resp_msgs,"<br>");
+            
         {rdelim}    
             
         

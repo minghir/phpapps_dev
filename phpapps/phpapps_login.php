@@ -41,7 +41,9 @@ class login extends phpapps_display_abs{
                    header("Location:". WEB_APP_DIR . $res["SCRIPT_NAME"].".php");
 
                }else{
-                   $this->alerts->add_alert("danger", "Wrong USER or PASSWORD !!!");
+                   $this->alerts->add_alert("danger", "Wrong USER or PASSWORD !!!",0);
+                   $this->alerts->get_no_errors();
+                           
                    $this->globals->sm->assign("MESSAGE_BLOCK",$this->alerts->get_message_str());
                }
            }

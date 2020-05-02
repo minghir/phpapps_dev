@@ -9,7 +9,7 @@ function submitDetailsForm(op){
 }
   </script>
 {/literal}{ldelim}/literal{rdelim}    
-{ldelim}include file="{$tpl_form_template}" {rdelim}
+<div class="container">{ldelim}include file="{$tpl_form_template}" {rdelim}</div>
 {ldelim}literal{rdelim}{literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--

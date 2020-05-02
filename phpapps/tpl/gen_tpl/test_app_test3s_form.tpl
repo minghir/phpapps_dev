@@ -6,7 +6,7 @@ function submitDetailsForm(op){
   </script>
  
 {$message_block}
-<hr><form name="eshop_admin_categories_form" id="eshop_admin_categories_form" method="POST" enctype="multipart/form-data">
+<hr><form name="test_app_test3s_form" id="test_app_test3s_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
@@ -19,25 +19,13 @@ function submitDetailsForm(op){
 			
 		                
 		                				 
-																
-			
-		                
-				<tr><td align="right">PID  :</td><td>
-			{$PID_sel}
-		</td></tr>
-                        				 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
+				<tr><td align="right">COL1 :</td><td> <input type="text" id="COL1" name="COL1" value="{$COL1}"></td></tr>
 																
 			
 		                
 		                				 
-				<tr><td align="right">TITLE :</td><td> <input type="text" id="TITLE" name="TITLE" value="{$TITLE}"></td></tr>
+				<tr><td align="right">COL2 :</td><td> <input type="text" id="COL2" name="COL2" value="{$COL2}"></td></tr>
 																
-			
-		                
-		                				 
-								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
-        										
 			
 		                
 		                				{$FROM_IMP_CLASS}

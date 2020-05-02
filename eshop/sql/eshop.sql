@@ -24,22 +24,12 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `PID` bigint(20) NOT NULL,
+  `PID` bigint(20) NOT NULL DEFAULT 0,
   `NAME` varchar(20) NOT NULL DEFAULT '',
   `TITLE` varchar(255) NOT NULL DEFAULT '',
   `DESCRIPTION` varchar(255) NOT NULL DEFAULT '',
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`ID`),
-  KEY `PID` (`PID`),
-  KEY `categories_ibfk_2` (`MODIFY_UID`),
-  KEY `categories_ibfk_3` (`CREATE_UID`),
-  CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`PID`) REFERENCES `categories` (`ID`),
-  CONSTRAINT `categories_ibfk_2` FOREIGN KEY (`MODIFY_UID`) REFERENCES `phpapps`.`users` (`ID`),
-  CONSTRAINT `categories_ibfk_3` FOREIGN KEY (`CREATE_UID`) REFERENCES `phpapps`.`users` (`ID`),
-  CONSTRAINT `eshop_categories_PID_FK` FOREIGN KEY (`PID`) REFERENCES `categories` (`ID`)
+  KEY `PID` (`PID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,8 +39,62 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,1,'root','root','',1,1,'2015-08-19 09:39:54','2015-08-19 09:39:54'),(8,1,'a','s','d',1,1,'2015-08-19 09:39:54','2015-08-19 09:39:54'),(14,1,'sa','sa','sa',1,1,'2015-08-19 09:39:54','2015-08-19 09:39:54');
+INSERT INTO `categories` VALUES (1,0,'DETERGENTI','DETERGENTI',''),(8,0,'MENAJ','MENAJ',''),(14,0,'COSMETICE','COSMETICE','');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `list_currency`
+--
+
+DROP TABLE IF EXISTS `list_currency`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `list_currency` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `list_currency`
+--
+
+LOCK TABLES `list_currency` WRITE;
+/*!40000 ALTER TABLE `list_currency` DISABLE KEYS */;
+INSERT INTO `list_currency` VALUES (1,'','Lei');
+/*!40000 ALTER TABLE `list_currency` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product_images`
+--
+
+DROP TABLE IF EXISTS `product_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product_images` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `PRODUCT_ID` bigint(20) DEFAULT NULL,
+  `NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `IMG_FILE_NAME` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `eshop_product_images_PRODUCT_ID_FK` (`PRODUCT_ID`),
+  CONSTRAINT `eshop_product_images_PRODUCT_ID_FK` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `products` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product_images`
+--
+
+LOCK TABLES `product_images` WRITE;
+/*!40000 ALTER TABLE `product_images` DISABLE KEYS */;
+INSERT INTO `product_images` VALUES (13,1,NULL,'user_data/2/5eac513015406.jpg',NULL),(14,1,NULL,'user_data/2/5ead1f2ad47b9.jpg',NULL);
+/*!40000 ALTER TABLE `product_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -62,21 +106,18 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `CATEG_ID` bigint(20) NOT NULL DEFAULT 0,
-  `PRODUCT_NAME` varchar(255) NOT NULL DEFAULT '',
-  `DESCRIPTION` tinytext NOT NULL,
-  `MODIFY_UID` bigint(20) NOT NULL DEFAULT 1,
-  `CREATE_UID` bigint(20) NOT NULL DEFAULT 1,
-  `MODIFY_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `CREATE_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `CATEGORY_ID` bigint(20) DEFAULT NULL,
+  `PRODUCT_TITLE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `PRICE` decimal(20,0) NOT NULL DEFAULT 0,
+  `CURRENCY_ID` bigint(20) DEFAULT NULL,
+  `STOCK` decimal(20,0) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`),
-  KEY `CATEG_ID` (`CATEG_ID`),
-  KEY `products_ibfk_2` (`MODIFY_UID`),
-  KEY `products_ibfk_3` (`CREATE_UID`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`CATEG_ID`) REFERENCES `categories` (`ID`),
-  CONSTRAINT `products_ibfk_2` FOREIGN KEY (`MODIFY_UID`) REFERENCES `phpapps`.`users` (`ID`),
-  CONSTRAINT `products_ibfk_3` FOREIGN KEY (`CREATE_UID`) REFERENCES `phpapps`.`users` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  KEY `eshop_products_CATEGORY_ID_FK` (`CATEGORY_ID`),
+  KEY `eshop_products_CURRENCY_ID_FK` (`CURRENCY_ID`),
+  CONSTRAINT `eshop_products_CATEGORY_ID_FK` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `categories` (`ID`),
+  CONSTRAINT `eshop_products_CURRENCY_ID_FK` FOREIGN KEY (`CURRENCY_ID`) REFERENCES `list_currency` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +126,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,8,'cici','aaa',1,1,'2015-08-19 09:40:59','2015-08-19 09:40:59'),(2,1,'mimisss','fifi',1,1,'2016-08-16 13:28:13','2016-08-16 08:35:07'),(4,1,'aaass','aaaasasasss',1,1,'2016-08-16 13:35:09','2016-08-16 13:33:39'),(9,8,'sadasdddsds2222','ttttttttt',1,1,'2016-08-16 13:40:33','2016-08-16 13:40:22');
+INSERT INTO `products` VALUES (1,14,'VOPSEA PAR','',23,1,100);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -98,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-28  0:23:13
+-- Dump completed on 2020-05-02 10:23:15

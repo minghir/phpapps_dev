@@ -2,10 +2,10 @@
 require_once ("globals.php");
 include ("gen_php/eshop_admin_product_images_form.php");
 	class eshop_admin_product_images_form_impl  extends eshop_admin_product_images_form{
-                        public $script_id = 302;
+                        public $script_id = 303;
                         public $display_objects_type_id = '2';
                         public $display_objects_type = 'SCRIPT';
-                        public $display_objects_id = 302;
+                        public $display_objects_id = 303;
                 
 		function __construct(){
 			parent::__construct();
@@ -59,7 +59,7 @@ include ("gen_php/eshop_admin_product_images_form.php");
                 }
                 
 		function beforeDisplay(){
-                    print_r($this->errors);
+                    if(count($this->errors) > 0) print_r($this->errors);
 		}
 		
 		function afterDisplay(){	

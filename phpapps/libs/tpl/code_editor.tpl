@@ -36,7 +36,7 @@
         indentUnit: 4,
         indentWithTabs: true
       });
-	  //editor.setSize("100%", 800);
+	  editor.setSize("100%", 800);
     </script>
   
 

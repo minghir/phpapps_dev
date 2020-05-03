@@ -1,11 +1,13 @@
 <?php
 namespace wabdo;
 if (!defined('_3RDPARTY_DIR')) {
-	define('_3RDPARTY_DIR', PHPAPPS_APP_DIR . '3rd_party' . DIR_SEP);
+	//define('_3RDPARTY_DIR', PHPAPPS_APP_DIR . '3rd_party' . DIR_SEP);
+    define('_3RDPARTY_DIR', GLOBALS_DIR . 'vendor' . DIR_SEP);
 }
 
 if (!defined('SMARTY_LIBS_DIR')) {
-	define('SMARTY_LIBS_DIR', _3RDPARTY_DIR . 'smarty-3.1.35'. DIR_SEP .'libs'  . DIR_SEP);
+	//define('SMARTY_LIBS_DIR', _3RDPARTY_DIR . 'smarty-3.1.35'. DIR_SEP .'libs'  . DIR_SEP);
+    define('SMARTY_LIBS_DIR', _3RDPARTY_DIR . 'smarty'. DIR_SEP .'smarty' . DIR_SEP . 'libs'  . DIR_SEP);
 }
 
 if (!defined('PHPAPPS_SMARTY_TPL_DIR')) {
@@ -21,7 +23,7 @@ if (!defined('PHPEXCEL_LIBS_DIR')) {
 }
 
 if (!defined('CODEMIRROR_DIR')) {
-    define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/codemirror-5.52.2');
+    define('CODEMIRROR_DIR', WEB_BASE_DIR . 'vendor/codemirror-5.52.2');
     //define('CODEMIRROR_DIR', WEB_BASE_DIR . 'phpapps/3rd_party/codemirror.next-master');
 }
 

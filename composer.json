@@ -1,0 +1,15 @@
+{
+    "name": "vendor/phpapps-dev",
+    "description": "Description of project phpapps_dev.",
+    "authors": [
+        {
+            "name": "mingh",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "smarty/smarty": "v3.1.36",
+        "twbs/bootstrap": "v4.4.1",
+        "snapappointments/bootstrap-select": "dev-master"
+    }
+}

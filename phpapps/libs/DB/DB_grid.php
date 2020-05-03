@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 
 class DB_grid
       {

@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 if (!defined('_3RDPARTY_DIR')) {
 	define('_3RDPARTY_DIR', PHPAPPS_APP_DIR . '3rd_party' . DIR_SEP);
 }

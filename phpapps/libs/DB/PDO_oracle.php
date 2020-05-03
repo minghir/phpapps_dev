@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 // Clasa pentru baze de date oracle
 class oracle
  {

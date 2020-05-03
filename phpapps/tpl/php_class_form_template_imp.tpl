@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/{$form_name}.php");
 	class {$form_name}_impl  extends {$form_name}{ldelim}

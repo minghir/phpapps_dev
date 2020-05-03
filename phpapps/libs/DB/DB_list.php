@@ -1,5 +1,5 @@
 <?php
-
+namespace wabdo;
 class DB_list{
 	var $globals;
 	var $list_name;

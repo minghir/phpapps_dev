@@ -8,7 +8,7 @@ class test_app_test3_form extends phpapps_display_abs{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
-	public $form_table = "test2";
+	public $form_table = "test3";
         
 	public $template;// = "gen_tpl/test_app_test3_form.tpl";
         
@@ -28,12 +28,15 @@ class test_app_test3_form extends phpapps_display_abs{
 	            
 	public $ID;
         	            
-	public $nume;
+	public $COL1;
+        	            
+	public $COL2;
         		
 		 
-			public $nume_sel;
-	 
+		 
+		 
 			
+		 
 		 
 		 
 	
@@ -51,9 +54,10 @@ class test_app_test3_form extends phpapps_display_abs{
                 $this->smarty = $this->globals->sm;
                 
                 			 
-								$this->nume_sel = new DB_select("nume","phpapps.list_script_types");
-                        			 
+					 
+					 
 				
+					 
 					 
 					 
 		                
@@ -75,7 +79,8 @@ class test_app_test3_form extends phpapps_display_abs{
 	function getRec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												nume
+												COL1,
+												COL2
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -83,7 +88,8 @@ class test_app_test3_form extends phpapps_display_abs{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->nume = stripslashes($this->globals->con->get_field("nume"));
+                                			                                                                $this->COL1 = stripslashes($this->globals->con->get_field("COL1"));
+                                			                                                                $this->COL2 = stripslashes($this->globals->con->get_field("COL2"));
                                 						
 	}
 	
@@ -98,13 +104,17 @@ class test_app_test3_form extends phpapps_display_abs{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					nume
+																					COL1,
+																						COL2
 										 ) VALUES (
-																					:nume
+																					:COL1,
+																						:COL2
 													)",
 			array(
 																		                                            
-                                            ":nume" => $this->nume,
+                                            ":COL1" => $this->COL1,
+                                        														                                            
+                                            ":COL2" => $this->COL2,
                                         												)
 			);
 
@@ -133,12 +143,14 @@ class test_app_test3_form extends phpapps_display_abs{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												nume = :nume
+												COL1 = :COL1,
+												COL2 = :COL2
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":nume" => $this->nume,
+                                        				                                                                                    ":COL1" => $this->COL1,
+                                        				                                                                                    ":COL2" => $this->COL2,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -215,7 +227,8 @@ class test_app_test3_form extends phpapps_display_abs{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->nume  = htmlspecialchars(addslashes(trim($_POST["nume"])));
+                                                		                                                    $this->COL1  = htmlspecialchars(addslashes(trim($_POST["COL1"])));
+                                                		                                                    $this->COL2  = htmlspecialchars(addslashes(trim($_POST["COL2"])));
                                                 		        }
 	
         function beforePostActions(){
@@ -241,21 +254,14 @@ class test_app_test3_form extends phpapps_display_abs{
         }
 	
 	function check_errors(){
-				if($this->ID == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>ID</strong> este obligatoriu!");
-		}
-				if($this->nume == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>nume</strong> este obligatoriu!");
-		}
 			}
 	
 	function setup_display(){
 					 
-								//$this->nume_sel = new DB_select("nume",".phpapps.list_script_types");
-			$this->nume_sel->selected_val = $this->nume;
-			$this->nume_sel->setup_select_options();
-			 
+					 
+					 
 				
+					 
 					 
 					 
 		                
@@ -265,11 +271,13 @@ class test_app_test3_form extends phpapps_display_abs{
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
 							"ID" => $this->ID,
-							"nume" => $this->nume,
+							"COL1" => $this->COL1,
+							"COL2" => $this->COL2,
 									 
-										"nume_sel" => $this->nume_sel->get_select_str(),
-			 
+						 
+						 
 									 
+						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

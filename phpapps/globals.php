@@ -1,4 +1,6 @@
 <?php
+namespace wabdo;
+
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'phpapps');
 }

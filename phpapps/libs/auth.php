@@ -1,5 +1,5 @@
 <?php
-
+namespace wabdo;
 //Authentication
 class auth{
     

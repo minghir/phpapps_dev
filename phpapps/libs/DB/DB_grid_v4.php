@@ -1,4 +1,7 @@
 <?php
+namespace wabdo;
+use smarty;
+
 require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 
 class DB_grid {

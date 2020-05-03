@@ -1,5 +1,6 @@
 <?php
-	
+namespace wabdo;
+
 class DB_select_option{
 	public $value;
 	public $label;

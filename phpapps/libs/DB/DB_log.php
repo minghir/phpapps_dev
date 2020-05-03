@@ -1,5 +1,5 @@
 <?php //DB global vars  and functions
-
+namespace wabdo;
 class Log
 {    
     var $debug;

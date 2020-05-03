@@ -10,13 +10,19 @@
                     </label>
                         <input class="form-control" type="text" id="ID" name="ID" value="{$ID}">
                 </div>
-																		                		                		                        																		<div class="form-group">
+																		                		                		                        				<div class="form-group">
                     <label >
-                        nume  :
+                        COL1 :
                     </label>
-			{$nume_sel}
+                        <input class="form-control" type="checkbox" id="COL1" name="COL1" value="{$COL1}">
                 </div>
-                                		                		        	{$FROM_IMP_CLASS}
+                														                		                		                        		<div class="form-group">
+                    <label >
+                        COL2 :
+                    </label>
+                        <input class="form-control" type="text" id="COL2" name="COL2" value="{$COL2}">
+                </div>
+																		                		                		        	{$FROM_IMP_CLASS}
                 <div class="form-group">
 	{if $gact == "editRec"}
                        <button type="submit" class="btn btn-primary mb-2" name="pact" value="saveRec">save</button>

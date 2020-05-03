@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "DB_grid_imp.php");
 /*

@@ -1,4 +1,7 @@
 <?php
+
+namespace wabdo;
+use PDO;
 // Clasa pentru baze de date mysql
 class mysql
  {

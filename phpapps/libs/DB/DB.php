@@ -1,5 +1,5 @@
 <?php
-
+namespace wabdo;
 
 //require_once(DB_LIBS_DIR . 'DB_log.php');
 //require_once(DB_LIBS_DIR . 'DB_mysql_db.php');

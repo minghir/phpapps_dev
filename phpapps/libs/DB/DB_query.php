@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 	class DB_query{
 		public $query_str;
 		public $paramaters = array();

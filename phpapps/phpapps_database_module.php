@@ -1,4 +1,6 @@
 <?php
+namespace wabdo;
+
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");

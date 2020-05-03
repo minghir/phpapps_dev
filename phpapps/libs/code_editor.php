@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 	//require_once ("globals.php");
 	class code_editor{
 		private $file_path;

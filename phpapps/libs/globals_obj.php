@@ -1,4 +1,6 @@
 <?php
+namespace wabdo;
+use Smarty;
 session_start();
 //error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
 error_reporting(E_ALL & ~E_NOTICE  );

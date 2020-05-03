@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 
 class DB_table_def{

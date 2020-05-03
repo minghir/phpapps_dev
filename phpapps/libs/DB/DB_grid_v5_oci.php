@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once (PHPAPPS_LIBS_DIR . "HrefActions.php");
 
 class DB_grid_oci {

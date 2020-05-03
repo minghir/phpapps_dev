@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 include("config.php");
 
 //function logaction($text, $userid = $_SESSION["_USER_ID"]){

@@ -16,13 +16,16 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "application_layout.php");
 
 abstract class phpapps_display_abs extends  application_layout {
-    public $tpl;
-    //public $layout;
+    
     public $globals;
     
+    public $tpl;
+    
+    // layout script custom_element
     public $display_objects_type_id;
     public $display_objects_type;
     public $display_objects_id;
+    
     
     var $display_elements_loader;
     var $display_elements;
@@ -103,7 +106,6 @@ abstract class phpapps_display_abs extends  application_layout {
     }
     
     function tplAssignDisplayObjectElements(){
-        
          $this->display_elements_loader->assignTemplateElements();
      }
     

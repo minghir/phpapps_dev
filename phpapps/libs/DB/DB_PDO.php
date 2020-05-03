@@ -58,10 +58,10 @@ require_once(DB_LIBS_DIR . 'DB_menu.php');
 	    }else{
 			$this->type = $type[0];
 			if(in_array($this->type,$this->known_types)){
-                            echo $this->type;
-                            $tmp_var = "wabdo\\".$this->type;
-                            $this->con[$this->type] = new $tmp_var($this->get_con_string($this->type), $this->Log); 
-                                //$this->con[$this->type] = new (wabdo::$this->type)($this->get_con_string($this->type), $this->Log); 
+                            
+                                $tmp_var = "wabdo\\".$this->type;
+                                $this->con[$this->type] = new $tmp_var($this->get_con_string($this->type), $this->Log); 
+                                //$this->con[$this->type] = new ("wabdo\\".$this->type)($this->get_con_string($this->type), $this->Log); 
 				$this->default_type=$this->type;
 			}else{
 				$this->Log->do_log("Unknown database type: " . $this->type);

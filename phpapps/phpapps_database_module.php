@@ -19,6 +19,9 @@ class phpapps_database_module extends phpapps_display_abs{
         var $MODULE_ID;
         
         var $script_id =  165;
+        var $display_objects_id = 165;
+        var $display_objects_type_id = '2';
+    	var $display_objects_type = 'SCRIPT';
         
     
     function __construct($module_id) {

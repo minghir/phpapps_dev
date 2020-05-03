@@ -39,9 +39,8 @@ class application_layout {
      }   
      
     function setLayoutFile(){
-        $sql = new DB_query("select l.ID AS LAYOUT_ID, l.NAME,l.APP_NAME from phpapps.view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :script_id",
-                //array(":script_id"=> $this->globals->ath->script_id ));
-                array(":script_id"=> $this->script_id ));
+        $sql = new DB_query("select l.ID AS LAYOUT_ID, l.NAME,l.APP_NAME from phpapps.view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :display_object_id",
+                array(":display_object_id"=> $this->script_id ));
         //echo $sql->prnt() ."<br>";
         
         if( $this->globals->con->query($sql,"layout_sql") == 1){

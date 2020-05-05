@@ -3,97 +3,96 @@ namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class {$CLASS_NAME} extends template{ldelim}
+class test_script extends template{
 
     /**
      * application database id
      *
      * @var int
      */
-    protected $APP_ID = {$APP_ID};
+    protected $APP_ID = 1;
     
     /**
      * application name as unique identifier
      *
      * @var string
      */
-    protected $APP_NAME = "{$APP_NAME}";
+    public $APP_NAME = "phpapps";
     
     /**
      * application long title
      *
      * @var string
      */
-    protected $APP_TITLE = "{$APP_TITLE}";
+    public $APP_TITLE = "Builder for PHP Applications";
     
     /**
      * application label (short title)
      *
      * @var string
      */
-    protected $APP_LABEL = "{$APP_LABEL}";
+    public $APP_LABEL = "builder";
     
     /**
      * module id
      *
      * @var int
      */
-    protected $MODULE_ID = {$MODULE_ID};
+    protected $MODULE_ID = 14;
     
     /**
      * module name as db identifier
      *
      * @var int
      */
-    protected $MODULE_NAME = "{$MODULE_NAME}";
+    public $MODULE_NAME = "phpapps_database";
     
     /**
      * module long title
      *
      * @var string
      */
-    protected $MODULE_TITLE = "{$MODULE_TITLE}";
+    public $MODULE_TITLE = "database";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $MODULE_LABEL = "{$MODULE_LABEL}";
+    public $MODULE_LABEL = "DBS";
     
     /**
      * script name as db identifier
      *
      * @var string
      */
-    protected $SCRIPT_NAME = "{$SCRIPT_NAME}";
+    protected $SCRIPT_NAME = "test_script";
     
     /**
      * script long title
      *
      * @var string
      */
-    protected $SCRIPT_TITLE = "{$SCRIPT_TITLE}";
+    protected $SCRIPT_TITLE = "";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $SCRIPT_LABEL = "{$SCRIPT_LABEL}";
-    
+    protected $SCRIPT_LABEL = "";
     
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
-    protected $display_objects_id = {$SCRIPT_ID};
+    protected $display_objects_id = 315;
     protected $smary;
     protected $con;
         
-    function __construct() {ldelim}
+    function __construct() {
         parent::__construct();
         
-        $this->tpl = "{$CLASS_NAME}.tpl";        
+        $this->tpl = "test_script.tpl";        
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
      
@@ -102,13 +101,13 @@ class {$CLASS_NAME} extends template{ldelim}
         $this->setup_display();
         $this->display_template(); // parent function
 
-    {rdelim}
+    }
     
-    function setup_display() {ldelim}
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "{$CLASS_NAME}: Youre code here."));
-    {rdelim}
+    function setup_display() {
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "test_script: Youre code here."));
+    }
     
-{rdelim}
+}
 
-new {$CLASS_NAME}();
+new test_script();
 ?>

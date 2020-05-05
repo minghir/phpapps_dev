@@ -2,10 +2,10 @@
 namespace wabdo;
 // includes
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "display_alerts.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "alerts.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class {$form_name} extends phpapps_display_abs{ldelim}
+class {$form_name} extends template{ldelim}
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "{$form_schema}";
@@ -52,7 +52,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
-                $this->alerts = new display_alerts();
+                $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
                 //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
@@ -81,18 +81,18 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 		
 	function init(){ldelim}
 		if($_SERVER['REQUEST_METHOD'] === 'POST') {ldelim}
-			$this->parsePostVars();
-                        $this->takePostActions();
+			$this->parse_post_vars();
+                        $this->post_actions();
 		{rdelim} else {ldelim}
-			$this->parseGetVars();
-                        $this->takeGetActions();
+			$this->parse_get_vars();
+                        $this->get_actions();
 		{rdelim}
 	{rdelim}
 	
-	function beforeGetRec(){ldelim}
+	function before_get_rec(){ldelim}
 	{rdelim}
 	
-	function getRec(){ldelim}
+	function get_rec(){ldelim}
 		$this->query = new DB_query( "SELECT 
 			{section name=ds1 loop=$fields}
 			{if $smarty.section.ds1.last }
@@ -116,14 +116,14 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 			
 	{rdelim}
 	
-	function afterGetRec(){ldelim}
+	function after_get_rec(){ldelim}
 	{rdelim}
 	
-	function beforeAddRec(){ldelim}
+	function before_add_rec(){ldelim}
 	{rdelim}
 	
-	function addRec(){ldelim}
-		$this->beforeAddRec();
+	function add_rec(){ldelim}
+		$this->before_add_rec();
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
@@ -167,18 +167,18 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                         {rdelim}
 		{rdelim}
 		
-		$this->afterAddRec();
+		$this->after_add_rec();
 	{rdelim}
 	
-	function afterAddRec(){ldelim}
+	function after_add_rec(){ldelim}
 		//header("Location:win_close.html");
 	{rdelim}
 	
-	function beforeSaveRec(){ldelim}
+	function before_save_rec(){ldelim}
 	{rdelim}
 	
-	function saveRec(){ldelim}
-		$this->beforeSaveRec();
+	function save_rec(){ldelim}
+		$this->before_save_rec();
 		
 		$this->check_errors();
 		
@@ -211,18 +211,17 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                         {rdelim}
 		{rdelim}
 		
-		$this->afterSaveRec();
+		$this->after_save_rec();
 	{rdelim}
 	
-	function afterSaveRec(){ldelim}
-		//header("Location:win_close.html");
+	function after_save_rec(){ldelim}
 	{rdelim}
 
-	function beforeDeleteRec(){ldelim}
+	function before_delete_rec(){ldelim}
 	{rdelim}
 	
-	function deleteRec(){ldelim}
-		$this->beforeDeleteRec();
+	function delete_rec(){ldelim}
+		$this->before_delete_rec();
 		
 		$this->query = new DB_query("DELETE FROM ".$this->form_schema.".".$this->form_table."
 				WHERE ".$this->gfield." = :".$this->gfield, array(":".$this->gfield=>$this->gfield_value) );
@@ -235,32 +234,31 @@ class {$form_name} extends phpapps_display_abs{ldelim}
                         {rdelim}
 		{rdelim}
 		
-		$this->afterDeleteRec();
+		$this->after_delete_rec();
 	{rdelim}
 	
-	function afterDeleteRec(){ldelim}
-		//header("Location:win_close.html");
+	function after_delete_rec(){ldelim}
 	{rdelim}
 	
-	function parseGetVars(){ldelim}
+	function parse_get_vars(){ldelim}
 		$this->gact = trim($_GET["gact"]);
 		$this->gfield = trim($_GET["gfield"]);
 		$this->gfield_value = trim($_GET["gfield_value"]);
         {rdelim}
         
-        function takeGetActions(){ldelim}
+        function get_actions(){ldelim}
 			switch($this->gact){ldelim}
 			case "editRec":
-				$this->beforeGetRec();
-				$this->getRec();
-				$this->afterGetRec();
+				$this->before_get_rec();
+				$this->get_rec();
+				$this->after_get_rec();
 			break;
 			case "deleteRec":
 				//$this->deleteRec();
                                 $this->alerts->add_alert("warning","Sigur stergeti inregistrarea?",true);
-                                $this->beforeGetRec();
-				$this->getRec();
-				$this->afterGetRec();
+                                $this->before_get_rec();
+				$this->get_rec();
+				$this->after_get_rec();
 			break;
 			case "addRec":
                                 //$this->addRec();
@@ -268,7 +266,7 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 		{rdelim}
 	{rdelim}
 	
-	function parsePostVars(){ldelim}
+	function parse_post_vars(){ldelim}
 		$this->pact = $_POST["pact"];
 		$this->gact = $_POST["gact"];
 		$this->gfield = $_POST["gfield"];
@@ -288,26 +286,26 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 		{/section}
         {rdelim}
 	
-        function beforePostActions(){ldelim}
+        function before_post_actions(){ldelim}
         {rdelim}
         
-        function takePostActions(){ldelim}
-                $this->beforePostActions();
+        function post_actions(){ldelim}
+                $this->before_post_actions();
 		switch($this->pact){ldelim}
 			case "addRec":
-				$this->addRec();
+				$this->add_rec();
 			break;
 			case "saveRec":
-				$this->saveRec();
+				$this->save_rec();
 			break;
 			case "deleteRec":
-				$this->deleteRec();
+				$this->delete_rec();
 			break;
 		{rdelim}
-                $this->afterPostActions();
+                $this->after_post_actions();
 	{rdelim}
         
-        function afterPostActions(){ldelim}
+        function after_post_actions(){ldelim}
         {rdelim}
 	
 	function check_errors(){ldelim}
@@ -335,8 +333,6 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 				$this->{$fields[lis]}_sel->setup_select_options();
 			{/if} 
 		{/section}
-                
-                $this->setupDisplay();
         }
         
         function assign_vars_tpl(){
@@ -362,31 +358,31 @@ class {$form_name} extends phpapps_display_abs{ldelim}
 		));
 	{rdelim}
 	
-	function beforeDisplay(){ldelim}	
+	function before_display(){ldelim}	
 	{rdelim}
 	
 	function display(){ldelim}
         
                 $this->setup_display();
-                $this->beforeDisplay();
+                $this->before_display();
 		$this->assign_vars_tpl();
                 if($this->form_com_type == "ajax" && $this->pact != ""){ldelim}
                     $this->ajax_server_resp();
                 {rdelim}else{ldelim}
                     //$this->smarty->display($this->template);
-                    $this->displayTpl();
+                    $this->display_template();
                 {rdelim}
-		$this->afterDisplay();
+		$this->after_display();
 	{rdelim}
 	
-	function afterDisplay(){ldelim}	
+	function after_display(){ldelim}	
 	{rdelim}
 	
 	function get_html_str(){ldelim}	
                 $this->setup_display();
-                $this->beforeDisplay();
+                $this->before_display();
 		$this->smarty->fetch($this->template);
-                $this->afterDisplay();
+                $this->after_display();
 	{rdelim}
         
         function ajax_server_resp(){ldelim}

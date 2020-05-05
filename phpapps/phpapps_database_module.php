@@ -2,10 +2,10 @@
 namespace wabdo;
 
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
-class phpapps_database_module extends phpapps_display_abs{
+class phpapps_database_module extends template{
 
         var $ID;
         var $APP_ID;
@@ -18,10 +18,10 @@ class phpapps_database_module extends phpapps_display_abs{
 	var $APP_TITLE;
         var $MODULE_ID;
         
-        var $script_id =  165;
-        var $display_objects_id = 165;
-        var $display_objects_type_id = '2';
-    	var $display_objects_type = 'SCRIPT';
+        //var $script_id =  165;
+        protected $display_objects_id = 165;
+        protected $display_objects_type_id = '2';
+    	protected $display_objects_type = 'SCRIPT';
         
     
     function __construct($module_id) {
@@ -29,9 +29,9 @@ class phpapps_database_module extends phpapps_display_abs{
         $this->tpl = PHPAPPS_TPL_DIR . "phpapps_database_module.tpl";        
         $this->MODULE_ID = $module_id;
         
-        $this->display_objects_type_id = '2';
-    	$this->display_objects_type = 'SCRIPT';
-    	$this->display_objects_id = $this->script_id;
+        //$this->display_objects_type_id = '2';
+    	//$this->display_objects_type = 'SCRIPT';
+    	//$this->display_objects_id = $this->script_id;
         
         $this->globals->con->select_db("phpapps");
 		
@@ -60,13 +60,13 @@ class phpapps_database_module extends phpapps_display_abs{
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
                 
-                $this->loadElements();
-                $this->setupDisplay();
-                $this->displayTpl();
+                $this->load_elements();
+                $this->setup_display();
+                $this->display_template();
                 //parent::displayTpl();
     }
     
-    function setupDisplay(){
+    function setup_display(){
         //parent::setupDisplay();
         $tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";

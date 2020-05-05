@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("phpapps_admin_formgen.php");	
 	

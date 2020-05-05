@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 //phpapps_admin_formgen.php	
 class phpapps_admin_formgen{
 	var $deploy_location;

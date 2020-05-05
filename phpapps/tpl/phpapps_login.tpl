@@ -3,8 +3,8 @@
 <br><br><br><br><br><br>
 <div class="d-flex justify-content-around">        
 <div >
-<h1><b>WABCO</b></h1>
-<p class="text-secondary"><h6><b>W</b><small class="text-secondary">eb</small> <b>A</b><small class="text-secondary">pplications</small> <b>B</b><small class="text-secondary">uilder</small> <b>C</b><small class="text-secondary">loud</small> <b>O</b><small class="text-secondary">riented</small></h6></p>
+<h1><b>WABDO</b></h1>
+<p class="text-secondary"><h6><b class="text-secondary">W</b><small class="text-secondary">eb</small> <b class="text-secondary">A</b><small class="text-secondary">pplications</small> <b class="text-secondary">B</b><small class="text-secondary">uilder</small> <b class="text-secondary">D</b><small class="text-secondary">atabase</small> <b class="text-secondary">O</b><small class="text-secondary">riented</small></h6></p>
   <form class="form-inline" action="phpapps_login.php" method="POST">
     <label for="email2" class="mb-2 mr-sm-2">Email:</label>
     <input type="text" class="form-control mb-2 mr-sm-2" id="email2" placeholder="Enter email" name="user" value="{$USER}">

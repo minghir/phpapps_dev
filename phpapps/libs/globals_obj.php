@@ -137,7 +137,7 @@ class Globals_obj{
             
 		$this->APP_NAME = $APP_NM;
 
-		$this->set_paths();
+		//$this->set_paths();
 		
 		require_once(PHPAPPS_LIBS_DIR . 'phpapps_upload.php');
                 require_once(PHPAPPS_LIBS_DIR . 'user_profile.php');
@@ -207,7 +207,9 @@ class Globals_obj{
                 $this->ath->authenticate();
 	}
 	
+        /*
 	function set_paths(){
+            
 		$this->__APP_DIR = GLOBALS_DIR . $this->APP_NAME . DIR_SEP;
 		$this->__JS_DIR = $this->__APP_DIR . 'js' . DIR_SEP;
 		$this->__CSS_DIR = $this->__APP_DIR . 'css' . DIR_SEP;
@@ -215,17 +217,22 @@ class Globals_obj{
 		$this->__LIBS_TPL_DIR =  $this->__LIBS_DIR . 'tpl' . DIR_SEP;
 		$this->__SMARTY_TPL_DIR = $this->__APP_DIR . 'tpl' . DIR_SEP;
 	}
-	
+         * 
+         */
+        
+	/*
 	function smarty_assign(){
 		$this->sm->assign(array(
 				//"JQUERY_PATH" => $this->JQUERY_PATH,
 			));
 	}
 	
-	function setSchema($schm){
+	function set_schema($schm){
 		$this->schema = $schm;
 		$this->con->select_db($schm);
 	}
+         * 
+         */
 };
 
 ?>

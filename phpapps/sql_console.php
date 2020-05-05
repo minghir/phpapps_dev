@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 include ("globals.php");
 global $GLOBALS_OBJ;
 $globals = &$GLOBALS_OBJ;

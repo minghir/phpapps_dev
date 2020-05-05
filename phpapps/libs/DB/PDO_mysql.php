@@ -97,6 +97,7 @@ class mysql
 
 			//$this->res[$res_id]->execute($db_query->getParams());
 			//if($this->res[$res_id]){
+//echo $db_query->prnt();
 			if($this->res[$res_id]->execute($db_query->getParams())){
 //print_r($this->res[$res_id]);				
 				$this->recordcount[$res_id] = $this->res[$res_id]->rowCount();

@@ -1,4 +1,7 @@
 <?php
+
+namespace wabdo;
+
 require_once ("globals.php");
 //include ("libs/code_editor.php");
 include ("gen_php/phpapps_admin_scripts_form.php");
@@ -8,6 +11,8 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                 public $module_id;
                 public $old_script_name;
                 public $script_id = 60;
+                public $display_objects_id = 60;
+                public $display_objects_type_id = '2';
 	
 		function __construct(){
                     parent::__construct();
@@ -61,7 +66,7 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                         $display_object_elements_grid->edit_form = "phpapps_designer_display_object_elements_form_imp.php?obj_id=".$this->ID."&obj_type=2";
                         $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
                                     
-                        $this->loadElements(); // parent function
+                        $this->load_elements(); // parent function
 			$this->display();
                  
 		}
@@ -70,9 +75,20 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                     print_r($this->errors);
                         if(count($this->errors) == 0){
                             $sql = new DB_query("SELECT 
-                                                    ID
-                                                    FROM phpapps.scripts
-                                                    WHERE MODULE_ID = :module_id AND SCRIPT_NAME = :script_name", 
+                                                    ID,
+                                                    APP_ID,
+                                                    APP_NAME,
+                                                    APP_TITLE,
+                                                    APP_LABEL,
+                                                    MODULE_ID,
+                                                    MODULE_NAME,
+                                                    MODULE_TITLE,
+                                                    MODULE_LABEL,
+                                                    SCRIPT_NAME,
+                                                    SCRIPT_TITLE,
+                                                    SCRIPT_LABEL
+                                                 FROM phpapps.view_scripts
+                                                WHERE MODULE_ID = :module_id AND SCRIPT_NAME = :script_name", 
                                             array(":module_id" => $this->MODULE_ID,
                                                   ":script_name" => $this->SCRIPT_NAME));
                            
@@ -82,10 +98,19 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                             $this->script_id = $this->globals->con->get_field("ID");
 
                             $this->globals->sm->assign(array(
-                                    "CLASS_NAME" => $this->SCRIPT_NAME,
-                                    "APP_ID" => $this->app_id,
-                                    "MODULE_ID" => $this->MODULE_ID,
-                                    "SCRIPT_ID" => $this->script_id
+                                    "CLASS_NAME"    => $this->SCRIPT_NAME,
+                                    "APP_ID"        => $this->app_id,
+                                    "APP_NAME"      => $this->globals->con->get_field("APP_NAME"),
+                                    "APP_TITLE"     => $this->globals->con->get_field("APP_TITLE"),
+                                    "APP_LABEL"     => $this->globals->con->get_field("APP_LABEL"),
+                                    "MODULE_ID"     => $this->MODULE_ID,
+                                    "MODULE_NAME"   => $this->globals->con->get_field("MODULE_NAME"),
+                                    "MODULE_TITLE"  => $this->globals->con->get_field("MODULE_TITLE"),
+                                    "MODULE_LABEL"  => $this->globals->con->get_field("MODULE_LABEL"),
+                                    "SCRIPT_ID"     => $this->script_id,
+                                    "SCRIPT_NAME"   => $this->globals->con->get_field("SCRIPT_NAME"),
+                                    "SCRIPT_TITLE"  => $this->globals->con->get_field("SCRIPT_TITLE"),
+                                    "SCRIPT_LABEL"  => $this->globals->con->get_field("SCRIPT_LABEL"),
                             ));
 
                             $php_content = $this->globals->sm->fetch('php_new_script_template.tpl');

@@ -1,5 +1,6 @@
 <?php
 namespace wabdo;
+use smarty;
 
 class DB_select_option{
 	public $value;

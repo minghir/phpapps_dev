@@ -1,9 +1,10 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 //require_once(DB_LIBS_DIR . 'DB_menu.php');
 
-class phpapps_admin_module extends phpapps_display_abs{
+class phpapps_admin_module extends template{
 	
 	var $ID;
 	var $APP_ID;
@@ -17,6 +18,9 @@ class phpapps_admin_module extends phpapps_display_abs{
 	var $BASE_DIR;
 	
         var $script_id = 154;
+       public $display_objects_id = 154;
+       public $display_objects_type_id = '2';
+       
 	public function __construct($module_id){
                  parent::__construct();
 		
@@ -51,10 +55,10 @@ class phpapps_admin_module extends phpapps_display_abs{
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
 		
-		$this->loadElements();
+		$this->load_elements();
 	}
 	
-	public function displayTpl(){
+	public function display_template(){
 		
 		$forms_grid =  new DB_grid($this->globals->con, "table","phpapps.view_forms","phpapps_forms_grid");
 		$forms_grid->grid_title = "FORMS";
@@ -294,5 +298,5 @@ class phpapps_admin_module extends phpapps_display_abs{
 }
 
 $aa  = new phpapps_admin_module(  $_GET["module_id"] );
-$aa->displayTpl();
+$aa->display_template();
 ?>

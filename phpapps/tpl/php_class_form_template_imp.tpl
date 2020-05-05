@@ -16,48 +16,48 @@ include ("gen_php/{$form_name}.php");
                         $this->display_objects_id = $this->script_id;
                         
                         $this->init();
-                        $this->loadElements(); // parent function
+                        $this->load_elements(); // parent function
 			$this->display();
                         
 		{rdelim}
 		
-		function beforeGetRec(){ldelim}
+		function before_get_rec(){ldelim}
 		{rdelim}
 		
-		function afterGetRec(){ldelim}
+		function after_get_rec(){ldelim}
 		{rdelim}
                 
-                function beforePostActions(){ldelim}
+                function before_post_actions(){ldelim}
                 {rdelim}
 	
-		function beforeAddRec(){ldelim}
+		function before_add_rec(){ldelim}
 		{rdelim}
 		
-		function afterAddRec(){ldelim}
+		function after_add_rec(){ldelim}
 			//header("Location:win_close.html");
 		{rdelim}
 		
-		function beforeSaveRec(){ldelim}
+		function before_save_rec(){ldelim}
 		{rdelim}
 		
-		function afterSaveRec(){ldelim}
+		function after_save_rec(){ldelim}
 			//header("Location:win_close.html");
 		{rdelim}
 
-		function beforeDeleteRec(){ldelim}
+		function before_delete_rec(){ldelim}
 		{rdelim}
 		
-		function afterDeleteRec(){ldelim}
+		function after_delete_rec(){ldelim}
 		//	header("Location:win_close.html");
 		{rdelim}
 		
-                function afterPostActions(){ldelim}
+                function after_post_actions(){ldelim}
                 {rdelim}
                 
-		function beforeDisplay(){ldelim}	
+		function before_display(){ldelim}	
 		{rdelim}
 		
-		function afterDisplay(){ldelim}	
+		function after_display(){ldelim}	
 		{rdelim}
 		
 	{rdelim};

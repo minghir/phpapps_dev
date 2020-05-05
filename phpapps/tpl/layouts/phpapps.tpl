@@ -19,6 +19,7 @@
   -->
   <!-- APP JavaScript -->
   <script src="{$smarty.const.CURRENT_APP_JS_DIR}remember_last_tab.js"></script>   
+  <!-- <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}phpapps.css">-->
   
     <title>{$PAGE_TITLE}</title>
     </head>

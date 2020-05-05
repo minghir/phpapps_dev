@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 	require_once ("globals.php");
 	
  	class run_php_script{

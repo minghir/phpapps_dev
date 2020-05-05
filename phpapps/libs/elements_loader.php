@@ -13,12 +13,12 @@ require_once (PHPAPPS_LIBS_DIR . "DB_grid_imp.php");
  *
  * @author goaga
  */
-class display_elements_loader {
+class elements_loader {
     public $display_elements = array();
     public $display_object_type;
     public $display_object_id;
     
-    var $globals;
+    protected $globals;
     
     public function __construct( $display_object_type, $display_object_id ) {
         global $GLOBALS_OBJ;
@@ -27,16 +27,16 @@ class display_elements_loader {
         $this->display_object_type = $display_object_type;
         $this->display_object_id = $display_object_id;
         
-        $this->loadElements();
+        $this->load_elements();
         //$this->assignTemplateElements();
         
     }
     
-    function getElements(){
+    function get_elements(){
         return $this->display_elements;
     }
     
-    function loadElements(){
+    function load_elements(){
         //list_layout_elements_types 
         //MENU              1
         //FORM              2
@@ -53,19 +53,19 @@ class display_elements_loader {
             
             switch($res->ELEMENT_TYPE_ID){
                 case '1'://MENU
-                    $this->display_elements['menus'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadMenu($res->ELEMENT_ID);
+                    $this->display_elements['menus'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_menu($res->ELEMENT_ID);
                 break;
                 case '2'://FORM
-                    $this->display_elements['forms'][$res->TEMPLATE_VARIABLE_NAMEE] = $this->loadForm($res->ELEMENT_ID);
+                    $this->display_elements['forms'][$res->TEMPLATE_VARIABLE_NAMEE] = $this->load_form($res->ELEMENT_ID);
                 break;
                 case '3'://LAYOUT_VARIABLE
-                    $this->display_elements['layout_variables'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadLayoutVariable($res->ELEMENT_ID);
+                    $this->display_elements['layout_variables'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_layout_variable($res->ELEMENT_ID);
                 break;
                 case '4'://GRIDS
-                    $this->display_elements['grids'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadGrid($res->ELEMENT_ID);
+                    $this->display_elements['grids'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_grid($res->ELEMENT_ID);
                 break;
                 case '5'://CUSTOM ELEMENTS
-                    $this->display_elements['custom_elements'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadCustomElement($res->ELEMENT_ID);
+                    $this->display_elements['custom_elements'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_custom_element($res->ELEMENT_ID);
                 break;
             }
             
@@ -89,7 +89,7 @@ class display_elements_loader {
         }
      }
      
-     function assignTemplateElements(){
+     function assign_template_elements(){
          if(is_array($this->display_elements['menus'])){
              foreach($this->display_elements['menus'] as $key=>$val){
                  $this->globals->sm->assign($key,$val->get_menu_str());
@@ -119,24 +119,24 @@ class display_elements_loader {
           //print_r($this->display_elements['grids']);
      }
      
-     function loadMenu($menu_id){
+     function load_menu($menu_id){
           return new DB_menu($menu_id);
      }
      
-     function loadForm($form_id){
+     function load_form($form_id){
          
      }
      
-     function loadLayoutVariable($var_id){
+     function load_layout_variable($var_id){
          return  _tbl("phpapps.layout_variables","VARIABLE_CONTENT",$var_id,"ID");
      }
      
-     function loadGrid($grid_id){
+     function load_grid($grid_id){
        return (new DB_grid_imp($grid_id))->grid_obj;
        //  return new DB_grid_imp($grid_id);
      }
      
-     function loadCustomElement($el_id){
+     function load_custom_element($el_id){
             $sql2 = new DB_query("SELECT ID,
 			NAME,
 			APP_ID,

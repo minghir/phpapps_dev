@@ -1,4 +1,7 @@
 <?php
+namespace wabdo;
+use smarty;
+
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
 require_once (PHPAPPS_LIBS_DIR . "display_alerts.php");

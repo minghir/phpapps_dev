@@ -3,20 +3,23 @@ namespace wabdo;
 use smarty;
 
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
-require_once (PHPAPPS_LIBS_DIR . "display_alerts.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
+require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 
-class login extends phpapps_display_abs{
+class login extends template{
     public $globals;
-    public $script_id = 161;
     private $alerts;
+    protected $display_objects_id = 161;
+    protected $display_objects_type_id = '2';
+    protected $display_objects_type = 'SCRIPT';
+    
     public function __construct(){
             parent::__construct();
             global $GLOBALS_OBJ;
             $this->globals = &$GLOBALS_OBJ;
-            $this->alerts = new display_alerts();
+            $this->alerts = new alerts();
             
-            $this->loadElements();
+            $this->load_elements();
             
             $test_user = $_POST["user"];
             $test_pass = $_POST["pass"];
@@ -54,8 +57,7 @@ class login extends phpapps_display_abs{
        }
        
        $this->tpl = "phpapps_login.tpl";
-       $this->setLayoutFile("phpapps_login");
-       $this->displayTpl();
+       $this->display_template();
     }
 }
 new login();

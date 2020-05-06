@@ -82,11 +82,14 @@ class {$CLASS_NAME} extends template{ldelim}
      */
     protected $SCRIPT_LABEL = "{$SCRIPT_LABEL}";
     
+    protected $SCRIPT_VERSION = "{$SCRIPT_VERSION}";
+    
     
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
     protected $display_objects_id = {$SCRIPT_ID};
+    
     protected $smary;
     protected $con;
         

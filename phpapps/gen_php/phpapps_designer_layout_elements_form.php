@@ -1,9 +1,9 @@
 <?php
 // includes
-require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+namespace wabdo; require_once ("globals.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_designer_layout_elements_form extends phpapps_display_abs{
+class phpapps_designer_layout_elements_form extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";

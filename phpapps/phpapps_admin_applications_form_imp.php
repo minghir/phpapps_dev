@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 
 include ("gen_php/phpapps_admin_applications_form.php");
@@ -27,7 +28,7 @@ include ("gen_php/phpapps_admin_applications_form.php");
 			//$this->form_com_type = "ajax";
                         $this->USER_ID = $this->globals->USER_ID;
 			$this->init();
-                        $this->loadElements();
+                        $this->load_elements();
 			$this->display();
                         print_r($this->errors);
 		}

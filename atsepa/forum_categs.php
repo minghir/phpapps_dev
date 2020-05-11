@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class forum_categs extends phpapps_display_abs{
+class forum_categs extends template{
 
     private $app_id;
     
@@ -20,7 +20,7 @@ class forum_categs extends phpapps_display_abs{
         $articles_grid->template = CURRENT_APP_TPL_DIR . "forum_categs_grid.tpl";
         $this->globals->sm->assign("FORUM_CATEGS_GRID",$articles_grid->get_grid_str());
         $this->globals->sm->assign("CURRENT_PAGE","forum");
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

@@ -1,7 +1,4 @@
-<html>
-<head>
 {include file="commun_header.tpl" }
-</head>
 {literal}
 <script>
   $(function() {
@@ -22,7 +19,6 @@
   </script>
 <script type="text/javascript">
 <!--
-
 function check_all_hidden() {
 	var checkboxes = new Array(); 
 	checkboxes = document["form_gen"].getElementsByTagName('input');
@@ -35,11 +31,14 @@ function check_all_hidden() {
 //-->
 </script>
 {/literal}
-</head>
-<body>
-<form name="form_gen" method="POST" id="form_gen" >
+
+<form name="form_gen" method="POST" id="form_gen" action="http://localhost/phpapps_dev/phpapps/phpapps_admin_formgen_imp.php">
 
 Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_name" value="{$form_name}" size=80><br>
+Sript title<input type="text" name="script_title" id="script_title" value="{$script_title}" size=30>
+Sript label<input type="text" name="script_label" id="script_label" value="{$script_label}" size=30>
+Sript version<input disabled type="text" name="script_version" id="script_version" value="{$script_version}" size=10>
+<br>
 <!-- Form dir:<input type="text" name="deploy_location" value="{$deploy_location}"> -->
 
 
@@ -205,6 +204,3 @@ Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_
 </table>
 </form>
 
-
-</body>
-</html>

@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class article extends phpapps_display_abs{
+class article extends template{
 
     private $app_id;
     private $ARTICLE_ID;
@@ -35,7 +35,7 @@ class article extends phpapps_display_abs{
                                         "LAST_NAME" => $LAST_NAME,
                                         "USERNAME" => $USERNAME));
         $this->globals->sm->assign("CURRENT_PAGE","articles");
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

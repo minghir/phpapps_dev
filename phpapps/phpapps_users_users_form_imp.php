@@ -14,5 +14,5 @@ include ("gen_php/phpapps_users_users_form.php");
 	};
 	
 	$phpapps_users_users_form_Impl = new phpapps_users_users_form_impl();
-        //$phpapps_users_users_form_Impl->displayTpl();
+        //$phpapps_users_users_form_Impl->display_tpl();
 ?>

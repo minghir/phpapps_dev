@@ -1,5 +1,6 @@
 <?php
 namespace wabdo;
+use Smarty;
 	//require_once ("globals.php");
 	class code_editor{
 		private $file_path;

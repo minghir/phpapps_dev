@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_database_browse_queries extends phpapps_display_abs{
+class phpapps_database_browse_queries extends template{
 
     private $app_id;
     private $get_table_id;

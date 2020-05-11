@@ -1,8 +1,9 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_database_browse_tables extends phpapps_display_abs{
+class phpapps_database_browse_tables extends template{
 
     private $app_id;
     private $get_table_id;
@@ -11,7 +12,7 @@ class phpapps_database_browse_tables extends phpapps_display_abs{
     function __construct($app_id) {
         parent::__construct();
         
-        $this->setLayoutFile("phpapps_popup");
+        //$this->setLayoutFile("phpapps_popup");
         
         $this->tpl = "phpapps_database_browse_tables.tpl";        
         $this->app_id = $app_id;
@@ -60,8 +61,8 @@ class phpapps_database_browse_tables extends phpapps_display_abs{
         $this->globals->con->query($sql);	
         $this->globals->con->next();
         
-        if(file_exists(GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") .DIR_SEP. $this->globals->con->get_field("FORM_NAME") . "_imp.php")){// && 
-            $phpapps_admin_tables_form_grid->edit_form = WEB_BASE_DIR . $this->globals->con->get_field("APP_NAME") ."/".$this->globals->con->get_field("FORM_NAME") . "_imp.php";
+        if(file_exists(GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") .DIR_SEP. $this->globals->con->get_field("FORM_NAME") . ".php")){// && 
+            $phpapps_admin_tables_form_grid->edit_form = WEB_BASE_DIR . $this->globals->con->get_field("APP_NAME") ."/".$this->globals->con->get_field("FORM_NAME") . ".php";
         }else{
             $phpapps_admin_tables_form_grid->editable = false;	
         }

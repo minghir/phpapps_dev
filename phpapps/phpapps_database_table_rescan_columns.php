@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_database_table_rescan_columns{// extends phpapps_display_abs{
+class phpapps_database_table_rescan_columns{// extends template{
 
     private $app_id;
     public $TABLE_ID;
@@ -190,8 +190,8 @@ class phpapps_database_table_rescan_columns{// extends phpapps_display_abs{
         //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "phpapps_database_table_rescan_columns: Youre code here."));
         
   
-        //$this->loadElements();
-        //$this->displayTpl();
+        //$this->load_elements();
+        //$this->display_template();
     }
 }
 

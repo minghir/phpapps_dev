@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_database_tables_form.php");
 	class phpapps_database_tables_form_impl  extends phpapps_database_tables_form{
@@ -9,7 +10,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 		public $TABLE_ID;
                 public $TABLE_NAME;
                 
-                public $scrip_id = 2;
+                //public $scrip_id = 2;
                 public $display_objects_type_id = '2';
                 public $display_objects_type = 'SCRIPT';
                 public $display_objects_id = 2;
@@ -20,7 +21,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 			$this->MODULE_ID = $_GET["module_id"];
                         $this->TABLE_TYPE = (new DB_list("list_table_types"))->getID("values_table");
 			$this->init();
-                        $this->loadElements();
+                        $this->load_elements();
 			$this->display();
 		}
 		

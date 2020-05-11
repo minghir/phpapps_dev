@@ -10,9 +10,9 @@
 
 require_once ("globals.php");
 require_once (DB_LIBS_DIR . "DB_grid_v5_oci.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 set_time_limit ( 600 );
-class test_oci extends phpapps_display_abs{
+class test_oci extends template{
 
     private $app_id;
     
@@ -26,7 +26,7 @@ class test_oci extends phpapps_display_abs{
         
         //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "test_oci: Youre code here."));
 		
-        $this->displayTpl();
+        $this->display_template();
     }
 	
 	function tets_oci_run(){

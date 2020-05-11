@@ -19,13 +19,16 @@ class elements_loader {
     public $display_object_id;
     
     protected $globals;
+    protected $smarty;
     
     public function __construct( $display_object_type, $display_object_id ) {
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
+        $this->smarty = $this->globals->sm;
         
         $this->display_object_type = $display_object_type;
         $this->display_object_id = $display_object_id;
+        
         
         $this->load_elements();
         //$this->assignTemplateElements();
@@ -46,7 +49,7 @@ class elements_loader {
          $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
-         //echo $sql1->prnt() ."<br>";
+         //echo "<br><br><br><br><br>". $sql1->prnt() ."<br>";
         $this->globals->con->query($sql1,"display_elements_sql");
          
         while($res = $this->globals->con->fetch_object("display_elements_sql")){
@@ -89,30 +92,34 @@ class elements_loader {
         }
      }
      
-     function assign_template_elements(){
+     function assign_template_elements($smarty = NULL){
+         if(is_object($smarty)){
+             $this->smarty = $smarty;
+         }
+         
          if(is_array($this->display_elements['menus'])){
              foreach($this->display_elements['menus'] as $key=>$val){
-                 $this->globals->sm->assign($key,$val->get_menu_str());
+                 $this->smarty->assign($key,$val->get_menu_str());
              }
          }
          
          if(is_array($this->display_elements['layout_variables'])){
              foreach($this->display_elements['layout_variables'] as $key=>$val){
-                 $this->globals->sm->assign($key,$val);
+                 $this->smarty->assign($key,$val);
              }
          }
          
          if(is_array($this->display_elements['grids'])){
              //echo "ASSIGN:" . $val->GRID_NAME;
              foreach($this->display_elements['grids'] as $key=>$val){
-                 $this->globals->sm->assign($key,$val->get_grid_str());
+                 $this->smarty->assign($key,$val->get_grid_str());
              }
          }
          
          if(is_array($this->display_elements['custom_elements'])){
              //echo "ASSIGN:" . $val->GRID_NAME;
              foreach($this->display_elements['custom_elements'] as $key=>$val){
-                 $this->globals->sm->assign($key,$val->get_custom_element_str());
+                 $this->smarty->assign($key,$val->get_custom_element_str());
              }
          }
          
@@ -150,7 +157,8 @@ class elements_loader {
 		$app_name = $this->globals->con->get_field("APP_NAME","load_ce" . $el_id);
 		$custom_element_name = $this->globals->con->get_field("NAME","load_ce" . $el_id);
 		require_once (GLOBALS_DIR . $app_name . DIR_SEP ."custom_elements" . DIR_SEP. strtolower($custom_element_name) .".php");
+                $custom_element_class_name = "wabdo\\".$custom_element_name;
                 //echo "LOAD:" .$custom_element_name ."<br>";
-		return  ( new $custom_element_name() );
+		return  ( new $custom_element_class_name() );
      }
 }

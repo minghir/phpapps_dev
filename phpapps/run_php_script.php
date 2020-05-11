@@ -24,7 +24,8 @@ namespace wabdo;
 						array(":id"=>$_GET["gfield_value"],":module_id" => $_GET["module_id"]));
 					$this->globals->con->query($sql);	
 					$this->globals->con->next();
-					$this->script_name = $this->globals->con->get_field("FORM_NAME") . "_imp.php";
+					//$this->script_name = $this->globals->con->get_field("FORM_NAME") . "_imp.php";
+                                        $this->script_name = $this->globals->con->get_field("FORM_NAME") . ".php";
 					$this->script_path = WEB_BASE_DIR  . $this->globals->con->get_field("APP_NAME") . '/' . $this->script_name;
 				break;
 				case "runScript":

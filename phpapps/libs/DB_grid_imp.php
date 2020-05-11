@@ -1,7 +1,7 @@
 <?php
 namespace wabdo;
 //require_once ("globals.php");
-//require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+//require_once (PHPAPPS_LIBS_DIR . "template.php");
 //require_once(DB_LIBS_DIR . 'DB_grid_v4.php');
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,7 +14,7 @@ namespace wabdo;
  *
  * @author goaga
  */
-class DB_grid_imp{// extends phpapps_display_abs{
+class DB_grid_imp{// extends template{
     
     public $ID;
     public $GRID_NAME;
@@ -143,7 +143,8 @@ class DB_grid_imp{// extends phpapps_display_abs{
              $this->grid_obj->paginable = boolval($this->PAGINABLE);
              $this->grid_obj->exportable = boolval($this->EXPORTABLE);
              $this->grid_obj->sortable = boolval($this->SORTABLE);
-             $this->grid_obj->edit_form = $this->EDIT_FORM_FILE_NAME . "_imp.php";
+             //$this->grid_obj->edit_form = $this->EDIT_FORM_FILE_NAME . "_imp.php";
+             $this->grid_obj->edit_form = $this->EDIT_FORM_FILE_NAME . ".php";
              $this->grid_obj->rows_on_pg = $this->ROWS_ON_PAGE; 
              $this->grid_obj->template = $this->TEMPLATE_NAME;
              

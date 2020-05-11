@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class about extends phpapps_display_abs{
+class about extends template{
 
     private $app_id;
     
@@ -14,7 +14,7 @@ class about extends phpapps_display_abs{
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "about: Youre code here."));
         $this->globals->sm->assign("CURRENT_PAGE","about");
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

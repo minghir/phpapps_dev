@@ -1,8 +1,10 @@
 <?php
+namespace wabdo;
+use Smarty;
 require_once ("globals.php");
-//require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+//require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class custom_element_1 {//extends phpapps_display_abs{
+class custom_element_1 {//extends template{
     public $globals;
     private $custom_element_id;
     

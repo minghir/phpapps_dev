@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_database_list_form.php");
 	class phpapps_database_list_form_impl  extends phpapps_database_list_form{
@@ -26,7 +27,7 @@ include ("gen_php/phpapps_database_list_form.php");
                         //echo "AICI:" . $this->schema;            
 						
                         $this->init();
-                        $this->loadElements(); // parent function
+                        $this->load_elements(); // parent function
 			$this->display();
                         
 		}

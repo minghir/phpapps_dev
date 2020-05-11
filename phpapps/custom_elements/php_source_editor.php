@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class php_source_editor extends phpapps_display_abs{
+class php_source_editor extends template{
 
     public $ID;
     public $CUSTOM_ELEMENT_ID;

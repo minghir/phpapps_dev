@@ -1,4 +1,6 @@
 <?php
+namespace wabdo;
+use Smarty;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "custom_element.php");
 
@@ -32,10 +34,10 @@ class custom_element_3 extends custom_element{
         $this->smarty->template_dir = CURRENT_APP_TPL_DIR ."custom_elements" . DIR_SEP;
         $this->smarty->compile_dir = SMARTY_COMPILE_DIR;
         
-        //$this->loadElements();
+        //$this->load_elements();
         //print_r($this->display_elements);
         //echo $this->display_elements['menus']['TEST_CM']->get_menu_str();
-    //    $this->displayTpl();
+    //    $this->display_template();
     }
     
     function get_custom_element_str(){

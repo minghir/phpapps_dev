@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_grids_form.php");
 	class phpapps_designer_grids_form_impl  extends phpapps_designer_grids_form{
@@ -31,11 +32,11 @@ include ("gen_php/phpapps_designer_grids_form.php");
                         $grid_grid_columns->edit_form = "phpapps_designer_grid_columns_form_imp.php?grid_id=".$this->ID."&table_id=$this->TABLE_ID";
                         $this->globals->sm->assign("grid_grid_columns",$grid_grid_columns->get_grid_str());
                         
-                        $this->loadElements();
+                        $this->load_elements();
                         
-                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_rules = array("GRID_ID = :grid_id");
-                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_params = array(":grid_id" => $this->ID);
-                        $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->edit_form = "phpapps_designer_grid_actions_form_imp.php?grid_id=".$this->ID;
+                        $this->template_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_rules = array("GRID_ID = :grid_id");
+                        $this->template_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_params = array(":grid_id" => $this->ID);
+                        $this->template_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->edit_form = "phpapps_designer_grid_actions_form_imp.php?grid_id=".$this->ID;
                         //echo "<h1>AICIL:" . $this->display_elements_loader->display_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->grid_obj->edit_form . "</a>";
                         
 			$this->display();

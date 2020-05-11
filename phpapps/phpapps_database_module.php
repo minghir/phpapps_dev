@@ -63,7 +63,7 @@ class phpapps_database_module extends template{
                 $this->load_elements();
                 $this->setup_display();
                 $this->display_template();
-                //parent::displayTpl();
+                //parent::display_tpl();
     }
     
     function setup_display(){
@@ -262,7 +262,7 @@ class phpapps_database_module extends template{
                 $this->globals->sm->assign("module",$this);
     }
     /*
-    public function displayTpl(){
+    public function display_tpl(){
                 $this->setupLayoutElements();
 		$this->globals->sm->display("phpapps_database_module.tpl");
 	}*/

@@ -1,6 +1,6 @@
 <?php
 // includes
-require_once ("globals.php");
+namespace wabdo; require_once ("globals.php");
 
 class phpapps_admin_tables_form{
 	public $globals;

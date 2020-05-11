@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class test_jquery extends phpapps_display_abs{
+class test_jquery extends template{
 
     private $app_id;
     
@@ -14,7 +14,7 @@ class test_jquery extends phpapps_display_abs{
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "test_jquery: Youre code here."));
         
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

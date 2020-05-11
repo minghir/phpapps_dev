@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class test_laura extends phpapps_display_abs{
+class test_laura extends template{
 
     private $app_id;
     private $module_id;
@@ -22,8 +22,8 @@ class test_laura extends phpapps_display_abs{
     	$this->display_objects_id = $this->script_id;
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "test_laura: Youre code here."));
-        $this->loadElements();
-        $this->displayTpl();
+        $this->load_elements();
+        $this->display_template();
     }
 }
 

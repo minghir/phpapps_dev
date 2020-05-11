@@ -1,88 +1,91 @@
 <?php
+/**
+* script template version {$SCRIPT_VERSION}
+*/
 namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class {$CLASS_NAME} extends template{ldelim}
+class {$CLASS_NAME}_generated extends template{ldelim}
 
     /**
      * application database id
      *
      * @var int
      */
-    protected $APP_ID = {$APP_ID};
+    protected $_APP_ID = {$APP_ID};
     
     /**
      * application name as unique identifier
      *
      * @var string
      */
-    protected $APP_NAME = "{$APP_NAME}";
+    protected $_APP_NAME = "{$APP_NAME}";
     
     /**
      * application long title
      *
      * @var string
      */
-    protected $APP_TITLE = "{$APP_TITLE}";
+    protected $_APP_TITLE = "{$APP_TITLE}";
     
     /**
      * application label (short title)
      *
      * @var string
      */
-    protected $APP_LABEL = "{$APP_LABEL}";
+    protected $_APP_LABEL = "{$APP_LABEL}";
     
     /**
      * module id
      *
      * @var int
      */
-    protected $MODULE_ID = {$MODULE_ID};
+    protected $_MODULE_ID = {$MODULE_ID};
     
     /**
      * module name as db identifier
      *
      * @var int
      */
-    protected $MODULE_NAME = "{$MODULE_NAME}";
+    protected $_MODULE_NAME = "{$MODULE_NAME}";
     
     /**
      * module long title
      *
      * @var string
      */
-    protected $MODULE_TITLE = "{$MODULE_TITLE}";
+    protected $_MODULE_TITLE = "{$MODULE_TITLE}";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $MODULE_LABEL = "{$MODULE_LABEL}";
+    protected $_MODULE_LABEL = "{$MODULE_LABEL}";
     
     /**
      * script name as db identifier
      *
      * @var string
      */
-    protected $SCRIPT_NAME = "{$SCRIPT_NAME}";
+    protected $_SCRIPT_NAME = "{$SCRIPT_NAME}";
     
     /**
      * script long title
      *
      * @var string
      */
-    protected $SCRIPT_TITLE = "{$SCRIPT_TITLE}";
+    protected $_SCRIPT_TITLE = "{$SCRIPT_TITLE}";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $SCRIPT_LABEL = "{$SCRIPT_LABEL}";
+    protected $_SCRIPT_LABEL = "{$SCRIPT_LABEL}";
     
-    protected $SCRIPT_VERSION = "{$SCRIPT_VERSION}";
+    protected $_SCRIPT_VERSION = "{$SCRIPT_VERSION}";
     
     
     

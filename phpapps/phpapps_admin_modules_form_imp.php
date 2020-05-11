@@ -13,7 +13,7 @@ include ("gen_php/phpapps_admin_modules_form.php");
 			$this->MODULE_DATE=date("Y-m-d");
 			$this->tpl = "phpapps_admin_modules_form_imp.tpl";
 			$this->init();
-			$this->loadElements();	
+			$this->load_elements();	
 			$this->display();
 		}
 	};

@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class test_11 extends template{
+class test_11_gen extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "applications";
         
-	public $template;// = "gen_tpl/test_11.tpl";
+	public $template;// = "gen_tpl/test_11_gen.tpl";
         
-        public $tpl = "test_11";
+        public $tpl = "test_11_gen";
 	
         //get values
 	public $gact;

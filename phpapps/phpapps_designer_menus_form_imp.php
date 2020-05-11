@@ -29,7 +29,7 @@ include ("gen_php/phpapps_designer_menus_form.php");
                             //echo "<br>".$menu_items_grid->prnt();
                         }
                        
-                        $this->loadElements();
+                        $this->load_elements();
 			$this->display();
 		}
 		

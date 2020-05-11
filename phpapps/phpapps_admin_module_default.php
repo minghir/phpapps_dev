@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_admin_module_default extends phpapps_display_abs{
+class phpapps_admin_module_default extends template{
 
         var $ID;
 	var $APP_ID;
@@ -53,10 +53,10 @@ class phpapps_admin_module_default extends phpapps_display_abs{
 		$this->APP_NAME = $this->globals->con->get_field("APP_NAME");
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
-		$this->loadElements();
+		$this->load_elements();
 	}
 	
-	public function displayTpl(){
+	public function display_tpl(){
 		
 		$forms_grid =  new DB_grid($this->globals->con, "table","phpapps.view_forms","phpapps_forms_grid");
 		$forms_grid->grid_title = "FORMS";
@@ -262,5 +262,5 @@ class phpapps_admin_module_default extends phpapps_display_abs{
 
 //new phpapps_default_admin_module($_GET["app_id"]);
 $aa  = new phpapps_admin_module_default($_GET["module_id"]);
-$aa->displayTpl();
+$aa->display_tpl();
 ?>

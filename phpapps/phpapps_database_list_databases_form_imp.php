@@ -15,7 +15,7 @@ include ("gen_php/phpapps_database_list_databases_form.php");
                         $this->display_objects_id = $this->script_id;
                         
                         $this->init();
-                        $this->loadElements(); // parent function
+                        $this->load_elements(); // parent function
 			$this->display();
                         
 		}

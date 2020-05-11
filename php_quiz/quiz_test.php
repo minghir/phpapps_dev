@@ -1,7 +1,7 @@
 <?php
 require_once ("globals.php");
 $GLOBALS_OBJ->ath->public_script();
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
 /*
  * Pentru categoria D
@@ -16,7 +16,7 @@ Pentru categoria C
  */
 
 
-class quiz_test extends phpapps_display_abs{
+class quiz_test extends template{
 
     private $app_id;
     private $questions = array();
@@ -73,7 +73,7 @@ class quiz_test extends phpapps_display_abs{
             $this->setupQueryDisplay();
         }
       
-        $this->displayTpl();
+        $this->display_template();
     }
     
     function setupQueryDisplay(){
@@ -211,7 +211,7 @@ class quiz_test extends phpapps_display_abs{
         $_SESSION["questions_ses"] = $this->questions;
     }    
      
-    function setupDisplay(){
+    function setup_display(){
         $this->globals->sm->assign(array(
             "category_id" => $this->category_id,
             "QUESTIONS" => $this->questions,

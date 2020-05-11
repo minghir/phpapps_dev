@@ -15,7 +15,7 @@ include ("gen_php/eshop_admin_products_form.php");
                         $this->display_objects_id = $this->script_id;
                         
                         $this->init();
-                        $this->loadElements(); // parent function
+                        $this->load_elements(); // parent function
                         $this->display_elements['grids']["ESHOP_PRODUCT_IMGS"]->where_rules = array("PRODUCT_ID = :prod_id");
                         $this->display_elements['grids']["ESHOP_PRODUCT_IMGS"]->where_params = array(":prod_id" => $this->ID);
                         $this->display_elements['grids']["ESHOP_PRODUCT_IMGS"]->edit_form = "eshop_admin_product_images_form_imp.php?product_id=".$this->ID;

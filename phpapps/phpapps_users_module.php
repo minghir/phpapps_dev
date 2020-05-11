@@ -1,9 +1,10 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
-class phpapps_users_module extends phpapps_display_abs{
+class phpapps_users_module extends template{
 	
 	var $ID;
 	var $APP_ID;
@@ -15,8 +16,11 @@ class phpapps_users_module extends phpapps_display_abs{
 	var $APP_NAME;
 	var $APP_TITLE;
 	var $BASE_DIR;
-	
-        var $script_id = 155;
+	 protected $display_objects_id = 155;
+        protected $display_objects_type_id = '2';
+    	protected $display_objects_type = 'SCRIPT';
+        
+        
 	public function __construct($module_id) {
         parent::__construct();
 
@@ -54,7 +58,7 @@ class phpapps_users_module extends phpapps_display_abs{
             $this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
 	}
 	
-	public function displayTpl(){
+	public function display_tpl(){
 	
 		$perm_grid =  new DB_grid($this->globals->con, "table","phpapps.view_permissions","phpapps_permissions_grid");
 		$perm_grid->grid_title = "PERMISSIONS";
@@ -231,5 +235,5 @@ class phpapps_users_module extends phpapps_display_abs{
 };
 
 $aa  = new phpapps_users_module($_GET["module_id"]);
-$aa->displayTpl();
+$aa->display_tpl();
 ?>

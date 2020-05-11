@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class test extends phpapps_display_abs{
+class test extends template{
 
     private $app_id;
     
@@ -10,7 +10,7 @@ class test extends phpapps_display_abs{
         parent::__construct();
         $this->tpl = "test.tpl";        
         $this->app_id = $app_id;
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

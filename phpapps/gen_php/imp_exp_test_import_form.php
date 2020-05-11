@@ -1,6 +1,6 @@
 <?php
 // includes
-require_once ("globals.php");
+namespace wabdo; require_once ("globals.php");
 
 class imp_exp_test_import_form{
 	public $globals;

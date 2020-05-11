@@ -1,9 +1,10 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once (PHPAPPS_LIBS_DIR . "DB_grid_imp.php");
 
-class phpapps_designer_grid_run extends phpapps_display_abs{
+class phpapps_designer_grid_run extends template{
 
     private $app_id;
     private $module_id;
@@ -22,10 +23,10 @@ class phpapps_designer_grid_run extends phpapps_display_abs{
         
 	
         
-        $this->loadElements();
+        $this->load_elements();
 		$this->tested_grid_obj = new DB_grid_imp($this->grid_id);
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => $this->tested_grid_obj->get_grid_str()));
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

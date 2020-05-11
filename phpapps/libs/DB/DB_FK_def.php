@@ -1,5 +1,5 @@
 <?php
-namespace wabdo\libs\DB;
+namespace wabdo;
 
 require_once ("globals.php");
 /*

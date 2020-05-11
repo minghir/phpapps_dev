@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 require_once ("libs/code_editor.php");
 class template_source_editor{

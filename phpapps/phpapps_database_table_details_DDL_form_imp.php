@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_database_table_details_DDL_form.php");
 	class phpapps_database_table_details_DDL_form_impl  extends phpapps_database_table_details_DDL_form{
@@ -25,6 +26,7 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
                         $this->MODULE_ID = _tbl("phpapps.tables","MODULE_ID",$this->get_table_id);
                         
 			$this->init();
+                        //$this->load_elements();
 			$this->display();
 		}
 		

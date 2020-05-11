@@ -41,7 +41,7 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                         $display_object_elements_grid->rows_on_pg = 20;
                         $display_object_elements_grid->edit_form = "phpapps_designer_display_object_elements_form_imp.php?obj_id=".$this->ID."&obj_type=1";
                         $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
-                        $this->loadElements(); // parent function  
+                        $this->load_elements(); // parent function  
                         $app_name = _tbl("applications","APP_NAME",$this->APP_ID);
                         if($this->gact == "editRec"){
                             $file_to_edit = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
@@ -114,7 +114,7 @@ include ("gen_php/phpapps_designer_layouts_form.php");
 		}
 		
 		function beforeDisplay(){
-                   //  parent::displayTpl();
+                   //  parent::display_tpl();
 		}
 		
 		function afterDisplay(){	

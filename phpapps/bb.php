@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class bb extends phpapps_display_abs{
+class bb extends template{
 
         private $app_id;
         private $module_id;
@@ -27,13 +27,13 @@ class bb extends phpapps_display_abs{
         
     	
 
-        // phpapps_display_abs Load all elelments
-        $this->loadElements(); // parent function
-        $this->setupDisplay();
-        $this->displayTpl(); // parent function
+        // template Load all elelments
+        $this->load_elements(); // parent function
+        $this->setup_display();
+        $this->display_template(); // parent function
     }
     
-    function setupDisplay() {
+    function setup_display() {
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "bb: Youre code here."));
     }
     

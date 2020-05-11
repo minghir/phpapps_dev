@@ -1,10 +1,10 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once("admin_contact_form_imp.php");
 
 
-class contact extends phpapps_display_abs{
+class contact extends template{
 
     private $app_id;
     

@@ -1,9 +1,9 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
-class phpapps_languages_module extends phpapps_display_abs{
+class phpapps_languages_module extends template{
 
     private $app_id;
     private $module_id;
@@ -62,8 +62,8 @@ class phpapps_languages_module extends phpapps_display_abs{
                 $base_grds = new phpapps_modules_base_grids($this->ID);
                 $base_grds->baseGrids();
                 $this->globals->sm->assign("module",$this);
-         $this->loadElements();       
-        $this->displayTpl();
+         $this->load_elements();       
+        $this->display_template();
     }
 }
 

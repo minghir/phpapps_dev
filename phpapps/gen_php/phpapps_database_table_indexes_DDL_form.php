@@ -1,6 +1,6 @@
 <?php
 // includes
-require_once ("globals.php");
+namespace wabdo; require_once ("globals.php");
 
 class phpapps_database_table_indexes_DDL_form{
         public $form_com_type = "html"; // html | ajax

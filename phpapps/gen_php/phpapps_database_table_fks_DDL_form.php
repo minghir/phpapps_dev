@@ -1,5 +1,7 @@
 <?php
+
 // includes
+namespace wabdo; 
 require_once ("globals.php");
 
 class phpapps_database_table_fks_DDL_form{

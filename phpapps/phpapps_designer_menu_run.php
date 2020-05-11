@@ -1,9 +1,9 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once(DB_LIBS_DIR . 'DB_menu.php');
 
-class phpapps_designer_menu_run extends phpapps_display_abs{
+class phpapps_designer_menu_run extends template{
 
     private $app_id;
     private $module_id;
@@ -23,9 +23,9 @@ class phpapps_designer_menu_run extends phpapps_display_abs{
         
         $this->tested_menu_obj = new DB_menu($this->menu_id);
         
-        $this->loadElements();
+        $this->load_elements();
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => $this->tested_menu_obj->get_menu_str()));
-        $this->displayTpl();
+        $this->display_template();
         
     }
     

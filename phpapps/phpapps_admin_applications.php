@@ -1,10 +1,16 @@
 <?php
+namespace wabdo;
+
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once(DB_LIBS_DIR . 'DB_menu.php');
-class phpapps_applications extends phpapps_display_abs{
+
+class phpapps_applications extends template{
 	
-	public $script_id = 163;
+         protected $display_objects_id = 163;
+        protected $display_objects_type_id = '2';
+    	protected $display_objects_type = 'SCRIPT';
+	//public $script_id = 163;
 	public function __construct($uid){
              parent::__construct();
                // $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
@@ -40,10 +46,10 @@ class phpapps_applications extends phpapps_display_abs{
 		}
 		$this->globals->sm->assign("rows",$rows);
 		$this->globals->sm->assign("modules",$modules);
-		$this->loadElements();
+		$this->load_elements();
 	}
 	
-	public function displayTpl(){
+	public function display_tpl(){
             
                // $this->setupLayoutElements();
                
@@ -52,5 +58,5 @@ class phpapps_applications extends phpapps_display_abs{
 };
 
 $aa  = new phpapps_applications('1');
-$aa->displayTpl();
+$aa->display_tpl();
 ?>

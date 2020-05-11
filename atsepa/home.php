@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class home extends phpapps_display_abs{
+class home extends template{
 
     private $app_id;
     
@@ -26,7 +26,7 @@ class home extends phpapps_display_abs{
         
         //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "home: Youre code here."));
         
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

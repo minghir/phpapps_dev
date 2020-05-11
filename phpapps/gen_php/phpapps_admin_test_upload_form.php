@@ -1,6 +1,6 @@
 <?php
 // includes
-require_once ("globals.php");
+namespace wabdo; require_once ("globals.php");
 
 class phpapps_admin_test_upload_form{
         public $form_com_type = "html"; // html | ajax

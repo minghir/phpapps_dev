@@ -5,6 +5,9 @@ include ("phpapps_admin_formgen.php");
 	
 class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 	var $globals;
+        protected $display_objects_id = 165;
+        protected $display_objects_type_id = '2';
+    	protected $display_objects_type = 'SCRIPT';
 	
  public function __construct() {
                     parent::__construct();
@@ -12,7 +15,7 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 	$this->globals = $GLOBALS_OBJ;
 
 	if(isset($_POST["act"])){
-		//print_r($_POST);
+		print_r($_POST);
 		switch ($_POST["act"]){
 			case "save":
 			case "generate":
@@ -85,6 +88,11 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 			break;
 		}
 	}
+        
+                $this->tpl = "phpapps_admin_formgen.tpl";
+                $this->setup_display();
+                //parent::display_formgen();
+                $this->display_template();
 }
 };
 

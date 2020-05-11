@@ -1,9 +1,9 @@
 <?php
 // includes
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class eshop_admin_product_images_form extends phpapps_display_abs{
+class eshop_admin_product_images_form extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "eshop";
@@ -271,7 +271,7 @@ class eshop_admin_product_images_form extends phpapps_display_abs{
 		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
                 
-                $this->setupDisplay();
+                $this->setup_display();
         }
         
         function assign_vars_tpl(){
@@ -306,7 +306,7 @@ class eshop_admin_product_images_form extends phpapps_display_abs{
                     $this->ajax_server_resp();
                 }else{
                     //$this->smarty->display($this->template);
-                    $this->displayTpl();
+                    $this->display_template();
                 }
 		$this->afterDisplay();
 	}

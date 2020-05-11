@@ -1,10 +1,11 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once (PHPAPPS_LIBS_DIR . "DB_grid_imp.php");
 require_once (PHPAPPS_LIBS_DIR . "phpapps_modules_base_grids.php");
 
-class phpapps_designer_module extends phpapps_display_abs{
+class phpapps_designer_module extends template{
 
 
         private $app_id;
@@ -18,7 +19,11 @@ class phpapps_designer_module extends phpapps_display_abs{
 	var $APP_NAME;
 	var $APP_TITLE;
         var $MODULE_ID;
-        var $script_id = 174;
+        
+        protected $display_objects_id = 174;
+        protected $display_objects_type_id = '2';
+    	protected $display_objects_type = 'SCRIPT';
+        
     
     function __construct($module_id) {
         parent::__construct($module_id);
@@ -26,12 +31,10 @@ class phpapps_designer_module extends phpapps_display_abs{
         $this->tpl = "phpapps_designer_module.tpl";        
         $this->app_id = $app_id;
        //$this->script_id = 174;
-        $this->display_objects_type_id = '2';
-    	$this->display_objects_type = 'SCRIPT';
-    	$this->display_objects_id = $this->script_id;
+       
         
         
-        $this->setupDisplay();
+        //$this->setup_display();
         
         $this->MODULE_ID = $module_id;
         
@@ -62,12 +65,12 @@ class phpapps_designer_module extends phpapps_display_abs{
 		//$this->BASE_DIR = $this->globals->con->get_field("BASE_DIR");
 		$this->APP_TITLE = $this->globals->con->get_field("APP_TITLE");
         
-        $this->loadElements();
-        $this->setupDisplay();
-        $this->displayTpl();
+        $this->load_elements();
+        $this->setup_display();
+        $this->display_template();
     }
 	
-	function setupDisplay(){
+	function setup_display(){
 		$layouts_grid = new DB_grid($this->globals->con, "table","phpapps.view_layouts","phpapps_layouts_grid");
 		$layouts_grid->grid_title = "LAYOUTS";
 		$layouts_grid->cols = (array("NAME","APP_NAME","DESCRIPTION"));

@@ -1,4 +1,6 @@
 <?php
+namespace wabdo;
+use Smarty;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "custom_element.php");
 
@@ -13,6 +15,7 @@ class custom_element_6 extends custom_element{
     public $smarty;
     
     function __construct() {
+        echo "IN CUSTOM";
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         

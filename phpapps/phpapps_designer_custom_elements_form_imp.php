@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_custom_elements_form.php");
 	class phpapps_designer_custom_elements_form_impl  extends phpapps_designer_custom_elements_form{
@@ -33,7 +34,7 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
                         
                         
                         
-			$this->LoadElements();
+			$this->load_elements();
 			$this->display();
 		}
 		
@@ -48,6 +49,10 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
 	
 		function beforeAddRec(){
                     //$this->NAME = strtolower($this->NAME);
+                    if($this->TEMPLATE_ID == ""){
+                        $this->TEMPLATE_ID = 0;
+                    }
+                        
 		}
 		
 		function afterAddRec(){
@@ -114,6 +119,9 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
                     $this->old_custom_element_name = strtolower($this->globals->con->get_field("NAME"));
                     $this->APP_NAME = $this->globals->con->get_field("APP_NAME");
                     //$this->NAME = strtolower($this->NAME);
+                    if($this->TEMPLATE_ID == ""){
+                        $this->TEMPLATE_ID = 0;
+                    }
 		}
 		
 		function afterSaveRec(){

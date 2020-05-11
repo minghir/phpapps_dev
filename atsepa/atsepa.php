@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class atsepa extends phpapps_display_abs{
+class atsepa extends template{
 
     private $app_id;
     private $module_id;
@@ -19,7 +19,7 @@ class atsepa extends phpapps_display_abs{
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "atsepa: Youre code here."));
         
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

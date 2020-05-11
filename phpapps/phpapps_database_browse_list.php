@@ -1,10 +1,14 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_database_browse_list extends phpapps_display_abs{
+class phpapps_database_browse_list extends template{
 
     var $app_id;
+     protected $display_objects_id = 166;
+        protected $display_objects_type_id = '2';
+    	protected $display_objects_type = 'SCRIPT';
     
     function __construct($app_id) {
         
@@ -18,12 +22,13 @@ class phpapps_database_browse_list extends phpapps_display_abs{
 			CONCAT(d.VALUE,'.',t.TABLE_NAME) AS TABLE_NAME,
 			t.TABLE_NAME AS SHORT_TABLE_NAME	
 		FROM phpapps.tables t, phpapps.view_modules m, phpapps.list_databases d 
-		WHERE t.ID = :ID AND 
-		t.MODULE_ID = :MODULE_ID AND 
+		WHERE t.ID = :ID 
+                AND 
+		
 		t.MODULE_ID = m.ID AND m.MODULE_SCHEMA = d.ID",
 		array(":ID" => $_GET["gfield_value"],
-				":MODULE_ID" => $_GET["module_id"]));
-//echo $sql->sql();
+				));
+//echo $sql->prnt();
         $this->globals->con->query($sql);	
         $this->globals->con->next();
         $phpapps_admin_browse_lists =  new DB_grid($this->globals->con, "table",$this->globals->con->get_field("TABLE_NAME"),"phpapps_list_grid");
@@ -36,6 +41,8 @@ class phpapps_database_browse_list extends phpapps_display_abs{
 
        
         $this->globals->sm->display($this->tpl);
+        
+      // echo  $phpapps_admin_browse_lists->prnt();
     }
 }
 

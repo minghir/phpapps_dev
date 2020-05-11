@@ -17,7 +17,7 @@ include ("gen_php/eshop_admin_product_images_form.php");
                         $this->display_objects_id = $this->script_id;
                         
                         $this->init();
-                        $this->loadElements(); // parent function
+                        $this->load_elements(); // parent function
                         //$this->display_elements["grids"]["ESHOP_PRODUCT_IMGS"]->editForm = 
                         
                         

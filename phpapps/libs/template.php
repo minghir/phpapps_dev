@@ -7,7 +7,7 @@ namespace wabdo;
  */
 
 /**
- * Description of phpapps_display_abs
+ * Description of template
  *
  * @author victor.minghir
  */
@@ -32,7 +32,7 @@ abstract class template extends layout {
     
     public function __construct() {
         parent::__construct();
-        $this->tpl = PHPAPPS_LIBS_TPL_DIR . "phpapps_display_abs.tpl";
+        $this->tpl = PHPAPPS_LIBS_TPL_DIR . "template.tpl";
         
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
@@ -85,7 +85,9 @@ abstract class template extends layout {
     
     function load_elements(){
         $this->elements_loader = new elements_loader($this->display_objects_type_id,$this->display_objects_id);
-        $this->display_elements = $this->elements_loader->display_elements;
+       // $this->display_elements = $this->elements_loader->display_elements;
+        $this->template_elements = $this->elements_loader->display_elements;
+        
     }
     
     public function setup_display(){

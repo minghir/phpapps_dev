@@ -96,7 +96,7 @@ class test_script extends template{
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
      
-        // phpapps_display_abs Load all elelments
+        // template Load all elelments
         $this->load_elements(); // parent function
         $this->setup_display();
         $this->display_template(); // parent function

@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class forum_posts extends phpapps_display_abs{
+class forum_posts extends template{
 
     private $app_id;
     private $TOPIC_ID;
@@ -61,7 +61,7 @@ class forum_posts extends phpapps_display_abs{
         $this->globals->sm->assign("categ_name",_tbl("atsepa.view_forum_posts","NAME",$this->TOPIC_ID,"TOPIC_ID"));
         $this->globals->sm->assign("categ_id",_tbl("atsepa.view_forum_posts","CAT_ID",$this->TOPIC_ID,"TOPIC_ID"));
         $this->globals->sm->assign("CURRENT_PAGE","forum");
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

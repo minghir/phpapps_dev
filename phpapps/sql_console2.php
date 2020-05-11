@@ -1,8 +1,8 @@
 <?php
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "phpapps_display_abs.php");
+require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class sql_console2 extends phpapps_display_abs{
+class sql_console2 extends template{
 
     private $app_id;
     
@@ -14,7 +14,7 @@ class sql_console2 extends phpapps_display_abs{
         
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "sql_console2: Youre code here."));
         
-        $this->displayTpl();
+        $this->display_template();
     }
 }
 

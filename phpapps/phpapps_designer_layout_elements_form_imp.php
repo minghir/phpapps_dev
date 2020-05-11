@@ -7,7 +7,7 @@ include ("gen_php/phpapps_designer_layout_elements_form.php");
                         $this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
 			$this->tpl = "phpapps_designer_layout_elements_form_imp.tpl";
 			$this->init();
-			$this->loadElements();
+			$this->load_elements();
 			$this->display();
 		}
 		

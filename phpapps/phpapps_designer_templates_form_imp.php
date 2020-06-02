@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_templates_form.php");
 	class phpapps_designer_templates_form_impl  extends phpapps_designer_templates_form{
@@ -7,15 +8,17 @@ include ("gen_php/phpapps_designer_templates_form.php");
                 private $APP_NAME;
                 public $ID;
             	public $script_id = 274;
+                protected $display_objects_type_id = '2';
+                protected $display_objects_type = 'SCRIPT';
+                protected $display_objects_id = 274;
+                        
 		function __construct(){
 			parent::__construct();
                         $this->layout = PHPAPPS_LAYOUTS_DIR . "default_form.tpl";
 			$this->tpl = "phpapps_designer_templates_form_imp.tpl";
                         
                         
-                        $this->display_objects_type_id = '2';
-                        $this->display_objects_type = 'SCRIPT';
-                        $this->display_objects_id = $this->script_id;
+                        
                         
                         $this->init();
                         $this->load_elements(); // parent function

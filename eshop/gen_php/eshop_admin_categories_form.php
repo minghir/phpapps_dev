@@ -1,7 +1,8 @@
 <?php
 // includes
+use wabdo\{template,DB_select,DB_query,alerts};
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "display_alerts.php");
+require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
 class eshop_admin_categories_form extends template{
@@ -55,7 +56,7 @@ class eshop_admin_categories_form extends template{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
-                $this->alerts = new display_alerts();
+                $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
                 //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
@@ -301,7 +302,7 @@ class eshop_admin_categories_form extends template{
 					 
 					 
 		                
-                $this->setup_display();
+                //$this->setup_display();
         }
         
         function assign_vars_tpl(){

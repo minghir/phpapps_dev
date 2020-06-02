@@ -1,5 +1,6 @@
 <?php
 // includes
+use wabdo\{template,DB_select,DB_query};
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
@@ -271,7 +272,7 @@ class eshop_admin_product_images_form extends template{
 		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
                 
-                $this->setup_display();
+                //$this->setup_display();
         }
         
         function assign_vars_tpl(){

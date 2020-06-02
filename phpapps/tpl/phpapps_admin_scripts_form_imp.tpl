@@ -9,7 +9,7 @@ function submitDetailsForm(op){
 }
   </script>
 {/literal}    
-{include file="gen_tpl/phpapps_admin_scripts_form.tpl" }
+
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--
@@ -32,5 +32,21 @@ $("#phpapps_designer_templates_form").submit(function(event){
 </script>
 -->
 {/literal} 
-{$display_object_elements_grid}
+
+<div class="container-fluid">	
+<h2>{$module->APP_NAME}: {$module->MODULE_TITLE} </h2>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href='#script_details'>Script details</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href='#script_elements'>Script elements</a></li>
+        
+    </ul>
+	
+        <div class="tab-content container-fluid">    
+            <div id="script_details" class="container-fluid tab-pane active">{include file="generated_tpl/phpapps_admin_scripts_form_imp_generated.tpl" }</div>
+            <div id="script_elements" class="container-fluid tab-pane fade">{$display_object_elements_grid}</div>
+            
+        </div>
+</div>
+
+
 {/block}

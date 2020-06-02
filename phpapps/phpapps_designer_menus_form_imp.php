@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_menus_form.php");
 	class phpapps_designer_menus_form_impl  extends phpapps_designer_menus_form{

@@ -341,7 +341,7 @@ class phpapps_admin_modules_form extends template{
 		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
                 
-                $this->setup_display();
+               // $this->setup_display();
         }
         
         function assign_vars_tpl(){

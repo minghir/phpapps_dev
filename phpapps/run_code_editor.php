@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 	require_once ("globals.php");
 	require_once ("libs/code_editor.php");
 	class run_code_editor{
@@ -19,19 +20,19 @@
 					$sql = new DB_query("SELECT FORM_NAME,APP_NAME FROM phpapps.view_forms WHERE ID  = :id ",array(":id"=>$_GET["gfield_value"]));
 					$this->globals->con->query($sql);
 					$this->globals->con->next();
-					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("FORM_NAME") . "_imp.php";
-                                        $this->php_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("FORM_NAME") . "_imp.php";
+					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("FORM_NAME") . ".php";
+                                        $this->php_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP .$this->globals->con->get_field("FORM_NAME") . ".php";
                                         
                                         $sql = new DB_query("SELECT FORM_NAME,APP_NAME FROM phpapps.view_forms WHERE ID = :id ",array(":id"=>$_GET["gfield_value"]));
 					$this->globals->con->query($sql);
 					$this->globals->con->next();
-					$this->tpl_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("FORM_NAME") . "_imp.tpl";
+					$this->tpl_file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("FORM_NAME") . ".tpl";
 				break;
 				case "editImpTpl":
 					$sql = new DB_query("SELECT FORM_NAME,APP_NAME FROM phpapps.view_forms WHERE ID = :id ",array(":id"=>$_GET["gfield_value"]));
 					$this->globals->con->query($sql);
 					$this->globals->con->next();
-					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("FORM_NAME") . "_imp.tpl";
+					$this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME") . DIR_SEP ."tpl" . DIR_SEP . $this->globals->con->get_field("FORM_NAME") . ".tpl";
 				break;
 				
 				case "editScriptPhp":

@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_designer_layouts_form.php");
 	
@@ -9,6 +10,7 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                 public $ID;
 		  		public $display_objects_type_id = '2';
                 public $display_objects_type = 'SCRIPT';
+                protected $display_objects_id = 261;
             
 		function __construct(){
 			parent::__construct();
@@ -18,9 +20,7 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                         
                         $this->ID = 261;
 			$this->script_id = 261;
-			$this->display_objects_type_id = '2'; //?????
-                        $this->display_objects_type = 'SCRIPT';
-                        $this->display_objects_id = $this->script_id;
+			
                         
                         
 			$this->init();
@@ -45,7 +45,8 @@ include ("gen_php/phpapps_designer_layouts_form.php");
                         $app_name = _tbl("applications","APP_NAME",$this->APP_ID);
                         if($this->gact == "editRec"){
                             $file_to_edit = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->NAME . '.tpl';
-                            $this->display_elements_loader->display_elements['custom_elements']["LAYOUT_TEMPLATE_EDITOR"]->file_to_edit = $file_to_edit;
+                            //echo "aaaa";
+                            $this->template_elements['custom_elements']["LAYOUT_TEMPLATE_EDITOR"]->file_to_edit = $file_to_edit;
                         }
                         
 			$this->display();

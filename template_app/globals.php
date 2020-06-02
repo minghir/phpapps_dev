@@ -1,4 +1,5 @@
 <?php
+use wabdo\Globals_obj;
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'php_quiz');
 }

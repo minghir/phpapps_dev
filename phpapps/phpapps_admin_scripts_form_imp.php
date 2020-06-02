@@ -4,8 +4,9 @@ namespace wabdo;
 
 require_once ("globals.php");
 //include ("libs/code_editor.php");
-include ("gen_php/phpapps_admin_scripts_form.php");
-	class phpapps_admin_scripts_form_impl  extends phpapps_admin_scripts_form{
+include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
+
+	class phpapps_admin_scripts_form_impl  extends phpapps_admin_scripts_form_imp_generated{
 		public $app_name;
                 public $app_id;
                 public $module_id;
@@ -13,6 +14,7 @@ include ("gen_php/phpapps_admin_scripts_form.php");
                 public $script_id = 60;
                 public $display_objects_id = 60;
                 public $display_objects_type_id = '2';
+                public $display_objects_type = 'SCRIPT';
 	
 		function __construct(){
                     parent::__construct();
@@ -20,9 +22,9 @@ include ("gen_php/phpapps_admin_scripts_form.php");
 			$this->globals = $GLOBALS_OBJ;
 			
                     //$this->script_id = 60;
-                    $this->display_objects_type_id = '2';
-                    $this->display_objects_type = 'SCRIPT';
-                    $this->display_objects_id = $this->script_id;
+                    //$this->display_objects_type_id = '2';
+                    //$this->display_objects_type = 'SCRIPT';
+                    //$this->display_objects_id = $this->script_id;
                         
 			
 			$this->MODULE_ID = $_GET["module_id"];

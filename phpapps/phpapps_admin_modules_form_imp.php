@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_admin_modules_form.php");
 	class phpapps_admin_modules_form_impl  extends phpapps_admin_modules_form{

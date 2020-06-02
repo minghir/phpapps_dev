@@ -1,7 +1,12 @@
 <?php
 // includes
+use wabdo\{template,DB_select,DB_query};
+//use wabdo\DB_select;
+
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
+
+
 
 class eshop_admin_products_form extends template{
         public $form_com_type = "html"; // html | ajax
@@ -344,7 +349,7 @@ class eshop_admin_products_form extends template{
 		                
 		$error_msg = count($this->errors) > 0 ? implode("<br>",$this->errors) : "";
                 
-                $this->setup_display();
+                //$this->setup_display();
         }
         
         function assign_vars_tpl(){

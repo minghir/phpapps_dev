@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 include ("gen_php/phpapps_database_add_table_form.php");
 	class phpapps_database_add_table_form_impl  extends phpapps_database_add_table_form{

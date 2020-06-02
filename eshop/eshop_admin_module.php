@@ -1,8 +1,9 @@
 <?php
+
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class eshop_admin_module extends template{
+class eshop_admin_module extends wabdo\template{
 
         private $app_id;
         private $module_id;

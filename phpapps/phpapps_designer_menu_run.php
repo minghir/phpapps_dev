@@ -1,4 +1,5 @@
 <?php
+namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once(DB_LIBS_DIR . 'DB_menu.php');
@@ -10,6 +11,9 @@ class phpapps_designer_menu_run extends template{
     public $script_id = 238;
     private $menu_id;
     private $tested_menu_obj;
+    protected $display_objects_type_id = '2'; //?????
+    protected $display_objects_type = 'SCRIPT';
+    protected $display_objects_id = 238; 
     
     function __construct($app_id) {
         parent::__construct();

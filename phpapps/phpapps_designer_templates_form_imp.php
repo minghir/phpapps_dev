@@ -26,20 +26,12 @@ include ("gen_php/phpapps_designer_templates_form.php");
                         
 		}
 		
-		function beforeGetRec(){
-		}
-		
-		function afterGetRec(){
+		function after_get_rec(){
                     $_SESSION["OLD_TEMPLATE_NAME"] = $this->TEMPLATE_NAME;
 		}
                 
-                function beforePostActions(){
-                }
-	
-		function beforeAddRec(){
-		}
 		
-		function afterAddRec(){
+		function after_add_rec(){
                      print_r($this->errors);
                     if(count($this->errors) == 0){
 			$app_name = _tbl("applications","APP_NAME",$this->APP_ID);
@@ -70,10 +62,7 @@ include ("gen_php/phpapps_designer_templates_form.php");
                     }
 		}
 		
-		function beforeSaveRec(){
-		}
-		
-		function afterSaveRec(){
+		function after_save_rec(){
 			if(count($this->errors) == 0){
 				$app_name = _tbl("applications","APP_NAME",$this->APP_ID);
                             switch(_tbl("phpapps.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
@@ -103,13 +92,13 @@ include ("gen_php/phpapps_designer_templates_form.php");
 			}
 		}
 
-		function beforeDeleteRec(){
+		function before_delete_rec(){
                         $this->ID = $this->gfield_value;
                         $this->TEMPLATE_NAME  = _tbl("view_templates","TEMPLATE_NAME",$this->ID);
 			$this->APP_NAME = _tbl("view_templates","APP_NAME",$this->ID);
 		}
 		
-		function afterDeleteRec(){
+		function after_delete_rec(){
                             switch(_tbl("phpapps.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
                                 case 'SCRIPT': 
                                     $path_to = "scripts";
@@ -136,14 +125,7 @@ include ("gen_php/phpapps_designer_templates_form.php");
                     }
 		}
 		
-                function afterPostActions(){
-                }
                 
-		function beforeDisplay(){	
-		}
-		
-		function afterDisplay(){	
-		}
 		
 	};
 	

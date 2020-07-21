@@ -67,13 +67,14 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                         $display_object_elements_grid->rows_on_pg = 20;
                         $display_object_elements_grid->edit_form = "phpapps_designer_display_object_elements_form_imp.php?obj_id=".$this->ID."&obj_type=2";
                         $this->globals->sm->assign("display_object_elements_grid",$display_object_elements_grid->get_grid_str());
-                                    
+echo "SUNT AICI";
                         $this->load_elements(); // parent function
 			$this->display();
                  
 		}
 		
-		function afterAddRec(){
+		function after_add_rec(){
+                    echo "AFTER ADD REC";
                     print_r($this->errors);
                         if(count($this->errors) == 0){
                             $sql = new DB_query("SELECT 
@@ -118,6 +119,7 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                             $php_content = $this->globals->sm->fetch('php_new_script_template.tpl');
                             $php_file_name = $this->SCRIPT_NAME . ".php";
                             $php_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . $php_file_name;
+echo "aaaa: $php_file_path" ;                           
                             if(!file_exists($php_file_path)){
                                     $fp = fopen($php_file_path, 'w');
                                     fwrite($fp, $php_content);
@@ -128,7 +130,7 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
 
                             $tpl_content = $this->globals->sm->fetch('tpl_new_script_template.tpl');
                             $tpl_file_name = $this->SCRIPT_NAME . ".tpl";
-                            $tpl_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $tpl_file_name;
+                            $tpl_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . "scripts" . DIR_SEP. $tpl_file_name;
                             if(!file_exists($tpl_file_path)){
                                     $ft = fopen($tpl_file_path, 'w');
                                     fwrite($ft, $tpl_content);
@@ -142,7 +144,7 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                          print_r($this->errors);
 		}
                 
-                function beforeSaveRec(){
+                function before_save_rec(){
                     $sql = new DB_query("SELECT SCRIPT_NAME FROM SCRIPTS WHERE ID = :script_id",array(":script_id"=>$this->ID));
                     $this->globals->con->query($sql);
                     $this->globals->con->next();
@@ -150,7 +152,7 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                     
                 }
                 
-                function afterSaveRec(){
+                function after_save_rec(){
                     if(count($this->errors) == 0 ){
                         $old_tpl_file_name_tpl = $this->old_script_name . ".tpl";
 			$old_tpl_file_path_tpl = GLOBALS_DIR . $this->app_name . DIR_SEP . "tpl" . DIR_SEP . $old_tpl_file_name_tpl;
@@ -183,11 +185,11 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                 }
                 
 		
-		function beforeDeleteRec(){
-                        $this->getRec();
+		function before_delete_rec(){
+                        $this->get_rec();
 		}
                 
-                function afterDeleteRec() {
+                function after_delete_rec() {
                     
                     $php_file_name = $this->SCRIPT_NAME . ".php";
                     $php_file_path = GLOBALS_DIR . $this->app_name . DIR_SEP . $php_file_name;
@@ -207,7 +209,7 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                      print_r($this->errors);
                 }
                 
-                function beforeDisplay() {
+                function before_display() {
                         $this->TEMPLATE_ID_sel->set_empty_option_value(0);
                         $this->TEMPLATE_ID_sel->setup_select_options();
                    

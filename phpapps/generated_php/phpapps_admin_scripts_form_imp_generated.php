@@ -230,7 +230,7 @@ class phpapps_admin_scripts_form_imp_generated extends template{
                             $this->alerts->add_alert("success","Inregistrare adaugata cu succes");
                         }
 		}
-		
+		echo "ACUM SUNT AICI";
 		$this->after_add_rec();
 	}
 	

@@ -77,7 +77,7 @@ abstract class template extends layout {
                             break;
                         }
             $this->tpl = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $tpl_name . '.tpl';
-           
+           echo $this->tpl;
         }else{
             
         }

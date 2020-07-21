@@ -1,105 +1,105 @@
 <?php
 /**
-* script template version {$SCRIPT_VERSION}
+* script template version 
 */
 namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class {$CLASS_NAME}_generated extends template{ldelim}
+class product_details_generated extends template{
 
     /**
      * application database id
      *
      * @var int
      */
-    protected $_APP_ID = {$APP_ID};
+    protected $_APP_ID = 7;
     
     /**
      * application name as unique identifier
      *
      * @var string
      */
-    protected $_APP_NAME = "{$APP_NAME}";
+    protected $_APP_NAME = "eshop";
     
     /**
      * application long title
      *
      * @var string
      */
-    protected $_APP_TITLE = "{$APP_TITLE}";
+    protected $_APP_TITLE = "E-Shop";
     
     /**
      * application label (short title)
      *
      * @var string
      */
-    protected $_APP_LABEL = "{$APP_LABEL}";
+    protected $_APP_LABEL = "";
     
     /**
      * module id
      *
      * @var int
      */
-    protected $_MODULE_ID = {$MODULE_ID};
+    protected $_MODULE_ID = 31;
     
     /**
      * module name as db identifier
      *
      * @var int
      */
-    protected $_MODULE_NAME = "{$MODULE_NAME}";
+    protected $_MODULE_NAME = "eshop_public";
     
     /**
      * module long title
      *
      * @var string
      */
-    protected $_MODULE_TITLE = "{$MODULE_TITLE}";
+    protected $_MODULE_TITLE = "public";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $_MODULE_LABEL = "{$MODULE_LABEL}";
+    protected $_MODULE_LABEL = "";
     
     /**
      * script name as db identifier
      *
      * @var string
      */
-    protected $_SCRIPT_NAME = "{$SCRIPT_NAME}";
+    protected $_SCRIPT_NAME = "product_details";
     
     /**
      * script long title
      *
      * @var string
      */
-    protected $_SCRIPT_TITLE = "{$SCRIPT_TITLE}";
+    protected $_SCRIPT_TITLE = "Product Details";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $_SCRIPT_LABEL = "{$SCRIPT_LABEL}";
+    protected $_SCRIPT_LABEL = "product_details";
     
-    protected $_SCRIPT_VERSION = "{$SCRIPT_VERSION}";
+    protected $_SCRIPT_VERSION = "";
     
     
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
-    protected $display_objects_id = {$SCRIPT_ID};
+    protected $display_objects_id = 348;
     
     protected $smary;
     protected $con;
         
-    function __construct() {ldelim}
+    function __construct() {
         parent::__construct();
         
-        $this->tpl = "{$CLASS_NAME}.tpl";        
+        $this->tpl = "product_details.tpl";        
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
      
@@ -108,13 +108,13 @@ class {$CLASS_NAME}_generated extends template{ldelim}
         $this->setup_display();
         $this->display_template(); // parent function
 
-    {rdelim}
+    }
     
-    function setup_display() {ldelim}
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "{$CLASS_NAME}: Youre code here."));
-    {rdelim}
+    function setup_display() {
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "product_details: Youre code here."));
+    }
     
-{rdelim}
+}
 
-new {$CLASS_NAME}_generated();
+new product_details_generated();
 ?>

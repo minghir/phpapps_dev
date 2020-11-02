@@ -25,6 +25,7 @@
     <body>
 	<div class="container-expand-lg">
             ESHOP PRODUCTS LAYOUT
+			{$ESHOP_MAIN_MENU}
             {block name=content}CONTENT BLOCK{/block}
 	</div>
     </body> 

@@ -57,9 +57,40 @@ class DB_table{
 		return $this->list_array;
 	}
         
+        function getColumnArray($fld,$search_fld,$search_val){
+		$this->sql = new DB_query("SELECT ID, $fld AS VALUE " 
+                        . "FROM ".$this->table_name .
+                        " WHERE $search_fld = :$search_fld",
+                    array(":$search_fld"=>$search_val));
+                
+		if( $this->globals->con->query($this->sql, $this->table_name) != -1 ){
+		
+			while($res=$this->globals->con->fetch_array($this->table_name)){
+				$this->list_array[$res["ID"]] = $res["VALUE"];
+			}
+		}else{
+			//eroare
+		}
+		return $this->list_array;
+	}
+        
         function getFieldsArray($array_flds = array(),$search_fld,$search_val){
             $value = -1;
             $this->sql  =  new DB_query("SELECT " . implode(",",$array_flds) . 
+                        " FROM " .$this->table_name . 
+                        " WHERE $search_fld = :$search_fld LIMIT 1",
+                    array(":$search_fld"=>$search_val));
+            if($this->globals->con->query($this->sql,"DB_table_getVALUES_$search_fld") != -1){
+			$value = $this->globals->con->fetch_array("DB_table_getVALUES_$search_fld");
+            }else{
+                $this->errors[] = $this->globals->con->get_error("DB_table_getVALUES_$search_fld");
+            }
+            return $value;
+        }
+        
+        function getLineArray($search_fld,$search_val){
+            $value = -1;
+            $this->sql  =  new DB_query("SELECT * " .
                         " FROM " .$this->table_name . 
                         " WHERE $search_fld = :$search_fld LIMIT 1",
                     array(":$search_fld"=>$search_val));

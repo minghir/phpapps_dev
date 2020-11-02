@@ -111,7 +111,15 @@ class product_details_generated extends template{
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "product_details: Youre code here."));
+        $prod_table = new DB_table("eshop.view_products");
+        $img_table =  new DB_table("eshop.product_images");
+        
+        //print_r($img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2));
+        
+        $this->globals->sm->assign(array(
+                "PRODUCT_ARRAY" => $prod_table->getLineArray("ID",2),
+                "PRODUCT_IMAGES" => $img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2),
+                "SCRIPT_CONTENT" => "product_details: Youre code here."));
     }
     
 }

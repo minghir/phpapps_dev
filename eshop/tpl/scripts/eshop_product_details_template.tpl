@@ -1,2 +1,42 @@
 {extends file=$display_obj->layout_file}
-{block name=content}{$SCRIPT_CONTENT}{/block}
+{block name=content}<br>
+    CATEGORY NAME: {$PRODUCT_ARRAY["CATEGORY"]}<br>
+    PRODUCT NAME: {$PRODUCT_ARRAY["PRODUCT_TITLE"]}<br>
+    DESCRIPTION: {$PRODUCT_ARRAY["DESCRIPTION"]}<br>
+    PRICE:  {$PRODUCT_ARRAY["PRICE"]} {$PRODUCT_ARRAY["CURRENCY"]}<br>
+    STOCK:  {$PRODUCT_ARRAY["STOCK"]} in stock<br>
+    <ul>
+    
+        <li><img src="{$PRODUCT_IMAGES[0]}" width="100"></li>
+    
+    </ul>
+
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    {foreach from=$PRODUCT_IMAGES key=k item=img name=imgs}
+        <li><li data-target="#demo" data-slide-to="{$smarty.foreach.imgs.index}" {if $smarty.foreach.imgs.index == 0}class="active"{/if}></li></li>
+    {/foreach}  
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+      {foreach from=$PRODUCT_IMAGES key=k item=img name=imgs}
+            <div class="carousel-item {if $smarty.foreach.imgs.index == 0}active{/if}">
+            <img src="{$img}" width="300" height="200" alt="Los Angeles">
+            </div>
+      {/foreach}
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+    
+{$SCRIPT_CONTENT}{/block}

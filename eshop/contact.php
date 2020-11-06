@@ -1,151 +1,151 @@
 <?php
 /**
-* script template version {$SCRIPT_VERSION}
+* script template version 
 */
 namespace wabdo;
 require_once ("globals.php");
-include ("generated_php/{$form_name}_generated.php");
-	class {$form_name}  extends {$form_name}_generated{ldelim}
+include ("generated_php/contact_generated.php");
+	class contact  extends contact_generated{
                     /**
                      * application database id
                      *
                      * @var int
                      */
-                    protected $_APP_ID = {$APP_ID};
+                    protected $_APP_ID = 7;
                     /**
                      * application name as unique identifier
                      *
                      * @var string
                      */
-                    protected $_APP_NAME = "{$APP_NAME}";
+                    protected $_APP_NAME = "eshop";
 
                     /**
                      * application long title
                      *
                      * @var string
                      */
-                    protected $_APP_TITLE = "{$APP_TITLE}";
+                    protected $_APP_TITLE = "E-Shop";
 
                     /**
                      * application label (short title)
                      *
                      * @var string
                      */
-                    protected $_APP_LABEL = "{$APP_LABEL}";
+                    protected $_APP_LABEL = "";
 
                     /**
                      * module id
                      *
                      * @var int
                      */
-                    protected $_MODULE_ID = {$MODULE_ID};
+                    protected $_MODULE_ID = 31;
 
                     /**
                      * module name as db identifier
                      *
                      * @var int
                      */
-                    protected $_MODULE_NAME = "{$MODULE_NAME}";
+                    protected $_MODULE_NAME = "eshop_public";
 
                     /**
                      * module long title
                      *
                      * @var string
                      */
-                    protected $_MODULE_TITLE = "{$MODULE_TITLE}";
+                    protected $_MODULE_TITLE = "public";
 
                     /**
                      * module label (short title)
                      *
                      * @var string
                      */
-                    protected $_MODULE_LABEL = "{$MODULE_LABEL}";
+                    protected $_MODULE_LABEL = "";
 
                     /**
                      * script name as db identifier
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_NAME = "{$form_name}";
+                    protected $_SCRIPT_NAME = "contact";
 
                     /**
                      * script long title
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_TITLE = "{$SCRIPT_TITLE}";
+                    protected $_SCRIPT_TITLE = "";
 
                     /**
                      * module label (short title)
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_LABEL = "{$SCRIPT_LABEL}";
+                    protected $_SCRIPT_LABEL = "";
 
-                    protected $_SCRIPT_VERSION = "{$SCRIPT_VERSION}";    
+                    protected $_SCRIPT_VERSION = "";    
         
         
-                        //public $script_id = {$script_id};
+                        //public $script_id = 355;
                         public $display_objects_type_id = '2';
                         public $display_objects_type = 'SCRIPT';
-                        public $display_objects_id = {$script_id};
+                        public $display_objects_id = 355;
                         
                         protected $smary;
                         protected $con;
                 
-		function __construct(){ldelim}
+		function __construct(){
 			parent::__construct();
                         
                         
-                        $this->tpl = "{$form_name}.tpl";
+                        $this->tpl = "contact.tpl";
                         //$this->display_objects_id = $this->script_id;
                         
                         $this->load_elements(); // parent function: class template
-                        $this->init(); // parent function: class {$form_name} 
-			$this->display();// parent function: class {$form_name} 
+                        $this->init(); // parent function: class contact 
+			$this->display();// parent function: class contact 
                         
-		{rdelim}
+		}
 		
-		function before_get_rec(){ldelim}
-		{rdelim}
+		function before_get_rec(){
+		}
 		
-		function after_get_rec(){ldelim}
-		{rdelim}
+		function after_get_rec(){
+		}
                 
-                function before_post_actions(){ldelim}
-                {rdelim}
+                function before_post_actions(){
+                }
 	
-		function before_add_rec(){ldelim}
-		{rdelim}
+		function before_add_rec(){
+		}
 		
-		function after_add_rec(){ldelim}
+		function after_add_rec(){
 			//header("Location:win_close.html");
-		{rdelim}
+		}
 		
-		function before_save_rec(){ldelim}
-		{rdelim}
+		function before_save_rec(){
+		}
 		
-		function after_save_rec(){ldelim}
+		function after_save_rec(){
 			//header("Location:win_close.html");
-		{rdelim}
+		}
 
-		function before_delete_rec(){ldelim}
-		{rdelim}
+		function before_delete_rec(){
+		}
 		
-		function after_delete_rec(){ldelim}
+		function after_delete_rec(){
 		//	header("Location:win_close.html");
-		{rdelim}
+		}
 		
-                function after_post_actions(){ldelim}
-                {rdelim}
+                function after_post_actions(){
+                }
                 
-		function before_display(){ldelim}	
-		{rdelim}
+		function before_display(){	
+		}
 		
-		function after_display(){ldelim}	
-		{rdelim}
+		function after_display(){	
+		}
 		
-	{rdelim};
+	};
 	
-	${$form_name}_Impl = new {$form_name}();
+	$contact_Impl = new contact();
 ?>

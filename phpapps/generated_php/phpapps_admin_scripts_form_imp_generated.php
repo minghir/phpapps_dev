@@ -275,7 +275,8 @@ class phpapps_admin_scripts_form_imp_generated extends template{
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
-				
+print_r($this->query);		
+echo "AICI" . $this->query->prnt();
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
                             $this->alerts->add_alert("danger",$this->globals->con->get_error());

@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_designer_menu_items_form_imp_generated extends template{
+class contact_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "phpapps";
-	public $form_table = "menu_items";
+	public $form_schema = "eshop";
+	public $form_table = "messages";
         
-	public $template;// = "gen_tpl/phpapps_designer_menu_items_form_imp_generated.tpl";
+	public $template;// = "gen_tpl/contact_generated.tpl";
         
-        public $tpl = "phpapps_designer_menu_items_form_imp_generated";
+        public $tpl = "contact_generated";
 	
         //get values
 	public $gact;
@@ -27,18 +27,13 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
         public $smarty;
         
 	            
-	public $PID;
+	public $CLIENT_ID;
         	            
-	public $ACTION;
-        	            
-	public $LABEL;
+	public $MESSAGE;
         		
 		 
 		 
-		 
 			
-			public $PID_sel;
-	 
 		 
 		 
 	
@@ -57,10 +52,7 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
                 
                 			 
 					 
-					 
 				
-									$this->PID_sel = new DB_select("PID","phpapps.menu_items");
-                                			 
 					 
 					 
 		                
@@ -81,18 +73,16 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 	
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
-									PID,
-												ACTION,
-												LABEL
+									CLIENT_ID,
+												MESSAGE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
-			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
-                                			                                                                $this->ACTION = stripslashes($this->globals->con->get_field("ACTION"));
-                                			                                                                $this->LABEL = stripslashes($this->globals->con->get_field("LABEL"));
+			                                                                $this->CLIENT_ID = stripslashes($this->globals->con->get_field("CLIENT_ID"));
+                                			                                                                $this->MESSAGE = stripslashes($this->globals->con->get_field("MESSAGE"));
                                 						
 	}
 	
@@ -107,21 +97,17 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															PID,
-																						ACTION,
-																						LABEL
+															CLIENT_ID,
+																						MESSAGE
 										 ) VALUES (
-															:PID,
-																						:ACTION,
-																						:LABEL
+															:CLIENT_ID,
+																						:MESSAGE
 													)",
 			array(
 									                                            
-                                            ":PID" => $this->PID,
+                                            ":CLIENT_ID" => $this->CLIENT_ID,
                                         														                                            
-                                            ":ACTION" => $this->ACTION,
-                                        														                                            
-                                            ":LABEL" => $this->LABEL,
+                                            ":MESSAGE" => $this->MESSAGE,
                                         												)
 			);
 
@@ -149,15 +135,13 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 		$this->check_errors();
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									PID = :PID,
-												ACTION = :ACTION,
-												LABEL = :LABEL
+									CLIENT_ID = :CLIENT_ID,
+												MESSAGE = :MESSAGE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":PID" => $this->PID,
-                                        				                                                                                    ":ACTION" => $this->ACTION,
-                                        				                                                                                    ":LABEL" => $this->LABEL,
+				                                                                                    ":CLIENT_ID" => $this->CLIENT_ID,
+                                        				                                                                                    ":MESSAGE" => $this->MESSAGE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -231,9 +215,8 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
-                                                		                                                    $this->ACTION  = htmlspecialchars(addslashes(trim($_POST["ACTION"])));
-                                                		                                                    $this->LABEL  = htmlspecialchars(addslashes(trim($_POST["LABEL"])));
+		                                                    $this->CLIENT_ID  = htmlspecialchars(addslashes(trim($_POST["CLIENT_ID"])));
+                                                		                                                    $this->MESSAGE  = htmlspecialchars(addslashes(trim($_POST["MESSAGE"])));
                                                 		        }
 	
         function before_post_actions(){
@@ -264,28 +247,18 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 	function setup_display(){
 					 
 					 
-					 
 				
-									//$this->PID_sel = new DB_select("PID",".phpapps.menu_items");
-				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM phpapps.menu_items ORDER BY LABEL");
-				$this->PID_sel->selected_val = $this->PID;
-				$this->PID_sel->setup_select_options();
-			 
 					 
 					 
 		        }
         
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
-							"PID" => $this->PID,
-							"ACTION" => $this->ACTION,
-							"LABEL" => $this->LABEL,
+							"CLIENT_ID" => $this->CLIENT_ID,
+							"MESSAGE" => $this->MESSAGE,
 									 
 						 
-						 
-													"PID_sel" => $this->PID_sel->get_select_str(),
-			 
-						 
+									 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

@@ -1,16 +1,17 @@
 <div class="container">
-<hr><form name="phpapps_designer_menu_items_form_imp" id="phpapps_designer_menu_items_form_imp" method="POST" enctype="multipart/form-data">
+<hr><form name="phpapps_designer_menu_items_form" id="phpapps_designer_menu_items_form" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
 	                																                				<div class="form-group">
                     <label >
-                        PID  :
+                        PARENT  :
                     </label>
 			{$PID_sel}
                 </div>
-                                		                        		<div class="form-group">
+                                		                        								<input id="MENU_ID" type="hidden" name="MENU_ID" value="{$MENU_ID}">
+                										                		                		                        		<div class="form-group">
                     <label >
                         ACTION :
                     </label>

@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_designer_menu_items_form_imp_generated extends template{
+class phpapps_designer_menu_items_form_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "phpapps";
 	public $form_table = "menu_items";
         
-	public $template;// = "gen_tpl/phpapps_designer_menu_items_form_imp_generated.tpl";
+	public $template;// = "gen_tpl/phpapps_designer_menu_items_form_generated.tpl";
         
-        public $tpl = "phpapps_designer_menu_items_form_imp_generated";
+        public $tpl = "phpapps_designer_menu_items_form_generated";
 	
         //get values
 	public $gact;
@@ -29,6 +29,8 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 	            
 	public $PID;
         	            
+	public $MENU_ID;
+        	            
 	public $ACTION;
         	            
 	public $LABEL;
@@ -36,9 +38,11 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 		 
 		 
 		 
+		 
 			
 			public $PID_sel;
 	 
+		 
 		 
 		 
 	
@@ -58,9 +62,11 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
                 			 
 					 
 					 
+					 
 				
 									$this->PID_sel = new DB_select("PID","phpapps.menu_items");
                                 			 
+					 
 					 
 					 
 		                
@@ -82,6 +88,7 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
 									PID,
+												MENU_ID,
 												ACTION,
 												LABEL
 							
@@ -91,6 +98,7 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
+                                			                                                                $this->MENU_ID = stripslashes($this->globals->con->get_field("MENU_ID"));
                                 			                                                                $this->ACTION = stripslashes($this->globals->con->get_field("ACTION"));
                                 			                                                                $this->LABEL = stripslashes($this->globals->con->get_field("LABEL"));
                                 						
@@ -108,16 +116,20 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
 															PID,
+																						MENU_ID,
 																						ACTION,
 																						LABEL
 										 ) VALUES (
 															:PID,
+																						:MENU_ID,
 																						:ACTION,
 																						:LABEL
 													)",
 			array(
 									                                            
                                             ":PID" => $this->PID,
+                                        														                                            
+                                            ":MENU_ID" => $this->MENU_ID,
                                         														                                            
                                             ":ACTION" => $this->ACTION,
                                         														                                            
@@ -150,12 +162,14 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									PID = :PID,
+												MENU_ID = :MENU_ID,
 												ACTION = :ACTION,
 												LABEL = :LABEL
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":PID" => $this->PID,
+                                        				                                                                                    ":MENU_ID" => $this->MENU_ID,
                                         				                                                                                    ":ACTION" => $this->ACTION,
                                         				                                                                                    ":LABEL" => $this->LABEL,
                                         								":".$this->gfield => $this->gfield_value
@@ -232,6 +246,7 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
+                                                		                                                    $this->MENU_ID  = htmlspecialchars(addslashes(trim($_POST["MENU_ID"])));
                                                 		                                                    $this->ACTION  = htmlspecialchars(addslashes(trim($_POST["ACTION"])));
                                                 		                                                    $this->LABEL  = htmlspecialchars(addslashes(trim($_POST["LABEL"])));
                                                 		        }
@@ -265,6 +280,7 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 					 
 					 
 					 
+					 
 				
 									//$this->PID_sel = new DB_select("PID",".phpapps.menu_items");
 				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM phpapps.menu_items ORDER BY LABEL");
@@ -273,18 +289,22 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 			 
 					 
 					 
+					 
 		        }
         
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
 							"PID" => $this->PID,
+							"MENU_ID" => $this->MENU_ID,
 							"ACTION" => $this->ACTION,
 							"LABEL" => $this->LABEL,
 									 
 						 
 						 
+						 
 													"PID_sel" => $this->PID_sel->get_select_str(),
 			 
+						 
 						 
 						 
 						"pact" => $this->pact,

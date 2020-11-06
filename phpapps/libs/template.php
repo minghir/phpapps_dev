@@ -47,7 +47,7 @@ abstract class template extends layout {
         $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM phpapps.view_templates t LEFT JOIN phpapps.scripts s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :script_id",
                // array(":script_id" => $this->script_id));
               array(":script_id" => $this->display_objects_id));
-        
+        echo $sql->prnt();
         if( $this->globals->con->query($sql,"custom_tpl_sql_" . $this->script_id) == 1){
             $this->globals->con->next("custom_tpl_sql_" . $this->script_id);
             
@@ -77,10 +77,11 @@ abstract class template extends layout {
                             break;
                         }
             $this->tpl = GLOBALS_DIR . $app_name . DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $tpl_name . '.tpl';
-           echo $this->tpl;
+          
         }else{
             
         }
+         echo "TEMPLATE FILE:" .  $this->tpl . "<br>";
     }
     
     function load_elements(){

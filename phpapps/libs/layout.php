@@ -48,6 +48,8 @@ class layout {
         }else{
             $this->layout_file = $this->default_layout;
         }
+        
+        echo "<h1>layout_file:" . $this->layout_file . "</h1>";
      }
      
      function load_layout_elements(){

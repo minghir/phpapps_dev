@@ -1,8 +1,6 @@
-<html>
-<head>
-{include file="commun_header.tpl" }
-</head>
-<body>
+{extends file=$display_obj->layout_file}
+{block name=content}
+
 {literal}
 <script>
 function submitDetailsForm(op){
@@ -11,7 +9,7 @@ function submitDetailsForm(op){
 }
   </script>
 {/literal}    
-{include file="gen_tpl/phpapps_designer_menu_items_form.tpl" }
+<div class="container">{include file="generated_tpl/phpapps_designer_menu_items_form_generated.tpl" }</div>
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--
@@ -35,5 +33,4 @@ $("#phpapps_designer_menu_items_form").submit(function(event){
 -->
 {/literal} 
 
-</body>
-</html>
+{/block}

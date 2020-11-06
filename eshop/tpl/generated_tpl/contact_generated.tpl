@@ -1,28 +1,17 @@
 <div class="container">
-<hr><form name="phpapps_designer_menu_items_form_imp" id="phpapps_designer_menu_items_form_imp" method="POST" enctype="multipart/form-data">
+<hr><form name="contact" id="contact" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="pact" id="pact" value="{$pact}">
 			<input type="hidden" name="gact" value="{$gact}">
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
-	                																                				<div class="form-group">
+	                								<input id="CLIENT_ID" type="hidden" name="CLIENT_ID" value="{$CLIENT_ID}">
+                										                		                		                        						<div class="form-group">
                     <label >
-                        PID  :
+                        MESSAGE  :
                     </label>
-			{$PID_sel}
+                        <textarea class="form-control" id="MESSAGE" name="MESSAGE">{$MESSAGE}</textarea>
                 </div>
-                                		                        		<div class="form-group">
-                    <label >
-                        ACTION :
-                    </label>
-                        <input class="form-control" type="text" id="ACTION" name="ACTION" value="{$ACTION}">
-                </div>
-																		                		                		                        		<div class="form-group">
-                    <label >
-                        LABEL :
-                    </label>
-                        <input class="form-control" type="text" id="LABEL" name="LABEL" value="{$LABEL}">
-                </div>
-																		                		                		        	{$FROM_IMP_CLASS}
+                												                		                		        	{$FROM_IMP_CLASS}
                 <div class="form-group">
 	{if $gact == "editRec"}
                        <button type="submit" class="btn btn-primary mb-2" name="pact" value="saveRec">save</button>

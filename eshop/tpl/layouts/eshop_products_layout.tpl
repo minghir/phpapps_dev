@@ -19,14 +19,15 @@
   -->
   <!-- APP JavaScript -->
   <script src="{$smarty.const.CURRENT_APP_JS_DIR}remember_last_tab.js"></script>   
-  
     <title>{$PAGE_TITLE}</title>
     </head>
     <body>
 	<div class="container-expand-lg">
-            ESHOP PRODUCTS LAYOUT
-			{$ESHOP_MAIN_MENU}
-            {block name=content}CONTENT BLOCK{/block}
+            {$ESHOP_MAIN_MENU} 
+         {block name=content}CONTENT BLOCK{/block}
+	</div>
+	<div>	
+		FOOTER
 	</div>
     </body> 
 </html>

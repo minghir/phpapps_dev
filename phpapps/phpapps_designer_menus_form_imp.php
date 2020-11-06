@@ -25,7 +25,7 @@ include ("gen_php/phpapps_designer_menus_form.php");
                             $menu_items_grid->filterable = false;
                             $menu_items_grid->exportable = false;
                             $menu_items_grid->rows_on_pg = 20;
-                            $menu_items_grid->edit_form = "phpapps_designer_menu_items_form_imp.php?dobj_id=".$this->ID;
+                            $menu_items_grid->edit_form = "phpapps_designer_menu_items_form.php?menu_id=".$this->ID;
                             $this->globals->sm->assign("menu_items_grid",$menu_items_grid->get_grid_str());
                             //echo "<br>".$menu_items_grid->prnt();
                         }

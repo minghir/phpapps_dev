@@ -26,6 +26,7 @@
             {$ESHOP_MAIN_MENU} 
          {block name=content}CONTENT BLOCK{/block}
 	</div>
+		{$ESHOP_CATEGORY_MENU}
 	<div>	
 		FOOTER
 	</div>

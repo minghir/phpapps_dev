@@ -239,7 +239,7 @@ class phpapps_database_module extends template{
 		$views_grid->filterable = false;
 		$views_grid->exportable = false;
 		$views_grid->rows_on_pg = 10;
-                $views_grid->edit_form = "phpapps_database_views_form_imp.php?module_id=".$this->ID;
+                $views_grid->edit_form = "phpapps_database_views_form.php?module_id=".$this->ID;
                 
                 $tsv = new HrefActions();
 		$tsv->act_script = "phpapps_database_browse_views.php?module_id=".$this->ID;

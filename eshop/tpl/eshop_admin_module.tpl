@@ -8,7 +8,7 @@
     </ul>
 	
         <div class="tab-content container-fluid">    
-            <div id="products" class="container-fluid tab-pane active"><p>{$ESHOP_PRODUCTS}</p></div>
+            <div id="products" class="container-fluid tab-pane active"><p>{$ESHOP_ADMIN_PRODUCTS}</p></div>
             <div id="categories" class="container-fluid tab-pane fade"><p>{$ESHOP_CATEGORIES}</p></div>
         </div>
 </div>

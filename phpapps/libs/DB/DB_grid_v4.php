@@ -226,7 +226,7 @@ echo"</h1><br>----------------<br>";
 				$this->add_grid_acction($ga);
 			}
 //echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
-//print_r($this->query);
+print_r($this->query);
 			//$sql = new DB_query($this->query);
 			$this->print_query = $this->query;
 			$nr_res = $this->con->query($this->query, $this->db_grid_name);
@@ -246,8 +246,11 @@ echo"</h1><br>----------------<br>";
                         
 			while($res=$this->con->fetch_row($this->db_grid_name)){
                         //while($res=$this->con->fetch_array($this->db_grid_name)){
-				//print_r($res);
-			//	$vals_key_fields[] = $res;
+	   //print_r(array_slice($res,0,count($fields)));
+           echo "<br><br>";
+           //print_r($fields);                     
+          $values_key_fields[] = array_combine($fields,array_slice($res,0,count($fields)));
+          //print_r($vals_key_fields);
                             //$values[] = $res;
                             $values[] = $this->add_cell_acction($res);
                             //$this->cell_actions[] = 
@@ -298,6 +301,7 @@ echo"</h1><br>----------------<br>";
 									  "fields" =>  $fields ,
 									  "labels" => $this->labels,
 									  "values" => $values,
+                            "values_key_fields" => $values_key_fields,
                                                                           "values_fields" => $values_fields,
                                                                           "values_labels" => $values_labels,
 									  "paginable" => $this->paginable,

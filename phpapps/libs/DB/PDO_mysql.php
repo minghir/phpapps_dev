@@ -28,6 +28,7 @@ class mysql
 
 		try{
 			$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"]);
+                        $this->conn->exec('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
 		} catch (PDOException $err) {
 			$this->Log->do_log("Connection ERROR: " . $err->getMessage());
 			$this->Log->print_log();
@@ -52,6 +53,7 @@ class mysql
 		
 		try{
 			$this->conn = new PDO($dsn, $this->con_str["user"], $this->con_str["pass"]);
+                        $this->conn->exec('SET character_set_client="utf8",character_set_connection="utf8",character_set_results="utf8";');
 		} catch (PDOException $err) {
 			$this->Log->do_log("Connection ERROR: " . $err->getMessage());
 			$this->Log->print_log();
@@ -86,7 +88,7 @@ class mysql
 		if($this->conn){
 			$this->free_result($res_id);
 			//$this->res[$res_id]=$this->conn->query($sql);
-			$this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
+                        $this->res[$res_id]=$this->conn->prepare($db_query->sql(),array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
                                                                                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", 
                                                                                         PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET utf8"));
 		

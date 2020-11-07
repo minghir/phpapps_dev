@@ -95,6 +95,8 @@ class products_generated extends wabdo\template{
     
     protected $smary;
     protected $con;
+    
+    public $category_id;
         
     function __construct() {
         parent::__construct();
@@ -103,14 +105,32 @@ class products_generated extends wabdo\template{
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
      
+        $this->category_id = $_GET["cat_id"] != "" ? $_GET["cat_id"] : -1;
+        
         // phpapps_display_abs Load all elelments
         $this->load_elements(); // parent function
+        
+        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->editable=false;
+        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->table="eshop.view_products";
+        
+        
+        if($this->category_id != -1){
+            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_rules = array(" CATEGORY_ID = :category_id ");
+            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_params = array(":category_id" => $this->category_id);
+        }else{
+            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_rules = array();
+            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_params = array();
+        }
+        
+        echo "<br><BR><BR>ABC QUERY:" .  $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->prnt() ."<br><br>";
+        
         $this->setup_display();
         $this->display_template(); // parent function
 
     }
     
     function setup_display() {
+        
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "products: Youre code here."));
     }
     

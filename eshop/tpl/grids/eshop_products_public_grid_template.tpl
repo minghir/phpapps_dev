@@ -1,106 +1,35 @@
-<div class="table-responsive">AAAAAA
-<table class="table">
-     <tr>
-         <td>
-                <div >
-                    <div style="float:left;">
-                        <h2>{$grid_title}</h2>
+<h3>{$grid_title}</h3>
+ 
+<hr>
+
+<!--Grid row-->
+
+
+  <!--Grid column-->
+  
+
+<div class="row">
+  
+        {section name=vls loop=$values}
+<div class="col-sm-4 col-lg-2">
+            <div class="card mx-auto mt-3" style="width:200px;height:300px">
+              <img class="card-img-top" src="{$values_key_fields[vls]["IMG"]}" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h5 class="card-title">{$values_key_fields[vls]["PRODUCT_TITLE"]}</h5>
+                        <p class="card-text">{$values_key_fields[vls]["PRICE"]} {$values_key_fields[vls]["CURRENCY"]}</p>
+                        <a href="product_details.php" class="btn btn-primary">Detalii</a>
                     </div>
-                    <div style="float:right;">			
-                    {$grid_href_actions}
-                    </div>
-                </div>
-        </td>
-     </tr>
-     <tr>
-        <td>
-            <table class="table table-bordered">
-                <thead>
-            <!--        <tr>
-                    {section name=flds loop=$fields}
-                        <th>
-                        {if $sortable == 1}
-                           {if $current_order_field == $fields[flds] }
-                                {if $current_order_rule == "ASC" }
-                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=DESC">{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if} <img src="imgs/up.gif" border="0"></a>
-                                {else}
-                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=ASC">{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if} <img src="imgs/dn.gif" border="0"></a>
-                                {/if}
-                            {else}
-                                    <a href="{$order_hrefs[flds]}:current_order_field={$fields[flds]}:current_order_rule=ASC">{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</a>
-                            {/if}
-                        {else}
-                            <b>{if $labels[flds] == ""}{$fields[flds]}{else}{$labels[flds]}{/if}</b>
-                        {/if}
-                        </th>
-                        {/section}
-                        {if $row_href_actions[0] != ""  } 
-                            <td><a><b>ACTIONS</b></a></td>
-                        {/if}
-                    </tr>
-                -->    
-                    {if $filterable == true }
-                    <tr>
-                        <form name="filter" method="POST" action="">
-                    {section name=flds loop=$fields}
-                        <td align="center">
-              <!-- <input type="text" name="{$fields[flds]}" value="" size=5">-->
-			<input type="hidden" name="filter_rle[]" value = "like">
-			<input type="hidden" name="filter_fld[]" value = "{$fields[flds]}">
-			<input type="text" name="filter_val[]" value="{$filter_val[flds]}"  style="width:100%">
-			<!--  <select name="rule">
-				<option>=</option>
-				<option>%</option>
-				<option><</option>
-				<option>></option>
-			  </select>-->
-                        </td>
-                    {/section}
-                        <td><input type="submit" name="pact" value="Go"><input type="submit" name="pact" value="X"></td>
-                    </form>   
-                    </tr>
-                    {/if}
-                </thead>
-                <tbody> 
-                {section name=vls loop=$values}
-                    <tr>
-                        {section name=flds2 loop=$fields}
-                        <td>
-                    {$values[vls][flds2]}<br>ssssssssss
-                    {$values[vls]["PRODUCT_NAME"]}
-                        </td>
-                        {/section}
-         
-                        {if $row_href_actions[vls]  != "" } 
-                        <td>
-                            {$row_href_actions[vls]}
-                        </td>
-                        {/if}
-                    </tr>
-                {/section}
-                
-                  {section name=vls loop=$values}
-                    <tr>
-                
-                        <td>
-                
-                    {$values_key_fields[vls]["IMG"]} : <img src=" {$values_key_fields[vls]["IMG"]}" width="50" height="50">
-                        </td>
-                
-         
-         
-                    </tr>
-                {/section}
-                
-                </tbody>
-            </table>
-        </td>
-     </tr>
-     <tr>
-        <td>
-            {if $paginable == 1 }({if $mode_search == true }<font color="blue"><b>Found:</b>{/if}{$num_rows} recs/{$pages} pgs</font>){/if} 
-            {if $pages > 1 }{section name=pgs loop=$pgs_hrefs} {$pgs_hrefs[pgs]} {/section}{/if}
-         </td>
-    </tr>
-</table>
+            </div>  
 </div>
+       {/section}
+</div>
+
+
+<div class="row mt-3">
+ <!-- {if $paginable == 1 }
+        ({if $mode_search == true }<font color="blue"><b>Found:</b>{/if}{$num_rows} recs/{$pages} pgs</font>)
+ {/if}
+ --> 
+{if $pages > 1 }{section name=pgs loop=$pgs_hrefs} {$pgs_hrefs[pgs]} {/section}{/if}
+</div>
+<hr>

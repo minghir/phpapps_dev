@@ -2,12 +2,11 @@
 /**
 * script template version 
 */
-//namespace wabdo;
+namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
-require_once (DB_LIBS_DIR . "DB_table.php");
 
-class products_generated extends wabdo\template{
+class products_search_generated extends template{
 
     /**
      * application database id
@@ -70,7 +69,7 @@ class products_generated extends wabdo\template{
      *
      * @var string
      */
-    protected $_SCRIPT_NAME = "products";
+    protected $_SCRIPT_NAME = "products_search";
     
     /**
      * script long title
@@ -92,53 +91,55 @@ class products_generated extends wabdo\template{
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
-    protected $display_objects_id = 346;
+    protected $display_objects_id = 357;
     
     protected $smary;
     protected $con;
-    
-    public $category_id;
         
     function __construct() {
         parent::__construct();
-        
-        $this->tpl = "products.tpl";        
+        session_start();
+        $this->tpl = "products_search.tpl";        
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
-     
-        $this->category_id = $_GET["cat_id"] != "" ? $_GET["cat_id"] : -1;
         
-        // phpapps_display_abs Load all elelments
-        $this->load_elements(); // parent function
-        
-        
-        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->grid_title = wabdo\_tbl("eshop.categories","NAME",$this->category_id,"ID");
-        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->editable=false;
-        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->rows_on_pg=12;
-        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->table="eshop.view_products";
-        
-        
-        if($this->category_id != -1){
-            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_rules = array(" CATEGORY_ID = :category_id ");
-            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_params = array(":category_id" => $this->category_id);
+        if(isset($_POST["eshop_search"])){
+            echo "<br><br><br><br>in post</br></br>";
+            $eshop_search = htmlspecialchars(addslashes(trim($_POST["eshop_search"])));
+            $_SESSION["_eshop_search"] = $eshop_search;
         }else{
-            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_rules = array();
-            $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_params = array();
+            echo "<br><br><br><br>in sesiune</br></br>";
+            $eshop_search = $_SESSION["_eshop_search"];
         }
         
-        //echo "<br><BR><BR>ABC QUERY:" .  $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->prnt() ."<br><br>";
+        echo "<br><br><br><br>AICI( " . $eshop_search ." )<br>";
+         $this->load_elements(); // parent function
+     
+         
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->mode_search = true; 
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->grid_title = "Found:";
+                
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->editable=false;
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->rows_on_pg=12;
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->table="eshop.view_products";
         
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_rules = array(" PRODUCT_TITLE like :search ");
+        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_params = array(":search" => '%'.$eshop_search.'%');
+        
+        
+        
+        // phpapps_display_abs Load all elelments
+       
         $this->setup_display();
         $this->display_template(); // parent function
-
+       // $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->reset_session_vars(); 
     }
     
     function setup_display() {
-        
-        //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "products: Youre code here."));
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "products_search: Youre code here."));
     }
     
 }
 
-new products_generated();
+new products_search_generated();
 ?>

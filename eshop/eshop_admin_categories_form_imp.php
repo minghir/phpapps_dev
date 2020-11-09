@@ -10,7 +10,7 @@ include ("gen_php/eshop_admin_categories_form.php");
 		function __construct(){
 			parent::__construct();
                         
-                        header('Content-type: text/html; charset=utf-8');
+                        
                         $this->tpl = "eshop_admin_categories_form_imp.tpl";
                         $this->display_objects_id = $this->script_id;
                         

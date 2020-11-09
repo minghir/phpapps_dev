@@ -1,6 +1,6 @@
 {extends file=$display_obj->layout_file}
-{block name=content}<br>
-    CATEGORY NAME: {$PRODUCT_ARRAY["CATEGORY"]}<br>
+{block name=content}<br><br><hr>
+    CATEGORY NAME: <a href="products.php?cat_id={$PRODUCT_ARRAY["CATEGORY_ID"]}">{$PRODUCT_ARRAY["CATEGORY"]}</a><br>
     PRODUCT NAME: {$PRODUCT_ARRAY["PRODUCT_TITLE"]}<br>
     DESCRIPTION: {$PRODUCT_ARRAY["DESCRIPTION"]}<br>
     PRICE:  {$PRODUCT_ARRAY["PRICE"]} {$PRODUCT_ARRAY["CURRENCY"]}<br>

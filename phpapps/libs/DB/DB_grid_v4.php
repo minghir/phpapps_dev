@@ -150,7 +150,7 @@ echo"</h1><br>----------------<br>";
 			$this->query->setParams($filter_where_params);	
                         
 //print_r($this->query);
-//echo $this->query->prnt()."<br>";
+echo $this->query->prnt()."<br>";
         }
 
         function setup_query_query(){
@@ -226,7 +226,7 @@ echo"</h1><br>----------------<br>";
 				$this->add_grid_acction($ga);
 			}
 //echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
-print_r($this->query);
+//print_r($this->query);
 			//$sql = new DB_query($this->query);
 			$this->print_query = $this->query;
 			$nr_res = $this->con->query($this->query, $this->db_grid_name);
@@ -247,7 +247,7 @@ print_r($this->query);
 			while($res=$this->con->fetch_row($this->db_grid_name)){
                         //while($res=$this->con->fetch_array($this->db_grid_name)){
 	   //print_r(array_slice($res,0,count($fields)));
-           echo "<br><br>";
+           //echo "<br><br>";
            //print_r($fields);                     
           $values_key_fields[] = array_combine($fields,array_slice($res,0,count($fields)));
           //print_r($vals_key_fields);
@@ -480,6 +480,26 @@ print_r($this->query);
 			$_SESSION[$_current_order_rule] = $this->current_order_rule;
 			$_SESSION[$_current_where_rules] = $this->where_rules;
 		}
+                
+                function reset_session_vars(){
+                        $_get_pg = $this->db_grid_name . "_get_pg";
+                        $_filter_fld = $this->db_grid_name . "_filter_fld";
+                        $_filter_val = $this->db_grid_name . "_filter_val";
+                        $_filter_rle = $this->db_grid_name . "_filter_rle";
+                        $_mode_search = $this->db_grid_name . "_mode_search";
+                        $_current_order_field = $this->db_grid_name . "_current_order_field";
+                        $_current_order_rule = $this->db_grid_name . "_current_order_field";
+                        $_current_where_rules = $this->db_grid_name . "_current_where_rules";
+                    
+                        unset($_SESSION[$_get_pg]);
+			unset($_SESSION[$_filter_fld]);
+                        unset($_SESSION[$_filter_val]);
+			unset($_SESSION[$_filter_rle]);
+			unset($_SESSION[$_mode_search]);
+			unset($_SESSION[$_current_order_field]);
+			unset($_SESSION[$_current_order_rule]);
+			unset($_SESSION[$_current_where_rules]);
+                }
 		
 		function get_session_vars(){
                         $_get_pg = $this->db_grid_name . "_get_pg";

@@ -131,7 +131,7 @@ class Globals_obj{
 	function __construct($APP_NM){
                 
                 
-                
+                header('Content-type: text/html; charset=utf-8');
                 
                 //$this->$USER_PROFILE = new user_profile($this);
             

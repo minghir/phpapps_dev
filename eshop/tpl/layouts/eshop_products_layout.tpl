@@ -22,13 +22,26 @@
     <title>{$PAGE_TITLE}</title>
     </head>
     <body>
-	<div class="container-expand-lg">
-            {$ESHOP_MAIN_MENU} 
-         {block name=content}CONTENT BLOCK{/block}
-	</div>
-		{$ESHOP_CATEGORY_MENU}
-	<div>	
-		FOOTER
-	</div>
+        <div class="container-fluid">
+                <div class="row row-cols-1">
+                     <div class="col bg-success">
+                        {$ESHOP_MAIN_MENU} 
+                     </div>
+                 </div>
+            <br><br>
+              <div class="container-fluid">
+                     
+                      
+                            {block name=content}CONTENT BLOCK{/block}
+                        
+                      
+                </div>
+                <div class="row row-cols-1">
+                     <div class="col bg-warning">
+                        FOOTER
+                     </div>
+                </div>
+		
+        </div>
     </body> 
 </html>

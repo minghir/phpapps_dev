@@ -288,7 +288,7 @@ echo $this->query->prnt()."<br>";
 			if($this->paginable){
 				$pgs_hrefs = $this->get_pgs_hrefs();
 			}	
-			
+//print_r($pgs_hrefs);
 			$tmp_g_act = "";
 			for( $i = 0; $i< count($this->grid_actions); $i++){// as $key=>$value){
 				$tmp_g_act .= $this->grid_actions[$i]->getHref();

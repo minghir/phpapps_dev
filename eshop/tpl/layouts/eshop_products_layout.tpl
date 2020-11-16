@@ -17,6 +17,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   
   -->
+	    <link rel="stylesheet" href="{$smarty.const.CURRENT_APP_CSS_DIR}{$display_obj->layout_theme}.css">
   <!-- APP JavaScript -->
   <script src="{$smarty.const.CURRENT_APP_JS_DIR}remember_last_tab.js"></script>   
     <title>{$PAGE_TITLE}</title>

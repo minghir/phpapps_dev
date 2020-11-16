@@ -59,6 +59,9 @@ class DB_select{
 	var $query;
 	var $query_params = array();
         public $db_query;
+        
+        var $where_rules = array(); // clauze where 
+        var $where_params = array(); // parametri din where
 	
         var $error;
 	var $globals;
@@ -85,24 +88,41 @@ class DB_select{
 	}
 	
 	function setup_select_options(){
+                $where_rule = "";
+            
                 $this->options = array();
                 if($this->db_query == ""){
                     $this->db_query = new DB_query($this->query,$this->query_params);
-                    	
                 }
+                
 		if($this->db_query->sql() == ""){
                     
 			$this->value_col = $this->value_col == "" ? "ID" : $this->value_col;
 			$this->label_col = $this->label_col == "" ? "VALUE" : $this->label_col;
+                        
+                        if( is_array($this->where_rules) ){
+                            if(count($this->where_rules) > 0){
+                                $where_rule = implode(" AND ", $this->where_rules );    
+                                    
+                            }else{
+                                    $where_rule  = $this->where_rules[0];
+                            }
+                        }
+                        
+                        $where_rule = $where_rule == "" ? "" : " WHERE " . $where_rule;
+                        
 			$sql = "SELECT ".$this->value_col." AS VALUE, ".$this->label_col." AS LABEL 
-			FROM ".$this->table ." ORDER BY :order_rle";
+			FROM ".$this->table ." $where_rule ORDER BY :order_rle";
+                        
 			$this->query_params[":order_rle"] = $this->order_rle;
                         
+                        $this->query_params = array_merge($this->query_params,$this->where_params);
+                        
+                       
                         $this->db_query = new DB_query($sql,$this->query_params);
 		}
-                
 		//print_r($this->db_query);
-                //echo "<br>" . $this->db_query->prnt();
+//echo "<br>" . $this->db_query->prnt();
                 
 		$nrs = $this->globals->con->query($this->db_query, $this->name);
 		while($res=$this->globals->con->fetch_row($this->name)){

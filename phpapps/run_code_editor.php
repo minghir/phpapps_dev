@@ -83,8 +83,22 @@ namespace wabdo;
                                         }
                                         $this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . $path_to . DIR_SEP . $this->globals->con->get_field("TEMPLATE_NAME","layout_sql") . '.tpl';
                                 break;
+                                 case "editTheme":
+                                         $sql = new DB_query("select THEME_NAME,APP_NAME from view_themes where ID = :theme_id",
+                                                array(":theme_id"=> $_GET["gfield_value"] ));
+                                        if( $this->globals->con->query($sql,"theme_sql") != 1){
+                                            return;
+                                        }
+                                        $this->globals->con->next("theme_sql");
+                                        $this->file_path = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","theme_sql") .  DIR_SEP .'css' . DIR_SEP .  $this->globals->con->get_field("THEME_NAME","theme_sql") . '.css';
+				break;
 			}
-			$ce = new code_editor($this->file_path);
+                        
+                        if($_GET["gact"] == "editTheme"){
+                            $ce = new code_editor($this->file_path,"css");
+                        }else{
+                            $ce = new code_editor($this->file_path);
+                        }
 			$ce->display();
                         //echo $ce->get_str();
                         

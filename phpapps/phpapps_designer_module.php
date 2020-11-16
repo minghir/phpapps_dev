@@ -79,7 +79,7 @@ class phpapps_designer_module extends template{
 		$layouts_grid->filterable = false;
 		$layouts_grid->exportable = false;
 		$layouts_grid->rows_on_pg = 20;
-		$layouts_grid->edit_form = "phpapps_designer_layouts_form_imp.php?module_id=".$this->ID;
+		$layouts_grid->edit_form = "phpapps_designer_layouts_form.php?module_id=".$this->ID;
 		
                 $as2 = new HrefActions();
 		$as2->act_script = "run_code_editor.php?module_id=".$this->ID;
@@ -91,16 +91,25 @@ class phpapps_designer_module extends template{
                 $this->globals->sm->assign("layouts_grid",$layouts_grid->get_grid_str());
 
                 
-                $themes_grid = new DB_grid($this->globals->con, "table","phpapps.themes","phpapps_themes_grid");
+                $themes_grid = new DB_grid($this->globals->con, "table","phpapps.view_themes","phpapps_themes_grid");
 		$themes_grid->grid_title = "THEMES";
-		$themes_grid->cols = (array("THEME_NAME","CSS_FILE"));
-		$themes_grid->labels = (array("THEME NAME","CSS FILE"));
+		$themes_grid->cols = (array("THEME_NAME","APP_NAME"));
+		$themes_grid->labels = (array("THEME NAME","APP_NAME"));
 		$themes_grid->paginable = true;
 		$themes_grid->filterable = false;
 		$themes_grid->exportable = false;
 		$themes_grid->rows_on_pg = 20;
 		//$themes_grid->edit_form = "phpapps_designer_themes_form_imp.php?module_id=".$this->ID;
-                $themes_grid->edit_form = "phpapps_designer_themes_form_imp.php";
+                $themes_grid->edit_form = "phpapps_designer_themes_form.php";
+                
+                $thg = new HrefActions();
+		$thg->act_script = "run_code_editor.php?module_id=".$this->ID;
+		$thg->label = "edit css";
+		$thg->action = "editTheme";
+		$thg->fields = array("ID");
+		$themes_grid->add_row_acction($thg);
+                
+                
                 $this->globals->sm->assign("themes_grid",$themes_grid->get_grid_str());
 
                 

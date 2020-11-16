@@ -12,8 +12,10 @@ use Smarty;
                 
                 public $code_editor_tpl;
 		
-		function __construct($file_name){
+		function __construct($file_name,$f_type = "php"){
 			global $GLOBALS_OBJ;
+                        
+                        $this->file_type = $f_type;
 			$this->globals = &$GLOBALS_OBJ;
                         $this->code_editor_tpl = "code_editor.tpl";
 			
@@ -89,6 +91,7 @@ use Smarty;
 								"file_name" => $this->file_path,
 								"file_path" => $this->file_path,
                                                                 "file" => $this->file,
+                                                                "file_type" => $this->file_type,
 								"CODEMIRROR_DIR" => CODEMIRROR_DIR,
 			));
 			$this->sm->display($this->code_editor_tpl);

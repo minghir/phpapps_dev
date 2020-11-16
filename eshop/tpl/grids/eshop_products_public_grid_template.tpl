@@ -15,9 +15,9 @@
             <div class="card mx-auto mt-3" style="width:200px;height:300px">
               <img class="card-img-top" src="{$values_key_fields[vls]["IMG"]}" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h5 class="card-title">{$values_key_fields[vls]["PRODUCT_TITLE"]}</h5>
+                        <h6 class="card-title"><a href="product_details.php?gfield=ID&gfield_value={$values_key_fields[vls]["ID"]}">{$values_key_fields[vls]["PRODUCT_TITLE"]}</a></h6>
                         <p class="card-text">{$values_key_fields[vls]["PRICE"]} {$values_key_fields[vls]["CURRENCY"]}</p>
-                        <a href="product_details.php" class="btn btn-primary">Detalii</a>
+                        <a href="cart.php?gact=add&gfield=ID&gfield_value={$values_key_fields[vls]["ID"]}" class="btn btn-primary">add to basket</a>
                     </div>
             </div>  
 </div>

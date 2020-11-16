@@ -150,7 +150,7 @@ echo"</h1><br>----------------<br>";
 			$this->query->setParams($filter_where_params);	
                         
 //print_r($this->query);
-echo $this->query->prnt()."<br>";
+//echo $this->query->prnt()."<br>";
         }
 
         function setup_query_query(){
@@ -225,7 +225,7 @@ echo $this->query->prnt()."<br>";
 				$ga->label = "xls";
 				$this->add_grid_acction($ga);
 			}
-//echo "<h1>AICI:<br>".$this->query->query_str."</h1>";
+//echo "<h1>AICI:<br>".$this->query->prnt()."</h1>";
 //print_r($this->query);
 			//$sql = new DB_query($this->query);
 			$this->print_query = $this->query;

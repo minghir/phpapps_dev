@@ -328,7 +328,12 @@ class {$form_name} extends template{ldelim}
 		{section name=lis loop=$selected_schema_table}
 			{if $selected_schema_table[lis] != "" }
 				//$this->{$fields[lis]}_sel = new DB_select("{$fields[lis]}","{$schema}.{$selected_schema_table[lis]}");
-				$this->{$fields[lis]}_sel->db_query = new DB_query("SELECT ID AS VALUE, {$selected_schema_field[lis]} AS LABEL FROM {$selected_schema_table[lis]} ORDER BY {$selected_schema_field[lis]}");
+				//$this->{$fields[lis]}_sel->db_query = new DB_query("SELECT ID AS VALUE, {$selected_schema_field[lis]} AS LABEL FROM {$selected_schema_table[lis]} ORDER BY {$selected_schema_field[lis]}");
+                                
+                                $this->{$fields[lis]}_sel->table = "{$selected_schema_table[lis]}";
+                                $this->{$fields[lis]}_sel->value_col = "ID";
+                                $this->{$fields[lis]}_sel->label_col = "{$selected_schema_field[lis]}";
+                                
 				$this->{$fields[lis]}_sel->selected_val = $this->{$fields[lis]};
 				$this->{$fields[lis]}_sel->setup_select_options();
 			{/if} 

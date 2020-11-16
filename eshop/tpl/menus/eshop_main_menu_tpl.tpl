@@ -34,6 +34,6 @@
      <input class="nav-link my-2 my-sm-0" type="search" name="eshop_search"><input class="my-2 my-sm-0" type="submit" value="cauta">
 </ul>
 </form>
- <a href="logout.php" class="nav-link my-2 my-sm-0" type="button"><small class="text-secondary">Logout</small></a> 
+ <a href="client_logout.php" class="nav-link my-2 my-sm-0" type="button"><small class="text-secondary">Logout</small></a> 
 </div>
 </nav>

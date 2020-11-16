@@ -32,7 +32,13 @@
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
         matchBrackets: true,
-        mode: "application/x-httpd-php",
+{/literal}        
+        {if $file_type == "css"}
+            mode: "text/css",
+        {else}
+            mode: "application/x-httpd-php",
+        {/if}
+{literal}            
         indentUnit: 4,
         indentWithTabs: true
       });

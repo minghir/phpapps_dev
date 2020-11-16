@@ -21,6 +21,7 @@ class layout {
     private $default_layout_id = 5;
     public $layout;
     public $layout_file;
+    public $layout_theme;
     public $globals;
     
  
@@ -36,7 +37,7 @@ class layout {
       }   
      
     function set_layout_file(){
-        $sql = new DB_query("select l.ID AS LAYOUT_ID, l.NAME,l.APP_NAME from phpapps.view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :display_object_id",
+        $sql = new DB_query("select l.ID AS LAYOUT_ID, l.NAME,l.APP_NAME, l.THEME_NAME from phpapps.view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :display_object_id",
                 array(":display_object_id"=> $this->display_objects_id ));
         //echo $sql->prnt() ."<br>";
         
@@ -45,6 +46,10 @@ class layout {
             $this->layout = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'tpl' . DIR_SEP . 'layouts' . DIR_SEP . $this->globals->con->get_field("NAME","layout_sql") . '.tpl';
             $this->layout_id = $this->globals->con->get_field("LAYOUT_ID","layout_sql");
             $this->layout_file = $this->layout;
+            
+            //$this->layout_theme = GLOBALS_DIR . $this->globals->con->get_field("APP_NAME","layout_sql") .  DIR_SEP .'css' . DIR_SEP . $this->globals->con->get_field("THEME_NAME","layout_sql") . '.css';
+             $this->layout_theme = $this->globals->con->get_field("THEME_NAME","layout_sql");
+            
         }else{
             $this->layout_file = $this->default_layout;
         }

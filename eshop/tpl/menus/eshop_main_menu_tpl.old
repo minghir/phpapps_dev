@@ -23,9 +23,8 @@
   {/foreach}
 {/function}
 
-
-<!--<a class="navbar-brand" href="home.php"><h1>{$menu_obj->title}</h1></a>-->
-<a class="navbar-brand" href="home.php"><img src="imgs\Diomax_logo_final.png" height="90"></a>
+<nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">
+<a class="navbar-brand" href="home.php"><h1>{$menu_obj->title}</h1></a>
 <div class="collapse navbar-collapse" id="navbardrop">
 <ul class="navbar-nav mr-auto level{$level} ">
     {menu data=$menu_obj->menu_items}<br>
@@ -40,3 +39,4 @@
       <li> <a href="client_logout.php" class="nav-link my-2 my-sm-0" type="button"><small class="text-secondary">Logout</small></a> </li>
 -->
  </div>
+</nav>

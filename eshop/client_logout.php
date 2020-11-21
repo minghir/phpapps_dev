@@ -107,6 +107,7 @@ class client_logout_generated extends template{
         unset($_SESSION["_CLIENT_ID"]);
         unset($_SESSION["_CLIENT_EMAIL"]);
         unset($_SESSION["_CLIENT_PASS"]);
+        unset($_SESSION["_eshop_search"]);
         
         header("Location:products.php");
 		

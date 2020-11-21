@@ -4,7 +4,7 @@ CONTENT OF CUSTOM ELEMENT: {$CUSTOM_ELEMENT->APP_NAME} /  {$CUSTOM_ELEMENT->CUST
 <div class="card-body">
     <form name="client_login" method="POST" action="client_login.php">
     <p>Email<br><input type=text" name="email"></p>
-    <p>Password<br><input type=text" name="password"></p>
+    <p>Password<br><input type="password" name="password"></p>
     <input type="submit" name="act" value="login">
     </form>
 </div>    

@@ -24,15 +24,22 @@
     </head>
     <body>
         <div class="container-fluid">
-                <div class="row row-cols-1">
-                     <div class="col bg-success">
+                <div class="row">
+                    <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">    
+                     <div class="col-sm-8">
                         {$ESHOP_MAIN_MENU} 
                      </div>
+                    
+                     <div class="col-sm-4">
+                             
+                        {$ESHOP_LAYOUT_SETUP}
+                     </div>
+                     </nav>
                  </div>
             <br><br>
               <div class="container-fluid">
                      
-                      
+               
                             {block name=content}CONTENT BLOCK{/block}
                         
                       

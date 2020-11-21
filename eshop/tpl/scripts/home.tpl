@@ -8,7 +8,7 @@ HHHHzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 <br>
 <br>
 HOME---------------
-
+<img src="imgs\Diomax_logo_final.png" >
 <br>
 <br>
 <br>

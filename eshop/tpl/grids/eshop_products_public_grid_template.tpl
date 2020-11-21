@@ -1,12 +1,8 @@
-<h3>{$grid_title}</h3>
+<h3>{$grid_title}{if $mode_search == true } {$num_rows} produse{/if}</h3>
  
 <hr>
 
-<!--Grid row-->
 
-
-  <!--Grid column-->
-  
 
 <div class="row">
   
@@ -17,7 +13,7 @@
                     <div class="card-body">
                         <h6 class="card-title"><a href="product_details.php?gfield=ID&gfield_value={$values_key_fields[vls]["ID"]}">{$values_key_fields[vls]["PRODUCT_TITLE"]}</a></h6>
                         <p class="card-text">{$values_key_fields[vls]["PRICE"]} {$values_key_fields[vls]["CURRENCY"]}</p>
-                        <a href="cart.php?gact=add&gfield=ID&gfield_value={$values_key_fields[vls]["ID"]}" class="btn btn-primary">add to basket</a>
+                        <a href="cart.php?gact=add&gfield=ID&gfield_value={$values_key_fields[vls]["ID"]}" class="btn btn-primary">adauga in cos</a>
                     </div>
             </div>  
 </div>

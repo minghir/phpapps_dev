@@ -95,6 +95,8 @@ class products_search_generated extends template{
     
     protected $smary;
     protected $con;
+    
+    public $eshop_search;
         
     function __construct() {
         parent::__construct();
@@ -104,39 +106,49 @@ class products_search_generated extends template{
         $this->con = $globals->con;
         
         if(isset($_POST["eshop_search"])){
-            echo "<br><br><br><br>in post</br></br>";
-            $eshop_search = htmlspecialchars(addslashes(trim($_POST["eshop_search"])));
-            $_SESSION["_eshop_search"] = $eshop_search;
+            
+            $this->eshop_search = htmlspecialchars(addslashes(trim($_POST["eshop_search"])));
+            
         }else{
-            echo "<br><br><br><br>in sesiune</br></br>";
-            $eshop_search = $_SESSION["_eshop_search"];
+            $this->eshop_search = "";
+            
+           // $this->eshop_search = $_SESSION["_eshop_search"];
         }
+        //$_SESSION["_eshop_search"] = $this->eshop_search;
         
-        echo "<br><br><br><br>AICI( " . $eshop_search ." )<br>";
+        
+        
+        
+        //echo "<br><br><br><br>AICI( " . $eshop_search ." )<br>";
          $this->load_elements(); // parent function
      
-         
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->mode_search = true; 
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->grid_title = "Found:";
-                
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->editable=false;
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->rows_on_pg=12;
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->table="eshop.view_products";
+        if ($this->eshop_search == "" ){
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->mode_search = true; 
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->grid_title = "Am gasit 0 ";
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->table="DUAL";
+        }else{
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->mode_search = true; 
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->grid_title = "Am gasit ";
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->table="eshop.view_products";
+        }
         
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_rules = array(" PRODUCT_TITLE like :search ");
-        $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_params = array(":search" => '%'.$eshop_search.'%');
+         $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->editable=false;
+         $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->rows_on_pg=12;
+         $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_rules = array(" PRODUCT_TITLE like :search ");
+         $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_params = array(":search" => '%'.$this->eshop_search.'%');
         
         
         
         // phpapps_display_abs Load all elelments
        
         $this->setup_display();
+        
         $this->display_template(); // parent function
        // $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->reset_session_vars(); 
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "products_search: Youre code here."));
+        $this->globals->sm->assign(array("eshop_search" => $this->eshop_search));
     }
     
 }

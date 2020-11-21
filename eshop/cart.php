@@ -7,28 +7,6 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
 
-class cart_element{
-    public $product_id;
-    public $amount;
-    
-    
-    function __construct($prod_id,$amnt) {
-        $this->product_id = $prod_id;
-        $this->amount = $amnt;
-    }
-    
-}
-
-
-class cart{
-    public $cart_array = array();
-    
-    function __construct($cart_element) {
-        $this->cart_array[] = $cart_element;
-    }
-}
-
-
 class cart_generated extends template{
 
     /**
@@ -147,24 +125,53 @@ class cart_generated extends template{
                }
 
             break;
-            case "view":
+            case "del":
+                unset( $_SESSION["_CLIENT_CART"][$_GET["gfield_del_value"]]);
             break;
         }
         
+        switch($_POST["pact"]){
+            case "actualizeaza cos":
+               $_SESSION["_CLIENT_CART"] = $_POST["cart_items"];
+            break;
+            case "goleste cos":
+                unset( $_SESSION["_CLIENT_CART"]);
+            break;
+        }
         
-       
+         //print_r($_POST["cart_items"]);
+
         
         
         //print_r($_SESSION);
-        print_r($_SESSION["_CLIENT_CART"]);
-       // print_r($cart_products);
+        if(is_array($_SESSION["_CLIENT_CART"]) > 0){
+            $query  = new DB_query("SELECT ID, PRODUCT_TITLE, CURRENCY, DESCRIPTION, PRICE FROM eshop.view_products WHERE ID IN (" .implode(",",array_keys($_SESSION["_CLIENT_CART"])) .")");
+            $this->globals->con->query($query,"cart_disp");
+            while($res = $this->globals->con->fetch_array("cart_disp")){
+                $CART_PRODUCT_NAME[$res["ID"]] = $res["PRODUCT_TITLE"];
+                $CART_PRICE_NAME[$res["ID"]] = $res["PRICE"];
+                $CURRENCY = $res["CURRENCY"];
+                $CART_PRODUCT_VALUES[$res["ID"]] = $res["PRICE"] * $_SESSION["_CLIENT_CART"][$res["ID"]];
+            }
+        }
+       
+       
+          $this->globals->sm->assign(array("CART_ITEMS" => $_SESSION["_CLIENT_CART"],
+                                          "CART_PRODUCT_NAME" => $CART_PRODUCT_NAME,
+                                          "CART_PRICE_NAME" => $CART_PRICE_NAME,
+                                          "CURRENCY" => $CURRENCY,
+                                          "TOTAL_CART_VALUE" => is_array($CART_PRODUCT_VALUES) ? array_sum($CART_PRODUCT_VALUES) : 0,
+                                        ));
+       
+        print_r($CART_PRODUCT_NAME);
+       
         $this->setup_display();
         $this->display_template(); // parent function
 
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "cart: Youre code here."));
+     
     }
     
 }

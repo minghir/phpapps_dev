@@ -5,25 +5,31 @@
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
 	                								<input id="MODULE_ID" type="hidden" name="MODULE_ID" value="{$MODULE_ID}">
-                										                		                		                        		<div class="form-group">
+                						                				                		                		                        		<div class="form-group">
                     <label >
                         VIEW_NAME :
                     </label>
                         <input class="form-control" type="text" id="VIEW_NAME" name="VIEW_NAME" value="{$VIEW_NAME}">
                 </div>
-																		                		                		                        						<div class="form-group">
+														                				                		                		                        						<div class="form-group">
                     <label >
                         CREATE_VIEW_QUERY  :
                     </label>
                         <textarea class="form-control" id="CREATE_VIEW_QUERY" name="CREATE_VIEW_QUERY">{$CREATE_VIEW_QUERY}</textarea>
                 </div>
-                												                		                		                        						<div class="form-group">
+                								                				                		                		                        						<div class="form-group">
                     <label >
                         DESCRIPTION  :
                     </label>
                         <textarea class="form-control" id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea>
                 </div>
-                												                		                		        	{$FROM_IMP_CLASS}
+                								                				                		                		                        												                						<div class="form-group">
+                    <label >
+                        SCHEMA_ID  :
+                    </label>
+			{$SCHEMA_ID_sel}
+                </div>
+                                		                		        	{$FROM_IMP_CLASS}
                 <div class="form-group">
 	{if $gact == "editRec"}
                        <button type="submit" class="btn btn-primary mb-2" name="pact" value="saveRec">save</button>

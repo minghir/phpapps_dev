@@ -38,7 +38,58 @@ class eshop_admin_module extends wabdo\template{
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "eshop_admin_module: Youre code here."));
+        
+        //$this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->grid_name = "Admin_Produse";
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->grid_title = "Produse";
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->table="eshop.view_products";
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->cols=array(
+            "ID",
+            "PRODUCT_TITLE",
+            "CATEGORY",
+            "DESCRIPTION",
+            "CONCAT(PRICE,' ',CURRENCY) AS 'PRICE'",
+            "STOCK",
+            "CONCAT('<img src=',IMG,' width=90>') AS IMG");
+        
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->labels=array(
+            "Cod",
+            "Produs",
+            "Categorie",
+            "Descriere",
+            "Pret",
+            "Stoc",
+            "IMG");
+        
+        $this->template_elements["grids"]["ESHOP_ADMIN_CLIENTS"]->grid_title = "Clienti";
+        $this->template_elements["grids"]["ESHOP_ADMIN_CLIENTS"]->table="eshop.view_clients";
+        /*
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->cols=array(
+            "ID",
+            "PRODUCT_TITLE",
+            "CATEGORY",
+            "DESCRIPTION",
+            "CONCAT(PRICE,' ',CURRENCY) AS 'PRICE'",
+            "STOCK",
+            "CONCAT('<img src=',IMG,' width=90>') AS IMG");
+        
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->labels=array(
+            "Cod",
+            "Produs",
+            "Categorie",
+            "Descriere",
+            "Pret",
+            "Stoc",
+            "IMG");
+        */
+        //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "eshop_admin_module: Youre code here."));
+        //print_r($_SESSION);
+        
+        $this->template_elements["grids"]["ESHOP_CATEGORIES"]->grid_name = "Admin_Categs";
+        $this->template_elements["grids"]["ESHOP_CATEGORIES"]->grid_title = "Categorii";
+        $this->template_elements["grids"]["ESHOP_CATEGORIES"]->cols = array( "TITLE","DESCRIPTION" );
+        $this->template_elements["grids"]["ESHOP_CATEGORIES"]->labels = array( "Categorie","Descriere" );
+        
+        
     }
     
 }

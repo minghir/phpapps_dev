@@ -22,21 +22,21 @@ function submitDetailsForm(op){
 																
 			
 		                
-				<tr><td align="right">PID  :</td><td>
+				<tr><td align="right">Parinte  :</td><td>
 			{$PID_sel}
 		</td></tr>
                         				 
-				<tr><td align="right">NAME :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
+				<tr><td align="right">Nume :</td><td> <input type="text" id="NAME" name="NAME" value="{$NAME}"></td></tr>
 																
 			
 		                
 		                				 
-				<tr><td align="right">TITLE :</td><td> <input type="text" id="TITLE" name="TITLE" value="{$TITLE}"></td></tr>
+				<tr><td align="right">Titlu :</td><td> <input type="text" id="TITLE" name="TITLE" value="{$TITLE}"></td></tr>
 																
 			
 		                
 		                				 
-								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
+								<tr><td align="right">Descriere  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			
 		                

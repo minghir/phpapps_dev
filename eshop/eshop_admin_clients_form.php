@@ -4,8 +4,8 @@
 */
 namespace wabdo;
 require_once ("globals.php");
-include ("generated_php/eshop_client_address_generated.php");
-	class eshop_client_address  extends eshop_client_address_generated{
+include ("generated_php/eshop_admin_clients_form_generated.php");
+	class eshop_admin_clients_form  extends eshop_admin_clients_form_generated{
                     /**
                      * application database id
                      *
@@ -38,21 +38,21 @@ include ("generated_php/eshop_client_address_generated.php");
                      *
                      * @var int
                      */
-                    protected $_MODULE_ID = 31;
+                    protected $_MODULE_ID = 10;
 
                     /**
                      * module name as db identifier
                      *
                      * @var int
                      */
-                    protected $_MODULE_NAME = "eshop_public";
+                    protected $_MODULE_NAME = "eshop_admin";
 
                     /**
                      * module long title
                      *
                      * @var string
                      */
-                    protected $_MODULE_TITLE = "public";
+                    protected $_MODULE_TITLE = "admin";
 
                     /**
                      * module label (short title)
@@ -66,7 +66,7 @@ include ("generated_php/eshop_client_address_generated.php");
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_NAME = "eshop_client_address";
+                    protected $_SCRIPT_NAME = "eshop_admin_clients_form";
 
                     /**
                      * script long title
@@ -85,38 +85,28 @@ include ("generated_php/eshop_client_address_generated.php");
                     protected $_SCRIPT_VERSION = "";    
         
         
-                        //public $script_id = 366;
+                        //public $script_id = 370;
                         public $display_objects_type_id = '2';
                         public $display_objects_type = 'SCRIPT';
-                        public $display_objects_id = 366;
+                        public $display_objects_id = 370;
                         
                         protected $smary;
                         protected $con;
                 
 		function __construct(){
-                    
-                        
-                        //$this->gact = "editRec";
-                    
 			parent::__construct();
                         
-                        $this->tpl = "eshop_client_address.tpl";
+                        
+                        $this->tpl = "eshop_admin_clients_form.tpl";
                         //$this->display_objects_id = $this->script_id;
                         
-                        $_GET["gact"] = "editRec";
-                        $_GET["gfield"] = "ID";
-                        $_GET["gfield_value"] = $_SESSION["_CLIENT_ID"];
-                        
                         $this->load_elements(); // parent function: class template
-                        $this->init(); // parent function: class eshop_client_address 
-			$this->display();// parent function: class eshop_client_address 
+                        $this->init(); // parent function: class eshop_admin_clients_form 
+			$this->display();// parent function: class eshop_admin_clients_form 
                         
 		}
 		
 		function before_get_rec(){
-                   
-                    
-                    
 		}
 		
 		function after_get_rec(){
@@ -157,5 +147,5 @@ include ("generated_php/eshop_client_address_generated.php");
 		
 	};
 	
-	$eshop_client_address_Impl = new eshop_client_address();
+	$eshop_admin_clients_form_Impl = new eshop_admin_clients_form();
 ?>

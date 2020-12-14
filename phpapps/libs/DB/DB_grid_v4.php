@@ -117,7 +117,7 @@ class DB_grid {
                             }
                         }
 			$this->where_params = $filter_where_params;
-/*			
+/*
 echo "<br>--------------<br><h1>";
 print_r($filter_where_rls);	
 echo"<br>";	

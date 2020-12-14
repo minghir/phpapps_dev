@@ -24,7 +24,7 @@
     <title>{$PAGE_TITLE}</title>
     </head>
     <body>
-        <h5>Eshop default layout</h5>
+       <!-- <h5>Eshop default layout</h5> -->
 		{$TEST_CE_5}
 	<div class="container-expand-lg">
             {block name=content}CONTENT BLOCK{/block}

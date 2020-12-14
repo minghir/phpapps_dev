@@ -37,7 +37,7 @@
 	<footer class="footer">
       <div class="container">
 		  {$CUSTOM_5}
-        <span class="text-muted">Place sticky footer content here.{$PHPAPPS_LAYOUTS_BOOTSTRAP_LINKS}</span>
+       <!-- <span class="text-muted">Place sticky footer content here.{$PHPAPPS_LAYOUTS_BOOTSTRAP_LINKS}</span> -->
       </div>
     </footer>
 		

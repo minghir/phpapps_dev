@@ -114,6 +114,7 @@ class products_generated extends wabdo\template{
         
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->grid_title = wabdo\_tbl("eshop.categories","NAME",$this->category_id,"ID");
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->editable=false;
+        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->paginable=true;
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->rows_on_pg=12;
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->table="eshop.view_products";
         

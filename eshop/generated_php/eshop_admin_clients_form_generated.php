@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class eshop_client_address_generated extends template{
+class eshop_admin_clients_form_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema = "eshop";
 	public $form_table = "clients";
         
-	public $template;// = "gen_tpl/eshop_client_address_generated.tpl";
+	public $template;// = "gen_tpl/eshop_admin_clients_form_generated.tpl";
         
-        public $tpl = "eshop_client_address_generated";
+        public $tpl = "eshop_admin_clients_form_generated";
 	
         //get values
 	public $gact;
@@ -37,6 +37,8 @@ class eshop_client_address_generated extends template{
         	            
 	public $BIRTH_DATE;
         	            
+	public $EMAIL;
+        	            
 	public $COUNTRY_ID;
         	            
 	public $COUNTY_ID;
@@ -54,8 +56,8 @@ class eshop_client_address_generated extends template{
 		 
 		 
 		 
-			public $TITLE_ID_sel;
-	 
+		 
+		 
 		 
 			public $COUNTRY_ID_sel;
 	 
@@ -67,6 +69,7 @@ class eshop_client_address_generated extends template{
 		 
 		 
 			
+		 
 		 
 		 
 		 
@@ -96,8 +99,8 @@ class eshop_client_address_generated extends template{
                 			 
 					 
 					 
-								$this->TITLE_ID_sel = new DB_select("TITLE_ID","eshop.list_title");
-                        			 
+					 
+					 
 					 
 								$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID","eshop.list_countries");
                         			 
@@ -109,6 +112,7 @@ class eshop_client_address_generated extends template{
 					 
 					 
 				
+					 
 					 
 					 
 					 
@@ -138,14 +142,13 @@ class eshop_client_address_generated extends template{
 	}
 	
 	function get_rec(){
-            
-            echo "AICI";
 		$this->query = new DB_query( "SELECT 
 									ID,
 												FIRST_NAME,
 												LAST_NAME,
 												TITLE_ID,
 												BIRTH_DATE,
+												EMAIL,
 												COUNTRY_ID,
 												COUNTY_ID,
 												CITY,
@@ -164,6 +167,7 @@ class eshop_client_address_generated extends template{
                                 			                                                                $this->LAST_NAME = stripslashes($this->globals->con->get_field("LAST_NAME"));
                                 			                                                                $this->TITLE_ID = stripslashes($this->globals->con->get_field("TITLE_ID"));
                                 			                                                                $this->BIRTH_DATE = stripslashes($this->globals->con->get_field("BIRTH_DATE"));
+                                			                                                                $this->EMAIL = stripslashes($this->globals->con->get_field("EMAIL"));
                                 			                                                                $this->COUNTRY_ID = stripslashes($this->globals->con->get_field("COUNTRY_ID"));
                                 			                                                                $this->COUNTY_ID = stripslashes($this->globals->con->get_field("COUNTY_ID"));
                                 			                                                                $this->CITY = stripslashes($this->globals->con->get_field("CITY"));
@@ -189,6 +193,7 @@ class eshop_client_address_generated extends template{
 																						LAST_NAME,
 																						TITLE_ID,
 																						BIRTH_DATE,
+																						EMAIL,
 																						COUNTRY_ID,
 																						COUNTY_ID,
 																						CITY,
@@ -201,6 +206,7 @@ class eshop_client_address_generated extends template{
 																						:LAST_NAME,
 																						:TITLE_ID,
 																						:BIRTH_DATE,
+																						:EMAIL,
 																						:COUNTRY_ID,
 																						:COUNTY_ID,
 																						:CITY,
@@ -218,6 +224,8 @@ class eshop_client_address_generated extends template{
                                             ":TITLE_ID" => $this->TITLE_ID,
                                         														                                            
                                             ":BIRTH_DATE" => $this->BIRTH_DATE,
+                                        														                                            
+                                            ":EMAIL" => $this->EMAIL,
                                         														                                            
                                             ":COUNTRY_ID" => $this->COUNTRY_ID,
                                         														                                            
@@ -264,6 +272,7 @@ class eshop_client_address_generated extends template{
 												LAST_NAME = :LAST_NAME,
 												TITLE_ID = :TITLE_ID,
 												BIRTH_DATE = :BIRTH_DATE,
+												EMAIL = :EMAIL,
 												COUNTRY_ID = :COUNTRY_ID,
 												COUNTY_ID = :COUNTY_ID,
 												CITY = :CITY,
@@ -279,6 +288,7 @@ class eshop_client_address_generated extends template{
                                         				                                                                                    ":LAST_NAME" => $this->LAST_NAME,
                                         				                                                                                    ":TITLE_ID" => $this->TITLE_ID,
                                         				                                                                                    ":BIRTH_DATE" => $this->BIRTH_DATE,
+                                        				                                                                                    ":EMAIL" => $this->EMAIL,
                                         				                                                                                    ":COUNTRY_ID" => $this->COUNTRY_ID,
                                         				                                                                                    ":COUNTY_ID" => $this->COUNTY_ID,
                                         				                                                                                    ":CITY" => $this->CITY,
@@ -364,6 +374,7 @@ class eshop_client_address_generated extends template{
                                                 		                                                    $this->LAST_NAME  = htmlspecialchars(addslashes(trim($_POST["LAST_NAME"])));
                                                 		                                                    $this->TITLE_ID  = htmlspecialchars(addslashes(trim($_POST["TITLE_ID"])));
                                                 		                                                    $this->BIRTH_DATE  = htmlspecialchars(addslashes(trim($_POST["BIRTH_DATE"])));
+                                                		                                                    $this->EMAIL  = htmlspecialchars(addslashes(trim($_POST["EMAIL"])));
                                                 		                                                    $this->COUNTRY_ID  = htmlspecialchars(addslashes(trim($_POST["COUNTRY_ID"])));
                                                 		                                                    $this->COUNTY_ID  = htmlspecialchars(addslashes(trim($_POST["COUNTY_ID"])));
                                                 		                                                    $this->CITY  = htmlspecialchars(addslashes(trim($_POST["CITY"])));
@@ -396,25 +407,14 @@ class eshop_client_address_generated extends template{
         }
 	
 	function check_errors(){
-				if($this->FIRST_NAME == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>FIRST_NAME</strong> este obligatoriu!");
-		}
-				if($this->LAST_NAME == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>LAST_NAME</strong> este obligatoriu!");
-		}
-				if($this->TITLE_ID == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>TITLE_ID</strong> este obligatoriu!");
-		}
 			}
 	
 	function setup_display(){
 					 
 					 
 					 
-								//$this->TITLE_ID_sel = new DB_select("TITLE_ID",".eshop.list_title");
-			$this->TITLE_ID_sel->selected_val = $this->TITLE_ID;
-			$this->TITLE_ID_sel->setup_select_options();
-			 
+					 
+					 
 					 
 								//$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID",".eshop.list_countries");
 			$this->COUNTRY_ID_sel->selected_val = $this->COUNTRY_ID;
@@ -442,6 +442,7 @@ class eshop_client_address_generated extends template{
 					 
 					 
 					 
+					 
 		        }
         
         function assign_vars_tpl(){
@@ -451,6 +452,7 @@ class eshop_client_address_generated extends template{
 							"LAST_NAME" => $this->LAST_NAME,
 							"TITLE_ID" => $this->TITLE_ID,
 							"BIRTH_DATE" => $this->BIRTH_DATE,
+							"EMAIL" => $this->EMAIL,
 							"COUNTRY_ID" => $this->COUNTRY_ID,
 							"COUNTY_ID" => $this->COUNTY_ID,
 							"CITY" => $this->CITY,
@@ -461,8 +463,8 @@ class eshop_client_address_generated extends template{
 									 
 						 
 						 
-										"TITLE_ID_sel" => $this->TITLE_ID_sel->get_select_str(),
-			 
+						 
+						 
 						 
 										"COUNTRY_ID_sel" => $this->COUNTRY_ID_sel->get_select_str(),
 			 
@@ -474,6 +476,7 @@ class eshop_client_address_generated extends template{
 						 
 						 
 									 
+						 
 						 
 						 
 						 

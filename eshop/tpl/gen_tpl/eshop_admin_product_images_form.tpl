@@ -27,7 +27,8 @@ function submitDetailsForm(op){
 																
 			
 		                
-		                				<tr><td align="right">IMG_FILE_NAME :</td><td> <input type="file" id="IMG_FILE_NAME" name="IMG_FILE_NAME" value="{$IMG_FILE_NAME}"><a href="{$IMG_FILE_NAME}">{$IMG_FILE_NAME}</a></td></tr>
+                                                                                <tr><td align="right">Imagine :</td><td> <input type="file" id="IMG_FILE_NAME" name="IMG_FILE_NAME" value="{$IMG_FILE_NAME}"><br><br>
+                                                                                        <a href="{$IMG_FILE_NAME}"><img src="{$IMG_FILE_NAME}"></a></td></tr>
 				{$FROM_IMP_CLASS}
 		{if $gact == "editRec"}
 		<tr><td></td><td>

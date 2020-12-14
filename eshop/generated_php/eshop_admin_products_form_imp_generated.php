@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class phpapps_database_views_form_generated extends template{
+class eshop_admin_products_form_imp_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "phpapps";
-	public $form_table = "views";
+	public $form_schema = "eshop";
+	public $form_table = "products";
         
-	public $template;// = "gen_tpl/phpapps_database_views_form_generated.tpl";
+	public $template;// = "gen_tpl/eshop_admin_products_form_imp_generated.tpl";
         
-        public $tpl = "phpapps_database_views_form_generated";
+        public $tpl = "eshop_admin_products_form_imp_generated";
 	
         //get values
 	public $gact;
@@ -27,23 +27,32 @@ class phpapps_database_views_form_generated extends template{
         public $smarty;
         
 	            
-	public $MODULE_ID;
+	public $ID;
         	            
-	public $VIEW_NAME;
+	public $CATEGORY_ID;
         	            
-	public $CREATE_VIEW_QUERY;
+	public $PRODUCT_TITLE;
         	            
 	public $DESCRIPTION;
         	            
-	public $SCHEMA_ID;
+	public $PRICE;
+        	            
+	public $CURRENCY_ID;
+        	            
+	public $STOCK;
         		
 		 
 		 
 		 
 		 
-			public $SCHEMA_ID_sel;
+		 
+			public $CURRENCY_ID_sel;
 	 
+		 
 			
+		 
+			public $CATEGORY_ID_sel;
+	 
 		 
 		 
 		 
@@ -67,9 +76,14 @@ class phpapps_database_views_form_generated extends template{
 					 
 					 
 					 
-								$this->SCHEMA_ID_sel = new DB_select("SCHEMA_ID","phpapps.list_databases");
+					 
+								$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID","eshop.list_currency");
                         			 
+					 
 				
+					 
+									$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID","eshop.categories");
+                                			 
 					 
 					 
 					 
@@ -93,22 +107,26 @@ class phpapps_database_views_form_generated extends template{
 	
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
-									MODULE_ID,
-												VIEW_NAME,
-												CREATE_VIEW_QUERY,
+									ID,
+												CATEGORY_ID,
+												PRODUCT_TITLE,
 												DESCRIPTION,
-												SCHEMA_ID
+												PRICE,
+												CURRENCY_ID,
+												STOCK
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
-			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
-                                			                                                                $this->VIEW_NAME = stripslashes($this->globals->con->get_field("VIEW_NAME"));
-                                			                                                                $this->CREATE_VIEW_QUERY = stripslashes($this->globals->con->get_field("CREATE_VIEW_QUERY"));
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
+                                			                                                                $this->CATEGORY_ID = stripslashes($this->globals->con->get_field("CATEGORY_ID"));
+                                			                                                                $this->PRODUCT_TITLE = stripslashes($this->globals->con->get_field("PRODUCT_TITLE"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-                                			                                                                $this->SCHEMA_ID = stripslashes($this->globals->con->get_field("SCHEMA_ID"));
+                                			                                                                $this->PRICE = stripslashes($this->globals->con->get_field("PRICE"));
+                                			                                                                $this->CURRENCY_ID = stripslashes($this->globals->con->get_field("CURRENCY_ID"));
+                                			                                                                $this->STOCK = stripslashes($this->globals->con->get_field("STOCK"));
                                 						
 	}
 	
@@ -123,29 +141,33 @@ class phpapps_database_views_form_generated extends template{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															MODULE_ID,
-																						VIEW_NAME,
-																						CREATE_VIEW_QUERY,
+																					CATEGORY_ID,
+																						PRODUCT_TITLE,
 																						DESCRIPTION,
-																						SCHEMA_ID
+																						PRICE,
+																						CURRENCY_ID,
+																						STOCK
 										 ) VALUES (
-															:MODULE_ID,
-																						:VIEW_NAME,
-																						:CREATE_VIEW_QUERY,
+																					:CATEGORY_ID,
+																						:PRODUCT_TITLE,
 																						:DESCRIPTION,
-																						:SCHEMA_ID
+																						:PRICE,
+																						:CURRENCY_ID,
+																						:STOCK
 													)",
 			array(
-									                                            
-                                            ":MODULE_ID" => $this->MODULE_ID,
+																		                                            
+                                            ":CATEGORY_ID" => $this->CATEGORY_ID,
                                         														                                            
-                                            ":VIEW_NAME" => $this->VIEW_NAME,
-                                        														                                            
-                                            ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+                                            ":PRODUCT_TITLE" => $this->PRODUCT_TITLE,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
                                         														                                            
-                                            ":SCHEMA_ID" => $this->SCHEMA_ID,
+                                            ":PRICE" => $this->PRICE,
+                                        														                                            
+                                            ":CURRENCY_ID" => $this->CURRENCY_ID,
+                                        														                                            
+                                            ":STOCK" => $this->STOCK,
                                         												)
 			);
 
@@ -173,19 +195,23 @@ class phpapps_database_views_form_generated extends template{
 		$this->check_errors();
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									MODULE_ID = :MODULE_ID,
-												VIEW_NAME = :VIEW_NAME,
-												CREATE_VIEW_QUERY = :CREATE_VIEW_QUERY,
+									ID = :ID,
+												CATEGORY_ID = :CATEGORY_ID,
+												PRODUCT_TITLE = :PRODUCT_TITLE,
 												DESCRIPTION = :DESCRIPTION,
-												SCHEMA_ID = :SCHEMA_ID
+												PRICE = :PRICE,
+												CURRENCY_ID = :CURRENCY_ID,
+												STOCK = :STOCK
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
-                                        				                                                                                    ":VIEW_NAME" => $this->VIEW_NAME,
-                                        				                                                                                    ":CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+				                                                                                    ":ID" => $this->ID,
+                                        				                                                                                    ":CATEGORY_ID" => $this->CATEGORY_ID,
+                                        				                                                                                    ":PRODUCT_TITLE" => $this->PRODUCT_TITLE,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
-                                        				                                                                                    ":SCHEMA_ID" => $this->SCHEMA_ID,
+                                        				                                                                                    ":PRICE" => $this->PRICE,
+                                        				                                                                                    ":CURRENCY_ID" => $this->CURRENCY_ID,
+                                        				                                                                                    ":STOCK" => $this->STOCK,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -259,11 +285,13 @@ class phpapps_database_views_form_generated extends template{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
-                                                		                                                    $this->VIEW_NAME  = htmlspecialchars(addslashes(trim($_POST["VIEW_NAME"])));
-                                                		                                                    $this->CREATE_VIEW_QUERY  = htmlspecialchars(addslashes(trim($_POST["CREATE_VIEW_QUERY"])));
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
+                                                		                                                    $this->CATEGORY_ID  = htmlspecialchars(addslashes(trim($_POST["CATEGORY_ID"])));
+                                                		                                                    $this->PRODUCT_TITLE  = htmlspecialchars(addslashes(trim($_POST["PRODUCT_TITLE"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
-                                                		                                                    $this->SCHEMA_ID  = htmlspecialchars(addslashes(trim($_POST["SCHEMA_ID"])));
+                                                		                                                    $this->PRICE  = htmlspecialchars(addslashes(trim($_POST["PRICE"])));
+                                                		                                                    $this->CURRENCY_ID  = htmlspecialchars(addslashes(trim($_POST["CURRENCY_ID"])));
+                                                		                                                    $this->STOCK  = htmlspecialchars(addslashes(trim($_POST["STOCK"])));
                                                 		        }
 	
         function before_post_actions(){
@@ -289,12 +317,6 @@ class phpapps_database_views_form_generated extends template{
         }
 	
 	function check_errors(){
-				if($this->MODULE_ID == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>MODULE_ID</strong> este obligatoriu!");
-		}
-				if($this->SCHEMA_ID == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>SCHEMA_ID</strong> este obligatoriu!");
-		}
 			}
 	
 	function setup_display(){
@@ -302,11 +324,24 @@ class phpapps_database_views_form_generated extends template{
 					 
 					 
 					 
-								//$this->SCHEMA_ID_sel = new DB_select("SCHEMA_ID",".phpapps.list_databases");
-			$this->SCHEMA_ID_sel->selected_val = $this->SCHEMA_ID;
-			$this->SCHEMA_ID_sel->setup_select_options();
+					 
+								//$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID",".eshop.list_currency");
+			$this->CURRENCY_ID_sel->selected_val = $this->CURRENCY_ID;
+			$this->CURRENCY_ID_sel->setup_select_options();
 			 
+					 
 				
+					 
+									//$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID",".eshop.categories");
+				//$this->CATEGORY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
+                                
+                                $this->CATEGORY_ID_sel->table = "eshop.categories";
+                                $this->CATEGORY_ID_sel->value_col = "ID";
+                                $this->CATEGORY_ID_sel->label_col = "NAME";
+                                
+				$this->CATEGORY_ID_sel->selected_val = $this->CATEGORY_ID;
+				$this->CATEGORY_ID_sel->setup_select_options();
+			 
 					 
 					 
 					 
@@ -316,18 +351,25 @@ class phpapps_database_views_form_generated extends template{
         
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
-							"MODULE_ID" => $this->MODULE_ID,
-							"VIEW_NAME" => $this->VIEW_NAME,
-							"CREATE_VIEW_QUERY" => $this->CREATE_VIEW_QUERY,
+							"ID" => $this->ID,
+							"CATEGORY_ID" => $this->CATEGORY_ID,
+							"PRODUCT_TITLE" => $this->PRODUCT_TITLE,
 							"DESCRIPTION" => $this->DESCRIPTION,
-							"SCHEMA_ID" => $this->SCHEMA_ID,
+							"PRICE" => $this->PRICE,
+							"CURRENCY_ID" => $this->CURRENCY_ID,
+							"STOCK" => $this->STOCK,
 									 
 						 
 						 
 						 
-										"SCHEMA_ID_sel" => $this->SCHEMA_ID_sel->get_select_str(),
+						 
+										"CURRENCY_ID_sel" => $this->CURRENCY_ID_sel->get_select_str(),
 			 
+						 
 									 
+										"CATEGORY_ID_sel" => $this->CATEGORY_ID_sel->get_select_str(),
+			 
+						 
 						 
 						 
 						 

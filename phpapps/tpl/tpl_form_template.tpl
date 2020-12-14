@@ -61,6 +61,15 @@
                         <input class="form-control" id="{$fields[fl]}" type="date" name="{$fields[fl]}" value="{literal}{${/literal}{$fields[fl]}}">
                 </div>
                 {/if}
+                {if $input_types[fl] ==  "password" }
+		<!-- <div class="form-group"><label >{$labels[fl]} :<td> <input type="text" class="tcal" name="{$fields[fl]}" value="{literal}{${/literal}{$fields[fl]}}"></div> -->
+		<div class="form-group">
+                    <label >
+                        {$labels[fl]} :
+                    </label>
+                        <input class="form-control" id="{$fields[fl]}" type="password" name="{$fields[fl]}" value="{literal}{${/literal}{$fields[fl]}}">
+                </div>
+                {/if}
 		{if $input_types[fl] ==  "label_field" }
 		<!-- <div class="form-group"><label >{$labels[fl]} :<td> <input type="text" class="tcal" name="{$fields[fl]}" value="{literal}{${/literal}{$fields[fl]}}"></div> -->
 		<div class="form-group">

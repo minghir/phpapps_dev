@@ -22,33 +22,33 @@ function submitDetailsForm(op){
 																
 			
 		                
-				<tr><td align="right">CATEGORY  :</td><td>
+				<tr><td align="right">Categorie  :</td><td>
 			{$CATEGORY_ID_sel}
 		</td></tr>
                         				 
-				<tr><td align="right">TITLE :</td><td> <input type="text" id="PRODUCT_TITLE" name="PRODUCT_TITLE" value="{$PRODUCT_TITLE}"></td></tr>
+				<tr><td align="right">Denumire :</td><td> <input type="text" id="PRODUCT_TITLE" name="PRODUCT_TITLE" value="{$PRODUCT_TITLE}"></td></tr>
 																
 			
 		                
 		                				 
-								<tr><td align="right">DESCRIPTION  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
+								<tr><td align="right">Descriere  :</td><td> <textarea id="DESCRIPTION" name="DESCRIPTION">{$DESCRIPTION}</textarea></td></tr>
         										
 			
 		                
 		                				 
-				<tr><td align="right">PRICE :</td><td> <input type="text" id="PRICE" name="PRICE" value="{$PRICE}"></td></tr>
+				<tr><td align="right">Pret :</td><td> <input type="text" id="PRICE" name="PRICE" value="{$PRICE}"></td></tr>
 																
 			
 		                
 		                				 
 																
 			
-				<tr><td align="right">CURRENCY  :</td><td>
+				<tr><td align="right">Moneda  :</td><td>
 			{$CURRENCY_ID_sel}
 		</td></tr>
                         
 		                				 
-				<tr><td align="right">STOCK :</td><td> <input type="text" id="STOCK" name="STOCK" value="{$STOCK}"></td></tr>
+				<tr><td align="right">Stoc :</td><td> <input type="text" id="STOCK" name="STOCK" value="{$STOCK}"></td></tr>
 																
 			
 		                

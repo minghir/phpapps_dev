@@ -73,8 +73,8 @@ class custom_element {
      
         
         $this->set_template_file();
-         echo "<H1>ACUM SUNTAICI</h1><br>";
-         echo $this->tpl . '.tpl';
+         //echo "<H1>ACUM SUNTAICI</h1><br>";
+         //echo $this->tpl . '.tpl';
          return $this->smarty->fetch($this->tpl . '.tpl');
     }
     

@@ -41,7 +41,7 @@
                     
                     {if $filterable == true }
                     <tr>
-                        <form name="filter" method="POST" action="">
+                        <form name="filter_{$grid_title}" method="POST" action="">
                     {section name=flds loop=$fields}
                         <td align="center">
               <!-- <input type="text" name="{$fields[flds]}" value="" size=5">-->

@@ -25,11 +25,11 @@ function submitDetailsForm(op){
                     <label >
                         PASSWORD :
                     </label>
-                        <input class="form-control" type="text" id="PASSWORD" name="PASSWORD" value="{$PASSWORD}">
+                        <input class="form-control" type="password" id="PASSWORD" name="PASSWORD" value="{$PASSWORD}">
                     <label >
                         CHECK PASSWORD :
                     </label>
-                        <input class="form-control" type="text" id="PASSWORD" name="PASSWORD2" value="{$PASSWORD2}">
+                        <input class="form-control" type="password" id="PASSWORD" name="PASSWORD2" value="{$PASSWORD2}">
                 <div class="form-group">
 	{if $gact == "editRec"}
                        <button type="submit" class="btn btn-primary mb-2" name="pact" value="saveRec">save</button>

@@ -110,10 +110,15 @@ Sript version<input disabled type="text" name="script_version" id="script_versio
 			   {else}
 			   <option value="date">date</option>
 			   {/if}
-			   {if $input_types[ds] == "file" }
-               <option value="date" selected>file</option>
+                           {if $input_types[ds] == "password" }
+               <option value="password" selected>password</option>
 			   {else}
-			   <option value="date">file</option>
+			   <option value="password">password</option>
+			   {/if}
+                           {if $input_types[ds] == "file" }
+               <option value="file" selected>file</option>
+			   {else}
+			   <option value="file">file</option>
 			   {/if}
 			   {if $input_types[ds] == "select" }
                <option value="select" selected>select</option>

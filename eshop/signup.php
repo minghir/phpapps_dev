@@ -116,6 +116,23 @@ include ("generated_php/signup_generated.php");
                 }
 	
 		function before_add_rec(){
+                    
+                    $password = trim($_POST["PASSWORD"]);
+                    $password2 = trim($_POST["PASSWORD2"]);
+                    $email = trim($_POST["EMAIL"]);
+                    
+                    if(strlen($password) < 8 ){
+                        $this->alerts->add_alert("danger","Parola trebuie sa fie de cel putin 8 caractere!");
+                    }
+                    
+                    if($password !== $password2 ){
+                        $this->alerts->add_alert("danger","Parolele nu coincid!");
+                    }
+                    
+                    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                        $this->alerts->add_alert("danger","Adresa de email este invalida!");
+                    }
+                    
 		}
 		
 		function after_add_rec(){

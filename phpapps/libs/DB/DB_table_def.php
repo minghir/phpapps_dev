@@ -38,7 +38,7 @@ class DB_table_def{
         private function execQuery($sql_sintax){
             $this->globals->sm->assign("TABLE_OBJ",$this);
                 $sql = new DB_query($this->globals->sm->fetch(
-                         'string:'.  stripslashes((new DB_table("phpapps.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("phpapps.list_sql_sintax_types"))->getID($sql_sintax))))
+                         'string:'.  stripslashes((new DB_table("{$this->globals->PHPAPPS_DB}.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("{$this->globals->PHPAPPS_DB}.list_sql_sintax_types"))->getID($sql_sintax))))
                      );
 echo "<br><h1>".$sql->prnt()."</h1><br>";
                if( $this->globals->con->query($sql) != -1){

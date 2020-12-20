@@ -46,7 +46,7 @@ class elements_loader {
         //LAYOUT_VARIABLE   3
         //CUSTOM_ELEMER     4
          
-         $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements "
+         $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM {$this->globals->PHPAPPS_DB}.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
          //echo "<br><br><br><br><br>". $sql1->prnt() ."<br>";
@@ -73,7 +73,7 @@ class elements_loader {
             }
             
             /*
-            switch(_tbl("phpapps.list_display_elements_types","VALUE",$res->ELEMENT_TYPE_ID,"ID")){
+            switch(_tbl("{$this->globals->PHPAPPS_DB}.list_display_elements_types","VALUE",$res->ELEMENT_TYPE_ID,"ID")){
                 case 'MENU'://MENU
                     $this->display_elements['menus'][$res->TEMPLATE_VARIABLE_NAME] = $this->loadMenu($res->ELEMENT_ID);
                 break;
@@ -135,7 +135,7 @@ class elements_loader {
      }
      
      function load_layout_variable($var_id){
-         return  _tbl("phpapps.layout_variables","VARIABLE_CONTENT",$var_id,"ID");
+         return  _tbl("{$this->globals->PHPAPPS_DB}.layout_variables","VARIABLE_CONTENT",$var_id,"ID");
      }
      
      function load_grid($grid_id){
@@ -147,8 +147,8 @@ class elements_loader {
             $sql2 = new DB_query("SELECT ID,
 			NAME,
 			APP_ID,
-            (SELECT APP_NAME FROM phpapps.applications WHERE phpapps.applications.ID = phpapps.custom_elements.APP_ID) AS APP_NAME
-            FROM phpapps.custom_elements
+            (SELECT APP_NAME FROM {$this->globals->PHPAPPS_DB}.applications WHERE {$this->globals->PHPAPPS_DB}.applications.ID = {$this->globals->PHPAPPS_DB}.custom_elements.APP_ID) AS APP_NAME
+            FROM {$this->globals->PHPAPPS_DB}.custom_elements
             WHERE ID = :ce_id", 
                 array(":ce_id" => $el_id));
         //echo $sql2->prnt() ."<br>";

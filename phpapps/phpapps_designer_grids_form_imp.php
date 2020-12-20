@@ -15,7 +15,7 @@ include ("gen_php/phpapps_designer_grids_form.php");
 			$this->init();
                         //{$grid_grid_columns}
                         
-                        $grid_grid_columns = new DB_grid($this->globals->con, "table","phpapps.view_grid_columns","grid_columns_grid");
+                        $grid_grid_columns = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_grid_columns","grid_columns_grid");
                         $grid_grid_columns->grid_title = "GRID COLUMNS";
                             
                         //$display_object_elements_grid->cols = (array("DISPLAY_OBJECT_NAME","DISPLAY_OBJECT_TYPE","ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));

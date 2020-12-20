@@ -69,7 +69,7 @@ class DB_FK_def {
     function getFKDef(){
         $this->globals->sm->assign("FK_OBJ",$this);
 	return  $this->globals->sm->fetch(
-                         'string:'.  stripslashes((new DB_table("phpapps.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("phpapps.list_sql_sintax_types"))->getID("FOREIGN_KEY_DEF"))));
+                         'string:'.  stripslashes((new DB_table("{$this->globals->PHPAPPS_DB}.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("{$this->globals->PHPAPPS_DB}.list_sql_sintax_types"))->getID("FOREIGN_KEY_DEF"))));
         
     }
     

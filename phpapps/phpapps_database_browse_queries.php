@@ -25,14 +25,14 @@ class phpapps_database_browse_queries extends template{
 				QUERY_NAME,
 				QUERY_BODY,
                                 DESCRIPTION
-		FROM phpapps.queries
+		FROM {$this->globals->PHPAPPS_DB}.queries
 		WHERE 	ID = :id AND 
 		MODULE_ID = :module_id ",
 	array(":id"=>$this->get_table_id,":module_id"=>$this->get_module_id));
         $this->globals->con->query($sql);	
         $this->globals->con->next();
         
-        $sql2 = new DB_query("SELECT PARAMETER_NAME, PARAMETER_VALUE FROM phpapps.query_parameters WHERE QUERY_ID = :QUERY_ID",
+        $sql2 = new DB_query("SELECT PARAMETER_NAME, PARAMETER_VALUE FROM {$this->globals->PHPAPPS_DB}.query_parameters WHERE QUERY_ID = :QUERY_ID",
                             array(":QUERY_ID"=>$this->globals->con->get_field("ID")));
         $this->globals->con->query($sql2,"sql2");
         while($res = $this->globals->con->fetch_array("sql2") ){

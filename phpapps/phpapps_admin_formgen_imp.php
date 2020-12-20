@@ -38,7 +38,7 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
 		switch ($_GET["gact"]){
 			case "newRec":
 				$sql = new DB_query("SELECT ID, TABLE_NAME, TABLE_SCHEMA 
-				FROM phpapps.view_tables WHERE MODULE_ID = :module_id",
+				FROM {$this->globals->PHPAPPS_DB}.view_tables WHERE MODULE_ID = :module_id",
 				array(":module_id"=>$_GET["module_id"]));
 				
 				$this->globals->con->query($sql);	
@@ -61,7 +61,7 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
                                                         . "ID, "
                                                         . "SCRIPT_NAME,"
                                                         . "APP_NAME "
-                                                    . "FROM phpapps.view_scripts "
+                                                    . "FROM {$this->globals->PHPAPPS_DB}.view_scripts "
                                                     . "WHERE ID = :id",
                                         array(":id"=>$_GET["gfield_value"]));
                                 
@@ -71,11 +71,11 @@ class phpapps_admin_formgen_imp extends phpapps_admin_formgen{
                                 $APP_NAME = $this->globals->con->get_field("APP_NAME");
                             
                                 $sql = new DB_query(
-				"DELETE FROM phpapps.form_details WHERE FORM_ID = :id",array(":id"=>$_GET["gfield_value"]));
+				"DELETE FROM {$this->globals->PHPAPPS_DB}.form_details WHERE FORM_ID = :id",array(":id"=>$_GET["gfield_value"]));
                                 $this->globals->con->query($sql);	
                                 
 				$sql = new DB_query(
-				"DELETE FROM phpapps.scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
+				"DELETE FROM {$this->globals->PHPAPPS_DB}.scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
 				$this->globals->con->query($sql);	
                                 
                                 unlink(GLOBALS_DIR . $APP_NAME . DIR_SEP . $SCRIPT_NAME . "_imp.php");

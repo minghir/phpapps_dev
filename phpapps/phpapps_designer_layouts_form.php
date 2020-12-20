@@ -103,7 +103,7 @@ include ("generated_php/phpapps_designer_layouts_form_generated.php");
                         $this->load_elements(); // parent function: class template
                         $this->init();
                          
-                         $display_object_elements_grid = new DB_grid($this->globals->con, "table","phpapps.view_display_object_elements","display_object_elements_grid");
+                         $display_object_elements_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_display_object_elements","display_object_elements_grid");
                         $display_object_elements_grid->grid_title = "LAYOUT TEMPLATE ELEMENTS";
                             
                         //$display_object_elements_grid->cols = (array("DISPLAY_OBJECT_NAME","DISPLAY_OBJECT_TYPE","ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));

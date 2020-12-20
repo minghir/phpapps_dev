@@ -234,11 +234,11 @@ class phpapps_database_sql_sintax_form{
 	
 	function setup_display(){
 					 
-								$this->DBMS_TYPE_ID_sel = new DB_select("DBMS_TYPE_ID","phpapps.list_dbms_types");
+								$this->DBMS_TYPE_ID_sel = new DB_select("DBMS_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_dbms_types");
 			$this->DBMS_TYPE_ID_sel->selected_val = $this->DBMS_TYPE_ID;
 			$this->DBMS_TYPE_ID_sel->setup_select_options();
 			 
-								$this->SINTAX_TYPE_ID_sel = new DB_select("SINTAX_TYPE_ID","phpapps.list_sql_sintax_types");
+								$this->SINTAX_TYPE_ID_sel = new DB_select("SINTAX_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_sql_sintax_types");
 			$this->SINTAX_TYPE_ID_sel->selected_val = $this->SINTAX_TYPE_ID;
 			$this->SINTAX_TYPE_ID_sel->setup_select_options();
 			 

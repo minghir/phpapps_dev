@@ -55,7 +55,7 @@ class phpapps_designer_layout_variables_form extends template{
 					 
 				
 					 
-									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","{$this->globals->PHPAPPS_DB}.layouts");
                                 			 
 					 
 					 
@@ -266,8 +266,8 @@ class phpapps_designer_layout_variables_form extends template{
 					 
 				
 					 
-									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".phpapps.layouts");
-				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.layouts ORDER BY NAME");
+									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".{$this->globals->PHPAPPS_DB}.layouts");
+				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.layouts ORDER BY NAME");
 				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
 				$this->LAYOUT_ID_sel->setup_select_options();
 			 

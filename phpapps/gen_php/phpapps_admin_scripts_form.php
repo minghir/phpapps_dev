@@ -82,9 +82,9 @@ class phpapps_admin_scripts_form extends template{
 					 
 					 
 					 
-								$this->WEB_TYPE_ID_sel = new DB_select("WEB_TYPE_ID","phpapps.list_web_script_type");
+								$this->WEB_TYPE_ID_sel = new DB_select("WEB_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_web_script_type");
                         			 
-								$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID","phpapps.list_script_types");
+								$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_script_types");
                         			 
 					 
 					 
@@ -95,9 +95,9 @@ class phpapps_admin_scripts_form extends template{
 					 
 					 
 					 
-									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","{$this->globals->PHPAPPS_DB}.layouts");
                                 			 
-									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","{$this->globals->PHPAPPS_DB}.templates");
                                 			 
 		                
 	}
@@ -352,11 +352,11 @@ class phpapps_admin_scripts_form extends template{
 					 
 					 
 					 
-								//$this->WEB_TYPE_ID_sel = new DB_select("WEB_TYPE_ID",".phpapps.list_web_script_type");
+								//$this->WEB_TYPE_ID_sel = new DB_select("WEB_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_web_script_type");
 			$this->WEB_TYPE_ID_sel->selected_val = $this->WEB_TYPE_ID;
 			$this->WEB_TYPE_ID_sel->setup_select_options();
 			 
-								//$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID",".phpapps.list_script_types");
+								//$this->SCRIPT_TYPE_ID_sel = new DB_select("SCRIPT_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_script_types");
 			$this->SCRIPT_TYPE_ID_sel->selected_val = $this->SCRIPT_TYPE_ID;
 			$this->SCRIPT_TYPE_ID_sel->setup_select_options();
 			 
@@ -369,13 +369,13 @@ class phpapps_admin_scripts_form extends template{
 					 
 					 
 					 
-									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".phpapps.layouts");
-				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.layouts ORDER BY NAME");
+									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".{$this->globals->PHPAPPS_DB}.layouts");
+				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.layouts ORDER BY NAME");
 				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
 				$this->LAYOUT_ID_sel->setup_select_options();
 			 
-									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
-				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".{$this->globals->PHPAPPS_DB}.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.templates ORDER BY TEMPLATE_NAME");
 				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
 				$this->TEMPLATE_ID_sel->setup_select_options();
 			 

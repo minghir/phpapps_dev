@@ -111,40 +111,40 @@ class phpapps_designer_grids_form extends template{
                 
                 			 
 					 
-								$this->GRID_TYPE_sel = new DB_select("GRID_TYPE","phpapps.list_grid_types");
+								$this->GRID_TYPE_sel = new DB_select("GRID_TYPE","{$this->globals->PHPAPPS_DB}.list_grid_types");
                         			 
 					 
 					 
-								$this->EDITABLE_sel = new DB_select("EDITABLE","phpapps.list_true_false");
+								$this->EDITABLE_sel = new DB_select("EDITABLE","{$this->globals->PHPAPPS_DB}.list_true_false");
                         			 
-								$this->FILTERABLE_sel = new DB_select("FILTERABLE","phpapps.list_true_false");
+								$this->FILTERABLE_sel = new DB_select("FILTERABLE","{$this->globals->PHPAPPS_DB}.list_true_false");
                         			 
-								$this->PAGINABLE_sel = new DB_select("PAGINABLE","phpapps.list_true_false");
+								$this->PAGINABLE_sel = new DB_select("PAGINABLE","{$this->globals->PHPAPPS_DB}.list_true_false");
                         			 
-								$this->EXPORTABLE_sel = new DB_select("EXPORTABLE","phpapps.list_true_false");
+								$this->EXPORTABLE_sel = new DB_select("EXPORTABLE","{$this->globals->PHPAPPS_DB}.list_true_false");
                         			 
 					 
 					 
 					 
 					 
-								$this->SORTABLE_sel = new DB_select("SORTABLE","phpapps.list_true_false");
+								$this->SORTABLE_sel = new DB_select("SORTABLE","{$this->globals->PHPAPPS_DB}.list_true_false");
                         			 
 				
 					 
 					 
 					 
-									$this->TABLE_ID_sel = new DB_select("TABLE_ID","phpapps.tables");
+									$this->TABLE_ID_sel = new DB_select("TABLE_ID","{$this->globals->PHPAPPS_DB}.tables");
                                 			 
-									$this->QUERY_ID_sel = new DB_select("QUERY_ID","phpapps.queries");
-                                			 
-					 
-					 
-					 
-					 
-									$this->EDIT_FORM_ID_sel = new DB_select("EDIT_FORM_ID","phpapps.scripts");
+									$this->QUERY_ID_sel = new DB_select("QUERY_ID","{$this->globals->PHPAPPS_DB}.queries");
                                 			 
 					 
-									$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID","phpapps.templates");
+					 
+					 
+					 
+									$this->EDIT_FORM_ID_sel = new DB_select("EDIT_FORM_ID","{$this->globals->PHPAPPS_DB}.scripts");
+                                			 
+					 
+									$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID","{$this->globals->PHPAPPS_DB}.templates");
                                 			 
 					 
 					 
@@ -448,25 +448,25 @@ class phpapps_designer_grids_form extends template{
 	function setup_display(){
 					 
 					 
-								//$this->GRID_TYPE_sel = new DB_select("GRID_TYPE",".phpapps.list_grid_types");
+								//$this->GRID_TYPE_sel = new DB_select("GRID_TYPE",".{$this->globals->PHPAPPS_DB}.list_grid_types");
 			$this->GRID_TYPE_sel->selected_val = $this->GRID_TYPE;
 			$this->GRID_TYPE_sel->setup_select_options();
 			 
 					 
 					 
-								//$this->EDITABLE_sel = new DB_select("EDITABLE",".phpapps.list_true_false");
+								//$this->EDITABLE_sel = new DB_select("EDITABLE",".{$this->globals->PHPAPPS_DB}.list_true_false");
 			$this->EDITABLE_sel->selected_val = $this->EDITABLE;
 			$this->EDITABLE_sel->setup_select_options();
 			 
-								//$this->FILTERABLE_sel = new DB_select("FILTERABLE",".phpapps.list_true_false");
+								//$this->FILTERABLE_sel = new DB_select("FILTERABLE",".{$this->globals->PHPAPPS_DB}.list_true_false");
 			$this->FILTERABLE_sel->selected_val = $this->FILTERABLE;
 			$this->FILTERABLE_sel->setup_select_options();
 			 
-								//$this->PAGINABLE_sel = new DB_select("PAGINABLE",".phpapps.list_true_false");
+								//$this->PAGINABLE_sel = new DB_select("PAGINABLE",".{$this->globals->PHPAPPS_DB}.list_true_false");
 			$this->PAGINABLE_sel->selected_val = $this->PAGINABLE;
 			$this->PAGINABLE_sel->setup_select_options();
 			 
-								//$this->EXPORTABLE_sel = new DB_select("EXPORTABLE",".phpapps.list_true_false");
+								//$this->EXPORTABLE_sel = new DB_select("EXPORTABLE",".{$this->globals->PHPAPPS_DB}.list_true_false");
 			$this->EXPORTABLE_sel->selected_val = $this->EXPORTABLE;
 			$this->EXPORTABLE_sel->setup_select_options();
 			 
@@ -474,7 +474,7 @@ class phpapps_designer_grids_form extends template{
 					 
 					 
 					 
-								//$this->SORTABLE_sel = new DB_select("SORTABLE",".phpapps.list_true_false");
+								//$this->SORTABLE_sel = new DB_select("SORTABLE",".{$this->globals->PHPAPPS_DB}.list_true_false");
 			$this->SORTABLE_sel->selected_val = $this->SORTABLE;
 			$this->SORTABLE_sel->setup_select_options();
 			 
@@ -482,13 +482,13 @@ class phpapps_designer_grids_form extends template{
 					 
 					 
 					 
-									//$this->TABLE_ID_sel = new DB_select("TABLE_ID",".phpapps.tables");
-				$this->TABLE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME");
+									//$this->TABLE_ID_sel = new DB_select("TABLE_ID",".{$this->globals->PHPAPPS_DB}.tables");
+				$this->TABLE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.tables ORDER BY TABLE_NAME");
 				$this->TABLE_ID_sel->selected_val = $this->TABLE_ID;
 				$this->TABLE_ID_sel->setup_select_options();
 			 
-									//$this->QUERY_ID_sel = new DB_select("QUERY_ID",".phpapps.queries");
-				$this->QUERY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, QUERY_NAME AS LABEL FROM phpapps.queries ORDER BY QUERY_NAME");
+									//$this->QUERY_ID_sel = new DB_select("QUERY_ID",".{$this->globals->PHPAPPS_DB}.queries");
+				$this->QUERY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, QUERY_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.queries ORDER BY QUERY_NAME");
 				$this->QUERY_ID_sel->selected_val = $this->QUERY_ID;
 				$this->QUERY_ID_sel->setup_select_options();
 			 
@@ -496,14 +496,14 @@ class phpapps_designer_grids_form extends template{
 					 
 					 
 					 
-									//$this->EDIT_FORM_ID_sel = new DB_select("EDIT_FORM_ID",".phpapps.scripts");
-				$this->EDIT_FORM_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM phpapps.scripts ORDER BY SCRIPT_NAME");
+									//$this->EDIT_FORM_ID_sel = new DB_select("EDIT_FORM_ID",".{$this->globals->PHPAPPS_DB}.scripts");
+				$this->EDIT_FORM_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.scripts ORDER BY SCRIPT_NAME");
 				$this->EDIT_FORM_ID_sel->selected_val = $this->EDIT_FORM_ID;
 				$this->EDIT_FORM_ID_sel->setup_select_options();
 			 
 					 
-									//$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID",".phpapps.templates");
-				$this->ELEMENT_TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+									//$this->ELEMENT_TEMPLATE_ID_sel = new DB_select("ELEMENT_TEMPLATE_ID",".{$this->globals->PHPAPPS_DB}.templates");
+				$this->ELEMENT_TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.templates ORDER BY TEMPLATE_NAME");
 				$this->ELEMENT_TEMPLATE_ID_sel->selected_val = $this->ELEMENT_TEMPLATE_ID;
 				$this->ELEMENT_TEMPLATE_ID_sel->setup_select_options();
 			 

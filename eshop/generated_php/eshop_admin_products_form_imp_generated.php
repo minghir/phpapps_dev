@@ -77,12 +77,12 @@ class eshop_admin_products_form_imp_generated extends template{
 					 
 					 
 					 
-								$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID","eshop.list_currency");
+								$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID","{$this->globals->CURRENT_APP_DB}.list_currency");
                         			 
 					 
 				
 					 
-									$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID","eshop.categories");
+									$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID","{$this->globals->CURRENT_APP_DB}.categories");
                                 			 
 					 
 					 
@@ -325,17 +325,17 @@ class eshop_admin_products_form_imp_generated extends template{
 					 
 					 
 					 
-								//$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID",".eshop.list_currency");
+								//$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID",".{$this->globals->CURRENT_APP_DB}.list_currency");
 			$this->CURRENCY_ID_sel->selected_val = $this->CURRENCY_ID;
 			$this->CURRENCY_ID_sel->setup_select_options();
 			 
 					 
 				
 					 
-									//$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID",".eshop.categories");
-				//$this->CATEGORY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
+									//$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID",".{$this->globals->CURRENT_APP_DB}.categories");
+				//$this->CATEGORY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->CURRENT_APP_DB}.categories ORDER BY NAME");
                                 
-                                $this->CATEGORY_ID_sel->table = "eshop.categories";
+                                $this->CATEGORY_ID_sel->table = "{$this->globals->CURRENT_APP_DB}.categories";
                                 $this->CATEGORY_ID_sel->value_col = "ID";
                                 $this->CATEGORY_ID_sel->label_col = "NAME";
                                 

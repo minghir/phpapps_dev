@@ -76,9 +76,9 @@ class phpapps_admin_applications_form_imp extends template{
 					 
 					 
 					 
-								$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA","phpapps.list_databases");
+								$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA","{$this->globals->PHPAPPS_DB}.list_databases");
                         			 
-								$this->APPLICATION_TYPE_ID_sel = new DB_select("APPLICATION_TYPE_ID","phpapps.list_application_types");
+								$this->APPLICATION_TYPE_ID_sel = new DB_select("APPLICATION_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_application_types");
                         			 
 					 
 				
@@ -336,11 +336,11 @@ class phpapps_admin_applications_form_imp extends template{
 					 
 					 
 					 
-								//$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA",".phpapps.list_databases");
+								//$this->APP_SCHEMA_sel = new DB_select("APP_SCHEMA",".{$this->globals->PHPAPPS_DB}.list_databases");
 			$this->APP_SCHEMA_sel->selected_val = $this->APP_SCHEMA;
 			$this->APP_SCHEMA_sel->setup_select_options();
 			 
-								//$this->APPLICATION_TYPE_ID_sel = new DB_select("APPLICATION_TYPE_ID",".phpapps.list_application_types");
+								//$this->APPLICATION_TYPE_ID_sel = new DB_select("APPLICATION_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_application_types");
 			$this->APPLICATION_TYPE_ID_sel->selected_val = $this->APPLICATION_TYPE_ID;
 			$this->APPLICATION_TYPE_ID_sel->setup_select_options();
 			 

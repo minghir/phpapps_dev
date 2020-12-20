@@ -22,15 +22,15 @@ $descr = trim($_POST["descr"]);
 $_SESSION["_SQL_QUERY"] = $query;
 $_SESSION["_SQL_DESCR"] = $descr;
 
-$dbs = _lst("phpapps.list_databases");
+$dbs = _lst("{$globals->PHPAPPS_DB}.list_databases");
         
 switch($_POST["act"]){
     case "Query":
-                $sql = new DB_query("INSERT INTO phpapps.sql_console_history "
+                $sql = new DB_query("INSERT INTO {$globals->PHPAPPS_DB}.sql_console_history "
                      . "(QUERY,RUN_SCHEMA) VALUES(:query,:schm)",
                         array(
                             ":query" => $query,
-                            ":schm" => _lst("phpapps.list_databases",$db)
+                            ":schm" => _lst("{$globals->PHPAPPS_DB}.list_databases",$db)
                         ));
       
                 if($con->query($sql) == -1){
@@ -71,7 +71,7 @@ switch($_POST["act"]){
 
         $query_text = addslashes($query);
 	$nr_t = $con->query(new DB_query("SELECT id,query,descr,dataq "
-                . "             FROM phpapps.sql_console_saves "
+                . "             FROM {$globals->PHPAPPS_DB}.sql_console_saves "
                 . "             WHERE descr = :descr AND database_id = :db_id",
                 array(
                     ":descr" => $descr,
@@ -79,7 +79,7 @@ switch($_POST["act"]){
                 )));
 	if( $nr_t > 0 ){
             $con->next();
-            $con->query(new DB_query("UPDATE phpapps.sql_console_saves SET "
+            $con->query(new DB_query("UPDATE {$globals->PHPAPPS_DB}.sql_console_saves SET "
                     . "query = :query, "
                     . "dataq = NOW() "
                     . "WHERE id = :id",
@@ -88,7 +88,7 @@ switch($_POST["act"]){
                         ":id" => $con->get_field("id")
                     )));
         }else{
-            $con->query(new DB_query("INSERT INTO phpapps.sql_console_saves "
+            $con->query(new DB_query("INSERT INTO {$globals->PHPAPPS_DB}.sql_console_saves "
                     . "(query,descr,dataq,database_id) "
                     . "VALUES(:query,:descr,NOW(),:db_id)",
                     array(":query" => $query_text,
@@ -102,7 +102,7 @@ switch($_POST["act"]){
     break;
     case "Del":
         $querie_run = $_POST["queries"];
-        $sql = new DB_query("DELETE FROM phpapps.sql_console_saves "
+        $sql = new DB_query("DELETE FROM {$globals->PHPAPPS_DB}.sql_console_saves "
                             . "WHERE id = :id",array(":id" => $querie_run));
         $con->query($sql);
         header("Location:sql_console.php");
@@ -110,16 +110,16 @@ switch($_POST["act"]){
     case "submited":
         if($_POST["history"] != ''){
             $sql = new DB_query("SELECT QUERY, RUN_SCHEMA "
-                    . " FROM  phpapps.sql_console_history WHERE ID = :id"
+                    . " FROM  {$globals->PHPAPPS_DB}.sql_console_history WHERE ID = :id"
                 ,array(":id"=>$_POST["history"]));
             $con->query($sql);
             $con->next();
             $query = $con->get_field("QUERY");
             //$db = $con->get_field("RUN_SCHEMA");// _lst("list_databases",intval($con->get_field("RUN_SCHEMA")));
-            $db = _lst("phpapps.list_databases",intval($con->get_field("RUN_SCHEMA")));
+            $db = _lst("{$globals->PHPAPPS_DB}.list_databases",intval($con->get_field("RUN_SCHEMA")));
         }else{
             $querie_run = $_POST["queries"];
-            $sql = new DB_query("SELECT id,query,descr,dataq FROM phpapps.sql_console_saves "
+            $sql = new DB_query("SELECT id,query,descr,dataq FROM {$globals->PHPAPPS_DB}.sql_console_saves "
                 . "WHERE id = :id",array(":id"=>$querie_run));
             $con->query($sql);
             $con->next();
@@ -135,7 +135,7 @@ switch($_POST["act"]){
 $dbs_sel[$dbs[$db]] = "selected";
 $dbs=array_flip($dbs);
 
-$con->query(new DB_query("SELECT id,query,descr,dataq FROM phpapps.sql_console_saves "
+$con->query(new DB_query("SELECT id,query,descr,dataq FROM {$globals->PHPAPPS_DB}.sql_console_saves "
                         . " WHERE database_id = :db_id ORDER BY dataq DESC",
         array(":db_id" => array_flip($dbs)[$db])));
 while($res=$con->fetch_array()){
@@ -151,13 +151,13 @@ while($res=$con->fetch_array()){
 
 
 $con->query(new DB_query("SELECT ID, LEFT(QUERY,120) AS QUERY, RUN_SCHEMA, CREATE_DATE"
-        . " FROM phpapps.sql_console_history "
+        . " FROM {$globals->PHPAPPS_DB}.sql_console_history "
         . " WHERE CREATE_UID = :uid ORDER BY CREATE_DATE DESC LIMIT 30",
         array(":uid" => $_USER_ID)));
 
 while($res=$con->fetch_array()){
    $hist_queries_id[] = $res["ID"];
-   $hist_queries_desc[] = "(".$res["CREATE_DATE"].")"._lst("phpapps.list_databases",intval($res["RUN_SCHEMA"])).":". $res["QUERY"];
+   $hist_queries_desc[] = "(".$res["CREATE_DATE"].")"._lst("{$globals->PHPAPPS_DB}.list_databases",intval($res["RUN_SCHEMA"])).":". $res["QUERY"];
 }
 //print_r($SQL_ERROR);
 $sm->assign(array("fields" => $fields,

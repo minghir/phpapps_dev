@@ -14,7 +14,7 @@ include ("gen_php/phpapps_users_permissions_form.php");
 			switch($this->OBJECT_TYPE){
 				case 3:
 					echo "ICIC";
-					$sel_table = "phpapps.tables";
+					$sel_table = "{$this->globals->PHPAPPS_DB}.tables";
 				break;
 				default:
 					$sel_table = "dual";

@@ -61,9 +61,9 @@ class phpapps_designer_menu_items_form extends template{
 					 
 				
 					 
-									$this->PID_sel = new DB_select("PID","phpapps.menu_items");
+									$this->PID_sel = new DB_select("PID","{$this->globals->PHPAPPS_DB}.menu_items");
                                 			 
-									$this->MENU_ID_sel = new DB_select("MENU_ID","phpapps.menus");
+									$this->MENU_ID_sel = new DB_select("MENU_ID","{$this->globals->PHPAPPS_DB}.menus");
                                 			 
 					 
 					 
@@ -278,13 +278,13 @@ class phpapps_designer_menu_items_form extends template{
 					 
 				
 					 
-									//$this->PID_sel = new DB_select("PID",".phpapps.menu_items");
-				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM phpapps.menu_items ORDER BY LABEL");
+									//$this->PID_sel = new DB_select("PID",".{$this->globals->PHPAPPS_DB}.menu_items");
+				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM {$this->globals->PHPAPPS_DB}.menu_items ORDER BY LABEL");
 				$this->PID_sel->selected_val = $this->PID;
 				$this->PID_sel->setup_select_options();
 			 
-									//$this->MENU_ID_sel = new DB_select("MENU_ID",".phpapps.menus");
-				$this->MENU_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.menus ORDER BY NAME");
+									//$this->MENU_ID_sel = new DB_select("MENU_ID",".{$this->globals->PHPAPPS_DB}.menus");
+				$this->MENU_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.menus ORDER BY NAME");
 				$this->MENU_ID_sel->selected_val = $this->MENU_ID;
 				$this->MENU_ID_sel->setup_select_options();
 			 

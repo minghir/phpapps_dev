@@ -24,7 +24,7 @@ class phpapps_database_browse_views extends template{
 				VIEW_NAME,
 				CREATE_VIEW_QUERY,
                                 DESCRIPTION
-		FROM phpapps.views
+		FROM {$this->globals->PHPAPPS_DB}.views
 		WHERE 	ID = :id AND 
 		MODULE_ID = :module_id ",
 	array(":id"=>$this->get_table_id,":module_id"=>$this->get_module_id));
@@ -36,7 +36,7 @@ class phpapps_database_browse_views extends template{
 				VIEW_NAME,
 				CREATE_VIEW_QUERY,
                                 DESCRIPTION
-		FROM phpapps.views
+		FROM {$this->globals->PHPAPPS_DB}.views
 		WHERE 	ID = :id ",
 	array(":id"=>$this->get_table_id));
         
@@ -49,7 +49,7 @@ class phpapps_database_browse_views extends template{
         $grid_name =  "phpapps_".$this->globals->con->get_field("VIEW_NAME")."_grid";
         echo "<br>" . $grid_name ;
         $phpapps_admin_queries_grid =  new DB_grid($this->globals->con, "table", $this->globals->con->get_field("VIEW_NAME"), $grid_name);
-      //$phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table","phpapps.table_details","aaaa");
+      //$phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.table_details","aaaa");
         $phpapps_admin_queries_grid->paginable = true;
         $phpapps_admin_queries_grid->sortable = true;
         $phpapps_admin_queries_grid->editable = false;

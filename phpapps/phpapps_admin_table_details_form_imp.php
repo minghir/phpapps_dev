@@ -13,7 +13,7 @@ include ("gen_php/phpapps_admin_table_details_form.php");
 			$this->TABLE_ID = $_GET["table_id"];
 			
 			
-			$sql = new DB_query("SELECT TABLE_SCHEMA, TABLE_NAME FROM phpapps.view_tables WHERE ID = :table_id",
+			$sql = new DB_query("SELECT TABLE_SCHEMA, TABLE_NAME FROM {$this->globals->PHPAPPS_DB}.view_tables WHERE ID = :table_id",
 								array(":table_id" => $this->TABLE_ID));
 
 			if( $this->globals->con->query($sql) == -1 ){
@@ -119,7 +119,7 @@ print_r($sql);
 		function beforeDisplay(){	
 			
 			$AFTER_COL_SEL = new DB_select("AFTER_COL","view_table_details");
-			$AFTER_COL_SEL->query = "SELECT COLUMN_NAME,COLUMN_NAME FROM phpapps.view_table_details WHERE TABLE_ID = :table_id";
+			$AFTER_COL_SEL->query = "SELECT COLUMN_NAME,COLUMN_NAME FROM {$this->globals->PHPAPPS_DB}.view_table_details WHERE TABLE_ID = :table_id";
 			$AFTER_COL_SEL->query_params[":table_id"] = $this->TABLE_ID;
 			$AFTER_COL_SEL->empty_option = false;
 			$AFTER_COL_SEL->setup_select_options();

@@ -60,7 +60,7 @@ class test_app_test3_form_generated extends template{
 					 
 				
 					 
-									$this->COL1_sel = new DB_select("COL1","phpapps.test2");
+									$this->COL1_sel = new DB_select("COL1","{$this->globals->PHPAPPS_DB}.test2");
                                 			 
 					 
 		                
@@ -263,10 +263,10 @@ class test_app_test3_form_generated extends template{
 					 
 				
 					 
-									//$this->COL1_sel = new DB_select("COL1",".phpapps.test2");
-				//$this->COL1_sel->db_query = new DB_query("SELECT ID AS VALUE, nume AS LABEL FROM phpapps.test2 ORDER BY nume");
+									//$this->COL1_sel = new DB_select("COL1",".{$this->globals->PHPAPPS_DB}.test2");
+				//$this->COL1_sel->db_query = new DB_query("SELECT ID AS VALUE, nume AS LABEL FROM {$this->globals->PHPAPPS_DB}.test2 ORDER BY nume");
                                 
-                                $this->COL1_sel->table = "phpapps.test2";
+                                $this->COL1_sel->table = "{$this->globals->PHPAPPS_DB}.test2";
                                 $this->COL1_sel->value_col = "ID";
                                 $this->COL1_sel->label_col = "nume";
                                 

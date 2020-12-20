@@ -72,9 +72,9 @@ class phpapps_designer_layouts_form_generated extends template{
 				
 					 
 					 
-									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+									$this->APP_ID_sel = new DB_select("APP_ID","{$this->globals->PHPAPPS_DB}.applications");
                                 			 
-									$this->THEME_ID_sel = new DB_select("THEME_ID","phpapps.themes");
+									$this->THEME_ID_sel = new DB_select("THEME_ID","{$this->globals->PHPAPPS_DB}.themes");
                                 			 
 					 
 		                
@@ -307,20 +307,20 @@ class phpapps_designer_layouts_form_generated extends template{
 				
 					 
 					 
-									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
-				//$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
+									//$this->APP_ID_sel = new DB_select("APP_ID",".{$this->globals->PHPAPPS_DB}.applications");
+				//$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.applications ORDER BY APP_NAME");
                                 
-                                $this->APP_ID_sel->table = "phpapps.applications";
+                                $this->APP_ID_sel->table = "{$this->globals->PHPAPPS_DB}.applications";
                                 $this->APP_ID_sel->value_col = "ID";
                                 $this->APP_ID_sel->label_col = "APP_NAME";
                                 
 				$this->APP_ID_sel->selected_val = $this->APP_ID;
 				$this->APP_ID_sel->setup_select_options();
 			 
-									//$this->THEME_ID_sel = new DB_select("THEME_ID",".phpapps.themes");
-				//$this->THEME_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, THEME_NAME AS LABEL FROM phpapps.themes ORDER BY THEME_NAME");
+									//$this->THEME_ID_sel = new DB_select("THEME_ID",".{$this->globals->PHPAPPS_DB}.themes");
+				//$this->THEME_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, THEME_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.themes ORDER BY THEME_NAME");
                                 
-                                $this->THEME_ID_sel->table = "phpapps.themes";
+                                $this->THEME_ID_sel->table = "{$this->globals->PHPAPPS_DB}.themes";
                                 $this->THEME_ID_sel->value_col = "ID";
                                 $this->THEME_ID_sel->label_col = "THEME_NAME";
                                 

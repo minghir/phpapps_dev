@@ -41,7 +41,7 @@ class eshop_admin_module extends wabdo\template{
         
         //$this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->grid_name = "Admin_Produse";
         $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->grid_title = "Produse";
-        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->table="eshop.view_products";
+        $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->table="{$this->globals->CURRENT_APP_DB}.view_products";
         $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->cols=array(
             "ID",
             "PRODUCT_TITLE",
@@ -61,7 +61,7 @@ class eshop_admin_module extends wabdo\template{
             "IMG");
         
         $this->template_elements["grids"]["ESHOP_ADMIN_CLIENTS"]->grid_title = "Clienti";
-        $this->template_elements["grids"]["ESHOP_ADMIN_CLIENTS"]->table="eshop.view_clients";
+        $this->template_elements["grids"]["ESHOP_ADMIN_CLIENTS"]->table="{$this->globals->CURRENT_APP_DB}.view_clients";
         /*
         $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->cols=array(
             "ID",

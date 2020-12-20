@@ -129,7 +129,7 @@ class products_search_generated extends template{
         }else{
             $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->mode_search = true; 
             $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->grid_title = "Am gasit ";
-            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->table="eshop.view_products";
+            $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->table="{$this->globals->CURRENT_APP_DB}.view_products";
         }
         
          $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->editable=false;

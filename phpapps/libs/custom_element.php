@@ -39,8 +39,8 @@ class custom_element {
      
     function set_template_file(){
         
-          $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM phpapps.view_templates t "
-                  . "LEFT JOIN phpapps.CUSTOM_ELEMENTS s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :cust_el_id",
+          $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM {$this->globals->PHPAPPS_DB}.view_templates t "
+                  . "LEFT JOIN {$this->globals->PHPAPPS_DB}.CUSTOM_ELEMENTS s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :cust_el_id",
                 array(":cust_el_id" => $this->ID));
        // echo $sql->prnt();
         $this->globals->con->query($sql);	

@@ -42,7 +42,7 @@ class auth{
                                                    PASSWORD,
                                                    SCRIPT_NAME
                                                    FROM 
-                                                   phpapps.view_users 
+                                                   {$this->globals->PHPAPPS_DB}.view_users 
                                                    WHERE username = :USER AND 
                                                    PASSWORD = :PASS",
                                                    array(":USER" => trim($_SESSION['_USER_NAME']),":PASS"=>trim($_SESSION['_USER_PASS'])));
@@ -68,7 +68,7 @@ class auth{
 				SCRIPT_NAME,
                                 PROFILE_ID
                             FROM 
-				phpapps.view_users 
+				{$this->globals->PHPAPPS_DB}.view_users 
                             WHERE username = :USER AND 
 				PASSWORD = :PASS",
 				array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));

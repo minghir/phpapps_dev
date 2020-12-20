@@ -39,13 +39,15 @@ class DB_menu{
     public $db_query;
     public $menu_items;
     
-    private $from_str = "phpapps.menu_items";
+    private $from_str;
     
     var $items = array();
     
     function __construct($m_id){
 		global $GLOBALS_OBJ;
                 $this->globals = &$GLOBALS_OBJ;
+                
+                $this->from_str = "{$this->globals->PHPAPPS_DB}.menu_items";
                 
                 $this->menu_id = $m_id;
                 //$this->name = $menu_name; 
@@ -67,7 +69,7 @@ class DB_menu{
     }
     
     function setup_menu_options(){
-        $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_NAME,APP_NAME FROM phpapps.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
+        $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_NAME,APP_NAME FROM {$this->globals->PHPAPPS_DB}.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
         //echo "aici:<h1>" . $sql->prnt() . "</h1><br>";
         $this->globals->con->query($sql);	
         $tmp_data_obj = $this->globals->con->fetch_object();
@@ -83,7 +85,7 @@ class DB_menu{
         
         $MENU_ID =  $this->menu_id;
         $SERVER_HOST_NAME = SERVER_HOST_NAME;
-        $sql2 = new DB_query("SELECT PARAMETER_NAME, PARAMETER_VALUE FROM phpapps.query_parameters WHERE QUERY_ID = :query_id",
+        $sql2 = new DB_query("SELECT PARAMETER_NAME, PARAMETER_VALUE FROM {$this->globals->PHPAPPS_DB}.query_parameters WHERE QUERY_ID = :query_id",
                             array(":query_id"=>$tmp_data_obj->QUERY_ID));
         
         $this->globals->con->query($sql2,"sql2");

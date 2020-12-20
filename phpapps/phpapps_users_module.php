@@ -41,7 +41,7 @@ class phpapps_users_module extends template{
 						m.DESCRIPTION,
 						m.APP_NAME,
 						a.APP_TITLE
-				FROM phpapps.view_modules m, phpapps.applications a
+				FROM {$this->globals->PHPAPPS_DB}.view_modules m, {$this->globals->PHPAPPS_DB}.applications a
 				WHERE m.APP_ID = a.ID AND m.ID = '$module_id' ",array());
 				
             $this->globals->con->query($sql);	
@@ -60,7 +60,7 @@ class phpapps_users_module extends template{
 	
 	public function display_tpl(){
 	
-		$perm_grid =  new DB_grid($this->globals->con, "table","phpapps.view_permissions","phpapps_permissions_grid");
+		$perm_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_permissions","phpapps_permissions_grid");
 		$perm_grid->grid_title = "PERMISSIONS";
 		$perm_grid->paginable = true;
 		$perm_grid->filterable = false;
@@ -80,7 +80,7 @@ class phpapps_users_module extends template{
 		$perm_grid->edit_form = "phpapps_users_permissions_form_imp.php";
 		
 		
-		$roles_grid = new DB_grid($this->globals->con, "table","phpapps.roles","phpapps_roless_grid");
+		$roles_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.roles","phpapps_roless_grid");
 		$roles_grid->grid_title = "ROLES";
 		$roles_grid->cols = (array("ROLE_NAME","DESCRIPTION"));
 		$roles_grid->labels = (array("NAME","DESCRIPTION"));
@@ -100,7 +100,7 @@ class phpapps_users_module extends template{
 		$roles_grid->add_row_acction($mrp);
 		
 		
-		$users_grid =  new DB_grid($this->globals->con, "table","phpapps.users","phpapps_users_grid");
+		$users_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.users","phpapps_users_grid");
 		$users_grid->grid_title = "USERS";
 		$users_grid->paginable = true;
 		$users_grid->filterable = false;
@@ -109,7 +109,7 @@ class phpapps_users_module extends template{
 									"FIRSTNAME",
 									"LASTNAME",
 									"EMAIL",
-									"(SELECT VALUE FROM phpapps.list_user_types WHERE phpapps.list_user_types.ID = USER_TYPE) AS USER_TYPE",
+									"(SELECT VALUE FROM {$this->globals->PHPAPPS_DB}.list_user_types WHERE {$this->globals->PHPAPPS_DB}.list_user_types.ID = USER_TYPE) AS USER_TYPE",
 									"DESCRIPTION");
 		$users_grid->editable = true;
 		$users_grid->rows_on_pg = 5;
@@ -123,7 +123,7 @@ class phpapps_users_module extends template{
 		$users_grid->add_row_acction($mur);
 
 /*				
-		$user_roles_grid = new DB_grid($this->globals->con, "table","phpapps.scripts","phpapps_scripts_grid");
+		$user_roles_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.scripts","phpapps_scripts_grid");
 		$user_roles_grid->grid_title = "SCRIPTS";
 		$scripts_grid->paginable = true;
 		$scripts_grid->editable = true;
@@ -151,7 +151,7 @@ class phpapps_users_module extends template{
 			$forms_grid->add_row_acction($bb);
 			
 		
-		$tables_grid = new DB_grid($this->globals->con, "table","phpapps.tables","phpapps_tables_grid");
+		$tables_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 		$tables_grid->cols = (array("TABLE_NAME","DESCRIPTION"));
 		$tables_grid->labels = (array("NAME","DESCRIPTION"));
@@ -179,7 +179,7 @@ class phpapps_users_module extends template{
 		$ts->fields = array("ID");
 		$tables_grid->add_row_acction($ts);
 	
-		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.tables","phpapps_lists_grid");
+		$lists_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$lists_grid->grid_title = "LISTS";
 		$lists_grid->cols = (array("TABLE_NAME","DESCRIPTION"));

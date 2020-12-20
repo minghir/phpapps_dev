@@ -68,7 +68,7 @@ class DB_grid_imp{// extends template{
                     EDIT_FORM_FILE_NAME,
                     TABLE_NAME,
                     TEMPLATE_NAME
-        FROM phpapps.view_grids WHERE ID = :grid_id", array(':grid_id'=>$this->ID));
+        FROM {$this->globals->PHPAPPS_DB}.view_grids WHERE ID = :grid_id", array(':grid_id'=>$this->ID));
       // echo $sql->prnt();
        
         if( $this->globals->con->query($sql) == 1){
@@ -98,7 +98,7 @@ class DB_grid_imp{// extends template{
             switch($this->GRID_TYPE){
                 case "table":
                     $this->grid_obj = new DB_grid($this->globals->con, $this->GRID_TYPE, $this->TABLE_NAME ,$this->GRID_NAME);
-                     $sql = new DB_query("SELECT COLUMN_NAME, ALT_COLUMN_TEXT, LABEL, ACTION FROM phpapps.view_grid_columns WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
+                     $sql = new DB_query("SELECT COLUMN_NAME, ALT_COLUMN_TEXT, LABEL, ACTION FROM {$this->globals->PHPAPPS_DB}.view_grid_columns WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
                      if( $this->globals->con->query($sql) > 0){
                          $tmp_cols = array();
                          $tmp_labels = array();
@@ -130,7 +130,7 @@ class DB_grid_imp{// extends template{
                 break;
                 
                 case "query":
-                    $this->grid_obj = new DB_grid($this->globals->con, "query",(new DB_query(_tbl("phpapps.queries","QUERY_BODY",$this->QUERY_ID))) ,$this->GRID_NAME);
+                    $this->grid_obj = new DB_grid($this->globals->con, "query",(new DB_query(_tbl("{$this->globals->PHPAPPS_DB}.queries","QUERY_BODY",$this->QUERY_ID))) ,$this->GRID_NAME);
                 break;
             
                 default:
@@ -150,7 +150,7 @@ class DB_grid_imp{// extends template{
              
              
              
-             $sql = new DB_query("SELECT NAME, LABEL, ACTION, ACTION_SCRIPT, POPUP_PAGE, GRID_ACTION_TYPE_ID FROM phpapps.grid_actions WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
+             $sql = new DB_query("SELECT NAME, LABEL, ACTION, ACTION_SCRIPT, POPUP_PAGE, GRID_ACTION_TYPE_ID FROM {$this->globals->PHPAPPS_DB}.grid_actions WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
              if( $this->globals->con->query($sql) > 0){
                  while($tmp_obj = $this->globals->con->fetch_object()){
                     $tad = new HrefActions();
@@ -171,7 +171,7 @@ class DB_grid_imp{// extends template{
              
              
              /*
-             $sql = new DB_query("SELECT COLUMN_NAME, ALT_COLUMN_TEXT, LABEL, ACTION FROM phpapps.view_grid_columns WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
+             $sql = new DB_query("SELECT COLUMN_NAME, ALT_COLUMN_TEXT, LABEL, ACTION FROM {$this->globals->PHPAPPS_DB}.view_grid_columns WHERE GRID_ID=:grid_id",array(":grid_id"=>$this->ID));
              if( $this->globals->con->query($sql) > 0){
                  $tmp_cols = array();
                  $tmp_labels = array();

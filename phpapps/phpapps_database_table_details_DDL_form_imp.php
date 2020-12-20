@@ -23,7 +23,7 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
 ////                    
                         // validate input
                         
-                        $this->MODULE_ID = _tbl("phpapps.tables","MODULE_ID",$this->get_table_id);
+                        $this->MODULE_ID = _tbl("{$this->globals->PHPAPPS_DB}.tables","MODULE_ID",$this->get_table_id);
                         
 			$this->init();
                         //$this->load_elements();
@@ -38,8 +38,8 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
 	
 		function beforeAddRec(){
 			
-                    $this->SCHEMA_NAME = _tbl("phpapps.view_tables","TABLE_SCHEMA",$this->get_table_id);
-                    $this->TABLE_NAME = _tbl("phpapps.view_tables","TABLE_NAME",$this->get_table_id);
+                    $this->SCHEMA_NAME = _tbl("{$this->globals->PHPAPPS_DB}.view_tables","TABLE_SCHEMA",$this->get_table_id);
+                    $this->TABLE_NAME = _tbl("{$this->globals->PHPAPPS_DB}.view_tables","TABLE_NAME",$this->get_table_id);
                     $this->TABLE_ID = $this->get_table_id;
                         echo "<h1>"."(".$this->TABLE_ID.")".$this->SCHEMA_NAME.".".$this->TABLE_NAME."</h1>";
 //                  ($vname,$vtype,$vsize,$vnull,$vdefault="",$vautoincr=FALSE){                            
@@ -58,13 +58,13 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
 		
 		function afterAddRec(){
                         if(count($this->errors) == 0){
-                            $after_ord = _tbl("phpapps.table_details", "ORD", $this->AFTER_COL, "COLUMN_NAME");
+                            $after_ord = _tbl("{$this->globals->PHPAPPS_DB}.table_details", "ORD", $this->AFTER_COL, "COLUMN_NAME");
                             $current_ord = $after_ord;
-                            $sql = new DB_query("UPDATE phpapps.table_details SET ORD = ORD + 1 WHERE ORD > $after_ord AND TABLE_ID = :table_id",array(":table_id"=>$this->TABLE_ID));
+                            $sql = new DB_query("UPDATE {$this->globals->PHPAPPS_DB}.table_details SET ORD = ORD + 1 WHERE ORD > $after_ord AND TABLE_ID = :table_id",array(":table_id"=>$this->TABLE_ID));
                             if( $this->globals->con->query($sql) == -1 ){
                                 $this->errors = "UPDATE ESUAT!";
                             }else{
-                                $sql = new DB_query("UPDATE phpapps.table_details SET ORD = $after_ord + 1 WHERE COLUMN_NAME = :col_name AND TABLE_ID = :table_id",array(
+                                $sql = new DB_query("UPDATE {$this->globals->PHPAPPS_DB}.table_details SET ORD = $after_ord + 1 WHERE COLUMN_NAME = :col_name AND TABLE_ID = :table_id",array(
                                             ":col_name" => $this->COLUMN_NAME,
                                             ":table_id"=>$this->TABLE_ID));
                                 if( $this->globals->con->query($sql) == -1 ){
@@ -78,7 +78,7 @@ include ("gen_php/phpapps_database_table_details_DDL_form.php");
 		
 		function beforeSaveRec(){
                     echo "EDITEZ:".$this->ID ."<br>";
-                    $tbl = new DB_table("phpapps.view_table_details");
+                    $tbl = new DB_table("{$this->globals->PHPAPPS_DB}.view_table_details");
                     $tmp_arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME","COLUMN_TYPE_ID","COLUMN_SIZE","COLUMN_DEFAULT_VALUE"),"ID",$this->ID);
                      
                     $this->SCHEMA_NAME = $tmp_arr["TABLE_SCHEMA"];
@@ -119,8 +119,8 @@ echo "_____<br>";
 		function beforeDeleteRec(){
                     $this->getRec();
    
-                    $this->SCHEMA_NAME = _tbl("phpapps.view_tables","TABLE_SCHEMA",$this->get_table_id);
-                    $this->TABLE_NAME = _tbl("phpapps.view_tables","TABLE_NAME",$this->get_table_id);
+                    $this->SCHEMA_NAME = _tbl("{$this->globals->PHPAPPS_DB}.view_tables","TABLE_SCHEMA",$this->get_table_id);
+                    $this->TABLE_NAME = _tbl("{$this->globals->PHPAPPS_DB}.view_tables","TABLE_NAME",$this->get_table_id);
                     $this->TABLE_ID = $this->get_table_id;
 
                     $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
@@ -143,7 +143,7 @@ echo "_____<br>";
 echo "AICIIIII";
          $this->TABLE_ID = $this->get_table_id;
          $AFTER_COL_SEL = new DB_select("AFTER_COL","view_table_details");
-			$AFTER_COL_SEL->set_query( new DB_query("SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM phpapps.view_table_details WHERE TABLE_ID = :table_id ORDER BY ORD",
+			$AFTER_COL_SEL->set_query( new DB_query("SELECT COLUMN_NAME AS ID,COLUMN_NAME AS VALUE FROM {$this->globals->PHPAPPS_DB}.view_table_details WHERE TABLE_ID = :table_id ORDER BY ORD",
 								array(":table_id"=>$this->TABLE_ID)));
 			print_r($AFTER_COL_SEL->db_query);					
 			//$AFTER_COL_SEL->query_params[":table_id"] = $this->TABLE_ID;
@@ -153,7 +153,7 @@ echo "AICIIIII";
 			$str = "<tr><td align='right'>AFTER:</td><td>".$AFTER_COL_SEL->get_select_str()."</td></tr>";
           /*              
                         $this->FOREIGN_KEY_TABLE_ID_sel->query = "SELECT ID AS VALUE, CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS LABEL "
-                                . "                                   FROM phpapps.view_tables "
+                                . "                                   FROM {$this->globals->PHPAPPS_DB}.view_tables "
                                 . "                                   WHERE MODULE_ID = :module_id  "
                                 . "                                   ORDER BY TABLE_SCHEMA,TABLE_NAME";
                         $this->FOREIGN_KEY_TABLE_ID_sel->query_params[":module_id"] = $this->MODULE_ID;
@@ -168,14 +168,14 @@ echo "AICIIIII";
          $this->UNSIGN_sel->set_empty_option(FALSE);
     /*     
          $sql = new DB_query ("SELECT ID AS value, CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS label 
-			FROM phpapps.view_tables 
+			FROM {$this->globals->PHPAPPS_DB}.view_tables 
                         WHERE TABLE_TYPE = :tbl_type 
                         ORDER BY TABLE_SCHEMA, TABLE_NAME",array(":tbl_type" => _lst("list_table_types","values_table")));
                     // AND MODULE = curent_module ?
                     //$this->TABLE_ID_sel->set_empty_option(FALSE);
          $this->TABLE_ID_sel->set_query($sql);
     */                    
-                        //$this->FOREIGN_KEY_TABLE_ID_sel->query = "SELECT ID AS VALUE, CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS LABEL FROM phpapps.view_tables ORDER BY TABLE_SCHEMA,TABLE_NAME";
+                        //$this->FOREIGN_KEY_TABLE_ID_sel->query = "SELECT ID AS VALUE, CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS LABEL FROM {$this->globals->PHPAPPS_DB}.view_tables ORDER BY TABLE_SCHEMA,TABLE_NAME";
                         //$this->FOREIGN_KEY_TABLE_ID_sel->setup_select_options();
 		}
 		

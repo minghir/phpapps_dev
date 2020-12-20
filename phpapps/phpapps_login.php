@@ -23,7 +23,7 @@ class login extends template{
             
             $test_user = $_POST["user"];
             $test_pass = $_POST["pass"];
-            
+  echo "AICI1:"          ;
            if(count($_POST) > 0 ){
                if($test_user != "" && $test_pass != ""){
                    $sql = new DB_Query("SELECT ID, 
@@ -31,11 +31,11 @@ class login extends template{
                                                    PASSWORD,
                                                    SCRIPT_NAME
                                                    FROM 
-                                                   phpapps.view_users 
+                                                   {$this->globals->PHPAPPS_DB}.view_users 
                                                    WHERE username = :USER AND 
                                                    PASSWORD = :PASS",
                                                    array(":USER" => $test_user,":PASS"=>$test_pass));
-//echo $sql->prnt();
+echo "AICI:". $sql->prnt();
                 if($this->globals->con->query($sql)==1){
 
                    $res=$this->globals->con->fetch_array();

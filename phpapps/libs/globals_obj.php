@@ -119,6 +119,9 @@ class Globals_obj{
 	public $__LIBS_TPL_DIR;
 	public $__SMARTY_TPL_DIR;
         
+        public $CURRENT_APP_DB;
+        public $PHPAPPS_DB = "phpapps";
+        
         //Directories vars
         public $PHPAPPS_APP_DIR = PHPAPPS_APP_DIR;
         
@@ -127,9 +130,11 @@ class Globals_obj{
         public $USER_ID;
         public $USER_PROFILE_ID;
         public $USER_PROFILE;
+        
 
-	function __construct($APP_NM){
+	function __construct($APP_NM,$APP_DB){
                 
+                $this->CURRENT_APP_DB = $APP_DB;
                 
                 header('Content-type: text/html; charset=utf-8');
                 

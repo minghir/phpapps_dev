@@ -278,18 +278,18 @@ class phpapps_admin_table_details_form{
 	function setup_display(){
 					 
 					 
-								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","phpapps.list_mysql_column_types");
+								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_mysql_column_types");
 			$this->COLUMN_TYPE_ID_sel->selected_val = $this->COLUMN_TYPE_ID;
 			$this->COLUMN_TYPE_ID_sel->setup_select_options();
 			 
 					 
 					 
-								$this->FOREIGN_KEY_SCHEMA_ID_sel = new DB_select("FOREIGN_KEY_SCHEMA_ID","phpapps.list_databases");
+								$this->FOREIGN_KEY_SCHEMA_ID_sel = new DB_select("FOREIGN_KEY_SCHEMA_ID","{$this->globals->PHPAPPS_DB}.list_databases");
 			$this->FOREIGN_KEY_SCHEMA_ID_sel->selected_val = $this->FOREIGN_KEY_SCHEMA_ID;
 			$this->FOREIGN_KEY_SCHEMA_ID_sel->setup_select_options();
 			 
 					 
-								$this->COLUMN_INDEX_TYPE_ID_sel = new DB_select("COLUMN_INDEX_TYPE_ID","phpapps.list_index_types");
+								$this->COLUMN_INDEX_TYPE_ID_sel = new DB_select("COLUMN_INDEX_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_index_types");
 			$this->COLUMN_INDEX_TYPE_ID_sel->selected_val = $this->COLUMN_INDEX_TYPE_ID;
 			$this->COLUMN_INDEX_TYPE_ID_sel->setup_select_options();
 			 
@@ -301,8 +301,8 @@ class phpapps_admin_table_details_form{
 					 
 					 
 					 
-									$this->FOREIGN_KEY_TABLE_ID_sel = new DB_select("FOREIGN_KEY_TABLE_ID","phpapps.tables");
-				$this->FOREIGN_KEY_TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME";
+									$this->FOREIGN_KEY_TABLE_ID_sel = new DB_select("FOREIGN_KEY_TABLE_ID","{$this->globals->PHPAPPS_DB}.tables");
+				$this->FOREIGN_KEY_TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.tables ORDER BY TABLE_NAME";
 				$this->FOREIGN_KEY_TABLE_ID_sel->selected_val = $this->FOREIGN_KEY_TABLE_ID;
 				$this->FOREIGN_KEY_TABLE_ID_sel->setup_select_options();
 			 

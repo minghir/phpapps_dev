@@ -264,14 +264,14 @@ class phpapps_admin_forms_form{
 					 
 				
 					 
-									$this->MODULE_ID_sel = new DB_select("MODULE_ID","phpapps.modules");
-				$this->MODULE_ID_sel->query = "SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM phpapps.modules ORDER BY MODULE_NAME";
+									$this->MODULE_ID_sel = new DB_select("MODULE_ID","{$this->globals->PHPAPPS_DB}.modules");
+				$this->MODULE_ID_sel->query = "SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.modules ORDER BY MODULE_NAME";
 				$this->MODULE_ID_sel->selected_val = $this->MODULE_ID;
 				$this->MODULE_ID_sel->setup_select_options();
 			 
 					 
-									$this->TABLE_ID_sel = new DB_select("TABLE_ID","phpapps.tables");
-				$this->TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME";
+									$this->TABLE_ID_sel = new DB_select("TABLE_ID","{$this->globals->PHPAPPS_DB}.tables");
+				$this->TABLE_ID_sel->query = "SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.tables ORDER BY TABLE_NAME";
 				$this->TABLE_ID_sel->selected_val = $this->TABLE_ID;
 				$this->TABLE_ID_sel->setup_select_options();
 			 

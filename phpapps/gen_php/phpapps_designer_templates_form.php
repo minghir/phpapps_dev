@@ -69,12 +69,12 @@ class phpapps_designer_templates_form extends template{
 					 
 					 
 					 
-								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","phpapps.list_template_types");
+								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_template_types");
                         			 
 				
 					 
 					 
-									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+									$this->APP_ID_sel = new DB_select("APP_ID","{$this->globals->PHPAPPS_DB}.applications");
                                 			 
 					 
 					 
@@ -302,15 +302,15 @@ class phpapps_designer_templates_form extends template{
 					 
 					 
 					 
-								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".phpapps.list_template_types");
+								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_template_types");
 			$this->ELEMENT_TYPE_ID_sel->selected_val = $this->ELEMENT_TYPE_ID;
 			$this->ELEMENT_TYPE_ID_sel->setup_select_options();
 			 
 				
 					 
 					 
-									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
-				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
+									//$this->APP_ID_sel = new DB_select("APP_ID",".{$this->globals->PHPAPPS_DB}.applications");
+				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.applications ORDER BY APP_NAME");
 				$this->APP_ID_sel->selected_val = $this->APP_ID;
 				$this->APP_ID_sel->setup_select_options();
 			 

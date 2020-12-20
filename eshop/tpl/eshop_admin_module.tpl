@@ -1,7 +1,7 @@
 {extends file=$display_obj->layout_file}
 {block name=content}
 <div class="container-fluid">	
-    <h2>{$display_obj->APP_NAME}:  {$display_obj->MODULE_TITLE} | <a href="logout.php">Iesire</a></h2>  
+    <h2>{$display_obj->APP_NAME}:  {$display_obj->MODULE_TITLE} | <a href="admin_logout.php">Iesire</a></h2>  
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href='#products'>Produse</a></li>
 	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#categories'>Categorii</a></li>

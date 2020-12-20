@@ -140,7 +140,7 @@ echo "<h1>".$this->deploy_location."</h1></br>";
 									fd.REFERENCE_LIST,
 									fd.REFERENCE_TABLE,
 									fd.REFERENCE_FIELD
-								FROM 	phpapps.form_details fd, 
+								FROM 	{$this->globals->PHPAPPS_DB}.form_details fd, 
 										scripts f
 								WHERE 	fd.FORM_ID = f.ID AND 
 										FORM_ID = :form_id",array(":form_id"=>$this->script_id));
@@ -324,7 +324,7 @@ echo "<h1>".$this->deploy_location."</h1></br>";
 	function getListTables(){
 		$this->globals->con->select_db($this->form_schema);
 		//$sql = new DB_query("SHOW TABLES LIKE :tables",array(":tables"=>"list%"));
-                $sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM phpapps.view_tables WHERE TABLE_TYPE_LABEL = :list_t ",
+                $sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM {$this->globals->PHPAPPS_DB}.view_tables WHERE TABLE_TYPE_LABEL = :list_t ",
 							array(":list_t"=>"list_table"));
                 //print_r($sql);
 		$this->globals->con->query($sql,"doi");
@@ -336,8 +336,8 @@ echo "<h1>".$this->deploy_location."</h1></br>";
 	
 	function getDbTables(){
 		$this->globals->con->select_db($this->form_schema);
-		$sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM phpapps.view_tables WHERE MODULE_ID = :module_id UNION ALL
-							SELECT VIEW_NAME FROM phpapps.views WHERE MODULE_ID = :module_id",
+		$sql = new DB_query("SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM {$this->globals->PHPAPPS_DB}.view_tables WHERE MODULE_ID = :module_id UNION ALL
+							SELECT VIEW_NAME FROM {$this->globals->PHPAPPS_DB}.views WHERE MODULE_ID = :module_id",
 							array(":module_id"=>$this->module_id));
                 //print_r($sql);
 		$this->globals->con->query($sql,"doi");
@@ -388,7 +388,7 @@ REFERENCE_FIELD
 		if($this->script_id == ""){
                    
 		//print_r($_POST);
-			$sql = new DB_query("INSERT INTO phpapps.scripts 
+			$sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.scripts 
 							(MODULE_ID, 
 							
                                                         SCRIPT_NAME,
@@ -424,7 +424,7 @@ REFERENCE_FIELD
 							));
 			$this->globals->con->query($sql);
 			echo "ASAVE FORM <h1>" . $sql->prnt() ."</h1><BR>";	
-			$sql = new DB_query("SELECT ID FROM phpapps.scripts
+			$sql = new DB_query("SELECT ID FROM {$this->globals->PHPAPPS_DB}.scripts
 					WHERE SCRIPT_NAME = :form_name AND
                                         MODULE_ID = :module_id",
 					array(":form_name"=>$this->script_name ,":module_id"=>$this->module_id));
@@ -435,7 +435,7 @@ REFERENCE_FIELD
 			$this->fields_id = array();
 			foreach($this->fields as $key => $fld){
 			
-				$sql = new DB_query("INSERT INTO phpapps.form_details 
+				$sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.form_details 
 					(	FORM_ID,
 						FIELD,
 						FIELD_TYPE,
@@ -459,7 +459,7 @@ REFERENCE_FIELD
 						'".$this->selected_schema_field[$key]."')");
 				$this->globals->con->query($sql);	
 				
-				$sql = new DB_query("SELECT ID FROM phpapps.form_details
+				$sql = new DB_query("SELECT ID FROM {$this->globals->PHPAPPS_DB}.form_details
 									WHERE FORM_ID = :form_id AND 
 											FIELD = :fld",
 											array(":form_id"=>$this->script_id,":fld"=>$fld));
@@ -468,7 +468,7 @@ REFERENCE_FIELD
 				$this->fields_id[$key] = $this->globals->con->get_field("ID");
 			}
 		}else{/*
-			$sql =new DB_query( "UPDATE phpapps.forms SET
+			$sql =new DB_query( "UPDATE {$this->globals->PHPAPPS_DB}.forms SET
 									MODULE_ID = '".$this->module_id."', 
 									SCRIPT_NAME = '".$this->form_name."', 
 									TABLE_ID = '".$this->form_table_id."', 
@@ -478,7 +478,7 @@ REFERENCE_FIELD
                                                      
                  * 
                  */
-                        $sql =new DB_query( "UPDATE phpapps.scripts SET
+                        $sql =new DB_query( "UPDATE {$this->globals->PHPAPPS_DB}.scripts SET
 							SCRIPT_NAME = '".$this->script_name."' 
 							WHERE ID = '".$this->script_id."'" );
 				$this->globals->con->query($sql);
@@ -486,7 +486,7 @@ REFERENCE_FIELD
 				foreach($this->fields as $key => $fld){
                                     if($this->fields_id[$key] == ""){
                                         //echo "fac insert dupa reload fields";
-                                        $sql = new DB_query("INSERT INTO phpapps.form_details 
+                                        $sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.form_details 
 					(	FORM_ID,
 						FIELD,
 						FIELD_TYPE,
@@ -511,7 +511,7 @@ REFERENCE_FIELD
                                         
                                     }else{
 // aici insert pentru reload                                    
-					$sql = new DB_query("UPDATE phpapps.form_details SET
+					$sql = new DB_query("UPDATE {$this->globals->PHPAPPS_DB}.form_details SET
 						FIELD = '".$fld."',
 						FIELD_TYPE = '".$this->data_types[$key]."',
 						HIDDEN = '".( is_array($this->hiddens) && in_array($fld,$this->hiddens) ? "1" : "0")."',

@@ -125,13 +125,13 @@ class phpapps_users_role_permissions_form{
 					 
 					 
 				
-									$ROLE_ID_sel = new DB_select("ROLE_ID","phpapps.roles");
-				$ROLE_ID_sel->query = "SELECT ID AS VALUE, ROLE_NAME AS LABEL FROM phpapps.roles ORDER BY ROLE_NAME";
+									$ROLE_ID_sel = new DB_select("ROLE_ID","{$this->globals->PHPAPPS_DB}.roles");
+				$ROLE_ID_sel->query = "SELECT ID AS VALUE, ROLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.roles ORDER BY ROLE_NAME";
 				$ROLE_ID_sel->selected_val = $this->ROLE_ID;
 				$ROLE_ID_sel->setup_select_options();
 			 
-									$PERMISSION_ID_sel = new DB_select("PERMISSION_ID","phpapps.view_permissions");
-				$PERMISSION_ID_sel->query = "SELECT ID AS VALUE, DESCRIPTION AS LABEL FROM phpapps.view_permissions ORDER BY DESCRIPTION";
+									$PERMISSION_ID_sel = new DB_select("PERMISSION_ID","{$this->globals->PHPAPPS_DB}.view_permissions");
+				$PERMISSION_ID_sel->query = "SELECT ID AS VALUE, DESCRIPTION AS LABEL FROM {$this->globals->PHPAPPS_DB}.view_permissions ORDER BY DESCRIPTION";
 				$PERMISSION_ID_sel->selected_val = $this->PERMISSION_ID;
 				$PERMISSION_ID_sel->setup_select_options();
 			 

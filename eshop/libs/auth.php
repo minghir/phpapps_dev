@@ -63,7 +63,7 @@ class auth{
             $sql = new DB_Query("SELECT ID, 
 				USERNAME
                             FROM 
-				phpapps.app_users 
+				{$this->globals->PHPAPPS_DB}.app_users 
                             WHERE username = :USER AND 
 				password = :PASS",
 				array(":USER" => trim($_POST['user']),":PASS"=>trim($_POST['pass'])));

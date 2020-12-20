@@ -52,7 +52,7 @@ class phpapps_admin_aa_form{
 												USER_TYPE,
 												DESCRIPTION
 							
-				FROM phpapps.aa WHERE ".$this->gfield." = '".$this->gfield_value."'";
+				FROM {$this->globals->PHPAPPS_DB}.aa WHERE ".$this->gfield." = '".$this->gfield_value."'";
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 							$this->ID = $this->globals->con->get_field("ID");
@@ -67,7 +67,7 @@ class phpapps_admin_aa_form{
 	}
 	
 	function addRec(){
-		$sql = "INSERT INTO phpapps.aa (
+		$sql = "INSERT INTO {$this->globals->PHPAPPS_DB}.aa (
 									ID,
 												USERNAME,
 												PASSWORD,
@@ -92,7 +92,7 @@ class phpapps_admin_aa_form{
 	}
 	
 	function saveRec(){
-		$sql = "UPDATE phpapps.aa SET 
+		$sql = "UPDATE {$this->globals->PHPAPPS_DB}.aa SET 
 									ID = '$this->ID',
 												USERNAME = '$this->USERNAME',
 												PASSWORD = '$this->PASSWORD',
@@ -109,7 +109,7 @@ class phpapps_admin_aa_form{
 	}
 
 	function deleteRec(){
-		$sql = "DELETE FROM phpapps.aa 
+		$sql = "DELETE FROM {$this->globals->PHPAPPS_DB}.aa 
 				WHERE ".$this->gfield." = '".$this->gfield_value."'";
 				
 		$this->globals->con->exec($sql);

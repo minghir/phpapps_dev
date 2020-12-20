@@ -17,7 +17,7 @@ class phpapps_users_manage_user_roles{
 								USERNAME, 
 								FIRSTNAME, 
 								LASTNAME 
-							FROM phpapps.view_users 
+							FROM {$this->globals->PHPAPPS_DB}.view_users 
 							WHERE ID = '".$this->user_id."'");
 		$this->globals->con->query($sql->sql());
 		$this->globals->con->next();
@@ -27,7 +27,7 @@ class phpapps_users_manage_user_roles{
 	}
 	
 	function display(){	
-		$usr_roles_grid =  new DB_grid($this->globals->con, "table","phpapps.view_user_roles","view_user_roles_grid");
+		$usr_roles_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_user_roles","view_user_roles_grid");
 		$usr_roles_grid->grid_title = "USER ROLES for " . $this->username . "<br>(". $this->firstname ." " . $this->lastname .")";
 		$usr_roles_grid->paginable = true;
 		$usr_roles_grid->filterable = false;

@@ -36,7 +36,7 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                                                 ID,
                                                 APP_ID,
 						APP_NAME
-						FROM phpapps.view_modules 
+						FROM {$this->globals->PHPAPPS_DB}.view_modules 
 						WHERE ID = :module_id", array(":module_id" => $this->MODULE_ID));
                         //echo $sql->prnt();
 			$this->globals->con->query($sql);
@@ -47,11 +47,11 @@ include ("generated_php/phpapps_admin_scripts_form_imp_generated.php");
                        
                         
 			$this->tpl = "phpapps_admin_scripts_form_imp.tpl";
-                        $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.tpl";
+                        $this->layout = PHPAPPS_LAYOUTS_DIR . "{$this->globals->PHPAPPS_DB}.tpl";
                         
 			$this->init();
                         
-                        $display_object_elements_grid = new DB_grid($this->globals->con, "table","phpapps.view_display_object_elements","display_object_elements_grid");
+                        $display_object_elements_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_display_object_elements","display_object_elements_grid");
                         $display_object_elements_grid->grid_title = "SCRIPT TEMPLATE ELEMENTS";
                             
                         //$display_object_elements_grid->cols = (array("DISPLAY_OBJECT_NAME","DISPLAY_OBJECT_TYPE","ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));
@@ -90,7 +90,7 @@ echo "SUNT AICI";
                                                     SCRIPT_NAME,
                                                     SCRIPT_TITLE,
                                                     SCRIPT_LABEL
-                                                 FROM phpapps.view_scripts
+                                                 FROM {$this->globals->PHPAPPS_DB}.view_scripts
                                                 WHERE MODULE_ID = :module_id AND SCRIPT_NAME = :script_name", 
                                             array(":module_id" => $this->MODULE_ID,
                                                   ":script_name" => $this->SCRIPT_NAME));

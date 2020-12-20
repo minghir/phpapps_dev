@@ -24,7 +24,6 @@
     </head>
     <body>
 	<div class="container-expand-lg">
-            DEFAULT LAYOUT
             {block name=content}CONTENT BLOCK{/block}
 	</div>
     </body> 

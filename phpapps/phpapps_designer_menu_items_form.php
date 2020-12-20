@@ -148,7 +148,7 @@ include ("generated_php/phpapps_designer_menu_items_form_generated.php");
                 }
                 
 		function before_display(){	
-                    $this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL FROM phpapps.menu_items WHERE MENU_ID = :menu_id ORDER BY ID",array(":menu_id"=>$this->MENU_ID));
+                    $this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL FROM {$this->globals->PHPAPPS_DB}.menu_items WHERE MENU_ID = :menu_id ORDER BY ID",array(":menu_id"=>$this->MENU_ID));
                     $this->PID_sel->setup_select_options();
 		}
 		

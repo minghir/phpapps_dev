@@ -17,7 +17,7 @@ include ("gen_php/phpapps_database_list_form.php");
             
                         $this->form_table = $_GET["list_name"];
                         echo "<h1>" .$this->table ."</h1><br>";
-                        $sql = new DB_query("SELECT TABLE_SCHEMA FROM phpapps.view_tables"
+                        $sql = new DB_query("SELECT TABLE_SCHEMA FROM {$this->globals->PHPAPPS_DB}.view_tables"
                                 . " WHERE TABLE_NAME = :tbl_name AND ORIGIN_ID = '0'", array(":tbl_name"=>$this->form_table));
                         echo $sql->prnt();
                         $this->globals->con->query($sql);	

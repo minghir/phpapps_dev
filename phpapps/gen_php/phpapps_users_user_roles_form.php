@@ -173,8 +173,8 @@ class phpapps_users_user_roles_form{
 					 
 				
 					 
-									$this->ROLE_ID_sel = new DB_select("ROLE_ID","phpapps.roles");
-				$this->ROLE_ID_sel->query = "SELECT ID AS VALUE, ROLE_NAME AS LABEL FROM phpapps.roles ORDER BY ROLE_NAME";
+									$this->ROLE_ID_sel = new DB_select("ROLE_ID","{$this->globals->PHPAPPS_DB}.roles");
+				$this->ROLE_ID_sel->query = "SELECT ID AS VALUE, ROLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.roles ORDER BY ROLE_NAME";
 				$this->ROLE_ID_sel->selected_val = $this->ROLE_ID;
 				$this->ROLE_ID_sel->setup_select_options();
 			 

@@ -61,7 +61,7 @@ include ("gen_php/phpapps_database_add_table_form.php");
                     $sql_txt = new DB_query("SELECT 
 								ID AS VALUE, 
 								CONCAT('(',APP_NAME,'/', MODULE_NAME,') ',TABLE_NAME) AS LABEL 
-								FROM phpapps.view_tables
+								FROM {$this->globals->PHPAPPS_DB}.view_tables
 								WHERE MODULE_ID <> :MODULE_ID AND TABLE_TYPE = :TABLE_TYPE 
                                                                 GROUP BY ID,CONCAT(TABLE_SCHEMA,'.',TABLE_NAME)
 								ORDER BY APP_NAME,MODULE_NAME,TABLE_NAME",

@@ -28,7 +28,7 @@ class phpapps_admin_module_default extends template{
 		
 		//global $GLOBALS_OBJ;
 		//$this->globals = $GLOBALS_OBJ;
-                //$this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
+                //$this->layout = PHPAPPS_LAYOUTS_DIR . "{$this->globals->PHPAPPS_DB}.lay";
 		
 		$this->globals->con->select_db("phpapps");
 		
@@ -41,7 +41,7 @@ class phpapps_admin_module_default extends template{
 						m.DESCRIPTION,
 						m.APP_NAME,
 						a.APP_TITLE
-				FROM phpapps.view_modules m, phpapps.applications a
+				FROM {$this->globals->PHPAPPS_DB}.view_modules m, {$this->globals->PHPAPPS_DB}.applications a
 				WHERE m.APP_ID = a.ID AND m.ID = :module_id ",array(':module_id'=>$module_id));
 				
 		$this->globals->con->query($sql);	
@@ -61,7 +61,7 @@ class phpapps_admin_module_default extends template{
 	
 	public function display_tpl(){
 		
-		$forms_grid =  new DB_grid($this->globals->con, "table","phpapps.view_forms","phpapps_forms_grid");
+		$forms_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_forms","phpapps_forms_grid");
 		$forms_grid->grid_title = "FORMS";
 		$forms_grid->paginable = true;
 		$forms_grid->filterable = false;
@@ -105,7 +105,7 @@ class phpapps_admin_module_default extends template{
 			$forms_grid->add_row_acction($es);
 			
 		
-		$tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
+		$tables_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 
 		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","TABLE_TYPE_LABEL","DESCRIPTION"));
@@ -150,7 +150,7 @@ class phpapps_admin_module_default extends template{
                 
                 
 	
-		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.tables","phpapps_lists_grid");
+		$lists_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$lists_grid->grid_title = "LISTS";
 		$lists_grid->cols = (array("TABLE_NAME","DESCRIPTION"));
@@ -212,7 +212,7 @@ class phpapps_admin_module_default extends template{
 		$lad->action = "newRec";
 		$lists_grid->add_grid_acction($lad);
 			
-		$scripts_grid = new DB_grid($this->globals->con, "table","phpapps.view_scripts","phpapps_scripts_grid");
+		$scripts_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_scripts","phpapps_scripts_grid");
 		$scripts_grid->grid_title = "SCRIPTS";
 		$scripts_grid->paginable = true;
 		$scripts_grid->editable = true;

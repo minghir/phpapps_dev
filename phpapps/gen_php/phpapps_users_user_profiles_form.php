@@ -57,12 +57,12 @@ class phpapps_users_user_profiles_form{
 					 
 				
 					 
-									$this->USER_ID_sel = new DB_select("USER_ID","phpapps.users");
+									$this->USER_ID_sel = new DB_select("USER_ID","{$this->globals->PHPAPPS_DB}.users");
                                 			 
-									$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID","phpapps.scripts");
+									$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID","{$this->globals->PHPAPPS_DB}.scripts");
                                 			 
 					 
-									$this->THEME_ID_sel = new DB_select("THEME_ID","phpapps.themes");
+									$this->THEME_ID_sel = new DB_select("THEME_ID","{$this->globals->PHPAPPS_DB}.themes");
                                 			 
 		                
 	}
@@ -281,19 +281,19 @@ class phpapps_users_user_profiles_form{
 					 
 				
 					 
-									//$this->USER_ID_sel = new DB_select("USER_ID",".phpapps.users");
-				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM phpapps.users ORDER BY USERNAME");
+									//$this->USER_ID_sel = new DB_select("USER_ID",".{$this->globals->PHPAPPS_DB}.users");
+				$this->USER_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, USERNAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.users ORDER BY USERNAME");
 				$this->USER_ID_sel->selected_val = $this->USER_ID;
 				$this->USER_ID_sel->setup_select_options();
 			 
-									//$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID",".phpapps.scripts");
-				$this->SCRIPT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM phpapps.scripts ORDER BY SCRIPT_NAME");
+									//$this->SCRIPT_ID_sel = new DB_select("SCRIPT_ID",".{$this->globals->PHPAPPS_DB}.scripts");
+				$this->SCRIPT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, SCRIPT_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.scripts ORDER BY SCRIPT_NAME");
 				$this->SCRIPT_ID_sel->selected_val = $this->SCRIPT_ID;
 				$this->SCRIPT_ID_sel->setup_select_options();
 			 
 					 
-									//$this->THEME_ID_sel = new DB_select("THEME_ID",".phpapps.themes");
-				$this->THEME_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, THEME_NAME AS LABEL FROM phpapps.themes ORDER BY THEME_NAME");
+									//$this->THEME_ID_sel = new DB_select("THEME_ID",".{$this->globals->PHPAPPS_DB}.themes");
+				$this->THEME_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, THEME_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.themes ORDER BY THEME_NAME");
 				$this->THEME_ID_sel->selected_val = $this->THEME_ID;
 				$this->THEME_ID_sel->setup_select_options();
 			 

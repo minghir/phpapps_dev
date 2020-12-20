@@ -49,7 +49,7 @@ class phpapps_designer_module extends template{
 						m.DESCRIPTION,
 						m.APP_NAME,
 						a.APP_TITLE
-				FROM phpapps.view_modules m, phpapps.applications a
+				FROM {$this->globals->PHPAPPS_DB}.view_modules m, {$this->globals->PHPAPPS_DB}.applications a
 				WHERE m.APP_ID = a.ID AND m.ID = :module_id ",array(':module_id'=>$module_id));
 				
 		$this->globals->con->query($sql);	
@@ -71,7 +71,7 @@ class phpapps_designer_module extends template{
     }
 	
 	function setup_display(){
-		$layouts_grid = new DB_grid($this->globals->con, "table","phpapps.view_layouts","phpapps_layouts_grid");
+		$layouts_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_layouts","phpapps_layouts_grid");
 		$layouts_grid->grid_title = "LAYOUTS";
 		$layouts_grid->cols = (array("NAME","APP_NAME","DESCRIPTION"));
 		$layouts_grid->labels = (array("LAYOUT NAME","APP NAME","DESCRIPTION"));
@@ -91,7 +91,7 @@ class phpapps_designer_module extends template{
                 $this->globals->sm->assign("layouts_grid",$layouts_grid->get_grid_str());
 
                 
-                $themes_grid = new DB_grid($this->globals->con, "table","phpapps.view_themes","phpapps_themes_grid");
+                $themes_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_themes","phpapps_themes_grid");
 		$themes_grid->grid_title = "THEMES";
 		$themes_grid->cols = (array("THEME_NAME","APP_NAME"));
 		$themes_grid->labels = (array("THEME NAME","APP_NAME"));
@@ -113,7 +113,7 @@ class phpapps_designer_module extends template{
                 $this->globals->sm->assign("themes_grid",$themes_grid->get_grid_str());
 
                 
-                $menus_grid = new DB_grid($this->globals->con, "table","phpapps.view_menus","phpapps_menus_grid");
+                $menus_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_menus","phpapps_menus_grid");
 		$menus_grid->grid_title = "MENUS";
 		$menus_grid->cols = (array("NAME","MENU_TYPE","ORIENTATION","QUERY_NAME"));
 		$menus_grid->labels = (array("MENU NAME","TYPE","ORIENTATION","QUERY"));

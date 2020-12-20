@@ -51,12 +51,12 @@ include ("gen_php/phpapps_designer_grid_columns_form.php");
                 }
                 
 		function beforeDisplay(){
-                    switch(_tbl("phpapps.tables","TABLE_TYPE",$this->TABLE_ID)){
+                    switch(_tbl("{$this->globals->PHPAPPS_DB}.tables","TABLE_TYPE",$this->TABLE_ID)){
                         case '1':
                         break;    
                         case '2':
                             $this->COLUMN_ID_sel->set_query(new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL "
-                            . "     FROM phpapps.table_details WHERE TABLE_ID = (SELECT IF(ORIGIN_ID = 0,ID,ORIGIN_ID) FROM TABLES WHERE ID = :table_id) ",array(":table_id"=>$this->TABLE_ID)));
+                            . "     FROM {$this->globals->PHPAPPS_DB}.table_details WHERE TABLE_ID = (SELECT IF(ORIGIN_ID = 0,ID,ORIGIN_ID) FROM TABLES WHERE ID = :table_id) ",array(":table_id"=>$this->TABLE_ID)));
                             $this->COLUMN_ID_sel-> setup_select_options();
                         break;
                     }

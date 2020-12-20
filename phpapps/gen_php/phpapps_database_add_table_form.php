@@ -63,7 +63,7 @@ class phpapps_database_add_table_form{
 					 
 					 
 					 
-									$this->TABLE_NAME_sel = new DB_select("TABLE_NAME","phpapps.tables");
+									$this->TABLE_NAME_sel = new DB_select("TABLE_NAME","{$this->globals->PHPAPPS_DB}.tables");
                                 			 
 					 
 		                
@@ -307,8 +307,8 @@ class phpapps_database_add_table_form{
 					 
 					 
 					 
-									//$this->TABLE_NAME_sel = new DB_select("TABLE_NAME",".phpapps.tables");
-				$this->TABLE_NAME_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME");
+									//$this->TABLE_NAME_sel = new DB_select("TABLE_NAME",".{$this->globals->PHPAPPS_DB}.tables");
+				$this->TABLE_NAME_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.tables ORDER BY TABLE_NAME");
 				$this->TABLE_NAME_sel->selected_val = $this->TABLE_NAME;
 				$this->TABLE_NAME_sel->setup_select_options();
 			 

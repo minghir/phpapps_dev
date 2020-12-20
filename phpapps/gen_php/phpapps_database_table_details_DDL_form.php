@@ -74,15 +74,15 @@ class phpapps_database_table_details_DDL_form{
                 			 
 					 
 					 
-								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","phpapps.list_mysql_column_types");
+								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_mysql_column_types");
                         			 
-								$this->UNSIGN_sel = new DB_select("UNSIGN","phpapps.list_no_yes");
-                        			 
-					 
-								$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL","phpapps.list_no_yes");
+								$this->UNSIGN_sel = new DB_select("UNSIGN","{$this->globals->PHPAPPS_DB}.list_no_yes");
                         			 
 					 
-								$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT","phpapps.list_no_yes");
+								$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL","{$this->globals->PHPAPPS_DB}.list_no_yes");
+                        			 
+					 
+								$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT","{$this->globals->PHPAPPS_DB}.list_no_yes");
                         			 
 					 
 				
@@ -363,21 +363,21 @@ class phpapps_database_table_details_DDL_form{
 					 
 					 
 					 
-								//$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".phpapps.list_mysql_column_types");
+								//$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_mysql_column_types");
 			$this->COLUMN_TYPE_ID_sel->selected_val = $this->COLUMN_TYPE_ID;
 			$this->COLUMN_TYPE_ID_sel->setup_select_options();
 			 
-								//$this->UNSIGN_sel = new DB_select("UNSIGN",".phpapps.list_no_yes");
+								//$this->UNSIGN_sel = new DB_select("UNSIGN",".{$this->globals->PHPAPPS_DB}.list_no_yes");
 			$this->UNSIGN_sel->selected_val = $this->UNSIGN;
 			$this->UNSIGN_sel->setup_select_options();
 			 
 					 
-								//$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL",".phpapps.list_no_yes");
+								//$this->ACCEPT_NULL_sel = new DB_select("ACCEPT_NULL",".{$this->globals->PHPAPPS_DB}.list_no_yes");
 			$this->ACCEPT_NULL_sel->selected_val = $this->ACCEPT_NULL;
 			$this->ACCEPT_NULL_sel->setup_select_options();
 			 
 					 
-								//$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT",".phpapps.list_no_yes");
+								//$this->AUTOINCREMENT_sel = new DB_select("AUTOINCREMENT",".{$this->globals->PHPAPPS_DB}.list_no_yes");
 			$this->AUTOINCREMENT_sel->selected_val = $this->AUTOINCREMENT;
 			$this->AUTOINCREMENT_sel->setup_select_options();
 			 

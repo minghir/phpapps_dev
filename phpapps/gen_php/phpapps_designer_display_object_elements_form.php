@@ -76,7 +76,7 @@ class phpapps_designer_display_object_elements_form extends template{
 					 
 					 
 					 
-								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","phpapps.list_display_elements_types");
+								$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_display_elements_types");
                         			 
 					 
 					 
@@ -339,7 +339,7 @@ class phpapps_designer_display_object_elements_form extends template{
 					 
 					 
 					 
-								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".phpapps.list_display_elements_types");
+								//$this->ELEMENT_TYPE_ID_sel = new DB_select("ELEMENT_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_display_elements_types");
 			$this->ELEMENT_TYPE_ID_sel->selected_val = $this->ELEMENT_TYPE_ID;
 			$this->ELEMENT_TYPE_ID_sel->setup_select_options();
 			 

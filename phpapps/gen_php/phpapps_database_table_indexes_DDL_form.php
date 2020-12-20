@@ -55,7 +55,7 @@ class phpapps_database_table_indexes_DDL_form{
                 			 
 					 
 					 
-								$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID","phpapps.list_index_types");
+								$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_index_types");
                         			 
 					 
 					 
@@ -64,7 +64,7 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 					 
-									$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS","phpapps.table_details");
+									$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS","{$this->globals->PHPAPPS_DB}.table_details");
                                                                     $this->INDEX_COLUMNS_sel->set_multiple(TRUE);
                                 			 
 					 
@@ -295,7 +295,7 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 					 
-								//$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID",".phpapps.list_index_types");
+								//$this->INDEX_TYPE_ID_sel = new DB_select("INDEX_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_index_types");
 			$this->INDEX_TYPE_ID_sel->selected_val = $this->INDEX_TYPE_ID;
 			$this->INDEX_TYPE_ID_sel->setup_select_options();
 			 
@@ -306,8 +306,8 @@ class phpapps_database_table_indexes_DDL_form{
 					 
 					 
 					 
-									//$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS",".phpapps.table_details");
-				$this->INDEX_COLUMNS_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM phpapps.table_details ORDER BY COLUMN_NAME");
+									//$this->INDEX_COLUMNS_sel = new DB_select("INDEX_COLUMNS",".{$this->globals->PHPAPPS_DB}.table_details");
+				$this->INDEX_COLUMNS_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.table_details ORDER BY COLUMN_NAME");
 				$this->INDEX_COLUMNS_sel->selected_val = $this->INDEX_COLUMNS;
 				$this->INDEX_COLUMNS_sel->setup_select_options();
 			 

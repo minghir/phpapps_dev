@@ -36,14 +36,14 @@ class test_aaaa_form{
 	function getRec(){
 		$sql = "SELECT 
 				
-				FROM phpapps.aaaa WHERE ".$this->gfield." = '".$this->gfield_value."'";
+				FROM {$this->globals->PHPAPPS_DB}.aaaa WHERE ".$this->gfield." = '".$this->gfield_value."'";
 			$this->globals->con->query($sql);
 			$this->globals->con->next();
 						
 	}
 	
 	function addRec(){
-		$sql = "INSERT INTO phpapps.aaaa (
+		$sql = "INSERT INTO {$this->globals->PHPAPPS_DB}.aaaa (
 			 ) VALUES (
 						)";
 				
@@ -52,7 +52,7 @@ class test_aaaa_form{
 	}
 	
 	function saveRec(){
-		$sql = "UPDATE phpapps.aaaa SET 
+		$sql = "UPDATE {$this->globals->PHPAPPS_DB}.aaaa SET 
 				
 				WHERE ".$this->gfield." = '".$this->gfield_value."'";
 				
@@ -61,7 +61,7 @@ class test_aaaa_form{
 	}
 
 	function deleteRec(){
-		$sql = "DELETE FROM phpapps.aaaa 
+		$sql = "DELETE FROM {$this->globals->PHPAPPS_DB}.aaaa 
 				WHERE ".$this->gfield." = '".$this->gfield_value."'";
 				
 		$this->globals->con->exec($sql);

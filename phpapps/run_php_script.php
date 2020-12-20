@@ -29,7 +29,7 @@ namespace wabdo;
 					$this->script_path = WEB_BASE_DIR  . $this->globals->con->get_field("APP_NAME") . '/' . $this->script_name;
 				break;
 				case "runScript":
-					$sql = new DB_query("SELECT SCRIPT_NAME,APP_NAME FROM phpapps.view_scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
+					$sql = new DB_query("SELECT SCRIPT_NAME,APP_NAME FROM {$this->globals->PHPAPPS_DB}.view_scripts WHERE ID = :id",array(":id"=>$_GET["gfield_value"]));
 					$this->globals->con->query($sql);
 					$this->globals->con->next();
 					$this->script_path = WEB_BASE_DIR . $this->globals->con->get_field("APP_NAME") . '/' .$this->globals->con->get_field("SCRIPT_NAME") . ".php";

@@ -27,8 +27,8 @@ class phpapps_designer_custom_element_run extends template{
         $sql = new DB_query("SELECT ID,
 			NAME,
 			APP_ID,
-            (SELECT APP_NAME FROM phpapps.applications WHERE phpapps.applications.ID = phpapps.custom_elements.APP_ID) AS APP_NAME
-            FROM phpapps.custom_elements
+            (SELECT APP_NAME FROM {$this->globals->PHPAPPS_DB}.applications WHERE {$this->globals->PHPAPPS_DB}.applications.ID = {$this->globals->PHPAPPS_DB}.custom_elements.APP_ID) AS APP_NAME
+            FROM {$this->globals->PHPAPPS_DB}.custom_elements
             WHERE ID = :ce_id", 
                 array(":ce_id" => $this->custom_element_id));
         

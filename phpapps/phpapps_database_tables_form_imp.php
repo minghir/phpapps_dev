@@ -37,7 +37,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 			$sql = new DB_query("SELECT "
                                                 . "SCHEMA_NAME, "
                                                 . "MODULE_SCHEMA "
-                                            . "FROM phpapps.view_modules "
+                                            . "FROM {$this->globals->PHPAPPS_DB}.view_modules "
                                             . "WHERE ID = :module_id",
                                 array(":module_id"=>$this->MODULE_ID));
                         
@@ -76,7 +76,7 @@ include ("gen_php/phpapps_database_tables_form.php");
                         $this->table_definition->dropTable();
                         $this->globals->con->rollback();
                     }else{
-                        $sql = new DB_query("SELECT ID FROM phpapps.tables 
+                        $sql = new DB_query("SELECT ID FROM {$this->globals->PHPAPPS_DB}.tables 
 									WHERE MODULE_ID = :module_id AND
 									SCHEMA_ID = :schema_id AND
 									TABLE_NAME = :table_name",array(
@@ -93,7 +93,7 @@ include ("gen_php/phpapps_database_tables_form.php");
 					
 					//echo "<h1> AICI:".$this->TABLE_ID."</h1>";
 					
-					$sql = new DB_query("INSERT INTO phpapps.table_details(
+					$sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.table_details(
 						TABLE_ID,
 						COLUMN_NAME,
 						COLUMN_TYPE_ID,
@@ -181,11 +181,11 @@ include ("gen_php/phpapps_database_tables_form.php");
 		}
 		
 		function beforeDisplay(){	
-                    $this->TABLE_NAME = (new DB_table("phpapps.tables"))->getValue("TABLE_NAME",$this->ID);
+                    $this->TABLE_NAME = (new DB_table("{$this->globals->PHPAPPS_DB}.tables"))->getValue("TABLE_NAME",$this->ID);
                     echo "TABLE_ID:" .$this->ID. " - TABLE NAME:" . $this->TABLE_NAME . "<br>";
 			if($this->gact == "editRec"){
                             
-				$table_details_grid =  new DB_grid($this->globals->con, "table","phpapps.view_table_details","phpapps_table_details_DDL_grid");
+				$table_details_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_table_details","phpapps_table_details_DDL_grid");
                                 $table_details_grid->editable = $this->ORIGIN_ID == 0 ? TRUE : FALSE;
 				$table_details_grid->grid_title = "COLUMNS";
 				$table_details_grid->paginable = false;
@@ -245,7 +245,7 @@ include ("gen_php/phpapps_database_tables_form.php");
                                 
                         echo "AICIC:" . $table_details_grid->query->query_str ."<br>";
                                 */
-                                $columns_fk_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_fks","phpapps_view_table_fks_DDL_grid");
+                                $columns_fk_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_table_fks","phpapps_view_table_fks_DDL_grid");
                                 $columns_fk_grid->grid_title = "FOREIGN KEYS";
 				$columns_fk_grid->paginable = false;
 				$columns_fk_grid->filterable = false;
@@ -291,7 +291,7 @@ include ("gen_php/phpapps_database_tables_form.php");
                                 
                                 $this->globals->sm->assign("columns_fk_grid",$columns_fk_grid->get_grid_str());
                                 
-                                $table_idx_grid = new DB_grid($this->globals->con, "table","phpapps.view_table_indexes","phpapps_view_table_indexes_DDL_grid");
+                                $table_idx_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_table_indexes","phpapps_view_table_indexes_DDL_grid");
                                 $table_idx_grid->grid_title = "INDEX";
                                 $table_idx_grid->cols = array(
 						"INDEX_NAME",

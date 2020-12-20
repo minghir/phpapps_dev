@@ -77,7 +77,7 @@ class phpapps_database_tables_form extends template{
 					 
 					 
 					 
-								$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE","phpapps.list_table_types");
+								$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE","{$this->globals->PHPAPPS_DB}.list_table_types");
                         			 
 					 
 				
@@ -334,7 +334,7 @@ class phpapps_database_tables_form extends template{
 					 
 					 
 					 
-								//$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE",".phpapps.list_table_types");
+								//$this->TABLE_TYPE_sel = new DB_select("TABLE_TYPE",".{$this->globals->PHPAPPS_DB}.list_table_types");
 			$this->TABLE_TYPE_sel->selected_val = $this->TABLE_TYPE;
 			$this->TABLE_TYPE_sel->setup_select_options();
 			 

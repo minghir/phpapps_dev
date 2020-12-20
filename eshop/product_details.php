@@ -111,8 +111,8 @@ class product_details_generated extends template{
     }
     
     function setup_display() {
-        $prod_table = new DB_table("eshop.view_products");
-        $img_table =  new DB_table("eshop.product_images");
+        $prod_table = new DB_table("{$this->globals->CURRENT_APP_DB}.view_products");
+        $img_table =  new DB_table("{$this->globals->CURRENT_APP_DB}.product_images");
         
         //print_r($img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2));
         

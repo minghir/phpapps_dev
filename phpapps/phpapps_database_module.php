@@ -44,7 +44,7 @@ class phpapps_database_module extends template{
 						m.DESCRIPTION,
 						m.APP_NAME,
 						a.APP_TITLE
-				FROM phpapps.view_modules m, phpapps.applications a
+				FROM {$this->globals->PHPAPPS_DB}.view_modules m, {$this->globals->PHPAPPS_DB}.applications a
 				WHERE m.APP_ID = a.ID AND m.ID = :module_id ",array(':module_id'=>$module_id));
 				
 		$this->globals->con->query($sql);	
@@ -68,7 +68,7 @@ class phpapps_database_module extends template{
     
     function setup_display(){
         //parent::setupDisplay();
-        $tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
+        $tables_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 
 		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","CONCAT(APP_NAME,'/',MODULE_NAME) AS OWNER","TABLE_TYPE_LABEL","DESCRIPTION"));
@@ -115,7 +115,7 @@ class phpapps_database_module extends template{
                  */
                 //echo "<h1>".$tables_grid->template."</h1><br>";
 	
-		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_lists_grid");
+		$lists_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$lists_grid->grid_title = "LISTS";
 		$lists_grid->cols = (array("TABLE_NAME","CONCAT(APP_NAME,'/',MODULE_NAME) AS OWNER","DESCRIPTION"));
@@ -178,7 +178,7 @@ class phpapps_database_module extends template{
 		$lists_grid->add_grid_acction($lad);
                 
                 
-                $databases_grid = new DB_grid($this->globals->con, "table","phpapps.list_databases","phpapps_list_databases_grid");
+                $databases_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.list_databases","phpapps_list_databases_grid");
                 $databases_grid->grid_title = "DATABASES";
 		$databases_grid->cols = (array("VALUE","DESCRIPTION"));
 		$databases_grid->labels = (array("DATABASE","DESCRIPTION"));
@@ -206,7 +206,7 @@ class phpapps_database_module extends template{
 		$databases_grid->add_grid_acction($dgn);
                 
                 
-                $queries_grid = new DB_grid($this->globals->con, "table","phpapps.queries","phpapps_queries_grid");
+                $queries_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.queries","phpapps_queries_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$queries_grid->grid_title = "QUERIES";
 		$queries_grid->cols = (array("QUERY_NAME","CONCAT(SUBSTR(QUERY_BODY,1,50),' ...') AS QUERY_BODY","DESCRIPTION"));
@@ -229,7 +229,7 @@ class phpapps_database_module extends template{
 		$tsq->fields = array("ID");
 		$queries_grid->add_row_acction($tsq);
                 
-                $views_grid = new DB_grid($this->globals->con, "table","phpapps.views","phpapps_views_grid");
+                $views_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.views","phpapps_views_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$views_grid->grid_title = "VIEWS";
 		$views_grid->cols = (array("VIEW_NAME","DESCRIPTION"));

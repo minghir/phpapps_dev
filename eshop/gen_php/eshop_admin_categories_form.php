@@ -70,7 +70,7 @@ class eshop_admin_categories_form extends template{
 					 
 				
 					 
-									$this->PID_sel = new DB_select("PID","eshop.categories");
+									$this->PID_sel = new DB_select("PID","{$this->globals->CURRENT_APP_DB}.categories");
                                 			 
 					 
 					 
@@ -293,8 +293,8 @@ class eshop_admin_categories_form extends template{
 					 
 				
 					 
-									//$this->PID_sel = new DB_select("PID",".eshop.categories");
-				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
+									//$this->PID_sel = new DB_select("PID",".{$this->globals->CURRENT_APP_DB}.categories");
+				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->CURRENT_APP_DB}.categories ORDER BY NAME");
 				$this->PID_sel->selected_val = $this->PID;
 				$this->PID_sel->setup_select_options();
 			 

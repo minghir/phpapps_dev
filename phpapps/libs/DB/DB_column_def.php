@@ -70,7 +70,7 @@ class DB_column_def{
 		function getColumnDef(){
 			$this->globals->sm->assign("COLUMN_OBJ",$this);
 			return  $this->globals->sm->fetch(
-                                   'string:'.  stripslashes((new DB_table("phpapps.mysql_column_defs"))->getValueByField("DEF_TPL","COLUMN_TYPE_ID", $this->COLUMN_TYPE))
+                                   'string:'.  stripslashes((new DB_table("{$this->globals->PHPAPPS_DB}.mysql_column_defs"))->getValueByField("DEF_TPL","COLUMN_TYPE_ID", $this->COLUMN_TYPE))
                                 );
 		}
 	}

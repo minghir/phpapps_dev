@@ -24,7 +24,7 @@ class user_profile{
             
             $sql2 = new DB_query("SELECT "
                     . "PROFILE_NAME, THEME_NAME, CSS_FILE, SCRIPT_NAME "
-                    . "FROM phpapps.view_user_profiles WHERE ID =:ID",array(":ID"=>$this->ID));
+                    . "FROM {$this->globals->PHPAPPS_DB}.view_user_profiles WHERE ID =:ID",array(":ID"=>$this->ID));
             
             if($this->globals->con->query($sql2)==1){
                 $res=$this->globals->con->fetch_array();

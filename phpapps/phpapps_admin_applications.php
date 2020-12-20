@@ -13,7 +13,7 @@ class phpapps_applications extends template{
 	//public $script_id = 163;
 	public function __construct($uid){
              parent::__construct();
-               // $this->layout = PHPAPPS_LAYOUTS_DIR . "phpapps.lay";
+               // $this->layout = PHPAPPS_LAYOUTS_DIR . "{$this->globals->PHPAPPS_DB}.lay";
 		//global $GLOBALS_OBJ;
 		//$this->globals = $GLOBALS_OBJ;
 		$this->globals->con->select_db("phpapps");
@@ -24,7 +24,7 @@ class phpapps_applications extends template{
 						DESCRIPTION, 
 						APP_DATE, 
 						(SELECT USERNAME FROM users WHERE users.ID = USER_ID) AS USERNAME
-						FROM phpapps.applications");
+						FROM {$this->globals->PHPAPPS_DB}.applications");
 				
 		//$this->globals->con->query($sql->sql());	
 		$this->globals->con->query($sql);	
@@ -37,7 +37,7 @@ class phpapps_applications extends template{
 						DESCRIPTION,
 						SCRIPT_NAME,
                                                 CONCAT('".WEB_BASE_DIR."' ,APP_NAME,'/',SCRIPT_NAME) AS SCRIPT_PATH
-					FROM phpapps.view_modules WHERE APP_ID = :app_id ORDER BY MODULE_NAME",array(':app_id'=>$res["ID"]));
+					FROM {$this->globals->PHPAPPS_DB}.view_modules WHERE APP_ID = :app_id ORDER BY MODULE_NAME",array(':app_id'=>$res["ID"]));
 				
 				$this->globals->con->query($sql,"modules");	
 				while($res_mod=$this->globals->con->fetch_array("modules")){

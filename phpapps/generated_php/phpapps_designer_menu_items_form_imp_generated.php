@@ -59,7 +59,7 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 					 
 					 
 				
-									$this->PID_sel = new DB_select("PID","phpapps.menu_items");
+									$this->PID_sel = new DB_select("PID","{$this->globals->PHPAPPS_DB}.menu_items");
                                 			 
 					 
 					 
@@ -266,8 +266,8 @@ class phpapps_designer_menu_items_form_imp_generated extends template{
 					 
 					 
 				
-									//$this->PID_sel = new DB_select("PID",".phpapps.menu_items");
-				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM phpapps.menu_items ORDER BY LABEL");
+									//$this->PID_sel = new DB_select("PID",".{$this->globals->PHPAPPS_DB}.menu_items");
+				$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, LABEL AS LABEL FROM {$this->globals->PHPAPPS_DB}.menu_items ORDER BY LABEL");
 				$this->PID_sel->selected_val = $this->PID;
 				$this->PID_sel->setup_select_options();
 			 

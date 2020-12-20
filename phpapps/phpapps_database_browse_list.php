@@ -21,7 +21,7 @@ class phpapps_database_browse_list extends template{
 			t.ID, 
 			CONCAT(d.VALUE,'.',t.TABLE_NAME) AS TABLE_NAME,
 			t.TABLE_NAME AS SHORT_TABLE_NAME	
-		FROM phpapps.tables t, phpapps.view_modules m, phpapps.list_databases d 
+		FROM {$this->globals->PHPAPPS_DB}.tables t, {$this->globals->PHPAPPS_DB}.view_modules m, {$this->globals->PHPAPPS_DB}.list_databases d 
 		WHERE t.ID = :ID 
                 AND 
 		

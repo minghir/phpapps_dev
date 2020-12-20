@@ -27,7 +27,7 @@ class phpapps_modules_base_grids {
      
     
     function baseGrids(){
-            	$forms_grid =  new DB_grid($this->globals->con, "table","phpapps.view_forms","phpapps_forms_grid");
+            	$forms_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_forms","phpapps_forms_grid");
 		$forms_grid->grid_title = "FORMS";
 		$forms_grid->paginable = true;
 		$forms_grid->filterable = false;
@@ -71,7 +71,7 @@ class phpapps_modules_base_grids {
 			$forms_grid->add_row_acction($es);
 			
 		
-		$tables_grid = new DB_grid($this->globals->con, "table","phpapps.view_tables","phpapps_tables_grid");
+		$tables_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_tables","phpapps_tables_grid");
 		$tables_grid->grid_title = "TABLES";
 
 		$tables_grid->cols = (array("TABLE_SCHEMA","TABLE_NAME","TABLE_TYPE_LABEL","DESCRIPTION"));
@@ -116,7 +116,7 @@ class phpapps_modules_base_grids {
                 
                 
 	
-		$lists_grid = new DB_grid($this->globals->con, "table","phpapps.tables","phpapps_lists_grid");
+		$lists_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.tables","phpapps_lists_grid");
 		//$lists_grid->grid_title = "<table border=1><tr><td align=\"left\">MODULE LISTS</td><td align=\"right\"><a href=\"http://localhost/phpapps/phpapps_admin_lists_form_imp.php?module_id=\"".$this->ID."\"&gact=newRec\">add</a></td></tr></table>";
 		$lists_grid->grid_title = "LISTS";
 		$lists_grid->cols = (array("TABLE_NAME","DESCRIPTION"));
@@ -178,7 +178,7 @@ class phpapps_modules_base_grids {
 		$lad->action = "newRec";
 		$lists_grid->add_grid_acction($lad);
 			
-		$scripts_grid = new DB_grid($this->globals->con, "table","phpapps.view_scripts","phpapps_scripts_grid");
+		$scripts_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_scripts","phpapps_scripts_grid");
 		$scripts_grid->grid_title = "SCRIPTS";
 		$scripts_grid->paginable = true;
 		$scripts_grid->editable = true;

@@ -66,7 +66,7 @@ class phpapps_designer_grid_columns_form extends template{
 				
 					 
 					 
-									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID","phpapps.table_details");
+									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID","{$this->globals->PHPAPPS_DB}.table_details");
                                 			 
 					 
 					 
@@ -300,8 +300,8 @@ class phpapps_designer_grid_columns_form extends template{
 				
 					 
 					 
-									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".phpapps.table_details");
-				$this->COLUMN_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM phpapps.table_details ORDER BY COLUMN_NAME");
+									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".{$this->globals->PHPAPPS_DB}.table_details");
+				$this->COLUMN_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.table_details ORDER BY COLUMN_NAME");
 				$this->COLUMN_ID_sel->selected_val = $this->COLUMN_ID;
 				$this->COLUMN_ID_sel->setup_select_options();
 			 

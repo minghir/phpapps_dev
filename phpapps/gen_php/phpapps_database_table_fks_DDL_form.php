@@ -70,17 +70,17 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 					 
-								$this->ON_UPDATE_sel = new DB_select("ON_UPDATE","phpapps.list_foreign_key_options");
+								$this->ON_UPDATE_sel = new DB_select("ON_UPDATE","{$this->globals->PHPAPPS_DB}.list_foreign_key_options");
                         			 
-								$this->ON_DELETE_sel = new DB_select("ON_DELETE","phpapps.list_foreign_key_options");
+								$this->ON_DELETE_sel = new DB_select("ON_DELETE","{$this->globals->PHPAPPS_DB}.list_foreign_key_options");
                         			 
 					 
 				
 					 
-									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID","phpapps.table_details");
+									$this->COLUMN_ID_sel = new DB_select("COLUMN_ID","{$this->globals->PHPAPPS_DB}.table_details");
                                 			 
 					 
-									$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID","phpapps.tables");
+									$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID","{$this->globals->PHPAPPS_DB}.tables");
                                 			 
 					 
 					 
@@ -331,25 +331,25 @@ class phpapps_database_table_fks_DDL_form{
 					 
 					 
 					 
-								//$this->ON_UPDATE_sel = new DB_select("ON_UPDATE",".phpapps.list_foreign_key_options");
+								//$this->ON_UPDATE_sel = new DB_select("ON_UPDATE",".{$this->globals->PHPAPPS_DB}.list_foreign_key_options");
 			$this->ON_UPDATE_sel->selected_val = $this->ON_UPDATE;
 			$this->ON_UPDATE_sel->setup_select_options();
 			 
-								//$this->ON_DELETE_sel = new DB_select("ON_DELETE",".phpapps.list_foreign_key_options");
+								//$this->ON_DELETE_sel = new DB_select("ON_DELETE",".{$this->globals->PHPAPPS_DB}.list_foreign_key_options");
 			$this->ON_DELETE_sel->selected_val = $this->ON_DELETE;
 			$this->ON_DELETE_sel->setup_select_options();
 			 
 					 
 				
 					 
-									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".phpapps.table_details");
-				$this->COLUMN_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM phpapps.table_details ORDER BY COLUMN_NAME");
+									//$this->COLUMN_ID_sel = new DB_select("COLUMN_ID",".{$this->globals->PHPAPPS_DB}.table_details");
+				$this->COLUMN_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, COLUMN_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.table_details ORDER BY COLUMN_NAME");
 				$this->COLUMN_ID_sel->selected_val = $this->COLUMN_ID;
 				$this->COLUMN_ID_sel->setup_select_options();
 			 
 					 
-									//$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID",".phpapps.tables");
-				$this->FK_TABLE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME");
+									//$this->FK_TABLE_ID_sel = new DB_select("FK_TABLE_ID",".{$this->globals->PHPAPPS_DB}.tables");
+				$this->FK_TABLE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.tables ORDER BY TABLE_NAME");
 				$this->FK_TABLE_ID_sel->selected_val = $this->FK_TABLE_ID;
 				$this->FK_TABLE_ID_sel->setup_select_options();
 			 

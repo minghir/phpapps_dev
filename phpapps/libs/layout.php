@@ -37,7 +37,7 @@ class layout {
       }   
      
     function set_layout_file(){
-        $sql = new DB_query("select l.ID AS LAYOUT_ID, l.NAME,l.APP_NAME, l.THEME_NAME from phpapps.view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :display_object_id",
+        $sql = new DB_query("select l.ID AS LAYOUT_ID, l.NAME,l.APP_NAME, l.THEME_NAME from {$this->globals->PHPAPPS_DB}.view_layouts l left join scripts s on (s.layout_id = l.id) where s.id = :display_object_id",
                 array(":display_object_id"=> $this->display_objects_id ));
         //echo $sql->prnt() ."<br>";
         

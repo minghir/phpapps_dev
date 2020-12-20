@@ -45,7 +45,7 @@ class DB_index_def {
     function getIdxDef(){
          $this->globals->sm->assign("IDX_OBJ",$this);
          return  $this->globals->sm->fetch(
-                         'string:'.  stripslashes((new DB_table("phpapps.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("phpapps.list_sql_sintax_types"))->getID("INDEX_DEF"))));
+                         'string:'.  stripslashes((new DB_table("{$this->globals->PHPAPPS_DB}.sql_sintax"))->getValueByField("DEF_TPL","SINTAX_TYPE_ID", (new DB_list("{$this->globals->PHPAPPS_DB}.list_sql_sintax_types"))->getID("INDEX_DEF"))));
  
     }
     

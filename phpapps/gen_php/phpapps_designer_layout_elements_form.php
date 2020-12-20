@@ -62,13 +62,13 @@ class phpapps_designer_layout_elements_form extends template{
                 			 
 					 
 					 
-								$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE","phpapps.list_layout_elements_types");
+								$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE","{$this->globals->PHPAPPS_DB}.list_layout_elements_types");
                         			 
 					 
 					 
 				
 					 
-									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","phpapps.layouts");
+									$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID","{$this->globals->PHPAPPS_DB}.layouts");
                                 			 
 									$this->ELEMENT_ID_sel = new DB_select("ELEMENT_ID","VIEW_POSIBLE_LAYOUT_ELEMENTS");
                                 			 
@@ -291,7 +291,7 @@ class phpapps_designer_layout_elements_form extends template{
 					 
 					 
 					 
-								//$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE",".phpapps.list_layout_elements_types");
+								//$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE",".{$this->globals->PHPAPPS_DB}.list_layout_elements_types");
 			$this->ELEMENT_TYPE_sel->selected_val = $this->ELEMENT_TYPE;
 			$this->ELEMENT_TYPE_sel->setup_select_options();
 			 
@@ -299,8 +299,8 @@ class phpapps_designer_layout_elements_form extends template{
 					 
 				
 					 
-									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".phpapps.layouts");
-				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM phpapps.layouts ORDER BY NAME");
+									//$this->LAYOUT_ID_sel = new DB_select("LAYOUT_ID",".{$this->globals->PHPAPPS_DB}.layouts");
+				$this->LAYOUT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.layouts ORDER BY NAME");
 				$this->LAYOUT_ID_sel->selected_val = $this->LAYOUT_ID;
 				$this->LAYOUT_ID_sel->setup_select_options();
 			 

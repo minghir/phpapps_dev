@@ -46,7 +46,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
 	
 		function beforeAddRec(){
                     echo "AICIC";
-                    $tbl = new DB_table("phpapps.view_table_details");
+                    $tbl = new DB_table("{$this->globals->PHPAPPS_DB}.view_table_details");
                     $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME"),"ID",$this->COLUMN_ID);
                     
                     $this->SCHEMA_NAME = $arr["TABLE_SCHEMA"];
@@ -59,7 +59,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                                     "_FK";
                     
                         if(count($this->errors) == 0){
-                            $tbl = new DB_table("phpapps.view_tables");
+                            $tbl = new DB_table("{$this->globals->PHPAPPS_DB}.view_tables");
                             $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME"),"ID",$this->FK_TABLE_ID);
                             $this->FK_SCHEMA_NAME = $arr["TABLE_SCHEMA"];
                             $this->FK_TABLE_NAME = $arr["TABLE_NAME"];
@@ -75,7 +75,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                             if(!$this->table_definition->alterTblAddFK( $fk_def )){
                                   $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
                             }else{
-                                $sql = new DB_query("INSERT INTO phpapps.table_indexes ("
+                                $sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.table_indexes ("
                                         . "TABLE_ID, "
                                         . "INDEX_NAME, "
                                         . "INDEX_TYPE_ID, "
@@ -89,7 +89,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                                         . ")",array(
                                            ":table_id" => $this->TABLE_ID,
                                            ":fk_name" => $this->FK_NAME,
-                                           ":index_type_id" => _lst("phpapps.list_index_types","INDEX"),
+                                           ":index_type_id" => _lst("{$this->globals->PHPAPPS_DB}.list_index_types","INDEX"),
                                            ":column_id" => $this->COLUMN_ID,
                                             ":desc" => 'INDEX ADDED BY FK'
                                         ));
@@ -111,10 +111,10 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
 		}
 
 		function beforeDeleteRec(){
-                    $tbl = new DB_table("phpapps.view_table_fks");
+                    $tbl = new DB_table("{$this->globals->PHPAPPS_DB}.view_table_fks");
                     $arr = $tbl->getFieldsArray(array("TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME","FK_NAME"),"ID",$this->FK_ID);
                     
-                    $tbl2 = new DB_table("phpapps.view_table_indexes");
+                    $tbl2 = new DB_table("{$this->globals->PHPAPPS_DB}.view_table_indexes");
                     $index_id = $tbl2->getID("INDEX_NAME", $arr["FK_NAME"]);
                     $this->table_definition = new DB_table_def($arr["TABLE_SCHEMA"],$arr["TABLE_NAME"]);
 
@@ -124,7 +124,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                        // if(!$this->table_definition->alterTblDropIdx($arr["FK_NAME"])){
                        //     $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
                        // }else{
-                            $sql = new DB_query("DELETE FROM phpapps.table_indexes WHERE ID = :id",array(":id"=>$index_id));
+                            $sql = new DB_query("DELETE FROM {$this->globals->PHPAPPS_DB}.table_indexes WHERE ID = :id",array(":id"=>$index_id));
                             print_r($sql);
                             if($this->globals->con->query($sql) == -1){
                                 $this->errors[] = "EROARE DELETE DIN table_indexes " . $this->globals->con->get_error();
@@ -144,7 +144,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                     $this->COLUMN_ID_sel->set_query( new DB_query(
                             "SELECT ID,"
                             . "COLUMN_NAME AS VALUE "
-                            . "FROM phpapps.view_table_details "
+                            . "FROM {$this->globals->PHPAPPS_DB}.view_table_details "
                             . "WHERE TABLE_ID = :table_id ORDER BY ORD",
                     array(":table_id"=>$this->TABLE_ID)));
                     
@@ -155,7 +155,7 @@ include ("gen_php/phpapps_database_table_fks_DDL_form.php");
                     $this->FK_TABLE_ID_sel->set_query( new DB_query(
                             "SELECT ID AS ID,"
                             . "CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS VALUE "
-                            . "FROM phpapps.view_tables "
+                            . "FROM {$this->globals->PHPAPPS_DB}.view_tables "
                             . "WHERE MODULE_ID = :module_id AND TABLE_ID = :table_id ORDER BY TABLE_TYPE,TABLE_NAME",
                     array(":module_id"=>$this->MODULE_ID,":table_id"=>$this->TABLE_ID)));
                    // print_r($this->FK_TABLE_ID_sel->db_query);

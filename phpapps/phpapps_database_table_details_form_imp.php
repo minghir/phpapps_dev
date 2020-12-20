@@ -41,7 +41,7 @@ include ("gen_php/phpapps_database_table_details_form.php");
                     $this->AUTOINCREMENT_sel->set_empty_option(FALSE);
                     $this->UNSIGN_sel->set_empty_option(FALSE);
                     $sql = new DB_query ("SELECT ID AS value, CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS label 
-			FROM phpapps.view_tables 
+			FROM {$this->globals->PHPAPPS_DB}.view_tables 
                         WHERE TABLE_TYPE = :tbl_type 
                         ORDER BY TABLE_SCHEMA, TABLE_NAME",array(":tbl_type" => _lst("list_table_types","values_table")));
                     // AND MODULE = curent_module ?

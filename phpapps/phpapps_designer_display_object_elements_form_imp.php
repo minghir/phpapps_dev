@@ -30,7 +30,7 @@ include ("gen_php/phpapps_designer_display_object_elements_form.php");
 	
 		function beforeAddRec(){
                     
-               //     $this->DISPLAY_OBJECT_TYPE_ID = _tbl("phpapps.view_posible_display_object_elements","");
+               //     $this->DISPLAY_OBJECT_TYPE_ID = _tbl("{$this->globals->PHPAPPS_DB}.view_posible_display_object_elements","");
 		}
 		
 		function afterAddRec(){

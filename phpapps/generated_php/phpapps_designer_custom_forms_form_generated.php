@@ -84,10 +84,10 @@ class phpapps_designer_custom_forms_form_generated extends template{
 					 
 					 
 					 
-									$this->FORM_TABLE_sel = new DB_select("FORM_TABLE","phpapps.tables");
+									$this->FORM_TABLE_sel = new DB_select("FORM_TABLE","{$this->globals->PHPAPPS_DB}.tables");
                                 			 
 					 
-									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","{$this->globals->PHPAPPS_DB}.templates");
                                 			 
 		                
 	}
@@ -338,14 +338,14 @@ class phpapps_designer_custom_forms_form_generated extends template{
 					 
 					 
 					 
-									//$this->FORM_TABLE_sel = new DB_select("FORM_TABLE",".phpapps.tables");
-				$this->FORM_TABLE_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM phpapps.tables ORDER BY TABLE_NAME");
+									//$this->FORM_TABLE_sel = new DB_select("FORM_TABLE",".{$this->globals->PHPAPPS_DB}.tables");
+				$this->FORM_TABLE_sel->db_query = new DB_query("SELECT ID AS VALUE, TABLE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.tables ORDER BY TABLE_NAME");
 				$this->FORM_TABLE_sel->selected_val = $this->FORM_TABLE;
 				$this->FORM_TABLE_sel->setup_select_options();
 			 
 					 
-									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
-				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".{$this->globals->PHPAPPS_DB}.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.templates ORDER BY TEMPLATE_NAME");
 				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
 				$this->TEMPLATE_ID_sel->setup_select_options();
 			 

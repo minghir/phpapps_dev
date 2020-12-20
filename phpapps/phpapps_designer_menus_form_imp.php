@@ -14,7 +14,7 @@ include ("gen_php/phpapps_designer_menus_form.php");
 			$this->init();
                         
                         if($this->MENU_TYPE == 2){
-                            $menu_items_grid = new DB_grid($this->globals->con, "table","phpapps.view_menu_items","phpapps_menu_items_grid");
+                            $menu_items_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_menu_items","phpapps_menu_items_grid");
                             $menu_items_grid->grid_title = "MENU ITEMS";
                             $menu_items_grid->cols = (array("LABEL","ACTION","PLABEL"));
                             $menu_items_grid->labels = (array("LABEL","ACTION","PARENT"));

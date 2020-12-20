@@ -2,11 +2,12 @@
 /**
 * script template version 
 */
-namespace wabdo;
+//namespace wabdo;
 require_once ("globals.php");
-require_once (PHPAPPS_LIBS_DIR . "template.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
-class client_login_generated extends template{
+require_once (PHPAPPS_LIBS_DIR . "template.php");
+
+class admin_login_generated extends wabdo\template{
 
     /**
      * application database id
@@ -41,21 +42,21 @@ class client_login_generated extends template{
      *
      * @var int
      */
-    protected $_MODULE_ID = 31;
+    protected $_MODULE_ID = 10;
     
     /**
      * module name as db identifier
      *
      * @var int
      */
-    protected $_MODULE_NAME = "eshop_public";
+    protected $_MODULE_NAME = "eshop_admin";
     
     /**
      * module long title
      *
      * @var string
      */
-    protected $_MODULE_TITLE = "public";
+    protected $_MODULE_TITLE = "admin";
     
     /**
      * module label (short title)
@@ -69,7 +70,7 @@ class client_login_generated extends template{
      *
      * @var string
      */
-    protected $_SCRIPT_NAME = "client_login";
+    protected $_SCRIPT_NAME = "admin_login";
     
     /**
      * script long title
@@ -83,7 +84,7 @@ class client_login_generated extends template{
      *
      * @var string
      */
-    protected $_SCRIPT_LABEL = "client_login";
+    protected $_SCRIPT_LABEL = "Login";
     
     protected $_SCRIPT_VERSION = "";
     
@@ -91,66 +92,80 @@ class client_login_generated extends template{
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
-    protected $display_objects_id = 364;
+    protected $display_objects_id = 371;
     
     protected $smary;
     protected $con;
-    private $alerts;    
+        
     function __construct() {
         parent::__construct();
         
-        $this->tpl = "client_login.tpl";        
+        $this->tpl = "admin_login.tpl";        
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
-        $this->alerts = new alerts();
+        $this->alerts = new wabdo\alerts();
+     
+        // phpapps_display_abs Load all elelments
+        $this->load_elements(); // parent function
         
-            $client_email = $_POST["email"];
-            $client_password = $_POST["password"];
-            
+            $test_user = $_POST["user"];
+            $test_pass = $_POST["pass"];
+  
            if(count($_POST) > 0 ){
-               if($client_email != "" && $client_password != ""){
-                   $sql = new DB_Query("SELECT ID, 
-                                                   EMAIL,
-                                                   PASSWORD
+               if($test_user != "" && $test_pass != ""){
+                   $sql = new wabdo\DB_Query("SELECT ID, 
+                                                   USERNAME,
+                                                   PASSWORD,
+                                                   SCRIPT_NAME
                                                    FROM 
-                                                   {$this->globals->CURRENT_APP_DB}.clients 
-                                                   WHERE EMAIL = :USER AND 
+                                                   {$this->globals->PHPAPPS_DB}.view_users 
+                                                   WHERE username = :USER AND 
                                                    PASSWORD = :PASS",
-                                                   array(":USER" => $client_email,":PASS"=>$client_password));
-//echo $sql->prnt();
+                                                   array(":USER" => $test_user,":PASS"=>$test_pass));
+//echo "AICI:". $sql->prnt();
                 if($this->globals->con->query($sql)==1){
 
                    $res=$this->globals->con->fetch_array();
                    
-                   $_SESSION["_CLIENT_ID"] = $res["ID"];
-                   $_SESSION["_CLIENT_EMAIL"] = $res["EMAIL"];
-                   $_SESSION["_CLIENT_PASS"] = $res["PASSWORD"];
+                   $_SESSION["_USER_ID"] = $res["ID"];
+                   $_SESSION["_USER_NAME"] = $res["USERNAME"];
+                   $_SESSION["_USER_PASS"] = $res["PASSWORD"];
 
-                   header("Location: products.php");
-                }else{
-                   $this->alerts->add_alert("danger", "Parola si/sau email gresite  !!!",0);
+                   header("Location:admin.php");
+
+               }else{
+                   $this->alerts->add_alert("danger", "Wrong USER or PASSWORD !!!",0);
                    $this->alerts->get_no_errors();
                            
                    $this->globals->sm->assign("MESSAGE_BLOCK",$this->alerts->get_message_str());
                }
-               }
-           }   
+           }
+       }else{
+       }
         
         
         
-     
-        // phpapps_display_abs Load all elelments
-        $this->load_elements(); // parent function
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         $this->setup_display();
         $this->display_template(); // parent function
 
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "client_login: Youre code here."));
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "admin_login: Youre code here."));
     }
     
 }
 
-new client_login_generated();
+new admin_login_generated();
 ?>

@@ -149,16 +149,16 @@ class phpapps_users_permissions_form{
 	}
 	
 	function setup_display(){
-								$PERMISSION_NAME_sel = new DB_select("PERMISSION_NAME","phpapps.list_permission_names");
+								$PERMISSION_NAME_sel = new DB_select("PERMISSION_NAME","{$this->globals->PHPAPPS_DB}.list_permission_names");
 			$PERMISSION_NAME_sel->selected_val = $this->PERMISSION_NAME;
 			$PERMISSION_NAME_sel->setup_select_options();
 			 
 					 
-								$PERMISSION_TYPE_sel = new DB_select("PERMISSION_TYPE","phpapps.list_permission_types");
+								$PERMISSION_TYPE_sel = new DB_select("PERMISSION_TYPE","{$this->globals->PHPAPPS_DB}.list_permission_types");
 			$PERMISSION_TYPE_sel->selected_val = $this->PERMISSION_TYPE;
 			$PERMISSION_TYPE_sel->setup_select_options();
 			 
-								$OBJECT_TYPE_sel = new DB_select("OBJECT_TYPE","phpapps.list_object_types");
+								$OBJECT_TYPE_sel = new DB_select("OBJECT_TYPE","{$this->globals->PHPAPPS_DB}.list_object_types");
 			$OBJECT_TYPE_sel->selected_val = $this->OBJECT_TYPE;
 			$OBJECT_TYPE_sel->setup_select_options();
 			 

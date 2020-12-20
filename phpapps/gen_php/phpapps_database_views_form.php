@@ -60,7 +60,7 @@ class phpapps_database_views_form extends template{
 					 
 				
 					 
-									$this->MODULE_ID_sel = new DB_select("MODULE_ID","phpapps.modules");
+									$this->MODULE_ID_sel = new DB_select("MODULE_ID","{$this->globals->PHPAPPS_DB}.modules");
                                 			 
 					 
 					 
@@ -285,8 +285,8 @@ class phpapps_database_views_form extends template{
 					 
 				
 					 
-									//$this->MODULE_ID_sel = new DB_select("MODULE_ID",".phpapps.modules");
-				$this->MODULE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM phpapps.modules ORDER BY MODULE_NAME");
+									//$this->MODULE_ID_sel = new DB_select("MODULE_ID",".{$this->globals->PHPAPPS_DB}.modules");
+				$this->MODULE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, MODULE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.modules ORDER BY MODULE_NAME");
 				$this->MODULE_ID_sel->selected_val = $this->MODULE_ID;
 				$this->MODULE_ID_sel->setup_select_options();
 			 

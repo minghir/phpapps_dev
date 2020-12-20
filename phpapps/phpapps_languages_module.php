@@ -41,7 +41,7 @@ class phpapps_languages_module extends template{
 						m.DESCRIPTION,
 						m.APP_NAME,
 						a.APP_TITLE
-				FROM phpapps.view_modules m, phpapps.applications a
+				FROM {$this->globals->PHPAPPS_DB}.view_modules m, {$this->globals->PHPAPPS_DB}.applications a
 				WHERE m.APP_ID = a.ID AND m.ID = :module_id ",array(':module_id'=>$this->module_id));
 				
 		$this->globals->con->query($sql);	

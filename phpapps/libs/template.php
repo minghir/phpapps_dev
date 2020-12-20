@@ -14,6 +14,7 @@ namespace wabdo;
 
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "layout.php");
+require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 
 abstract class template extends layout {
     
@@ -44,7 +45,7 @@ abstract class template extends layout {
     
     function set_template_file(){
         
-        $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM phpapps.view_templates t LEFT JOIN phpapps.scripts s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :script_id",
+        $sql = new DB_query("SELECT t.ID, t.TEMPLATE_NAME, t.ELEMENT_TYPE_ID, t.APP_NAME FROM {$this->globals->PHPAPPS_DB}.view_templates t LEFT JOIN {$this->globals->PHPAPPS_DB}.scripts s ON (s.TEMPLATE_ID = t.ID) WHERE s.ID = :script_id",
                // array(":script_id" => $this->script_id));
               array(":script_id" => $this->display_objects_id));
         //echo $sql->prnt();
@@ -55,7 +56,7 @@ abstract class template extends layout {
             $app_name = $this->globals->con->get_field("APP_NAME","custom_tpl_sql_" . $this->script_id);
             $tpl_name = $this->globals->con->get_field("TEMPLATE_NAME","custom_tpl_sql_" . $this->script_id); 
             
-            //switch(_tbl("phpapps.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
+            //switch(_tbl("{$this->globals->PHPAPPS_DB}.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
             switch($element_type_id){
                             case '1': 
                                 $path_to = "scripts";

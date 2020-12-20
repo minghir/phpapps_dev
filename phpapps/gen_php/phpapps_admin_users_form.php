@@ -240,7 +240,7 @@ class phpapps_admin_users_form{
 					 
 					 
 					 
-								$this->USER_TYPE_sel = new DB_select("USER_TYPE","phpapps.list_user_types");
+								$this->USER_TYPE_sel = new DB_select("USER_TYPE","{$this->globals->PHPAPPS_DB}.list_user_types");
 			$this->USER_TYPE_sel->selected_val = $this->USER_TYPE;
 			$this->USER_TYPE_sel->setup_select_options();
 			 

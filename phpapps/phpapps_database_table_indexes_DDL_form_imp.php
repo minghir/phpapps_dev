@@ -21,9 +21,9 @@ include ("gen_php/phpapps_database_table_indexes_DDL_form.php");
                         $this->get_index_id = $_GET["gfield_value"];
                         $this->ID = $this->get_index_id;
                         $this->TABLE_ID = $this->get_table_id;
-                        $this->MODULE_ID = _tbl("phpapps.view_tables","MODULE_ID",$this->get_table_id);
-                        $this->TABLE_NAME =_tbl("phpapps.tables","TABLE_NAME",$this->get_table_id);
-                        $this->SCHEMA_NAME =_tbl("phpapps.view_tables","TABLE_SCHEMA",$this->get_table_id);
+                        $this->MODULE_ID = _tbl("{$this->globals->PHPAPPS_DB}.view_tables","MODULE_ID",$this->get_table_id);
+                        $this->TABLE_NAME =_tbl("{$this->globals->PHPAPPS_DB}.tables","TABLE_NAME",$this->get_table_id);
+                        $this->SCHEMA_NAME =_tbl("{$this->globals->PHPAPPS_DB}.view_tables","TABLE_SCHEMA",$this->get_table_id);
                         
 			$this->init();
 			$this->display();
@@ -38,16 +38,16 @@ include ("gen_php/phpapps_database_table_indexes_DDL_form.php");
 		function beforeAddRec(){
                     $this->INDEX_NAME = $this->SCHEMA_NAME ."_".
                                         $this->TABLE_NAME ."_".
-                                        _lst("phpapps.list_index_types",$this->INDEX_TYPE_ID) .
+                                        _lst("{$this->globals->PHPAPPS_DB}.list_index_types",$this->INDEX_TYPE_ID) .
                                         implode("_",$this->INDEX_COLUMNS    ) ."_IDX";
                     
                     $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                     $idx_def = new DB_index_def($this->SCHEMA_NAME,$this->TABLE_NAME);
                     $idx_def->INDEX_NAME = $this->INDEX_NAME;
-                    $idx_def->INDEX_TYPE = _lst("phpapps.list_index_types",intval($this->INDEX_TYPE_ID));
+                    $idx_def->INDEX_TYPE = _lst("{$this->globals->PHPAPPS_DB}.list_index_types",intval($this->INDEX_TYPE_ID));
                     
                     $sql = new DB_query("SELECT ID, COLUMN_NAME "
-                                        . "FROM phpapps.table_details "
+                                        . "FROM {$this->globals->PHPAPPS_DB}.table_details "
                                         . "WHERE ID IN (".implode(",",$this->INDEX_COLUMNS).")"
                                         );
                     
@@ -77,7 +77,7 @@ include ("gen_php/phpapps_database_table_indexes_DDL_form.php");
 
 		function beforeDeleteRec(){
                     $this->table_definition = new DB_table_def($this->SCHEMA_NAME,$this->TABLE_NAME);   
-                    $this->INDEX_NAME = _tbl("phpapps.table_indexes","INDEX_NAME",$this->ID);
+                    $this->INDEX_NAME = _tbl("{$this->globals->PHPAPPS_DB}.table_indexes","INDEX_NAME",$this->ID);
                     //echo "STERG ".$this->INDEX_NAME . "din: ". $this->SCHEMA_NAME.".".$this->TABLE_NAME;
                     if(!$this->table_definition->alterTblDropIdx($this->INDEX_NAME)){
                         $this->errors[] = "SQL error: " . implode("<br>",$this->table_definition->getErrors());
@@ -92,7 +92,7 @@ include ("gen_php/phpapps_database_table_indexes_DDL_form.php");
 		function beforeDisplay(){	
                     $this->INDEX_COLUMNS_sel->set_empty_option(FALSE);
                     $this->INDEX_COLUMNS_sel->set_query(new DB_query("SELECT ID, COLUMN_NAME AS VALUE FROM"
-                            . " phpapps.table_details WHERE TABLE_ID = :table_id ORDER BY ORD",
+                            . " {$this->globals->PHPAPPS_DB}.table_details WHERE TABLE_ID = :table_id ORDER BY ORD",
                             array(":table_id" => $this->TABLE_ID)));
                     $this->INDEX_COLUMNS_sel->setup_select_options();
 		}

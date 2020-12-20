@@ -87,10 +87,10 @@ class phpapps_designer_grid_actions_form extends template{
 					 
 					 
 					 
-								$this->POPUP_PAGE_sel = new DB_select("POPUP_PAGE","phpapps.list_true_false");
+								$this->POPUP_PAGE_sel = new DB_select("POPUP_PAGE","{$this->globals->PHPAPPS_DB}.list_true_false");
                         			 
 					 
-								$this->GRID_ACTION_TYPE_ID_sel = new DB_select("GRID_ACTION_TYPE_ID","phpapps.list_grid_action_types");
+								$this->GRID_ACTION_TYPE_ID_sel = new DB_select("GRID_ACTION_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_grid_action_types");
                         			 
 				
 					 
@@ -361,12 +361,12 @@ class phpapps_designer_grid_actions_form extends template{
 					 
 					 
 					 
-								//$this->POPUP_PAGE_sel = new DB_select("POPUP_PAGE",".phpapps.list_true_false");
+								//$this->POPUP_PAGE_sel = new DB_select("POPUP_PAGE",".{$this->globals->PHPAPPS_DB}.list_true_false");
 			$this->POPUP_PAGE_sel->selected_val = $this->POPUP_PAGE;
 			$this->POPUP_PAGE_sel->setup_select_options();
 			 
 					 
-								//$this->GRID_ACTION_TYPE_ID_sel = new DB_select("GRID_ACTION_TYPE_ID",".phpapps.list_grid_action_types");
+								//$this->GRID_ACTION_TYPE_ID_sel = new DB_select("GRID_ACTION_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_grid_action_types");
 			$this->GRID_ACTION_TYPE_ID_sel->selected_val = $this->GRID_ACTION_TYPE_ID;
 			$this->GRID_ACTION_TYPE_ID_sel->setup_select_options();
 			 

@@ -36,7 +36,7 @@ include ("gen_php/phpapps_designer_templates_form.php");
                     if(count($this->errors) == 0){
 			$app_name = _tbl("applications","APP_NAME",$this->APP_ID);
                         
-                        switch(_tbl("phpapps.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
+                        switch(_tbl("{$this->globals->PHPAPPS_DB}.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
                             case 'SCRIPT': 
                                 $path_to = "scripts";
                             break;
@@ -65,7 +65,7 @@ include ("gen_php/phpapps_designer_templates_form.php");
 		function after_save_rec(){
 			if(count($this->errors) == 0){
 				$app_name = _tbl("applications","APP_NAME",$this->APP_ID);
-                            switch(_tbl("phpapps.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
+                            switch(_tbl("{$this->globals->PHPAPPS_DB}.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
                                 case 'SCRIPT': 
                                     $path_to = "scripts";
                                 break;
@@ -99,7 +99,7 @@ include ("gen_php/phpapps_designer_templates_form.php");
 		}
 		
 		function after_delete_rec(){
-                            switch(_tbl("phpapps.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
+                            switch(_tbl("{$this->globals->PHPAPPS_DB}.list_template_types","VALUE",$this->ELEMENT_TYPE_ID)){
                                 case 'SCRIPT': 
                                     $path_to = "scripts";
                                 break;

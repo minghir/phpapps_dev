@@ -7,7 +7,7 @@ $sql = new DB_query("SELECT
 				APP_NAME,
 				TABLE_NAME,
 				TABLE_SCHEMA 
-		FROM phpapps.view_tables
+		FROM {$this->globals->PHPAPPS_DB}.view_tables
 		WHERE 	ID = :id AND 
 				MODULE_ID = :module_id ",
 		array(":id"=>$_GET["gfield_value"],":module_id"=>$_GET["module_id"]));
@@ -19,7 +19,7 @@ $phpapps_admin_tables_form_grid->paginable = true;
 $phpapps_admin_tables_form_grid->rows_on_pg = 20;
 					
 $sql = new DB_query("SELECT FORM_PHP_DIR, FORM_NAME , APP_NAME
-					FROM phpapps.view_forms f
+					FROM {$this->globals->PHPAPPS_DB}.view_forms f
 					WHERE f.TABLE_NAME = :table_name 
 					AND f.MODULE_ID = :module_id ORDER BY f.ID ASC",
 					array(":table_name" => $GLOBALS_OBJ->con->get_field("TABLE_NAME"),":module_id"=>$_GET["module_id"]));

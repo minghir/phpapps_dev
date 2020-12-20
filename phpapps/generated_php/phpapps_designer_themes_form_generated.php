@@ -61,7 +61,7 @@ class phpapps_designer_themes_form_generated extends template{
 				
 					 
 					 
-									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+									$this->APP_ID_sel = new DB_select("APP_ID","{$this->globals->PHPAPPS_DB}.applications");
                                 			 
 		                
 	}
@@ -270,10 +270,10 @@ class phpapps_designer_themes_form_generated extends template{
 				
 					 
 					 
-									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
-				//$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
+									//$this->APP_ID_sel = new DB_select("APP_ID",".{$this->globals->PHPAPPS_DB}.applications");
+				//$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.applications ORDER BY APP_NAME");
                                 
-                                $this->APP_ID_sel->table = "phpapps.applications";
+                                $this->APP_ID_sel->table = "{$this->globals->PHPAPPS_DB}.applications";
                                 $this->APP_ID_sel->value_col = "ID";
                                 $this->APP_ID_sel->label_col = "APP_NAME";
                                 

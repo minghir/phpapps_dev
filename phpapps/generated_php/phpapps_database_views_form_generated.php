@@ -67,7 +67,7 @@ class phpapps_database_views_form_generated extends template{
 					 
 					 
 					 
-								$this->SCHEMA_ID_sel = new DB_select("SCHEMA_ID","phpapps.list_databases");
+								$this->SCHEMA_ID_sel = new DB_select("SCHEMA_ID","{$this->globals->PHPAPPS_DB}.list_databases");
                         			 
 				
 					 
@@ -302,7 +302,7 @@ class phpapps_database_views_form_generated extends template{
 					 
 					 
 					 
-								//$this->SCHEMA_ID_sel = new DB_select("SCHEMA_ID",".phpapps.list_databases");
+								//$this->SCHEMA_ID_sel = new DB_select("SCHEMA_ID",".{$this->globals->PHPAPPS_DB}.list_databases");
 			$this->SCHEMA_ID_sel->selected_val = $this->SCHEMA_ID;
 			$this->SCHEMA_ID_sel->setup_select_options();
 			 

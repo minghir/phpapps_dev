@@ -45,7 +45,7 @@ class phpapps_database_mysql_column_defs_form{
 		$this->globals = &$GLOBALS_OBJ;
                 
                 			 
-								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","phpapps.list_mysql_column_types");
+								$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID","{$this->globals->PHPAPPS_DB}.list_mysql_column_types");
                         			 
 					 
 					 
@@ -250,7 +250,7 @@ class phpapps_database_mysql_column_defs_form{
 	
 	function setup_display(){
 					 
-								//$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".phpapps.list_mysql_column_types");
+								//$this->COLUMN_TYPE_ID_sel = new DB_select("COLUMN_TYPE_ID",".{$this->globals->PHPAPPS_DB}.list_mysql_column_types");
 			$this->COLUMN_TYPE_ID_sel->selected_val = $this->COLUMN_TYPE_ID;
 			$this->COLUMN_TYPE_ID_sel->setup_select_options();
 			 

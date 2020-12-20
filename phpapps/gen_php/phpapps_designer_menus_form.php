@@ -82,9 +82,9 @@ class phpapps_designer_menus_form extends template{
                 			 
 					 
 					 
-								$this->MENU_TYPE_sel = new DB_select("MENU_TYPE","phpapps.list_menu_types");
+								$this->MENU_TYPE_sel = new DB_select("MENU_TYPE","{$this->globals->PHPAPPS_DB}.list_menu_types");
                         			 
-								$this->ORIENTATION_sel = new DB_select("ORIENTATION","phpapps.list_menu_orientation");
+								$this->ORIENTATION_sel = new DB_select("ORIENTATION","{$this->globals->PHPAPPS_DB}.list_menu_orientation");
                         			 
 					 
 					 
@@ -95,10 +95,10 @@ class phpapps_designer_menus_form extends template{
 					 
 					 
 					 
-									$this->QUERY_ID_sel = new DB_select("QUERY_ID","phpapps.queries");
+									$this->QUERY_ID_sel = new DB_select("QUERY_ID","{$this->globals->PHPAPPS_DB}.queries");
                                 			 
 					 
-									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","{$this->globals->PHPAPPS_DB}.templates");
                                 			 
 		                
 	}
@@ -353,11 +353,11 @@ class phpapps_designer_menus_form extends template{
 					 
 					 
 					 
-								//$this->MENU_TYPE_sel = new DB_select("MENU_TYPE",".phpapps.list_menu_types");
+								//$this->MENU_TYPE_sel = new DB_select("MENU_TYPE",".{$this->globals->PHPAPPS_DB}.list_menu_types");
 			$this->MENU_TYPE_sel->selected_val = $this->MENU_TYPE;
 			$this->MENU_TYPE_sel->setup_select_options();
 			 
-								//$this->ORIENTATION_sel = new DB_select("ORIENTATION",".phpapps.list_menu_orientation");
+								//$this->ORIENTATION_sel = new DB_select("ORIENTATION",".{$this->globals->PHPAPPS_DB}.list_menu_orientation");
 			$this->ORIENTATION_sel->selected_val = $this->ORIENTATION;
 			$this->ORIENTATION_sel->setup_select_options();
 			 
@@ -370,14 +370,14 @@ class phpapps_designer_menus_form extends template{
 					 
 					 
 					 
-									//$this->QUERY_ID_sel = new DB_select("QUERY_ID",".phpapps.queries");
-				$this->QUERY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, QUERY_NAME AS LABEL FROM phpapps.queries ORDER BY QUERY_NAME");
+									//$this->QUERY_ID_sel = new DB_select("QUERY_ID",".{$this->globals->PHPAPPS_DB}.queries");
+				$this->QUERY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, QUERY_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.queries ORDER BY QUERY_NAME");
 				$this->QUERY_ID_sel->selected_val = $this->QUERY_ID;
 				$this->QUERY_ID_sel->setup_select_options();
 			 
 					 
-									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
-				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".{$this->globals->PHPAPPS_DB}.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.templates ORDER BY TEMPLATE_NAME");
 				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
 				$this->TEMPLATE_ID_sel->setup_select_options();
 			 

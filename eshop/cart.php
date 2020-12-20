@@ -145,7 +145,7 @@ class cart_generated extends template{
         
         //print_r($_SESSION);
         if(is_array($_SESSION["_CLIENT_CART"]) > 0){
-            $query  = new DB_query("SELECT ID, PRODUCT_TITLE, CURRENCY, DESCRIPTION, PRICE FROM eshop.view_products WHERE ID IN (" .implode(",",array_keys($_SESSION["_CLIENT_CART"])) .")");
+            $query  = new DB_query("SELECT ID, PRODUCT_TITLE, CURRENCY, DESCRIPTION, PRICE FROM {$this->globals->CURRENT_APP_DB}.view_products WHERE ID IN (" .implode(",",array_keys($_SESSION["_CLIENT_CART"])) .")");
             $this->globals->con->query($query,"cart_disp");
             while($res = $this->globals->con->fetch_array("cart_disp")){
                 $CART_PRODUCT_NAME[$res["ID"]] = $res["PRODUCT_TITLE"];

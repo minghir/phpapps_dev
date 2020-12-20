@@ -57,7 +57,7 @@ class phpapps_database_query_parameters_form extends template{
 					 
 					 
 					 
-								$this->PARAMETER_TYPE_sel = new DB_select("PARAMETER_TYPE","phpapps.list_query_parameter_type");
+								$this->PARAMETER_TYPE_sel = new DB_select("PARAMETER_TYPE","{$this->globals->PHPAPPS_DB}.list_query_parameter_type");
                         			 
 				
 					 
@@ -282,7 +282,7 @@ class phpapps_database_query_parameters_form extends template{
 					 
 					 
 					 
-								//$this->PARAMETER_TYPE_sel = new DB_select("PARAMETER_TYPE",".phpapps.list_query_parameter_type");
+								//$this->PARAMETER_TYPE_sel = new DB_select("PARAMETER_TYPE",".{$this->globals->PHPAPPS_DB}.list_query_parameter_type");
 			$this->PARAMETER_TYPE_sel->selected_val = $this->PARAMETER_TYPE;
 			$this->PARAMETER_TYPE_sel->setup_select_options();
 			 

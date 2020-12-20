@@ -8,7 +8,7 @@ include ("gen_php/phpapps_database_queries_form.php");
                         $this->MODULE_ID = $_GET["module_id"];
 			$this->init();
                         
-                        $parameters_grid = new DB_grid($this->globals->con, "table","phpapps.query_parameters","phpapps_query_parameters_grid");
+                        $parameters_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.query_parameters","phpapps_query_parameters_grid");
                         $parameters_grid->grid_title = "QUERY PARAMETERS";
                         $parameters_grid->cols = (array("PARAMETER_NAME","PARAMETER_VALUE"));
                         $parameters_grid->labels = (array("PARAMETER_NAME","PARAMETER_VALUE"));

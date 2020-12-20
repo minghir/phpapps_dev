@@ -73,10 +73,10 @@ class phpapps_designer_custom_elements_form extends template{
 				
 					 
 					 
-									$this->APP_ID_sel = new DB_select("APP_ID","phpapps.applications");
+									$this->APP_ID_sel = new DB_select("APP_ID","{$this->globals->PHPAPPS_DB}.applications");
                                 			 
 					 
-									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","phpapps.templates");
+									$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID","{$this->globals->PHPAPPS_DB}.templates");
                                 			 
 		                
 	}
@@ -303,14 +303,14 @@ class phpapps_designer_custom_elements_form extends template{
 				
 					 
 					 
-									//$this->APP_ID_sel = new DB_select("APP_ID",".phpapps.applications");
-				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM phpapps.applications ORDER BY APP_NAME");
+									//$this->APP_ID_sel = new DB_select("APP_ID",".{$this->globals->PHPAPPS_DB}.applications");
+				$this->APP_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, APP_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.applications ORDER BY APP_NAME");
 				$this->APP_ID_sel->selected_val = $this->APP_ID;
 				$this->APP_ID_sel->setup_select_options();
 			 
 					 
-									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".phpapps.templates");
-				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM phpapps.templates ORDER BY TEMPLATE_NAME");
+									//$this->TEMPLATE_ID_sel = new DB_select("TEMPLATE_ID",".{$this->globals->PHPAPPS_DB}.templates");
+				$this->TEMPLATE_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, TEMPLATE_NAME AS LABEL FROM {$this->globals->PHPAPPS_DB}.templates ORDER BY TEMPLATE_NAME");
 				$this->TEMPLATE_ID_sel->selected_val = $this->TEMPLATE_ID;
 				$this->TEMPLATE_ID_sel->setup_select_options();
 			 

@@ -27,7 +27,7 @@ class phpapps_database_browse_tables extends template{
 				TABLE_SCHEMA,
                                 ORIGIN_ID,
                                 ORIGIN_MODULE_ID
-		FROM phpapps.view_tables
+		FROM {$this->globals->PHPAPPS_DB}.view_tables
 		WHERE 	ID = :id AND 
 		MODULE_ID = :module_id",
 	array(":id"=>$this->get_table_id,":module_id"=>$this->get_module_id));
@@ -39,20 +39,20 @@ class phpapps_database_browse_tables extends template{
         $grid_name =  "phpapps_".$this->globals->con->get_field("TABLE_NAME")."_grid_browse";
         
         $phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table", $this->globals->con->get_field("TABLE_SCHEMA") . "." . $this->globals->con->get_field("TABLE_NAME"), $grid_name);
-      //$phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table","phpapps.table_details","aaaa");
+      //$phpapps_admin_tables_form_grid =  new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.table_details","aaaa");
         $phpapps_admin_tables_form_grid->paginable = true;
         //$phpapps_admin_tables_form_grid->filterable = FALSE;
         $phpapps_admin_tables_form_grid->rows_on_pg = 20;
         /*
         $sql = new DB_query("SELECT FORM_PHP_DIR, FORM_NAME , APP_NAME
-					FROM phpapps.view_forms f
+					FROM {$this->globals->PHPAPPS_DB}.view_forms f
 					WHERE f.TABLE_NAME = :table_name 
 					AND f.MODULE_ID = :module_id ORDER BY f.ID ASC",
 					array(":table_name" => $this->globals->con->get_field("TABLE_NAME"),":module_id"=>$this->get_module_id));
         */
         
         $sql = new DB_query("SELECT FORM_PHP_DIR, FORM_NAME , APP_NAME
-					FROM phpapps.view_forms f
+					FROM {$this->globals->PHPAPPS_DB}.view_forms f
 					WHERE f.TABLE_NAME = :table_name 
 					AND f.MODULE_ID = :module_id ORDER BY f.ID ASC",
 					//array(":table_name" => $this->globals->con->get_field("TABLE_NAME"),":module_id"=>$this->globals->con->get_field("ORIGIN_MODULE_ID")));

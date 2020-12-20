@@ -33,7 +33,7 @@ class phpapps_database_table_rescan_columns{// extends template{
         echo "AICI:" .$this->SCHEMA_NAME . "." . $this->TABLE_NAME . "<br>";
         
         // deleting Foreign KEYS
-        $sql = new DB_query("DELETE FROM phpapps.table_fks WHERE COLUMN_ID IN (SELECT ID FROM phpapps.table_details WHERE TABLE_ID = :table_id)",
+        $sql = new DB_query("DELETE FROM {$this->globals->PHPAPPS_DB}.table_fks WHERE COLUMN_ID IN (SELECT ID FROM {$this->globals->PHPAPPS_DB}.table_details WHERE TABLE_ID = :table_id)",
                     array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_fks = $this->globals->con->query($sql) ) == -1 ){
             echo "<h1> DEL FK ERROR:</h1><br>";
@@ -42,7 +42,7 @@ class phpapps_database_table_rescan_columns{// extends template{
         }
         
         // deleting Foreign INDEXES
-        $sql = new DB_query("DELETE FROM phpapps.table_indexes WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
+        $sql = new DB_query("DELETE FROM {$this->globals->PHPAPPS_DB}.table_indexes WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_idxs = $this->globals->con->query($sql) ) == -1 ){
             echo "<h1> DEL IDX ERROR:</h1><br>";
         }else{
@@ -50,7 +50,7 @@ class phpapps_database_table_rescan_columns{// extends template{
         }
         
         // deleting TABLE DETAILS
-        $sql = new DB_query("DELETE FROM phpapps.table_details WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
+        $sql = new DB_query("DELETE FROM {$this->globals->PHPAPPS_DB}.table_details WHERE TABLE_ID = :table_id",array(":table_id" => $this->TABLE_ID));
         if( ( $del_nr_cols = $this->globals->con->query($sql) ) == -1 ){
             $this->errors[] = "SQL error: (".$sql->sql().")" . $this->globals->con->get_error();	
             echo "<h1> DEL ERROR:<br>";
@@ -60,7 +60,7 @@ class phpapps_database_table_rescan_columns{// extends template{
                 echo "<br> DELETED $nr_res ";
                 
                 // insert COLUMNS  table_details
-                 $sql = new DB_query( "INSERT INTO phpapps.table_details 
+                 $sql = new DB_query( "INSERT INTO {$this->globals->PHPAPPS_DB}.table_details 
                         (TABLE_ID,
                          COLUMN_NAME,
                          COLUMN_TYPE_ID,
@@ -103,12 +103,12 @@ class phpapps_database_table_rescan_columns{// extends template{
                 }
                 
                 // insert Foreign KEYS
-                $sql = new DB_query("INSERT INTO phpapps.table_fks (COLUMN_ID,FK_NAME,FK_TABLE_ID,FK_COLUMN_ID,MODIFY_UID,CREATE_UID,MODIFY_DATE,CREATE_DATE)
+                $sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.table_fks (COLUMN_ID,FK_NAME,FK_TABLE_ID,FK_COLUMN_ID,MODIFY_UID,CREATE_UID,MODIFY_DATE,CREATE_DATE)
                                     SELECT 
-                                    ( SELECT ID FROM phpapps.view_table_details WHERE phpapps.view_table_details.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_NAME AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.COLUMN_NAME = phpapps.view_table_details.COLUMN_NAME ) AS COLUMN_ID,
+                                    ( SELECT ID FROM {$this->globals->PHPAPPS_DB}.view_table_details WHERE {$this->globals->PHPAPPS_DB}.view_table_details.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.TABLE_NAME AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.COLUMN_NAME = {$this->globals->PHPAPPS_DB}.view_table_details.COLUMN_NAME ) AS COLUMN_ID,
                                     CONSTRAINT_NAME AS FK_NAME,
-                                    (SELECT ID FROM phpapps.tables WHERE phpapps.tables.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME AND ORIGIN_ID = '0') AS FK_TABLE_ID,
-                                    ( SELECT ID FROM phpapps.view_table_details WHERE phpapps.view_table_details.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME = phpapps.view_table_details.COLUMN_NAME ) AS FK_COLUMN_ID,
+                                    (SELECT ID FROM {$this->globals->PHPAPPS_DB}.tables WHERE {$this->globals->PHPAPPS_DB}.tables.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME AND ORIGIN_ID = '0') AS FK_TABLE_ID,
+                                    ( SELECT ID FROM {$this->globals->PHPAPPS_DB}.view_table_details WHERE {$this->globals->PHPAPPS_DB}.view_table_details.TABLE_NAME = INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_TABLE_NAME AND INFORMATION_SCHEMA.KEY_COLUMN_USAGE.REFERENCED_COLUMN_NAME = {$this->globals->PHPAPPS_DB}.view_table_details.COLUMN_NAME ) AS FK_COLUMN_ID,
 	                            :user_id AS MODIFY_UID,
                                     :user_id AS CREATE_UID,
                                     NOW() AS MODIFY_DATE,
@@ -125,7 +125,7 @@ class phpapps_database_table_rescan_columns{// extends template{
                 }
                 
                 // insert INDEXEZ
-                $sql = new DB_query("INSERT INTO phpapps.table_indexes (
+                $sql = new DB_query("INSERT INTO {$this->globals->PHPAPPS_DB}.table_indexes (
                                             TABLE_ID,	
                                             INDEX_NAME,	
                                             INDEX_TYPE_ID,	
@@ -137,7 +137,7 @@ class phpapps_database_table_rescan_columns{// extends template{
                                     SELECT 
                                         :table_id AS TABLE_ID,
                                         s.INDEX_NAME,
-                                        (SELECT i.ID FROM phpapps.list_index_types i WHERE i.VALUE =  IF(s.INDEX_NAME = 'PRIMARY','PRIMARY',IF(s.NON_UNIQUE = 1,IF(s.INDEX_TYPE = 'FULLTEXT','FULLTEXT','INDEX'),'UNIQUE')) ) AS INDEX_TYPE,
+                                        (SELECT i.ID FROM {$this->globals->PHPAPPS_DB}.list_index_types i WHERE i.VALUE =  IF(s.INDEX_NAME = 'PRIMARY','PRIMARY',IF(s.NON_UNIQUE = 1,IF(s.INDEX_TYPE = 'FULLTEXT','FULLTEXT','INDEX'),'UNIQUE')) ) AS INDEX_TYPE,
                                         GROUP_CONCAT(s.COLUMN_NAME) AS INDEX_COLUMNS,
                                         s.COMMENT AS DESCRIPTION,
                                         :user_id AS MODIFY_UID,
@@ -156,7 +156,7 @@ class phpapps_database_table_rescan_columns{// extends template{
                                         s.INDEX_NAME,
                                         IF(s.index_name = 'PRIMARY','PRIMARY',if(s.NON_UNIQUE = 1,IF(s.INDEX_TYPE = 'FULLTEXT','FULLTEXT','INDEX'),'UNIQUE')) AS INDEX_TYPE,
                                         GROUP_CONCAT(\"'\",s.COLUMN_NAME,\"'\") AS INDEX_COLUMNS,
---	(SELECT td.ID  from phpapps.table_details td 
+--	(SELECT td.ID  from {$this->globals->PHPAPPS_DB}.table_details td 
 			-- WHERE  td.TABLE_ID ='275' AND td.COLUMN_NAME IN  
 				--		(SELECT bb.COLUMN_NAME FROM INFORMATION_SCHEMA.STATISTICS bb WHERE bb.INDEX_NAME = s.INDEX_NAME )) AS INDEX_COLUMNS
                                         s.COMMENT AS DESCRIPTION,

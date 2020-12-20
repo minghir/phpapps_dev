@@ -11,7 +11,7 @@ class phpapps extends template{
     function __construct($app_id) {
         parent::__construct();
         $this->layout = PHPAPPS_LAYOUTS_DIR . "default.tpl";
-        $this->tpl = "phpapps.tpl";        
+        $this->tpl = "phpapps.tpl";
         $this->app_id = 1;
         $this->module_id = 1;
         $this->script_id = 248;

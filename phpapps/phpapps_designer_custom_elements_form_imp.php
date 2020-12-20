@@ -15,7 +15,7 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
 			$this->tpl = "phpapps_designer_custom_elements_form_imp.tpl";
 			$this->init();
                         
-                        $display_object_elements_grid = new DB_grid($this->globals->con, "table","phpapps.view_display_object_elements","display_object_elements_grid");
+                        $display_object_elements_grid = new DB_grid($this->globals->con, "table","{$this->globals->PHPAPPS_DB}.view_display_object_elements","display_object_elements_grid");
                         $display_object_elements_grid->grid_title = "OBJECT ELEMENTS";
                             
                         //$display_object_elements_grid->cols = (array("DISPLAY_OBJECT_NAME","DISPLAY_OBJECT_TYPE","ELEMENT_NAME","ELEMENT_TYPE","TEMPLATE_VARIABLE_NAME"));
@@ -63,8 +63,8 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
                             $sql = new DB_query("SELECT 
                                                     ID,
                                                     APP_ID,
-                                                    (SELECT APP_NAME FROM phpapps.applications WHERE phpapps.applications.ID = phpapps.custom_elements.APP_ID) AS APP_NAME
-                                                    FROM phpapps.custom_elements
+                                                    (SELECT APP_NAME FROM {$this->globals->PHPAPPS_DB}.applications WHERE {$this->globals->PHPAPPS_DB}.applications.ID = {$this->globals->PHPAPPS_DB}.custom_elements.APP_ID) AS APP_NAME
+                                                    FROM {$this->globals->PHPAPPS_DB}.custom_elements
                                                     WHERE APP_ID = :app_id AND NAME = :element_name", 
                                             array(":app_id" => $this->APP_ID,
                                                   ":element_name" => $this->NAME));
@@ -112,8 +112,8 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
 		
 		function beforeSaveRec(){
                     $sql = new DB_query("SELECT NAME,"
-                            . "(SELECT APP_NAME FROM phpapps.applications WHERE phpapps.applications.ID = phpapps.custom_elements.APP_ID) AS APP_NAME "
-                            . "FROM phpapps.custom_elements WHERE ID = :script_id",array(":script_id"=>$this->ID));
+                            . "(SELECT APP_NAME FROM {$this->globals->PHPAPPS_DB}.applications WHERE {$this->globals->PHPAPPS_DB}.applications.ID = {$this->globals->PHPAPPS_DB}.custom_elements.APP_ID) AS APP_NAME "
+                            . "FROM {$this->globals->PHPAPPS_DB}.custom_elements WHERE ID = :script_id",array(":script_id"=>$this->ID));
                     $this->globals->con->query($sql);
                     $this->globals->con->next();
                     $this->old_custom_element_name = strtolower($this->globals->con->get_field("NAME"));
@@ -159,8 +159,8 @@ include ("gen_php/phpapps_designer_custom_elements_form.php");
 		function beforeDeleteRec(){
                     $this->getRec();
                     $sql = new DB_query("SELECT NAME,"
-                            . "(SELECT APP_NAME FROM phpapps.applications WHERE phpapps.applications.ID = phpapps.custom_elements.APP_ID) AS APP_NAME "
-                            . "FROM phpapps.custom_elements WHERE ID = :script_id",array(":script_id"=>$this->ID));
+                            . "(SELECT APP_NAME FROM {$this->globals->PHPAPPS_DB}.applications WHERE {$this->globals->PHPAPPS_DB}.applications.ID = {$this->globals->PHPAPPS_DB}.custom_elements.APP_ID) AS APP_NAME "
+                            . "FROM {$this->globals->PHPAPPS_DB}.custom_elements WHERE ID = :script_id",array(":script_id"=>$this->ID));
                     $this->globals->con->query($sql);
                     $this->globals->con->next();
                     $this->old_custom_element_name = $this->globals->con->get_field("NAME");

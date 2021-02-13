@@ -17,17 +17,29 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   
   -->
-    <link rel="stylesheet" href="{$smarty.const.CURRENT_APP_CSS_DIR}{$display_obj->layout_theme}.css">	  
   <!-- APP JavaScript -->
-  <script src="{$smarty.const.PHPAPPS_JS_DIR}remember_last_tab.js"></script>   
+  <script src="{$smarty.const.CURRENT_APP_JS_DIR}remember_last_tab.js"></script>   
+  <!-- <link rel="stylesheet" href="{$smarty.const.PHPAPPS_CSS_DIR}phpapps.css">-->
+  <link rel="stylesheet" href="{$smarty.const.CURRENT_APP_CSS_DIR}{$display_obj->layout_theme}.css">
   
-    <title>{$PAGE_TITLE}</title>
+  <title>{$PAGE_TITLE}</title>
     </head>
     <body>
-       <!-- <h5>Eshop default layout</h5> -->
-		{$TEST_CE_5}
-	<div class="container-expand-lg">
+	 <header>	
+
+	</header>	<br><br><br><br>
+	<main role="main" class="container-expand-lg">	
+		
+	<div>
             {block name=content}CONTENT BLOCK{/block}
 	</div>
+	</main>
+	<footer class="footer">
+      <div class="container">
+		  {$CUSTOM_5}
+       <!-- <span class="text-muted">Place sticky footer content here.{$PHPAPPS_LAYOUTS_BOOTSTRAP_LINKS}</span> -->
+      </div>
+    </footer>
+		
     </body> 
 </html>

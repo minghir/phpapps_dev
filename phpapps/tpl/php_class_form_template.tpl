@@ -8,7 +8,7 @@ require_once (PHPAPPS_LIBS_DIR . "template.php");
 class {$form_name} extends template{ldelim}
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "{$form_schema}";
+	public $form_schema;// = "{$form_schema}";
 	public $form_table = "{$form_table}";
         
 	public $template;// = "gen_tpl/{$form_name}.tpl";
@@ -52,6 +52,8 @@ class {$form_name} extends template{ldelim}
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                $this->form_schema = $this->globals->CURRENT_APP_DB;
+                
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;

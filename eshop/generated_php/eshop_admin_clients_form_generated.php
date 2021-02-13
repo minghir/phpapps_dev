@@ -8,7 +8,7 @@ require_once (PHPAPPS_LIBS_DIR . "template.php");
 class eshop_admin_clients_form_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "eshop";
+	public $form_schema;// = "eshop";
 	public $form_table = "clients";
         
 	public $template;// = "gen_tpl/eshop_admin_clients_form_generated.tpl";
@@ -56,7 +56,8 @@ class eshop_admin_clients_form_generated extends template{
 		 
 		 
 		 
-		 
+			public $TITLE_ID_sel;
+	 
 		 
 		 
 			public $COUNTRY_ID_sel;
@@ -89,6 +90,7 @@ class eshop_admin_clients_form_generated extends template{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                $this->form_schema = $this->globals->CURRENT_APP_DB;
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
@@ -99,12 +101,13 @@ class eshop_admin_clients_form_generated extends template{
                 			 
 					 
 					 
-					 
-					 
-					 
-								$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID","{$this->globals->CURRENT_APP_DB}.list_countries");
+								$this->TITLE_ID_sel = new DB_select("TITLE_ID","eshop.list_titles");
                         			 
-								$this->COUNTY_ID_sel = new DB_select("COUNTY_ID","{$this->globals->CURRENT_APP_DB}.list_counties");
+					 
+					 
+								$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID","eshop.list_countries");
+                        			 
+								$this->COUNTY_ID_sel = new DB_select("COUNTY_ID","eshop.list_counties");
                         			 
 					 
 					 
@@ -413,14 +416,17 @@ class eshop_admin_clients_form_generated extends template{
 					 
 					 
 					 
+								//$this->TITLE_ID_sel = new DB_select("TITLE_ID",".eshop.list_titles");
+			$this->TITLE_ID_sel->selected_val = $this->TITLE_ID;
+			$this->TITLE_ID_sel->setup_select_options();
+			 
 					 
 					 
-					 
-								//$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID",".{$this->globals->CURRENT_APP_DB}.list_countries");
+								//$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID",".eshop.list_countries");
 			$this->COUNTRY_ID_sel->selected_val = $this->COUNTRY_ID;
 			$this->COUNTRY_ID_sel->setup_select_options();
 			 
-								//$this->COUNTY_ID_sel = new DB_select("COUNTY_ID",".{$this->globals->CURRENT_APP_DB}.list_counties");
+								//$this->COUNTY_ID_sel = new DB_select("COUNTY_ID",".eshop.list_counties");
 			$this->COUNTY_ID_sel->selected_val = $this->COUNTY_ID;
 			$this->COUNTY_ID_sel->setup_select_options();
 			 
@@ -463,7 +469,8 @@ class eshop_admin_clients_form_generated extends template{
 									 
 						 
 						 
-						 
+										"TITLE_ID_sel" => $this->TITLE_ID_sel->get_select_str(),
+			 
 						 
 						 
 										"COUNTRY_ID_sel" => $this->COUNTRY_ID_sel->get_select_str(),

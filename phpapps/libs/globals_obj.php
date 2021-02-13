@@ -3,6 +3,11 @@ namespace wabdo;
 use Smarty;
 session_start();
 //error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT );
+
+//if (!defined('CURRENT_APP_USER_DATA_DIR')) {
+//	define('CURRENT_APP_USER_DATA_DIR', CURRENT_APP_DIR . '/user_data/');
+//}
+
 error_reporting(E_ALL & ~E_NOTICE  );
 //error_reporting(E_ALL  );
 if(!defined('CURRENT_APP')) {
@@ -97,11 +102,7 @@ if (!defined('CURRENT_APP_JS_DIR')) {
 	define('CURRENT_APP_JS_DIR', WEB_BASE_DIR . CURRENT_APP . '/js/');
 }
 
-//if (!defined('CURRENT_APP_USER_DATA_DIR')) {
-//	define('CURRENT_APP_USER_DATA_DIR', CURRENT_APP_DIR . '/user_data/');
-//}
-
-require_once(PHPAPPS_LIBS_DIR . '3rd_party.php');
+require_once('3rd_party.php');
 //require_once(PHPAPPS_LIBS_DIR . "user_profile.php");
 
 class Globals_obj{
@@ -132,7 +133,7 @@ class Globals_obj{
         public $USER_PROFILE;
         
 
-	function __construct($APP_NM,$APP_DB){
+	function __construct($APP_NM,$APP_DB,$app_login = false){
                 
                 $this->CURRENT_APP_DB = $APP_DB;
                 
@@ -208,8 +209,10 @@ class Globals_obj{
 		//$this->DB_sm->cache_dir = 'cache/';
 		//$this->DB_smarty_assign();
                 
+                
                 $this->ath = new auth($this);
                 $this->ath->authenticate();
+                
 	}
 	
         /*

@@ -4,7 +4,7 @@
 <div class="d-flex justify-content-around">        
 <div >
 <h1><b>DOMAXCLEAN</b></h1>
-  <form class="form-inline" action="admin_login.php" method="POST">
+  <form class="form-inline" action="login.php" method="POST">
     <label for="email2" class="mb-2 mr-sm-2">Email:</label>
     <input type="text" class="form-control mb-2 mr-sm-2" id="email2" placeholder="Enter email" name="user" value="{$USER}">
     <label for="pwd2" class="mb-2 mr-sm-2">Password:</label>

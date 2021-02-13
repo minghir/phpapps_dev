@@ -104,7 +104,7 @@ class DB_grid_imp{// extends template{
                          $tmp_labels = array();
                          $tmp_cell_act = array();
                         while($tmp_obj = $this->globals->con->fetch_object()){
-                            //echo $sql->prnt();
+//echo $sql->prnt();
                             $this->GRID_COLS[$tmp_obj->LABEL] = $tmp_obj->ALT_COLUMN_TEXT != '' ? $tmp_obj->ALT_COLUMN_TEXT : $tmp_obj->COLUMN_NAME;
                             $tmp_cols[] = stripslashes($tmp_obj->ALT_COLUMN_TEXT != '' ? $tmp_obj->ALT_COLUMN_TEXT : $tmp_obj->COLUMN_NAME);
                             $tmp_labels[] = stripslashes($tmp_obj->LABEL);

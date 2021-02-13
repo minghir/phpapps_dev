@@ -30,7 +30,7 @@ class phpapps_admin_module_default extends template{
 		//$this->globals = $GLOBALS_OBJ;
                 //$this->layout = PHPAPPS_LAYOUTS_DIR . "{$this->globals->PHPAPPS_DB}.lay";
 		
-		$this->globals->con->select_db("phpapps");
+		$this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
 		$sql = new DB_query("SELECT 	m.ID,
 						m.APP_ID,

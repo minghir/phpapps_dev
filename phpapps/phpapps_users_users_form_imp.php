@@ -6,7 +6,7 @@ include ("gen_php/phpapps_users_users_form.php");
                     global $GLOBALS_OBJ;
                     $this->layout = PHPAPPS_LAYOUTS_DIR . "default.lay";   
                     $this->globals = $GLOBALS_OBJ;
-                    $this->globals->con->select_db("phpapps");
+                    $this->globals->con->select_db($this->globals->PHPAPPS_DB);
                             $this->template = "phpapps_users_users_form_imp.tpl";
                             $this->init();
                             $this->display();

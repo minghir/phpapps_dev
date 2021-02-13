@@ -16,7 +16,7 @@ class phpapps_applications extends template{
                // $this->layout = PHPAPPS_LAYOUTS_DIR . "{$this->globals->PHPAPPS_DB}.lay";
 		//global $GLOBALS_OBJ;
 		//$this->globals = $GLOBALS_OBJ;
-		$this->globals->con->select_db("phpapps");
+		$this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
 		$sql = new DB_query("SELECT 	ID, 
 						APP_NAME, 

@@ -11,7 +11,7 @@ require_once (PHPAPPS_LIBS_DIR . "template.php");
 class eshop_admin_products_form extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "eshop";
+	public $form_schema;// = "eshop";
 	public $form_table = "products";
         
 	public $template;// = "gen_tpl/eshop_admin_products_form.tpl";
@@ -72,7 +72,7 @@ class eshop_admin_products_form extends template{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
-                
+                $this->form_schema = $this->globals->CURRENT_APP_DB;
                 //$this->smarty = new Smarty;
                 //$this->smarty->template_dir = CURRENT_APP_TPL_DIR . DIR_SEP . "gen_tpl" . DIR_SEP;
                 //$this->smarty->compile_dir = SMARTY_COMPILE_DIR;

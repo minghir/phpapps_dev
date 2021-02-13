@@ -33,7 +33,7 @@ class phpapps_database_module extends template{
     	//$this->display_objects_type = 'SCRIPT';
     	//$this->display_objects_id = $this->script_id;
         
-        $this->globals->con->select_db("phpapps");
+        $this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
 		$sql = new DB_query("SELECT 	m.ID,
 						m.APP_ID,

@@ -8,7 +8,7 @@ require_once (PHPAPPS_LIBS_DIR . "template.php");
 class contact_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "eshop";
+	public $form_schema;// = "eshop";
 	public $form_table = "messages";
         
 	public $template;// = "gen_tpl/contact_generated.tpl";
@@ -43,6 +43,7 @@ class contact_generated extends template{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                $this->form_schema = $this->globals->CURRENT_APP_DB;
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;

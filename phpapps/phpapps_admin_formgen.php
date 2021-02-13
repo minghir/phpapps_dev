@@ -71,7 +71,7 @@ class phpapps_admin_formgen extends template{
 		
 		global $GLOBALS_OBJ;
 		$this->globals = $GLOBALS_OBJ;
-		$this->globals->con->select_db("phpapps");
+		$this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
 		$sql = new DB_query("SELECT 
 								ID,
@@ -191,7 +191,7 @@ echo "<h1>".$this->deploy_location."</h1></br>";
 	function newFormgen($mod_id,$tbl){
 		global $GLOBALS_OBJ;
 		$this->globals = $GLOBALS_OBJ;
-		$this->globals->con->select_db("phpapps");
+		$this->globals->con->select_db($this->globals->PHPAPPS_DB);
 				
 		$sql = new DB_query("SELECT 
 								APP_ID,

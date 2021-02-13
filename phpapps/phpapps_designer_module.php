@@ -38,7 +38,7 @@ class phpapps_designer_module extends template{
         
         $this->MODULE_ID = $module_id;
         
-        $this->globals->con->select_db("phpapps");
+        $this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
 		$sql = new DB_query("SELECT 	m.ID,
 						m.APP_ID,

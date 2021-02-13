@@ -7,8 +7,6 @@ class auth{
     public $public_script = false;
     public $script_name;
     public $script_id;
-
-    
     
     function __construct($glb) {
         //session_start();
@@ -90,7 +88,7 @@ class auth{
     function logout(){
         session_destroy();
         //$this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );
-        header("Location:phpapps_login.php");
+        header("Location:login.php");
         exit;
     }
     

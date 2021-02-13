@@ -30,7 +30,7 @@ class phpapps_users_module extends template{
             global $GLOBALS_OBJ;
             $this->globals = $GLOBALS_OBJ;
 		
-            $this->globals->con->select_db("phpapps");
+            $this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
             $sql = new DB_query("SELECT 	m.ID,
 						m.APP_ID,

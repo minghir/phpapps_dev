@@ -17,13 +17,13 @@
                     </label>
                         <input class="form-control" type="text" id="LAST_NAME" name="LAST_NAME" value="{$LAST_NAME}">
                 </div>
-														                				                		                		                        		<div class="form-group">
+														                				                		                		                        												                						<div class="form-group">
                     <label >
-                        Titlu :
+                        Titlu  :
                     </label>
-                        <input class="form-control" type="text" id="TITLE_ID" name="TITLE_ID" value="{$TITLE_ID}">
+			{$TITLE_ID_sel}
                 </div>
-														                				                		                		                        														<!-- <div class="form-group"><label >Data nastere :<td> <input type="text" class="tcal" name="BIRTH_DATE" value="{$BIRTH_DATE}"></div> -->
+                                		                		                        														<!-- <div class="form-group"><label >Data nastere :<td> <input type="text" class="tcal" name="BIRTH_DATE" value="{$BIRTH_DATE}"></div> -->
 		<div class="form-group">
                     <label >
                         Data nastere :

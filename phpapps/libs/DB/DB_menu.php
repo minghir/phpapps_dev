@@ -70,7 +70,7 @@ class DB_menu{
     
     function setup_menu_options(){
         $sql = new DB_query("SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_NAME,APP_NAME FROM {$this->globals->PHPAPPS_DB}.view_menus WHERE ID = :menu_id",array(":menu_id"=>$this->menu_id));
-        //echo "aici:<h1>" . $sql->prnt() . "</h1><br>";
+//echo "aici:<h1>" . $sql->prnt() . "</h1><br>";
         $this->globals->con->query($sql);	
         $tmp_data_obj = $this->globals->con->fetch_object();
         $this->menu_id = $tmp_data_obj->ID;

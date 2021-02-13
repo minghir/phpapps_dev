@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class eshop_admin_products_form_imp_generated extends template{
+class phpapps_database_queries_form_imp_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema;// = "eshop";
-	public $form_table = "products";
+	public $form_schema = "phpapps";
+	public $form_table = "queries";
         
-	public $template;// = "gen_tpl/eshop_admin_products_form_imp_generated.tpl";
+	public $template;// = "gen_tpl/phpapps_database_queries_form_imp_generated.tpl";
         
-        public $tpl = "eshop_admin_products_form_imp_generated";
+        public $tpl = "phpapps_database_queries_form_imp_generated";
 	
         //get values
 	public $gact;
@@ -29,30 +29,20 @@ class eshop_admin_products_form_imp_generated extends template{
 	            
 	public $ID;
         	            
-	public $CATEGORY_ID;
+	public $MODULE_ID;
         	            
-	public $PRODUCT_TITLE;
+	public $QUERY_NAME;
+        	            
+	public $QUERY_BODY;
         	            
 	public $DESCRIPTION;
-        	            
-	public $PRICE;
-        	            
-	public $CURRENCY_ID;
-        	            
-	public $STOCK;
         		
 		 
 		 
 		 
 		 
 		 
-			public $CURRENCY_ID_sel;
-	 
-		 
 			
-		 
-			public $CATEGORY_ID_sel;
-	 
 		 
 		 
 		 
@@ -65,7 +55,6 @@ class eshop_admin_products_form_imp_generated extends template{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
-                $this->form_schema = $this->globals->CURRENT_APP_DB;
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
@@ -78,13 +67,7 @@ class eshop_admin_products_form_imp_generated extends template{
 					 
 					 
 					 
-								$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID","{$this->globals->CURRENT_APP_DB}.list_currency");
-                        			 
-					 
 				
-					 
-									$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID","{$this->globals->CURRENT_APP_DB}.categories");
-                                			 
 					 
 					 
 					 
@@ -109,12 +92,10 @@ class eshop_admin_products_form_imp_generated extends template{
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												CATEGORY_ID,
-												PRODUCT_TITLE,
-												DESCRIPTION,
-												PRICE,
-												CURRENCY_ID,
-												STOCK
+												MODULE_ID,
+												QUERY_NAME,
+												QUERY_BODY,
+												DESCRIPTION
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -122,12 +103,10 @@ class eshop_admin_products_form_imp_generated extends template{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->CATEGORY_ID = stripslashes($this->globals->con->get_field("CATEGORY_ID"));
-                                			                                                                $this->PRODUCT_TITLE = stripslashes($this->globals->con->get_field("PRODUCT_TITLE"));
+                                			                                                                $this->MODULE_ID = stripslashes($this->globals->con->get_field("MODULE_ID"));
+                                			                                                                $this->QUERY_NAME = stripslashes($this->globals->con->get_field("QUERY_NAME"));
+                                			                                                                $this->QUERY_BODY = stripslashes($this->globals->con->get_field("QUERY_BODY"));
                                 			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
-                                			                                                                $this->PRICE = stripslashes($this->globals->con->get_field("PRICE"));
-                                			                                                                $this->CURRENCY_ID = stripslashes($this->globals->con->get_field("CURRENCY_ID"));
-                                			                                                                $this->STOCK = stripslashes($this->globals->con->get_field("STOCK"));
                                 						
 	}
 	
@@ -142,33 +121,25 @@ class eshop_admin_products_form_imp_generated extends template{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					CATEGORY_ID,
-																						PRODUCT_TITLE,
-																						DESCRIPTION,
-																						PRICE,
-																						CURRENCY_ID,
-																						STOCK
+																					MODULE_ID,
+																						QUERY_NAME,
+																						QUERY_BODY,
+																						DESCRIPTION
 										 ) VALUES (
-																					:CATEGORY_ID,
-																						:PRODUCT_TITLE,
-																						:DESCRIPTION,
-																						:PRICE,
-																						:CURRENCY_ID,
-																						:STOCK
+																					:MODULE_ID,
+																						:QUERY_NAME,
+																						:QUERY_BODY,
+																						:DESCRIPTION
 													)",
 			array(
 																		                                            
-                                            ":CATEGORY_ID" => $this->CATEGORY_ID,
+                                            ":MODULE_ID" => $this->MODULE_ID,
                                         														                                            
-                                            ":PRODUCT_TITLE" => $this->PRODUCT_TITLE,
+                                            ":QUERY_NAME" => $this->QUERY_NAME,
+                                        														                                            
+                                            ":QUERY_BODY" => $this->QUERY_BODY,
                                         														                                            
                                             ":DESCRIPTION" => $this->DESCRIPTION,
-                                        														                                            
-                                            ":PRICE" => $this->PRICE,
-                                        														                                            
-                                            ":CURRENCY_ID" => $this->CURRENCY_ID,
-                                        														                                            
-                                            ":STOCK" => $this->STOCK,
                                         												)
 			);
 
@@ -197,22 +168,18 @@ class eshop_admin_products_form_imp_generated extends template{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												CATEGORY_ID = :CATEGORY_ID,
-												PRODUCT_TITLE = :PRODUCT_TITLE,
-												DESCRIPTION = :DESCRIPTION,
-												PRICE = :PRICE,
-												CURRENCY_ID = :CURRENCY_ID,
-												STOCK = :STOCK
+												MODULE_ID = :MODULE_ID,
+												QUERY_NAME = :QUERY_NAME,
+												QUERY_BODY = :QUERY_BODY,
+												DESCRIPTION = :DESCRIPTION
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":CATEGORY_ID" => $this->CATEGORY_ID,
-                                        				                                                                                    ":PRODUCT_TITLE" => $this->PRODUCT_TITLE,
+                                        				                                                                                    ":MODULE_ID" => $this->MODULE_ID,
+                                        				                                                                                    ":QUERY_NAME" => $this->QUERY_NAME,
+                                        				                                                                                    ":QUERY_BODY" => $this->QUERY_BODY,
                                         				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
-                                        				                                                                                    ":PRICE" => $this->PRICE,
-                                        				                                                                                    ":CURRENCY_ID" => $this->CURRENCY_ID,
-                                        				                                                                                    ":STOCK" => $this->STOCK,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -287,12 +254,10 @@ class eshop_admin_products_form_imp_generated extends template{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->CATEGORY_ID  = htmlspecialchars(addslashes(trim($_POST["CATEGORY_ID"])));
-                                                		                                                    $this->PRODUCT_TITLE  = htmlspecialchars(addslashes(trim($_POST["PRODUCT_TITLE"])));
+                                                		                                                    $this->MODULE_ID  = htmlspecialchars(addslashes(trim($_POST["MODULE_ID"])));
+                                                		                                                    $this->QUERY_NAME  = htmlspecialchars(addslashes(trim($_POST["QUERY_NAME"])));
+                                                		                                                    $this->QUERY_BODY  = htmlspecialchars(addslashes(trim($_POST["QUERY_BODY"])));
                                                 		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
-                                                		                                                    $this->PRICE  = htmlspecialchars(addslashes(trim($_POST["PRICE"])));
-                                                		                                                    $this->CURRENCY_ID  = htmlspecialchars(addslashes(trim($_POST["CURRENCY_ID"])));
-                                                		                                                    $this->STOCK  = htmlspecialchars(addslashes(trim($_POST["STOCK"])));
                                                 		        }
 	
         function before_post_actions(){
@@ -326,23 +291,7 @@ class eshop_admin_products_form_imp_generated extends template{
 					 
 					 
 					 
-								//$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID",".{$this->globals->CURRENT_APP_DB}.list_currency");
-			$this->CURRENCY_ID_sel->selected_val = $this->CURRENCY_ID;
-			$this->CURRENCY_ID_sel->setup_select_options();
-			 
-					 
 				
-					 
-									//$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID",".{$this->globals->CURRENT_APP_DB}.categories");
-				//$this->CATEGORY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->CURRENT_APP_DB}.categories ORDER BY NAME");
-                                
-                                $this->CATEGORY_ID_sel->table = "{$this->globals->CURRENT_APP_DB}.categories";
-                                $this->CATEGORY_ID_sel->value_col = "ID";
-                                $this->CATEGORY_ID_sel->label_col = "NAME";
-                                
-				$this->CATEGORY_ID_sel->selected_val = $this->CATEGORY_ID;
-				$this->CATEGORY_ID_sel->setup_select_options();
-			 
 					 
 					 
 					 
@@ -353,24 +302,16 @@ class eshop_admin_products_form_imp_generated extends template{
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
 							"ID" => $this->ID,
-							"CATEGORY_ID" => $this->CATEGORY_ID,
-							"PRODUCT_TITLE" => $this->PRODUCT_TITLE,
+							"MODULE_ID" => $this->MODULE_ID,
+							"QUERY_NAME" => $this->QUERY_NAME,
+							"QUERY_BODY" => $this->QUERY_BODY,
 							"DESCRIPTION" => $this->DESCRIPTION,
-							"PRICE" => $this->PRICE,
-							"CURRENCY_ID" => $this->CURRENCY_ID,
-							"STOCK" => $this->STOCK,
 									 
 						 
 						 
 						 
 						 
-										"CURRENCY_ID_sel" => $this->CURRENCY_ID_sel->get_select_str(),
-			 
-						 
 									 
-										"CATEGORY_ID_sel" => $this->CATEGORY_ID_sel->get_select_str(),
-			 
-						 
 						 
 						 
 						 

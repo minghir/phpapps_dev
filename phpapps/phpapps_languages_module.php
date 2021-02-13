@@ -30,7 +30,7 @@ class phpapps_languages_module extends template{
         
         $this->app_id = $app_id;
         
-        $this->globals->con->select_db("phpapps");
+        $this->globals->con->select_db($this->globals->PHPAPPS_DB);
 		
 		$sql = new DB_query("SELECT 	m.ID,
 						m.APP_ID,

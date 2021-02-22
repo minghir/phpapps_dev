@@ -6,7 +6,7 @@ namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class product_details_generated extends template{
+class send_order_generated extends template{
 
     /**
      * application database id
@@ -69,21 +69,21 @@ class product_details_generated extends template{
      *
      * @var string
      */
-    protected $_SCRIPT_NAME = "product_details";
+    protected $_SCRIPT_NAME = "send_order";
     
     /**
      * script long title
      *
      * @var string
      */
-    protected $_SCRIPT_TITLE = "Product Details";
+    protected $_SCRIPT_TITLE = "Send Order";
     
     /**
      * module label (short title)
      *
      * @var string
      */
-    protected $_SCRIPT_LABEL = "product_details";
+    protected $_SCRIPT_LABEL = "send_order";
     
     protected $_SCRIPT_VERSION = "";
     
@@ -91,21 +91,17 @@ class product_details_generated extends template{
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
-    protected $display_objects_id = 348;
+    protected $display_objects_id = 374;
     
     protected $smary;
     protected $con;
-    
-    protected $product_id;
         
     function __construct() {
         parent::__construct();
         
-        $this->tpl = "product_details.tpl";        
+        $this->tpl = "send_order.tpl";        
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
-        
-        $this->product_id = $_GET["gfield_value"];
      
         // phpapps_display_abs Load all elelments
         $this->load_elements(); // parent function
@@ -115,18 +111,10 @@ class product_details_generated extends template{
     }
     
     function setup_display() {
-        $prod_table = new DB_table("{$this->globals->CURRENT_APP_DB}.view_products");
-        $img_table =  new DB_table("{$this->globals->CURRENT_APP_DB}.product_images");
-        
-        //print_r($img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2));
-        
-        $this->globals->sm->assign(array(
-                "PRODUCT_ARRAY" => $prod_table->getLineArray("ID",$this->product_id),
-                "PRODUCT_IMAGES" => $img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2),
-                "SCRIPT_CONTENT" => "product_details: Youre code here."));
+        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "send_order: Youre code here."));
     }
     
 }
 
-new product_details_generated();
+new send_order_generated();
 ?>

@@ -5,6 +5,7 @@
     DESCRIPTION: {$PRODUCT_ARRAY["DESCRIPTION"]}<br>
     PRICE:  {$PRODUCT_ARRAY["PRICE"]} {$PRODUCT_ARRAY["CURRENCY"]}<br>
     STOCK:  {$PRODUCT_ARRAY["STOCK"]} in stock<br>
+     <a href="cart.php?gact=add&gfield=ID&gfield_value={$PRODUCT_ARRAY["ID"]}" class="btn btn-primary">adauga in cos</a>
     <ul>
     
         <li><img src="{$PRODUCT_IMAGES[0]}" width="100"></li>

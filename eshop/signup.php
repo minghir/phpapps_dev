@@ -129,7 +129,7 @@ include ("generated_php/signup_generated.php");
                         $this->alerts->add_alert("danger","Parolele nu coincid!");
                     }
                     
-                    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                    if(filter_var($email, FILTER_VALIDATE_EMAIL)===false){
                         $this->alerts->add_alert("danger","Adresa de email este invalida!");
                     }
                     

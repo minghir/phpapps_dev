@@ -13,6 +13,6 @@
 {else}
     <p>Nu aveti produse in cosul de cumparaturi </p>
 {/if}
-<p><a href="products.php">Click aici pentru a continua cumparaturile</a>    
+<p><a href="products.php">Click aici pentru a continua cumparaturile</a>  | <a href="send_order.php">Click aici pentru a trimite comanda</a></p>  
      
 {/block}

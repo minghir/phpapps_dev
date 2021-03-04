@@ -3450,6 +3450,6 @@
             "install-path": "../zetacomponents/document"
         }
     ],
-    "dev": false,
+    "dev": true,
     "dev-package-names": []
 }

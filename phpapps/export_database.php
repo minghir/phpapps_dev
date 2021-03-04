@@ -91,7 +91,7 @@ class export_database_generated extends template{
     
     protected $display_objects_type_id = 2;
     protected $display_objects_type = "SCRIPT";
-    protected $display_objects_id = ;
+    //protected $display_objects_id = ;
     
     protected $smary;
     protected $con;

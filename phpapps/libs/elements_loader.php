@@ -2,6 +2,7 @@
 namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "DB_grid_imp.php");
+require_once (PHPAPPS_LIBS_DIR . "form.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -123,6 +124,15 @@ class elements_loader {
              }
          }
          
+         
+         if(is_array($this->display_elements['forms'])){
+             //echo "ASSIGN:" . $val->GRID_NAME;
+             foreach($this->display_elements['forms'] as $key=>$val){
+                 $this->smarty->assign($key,$val->get_form_str());
+             }
+        }
+         
+         
           //print_r($this->display_elements['grids']);
      }
      
@@ -131,7 +141,7 @@ class elements_loader {
      }
      
      function load_form($form_id){
-         
+            return new form($form_id);
      }
      
      function load_layout_variable($var_id){

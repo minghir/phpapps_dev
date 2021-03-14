@@ -50,7 +50,7 @@ class elements_loader {
          $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM {$this->globals->PHPAPPS_DB}.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
-         //echo "<br><br><br><br><br>". $sql1->prnt() ."<br>";
+        // echo "<br><br><br><br><br>". $sql1->prnt() ."<br>";
         $this->globals->con->query($sql1,"display_elements_sql");
          
         while($res = $this->globals->con->fetch_object("display_elements_sql")){

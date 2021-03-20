@@ -20,6 +20,11 @@ class custom_element_1 {//extends template{
         $this->app_id = $app_id;
     }
     
+    
+    function get_str(){
+        return $this->get_custom_element_str();
+    }
+    
     function get_custom_element_str(){
         $this->globals->sm->assign(array("custom_element_obj"=>$this));
 	return $this->globals->sm->fetch($this->tpl);

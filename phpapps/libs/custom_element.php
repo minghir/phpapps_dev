@@ -24,8 +24,8 @@ class custom_element {
     public $tpl;
     
     public $smarty;
-    function __construct() {
-        
+    function __construct($custom_el_id = "") {
+        $this->ID = $custom_el_id;
     }
     
     function load_elements(){
@@ -62,6 +62,10 @@ class custom_element {
         //$this->setTemplateFile();
         
        // $this->globals->sm->display($this->tpl);
+    }
+    
+    public function get_str(){
+        return $this->get_custom_element_str();
     }
     
     public function get_custom_element_str(){

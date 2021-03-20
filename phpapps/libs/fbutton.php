@@ -16,9 +16,9 @@ require_once (PHPAPPS_LIBS_DIR . "form_element.php");
  * @author goaga
  */
 
-class flabel extends form_element{
+class fbutton extends form_element{
     
     function __construct($el_id) {
-        parent::__construct($el_id,1);
+        parent::__construct($el_id,5);
     }
 }

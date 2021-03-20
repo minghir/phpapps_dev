@@ -50,7 +50,7 @@ class elements_loader {
          $sql1 = new DB_query("SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM {$this->globals->PHPAPPS_DB}.display_object_elements "
                  . "    WHERE DISPLAY_OBJECT_ID = :display_object_id AND DISPLAY_OBJECT_TYPE_ID=:display_object_type",
                  array(':display_object_id'=>$this->display_object_id,":display_object_type"=>$this->display_object_type));
-        // echo "<br><br><br><br><br>". $sql1->prnt() ."<br>";
+         //echo "<br><br><br><br><br>". $sql1->prnt() ."<br>";
         $this->globals->con->query($sql1,"display_elements_sql");
          
         while($res = $this->globals->con->fetch_object("display_elements_sql")){
@@ -60,7 +60,7 @@ class elements_loader {
                     $this->display_elements['menus'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_menu($res->ELEMENT_ID);
                 break;
                 case '2'://FORM
-                    $this->display_elements['forms'][$res->TEMPLATE_VARIABLE_NAMEE] = $this->load_form($res->ELEMENT_ID);
+                    $this->display_elements['forms'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_form($res->ELEMENT_ID);
                 break;
                 case '3'://LAYOUT_VARIABLE
                     $this->display_elements['layout_variables'][$res->TEMPLATE_VARIABLE_NAME] = $this->load_layout_variable($res->ELEMENT_ID);
@@ -128,6 +128,7 @@ class elements_loader {
          if(is_array($this->display_elements['forms'])){
              //echo "ASSIGN:" . $val->GRID_NAME;
              foreach($this->display_elements['forms'] as $key=>$val){
+                // echo "AICI:($key)" . $val->get_form_str() . "<br>";
                  $this->smarty->assign($key,$val->get_form_str());
              }
         }

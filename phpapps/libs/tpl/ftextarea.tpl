@@ -1,0 +1,1 @@
+<label for="{$this->NAME}">{{$this->label}}</label><textarea id="fname" name="{$this->NAME}">{$this->VALUE}</textarea>

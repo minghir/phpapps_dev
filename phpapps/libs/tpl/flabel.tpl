@@ -1,0 +1,1 @@
+<label id="flabel_id_{$this->ID}" for="{$this->for}">{$this->VALUE}</label>

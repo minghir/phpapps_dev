@@ -2,7 +2,7 @@
 namespace wabdo;
 require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "DB_grid_imp.php");
-require_once (PHPAPPS_LIBS_DIR . "form.php");
+require_once (PHPAPPS_LIBS_DIR . "dbform.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -142,7 +142,7 @@ class elements_loader {
      }
      
      function load_form($form_id){
-            return new form($form_id);
+            return new dbform($form_id);
      }
      
      function load_layout_variable($var_id){

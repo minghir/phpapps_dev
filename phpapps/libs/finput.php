@@ -62,15 +62,10 @@ class finput extends form_element{
                                 "time");
     public $input_type_id;
     public $input_type;
-    public $label;
     
     function __construct($el_id,$in_type_id) {
         parent::__construct($el_id,2);
+        
         $this->input_type = $this->input_types[$in_type_id];
     }
-    
-    function set_label($lbl){
-        $this->label = $lbl;
-    }
-    
 }

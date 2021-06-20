@@ -1,1 +1,1 @@
-<label for="{$this->NAME}">{{$this->label}}</label><input type="{$this->input_type}" id="fname" name="{$this->NAME}" value="{$this->VALUE}">
+<label for="{$this->NAME}">{$this->ELEMENT_LABEL}</label><input type="{$this->input_type}" id="fname" name="{$this->NAME}" value="{$this->VALUE}">

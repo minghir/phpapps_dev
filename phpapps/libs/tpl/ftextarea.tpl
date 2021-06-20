@@ -1,1 +1,1 @@
-<label for="{$this->NAME}">{{$this->label}}</label><textarea id="fname" name="{$this->NAME}">{$this->VALUE}</textarea>
+<label for="{$this->NAME}">{{$this->ELEMENT_LABEL}}</label><textarea id="fname" name="{$this->NAME}">{$this->VALUE}</textarea>

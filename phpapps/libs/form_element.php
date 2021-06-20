@@ -19,6 +19,7 @@ class form_element {
     private $sm;
     
     public $ID;
+    public $ELEMENT_LABEL;
     public $VALUE;
     public $NAME;
     
@@ -33,7 +34,7 @@ class form_element {
     
     public function __construct($element_id,$element_type){
         
-         $this->sm = new Smarty;
+        $this->sm = new Smarty;
         $this->sm->template_dir = PHPAPPS_LIBS_TPL_DIR;
 			
 			//echo PHPAPPS_LIBS_TPL_DIR . "<br>";
@@ -50,6 +51,10 @@ class form_element {
             }
             case 2:{ //finput
                 $this->tpl = "finput.tpl";
+                break;
+            }
+            case 3:{ //fselect
+                $this->tpl = "fselect.tpl";
                 break;
             }
             case 4:{ //ftextarea
@@ -74,6 +79,14 @@ class form_element {
         return $this->VALUE;
     }
     
+    function set_element_label($val){
+        $this->ELEMENT_LABEL = $val;
+    }
+    
+    function get_element_label(){
+        return $this->ELEMENT_LABEL;
+    }
+    
     
     function set_name($val){
         $this->NAME = $val;
@@ -83,7 +96,12 @@ class form_element {
         return $this->NAME;
     }
     
+    function setup(){///overwrite
+        
+    }
+    
     function get_str(){
+        $this->setup();
         $this->sm->assign("this",$this);
         return $this->sm->fetch($this->tpl);
     }

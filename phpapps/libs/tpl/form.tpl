@@ -2,7 +2,8 @@
 {$flabel1}
 {$flabel2}
 
-
+<form name="{$this->FORM_NAME}" method="POST">
 {foreach from=$this->form_elements item=form_el}
-    {$form_el->get_str()}
+    {$form_el->get_str()}<br>
  {/foreach}
+</form>

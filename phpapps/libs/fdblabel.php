@@ -7,18 +7,22 @@
  */
 
 namespace wabdo;
-require_once (PHPAPPS_LIBS_DIR . "form_element.php");
+
+require_once (PHPAPPS_LIBS_DIR . "flabel.php");
+
 /**
- * Description of finput
+ * Description of flabel
  *
  * @author goaga
  */
 
-class ftextarea extends form_element{
+class fdblabel extends flabel{
     
-   
     function __construct($el_id) {
-        parent::__construct($el_id,4);
+        parent::__construct($el_id,1);
     }
     
+    function setup(){
+        
+    }
 }

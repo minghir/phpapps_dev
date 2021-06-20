@@ -1,0 +1,1 @@
+<option value="{$this->value}" {if $this->selected === true}selected{/if}>{$this->label}</option>

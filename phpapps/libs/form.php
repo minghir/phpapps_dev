@@ -13,6 +13,7 @@ require_once (PHPAPPS_LIBS_DIR . "flabel.php");
 require_once (PHPAPPS_LIBS_DIR . "finput.php");
 require_once (PHPAPPS_LIBS_DIR . "ftextarea.php");
 require_once (PHPAPPS_LIBS_DIR . "fbutton.php");
+require_once (PHPAPPS_LIBS_DIR . "fselect.php");
 
 /**
  * Description of form
@@ -21,10 +22,13 @@ require_once (PHPAPPS_LIBS_DIR . "fbutton.php");
  */
 class form {
     public $tpl;
-    public $ID;
+    
     public $form_elements = array();
     private $str;
     private $sm;
+    
+    public $ID;
+    public $FORM_NAME;
     
     public function __construct($form_id){
         $this->tpl = "form.tpl";
@@ -52,21 +56,44 @@ class form {
         
         $this->load_form_elements();
         
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            echo "AICICICA";
+            $this->on_submit();
+        }else{
+            
+        }
+        
     }
     
     function load_form_elements(){
         
             $this->form_elements["flabel1"] = new flabel(1);
             //$lbl = new flabel(1);
-            $tmp = new finput(2,1);
-            $tmp->set_label("MIMI");
+            $tmp = new finput(2,19);
+            $tmp->set_element_label("MIMI  ");
             $tmp->set_name("MIMICA");
             $tmp->set_value("MVIMICA");
             $this->form_elements["flabel2"] = $tmp;
             
-            $this->form_elements["flabel43"] = new ftextarea(4);
+            $tmp = new ftextarea(4);
+            $tmp->set_name("texa");
+            $this->form_elements["flabel43"] = $tmp;
             
-            $this->form_elements["flabea43"] = new fbutton(4);
+            $tmp =  new fbutton(4);
+            $tmp->set_button_type("SUBMIT");
+            $tmp->set_name("trimite");
+            $this->form_elements["flabea43"] = $tmp;
+            
+            
+            $tmp = new fselect(4);
+            $tmp->set_name("AA");
+            $tmp->set_elements(array("mama","baba","cici"));
+            $tmp->set_empty_option(true);
+            $tmp->set_element_label("SLECT BENGOS");
+            //$tmp->set_multiple(true);
+            $tmp->set_selected(1);
+            
+            $this->form_elements["flabea435"] = $tmp;
             
             $this->form_elements["flabel3"] = $this->load_custom_element(43);
             
@@ -96,7 +123,11 @@ class form {
        //$this->sm->assign("flabel1", $this->form_elements["flabel1"]->get_str());
        //$this->sm->assign("flabel2", $this->form_elements["flabel2"]->get_str());
        $this->sm->assign("this",$this);
-        return $this->sm->fetch($this->tpl);
+       return $this->sm->fetch($this->tpl);
     }
-    //put your code here
+    
+    function on_submit(){
+        print_r($_POST);
+    }
+    
 }

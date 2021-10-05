@@ -5,9 +5,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `phpapps` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-
-
+USE `phpapps`;
 DROP TABLE IF EXISTS `applications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -67,6 +67,7 @@ INSERT INTO `custom_elements` (`ID`, `NAME`, `APP_ID`, `DESCRIPTION`, `PHP_CLASS
 INSERT INTO `custom_elements` (`ID`, `NAME`, `APP_ID`, `DESCRIPTION`, `PHP_CLASS_NAME`, `TEMPLATE_ID`) VALUES (40,'ESHOP_CONTACT_FORM',7,'',NULL,1);
 INSERT INTO `custom_elements` (`ID`, `NAME`, `APP_ID`, `DESCRIPTION`, `PHP_CLASS_NAME`, `TEMPLATE_ID`) VALUES (41,'ESHOP_LOGIN_FORM',7,'',NULL,0);
 INSERT INTO `custom_elements` (`ID`, `NAME`, `APP_ID`, `DESCRIPTION`, `PHP_CLASS_NAME`, `TEMPLATE_ID`) VALUES (42,'ESHOP_LAYOUT_SETUP',7,'',NULL,47);
+INSERT INTO `custom_elements` (`ID`, `NAME`, `APP_ID`, `DESCRIPTION`, `PHP_CLASS_NAME`, `TEMPLATE_ID`) VALUES (43,'TEST_FORM_EL',1,'',NULL,0);
 DROP TABLE IF EXISTS `db_connections`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -145,6 +146,10 @@ INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJEC
 INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (60,32,1,42,5,'ESHOP_LAYOUT_SETUP','');
 INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (61,299,2,18,4,'ESHOP_ADMIN_PRODUCTS','');
 INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (62,299,2,20,4,'ESHOP_ADMIN_CLIENTS','');
+INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (63,299,2,23,4,'ESHOP_ADMIN_ORDERS','');
+INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (64,286,2,1,2,'TEST_FORM_EL','aaa');
+INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (65,375,2,1,2,'test_form_element','aa');
+INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (66,33,4,1,2,'FRM1','');
 DROP TABLE IF EXISTS `errr`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -653,7 +658,7 @@ INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `L
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1487,370,'ID','bigint(20)',0,'ID',0,'hidden','','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1488,370,'FIRST_NAME','varchar(255)',0,'Nume',0,'text','','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1489,370,'LAST_NAME','varchar(255)',0,'Prenume',0,'text','','','');
-INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1490,370,'TITLE_ID','bigint(20)',0,'Titlu',0,'text','','','');
+INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1490,370,'TITLE_ID','bigint(20)',0,'Titlu',0,'select_list','eshop.list_titles','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1491,370,'BIRTH_DATE','date',0,'Data nastere',0,'date','','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1492,370,'EMAIL','varchar(255)',0,'Email',0,'text','','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1493,370,'PASSWORD','varchar(20)',1,'PASSWORD',0,'text','','','');
@@ -664,6 +669,20 @@ INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `L
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1498,370,'ADDRESS_DETAILS','text',0,'Detalii adresa',0,'text','','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1499,370,'REMARKS','text',0,'Observatii',0,'textarea','','','');
 INSERT INTO `form_details` (`ID`, `FORM_ID`, `FIELD`, `FIELD_TYPE`, `HIDDEN`, `LABEL`, `MANDATORY`, `INPUT_TYPE`, `REFERENCE_LIST`, `REFERENCE_TABLE`, `REFERENCE_FIELD`) VALUES (1500,370,'PHONE','varchar(255)',0,'Telefon',0,'text','','','');
+DROP TABLE IF EXISTS `form_elements`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `form_elements` (
+  `ID` bigint(20) NOT NULL,
+  `FORM_ID` bigint(20) DEFAULT NULL,
+  `ELEMENT_TYPE` bigint(20) DEFAULT NULL,
+  `INPUT_TYPE` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `phpapps_form_elements_FORM_ID_FK` (`FORM_ID`),
+  CONSTRAINT `phpapps_form_elements_FORM_ID_FK` FOREIGN KEY (`FORM_ID`) REFERENCES `forms` (`ID`)
+);
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 DROP TABLE IF EXISTS `forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -681,6 +700,7 @@ CREATE TABLE `forms` (
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+INSERT INTO `forms` (`ID`, `FORM_NAME`, `FORM_TITLE`, `FORM_LABEL`, `FORM_TABLE`, `DESCRIPTION`, `TEMPLATE_ID`) VALUES (1,'test1','test1','test1',2,'DADA',1);
 DROP TABLE IF EXISTS `grid_actions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -786,6 +806,7 @@ INSERT INTO `grids` (`ID`, `GRID_NAME`, `GRID_TITLE`, `GRID_TYPE`, `TABLE_ID`, `
 INSERT INTO `grids` (`ID`, `GRID_NAME`, `GRID_TITLE`, `GRID_TYPE`, `TABLE_ID`, `QUERY_ID`, `EDITABLE`, `FILTERABLE`, `PAGINABLE`, `SORTABLE`, `EXPORTABLE`, `EDIT_FORM_ID`, `ROWS_ON_PAGE`, `ELEMENT_TEMPLATE_ID`) VALUES (18,'eshop_admin_products','ESHOP ADMIN PRODUCTS',4,382,0,1,0,1,1,0,301,10,2);
 INSERT INTO `grids` (`ID`, `GRID_NAME`, `GRID_TITLE`, `GRID_TYPE`, `TABLE_ID`, `QUERY_ID`, `EDITABLE`, `FILTERABLE`, `PAGINABLE`, `SORTABLE`, `EXPORTABLE`, `EDIT_FORM_ID`, `ROWS_ON_PAGE`, `ELEMENT_TEMPLATE_ID`) VALUES (19,'eshop_search_products','ESHOP',1,377,0,0,0,1,1,0,0,12,45);
 INSERT INTO `grids` (`ID`, `GRID_NAME`, `GRID_TITLE`, `GRID_TYPE`, `TABLE_ID`, `QUERY_ID`, `EDITABLE`, `FILTERABLE`, `PAGINABLE`, `SORTABLE`, `EXPORTABLE`, `EDIT_FORM_ID`, `ROWS_ON_PAGE`, `ELEMENT_TEMPLATE_ID`) VALUES (20,'eshop_admin_clients','eshop_admin_clients',1,386,0,1,0,1,1,0,370,20,2);
+INSERT INTO `grids` (`ID`, `GRID_NAME`, `GRID_TITLE`, `GRID_TYPE`, `TABLE_ID`, `QUERY_ID`, `EDITABLE`, `FILTERABLE`, `PAGINABLE`, `SORTABLE`, `EXPORTABLE`, `EDIT_FORM_ID`, `ROWS_ON_PAGE`, `ELEMENT_TEMPLATE_ID`) VALUES (23,'eshop_admin_orders','Comenzi',1,384,0,0,0,1,1,0,0,20,1);
 DROP TABLE IF EXISTS `layout_variables`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -828,7 +849,7 @@ INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES
 INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (25,'laura',1,2,'aaa');
 INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (26,'phpapps_popup',1,2,'');
 INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (27,'phpapps_login',1,2,'');
-INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (31,'eshop_admin_layout',7,5,'');
+INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (31,'eshop_admin_layout',7,9,'');
 INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (32,'eshop_products_layout',7,5,'aa');
 INSERT INTO `layouts` (`ID`, `NAME`, `APP_ID`, `THEME_ID`, `DESCRIPTION`) VALUES (33,'TEST_LAY',1,5,'');
 DROP TABLE IF EXISTS `list_application_types`;
@@ -866,6 +887,7 @@ INSERT INTO `list_databases` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (12,'php_quiz
 INSERT INTO `list_databases` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (15,'test','');
 INSERT INTO `list_databases` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (17,'atsepa','');
 INSERT INTO `list_databases` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (29,'diomax','');
+INSERT INTO `list_databases` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (30,'wordpress','');
 DROP TABLE IF EXISTS `list_dbms_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -937,6 +959,72 @@ INSERT INTO `list_foreign_key_options` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (1,
 INSERT INTO `list_foreign_key_options` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (2,'CASCADE','');
 INSERT INTO `list_foreign_key_options` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (3,'SET NULL','');
 INSERT INTO `list_foreign_key_options` (`ID`, `VALUE`, `DESCRIPTION`) VALUES (4,'NO ACTION','');
+DROP TABLE IF EXISTS `list_form_button_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `list_form_button_types` (
+  `ID` bigint(20) NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`ID`)
+);
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+INSERT INTO `list_form_button_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (1,'','SUBMIT');
+INSERT INTO `list_form_button_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (2,'','CANCEL');
+INSERT INTO `list_form_button_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (3,'','BACK');
+INSERT INTO `list_form_button_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (4,'','RESET');
+DROP TABLE IF EXISTS `list_form_element_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `list_form_element_types` (
+  `ID` bigint(20) NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`ID`)
+);
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (1,'Text label','LABEL');
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (2,'Input value','INPUT');
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (3,'Select input','SELECT');
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (4,'Textarea input','TEXTAREA');
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (5,'Form button','BUTTON');
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (6,'','DB_LABEL');
+INSERT INTO `list_form_element_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (7,'','DB_INPUT');
+DROP TABLE IF EXISTS `list_form_input_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `list_form_input_types` (
+  `ID` bigint(20) NOT NULL,
+  `DESCRIPTION` text COLLATE utf8_bin DEFAULT NULL,
+  `VALUE` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`ID`)
+);
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (1,'','button');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (2,'','checkbox');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (3,'','color');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (4,'','date');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (5,'','datetime-local');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (6,'','email');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (7,'','file');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (8,'','hidden');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (9,'','image');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (10,'','month');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (11,'','number');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (12,'','password');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (13,'','radio');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (14,'','range');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (15,'','reset');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (16,'','search');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (17,'','submit');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (18,'','tel');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (19,'','text');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (20,'','time');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (21,'','url');
+INSERT INTO `list_form_input_types` (`ID`, `DESCRIPTION`, `VALUE`) VALUES (22,'','week');
 DROP TABLE IF EXISTS `list_grid_action_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1667,6 +1755,10 @@ INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TIT
 INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (368,31,'index',0,'index','index',NULL,NULL,2,2,5,1,'',1,1,1,'2020-12-13 10:16:49','2020-12-13 10:16:49');
 INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (369,31,'admin',0,'admin','amin',NULL,NULL,2,2,5,1,'',1,1,1,'2020-12-13 10:18:35','2020-12-13 10:18:35');
 INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (370,10,'eshop_admin_clients_form',386,'','','D:/work/www\\\\phpapps_dev\\\\eshop','D:/work/www\\\\phpapps_dev\\\\eshop',1,1,1,0,'',NULL,1,1,'2020-12-14 14:23:24','2020-12-14 14:23:24');
+INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (371,10,'admin_login',0,'Login','Login',NULL,NULL,2,2,5,0,'',1,1,1,'2020-12-19 19:38:30','2020-12-19 08:09:34');
+INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (372,10,'admin_logout',0,'logout','logout',NULL,NULL,2,1,5,0,'',1,1,1,'2020-12-19 08:21:45','2020-12-19 08:21:45');
+INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (374,31,'send_order',0,'Send Order','send_order',NULL,NULL,2,2,32,0,'',1,1,1,'2021-02-18 09:29:39','2021-02-18 09:26:16');
+INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (375,27,'test_f_el',0,'aa','aa',NULL,NULL,2,1,5,0,'test form element',1,1,1,'2021-03-19 18:17:03','2021-03-12 07:56:33');
 DROP TABLE IF EXISTS `sql_console_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3304,6 +3396,110 @@ INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `C
 INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1636,'show create view view_users',3,1,1,'2020-12-18 10:08:38','2020-12-18 10:08:38');
 INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1637,'select `u`.`ID` AS `ID`,`u`.`USERNAME` AS `USERNAME`,`u`.`PASSWORD` AS `PASSWORD`,`u`.`FIRSTNAME` AS `FIRSTNAME`,`u`.`LASTNAME` AS `LASTNAME`,`u`.`EMAIL` AS `EMAIL`,`u`.`USER_TYPE` AS `USER_TYPE`,`u`.`DESCRIPTION` AS `DESCRIPTION`,`u`.`PROFILE_ID` AS `PROFILE_ID`,`up`.`PROFILE_NAME` AS `PROFILE_NAME`,`up`.`SCRIPT_ID` AS `SCRIPT_ID`,`s`.`SCRIPT_NAME` AS `SCRIPT_NAME` from ((`users` `u` join `user_profiles` `up`) join `scripts` `s`) where `u`.`PROFILE_ID` = `up`.`ID` and `up`.`SCRIPT_ID` = `s`.`ID`',3,1,1,'2020-12-18 10:08:54','2020-12-18 10:08:54');
 INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1638,'show create view view_users',3,1,1,'2020-12-18 10:12:42','2020-12-18 10:12:42');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1639,'show tables like \'view_%\'',3,1,1,'2020-12-18 14:37:09','2020-12-18 14:37:09');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1640,'select CONCAT(\"DROP TABLE IF EXISTS \", TABLE_SCHEMA, \".\", TABLE_NAME, \"; CREATE OR REPLACE VIEW \", TABLE_SCHEMA, \".\", TABLE_NAME, \" AS \", VIEW_DEFINITION, \"; \") table_name from information_schema.views',3,1,1,'2020-12-18 16:30:41','2020-12-18 16:30:41');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1641,'select CONCAT(\"DROP TABLE IF EXISTS \", TABLE_SCHEMA, \".\", TABLE_NAME, \"; CREATE OR REPLACE VIEW \", TABLE_SCHEMA, \".\", TABLE_NAME, \" AS \", VIEW_DEFINITION, \"; \") table_name from information_schema.views where table_schema = \'phpapps\'',3,1,1,'2020-12-18 16:31:37','2020-12-18 16:31:37');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1642,'select CONCAT(\"DROP TABLE IF EXISTS \", TABLE_SCHEMA, \".\", TABLE_NAME, \"; CREATE OR REPLACE VIEW \", TABLE_SCHEMA, \".\", TABLE_NAME, \" AS \", VIEW_DEFINITION, \"; \") table_name from information_schema.views where table_schema = \'eshop\'',3,1,1,'2020-12-18 17:10:02','2020-12-18 17:10:02');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1643,'select CONCAT(\"DROP TABLE IF EXISTS \",  TABLE_NAME, \"; CREATE OR REPLACE VIEW \", TABLE_NAME, \" AS \", VIEW_DEFINITION, \"; \") table_name from information_schema.views where table_schema = \'eshop\'',3,1,1,'2020-12-18 17:38:26','2020-12-18 17:38:26');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1644,'select CONCAT(\"DROP TABLE IF EXISTS \",  TABLE_NAME, \"; CREATE OR REPLACE VIEW \", TABLE_NAME, \" AS \", VIEW_DEFINITION, \"; \") table_name from information_schema.views where table_schema = \'phpapps\'',3,1,1,'2020-12-18 17:42:26','2020-12-18 17:42:26');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1645,'select * from orders',7,1,1,'2020-12-20 08:44:11','2020-12-20 08:44:11');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1646,'select * from order_details',7,1,1,'2020-12-20 08:44:18','2020-12-20 08:44:18');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1647,'select * from orders',7,1,1,'2020-12-20 08:44:49','2020-12-20 08:44:49');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1648,'select * from clients',7,1,1,'2020-12-20 08:46:33','2020-12-20 08:46:33');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1649,'select o.*, c.FIRST_NAME, c.LAST_NAME from orders o left join clients c on (o.client_id = c.id)',7,1,1,'2020-12-20 08:47:14','2020-12-20 08:47:14');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1650,'select o.*, CONCAT (c.FIRST_NAME,\' \',c.LAST_NAME) AS CLIENT_NAME from orders o left join clients c on (o.client_id = c.id)',7,1,1,'2020-12-20 08:47:42','2020-12-20 08:47:42');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1651,'select o.*, CONCAT (c.FIRST_NAME,\' \',c.LAST_NAME) AS CLIENT_NAME, c.email from orders o left join clients c on (o.client_id = c.id)',7,1,1,'2020-12-20 08:48:31','2020-12-20 08:48:31');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1652,'select o.*, CONCAT (c.FIRST_NAME,\' \',c.LAST_NAME) AS CLIENT_NAME, c.EMAIL from orders o left join clients c on (o.client_id = c.id)',7,1,1,'2020-12-20 08:48:39','2020-12-20 08:48:39');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1653,'select * from order_details',7,1,1,'2020-12-20 08:49:31','2020-12-20 08:49:31');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1654,'select count(*) from messages',7,1,1,'2020-12-20 10:04:46','2020-12-20 10:04:46');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1655,'select * from messages',7,1,1,'2020-12-20 10:04:55','2020-12-20 10:04:55');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1656,'create view view_orders as select o.*, CONCAT (c.FIRST_NAME,\' \',c.LAST_NAME) AS CLIENT_NAME, c.EMAIL from orders o left join clients c on (o.client_id = c.id)',7,1,1,'2020-12-20 10:46:25','2020-12-20 10:46:25');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1657,'select * from view_orders',7,1,1,'2020-12-20 10:46:35','2020-12-20 10:46:35');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1658,'show tables',7,1,1,'2021-02-13 08:25:41','2021-02-13 08:25:41');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1659,'show tables',3,1,1,'2021-02-13 08:40:01','2021-02-13 08:40:01');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1660,'show tables like \'view_%\'',3,1,1,'2021-02-13 08:40:16','2021-02-13 08:40:16');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1661,'SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_NAME,APP_NAME FROM phpapps.view_menus WHERE ID = \'5\'',3,1,1,'2021-02-13 08:51:17','2021-02-13 08:51:17');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1662,'SELECT ID,NAME,MENU_TITLE,MENU_TYPE,ORIENTATION,QUERY_BODY,QUERY_ID,TEMPLATE_NAME,APP_NAME FROM phpapps.view_menus WHERE ID = \'8\'',3,1,1,'2021-02-13 08:52:26','2021-02-13 08:52:26');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1663,'show tables',3,1,1,'2021-02-13 09:01:33','2021-02-13 09:01:33');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1664,'select * from queries',3,1,1,'2021-02-13 09:01:50','2021-02-13 09:01:50');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1665,'show tables',7,1,1,'2021-02-13 09:52:57','2021-02-13 09:52:57');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1666,'SHOW CREATE VIEW view_orders',7,1,1,'2021-02-13 09:54:38','2021-02-13 09:54:38');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1667,'select * from grids',3,1,1,'2021-02-13 10:00:21','2021-02-13 10:00:21');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1668,'select * from view_products',7,1,1,'2021-02-18 08:23:09','2021-02-18 08:23:09');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1669,'select * from clients',7,1,1,'2021-02-18 09:40:13','2021-02-18 09:40:13');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1670,'select * from clients',7,1,1,'2021-02-18 10:22:46','2021-02-18 10:22:46');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1671,'show tables',3,1,1,'2021-03-11 09:29:32','2021-03-11 09:29:32');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1672,'select * from queries',3,1,1,'2021-03-11 09:30:16','2021-03-11 09:30:16');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1673,'show tables',3,1,1,'2021-03-11 10:39:46','2021-03-11 10:39:46');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1674,'select * from scripts',3,1,1,'2021-03-11 10:40:12','2021-03-11 10:40:12');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1675,'select * from forms',3,1,1,'2021-03-11 10:40:33','2021-03-11 10:40:33');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1676,'select * from form_details',3,1,1,'2021-03-11 10:40:42','2021-03-11 10:40:42');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1677,'select * from scripts',3,1,1,'2021-03-11 10:41:17','2021-03-11 10:41:17');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1678,'select * from display_object_elements',3,1,1,'2021-03-12 06:31:50','2021-03-12 06:31:50');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1679,'show tables',3,1,1,'2021-03-12 06:32:06','2021-03-12 06:32:06');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1680,'select * from view_display_object_elements',3,1,1,'2021-03-12 06:32:42','2021-03-12 06:32:42');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1681,'select * from view_posible_display_object_elements',3,1,1,'2021-03-12 06:33:08','2021-03-12 06:33:08');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1682,'select * from list_display_elements_types',3,1,1,'2021-03-12 06:33:37','2021-03-12 06:33:37');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1683,'select * from  list_display_objects_types',3,1,1,'2021-03-12 06:34:11','2021-03-12 06:34:11');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1684,'select * from   view_posible_display_object_elements',3,1,1,'2021-03-12 06:35:14','2021-03-12 06:35:14');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1685,'show create view  view_posible_display_object_elements',3,1,1,'2021-03-12 06:35:26','2021-03-12 06:35:26');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1686,'select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,\'(menu)\') AS `ELEMENT_NAME`,\'1\' AS `ELEMENT_TYPE` from `menus` union all select `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,\'(layout variable)\') AS `ELEMENT_NAME`,\'3\' AS `ELEMENT_TYPE` from `layout_variables` union all select `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,\'(grid)\') AS `ELEMENT_NAME`,\'4\' AS `ELEMENT_TYPE` from `grids` union all select `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,\'(custom_element)\') AS `ELEMENT_NAME`,\'5\' AS `ELEMENT_TYPE` from `custom_elements`',3,1,1,'2021-03-12 06:35:52','2021-03-12 06:35:52');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1687,'select * from forms',3,1,1,'2021-03-12 06:40:15','2021-03-12 06:40:15');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1688,'select * from display_object_elements',3,1,1,'2021-03-12 06:40:32','2021-03-12 06:40:32');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1689,'select * from forms',3,1,1,'2021-03-12 06:41:22','2021-03-12 06:41:22');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1690,'select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,\'(menu)\') AS `ELEMENT_NAME`,\'1\' AS `ELEMENT_TYPE` from `menus` union all \r\nselect `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,\'(layout variable)\') AS `ELEMENT_NAME`,\'3\' AS `ELEMENT_TYPE` from `layout_variables` union all \r\nselect `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,\'(grid)\') AS `ELEMENT_NAME`,\'4\' AS `ELEMENT_TYPE` from `grids` union all \r\nselect `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,\'(custom_element)\') AS `ELEMENT_NAME`,\'5\' AS `ELEMENT_TYPE` from `custom_elements`\r\nselect `forms`.`ID` AS `ID`,concat(`forms`.`NAME`,\'(form)\') AS `ELEMENT_NAME`,\'2\' AS `ELEMENT_TYPE` from `forms`',3,1,1,'2021-03-12 06:42:41','2021-03-12 06:42:41');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1691,'select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,\'(menu)\') AS `ELEMENT_NAME`,\'1\' AS `ELEMENT_TYPE` from `menus` union all \r\nselect `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,\'(layout variable)\') AS `ELEMENT_NAME`,\'3\' AS `ELEMENT_TYPE` from `layout_variables` union all \r\nselect `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,\'(grid)\') AS `ELEMENT_NAME`,\'4\' AS `ELEMENT_TYPE` from `grids` union all \r\nselect `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,\'(custom_element)\') AS `ELEMENT_NAME`,\'5\' AS `ELEMENT_TYPE` from `custom_elements`\r\nselect `forms`.`ID` AS `ID`,concat(`forms`.`FORM_NAME`,\'(form)\') AS `ELEMENT_NAME`,\'2\' AS `ELEMENT_TYPE` from `forms`',3,1,1,'2021-03-12 06:42:59','2021-03-12 06:42:59');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1692,'select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,\'(menu)\') AS `ELEMENT_NAME`,\'1\' AS `ELEMENT_TYPE` from `menus` union all \r\nselect `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,\'(layout variable)\') AS `ELEMENT_NAME`,\'3\' AS `ELEMENT_TYPE` from `layout_variables` union all \r\nselect `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,\'(grid)\') AS `ELEMENT_NAME`,\'4\' AS `ELEMENT_TYPE` from `grids` union all \r\nselect `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,\'(custom_element)\') AS `ELEMENT_NAME`,\'5\' AS `ELEMENT_TYPE` from `custom_elements`\r\nselect `forms`.`ID` AS `ID`,concat(`forms`.`FORM_NAME`,\'(form)\') AS `ELEMENT_NAME`,\'2\' AS `ELEMENT_TYPE` from `forms`',3,1,1,'2021-03-12 06:43:01','2021-03-12 06:43:01');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1693,'select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,\'(menu)\') AS `ELEMENT_NAME`,\'1\' AS `ELEMENT_TYPE` from `menus` union all \r\nselect `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,\'(layout variable)\') AS `ELEMENT_NAME`,\'3\' AS `ELEMENT_TYPE` from `layout_variables` union all \r\nselect `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,\'(grid)\') AS `ELEMENT_NAME`,\'4\' AS `ELEMENT_TYPE` from `grids` union all \r\nselect `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,\'(custom_element)\') AS `ELEMENT_NAME`,\'5\' AS `ELEMENT_TYPE` from `custom_elements` union all\r\nselect `forms`.`ID` AS `ID`,concat(`forms`.`FORM_NAME`,\'(form)\') AS `ELEMENT_NAME`,\'2\' AS `ELEMENT_TYPE` from `forms`',3,1,1,'2021-03-12 06:43:33','2021-03-12 06:43:33');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1694,'select * from  view_posible_display_object_elements',3,1,1,'2021-03-12 07:53:30','2021-03-12 07:53:30');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1695,'select * from  view_posible_display_object_elements',3,1,1,'2021-03-12 07:54:34','2021-03-12 07:54:34');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1696,'select * from  view_posible_display_object_elements',3,1,1,'2021-03-12 07:54:58','2021-03-12 07:54:58');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1697,'SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements WHERE DISPLAY_OBJECT_ID = \'375\' AND DISPLAY_OBJECT_TYPE_ID=\'2\'',1,1,1,'2021-03-13 16:55:04','2021-03-13 16:55:04');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1698,'select * from view_display_object_elements',3,1,1,'2021-03-13 17:00:25','2021-03-13 17:00:25');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1699,'select * from view_display_object_elements where id = 65',3,1,1,'2021-03-13 17:00:39','2021-03-13 17:00:39');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1700,'select * from view_display_object_elements where id = 65',3,1,1,'2021-03-13 17:01:35','2021-03-13 17:01:35');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1701,'select * from view_display_object_elements',3,1,1,'2021-03-13 17:01:39','2021-03-13 17:01:39');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1702,'show create view  view_display_object_elements',3,1,1,'2021-03-13 17:02:14','2021-03-13 17:02:14');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1703,'select * from   view_display_object_elements',3,1,1,'2021-03-13 17:04:31','2021-03-13 17:04:31');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1704,'select `dsp`.`ID` AS `ID`,\r\n `dsp`.`DISPLAY_OBJECT_ID` AS `DISPLAY_OBJECT_ID`,\r\n case \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'1\' then (select `l`.`NAME` from `layouts` `l` where `l`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'2\' then (select `s`.`SCRIPT_NAME` from `scripts` `s` where `s`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) else \'UNKNOWN OBJECT\' end AS `DISPLAY_OBJECT_NAME`,\r\n `dsp`.`DISPLAY_OBJECT_TYPE_ID` AS `DISPLAY_OBJECT_TYPE_ID`,\r\n (select `ldo`.`VALUE` from `list_display_objects_types` `ldo` where `ldo`.`ID` = `dsp`.`DISPLAY_OBJECT_TYPE_ID`) AS `DISPLAY_OBJECT_TYPE`,\r\n `dsp`.`ELEMENT_ID` AS `ELEMENT_ID`,\r\n case \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'1\' then (select `m`.`NAME` from `menus` `m` where `m`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'2\' then (select `ss`.`SCRIPT_NAME` from `scripts` `ss` where `ss`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'3\' then (select `lv`.`VARIABLE_NAME` from `layout_variables` `lv` where `lv`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'4\' then (select `g`.`GRID_NAME` from `grids` `g` where `g`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'5\' then (select `ce`.`NAME` from `custom_elements` `ce` where `ce`.`ID` = `dsp`.`ELEMENT_ID`) \r\n else \'UNKNOWN ELEMENT\' end AS `ELEMENT_NAME`,\r\n `dsp`.`ELEMENT_TYPE_ID` AS `ELEMENT_TYPE_ID`,\r\n (select `lde`.`VALUE` from `list_display_elements_types` `lde` where `lde`.`ID` = `dsp`.`ELEMENT_TYPE_ID`) AS `ELEMENT_TYPE`,\r\n `dsp`.`TEMPLATE_VARIABLE_NAME` AS `TEMPLATE_VARIABLE_NAME`,\r\n `dsp`.`DESCRIPTION` AS `DESCRIPTION` \r\n from `display_object_elements` `dsp`',3,1,1,'2021-03-13 17:37:58','2021-03-13 17:37:58');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1705,'select `dsp`.`ID` AS `ID`,\r\n `dsp`.`DISPLAY_OBJECT_ID` AS `DISPLAY_OBJECT_ID`,\r\n case \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'1\' then (select `l`.`NAME` from `layouts` `l` where `l`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'2\' then (select `s`.`SCRIPT_NAME` from `scripts` `s` where `s`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) else \'UNKNOWN OBJECT\' end AS `DISPLAY_OBJECT_NAME`,\r\n `dsp`.`DISPLAY_OBJECT_TYPE_ID` AS `DISPLAY_OBJECT_TYPE_ID`,\r\n (select `ldo`.`VALUE` from `list_display_objects_types` `ldo` where `ldo`.`ID` = `dsp`.`DISPLAY_OBJECT_TYPE_ID`) AS `DISPLAY_OBJECT_TYPE`,\r\n `dsp`.`ELEMENT_ID` AS `ELEMENT_ID`,\r\n case \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'1\' then (select `m`.`NAME` from `menus` `m` where `m`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'2\' then (select `ss`.`FORM_NAME` from `forms` `ss` where `ss`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'3\' then (select `lv`.`VARIABLE_NAME` from `layout_variables` `lv` where `lv`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'4\' then (select `g`.`GRID_NAME` from `grids` `g` where `g`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'5\' then (select `ce`.`NAME` from `custom_elements` `ce` where `ce`.`ID` = `dsp`.`ELEMENT_ID`) \r\n else \'UNKNOWN ELEMENT\' end AS `ELEMENT_NAME`,\r\n `dsp`.`ELEMENT_TYPE_ID` AS `ELEMENT_TYPE_ID`,\r\n (select `lde`.`VALUE` from `list_display_elements_types` `lde` where `lde`.`ID` = `dsp`.`ELEMENT_TYPE_ID`) AS `ELEMENT_TYPE`,\r\n `dsp`.`TEMPLATE_VARIABLE_NAME` AS `TEMPLATE_VARIABLE_NAME`,\r\n `dsp`.`DESCRIPTION` AS `DESCRIPTION` \r\n from `display_object_elements` `dsp`',3,1,1,'2021-03-13 17:38:18','2021-03-13 17:38:18');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1706,'select `dsp`.`ID` AS `ID`,\r\n `dsp`.`DISPLAY_OBJECT_ID` AS `DISPLAY_OBJECT_ID`,\r\n case \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'1\' then (select `l`.`NAME` from `layouts` `l` where `l`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'2\' then (select `s`.`SCRIPT_NAME` from `scripts` `s` where `s`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) else \'UNKNOWN OBJECT\' end AS `DISPLAY_OBJECT_NAME`,\r\n `dsp`.`DISPLAY_OBJECT_TYPE_ID` AS `DISPLAY_OBJECT_TYPE_ID`,\r\n (select `ldo`.`VALUE` from `list_display_objects_types` `ldo` where `ldo`.`ID` = `dsp`.`DISPLAY_OBJECT_TYPE_ID`) AS `DISPLAY_OBJECT_TYPE`,\r\n `dsp`.`ELEMENT_ID` AS `ELEMENT_ID`,\r\n case \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'1\' then (select `m`.`NAME` from `menus` `m` where `m`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'2\' then (select `ss`.`FORM_NAME` from `forms` `ss` where `ss`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'3\' then (select `lv`.`VARIABLE_NAME` from `layout_variables` `lv` where `lv`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'4\' then (select `g`.`GRID_NAME` from `grids` `g` where `g`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'5\' then (select `ce`.`NAME` from `custom_elements` `ce` where `ce`.`ID` = `dsp`.`ELEMENT_ID`) \r\n else \'UNKNOWN ELEMENT\' end AS `ELEMENT_NAME`,\r\n `dsp`.`ELEMENT_TYPE_ID` AS `ELEMENT_TYPE_ID`,\r\n (select `lde`.`VALUE` from `list_display_elements_types` `lde` where `lde`.`ID` = `dsp`.`ELEMENT_TYPE_ID`) AS `ELEMENT_TYPE`,\r\n `dsp`.`TEMPLATE_VARIABLE_NAME` AS `TEMPLATE_VARIABLE_NAME`,\r\n `dsp`.`DESCRIPTION` AS `DESCRIPTION` \r\n from `display_object_elements` `dsp`',3,1,1,'2021-03-13 17:40:01','2021-03-13 17:40:01');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1707,'show tables',3,1,1,'2021-03-13 17:42:06','2021-03-13 17:42:06');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1708,'select * from form_details',3,1,1,'2021-03-13 17:42:31','2021-03-13 17:42:31');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1709,'select `dsp`.`ID` AS `ID`,\r\n `dsp`.`DISPLAY_OBJECT_ID` AS `DISPLAY_OBJECT_ID`,\r\n case \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'1\' then (select `l`.`NAME` from `layouts` `l` where `l`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) \r\n when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = \'2\' then (select `s`.`SCRIPT_NAME` from `scripts` `s` where `s`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) else \'UNKNOWN OBJECT\' end AS `DISPLAY_OBJECT_NAME`,\r\n `dsp`.`DISPLAY_OBJECT_TYPE_ID` AS `DISPLAY_OBJECT_TYPE_ID`,\r\n (select `ldo`.`VALUE` from `list_display_objects_types` `ldo` where `ldo`.`ID` = `dsp`.`DISPLAY_OBJECT_TYPE_ID`) AS `DISPLAY_OBJECT_TYPE`,\r\n `dsp`.`ELEMENT_ID` AS `ELEMENT_ID`,\r\n case \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'1\' then (select `m`.`NAME` from `menus` `m` where `m`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'2\' then (select `ss`.`FORM_NAME` from `forms` `ss` where `ss`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'3\' then (select `lv`.`VARIABLE_NAME` from `layout_variables` `lv` where `lv`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'4\' then (select `g`.`GRID_NAME` from `grids` `g` where `g`.`ID` = `dsp`.`ELEMENT_ID`) \r\n when `dsp`.`ELEMENT_TYPE_ID` = \'5\' then (select `ce`.`NAME` from `custom_elements` `ce` where `ce`.`ID` = `dsp`.`ELEMENT_ID`) \r\n else \'UNKNOWN ELEMENT\' end AS `ELEMENT_NAME`,\r\n `dsp`.`ELEMENT_TYPE_ID` AS `ELEMENT_TYPE_ID`,\r\n (select `lde`.`VALUE` from `list_display_elements_types` `lde` where `lde`.`ID` = `dsp`.`ELEMENT_TYPE_ID`) AS `ELEMENT_TYPE`,\r\n `dsp`.`TEMPLATE_VARIABLE_NAME` AS `TEMPLATE_VARIABLE_NAME`,\r\n `dsp`.`DESCRIPTION` AS `DESCRIPTION` \r\n from `display_object_elements` `dsp`',3,1,1,'2021-03-13 17:42:43','2021-03-13 17:42:43');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1710,'select * from forms',3,1,1,'2021-03-13 17:42:53','2021-03-13 17:42:53');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1711,'select * from tables',3,1,1,'2021-03-13 18:18:16','2021-03-13 18:18:16');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1712,'select * from tables where module_id = 7',3,1,1,'2021-03-13 18:24:24','2021-03-13 18:24:24');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1713,'select * from tables',3,1,1,'2021-03-13 18:24:32','2021-03-13 18:24:32');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1714,'select * from tables  where module_id = 21',3,1,1,'2021-03-13 18:24:48','2021-03-13 18:24:48');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1715,'select * from tables',3,1,1,'2021-03-13 18:25:01','2021-03-13 18:25:01');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1716,'SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements WHERE DISPLAY_OBJECT_ID = \'5\' AND DISPLAY_OBJECT_TYPE_ID=\'1\'',3,1,1,'2021-03-19 18:08:52','2021-03-19 18:08:52');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1717,'SELECT ID, ELEMENT_ID, ELEMENT_TYPE_ID, TEMPLATE_VARIABLE_NAME FROM phpapps.display_object_elements WHERE DISPLAY_OBJECT_ID = \'375\' AND DISPLAY_OBJECT_TYPE_ID=\'2\'',3,1,1,'2021-03-19 18:09:08','2021-03-19 18:09:08');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1718,'show tables',3,1,1,'2021-03-25 07:18:47','2021-03-25 07:18:47');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1719,'show tables like \'%form%\'',3,1,1,'2021-03-25 07:24:00','2021-03-25 07:24:00');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1720,'select * from form_details',3,1,1,'2021-03-25 07:24:26','2021-03-25 07:24:26');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1721,'select * from table_details',3,1,1,'2021-03-25 07:25:23','2021-03-25 07:25:23');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1722,'select * from view_table_details',3,1,1,'2021-03-25 07:25:30','2021-03-25 07:25:30');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1723,'show tables',3,1,1,'2021-06-20 08:44:58','2021-06-20 08:44:58');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1724,'select * from view_forms',3,1,1,'2021-06-20 08:45:41','2021-06-20 08:45:41');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1725,'select * from view_forms',3,1,1,'2021-06-20 08:45:53','2021-06-20 08:45:53');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1726,'show tables',3,1,1,'2021-06-20 08:46:00','2021-06-20 08:46:00');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1727,'select * from forms',3,1,1,'2021-06-20 08:51:46','2021-06-20 08:51:46');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1728,'select * from forms',3,1,1,'2021-06-20 08:51:56','2021-06-20 08:51:56');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1729,'select * from form_details',3,1,1,'2021-06-20 08:52:15','2021-06-20 08:52:15');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1730,'select * from form_elements',3,1,1,'2021-06-20 08:52:29','2021-06-20 08:52:29');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1731,'show databases',1,1,1,'2021-10-05 05:48:31','2021-10-05 05:48:31');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1732,'show databases',1,1,1,'2021-10-05 05:50:14','2021-10-05 05:50:14');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1733,'show tables',30,1,1,'2021-10-05 05:50:23','2021-10-05 05:50:23');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1734,'select * from wp_commentmeta',30,1,1,'2021-10-05 05:50:38','2021-10-05 05:50:38');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1735,'show tables',30,1,1,'2021-10-05 05:50:47','2021-10-05 05:50:47');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1736,'select * from wp_options',30,1,1,'2021-10-05 05:51:01','2021-10-05 05:51:01');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1737,'show tables',30,1,1,'2021-10-05 06:28:43','2021-10-05 06:28:43');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1738,'select * from wp_posts',30,1,1,'2021-10-05 06:29:00','2021-10-05 06:29:00');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1739,'show tables',30,1,1,'2021-10-05 06:46:37','2021-10-05 06:46:37');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1740,'select * from  wp_usermeta',30,1,1,'2021-10-05 06:46:54','2021-10-05 06:46:54');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1741,'show tables',7,1,1,'2021-10-05 06:50:13','2021-10-05 06:50:13');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1742,'select * from clients',7,1,1,'2021-10-05 06:50:25','2021-10-05 06:50:25');
 DROP TABLE IF EXISTS `sql_console_saves`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3799,6 +3995,10 @@ INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, 
 INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1464,202,'CREATE_UID',5,0,'20',0,'1',0,'',8,2,2,'2020-12-13 10:36:13','2020-12-13 10:36:13');
 INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1465,202,'MODIFY_DATE',9,0,'',0,'current_timestamp()',0,'',9,2,2,'2020-12-13 10:36:13','2020-12-13 10:36:13');
 INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1466,202,'CREATE_DATE',9,0,'',0,'current_timestamp()',0,'',10,2,2,'2020-12-13 10:36:13','2020-12-13 10:36:13');
+INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1469,396,'ID',5,0,'20',0,'',1,'',1,2,2,'2021-03-13 18:01:44','2021-03-13 18:01:44');
+INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1470,396,'FORM_ID',5,0,'20',1,'NULL',0,'',2,2,2,'2021-03-13 18:01:44','2021-03-13 18:01:44');
+INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1471,396,'ELEMENT_TYPE',5,0,'20',0,'',0,'',3,1,1,'2021-03-25 07:17:11','2021-03-25 07:17:11');
+INSERT INTO `table_details` (`ID`, `TABLE_ID`, `COLUMN_NAME`, `COLUMN_TYPE_ID`, `UNSIGN`, `COLUMN_SIZE`, `ACCEPT_NULL`, `COLUMN_DEFAULT_VALUE`, `AUTOINCREMENT`, `DESCRIPTION`, `ORD`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1472,396,'INPUT_TYPE',5,0,'20',0,'',0,'',4,1,1,'2021-03-25 07:17:44','2021-03-25 07:17:44');
 DROP TABLE IF EXISTS `table_fks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4058,6 +4258,8 @@ INSERT INTO `table_indexes` (`ID`, `TABLE_ID`, `INDEX_NAME`, `INDEX_TYPE_ID`, `I
 INSERT INTO `table_indexes` (`ID`, `TABLE_ID`, `INDEX_NAME`, `INDEX_TYPE_ID`, `INDEX_COLUMNS`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (467,202,'views_ibfk_2',3,'MODIFY_UID','',2,2,'2020-12-13 10:36:14','2020-12-13 10:36:14');
 INSERT INTO `table_indexes` (`ID`, `TABLE_ID`, `INDEX_NAME`, `INDEX_TYPE_ID`, `INDEX_COLUMNS`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (468,202,'views_ibfk_3',3,'CREATE_UID','',2,2,'2020-12-13 10:36:14','2020-12-13 10:36:14');
 INSERT INTO `table_indexes` (`ID`, `TABLE_ID`, `INDEX_NAME`, `INDEX_TYPE_ID`, `INDEX_COLUMNS`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (469,202,'views_view_name_module_id_idx',2,'VIEW_NAME,MODULE_ID','',2,2,'2020-12-13 10:36:14','2020-12-13 10:36:14');
+INSERT INTO `table_indexes` (`ID`, `TABLE_ID`, `INDEX_NAME`, `INDEX_TYPE_ID`, `INDEX_COLUMNS`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (471,396,'phpapps_form_elements_FORM_ID_FK',3,'FORM_ID','',2,2,'2021-03-13 18:01:44','2021-03-13 18:01:44');
+INSERT INTO `table_indexes` (`ID`, `TABLE_ID`, `INDEX_NAME`, `INDEX_TYPE_ID`, `INDEX_COLUMNS`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (472,396,'PRIMARY',1,'ID','',2,2,'2021-03-13 18:01:44','2021-03-13 18:01:44');
 DROP TABLE IF EXISTS `tables`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4212,6 +4414,10 @@ INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`,
 INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (393,0,31,7,'list_counties',1,'',1,1,'2020-11-21 07:56:22','2020-11-21 07:56:22');
 INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (394,0,31,7,'list_titles',1,'',1,1,'2020-11-21 08:02:06','2020-11-21 08:02:06');
 INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (395,0,10,7,'list_order_status',1,'',1,1,'2020-12-01 10:36:04','2020-12-01 10:36:04');
+INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (396,0,21,3,'form_elements',2,'',1,1,'2021-03-13 18:25:35','2021-03-13 18:00:03');
+INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (397,0,21,3,'list_form_element_types',1,'',1,1,'2021-03-13 18:26:10','2021-03-13 18:26:10');
+INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (398,0,21,3,'list_form_input_types',1,'',1,1,'2021-03-20 06:53:21','2021-03-20 06:53:21');
+INSERT INTO `tables` (`ID`, `ORIGIN_ID`, `MODULE_ID`, `SCHEMA_ID`, `TABLE_NAME`, `TABLE_TYPE`, `DESCRIPTION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (399,0,21,3,'list_form_button_types',1,'',1,1,'2021-03-26 10:50:38','2021-03-26 10:50:38');
 DROP TABLE IF EXISTS `templates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4406,6 +4612,7 @@ INSERT INTO `themes` (`ID`, `THEME_NAME`, `CSS_FILE`, `APP_ID`) VALUES (3,'CSS_D
 INSERT INTO `themes` (`ID`, `THEME_NAME`, `CSS_FILE`, `APP_ID`) VALUES (5,'DEFAULT',NULL,7);
 INSERT INTO `themes` (`ID`, `THEME_NAME`, `CSS_FILE`, `APP_ID`) VALUES (6,'DEFAULT',NULL,1);
 INSERT INTO `themes` (`ID`, `THEME_NAME`, `CSS_FILE`, `APP_ID`) VALUES (8,'eshop_test',NULL,7);
+INSERT INTO `themes` (`ID`, `THEME_NAME`, `CSS_FILE`, `APP_ID`) VALUES (9,'ADMIN_DEFAULT',NULL,7);
 DROP TABLE IF EXISTS `user_profiles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -4995,7 +5202,7 @@ USE `phpapps`;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_display_object_elements` AS select `dsp`.`ID` AS `ID`,`dsp`.`DISPLAY_OBJECT_ID` AS `DISPLAY_OBJECT_ID`,case when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = '1' then (select `l`.`NAME` from `layouts` `l` where `l`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = '2' then (select `s`.`SCRIPT_NAME` from `scripts` `s` where `s`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) else 'UNKNOWN OBJECT' end AS `DISPLAY_OBJECT_NAME`,`dsp`.`DISPLAY_OBJECT_TYPE_ID` AS `DISPLAY_OBJECT_TYPE_ID`,(select `ldo`.`VALUE` from `list_display_objects_types` `ldo` where `ldo`.`ID` = `dsp`.`DISPLAY_OBJECT_TYPE_ID`) AS `DISPLAY_OBJECT_TYPE`,`dsp`.`ELEMENT_ID` AS `ELEMENT_ID`,case when `dsp`.`ELEMENT_TYPE_ID` = '1' then (select `m`.`NAME` from `menus` `m` where `m`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '2' then (select `ss`.`SCRIPT_NAME` from `scripts` `ss` where `ss`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '3' then (select `lv`.`VARIABLE_NAME` from `layout_variables` `lv` where `lv`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '4' then (select `g`.`GRID_NAME` from `grids` `g` where `g`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '5' then (select `ce`.`NAME` from `custom_elements` `ce` where `ce`.`ID` = `dsp`.`ELEMENT_ID`) else 'UNKNOWN ELEMENT' end AS `ELEMENT_NAME`,`dsp`.`ELEMENT_TYPE_ID` AS `ELEMENT_TYPE_ID`,(select `lde`.`VALUE` from `list_display_elements_types` `lde` where `lde`.`ID` = `dsp`.`ELEMENT_TYPE_ID`) AS `ELEMENT_TYPE`,`dsp`.`TEMPLATE_VARIABLE_NAME` AS `TEMPLATE_VARIABLE_NAME`,`dsp`.`DESCRIPTION` AS `DESCRIPTION` from `display_object_elements` `dsp` */;
+/*!50001 VIEW `view_display_object_elements` AS select `dsp`.`ID` AS `ID`,`dsp`.`DISPLAY_OBJECT_ID` AS `DISPLAY_OBJECT_ID`,case when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = '1' then (select `l`.`NAME` from `layouts` `l` where `l`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) when `dsp`.`DISPLAY_OBJECT_TYPE_ID` = '2' then (select `s`.`SCRIPT_NAME` from `scripts` `s` where `s`.`ID` = `dsp`.`DISPLAY_OBJECT_ID`) else 'UNKNOWN OBJECT' end AS `DISPLAY_OBJECT_NAME`,`dsp`.`DISPLAY_OBJECT_TYPE_ID` AS `DISPLAY_OBJECT_TYPE_ID`,(select `ldo`.`VALUE` from `list_display_objects_types` `ldo` where `ldo`.`ID` = `dsp`.`DISPLAY_OBJECT_TYPE_ID`) AS `DISPLAY_OBJECT_TYPE`,`dsp`.`ELEMENT_ID` AS `ELEMENT_ID`,case when `dsp`.`ELEMENT_TYPE_ID` = '1' then (select `m`.`NAME` from `menus` `m` where `m`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '2' then (select `ss`.`FORM_NAME` from `forms` `ss` where `ss`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '3' then (select `lv`.`VARIABLE_NAME` from `layout_variables` `lv` where `lv`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '4' then (select `g`.`GRID_NAME` from `grids` `g` where `g`.`ID` = `dsp`.`ELEMENT_ID`) when `dsp`.`ELEMENT_TYPE_ID` = '5' then (select `ce`.`NAME` from `custom_elements` `ce` where `ce`.`ID` = `dsp`.`ELEMENT_ID`) else 'UNKNOWN ELEMENT' end AS `ELEMENT_NAME`,`dsp`.`ELEMENT_TYPE_ID` AS `ELEMENT_TYPE_ID`,(select `lde`.`VALUE` from `list_display_elements_types` `lde` where `lde`.`ID` = `dsp`.`ELEMENT_TYPE_ID`) AS `ELEMENT_TYPE`,`dsp`.`TEMPLATE_VARIABLE_NAME` AS `TEMPLATE_VARIABLE_NAME`,`dsp`.`DESCRIPTION` AS `DESCRIPTION` from `display_object_elements` `dsp` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -5107,7 +5314,7 @@ USE `phpapps`;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_posible_display_object_elements` AS select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,'(menu)') AS `ELEMENT_NAME`,'1' AS `ELEMENT_TYPE` from `menus` union all select `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,'(layout variable)') AS `ELEMENT_NAME`,'3' AS `ELEMENT_TYPE` from `layout_variables` union all select `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,'(grid)') AS `ELEMENT_NAME`,'4' AS `ELEMENT_TYPE` from `grids` union all select `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,'(custom_element)') AS `ELEMENT_NAME`,'5' AS `ELEMENT_TYPE` from `custom_elements` */;
+/*!50001 VIEW `view_posible_display_object_elements` AS select `menus`.`ID` AS `ID`,concat(`menus`.`NAME`,'(menu)') AS `ELEMENT_NAME`,'1' AS `ELEMENT_TYPE` from `menus` union all select `layout_variables`.`ID` AS `ID`,concat(`layout_variables`.`VARIABLE_NAME`,'(layout variable)') AS `ELEMENT_NAME`,'3' AS `ELEMENT_TYPE` from `layout_variables` union all select `grids`.`ID` AS `ID`,concat(`grids`.`GRID_NAME`,'(grid)') AS `ELEMENT_NAME`,'4' AS `ELEMENT_TYPE` from `grids` union all select `custom_elements`.`ID` AS `ID`,concat(`custom_elements`.`NAME`,'(custom_element)') AS `ELEMENT_NAME`,'5' AS `ELEMENT_TYPE` from `custom_elements` union all select `forms`.`ID` AS `ID`,concat(`forms`.`FORM_NAME`,'(form)') AS `ELEMENT_NAME`,'2' AS `ELEMENT_TYPE` from `forms` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;

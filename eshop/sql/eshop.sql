@@ -66,7 +66,7 @@ CREATE TABLE `clients` (
   `REMARKS` text COLLATE utf8_bin DEFAULT NULL,
   `PHONE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,NULL,NULL,NULL,NULL,'gigi@fifi.com','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,'gigi@fifi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,'gigififi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Laura','Minghir',1,'1977-12-29','laura','alcatraz',1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','','0721655467'),(5,'Laura','Minghir',1,'1977-12-29',NULL,NULL,1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','Livrare dupa ora 20','0721655467');
+INSERT INTO `clients` VALUES (1,NULL,NULL,NULL,NULL,'gigi@fifi.com','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,'gigi@fifi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,'gigififi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Laura','Minghir',2,'1977-12-29','laura','alcatraz',1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','','0721655467'),(5,'Laura','Minghir',1,'1977-12-29',NULL,NULL,1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','Livrare dupa ora 20','0721655467'),(6,NULL,NULL,NULL,NULL,'minghir@gmail.com','12345678',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +358,7 @@ CREATE TABLE `products` (
   KEY `eshop_products_CURRENCY_ID_FK` (`CURRENCY_ID`),
   CONSTRAINT `eshop_products_CATEGORY_ID_FK` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `categories` (`ID`),
   CONSTRAINT `eshop_products_CURRENCY_ID_FK` FOREIGN KEY (`CURRENCY_ID`) REFERENCES `list_currency` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +367,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,8,'VOPSEA PAR','',23.00,1,100),(2,8,'VOPSEA PAR222','dadas',23.00,1,100),(3,8,'RUJ MARO','',23.00,1,100),(4,8,'VOPSEA PAR','',23.00,1,100),(6,8,'VOPSEA PAR222','',23.00,1,100),(7,8,'VOPSEA PAR222','',23.00,1,100),(8,8,'VOPSEA PAR222','',23.00,1,100),(9,8,'VOPSEA PAR222','',23.00,1,100),(10,8,'VOPSEA PAR222','',23.00,1,100),(12,8,'VOPSEA PAR222','',23.00,1,100),(13,8,'VOPSEA PAR222','',23.00,1,100),(14,8,'VOPSEA PAR222','',23.00,1,100);
+INSERT INTO `products` VALUES (1,8,'VOPSEA PAR','',23.00,1,100),(2,8,'VOPSEA PAR222','dadas',23.00,1,100),(3,8,'RUJ MARO','',23.00,1,100),(4,8,'VOPSEA PAR','',23.00,1,100),(6,8,'VOPSEA PAR222','',23.00,1,100),(7,8,'VOPSEA PAR222','',23.00,1,100),(8,8,'VOPSEA PAR222','',23.00,1,100),(9,8,'VOPSEA PAR222','',23.00,1,100),(10,8,'VOPSEA PAR222','',23.00,1,100),(12,8,'VOPSEA PAR222','',23.00,1,100),(13,8,'VOPSEA PAR222','',23.00,1,100),(14,8,'VOPSEA PAR222','',23.00,1,100),(15,8,'VOPSEA PAR2224','das',23.00,1,100);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,6 +386,24 @@ SET character_set_client = utf8;
   `COUNTY` tinyint NOT NULL,
   `CITY` tinyint NOT NULL,
   `PHONE` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `view_orders`
+--
+
+DROP TABLE IF EXISTS `view_orders`;
+/*!50001 DROP VIEW IF EXISTS `view_orders`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_orders` (
+  `ID` tinyint NOT NULL,
+  `CLIENT_ID` tinyint NOT NULL,
+  `ORDER_DATE` tinyint NOT NULL,
+  `STATUS_ID` tinyint NOT NULL,
+  `CLIENT_NAME` tinyint NOT NULL,
+  `EMAIL` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
@@ -431,6 +449,25 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `view_orders`
+--
+
+/*!50001 DROP TABLE IF EXISTS `view_orders`*/;
+/*!50001 DROP VIEW IF EXISTS `view_orders`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_orders` AS select `o`.`ID` AS `ID`,`o`.`CLIENT_ID` AS `CLIENT_ID`,`o`.`ORDER_DATE` AS `ORDER_DATE`,`o`.`STATUS_ID` AS `STATUS_ID`,concat(`c`.`FIRST_NAME`,' ',`c`.`LAST_NAME`) AS `CLIENT_NAME`,`c`.`EMAIL` AS `EMAIL` from (`orders` `o` left join `clients` `c` on(`o`.`CLIENT_ID` = `c`.`ID`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `view_products`
 --
 
@@ -458,4 +495,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-18 12:19:08
+-- Dump completed on 2021-10-05 10:35:21

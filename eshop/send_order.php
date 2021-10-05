@@ -111,6 +111,11 @@ class send_order_generated extends template{
     }
     
     function setup_display() {
+        
+        if(!isset($_SESSION["_CLIENT_ID"])){
+            header("Location:client_login.php");
+        }
+        
         $this->globals->sm->assign(array("SCRIPT_CONTENT" => "send_order: Youre code here."));
     }
     

@@ -25,12 +25,17 @@ class eshop_layout_setup extends custom_element{
         $this->smarty->template_dir = CURRENT_APP_TPL_DIR ."custom_elements" . DIR_SEP;
         $this->smarty->compile_dir = SMARTY_COMPILE_DIR;
         //echo "AAAAAAAAAAA<br><br><br><br><br><br><br><br>CUSROOOOM" . CURRENT_APP_TPL_DIR ."custom_elements" . DIR_SEP;
-        if(is_array($_SESSION["_CLIENT_CART"])){
-            $this->smarty->assign(array("no_prods_in_cart"=>count($_SESSION["_CLIENT_CART"]),
+        //if(is_array($_SESSION["_CLIENT_CART"])){
+        if(isset($_SESSION["_CLIENT_ID"])){
+            $this->smarty->assign(array(
                                     "eshop_search"=>$_SESSION["_eshop_search"],
                                     "CLIENT_ID" => $_SESSION["_CLIENT_ID"] ));
         }
+        
+         $this->smarty->assign(array("no_prods_in_cart"=>count($_SESSION["_CLIENT_CART"])));
     }
+    
+   
     
     function get_custom_element_str(){
         return parent::get_custom_element_str();

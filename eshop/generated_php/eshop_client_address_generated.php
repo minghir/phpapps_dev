@@ -35,10 +35,6 @@ class eshop_client_address_generated extends template{
         	            
 	public $TITLE_ID;
         	            
-	public $BIRTH_DATE;
-        	            
-	public $COUNTRY_ID;
-        	            
 	public $COUNTY_ID;
         	            
 	public $CITY;
@@ -55,9 +51,6 @@ class eshop_client_address_generated extends template{
 		 
 		 
 			public $TITLE_ID_sel;
-	 
-		 
-			public $COUNTRY_ID_sel;
 	 
 			public $COUNTY_ID_sel;
 	 
@@ -77,8 +70,6 @@ class eshop_client_address_generated extends template{
 		 
 		 
 		 
-		 
-		 
 	
         public $alerts;
 	
@@ -87,6 +78,7 @@ class eshop_client_address_generated extends template{
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 $this->form_schema = $this->globals->CURRENT_APP_DB;
+                
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
@@ -97,12 +89,9 @@ class eshop_client_address_generated extends template{
                 			 
 					 
 					 
-								$this->TITLE_ID_sel = new DB_select("TITLE_ID","{$this->globals->CURRENT_APP_DB}.list_title");
+								$this->TITLE_ID_sel = new DB_select("TITLE_ID","eshop.list_titles");
                         			 
-					 
-								$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID","{$this->globals->CURRENT_APP_DB}.list_countries");
-                        			 
-								$this->COUNTY_ID_sel = new DB_select("COUNTY_ID","{$this->globals->CURRENT_APP_DB}.list_counties");
+								$this->COUNTY_ID_sel = new DB_select("COUNTY_ID","eshop.list_counties");
                         			 
 					 
 					 
@@ -110,8 +99,6 @@ class eshop_client_address_generated extends template{
 					 
 					 
 				
-					 
-					 
 					 
 					 
 					 
@@ -139,15 +126,11 @@ class eshop_client_address_generated extends template{
 	}
 	
 	function get_rec(){
-            
-            echo "AICI";
 		$this->query = new DB_query( "SELECT 
 									ID,
 												FIRST_NAME,
 												LAST_NAME,
 												TITLE_ID,
-												BIRTH_DATE,
-												COUNTRY_ID,
 												COUNTY_ID,
 												CITY,
 												POSTAL_CODE,
@@ -164,8 +147,6 @@ class eshop_client_address_generated extends template{
                                 			                                                                $this->FIRST_NAME = stripslashes($this->globals->con->get_field("FIRST_NAME"));
                                 			                                                                $this->LAST_NAME = stripslashes($this->globals->con->get_field("LAST_NAME"));
                                 			                                                                $this->TITLE_ID = stripslashes($this->globals->con->get_field("TITLE_ID"));
-                                			                                                                $this->BIRTH_DATE = stripslashes($this->globals->con->get_field("BIRTH_DATE"));
-                                			                                                                $this->COUNTRY_ID = stripslashes($this->globals->con->get_field("COUNTRY_ID"));
                                 			                                                                $this->COUNTY_ID = stripslashes($this->globals->con->get_field("COUNTY_ID"));
                                 			                                                                $this->CITY = stripslashes($this->globals->con->get_field("CITY"));
                                 			                                                                $this->POSTAL_CODE = stripslashes($this->globals->con->get_field("POSTAL_CODE"));
@@ -189,8 +170,6 @@ class eshop_client_address_generated extends template{
 																					FIRST_NAME,
 																						LAST_NAME,
 																						TITLE_ID,
-																						BIRTH_DATE,
-																						COUNTRY_ID,
 																						COUNTY_ID,
 																						CITY,
 																						POSTAL_CODE,
@@ -201,8 +180,6 @@ class eshop_client_address_generated extends template{
 																					:FIRST_NAME,
 																						:LAST_NAME,
 																						:TITLE_ID,
-																						:BIRTH_DATE,
-																						:COUNTRY_ID,
 																						:COUNTY_ID,
 																						:CITY,
 																						:POSTAL_CODE,
@@ -217,10 +194,6 @@ class eshop_client_address_generated extends template{
                                             ":LAST_NAME" => $this->LAST_NAME,
                                         														                                            
                                             ":TITLE_ID" => $this->TITLE_ID,
-                                        														                                            
-                                            ":BIRTH_DATE" => $this->BIRTH_DATE,
-                                        														                                            
-                                            ":COUNTRY_ID" => $this->COUNTRY_ID,
                                         														                                            
                                             ":COUNTY_ID" => $this->COUNTY_ID,
                                         														                                            
@@ -264,8 +237,6 @@ class eshop_client_address_generated extends template{
 												FIRST_NAME = :FIRST_NAME,
 												LAST_NAME = :LAST_NAME,
 												TITLE_ID = :TITLE_ID,
-												BIRTH_DATE = :BIRTH_DATE,
-												COUNTRY_ID = :COUNTRY_ID,
 												COUNTY_ID = :COUNTY_ID,
 												CITY = :CITY,
 												POSTAL_CODE = :POSTAL_CODE,
@@ -279,8 +250,6 @@ class eshop_client_address_generated extends template{
                                         				                                                                                    ":FIRST_NAME" => $this->FIRST_NAME,
                                         				                                                                                    ":LAST_NAME" => $this->LAST_NAME,
                                         				                                                                                    ":TITLE_ID" => $this->TITLE_ID,
-                                        				                                                                                    ":BIRTH_DATE" => $this->BIRTH_DATE,
-                                        				                                                                                    ":COUNTRY_ID" => $this->COUNTRY_ID,
                                         				                                                                                    ":COUNTY_ID" => $this->COUNTY_ID,
                                         				                                                                                    ":CITY" => $this->CITY,
                                         				                                                                                    ":POSTAL_CODE" => $this->POSTAL_CODE,
@@ -364,8 +333,6 @@ class eshop_client_address_generated extends template{
                                                 		                                                    $this->FIRST_NAME  = htmlspecialchars(addslashes(trim($_POST["FIRST_NAME"])));
                                                 		                                                    $this->LAST_NAME  = htmlspecialchars(addslashes(trim($_POST["LAST_NAME"])));
                                                 		                                                    $this->TITLE_ID  = htmlspecialchars(addslashes(trim($_POST["TITLE_ID"])));
-                                                		                                                    $this->BIRTH_DATE  = htmlspecialchars(addslashes(trim($_POST["BIRTH_DATE"])));
-                                                		                                                    $this->COUNTRY_ID  = htmlspecialchars(addslashes(trim($_POST["COUNTRY_ID"])));
                                                 		                                                    $this->COUNTY_ID  = htmlspecialchars(addslashes(trim($_POST["COUNTY_ID"])));
                                                 		                                                    $this->CITY  = htmlspecialchars(addslashes(trim($_POST["CITY"])));
                                                 		                                                    $this->POSTAL_CODE  = htmlspecialchars(addslashes(trim($_POST["POSTAL_CODE"])));
@@ -412,16 +379,11 @@ class eshop_client_address_generated extends template{
 					 
 					 
 					 
-								//$this->TITLE_ID_sel = new DB_select("TITLE_ID",".{$this->globals->CURRENT_APP_DB}.list_title");
+								//$this->TITLE_ID_sel = new DB_select("TITLE_ID",".eshop.list_titles");
 			$this->TITLE_ID_sel->selected_val = $this->TITLE_ID;
 			$this->TITLE_ID_sel->setup_select_options();
 			 
-					 
-								//$this->COUNTRY_ID_sel = new DB_select("COUNTRY_ID",".{$this->globals->CURRENT_APP_DB}.list_countries");
-			$this->COUNTRY_ID_sel->selected_val = $this->COUNTRY_ID;
-			$this->COUNTRY_ID_sel->setup_select_options();
-			 
-								//$this->COUNTY_ID_sel = new DB_select("COUNTY_ID",".{$this->globals->CURRENT_APP_DB}.list_counties");
+								//$this->COUNTY_ID_sel = new DB_select("COUNTY_ID",".eshop.list_counties");
 			$this->COUNTY_ID_sel->selected_val = $this->COUNTY_ID;
 			$this->COUNTY_ID_sel->setup_select_options();
 			 
@@ -441,8 +403,6 @@ class eshop_client_address_generated extends template{
 					 
 					 
 					 
-					 
-					 
 		        }
         
         function assign_vars_tpl(){
@@ -451,8 +411,6 @@ class eshop_client_address_generated extends template{
 							"FIRST_NAME" => $this->FIRST_NAME,
 							"LAST_NAME" => $this->LAST_NAME,
 							"TITLE_ID" => $this->TITLE_ID,
-							"BIRTH_DATE" => $this->BIRTH_DATE,
-							"COUNTRY_ID" => $this->COUNTRY_ID,
 							"COUNTY_ID" => $this->COUNTY_ID,
 							"CITY" => $this->CITY,
 							"POSTAL_CODE" => $this->POSTAL_CODE,
@@ -464,9 +422,6 @@ class eshop_client_address_generated extends template{
 						 
 										"TITLE_ID_sel" => $this->TITLE_ID_sel->get_select_str(),
 			 
-						 
-										"COUNTRY_ID_sel" => $this->COUNTRY_ID_sel->get_select_str(),
-			 
 										"COUNTY_ID_sel" => $this->COUNTY_ID_sel->get_select_str(),
 			 
 						 
@@ -475,8 +430,6 @@ class eshop_client_address_generated extends template{
 						 
 						 
 									 
-						 
-						 
 						 
 						 
 						 

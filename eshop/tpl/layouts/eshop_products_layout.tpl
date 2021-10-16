@@ -10,48 +10,30 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
       
       <script src="https://kit.fontawesome.com/098d3aa8b5.js" crossorigin="anonymous"></script>
-<!--
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  
-  -->
-	    <link rel="stylesheet" href="{$smarty.const.CURRENT_APP_CSS_DIR}{$display_obj->layout_theme}.css">
-  <!-- APP JavaScript -->
-  <script src="{$smarty.const.CURRENT_APP_JS_DIR}remember_last_tab.js"></script>   
-    <title>{$PAGE_TITLE}</title>
-    </head>
-    <body>
-        <div class="container-fluid">
-                <div class="row">
-                    <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark">    
-                     <div class="col-sm-8">
-                        {$ESHOP_MAIN_MENU} 
-                     </div>
-                    
+
+<link rel="stylesheet" href="{$smarty.const.CURRENT_APP_CSS_DIR}{$display_obj->layout_theme}.css">
+
+<title>{$PAGE_TITLE}</title>
+</head>
+<body>
+        <div class="container">
+                
+                   <nav class="navbar navbar-expand-lg navbar-dark bg-dark top" style="margin:0px 0;">
+                      {$ESHOP_MAIN_MENU} 
+                   
                      <div class="col-sm-4">
-                             
                         {$ESHOP_LAYOUT_SETUP}
                      </div>
                      </nav>
-                 </div>
-            <br><br><br><br><br><br>
-              <div class="container-fluid">
-                     
-               
-                            {block name=content}CONTENT BLOCK{/block}
-                        
-                      
-                </div>
-                <div class="row row-cols-1">
-                     <div class="col bg-warning">
-                        FOOTER
-                     </div>
-                </div>
-		
-        </div>
+     
+                        {block name=content}CONTENT BLOCK{/block}
+         </div>              
+        <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark bottom">
+                    <div class="input-group">
+                      <small class="text-secondary">Powered by: <a href="http://www.elight.ro" style="color: white">elight.ro</a> 2021 </small>
+                    </div>
+                </nav>
+         </div>
     </body> 
 </html>

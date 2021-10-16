@@ -113,7 +113,7 @@ class cart_generated extends template{
         switch($_GET["gact"]){
             case "add":
                 session_start();
-                echo "AICIIIII<br><br>";
+                
                 if(!is_array($_SESSION["_CLIENT_CART"])){
                    $_SESSION["_CLIENT_CART"] = array();
                 }
@@ -145,12 +145,14 @@ class cart_generated extends template{
         
         //print_r($_SESSION);
         if(is_array($_SESSION["_CLIENT_CART"]) > 0){
-            $query  = new DB_query("SELECT ID, PRODUCT_TITLE, CURRENCY, DESCRIPTION, PRICE FROM {$this->globals->CURRENT_APP_DB}.view_products WHERE ID IN (" .implode(",",array_keys($_SESSION["_CLIENT_CART"])) .")");
+            $query  = new DB_query("SELECT ID, PRODUCT_TITLE, CURRENCY, DESCRIPTION, PRICE, IMG FROM {$this->globals->CURRENT_APP_DB}.view_products WHERE ID IN (" .implode(",",array_keys($_SESSION["_CLIENT_CART"])) .")");
+            //echo $query->prnt();
             $this->globals->con->query($query,"cart_disp");
             while($res = $this->globals->con->fetch_array("cart_disp")){
                 $CART_PRODUCT_NAME[$res["ID"]] = $res["PRODUCT_TITLE"];
                 $CART_PRICE_NAME[$res["ID"]] = $res["PRICE"];
                 $CURRENCY = $res["CURRENCY"];
+                $IMGS[$res["ID"]] = $res["IMG"];
                 $CART_PRODUCT_VALUES[$res["ID"]] = $res["PRICE"] * $_SESSION["_CLIENT_CART"][$res["ID"]];
             }
         }
@@ -160,10 +162,11 @@ class cart_generated extends template{
                                           "CART_PRODUCT_NAME" => $CART_PRODUCT_NAME,
                                           "CART_PRICE_NAME" => $CART_PRICE_NAME,
                                           "CURRENCY" => $CURRENCY,
+                                          "IMGS" => $IMGS,
                                           "TOTAL_CART_VALUE" => is_array($CART_PRODUCT_VALUES) ? array_sum($CART_PRODUCT_VALUES) : 0,
                                         ));
        
-        print_r($CART_PRODUCT_NAME);
+        //print_r($CART_PRODUCT_NAME);
        
         $this->setup_display();
         $this->display_template(); // parent function

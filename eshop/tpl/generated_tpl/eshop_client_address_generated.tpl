@@ -5,74 +5,61 @@
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
 	                								<input id="ID" type="hidden" name="ID" value="{$ID}">
-                										                		                		                        		<div class="form-group">
+                						                				                		                		                        		<div class="form-group">
                     <label >
-                        FIRST_NAME :
+                        Nume: :
                     </label>
                         <input class="form-control" type="text" id="FIRST_NAME" name="FIRST_NAME" value="{$FIRST_NAME}">
                 </div>
-																		                		                		                        		<div class="form-group">
+														                				                		                		                        		<div class="form-group">
                     <label >
-                        LAST_NAME :
+                        Prenume: :
                     </label>
                         <input class="form-control" type="text" id="LAST_NAME" name="LAST_NAME" value="{$LAST_NAME}">
                 </div>
-																		                		                		                        																		<div class="form-group">
+														                				                		                		                        												                						<div class="form-group">
                     <label >
-                        TITLE_ID  :
+                        Titlu  :
                     </label>
 			{$TITLE_ID_sel}
                 </div>
-                                		                		                        														<!-- <div class="form-group"><label >BIRTH_DATE :<td> <input type="text" class="tcal" name="BIRTH_DATE" value="{$BIRTH_DATE}"></div> -->
-		<div class="form-group">
+                                		                		                        												                						<div class="form-group">
                     <label >
-                        BIRTH_DATE :
-                    </label>
-                        <input class="form-control" id="BIRTH_DATE" type="date" name="BIRTH_DATE" value="{$BIRTH_DATE}">
-                </div>
-                				                		                		                        																		<div class="form-group">
-                    <label >
-                        COUNTRY_ID  :
-                    </label>
-			{$COUNTRY_ID_sel}
-                </div>
-                                		                		                        																		<div class="form-group">
-                    <label >
-                        COUNTY_ID  :
+                        Judet:  :
                     </label>
 			{$COUNTY_ID_sel}
                 </div>
                                 		                		                        		<div class="form-group">
                     <label >
-                        CITY :
+                        Oras: :
                     </label>
                         <input class="form-control" type="text" id="CITY" name="CITY" value="{$CITY}">
                 </div>
-																		                		                		                        		<div class="form-group">
+														                				                		                		                        		<div class="form-group">
                     <label >
-                        POSTAL_CODE :
+                        Cod postal: :
                     </label>
                         <input class="form-control" type="text" id="POSTAL_CODE" name="POSTAL_CODE" value="{$POSTAL_CODE}">
                 </div>
-																		                		                		                        						<div class="form-group">
+														                				                		                		                        						<div class="form-group">
                     <label >
-                        ADDRESS_DETAILS  :
+                        Adresa:  :
                     </label>
                         <textarea class="form-control" id="ADDRESS_DETAILS" name="ADDRESS_DETAILS">{$ADDRESS_DETAILS}</textarea>
                 </div>
-                												                		                		                        						<div class="form-group">
+                								                				                		                		                        						<div class="form-group">
                     <label >
-                        REMARKS  :
+                        Observatii:  :
                     </label>
                         <textarea class="form-control" id="REMARKS" name="REMARKS">{$REMARKS}</textarea>
                 </div>
-                												                		                		                        		<div class="form-group">
+                								                				                		                		                        		<div class="form-group">
                     <label >
-                        PHONE :
+                        Mobil: :
                     </label>
                         <input class="form-control" type="text" id="PHONE" name="PHONE" value="{$PHONE}">
                 </div>
-																		                		                		        	{$FROM_IMP_CLASS}
+														                				                		                		        	{$FROM_IMP_CLASS}
                 <div class="form-group">
 	{if $gact == "editRec"}
                        <button type="submit" class="btn btn-primary mb-2" name="pact" value="saveRec">save</button>

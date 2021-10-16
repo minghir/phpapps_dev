@@ -25,18 +25,8 @@
 
 
 <!--<a class="navbar-brand" href="home.php"><h1>{$menu_obj->title}</h1></a>-->
-<a class="navbar-brand" href="home.php"><img src="imgs\Diomax_logo_final.png" height="90"></a>
-<div class="collapse navbar-collapse" id="navbardrop">
-<ul class="navbar-nav mr-auto level{$level} ">
-    {menu data=$menu_obj->menu_items}<br>
-</ul>
-<!--
-<form name="search_products" method="POST" action="products_search.php">
-     
-      <input class="form-control mr-sm-2" type="search" placeholder="Cauta" aria-label="Search" value="{$eshop_search}">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<a class="navbar-brand" href="home.php">DOMAXCLEAN</a>
 
-</form>
-      <li> <a href="client_logout.php" class="nav-link my-2 my-sm-0" type="button"><small class="text-secondary">Logout</small></a> </li>
--->
- </div>
+<ul class="navbar-nav mr-auto level{$level} ">
+    {menu data=$menu_obj->menu_items}
+</ul>

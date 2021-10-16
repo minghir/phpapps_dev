@@ -165,7 +165,7 @@ class admin_login_generated extends wabdo\template{
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "admin_login: Youre code here."));
+        //$this->globals->sm->assign(array("SCRIPT_CONTENT" => "admin_login: Youre code here."));
     }
     
 }

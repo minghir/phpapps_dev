@@ -111,7 +111,7 @@ class home_generated extends template{
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "home: Youre code here."));
+       // $this->globals->sm->assign(array("SCRIPT_CONTENT" => "home: Youre code here."));
     }
     
 }

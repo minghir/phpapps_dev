@@ -115,12 +115,11 @@ class products_generated extends wabdo\template{
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->grid_title = wabdo\_tbl("{$this->globals->CURRENT_APP_DB}.categories","NAME",$this->category_id,"ID");
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->editable=false;
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->paginable=true;
-        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->rows_on_pg=12;
+        $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->rows_on_pg=10;
         $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->table="{$this->globals->CURRENT_APP_DB}.view_products";
         
         
         if($this->category_id != -1  ){
-            
             $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_rules = array(" CATEGORY_ID = :category_id ");
             $this->template_elements["grids"]["ESHOP_PRODUCTS_GRID"]->where_params = array(":category_id" => $this->category_id);
         }else{

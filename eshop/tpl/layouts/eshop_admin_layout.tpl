@@ -27,7 +27,7 @@
     <body>
 	 <header>	
 
-	</header>	<br><br><br><br>
+	</header>	
 	<main role="main" class="container-expand-lg">	
 		
 	<div>

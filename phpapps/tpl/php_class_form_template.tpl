@@ -25,6 +25,7 @@ class {$form_name} extends template{ldelim}
         public $query;
         
         public $smarty;
+        public $view_database_errors = true;
         
 	{section name=ds loop=$fields}
         {if $input_types[ds] == "select_table_multiple" || $input_types[ds] == "select_list_multiple"}
@@ -163,7 +164,11 @@ class {$form_name} extends template{ldelim}
 
                 if($this->alerts->get_no_errors() == 0) {ldelim}	
 			if( $this->globals->con->query($this->query) == -1){ldelim}
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){ldelim}
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            {rdelim}else{ldelim}
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            {rdelim}   
                         {rdelim}else{ldelim}
                             $this->alerts->add_alert("success","Inregistrare adaugata cu succes");
                         {rdelim}
@@ -207,7 +212,11 @@ class {$form_name} extends template{ldelim}
 				
 		if($this->alerts->get_no_errors() == 0) {ldelim}	
 			if( $this->globals->con->query($this->query) == -1){ldelim}
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){ldelim}
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            {rdelim}else{ldelim}
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            {rdelim}   
                         {rdelim}else{ldelim}
                             $this->alerts->add_alert("success","Inregistrare salvata cu succes");
                         {rdelim}
@@ -230,7 +239,11 @@ class {$form_name} extends template{ldelim}
 				
 		if($this->alerts->get_no_errors() == 0) {ldelim}	
 			if( $this->globals->con->query($this->query) == -1){ldelim}
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){ldelim}
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            {rdelim}else{ldelim}
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            {rdelim}   
                         {rdelim}else{ldelim}
                             $this->alerts->add_alert("success","Inregistrare stearsa cu succes");
                         {rdelim}

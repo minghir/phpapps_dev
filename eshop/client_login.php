@@ -147,7 +147,7 @@ class client_login_generated extends template{
     }
     
     function setup_display() {
-        $this->globals->sm->assign(array("SCRIPT_CONTENT" => "client_login: Youre code here."));
+       // $this->globals->sm->assign(array("SCRIPT_CONTENT" => "client_login: Youre code here."));
     }
     
 }

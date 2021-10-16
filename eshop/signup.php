@@ -98,6 +98,7 @@ include ("generated_php/signup_generated.php");
                         
                         
                         $this->tpl = "signup.tpl";
+                        $this->view_database_errors = false;
                         //$this->display_objects_id = $this->script_id;
                         
                         $this->load_elements(); // parent function: class template

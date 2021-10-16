@@ -116,10 +116,6 @@ class products_search_generated extends template{
         }
         //$_SESSION["_eshop_search"] = $this->eshop_search;
         
-        
-        
-        
-        //echo "<br><br><br><br>AICI( " . $eshop_search ." )<br>";
          $this->load_elements(); // parent function
      
         if ($this->eshop_search == "" ){

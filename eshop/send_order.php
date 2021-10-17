@@ -109,6 +109,7 @@ class send_order_generated extends template{
         $this->alerts = new alerts();
      
         // phpapps_display_abs Load all elelments
+        session_start();
         $this->load_elements(); // parent function
         
         if($_POST["pact"] == "trimite comanda"){

@@ -66,7 +66,7 @@ CREATE TABLE `clients` (
   `REMARKS` text COLLATE utf8_bin DEFAULT NULL,
   `PHONE` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,NULL,NULL,NULL,NULL,'gigi@fifi.com','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,'gigi@fifi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,'gigififi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Laura','Minghir',2,'1977-12-29','laura','alcatraz',1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','','0721655467'),(5,'Laura','Minghir',1,'1977-12-29',NULL,NULL,1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','Livrare dupa ora 20','0721655467'),(6,NULL,NULL,NULL,NULL,'minghir@gmail.com','12345678',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `clients` VALUES (1,NULL,NULL,NULL,NULL,'gigi@fifi.com','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,'gigi@fifi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,NULL,NULL,NULL,NULL,'gigififi','aaaaaaaaaaa',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Laura','Minghir',2,'1977-12-29','laura','alcatraz',1,20,'Hotarele','7001','Strada Almasu Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 5','','0721655467'),(5,'Laura','Minghir',1,'1977-12-29',NULL,NULL,1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','Livrare dupa ora 20','0721655467'),(6,NULL,NULL,NULL,NULL,'minghir@gmail.com','12345678',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,NULL,NULL,NULL,NULL,'mimi@fifilica.ro','12345678',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `order_details` (
   `PRODUCT_ID` bigint(20) DEFAULT NULL,
   `AMOUNT` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,6 +277,7 @@ CREATE TABLE `order_details` (
 
 LOCK TABLES `order_details` WRITE;
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+INSERT INTO `order_details` VALUES (1,16,7,1),(2,16,3,1),(3,17,12,1),(4,18,2,1),(5,18,6,5),(6,19,2,1),(7,19,6,5),(8,20,2,1),(9,20,6,5),(10,21,2,1),(11,21,6,5),(12,22,2,1),(13,22,6,5),(14,23,2,1),(15,23,6,5),(16,24,2,1),(17,24,6,5),(18,25,2,1),(19,25,6,5),(20,26,2,1),(21,26,6,5),(22,27,2,1),(23,27,6,5),(24,28,2,1),(25,28,6,5),(26,29,2,1),(27,29,6,5),(28,30,2,1),(29,30,6,5),(30,31,6,1),(31,32,3,1);
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,14 +291,14 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `CLIENT_ID` bigint(20) DEFAULT NULL,
-  `ORDER_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `ORDER_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
   `STATUS_ID` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `eshop_orders_CLIENT_ID_FK` (`CLIENT_ID`),
   KEY `eshop_orders_STATUS_ID_FK` (`STATUS_ID`),
   CONSTRAINT `eshop_orders_CLIENT_ID_FK` FOREIGN KEY (`CLIENT_ID`) REFERENCES `clients` (`ID`),
   CONSTRAINT `eshop_orders_STATUS_ID_FK` FOREIGN KEY (`STATUS_ID`) REFERENCES `list_order_status` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,6 +307,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (2,4,'2021-10-08 09:36:57',NULL),(3,4,'2021-10-08 09:37:30',NULL),(4,4,'2021-10-08 09:38:26',NULL),(5,4,'2021-10-08 09:59:21',NULL),(6,4,'2021-10-08 10:01:39',NULL),(7,4,'2021-10-08 10:02:20',NULL),(8,4,'2021-10-08 10:02:22',NULL),(9,4,'2021-10-08 10:02:36',NULL),(10,4,'2021-10-08 10:02:58',NULL),(11,4,'2021-10-08 10:05:34',NULL),(12,4,'2021-10-08 10:05:44',NULL),(13,4,'2021-10-08 10:06:05',NULL),(14,4,'2021-10-08 10:06:58',NULL),(15,4,'2021-10-08 10:17:16',NULL),(16,4,'2021-10-08 10:17:50',NULL),(17,4,'2021-10-14 06:53:38',NULL),(18,4,'2021-10-15 10:57:58',NULL),(19,4,'2021-10-15 10:59:56',NULL),(20,4,'2021-10-15 11:03:23',NULL),(21,4,'2021-10-15 11:04:45',NULL),(22,4,'2021-10-15 11:05:02',NULL),(23,4,'2021-10-15 11:05:21',NULL),(24,4,'2021-10-15 11:05:56',NULL),(25,4,'2021-10-15 11:05:59',NULL),(26,4,'2021-10-15 11:06:00',NULL),(27,4,'2021-10-15 11:06:07',NULL),(28,4,'2021-10-15 11:07:23',NULL),(29,4,'2021-10-15 11:09:03',NULL),(30,4,'2021-10-15 11:11:02',NULL),(31,4,'2021-10-15 11:11:24',NULL),(32,4,'2021-10-15 11:12:31',NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,7 +327,7 @@ CREATE TABLE `product_images` (
   PRIMARY KEY (`ID`),
   KEY `eshop_product_images_PRODUCT_ID_FK` (`PRODUCT_ID`),
   CONSTRAINT `eshop_product_images_PRODUCT_ID_FK` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `products` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,7 +336,7 @@ CREATE TABLE `product_images` (
 
 LOCK TABLES `product_images` WRITE;
 /*!40000 ALTER TABLE `product_images` DISABLE KEYS */;
-INSERT INTO `product_images` VALUES (13,1,NULL,'user_data/2/5eac513015406.jpg',NULL),(14,1,NULL,'user_data/2/5fd77395f308c.jpg',NULL),(15,2,NULL,'user_data/2/5f9fb50aa7feb.jpg',NULL),(16,2,NULL,'user_data/2/5f9fb59895c59.gif',NULL),(17,1,NULL,'user_data/2/5fa50b4a6d2d4.jpg',NULL),(18,3,NULL,'user_data/2/5fa6812e8fcd3.jpg',NULL),(19,4,NULL,'user_data/2/5fd604dc918a7.bmp',NULL),(20,6,NULL,'user_data/2/5fd605177bf1c.bmp',NULL);
+INSERT INTO `product_images` VALUES (15,2,NULL,'user_data/2/5f9fb50aa7feb.jpg',NULL),(16,2,NULL,'user_data/2/5f9fb59895c59.gif',NULL),(18,3,NULL,'user_data/2/5fa6812e8fcd3.jpg',NULL),(19,4,NULL,'user_data/2/5fd604dc918a7.bmp',NULL),(20,6,NULL,'user_data/2/5fd605177bf1c.bmp',NULL),(21,1,NULL,'user_data/2/616ad4383a1ef.jpg',NULL),(22,16,NULL,'user_data/2/616ad4811429d.jpg',NULL);
 /*!40000 ALTER TABLE `product_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +360,7 @@ CREATE TABLE `products` (
   KEY `eshop_products_CURRENCY_ID_FK` (`CURRENCY_ID`),
   CONSTRAINT `eshop_products_CATEGORY_ID_FK` FOREIGN KEY (`CATEGORY_ID`) REFERENCES `categories` (`ID`),
   CONSTRAINT `eshop_products_CURRENCY_ID_FK` FOREIGN KEY (`CURRENCY_ID`) REFERENCES `list_currency` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +369,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,8,'VOPSEA PAR','',23.00,1,100),(2,8,'VOPSEA PAR222','dadas',23.00,1,100),(3,8,'RUJ MARO','',23.00,1,100),(4,8,'VOPSEA PAR','',23.00,1,100),(6,8,'VOPSEA PAR222','',23.00,1,100),(7,8,'VOPSEA PAR222','',23.00,1,100),(8,8,'VOPSEA PAR222','',23.00,1,100),(9,8,'VOPSEA PAR222','',23.00,1,100),(10,8,'VOPSEA PAR222','',23.00,1,100),(12,8,'VOPSEA PAR222','',23.00,1,100),(13,8,'VOPSEA PAR222','',23.00,1,100),(14,8,'VOPSEA PAR222','',23.00,1,100),(15,8,'VOPSEA PAR2224','das',23.00,1,100);
+INSERT INTO `products` VALUES (1,8,'VOPSEA PAR','',23.00,1,100),(2,8,'VOPSEA PAR222','dadas',23.00,1,100),(3,8,'RUJ MARO','',23.00,1,100),(4,8,'VOPSEA PAR','',23.00,1,100),(6,8,'VOPSEA PAR222','',23.00,1,100),(7,8,'VOPSEA PAR222','',23.00,1,100),(8,8,'VOPSEA PAR222','',23.00,1,100),(9,8,'VOPSEA PAR222','',23.00,1,100),(10,8,'VOPSEA PAR222','',23.00,1,100),(12,8,'VOPSEA PAR222','',23.00,1,100),(13,8,'VOPSEA PAR222','',23.00,1,100),(14,8,'VOPSEA PAR222','',23.00,1,100),(15,8,'VOPSEA PAR2224','das',23.00,1,100),(16,1,'Pronto','',23.00,1,100);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,6 +387,8 @@ SET character_set_client = utf8;
   `EMAIL` tinyint NOT NULL,
   `COUNTY` tinyint NOT NULL,
   `CITY` tinyint NOT NULL,
+  `POSTAL_CODE` tinyint NOT NULL,
+  `ADDRESS_DETAILS` tinyint NOT NULL,
   `PHONE` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
@@ -443,7 +447,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_clients` AS select `c`.`ID` AS `ID`,concat((select `list_title`.`VALUE` from `list_title` where `list_title`.`ID` = `c`.`TITLE_ID`),' ',`c`.`FIRST_NAME`,' ',`c`.`LAST_NAME`) AS `NAME`,`c`.`EMAIL` AS `EMAIL`,(select `list_counties`.`VALUE` from `list_counties` where `list_counties`.`ID` = `c`.`COUNTY_ID`) AS `COUNTY`,`c`.`CITY` AS `CITY`,`c`.`PHONE` AS `PHONE` from `clients` `c` */;
+/*!50001 VIEW `view_clients` AS select `c`.`ID` AS `ID`,concat((select `list_titles`.`VALUE` from `list_titles` where `list_titles`.`ID` = `c`.`TITLE_ID`),' ',`c`.`FIRST_NAME`,' ',`c`.`LAST_NAME`) AS `NAME`,`c`.`EMAIL` AS `EMAIL`,(select `list_counties`.`VALUE` from `list_counties` where `list_counties`.`ID` = `c`.`COUNTY_ID`) AS `COUNTY`,`c`.`CITY` AS `CITY`,`c`.`POSTAL_CODE` AS `POSTAL_CODE`,`c`.`ADDRESS_DETAILS` AS `ADDRESS_DETAILS`,`c`.`PHONE` AS `PHONE` from `clients` `c` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -495,4 +499,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-05 10:35:21
+-- Dump completed on 2021-10-17 18:37:50

@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 12, 2020, 10:45:48 AM
+    Author     : goaga
+*/
+
+
+body {
+       /* color:  #ffffff;
+        background: #ffffff; */
+        background-color: #e6f0ff;
+        background-color: #FFfFff;
+	font-family: "Arial",  "Verdana", "sans-serif", "Trebuchet MS", "Helvetica";
+	font-size: 100%;
+}
+
+p {color: black;}
+/*
+img {
+    width: 10px; 
+     height: 15vw;
+    object-fit: cover;
+}
+*/
+.card-img-top {
+    max-height: 20vh;
+    object-fit:contain;
+}

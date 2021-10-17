@@ -103,6 +103,8 @@ class cart_generated extends template{
         
         //session_start();
         
+        //phpinfo();
+        
         $this->tpl = "cart.tpl";        
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
@@ -131,7 +133,7 @@ class cart_generated extends template{
         }
         
         switch($_POST["pact"]){
-            case "actualizeaza cos":
+            case "actualizeaza":
                $_SESSION["_CLIENT_CART"] = $_POST["cart_items"];
             break;
             case "goleste cos":

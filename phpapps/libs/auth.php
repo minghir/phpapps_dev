@@ -32,7 +32,7 @@ class auth{
         }else{
             if($this->check_session()){
                 if(!isset($_SESSION["_USER_ID"])){
-                        $this->logout();
+                      //  $this->logout();
                 }else{
                     
                     $sql = new DB_Query("SELECT ID, 

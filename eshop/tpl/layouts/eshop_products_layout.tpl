@@ -31,7 +31,7 @@
         <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark bottom">
                     <div class="input-group">
-                      <small class="text-secondary">Powered by: <a href="http://www.elight.ro" style="color: white">elight.ro</a> 2021 </small>
+                      <small class="text-secondary">Powered by: <a href="https://www.elight.ro" style="color: white">elight.ro</a> 2021 </small>
                     </div>
                 </nav>
          </div>

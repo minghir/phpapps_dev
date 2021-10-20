@@ -10,6 +10,16 @@ session_start();
 
 error_reporting(E_ALL & ~E_NOTICE  );
 //error_reporting(E_ALL  );
+/*
+if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&  $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+  define ('SERVER_PROTOCOL','https://');
+}
+else {
+  define ('SERVER_PROTOCOL','https://');
+}
+*/
+define ('SERVER_PROTOCOL', $_SERVER['REQUEST_SCHEME'] . '://');
+
 if(!defined('CURRENT_APP')) {
 	define('CURRENT_APP', 'phpapps');
 }
@@ -19,11 +29,11 @@ if(!defined('DIR_SEP')) {
 }
 
 if (!defined('SERVER_HOST_NAME')) { // pt link-uri
-        define('SERVER_HOST_NAME', 'http://' . $_SERVER["HTTP_HOST"] );
+        define('SERVER_HOST_NAME', SERVER_PROTOCOL . $_SERVER["HTTP_HOST"] );
 }	
 
 if (!defined('WEB_BASE_DIR')) { // pt link-uri
-        define('WEB_BASE_DIR', 'http://' . $_SERVER["HTTP_HOST"] . '/phpapps_dev/');
+        define('WEB_BASE_DIR', SERVER_PROTOCOL . $_SERVER["HTTP_HOST"] . '/phpapps_dev/');
 }			
 
 if (!defined('WEB_APP_DIR')) { // pt link-uri
@@ -122,6 +132,7 @@ class Globals_obj{
         
         public $CURRENT_APP_DB;
         public $PHPAPPS_DB = "phpapps";
+        //public $PHPAPPS_DB = "r84969doma_phpapps";
         
         //Directories vars
         public $PHPAPPS_APP_DIR = PHPAPPS_APP_DIR;

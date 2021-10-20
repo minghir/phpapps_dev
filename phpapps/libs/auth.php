@@ -30,10 +30,8 @@ class auth{
         if($this->public_script) {
             return true;
         }else{
-            if($this->check_session()){
-                if(!isset($_SESSION["_USER_ID"])){
-                      //  $this->logout();
-                }else{
+
+                if(isset($_SESSION["_USER_ID"])){
                     
                     $sql = new DB_Query("SELECT ID, 
                                                    USERNAME,
@@ -51,13 +49,13 @@ class auth{
                 }else{
                     $this->logout();
                 }
-            }
             }else{
-                $this->logout();
+                    $this->logout();
             }
-        }
+
     }
-    
+    }
+    /*
     function login(){
         if(isset($_POST)){
             $sql = new DB_Query("SELECT ID, 
@@ -84,7 +82,7 @@ class auth{
             }
         }
     }
-    
+    */
     function logout(){
         session_destroy();
         //$this->globals->sm->display( PHPAPPS_TPL_DIR . 'login.tpl' );

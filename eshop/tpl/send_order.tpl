@@ -30,7 +30,7 @@
     {$COUNTY}, {$CITY} (cod postal:{$POSTAL_CODE})<br>
     {$ADDRESS_DETAILS}<br>
     Telefon: {$PHONE}<br>
-    <a class="btn btn-primary stretched-link" href="http://localhost/phpapps_dev/eshop/eshop_client_address.php">modifica datele de livrare</a>
+    <a class="btn btn-primary stretched-link" href="eshop_client_address.php">modifica datele de livrare</a>
     <hr>
     <form method="POST" action="send_order.php">
        <input name="pact" type="submit" value="trimite comanda" class="btn btn-primary">

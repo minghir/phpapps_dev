@@ -32,7 +32,7 @@ function check_all_hidden() {
 </script>
 {/literal}
 
-<form name="form_gen" method="POST" id="form_gen" action="http://localhost/phpapps_dev/phpapps/phpapps_admin_formgen_imp.php">
+<form name="form_gen" method="POST" id="form_gen" action="phpapps_admin_formgen_imp.php">
 
 Form name:<b>{$deploy_location}</b><input type="text" name="form_name" id="form_name" value="{$form_name}" size=80><br>
 Sript title<input type="text" name="script_title" id="script_title" value="{$script_title}" size=30>

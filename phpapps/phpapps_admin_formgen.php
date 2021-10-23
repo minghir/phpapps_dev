@@ -634,6 +634,9 @@ REFERENCE_FIELD
 		$visible_schema_list = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_list,$tmp_arr)):$this->selected_schema_list;
 		$visible_schema_table = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_table,$tmp_arr)):$this->selected_schema_table;	
 		$visible_schema_field = is_array($this->hiddens) ? array_values(array_intersect_key($this->selected_schema_field,$tmp_arr)):$this->selected_schema_field;	
+                
+                $visible_labels = is_array($this->hiddens) ? array_values(array_intersect_key($this->labels,$tmp_arr)):$this->labels;
+                //$visible_labels = array_diff($visible_labels,$this->hiddens);
 		//print_r($visible_schema_list);
 		echo "<br>";
 		//print_r($visible_fields);
@@ -641,6 +644,7 @@ REFERENCE_FIELD
 				"hiddens" => $this->hiddens,
 
 				"fields" => $visible_fields,
+                                "labels" => $visible_labels,
 				"input_types" => $visible_types,
 				"form_table" => $this->form_table,
 				"form_schema" => $this->form_schema,

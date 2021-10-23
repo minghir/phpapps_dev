@@ -83,6 +83,8 @@ include ("generated_php/eshop_client_address_generated.php");
                     protected $_SCRIPT_LABEL = "";
 
                     protected $_SCRIPT_VERSION = "";    
+                    
+                    public $palerts;
         
         
                         //public $script_id = 366;
@@ -103,12 +105,26 @@ include ("generated_php/eshop_client_address_generated.php");
                         $this->tpl = "eshop_client_address.tpl";
                         //$this->display_objects_id = $this->script_id;
                         
+                        $this->palerts = new alerts();
+                        
                         $_GET["gact"] = "editRec";
                         $_GET["gfield"] = "ID";
                         $_GET["gfield_value"] = $_SESSION["_CLIENT_ID"];
                         
                         $this->load_elements(); // parent function: class template
-                        $this->init(); // parent function: class eshop_client_address 
+                        
+                         $this->init(); // parent function: class eshop_client_address 
+                       
+                        if($_POST["pact"] == "changePass"){
+                            
+                            $this->change_pass();
+                        }
+                        
+                        
+                       
+                        
+                         
+                        
 			$this->display();// parent function: class eshop_client_address 
                         
 		}
@@ -123,6 +139,51 @@ include ("generated_php/eshop_client_address_generated.php");
 		}
                 
                 function before_post_actions(){
+                }
+                
+                function change_pass(){
+                    if($this->pact == "changePass"){
+                         $ACTUAL_PASS = trim($_POST["ACTUAL_PASS"]);
+                         $NEW_PASS = trim($_POST["NEW_PASS"]);
+                         $NEW_PASS2 = trim($_POST["NEW_PASS2"]);
+                         
+                        $query = new DB_query("SELECT * FROM {$this->globals->CURRENT_APP_DB}.clients WHERE PASSWORD = :apass AND ID = :cid",
+                                array("apass"=>$ACTUAL_PASS,"cid"=>$_SESSION["_CLIENT_ID"]));
+                    
+                        if($this->globals->con->query($query) != 1){
+                            $this->palerts->add_alert("danger","Parola actuala este eronata!");
+                        }
+                    
+                        if(strlen($NEW_PASS) < 8 ){
+                            $this->palerts->add_alert("danger","Parola trebuie sa fie de cel putin 8 caractere!");
+                        }
+                    
+                        if($NEW_PASS === $ACTUAL_PASS ){
+                            $this->palerts->add_alert("danger","Parolele noua este identica cu cea veche!!");
+                        }
+                        
+                        if($NEW_PASS !== $NEW_PASS2 ){
+                            $this->palerts->add_alert("danger","Parolele nu coincid!");
+                        }
+                    
+                        if( $this->palerts->get_no_errors() == 0){
+                            $query = new DB_query("UPDATE {$this->globals->CURRENT_APP_DB}.clients SET PASSWORD = :pass WHERE ID = :cid ",
+                                    array("pass"=>$NEW_PASS,"cid"=>$_SESSION["_CLIENT_ID"]));
+                           
+                            if( $this->globals->con->query($query) == -1){
+                                if($this->view_database_errors){
+                                    $this->palerts->add_alert("danger",$this->globals->con->get_error());
+                                }else{
+                                    $this->palerts->add_alert("danger","Database error!!!");
+                                }   
+                                //$this->palerts->add_alert("danger","Parola actuala este eronata!");
+                            }else{
+                                $this->palerts->add_alert("success","Parola schimbata cu succes");
+                            }
+                        }
+                    }
+                    $this->smarty->assign(array("message_pass_block" => $this->palerts->get_message_str()));
+                    //echo $this->alerts->get_message_str();
                 }
 	
 		function before_add_rec(){

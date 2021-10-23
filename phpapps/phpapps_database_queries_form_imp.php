@@ -1,4 +1,6 @@
 <?php
+namespace wabdo;
+
 require_once ("globals.php");
 include ("gen_php/phpapps_database_queries_form.php");
 	class phpapps_database_queries_form_impl  extends phpapps_database_queries_form{

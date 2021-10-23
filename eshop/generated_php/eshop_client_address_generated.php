@@ -264,7 +264,7 @@ class eshop_client_address_generated extends template{
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
-				
+		//$this->query->prnt();		
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
                             if($this->view_database_errors){
@@ -377,15 +377,6 @@ class eshop_client_address_generated extends template{
         }
 	
 	function check_errors(){
-				if($this->FIRST_NAME == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>FIRST_NAME</strong> este obligatoriu!");
-		}
-				if($this->LAST_NAME == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>LAST_NAME</strong> este obligatoriu!");
-		}
-				if($this->TITLE_ID == "") {
-                        $this->alerts->add_alert("danger", "Campul <strong>TITLE_ID</strong> este obligatoriu!");
-		}
 			}
 	
 	function setup_display(){

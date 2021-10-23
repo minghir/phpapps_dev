@@ -9,7 +9,54 @@ function submitDetailsForm(op){
 }
   </script>
 {/literal}    
-<div class="container">{include file="generated_tpl/contact_generated.tpl" }</div>
+
+<div class="container">
+<hr><form name="contact" id="contact" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="pact" id="pact" value="{$pact}">
+			<input type="hidden" name="gact" value="{$gact}">
+			<input type="hidden" name="gfield" value="{$gfield}">
+			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
+                    <input id="CLIENT_ID" type="hidden" name="CLIENT_ID" value="{$CLIENT_ID}">
+                    <div class="form-group">                                                                    
+                    <label >
+                    Numele dvs.:
+                    </label>
+                        <input class="form-control" type="text" id="CLIENT_NAME" name="CLIENT_NAME" value="{$CLIENT_NAME}">
+                    </div>   
+                    <div class="form-group">
+                    <label >
+                     E-mail:
+                    </label>
+                        <input class="form-control" type="text" id="EMAIL" name="EMAIL" value="{$EMAIL}">
+                    </div>
+                    <div class="form-group">
+                    <label >
+                     Mesajul dvs.:
+                    </label>
+                        <textarea class="form-control" id="MESSAGE" name="MESSAGE">{$MESSAGE}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary mb-2" name="pact" value="addRec">trimite</button>
+                    </div>    
+                </div>
+                								                				                		                		                        		<div class="form-group">
+                    
+                
+														                				                		                		        	{$FROM_IMP_CLASS}
+               
+
+                
+
+		
+               
+	</form>
+        <hr>
+</div>
+<div class="container">
+        {$message_block}
+</div>
+
+
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--

@@ -66,6 +66,12 @@ class eshop_admin_module extends wabdo\template{
         
         $this->template_elements["grids"]["ESHOP_ADMIN_ORDERS"]->grid_title = "Comenzi";
         $this->template_elements["grids"]["ESHOP_ADMIN_ORDERS"]->table="{$this->globals->CURRENT_APP_DB}.view_orders";
+        
+        
+        $this->template_elements["grids"]["ESHOP_ADMIN_MESSAGES"]->table="{$this->globals->CURRENT_APP_DB}.view_messages";
+        $this->template_elements["grids"]["ESHOP_ADMIN_MESSAGES"]->sortable=true;
+        
+        
         /*
         $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->cols=array(
             "ID",

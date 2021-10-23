@@ -8,7 +8,7 @@ require_once (PHPAPPS_LIBS_DIR . "template.php");
 class phpapps_database_queries_form_imp_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema = "phpapps";
+	public $form_schema;// = "phpapps";
 	public $form_table = "queries";
         
 	public $template;// = "gen_tpl/phpapps_database_queries_form_imp_generated.tpl";
@@ -25,6 +25,7 @@ class phpapps_database_queries_form_imp_generated extends template{
         public $query;
         
         public $smarty;
+        public $view_database_errors = true;
         
 	            
 	public $ID;
@@ -55,6 +56,8 @@ class phpapps_database_queries_form_imp_generated extends template{
                 parent::__construct();
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
+                $this->form_schema = $this->globals->CURRENT_APP_DB;
+                
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
@@ -145,7 +148,11 @@ class phpapps_database_queries_form_imp_generated extends template{
 
                 if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare adaugata cu succes");
                         }
@@ -186,7 +193,11 @@ class phpapps_database_queries_form_imp_generated extends template{
 				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare salvata cu succes");
                         }
@@ -209,7 +220,11 @@ class phpapps_database_queries_form_imp_generated extends template{
 				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare stearsa cu succes");
                         }

@@ -35,8 +35,10 @@ class DB_table{
 	}
         
         function getValueByField($fld1,$fld2,$val2){
+            
 		$value = -1;
 		$this->sql = new DB_query("SELECT $fld1 FROM ".$this->table_name . " WHERE $fld2 = :val",array(":val"=>$val2));
+                //echo $this->sql->prnt();
 		if($this->globals->con->query($this->sql,"DB_table_getVALUE_$fld1") != -1){
 			$this->globals->con->next("DB_table_getVALUE_$fld1");
 			$value = $this->globals->con->get_field($fld1,"DB_table_getVALUE_$fld1");

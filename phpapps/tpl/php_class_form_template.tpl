@@ -326,7 +326,8 @@ class {$form_name} extends template{ldelim}
 	function check_errors(){ldelim}
 		{section name=md loop=$mandatories}
 		if($this->{$mandatories[md]} == "") {ldelim}
-                        $this->alerts->add_alert("danger", "Campul <strong>{$mandatories[md]}</strong> este obligatoriu!");
+                        //$this->alerts->add_alert("danger", "Campul <strong>{$mandatories[md]}</strong> este obligatoriu!");
+                        $this->alerts->add_alert("danger", "Campul <strong>{$labels[md]}</strong> este obligatoriu!");
 		{rdelim}
 		{/section}
 	{rdelim}

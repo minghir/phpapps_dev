@@ -82,7 +82,9 @@ include ("generated_php/signup_generated.php");
                      */
                     protected $_SCRIPT_LABEL = "";
 
-                    protected $_SCRIPT_VERSION = "";    
+                    protected $_SCRIPT_VERSION = "";   
+                    
+                    public $succes = false;
         
         
                         //public $script_id = 367;
@@ -134,10 +136,36 @@ include ("generated_php/signup_generated.php");
                         $this->alerts->add_alert("danger","Adresa de email este invalida!");
                     }
                     
+                    $query = new DB_query("SELECT * FROM {$this->globals->CURRENT_APP_DB}.clients WHERE EMAIL = :email",array("email"=>$this->EMAIL));
+                    
+                    if($this->globals->con->query($query) > 0){
+                        $this->alerts->add_alert("danger","Exista deja un alt cont cu aceasta adresa de email!");
+                    }
+                    
 		}
 		
 		function after_add_rec(){
 			//header("Location:win_close.html");
+                    $this->succes = true;
+                    if( $this->alerts->get_no_errors() == 0){
+                        $this->smarty->assign(array("SUCCES"=>$this->succes));
+                        $this->alerts = new alerts();
+                        $this->alerts->add_alert("success","Contul dvs. a fost creat cu succes.");
+                       /* $this->alerts->add_alert("success","Verificati contul de e-mail pentru validarea adresei de e-mail.");
+                        
+                        $headers = 'From: webmaster@domaxclean.com' . "\r\n" .
+                                    'Reply-To: webmaster@example.com' . "\r\n" .
+                                    'X-Mailer: PHP/' . phpversion();
+                        
+                        mail(
+                          $this->EMAIL,
+                            "domaxclean.ro",
+                            "verificare email",
+                                $headers
+                        );
+                        * *
+                        */
+                    }
 		}
 		
 		function before_save_rec(){

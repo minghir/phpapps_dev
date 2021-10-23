@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class contact_generated extends template{
+class eshop_admin_messages_form_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
 	public $form_schema;// = "eshop";
 	public $form_table = "messages";
         
-	public $template;// = "gen_tpl/contact_generated.tpl";
+	public $template;// = "gen_tpl/eshop_admin_messages_form_generated.tpl";
         
-        public $tpl = "contact_generated";
+        public $tpl = "eshop_admin_messages_form_generated";
 	
         //get values
 	public $gact;
@@ -28,16 +28,20 @@ class contact_generated extends template{
         public $view_database_errors = true;
         
 	            
-	public $MESSAGE;
+	public $ID;
         	            
 	public $CLIENT_NAME;
         	            
 	public $EMAIL;
+        	            
+	public $MESSAGE;
         		
 		 
 		 
 		 
+		 
 			
+		 
 		 
 		 
 		 
@@ -60,7 +64,9 @@ class contact_generated extends template{
                 			 
 					 
 					 
+					 
 				
+					 
 					 
 					 
 					 
@@ -82,18 +88,20 @@ class contact_generated extends template{
 	
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
-									MESSAGE,
+									ID,
 												CLIENT_NAME,
-												EMAIL
+												EMAIL,
+												MESSAGE
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
 				array((":".$this->gfield) => $this->gfield_value));
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
-			                                                                $this->MESSAGE = stripslashes($this->globals->con->get_field("MESSAGE"));
+			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
                                 			                                                                $this->CLIENT_NAME = stripslashes($this->globals->con->get_field("CLIENT_NAME"));
                                 			                                                                $this->EMAIL = stripslashes($this->globals->con->get_field("EMAIL"));
+                                			                                                                $this->MESSAGE = stripslashes($this->globals->con->get_field("MESSAGE"));
                                 						
 	}
 	
@@ -108,21 +116,21 @@ class contact_generated extends template{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-															MESSAGE,
-																						CLIENT_NAME,
-																						EMAIL
+																					CLIENT_NAME,
+																						EMAIL,
+																						MESSAGE
 										 ) VALUES (
-															:MESSAGE,
-																						:CLIENT_NAME,
-																						:EMAIL
+																					:CLIENT_NAME,
+																						:EMAIL,
+																						:MESSAGE
 													)",
 			array(
-									                                            
-                                            ":MESSAGE" => $this->MESSAGE,
-                                        														                                            
+																		                                            
                                             ":CLIENT_NAME" => $this->CLIENT_NAME,
                                         														                                            
                                             ":EMAIL" => $this->EMAIL,
+                                        														                                            
+                                            ":MESSAGE" => $this->MESSAGE,
                                         												)
 			);
 
@@ -154,15 +162,17 @@ class contact_generated extends template{
 		$this->check_errors();
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
-									MESSAGE = :MESSAGE,
+									ID = :ID,
 												CLIENT_NAME = :CLIENT_NAME,
-												EMAIL = :EMAIL
+												EMAIL = :EMAIL,
+												MESSAGE = :MESSAGE
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
-				                                                                                    ":MESSAGE" => $this->MESSAGE,
+				                                                                                    ":ID" => $this->ID,
                                         				                                                                                    ":CLIENT_NAME" => $this->CLIENT_NAME,
                                         				                                                                                    ":EMAIL" => $this->EMAIL,
+                                        				                                                                                    ":MESSAGE" => $this->MESSAGE,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -244,9 +254,10 @@ class contact_generated extends template{
 		$this->gfield = $_POST["gfield"];
 		$this->gfield_value = $_POST["gfield_value"];
 		
-		                                                    $this->MESSAGE  = htmlspecialchars(addslashes(trim($_POST["MESSAGE"])));
+		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
                                                 		                                                    $this->CLIENT_NAME  = htmlspecialchars(addslashes(trim($_POST["CLIENT_NAME"])));
                                                 		                                                    $this->EMAIL  = htmlspecialchars(addslashes(trim($_POST["EMAIL"])));
+                                                		                                                    $this->MESSAGE  = htmlspecialchars(addslashes(trim($_POST["MESSAGE"])));
                                                 		        }
 	
         function before_post_actions(){
@@ -272,21 +283,10 @@ class contact_generated extends template{
         }
 	
 	function check_errors(){
-				if($this->MESSAGE == "") {
-                        //$this->alerts->add_alert("danger", "Campul <strong>MESSAGE</strong> este obligatoriu!");
-                        $this->alerts->add_alert("danger", "Campul <strong>Mesajul dvs.</strong> este obligatoriu!");
-		}
-				if($this->CLIENT_NAME == "") {
-                        //$this->alerts->add_alert("danger", "Campul <strong>CLIENT_NAME</strong> este obligatoriu!");
-                        $this->alerts->add_alert("danger", "Campul <strong>Numele dvs.</strong> este obligatoriu!");
-		}
-				if($this->EMAIL == "") {
-                        //$this->alerts->add_alert("danger", "Campul <strong>EMAIL</strong> este obligatoriu!");
-                        $this->alerts->add_alert("danger", "Campul <strong>Adresa dvs. de e-mail</strong> este obligatoriu!");
-		}
 			}
 	
 	function setup_display(){
+					 
 					 
 					 
 					 
@@ -294,17 +294,21 @@ class contact_generated extends template{
 					 
 					 
 					 
+					 
 		        }
         
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
-							"MESSAGE" => $this->MESSAGE,
+							"ID" => $this->ID,
 							"CLIENT_NAME" => $this->CLIENT_NAME,
 							"EMAIL" => $this->EMAIL,
+							"MESSAGE" => $this->MESSAGE,
 									 
 						 
 						 
+						 
 									 
+						 
 						 
 						 
 						"pact" => $this->pact,

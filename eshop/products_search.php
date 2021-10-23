@@ -129,7 +129,7 @@ class products_search_generated extends template{
         }
         
          $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->editable=false;
-         $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->rows_on_pg=12;
+         $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->rows_on_pg=10;
          $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_rules = array(" PRODUCT_TITLE like :search ");
          $this->template_elements["grids"]["ESHOP_SEARCH_PRODUCTS_GRID"]->where_params = array(":search" => '%'.$this->eshop_search.'%');
         

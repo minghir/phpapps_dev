@@ -16,7 +16,7 @@
            <a href="eshop_client_address.php" class="nav-link" type="button" ><small class="text-secondary">Datele mele</small></a>
            <a href="client_logout.php" class="nav-link " type="button"><small class="text-secondary">Iesire</small></a> 
       {else}
-       <a href="client_login.php" class="nav-link " type="button"><small class="text-secondary">Logare</small></a> 
+       <a href="client_login.php" class="nav-link " type="button"><small class="text-secondary">Contul meu</small></a> 
       {/if}    
       </div>   
 </div>

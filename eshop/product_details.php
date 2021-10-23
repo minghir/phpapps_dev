@@ -101,7 +101,7 @@ class product_details_generated extends template{
     function __construct() {
         parent::__construct();
         
-        $this->tpl = "product_details.tpl";        
+        $this->tpl = "eshop_product_details_template.tpl";
         $this->smarty = $globals->sm;
         $this->con = $globals->con;
         
@@ -122,9 +122,10 @@ class product_details_generated extends template{
         
         $this->globals->sm->assign(array(
                 "PRODUCT_ARRAY" => $prod_table->getLineArray("ID",$this->product_id),
-                "PRODUCT_IMAGES" => $img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2),
-                "SCRIPT_CONTENT" => "product_details: Youre code here."));
-    }
+                "PRODUCT_IMAGES" => $img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",$this->product_id),
+                ));
+        
+        }
     
 }
 

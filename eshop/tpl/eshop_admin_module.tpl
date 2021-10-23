@@ -1,5 +1,6 @@
 {extends file=$display_obj->layout_file}
 {block name=content}
+<script src="{$smarty.const.CURRENT_JS_DIR}remember_last_tab.js"></script>
 <div class="container-fluid">	
     <h2>DOMAXCLEAN:  {$display_obj->MODULE_TITLE} | <a href="admin_logout.php">Iesire</a></h2>  
     <ul class="nav nav-tabs" role="tablist">
@@ -15,7 +16,7 @@
             <div id="categories" class="container-fluid tab-pane fade"><p>{$ESHOP_CATEGORIES}</p></div>
             <div id="orders" class="container-fluid tab-pane fade"><p>{$ESHOP_ADMIN_ORDERS}</p></div>
             <div id="clients" class="container-fluid tab-pane fade"><p>{$ESHOP_ADMIN_CLIENTS}</p></div>
-            <div id="msgs" class="container-fluid tab-pane fade"><p>{$ESHOP_CLIENTS}</p></div>
+			<div id="msgs" class="container-fluid tab-pane fade"><p>{$ESHOP_ADMIN_MESSAGES}</p></div>
         </div>
 </div>
 

@@ -57,6 +57,7 @@ class DB_menu{
                 $this->sm->compile_dir = SMARTY_COMPILE_DIR;
                 
                 $this->setup_menu_options();
+                
     }
     
     function set_menu_query($db_q){
@@ -64,6 +65,7 @@ class DB_menu{
     }
     
     function get_menu_str(){
+        
         $this->sm->assign(array("menu_obj"=>$this));
 	return $this->sm->fetch($this->template . '.tpl');
     }
@@ -111,6 +113,7 @@ class DB_menu{
                 $tmp_menu_item->menu_items = $this->recursive_load_sub_items($tmp_data_obj2->ID);
                 $ssub_menu_items[] = $tmp_menu_item;
             }
+            //print_r($ssub_menu_items);
             return $ssub_menu_items;
     }
 }

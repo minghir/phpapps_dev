@@ -4,8 +4,8 @@
 */
 namespace wabdo;
 require_once ("globals.php");
-include ("generated_php/contact_generated.php");
-	class contact  extends contact_generated{
+include ("generated_php/eshop_admin_messages_form_generated.php");
+	class eshop_admin_messages_form  extends eshop_admin_messages_form_generated{
                     /**
                      * application database id
                      *
@@ -38,21 +38,21 @@ include ("generated_php/contact_generated.php");
                      *
                      * @var int
                      */
-                    protected $_MODULE_ID = 31;
+                    protected $_MODULE_ID = 10;
 
                     /**
                      * module name as db identifier
                      *
                      * @var int
                      */
-                    protected $_MODULE_NAME = "eshop_public";
+                    protected $_MODULE_NAME = "eshop_admin";
 
                     /**
                      * module long title
                      *
                      * @var string
                      */
-                    protected $_MODULE_TITLE = "public";
+                    protected $_MODULE_TITLE = "admin";
 
                     /**
                      * module label (short title)
@@ -66,7 +66,7 @@ include ("generated_php/contact_generated.php");
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_NAME = "contact";
+                    protected $_SCRIPT_NAME = "eshop_admin_messages_form";
 
                     /**
                      * script long title
@@ -85,10 +85,10 @@ include ("generated_php/contact_generated.php");
                     protected $_SCRIPT_VERSION = "";    
         
         
-                        //public $script_id = 355;
+                        //public $script_id = 377;
                         public $display_objects_type_id = '2';
                         public $display_objects_type = 'SCRIPT';
-                        public $display_objects_id = 355;
+                        public $display_objects_id = 377;
                         
                         protected $smary;
                         protected $con;
@@ -97,16 +97,12 @@ include ("generated_php/contact_generated.php");
 			parent::__construct();
                         
                         
-                        $this->tpl = "contact.tpl";
+                        $this->tpl = "eshop_admin_messages_form.tpl";
                         //$this->display_objects_id = $this->script_id;
                         
                         $this->load_elements(); // parent function: class template
-                        
-                        
-
-                        
-                        $this->init(); // parent function: class contact 
-			$this->display();// parent function: class contact 
+                        $this->init(); // parent function: class eshop_admin_messages_form 
+			$this->display();// parent function: class eshop_admin_messages_form 
                         
 		}
 		
@@ -114,7 +110,6 @@ include ("generated_php/contact_generated.php");
 		}
 		
 		function after_get_rec(){
-                   
 		}
                 
                 function before_post_actions(){
@@ -145,12 +140,6 @@ include ("generated_php/contact_generated.php");
                 }
                 
 		function before_display(){	
-                     if(isset($_SESSION["_CLIENT_ID"])){
-                            $this->CLIENT_ID = $_SESSION["_CLIENT_ID"];
-                            $this->EMAIL = $_SESSION["_USER_NAME"];
-                            $this->CLIENT_NAME = _tbl($this->form_schema.".view_clients","NAME",$this->CLIENT_ID);
-                        }
-                 
 		}
 		
 		function after_display(){	
@@ -158,5 +147,5 @@ include ("generated_php/contact_generated.php");
 		
 	};
 	
-	$contact_Impl = new contact();
+	$eshop_admin_messages_form_Impl = new eshop_admin_messages_form();
 ?>

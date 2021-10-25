@@ -18,6 +18,7 @@ class auth{
         if( $tst->getValueByField("SCRIPT_TYPE_ID","SCRIPT_NAME",$this->script_name) == 2 ){
             $this->public_script = true;
         }else{
+          //  echo "AICICCCCCCCCC";exit;
             $this->public_script = false;
         }
         

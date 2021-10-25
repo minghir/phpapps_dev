@@ -119,10 +119,14 @@ class product_details_generated extends template{
         $img_table =  new DB_table("{$this->globals->CURRENT_APP_DB}.product_images");
         
         //print_r($img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",2));
-        
+        $imgs = array();
+        $imgs = $img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",$this->product_id);
+        if(!is_array($imgs)){
+            $imgs[]="---";
+        }
         $this->globals->sm->assign(array(
                 "PRODUCT_ARRAY" => $prod_table->getLineArray("ID",$this->product_id),
-                "PRODUCT_IMAGES" => $img_table->getColumnArray("IMG_FILE_NAME","PRODUCT_ID",$this->product_id),
+                "PRODUCT_IMAGES" => $imgs,
                 ));
         
         }

@@ -264,7 +264,7 @@ class eshop_client_address_generated extends template{
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
-		//$this->query->prnt();		
+				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
                             if($this->view_database_errors){

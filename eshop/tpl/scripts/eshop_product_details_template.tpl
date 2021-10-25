@@ -13,7 +13,7 @@
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
                        <!-- <img class="" src="{$img}" alt="Card image cap" style="object-fit:contain; height: 650px; max-height: 28vh;"> -->
-                                          <div class="container">  
+                                          <div class="container mt-1 mb-1">  
                                           <div id="demo" class="carousel slide" data-ride="carousel" data-interval="false">
 
                                          <!-- Indicators -->
@@ -29,7 +29,7 @@
                                          <div class="carousel-inner bg-white text-center" >
                                            {foreach from=$PRODUCT_IMAGES item=img name=imgs2}
                                            <div class="carousel-item {if $smarty.foreach.imgs2.first}active{/if}">
-                                             <img src="{$img}" alt="Chicago"  style="object-fit:contain; height: 300px;">
+                                             <img src="{$img}" alt="{$PRODUCT_ARRAY["PRODUCT_TITLE"]}"  style="object-fit:contain; height: 300px;">
                                            </div>
                                           {/foreach}
                                          </div>

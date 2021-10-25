@@ -1,6 +1,6 @@
 {extends file=$display_obj->layout_file}
 {block name=content}
-<script src="{$smarty.const.CURRENT_JS_DIR}remember_last_tab.js"></script>
+<script src="{$smarty.const.PHPAPPS_JS_DIR}remember_last_tab.js"></script>
 <div class="container-fluid">	
     <h2>DOMAXCLEAN:  {$display_obj->MODULE_TITLE} | <a href="admin_logout.php">Iesire</a></h2>  
     <ul class="nav nav-tabs" role="tablist">

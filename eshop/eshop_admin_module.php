@@ -49,7 +49,7 @@ class eshop_admin_module extends wabdo\template{
             "DESCRIPTION",
             "CONCAT(PRICE,' ',CURRENCY) AS 'PRICE'",
             "STOCK",
-            "CONCAT('<img src=',IMG,' width=90>') AS IMG");
+            "CONCAT('<img src=',IMG,' height=80>') AS IMG");
         
         $this->template_elements["grids"]["ESHOP_ADMIN_PRODUCTS"]->labels=array(
             "Cod",

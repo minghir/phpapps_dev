@@ -8,7 +8,7 @@
         </div>
     <div class="form-group">
     <label>Parola:</label><input type="password" name="password" class="form-control">
-    <a href="" ><small class="text-secondary">Ai uitat parola?</small></a>
+   <!-- <a href="" ><small class="text-secondary">Ai uitat parola?</small></a>-->
      </div>
     <input type="submit" name="act" value="autentificare" class="btn btn-primary"> | <a href="signup.php">Client nou</a>
    </form>

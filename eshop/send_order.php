@@ -99,7 +99,13 @@ class send_order_generated extends template{
     
     public $alerts;
     PRIVATE $ORDER_ID;
-        
+    
+    public $NAME;
+    public $EMAIL;
+    public $PHONE;
+    public $ADDRESS_DETAILS;
+    public $CLIENT_ADDRESS;
+    
     function __construct() {
         parent::__construct();
         
@@ -113,42 +119,105 @@ class send_order_generated extends template{
         $this->load_elements(); // parent function
         
         if($_POST["pact"] == "trimite comanda"){
-              if(isset($_SESSION["_CLIENT_ID"])){
-                 $this->query = new DB_query("INSERT INTO {$this->globals->CURRENT_APP_DB}.orders (CLIENT_ID) VALUES (:client_id)",array(":client_id" => $_SESSION["_CLIENT_ID"]));
+                
+            
+            
+                $client_id = isset($_SESSION["_CLIENT_ID"]) ? $_SESSION["_CLIENT_ID"] : 0;
+                $session_id = session_id() . microtime(TRUE);
+                
+                $this->EMAIL = trim($_POST["EMAIL"]);
+                $this->NAME = trim($_POST["NAME"]);
+                $this->PHONE = trim($_POST["PHONE"]);
+                $this->ADDRESS_DETAILS = trim($_POST["ADDRESS_DETAILS"]);
+                
                  
-                    if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
-                        }else{
-                           $this->query = new DB_query("SELECT ID FROM {$this->globals->CURRENT_APP_DB}.orders"
-                           . "   WHERE CLIENT_ID = :client_id "
-                                   . "ORDER BY ORDER_DATE DESC",
-                                   array(":client_id" => $_SESSION["_CLIENT_ID"]));
-                            
-                            $this->globals->con->query($this->query,"ORDER_ID");
-                            $res = $this->globals->con->fetch_array("ORDER_ID");
-                            $this->ORDER_ID = $res["ID"];
-                            
-                            $no_error = false;
-                            
-                            foreach($_SESSION["_CLIENT_CART"] as $key=>$value){
-                                $this->query = new DB_query("INSERT INTO {$this->globals->CURRENT_APP_DB}.order_details "
-                                . "(ORDER_ID,PRODUCT_ID,AMOUNT) VALUES(:order_id,:product_id,:amount)",
-                                        array(":order_id"=>$this->ORDER_ID,":product_id" => $key, ":amount"=>$value ));
-                                 if( $this->globals->con->query($this->query) == -1){
-                                     $this->alerts->add_alert("danger",$this->globals->con->get_error());
-                                 }else{
-                                    $no_error = true;
-                                 }
-                            }
-                            if($no_error){
-                                $this->alerts->add_alert("success","Commanda salvata cu succes");
-                                //clear seesion
-                                unset($_SESSION["_CLIENT_CART"]);
-                            }
-                        }
-            }
-        }
+                
+                if(filter_var($this->EMAIL, FILTER_VALIDATE_EMAIL)===false){
+                        $this->alerts->add_alert("danger","Adresa de email este invalida!");
+                    
+                }else{
+                    
+                }
+                
+                if($this->NAME == ""){
+                    $this->alerts->add_alert("danger","Numele este obligatoriu!");
+                    
+                }else{
+                    
+                }
+                
+                if($this->PHONE == ""){
+                    $this->alerts->add_alert("danger","Numarul de telefon este obligatoriu!");
+                    
+                }else{
+                    
+                }
+                
+                if($this->ADDRESS_DETAILS == ""){
+                    $this->alerts->add_alert("danger","Adresa de livrare este obligatorie!");
+                    
+                }else{
+                    
+                }
+                
+                if(!is_array($_SESSION["_CLIENT_CART"])){
+                    $this->alerts->add_alert("danger","Nu aveti produse in cos!!");
+                    
+                }else{
+                    
+                }
+                
+                
+                
+                if($this->alerts->get_no_errors() == 0){
+                    
+                    $this->CLIENT_ADDRESS = "<b>" . $this->NAME . "</b> (" . $this->EMAIL ." | "  . $this->PHONE .") <br> " . $this->ADDRESS_DETAILS;
+                    
+                    $this->query = new DB_query("INSERT INTO {$this->globals->CURRENT_APP_DB}.orders (CLIENT_ID, SESSION_ID,CLIENT_ADDRESS) "
+                    . "    VALUES (:client_id,:session_id,:client_address)",
+                            array(":client_id" => $client_id,":session_id" => $session_id,"client_address"=>$this->CLIENT_ADDRESS));
+                   //echo $this->query->prnt() . "<br>";
+                    
+                       if( $this->globals->con->query($this->query) == -1){
+                               $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                           }else{
+                              $this->query = new DB_query("SELECT ID FROM {$this->globals->CURRENT_APP_DB}.orders"
+                              . "   WHERE CLIENT_ID = :client_id AND SESSION_ID = :session_id"
+                                      . " ORDER BY ORDER_DATE DESC",
+                                      array(":client_id" => $client_id, ":session_id"=>$session_id));
+                              
+                      //echo $this->query->prnt() . "<br>";          
+                               $this->globals->con->query($this->query,"ORDER_ID");
+                               $res = $this->globals->con->fetch_array("ORDER_ID");
+                               $this->ORDER_ID = $res["ID"];
+
+
+                               foreach($_SESSION["_CLIENT_CART"] as $key=>$value){
+                                   $this->query = new DB_query("INSERT INTO {$this->globals->CURRENT_APP_DB}.order_details "
+                                   . "(ORDER_ID,PRODUCT_ID,AMOUNT) VALUES(:order_id,:product_id,:amount)",
+                                           array(":order_id"=>$this->ORDER_ID,":product_id" => $key, ":amount"=>$value ));
+                                   //echo $this->query->prnt() . "<br>";
+                                    if( $this->globals->con->query($this->query) == -1){
+                                        $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                                    }else{
+                                       $no_error = true;
+                                    }
+                               }
+                               
+                              if($this->alerts->get_no_errors() == 0){
+                                        $this->alerts->add_alert("success","Commanda salvata cu succes");
+                                        //clear seesion
+                                        unset($_SESSION["_CLIENT_CART"]);
+                               }
+                               
+                           }
+                }
+                
+                                    
         
+        
+        
+                               }
         
         $this->setup_display();
         $this->display_template(); // parent function
@@ -157,9 +226,10 @@ class send_order_generated extends template{
     
     function setup_display() {
         
-        if(!isset($_SESSION["_CLIENT_ID"])){
-            header("Location:client_login.php");
-        }
+        if(isset($_SESSION["_CLIENT_ID"])){
+           // $_SESSION["_CLIENT_ID"] = 0;
+            //header("Location:client_login.php");
+        
         
         //print_r($_SESSION["_CLIENT_CART"]);
         
@@ -167,11 +237,9 @@ class send_order_generated extends template{
         $this->query = new DB_query( "SELECT 
 					ID,
 					NAME,
-					COUNTY,
-					CITY,
-					POSTAL_CODE,
 					ADDRESS_DETAILS,
-					PHONE
+					PHONE,
+                                        EMAIL
 				FROM {$this->globals->CURRENT_APP_DB}.view_clients 
 				WHERE ID = :client_id ",
 				array(":client_id" => $_SESSION["_CLIENT_ID"]));
@@ -179,20 +247,18 @@ class send_order_generated extends template{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
                         
-                        $CLIENT_ID = stripslashes($this->globals->con->get_field("ID"));
-                        $CLIENT_NAME = stripslashes($this->globals->con->get_field("NAME"));
-                        $COUNTY = stripslashes($this->globals->con->get_field("COUNTY"));
-                        $CITY = stripslashes($this->globals->con->get_field("CITY"));
-                        $POSTAL_CODE = stripslashes($this->globals->con->get_field("POSTAL_CODE"));
-                        $ADDRESS_DETAILS = stripslashes($this->globals->con->get_field("ADDRESS_DETAILS"));
-                        $PHONE = stripslashes($this->globals->con->get_field("PHONE"));
-                        
-                        $this->globals->sm->assign(array("CLIENT_NAME" => $CLIENT_NAME,
-                                                        "COUNTY" => $COUNTY,
-                                                        "CITY" => $CITY,
-                                                        "POSTAL_CODE" => $POSTAL_CODE,
-                                                        "ADDRESS_DETAILS" => $ADDRESS_DETAILS,
-                                                        "PHONE" => $PHONE
+                        $this->CLIENT_ID = stripslashes($this->globals->con->get_field("ID"));
+                        $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
+                        $this->ADDRESS_DETAILS = stripslashes($this->globals->con->get_field("ADDRESS_DETAILS"));
+                        $this->PHONE = stripslashes($this->globals->con->get_field("PHONE"));
+                        $this->EMAIL = stripslashes($this->globals->con->get_field("EMAIL"));
+        }          
+        
+        
+                        $this->globals->sm->assign(array("NAME" => $this->NAME,
+                                                        "ADDRESS_DETAILS" => $this->ADDRESS_DETAILS,
+                                                        "PHONE" => $this->PHONE,
+                                                        "EMAIL" => $this->EMAIL,
                             ));
         
         
@@ -219,7 +285,7 @@ class send_order_generated extends template{
                                         ));
         
         
-        
+       // print_r($this->alerts);
         $this->globals->sm->assign(array("message_block" => $this->alerts->get_message_str()));
     }
     

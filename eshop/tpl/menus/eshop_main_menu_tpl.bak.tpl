@@ -10,11 +10,7 @@
             {/if}
         <div class="dropdown-menu">
         {else}
-            {if $entry->LABEL == "DIVERSE"}
-                <div class="dropdown-header">{$entry->LABEL}:</div>
-            {else}
-                <a class="dropdown-item d-flex" href="{$entry->ACTION}">{$entry->LABEL}</a>
-            {/if}
+            <a class="dropdown-item" href="{$entry->ACTION}">{$entry->LABEL}</a>
         {/if}
       {menu data=$entry->menu_items level=$level+1}
        {if $level == 0}

@@ -5,15 +5,15 @@ require_once ("globals.php");
 require_once (PHPAPPS_LIBS_DIR . "alerts.php");
 require_once (PHPAPPS_LIBS_DIR . "template.php");
 
-class eshop_admin_categories_form_imp_generated extends template{
+class phpapps_designer_form_elements_form_generated extends template{
         public $form_com_type = "html"; // html | ajax
 	public $globals;
-	public $form_schema;// = "eshop";
-	public $form_table = "categories";
+	public $form_schema;// = "phpapps";
+	public $form_table = "form_elements";
         
-	public $template;// = "gen_tpl/eshop_admin_categories_form_imp_generated.tpl";
+	public $template;// = "gen_tpl/phpapps_designer_form_elements_form_generated.tpl";
         
-        public $tpl = "eshop_admin_categories_form_imp_generated";
+        public $tpl = "phpapps_designer_form_elements_form_generated";
 	
         //get values
 	public $gact;
@@ -30,24 +30,21 @@ class eshop_admin_categories_form_imp_generated extends template{
 	            
 	public $ID;
         	            
-	public $PID;
+	public $FORM_ID;
         	            
-	public $NAME;
+	public $ELEMENT_TYPE;
         	            
-	public $TITLE;
-        	            
-	public $DESCRIPTION;
+	public $ELEMENT_NAME;
         		
 		 
 		 
-		 
-		 
+			public $ELEMENT_TYPE_sel;
+	 
 		 
 			
 		 
-			public $PID_sel;
+			public $FORM_ID_sel;
 	 
-		 
 		 
 		 
 	
@@ -68,14 +65,13 @@ class eshop_admin_categories_form_imp_generated extends template{
                 
                 			 
 					 
-					 
-					 
+								$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE","phpapps.list_form_element_types");
+                        			 
 					 
 				
 					 
-									$this->PID_sel = new DB_select("PID","eshop.categories");
+									$this->FORM_ID_sel = new DB_select("FORM_ID","phpapps.forms");
                                 			 
-					 
 					 
 					 
 		                
@@ -97,10 +93,9 @@ class eshop_admin_categories_form_imp_generated extends template{
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												PID,
-												NAME,
-												TITLE,
-												DESCRIPTION
+												FORM_ID,
+												ELEMENT_TYPE,
+												ELEMENT_NAME
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
 				WHERE ".$this->gfield." = :".$this->gfield." ",
@@ -108,10 +103,9 @@ class eshop_admin_categories_form_imp_generated extends template{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->PID = stripslashes($this->globals->con->get_field("PID"));
-                                			                                                                $this->NAME = stripslashes($this->globals->con->get_field("NAME"));
-                                			                                                                $this->TITLE = stripslashes($this->globals->con->get_field("TITLE"));
-                                			                                                                $this->DESCRIPTION = stripslashes($this->globals->con->get_field("DESCRIPTION"));
+                                			                                                                $this->FORM_ID = stripslashes($this->globals->con->get_field("FORM_ID"));
+                                			                                                                $this->ELEMENT_TYPE = stripslashes($this->globals->con->get_field("ELEMENT_TYPE"));
+                                			                                                                $this->ELEMENT_NAME = stripslashes($this->globals->con->get_field("ELEMENT_NAME"));
                                 						
 	}
 	
@@ -126,25 +120,21 @@ class eshop_admin_categories_form_imp_generated extends template{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					PID,
-																						NAME,
-																						TITLE,
-																						DESCRIPTION
+																					FORM_ID,
+																						ELEMENT_TYPE,
+																						ELEMENT_NAME
 										 ) VALUES (
-																					:PID,
-																						:NAME,
-																						:TITLE,
-																						:DESCRIPTION
+																					:FORM_ID,
+																						:ELEMENT_TYPE,
+																						:ELEMENT_NAME
 													)",
 			array(
 																		                                            
-                                            ":PID" => $this->PID,
+                                            ":FORM_ID" => $this->FORM_ID,
                                         														                                            
-                                            ":NAME" => $this->NAME,
+                                            ":ELEMENT_TYPE" => $this->ELEMENT_TYPE,
                                         														                                            
-                                            ":TITLE" => $this->TITLE,
-                                        														                                            
-                                            ":DESCRIPTION" => $this->DESCRIPTION,
+                                            ":ELEMENT_NAME" => $this->ELEMENT_NAME,
                                         												)
 			);
 
@@ -177,18 +167,16 @@ class eshop_admin_categories_form_imp_generated extends template{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												PID = :PID,
-												NAME = :NAME,
-												TITLE = :TITLE,
-												DESCRIPTION = :DESCRIPTION
+												FORM_ID = :FORM_ID,
+												ELEMENT_TYPE = :ELEMENT_TYPE,
+												ELEMENT_NAME = :ELEMENT_NAME
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":PID" => $this->PID,
-                                        				                                                                                    ":NAME" => $this->NAME,
-                                        				                                                                                    ":TITLE" => $this->TITLE,
-                                        				                                                                                    ":DESCRIPTION" => $this->DESCRIPTION,
+                                        				                                                                                    ":FORM_ID" => $this->FORM_ID,
+                                        				                                                                                    ":ELEMENT_TYPE" => $this->ELEMENT_TYPE,
+                                        				                                                                                    ":ELEMENT_NAME" => $this->ELEMENT_NAME,
                                         								":".$this->gfield => $this->gfield_value
 			)	
 			);
@@ -271,10 +259,9 @@ class eshop_admin_categories_form_imp_generated extends template{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->PID  = htmlspecialchars(addslashes(trim($_POST["PID"])));
-                                                		                                                    $this->NAME  = htmlspecialchars(addslashes(trim($_POST["NAME"])));
-                                                		                                                    $this->TITLE  = htmlspecialchars(addslashes(trim($_POST["TITLE"])));
-                                                		                                                    $this->DESCRIPTION  = htmlspecialchars(addslashes(trim($_POST["DESCRIPTION"])));
+                                                		                                                    $this->FORM_ID  = htmlspecialchars(addslashes(trim($_POST["FORM_ID"])));
+                                                		                                                    $this->ELEMENT_TYPE  = htmlspecialchars(addslashes(trim($_POST["ELEMENT_TYPE"])));
+                                                		                                                    $this->ELEMENT_NAME  = htmlspecialchars(addslashes(trim($_POST["ELEMENT_NAME"])));
                                                 		        }
 	
         function before_post_actions(){
@@ -300,27 +287,40 @@ class eshop_admin_categories_form_imp_generated extends template{
         }
 	
 	function check_errors(){
+				if($this->FORM_ID == "") {
+                        //$this->alerts->add_alert("danger", "Campul <strong>FORM_ID</strong> este obligatoriu!");
+                        $this->alerts->add_alert("danger", "Campul <strong>ID</strong> este obligatoriu!");
+		}
+				if($this->ELEMENT_TYPE == "") {
+                        //$this->alerts->add_alert("danger", "Campul <strong>ELEMENT_TYPE</strong> este obligatoriu!");
+                        $this->alerts->add_alert("danger", "Campul <strong>FORM_ID</strong> este obligatoriu!");
+		}
+				if($this->ELEMENT_NAME == "") {
+                        //$this->alerts->add_alert("danger", "Campul <strong>ELEMENT_NAME</strong> este obligatoriu!");
+                        $this->alerts->add_alert("danger", "Campul <strong>ELEMENT_TYPE</strong> este obligatoriu!");
+		}
 			}
 	
 	function setup_display(){
 					 
 					 
-					 
-					 
+								//$this->ELEMENT_TYPE_sel = new DB_select("ELEMENT_TYPE",".phpapps.list_form_element_types");
+			$this->ELEMENT_TYPE_sel->selected_val = $this->ELEMENT_TYPE;
+			$this->ELEMENT_TYPE_sel->setup_select_options();
+			 
 					 
 				
 					 
-									//$this->PID_sel = new DB_select("PID",".eshop.categories");
-				//$this->PID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
+									//$this->FORM_ID_sel = new DB_select("FORM_ID",".phpapps.forms");
+				//$this->FORM_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, FORM_NAME AS LABEL FROM phpapps.forms ORDER BY FORM_NAME");
                                 
-                                $this->PID_sel->table = "eshop.categories";
-                                $this->PID_sel->value_col = "ID";
-                                $this->PID_sel->label_col = "NAME";
+                                $this->FORM_ID_sel->table = "phpapps.forms";
+                                $this->FORM_ID_sel->value_col = "ID";
+                                $this->FORM_ID_sel->label_col = "FORM_NAME";
                                 
-				$this->PID_sel->selected_val = $this->PID;
-				$this->PID_sel->setup_select_options();
+				$this->FORM_ID_sel->selected_val = $this->FORM_ID;
+				$this->FORM_ID_sel->setup_select_options();
 			 
-					 
 					 
 					 
 		        }
@@ -328,19 +328,17 @@ class eshop_admin_categories_form_imp_generated extends template{
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
 							"ID" => $this->ID,
-							"PID" => $this->PID,
-							"NAME" => $this->NAME,
-							"TITLE" => $this->TITLE,
-							"DESCRIPTION" => $this->DESCRIPTION,
+							"FORM_ID" => $this->FORM_ID,
+							"ELEMENT_TYPE" => $this->ELEMENT_TYPE,
+							"ELEMENT_NAME" => $this->ELEMENT_NAME,
 									 
 						 
-						 
-						 
-						 
-									 
-										"PID_sel" => $this->PID_sel->get_select_str(),
+										"ELEMENT_TYPE_sel" => $this->ELEMENT_TYPE_sel->get_select_str(),
 			 
 						 
+									 
+										"FORM_ID_sel" => $this->FORM_ID_sel->get_select_str(),
+			 
 						 
 						 
 						"pact" => $this->pact,

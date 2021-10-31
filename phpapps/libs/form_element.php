@@ -23,7 +23,7 @@ class form_element {
     public $VALUE;
     public $NAME;
     
-//    ID	VALUE	DESCRIPTION	
+//    ID	VALUE	DESCRIPTION	list_form_element_types
 //1	LABEL	Text label	
 //2	INPUT	Input value	
 //3	SELECT	Select input	
@@ -63,6 +63,18 @@ class form_element {
             }
             case 5:{ //ftextarea
                 $this->tpl = "fbutton.tpl";
+                break;
+            }
+             case 6:{ 
+                break;
+            }
+            
+            case 7:{ 
+                break;
+            }
+            
+            case 8:{ //foption
+                $this->tpl = "foption.tpl";
                 break;
             }
         }

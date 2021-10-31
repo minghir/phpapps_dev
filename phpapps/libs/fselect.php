@@ -14,13 +14,14 @@ require_once (PHPAPPS_LIBS_DIR . "form_element.php");
  * @author goaga
  */
 
-class foption{
+class foption extends form_element{
     
     public $value;
     public $label;
     public $selected;
     
-    function __construct($value,$label,$selected = false) {
+    function __construct($el_id,$value,$label,$selected = false) {
+            parent::__construct($el_id,8);
         $this->value = $value;
         $this->label = $label;
         $this->selected = $selected;
@@ -37,12 +38,17 @@ class foption{
     function value($value){
         $this->value = $value;
     }
+    
+    function setup(){
+        //echo "SUNT IN OPTION_SETUP<br>";
+    }
 
-
+/*
     function get_str(){
         $tmp_selected = $this->selected ? "selected" : "";
         return "<option value=\"" . $this->value . "\" $tmp_selected>" . $this->label . "</option>";
     }
+*/
 }
 
 class fselect extends form_element{
@@ -55,8 +61,11 @@ class fselect extends form_element{
     
     public $selected_val;
     
+    public $element_id;
+    
     function __construct($el_id) {
         parent::__construct($el_id,3);
+        $this->element_id = $el_id;
     }
     
     function set_label($lbl){
@@ -80,14 +89,15 @@ class fselect extends form_element{
     }
     
     function setup(){
+        
         if($this->empty_option){
-            $this->options[] = new foption("","--");
+            $this->options[] = new foption($this->element_id , "","--");
         }
         
         if(is_array($this->elements)){
             foreach($this->elements as $val=>$label){
                 $tmp_sel = $val == $this->selected_val ? true : false;
-                $this->options[] = new foption($val,$label,$tmp_sel);
+                $this->options[] = new foption($this->element_id . "_option",$val,$label,$tmp_sel);
             }
         }
     }

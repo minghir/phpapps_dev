@@ -21,11 +21,18 @@ body {
 
 .card-horizontal {
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1 auto; 
 }
 
 .card-img-top {
 	max-height: 20vh;
 	height: 200px;
 	object-fit: contain;	
+}
+
+@media screen and (max-width:767px){
+    .card-horizontal {
+        flex-wrap: wrap;
+        text-align: center;
+    }
 }

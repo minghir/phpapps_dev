@@ -4,8 +4,8 @@
 */
 namespace wabdo;
 require_once ("globals.php");
-include ("generated_php/phpapps_designer_custom_forms_form_generated.php");
-	class phpapps_designer_custom_forms_form  extends phpapps_designer_custom_forms_form_generated{
+include ("generated_php/phpapps_designer_form_elements_form_generated.php");
+	class phpapps_designer_form_elements_form  extends phpapps_designer_form_elements_form_generated{
                     /**
                      * application database id
                      *
@@ -66,29 +66,29 @@ include ("generated_php/phpapps_designer_custom_forms_form_generated.php");
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_NAME = "phpapps_designer_custom_forms_form";
+                    protected $_SCRIPT_NAME = "phpapps_designer_form_elements_form";
 
                     /**
                      * script long title
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_TITLE = "Custom forms edit form";
+                    protected $_SCRIPT_TITLE = "";
 
                     /**
                      * module label (short title)
                      *
                      * @var string
                      */
-                    protected $_SCRIPT_LABEL = "Custom form";
+                    protected $_SCRIPT_LABEL = "";
 
                     protected $_SCRIPT_VERSION = "";    
         
         
-                        //public $script_id = 338;
+                        //public $script_id = 378;
                         public $display_objects_type_id = '2';
                         public $display_objects_type = 'SCRIPT';
-                        public $display_objects_id = 338;
+                        public $display_objects_id = 378;
                         
                         protected $smary;
                         protected $con;
@@ -97,22 +97,12 @@ include ("generated_php/phpapps_designer_custom_forms_form_generated.php");
 			parent::__construct();
                         
                         
-                        $this->tpl = "phpapps_designer_custom_forms_form.tpl";
-                        $this->display_object_id = $this->script_id;
+                        $this->tpl = "phpapps_designer_form_elements_form.tpl";
+                        //$this->display_object_id = $this->script_id;
                         
                         $this->load_elements(); // parent function: class template
-                        $this->init(); // parent function: class phpapps_designer_custom_forms_form 
-                        //echo "CACAC!<br><br><br>";
-                        //print_r($this->template_elements);
-                        //echo "|";
-                        
-                        /*
-                        $this->template_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_rules = array("GRID_ID = :grid_id");
-                        $this->template_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->where_params = array(":grid_id" => $this->ID);
-                        $this->template_elements['grids']["PHPAPPS_DESIGNER_GRID_ACTIONS"]->edit_form = "phpapps_designer_grid_actions_form_imp.php?grid_id=".$this->ID;
-                        */
-                        
-			$this->display();// parent function: class phpapps_designer_custom_forms_form 
+                        $this->init(); // parent function: class phpapps_designer_form_elements_form 
+			$this->display();// parent function: class phpapps_designer_form_elements_form 
                         
 		}
 		
@@ -157,5 +147,5 @@ include ("generated_php/phpapps_designer_custom_forms_form_generated.php");
 		
 	};
 	
-	$phpapps_designer_custom_forms_form_Impl = new phpapps_designer_custom_forms_form();
+	$phpapps_designer_form_elements_form_Impl = new phpapps_designer_form_elements_form();
 ?>

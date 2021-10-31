@@ -24,11 +24,20 @@ class form {
     public $tpl;
     
     public $form_elements = array();
+    
     private $str;
+    private $db_obj;
+    
     private $sm;
     
     public $ID;
     public $FORM_NAME;
+    public $FORM_TITLE;
+    public $FORM_LABEL;
+    public $FORM_TABLE;
+    public $DESCRIPTION;
+    public $TEMPLATE_ID;
+    public $FORM_METHOD; // 1 POST | 2 GET - list_form_methods
     
     public function __construct($form_id){
         $this->tpl = "form.tpl";
@@ -42,18 +51,24 @@ class form {
         
         
         $this->ID = $form_id;
+        $this->FORM_METHOD = "POST";
              
         
         global $GLOBALS_OBJ;
         $this->globals = &$GLOBALS_OBJ;
         
         $sql = new DB_query("SELECT * FROM {$this->globals->PHPAPPS_DB}.forms WHERE ID = :form_id",array(":form_id"=> $this->ID));
-        //$this->str = $sql->prnt();
+
+        $tmp_obj;    
         if( $this->globals->con->query($sql) == 1){
-                
-             $this->str = implode(",",$this->globals->con->fetch_array());
+             $tmp_obj = $this->globals->con->fetch_object();
         }
         
+        $this->FORM_NAME = $tmp_obj->FORM_NAME;
+        
+        echo "<b>AAA" . $this->FORM_NAME ."</b><br>";
+        
+        print_r($this->this);
         $this->load_form_elements();
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -129,5 +144,10 @@ class form {
     function on_submit(){
         print_r($_POST);
     }
+    
+    function set_method($method){
+        $this->METHOD = $method;
+    }
+    
     
 }

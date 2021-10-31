@@ -7,11 +7,11 @@
     
     
     <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 mt-3">
-            <div class="card col-12" style="height:400;">
-                <div class="card-horizontal">
-                    <div class="img-square-wrapper">
+    <div class="row  ">
+        <div class="col-12 mt-3 ">
+            <div class="card col-12" >
+                <div class="card-horizontal"> 
+                    <div class="img-square-wrapper fluid ">
                        <!-- <img class="" src="{$img}" alt="Card image cap" style="object-fit:contain; height: 650px; max-height: 28vh;"> -->
                                           <div class="container mt-1 mb-1">  
                                           <div id="demo" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -29,7 +29,7 @@
                                          <div class="carousel-inner bg-white text-center" >
                                            {foreach from=$PRODUCT_IMAGES item=img name=imgs2}
                                            <div class="carousel-item {if $smarty.foreach.imgs2.first}active{/if}">
-                                             <img src="{$img}" alt="{$PRODUCT_ARRAY["PRODUCT_TITLE"]}"  style="object-fit:contain; height: 300px;">
+                                             <img  src="{$img}" alt="{$PRODUCT_ARRAY["PRODUCT_TITLE"]}"  style="object-fit:contain;max-height: 290px;">
                                            </div>
                                           {/foreach}
                                          </div>
@@ -47,7 +47,7 @@
                                        </div>
                                        </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fluid">
                         <h4 class="card-title">{$PRODUCT_ARRAY["PRODUCT_TITLE"]}</h4>
                        <!-- <p class="card-text"> <a href="products.php?cat_id={$PRODUCT_ARRAY["CATEGORY_ID"]}">{$PRODUCT_ARRAY["CATEGORY"]}</a><br> -->
                         {$PRODUCT_ARRAY["DESCRIPTION"]}</p>
@@ -59,7 +59,7 @@
                     <small class="text-muted"><a href="cart.php?gact=add&gfield=ID&gfield_value={$PRODUCT_ARRAY["ID"]}" class="btn btn-primary">adauga in cos</a></small>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
     </div>
     

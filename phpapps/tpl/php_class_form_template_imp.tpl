@@ -98,7 +98,7 @@ include ("generated_php/{$form_name}_generated.php");
                         
                         
                         $this->tpl = "{$form_name}.tpl";
-                        //$this->display_objects_id = $this->script_id;
+                        //$this->display_object_id = $this->script_id;
                         
                         $this->load_elements(); // parent function: class template
                         $this->init(); // parent function: class {$form_name} 

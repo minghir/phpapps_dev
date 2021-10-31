@@ -9,7 +9,21 @@ function submitDetailsForm(op){
 }
   </script>
 {/literal}    
-<div class="container">{include file="generated_tpl/phpapps_designer_custom_forms_form_generated.tpl" }</div>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href='#tab1'>Details</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab2'>Form elements</a></li>
+	<li class="nav-item"><a class="nav-link" data-toggle="tab" href='#tab3'>Form actions</a></li>
+</ul>
+	   <div class="tab-content container-fluid">    
+            <div id="tab1" class="container-fluid tab-pane active"><p>{include file="generated_tpl/phpapps_designer_custom_forms_form_generated.tpl" }</p></div>
+            <div id="tab2" class="container-fluid tab-pane fade"><p>{$PHPAPPS_DESIGNER_FORM_ELEMENTS}</p></div>
+            <div id="tab3" class="container-fluid tab-pane fade"><p>---</p></div>
+        </div>
+</div>
+
+
+
+
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--
@@ -31,6 +45,7 @@ $("#phpapps_designer_custom_forms_form").submit(function(event){
 });
 </script>
 -->
+
 {/literal} 
 
 {/block}

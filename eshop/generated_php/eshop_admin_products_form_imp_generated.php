@@ -25,6 +25,7 @@ class eshop_admin_products_form_imp_generated extends template{
         public $query;
         
         public $smarty;
+        public $view_database_errors = true;
         
 	            
 	public $ID;
@@ -66,6 +67,7 @@ class eshop_admin_products_form_imp_generated extends template{
 		global $GLOBALS_OBJ;
 		$this->globals = &$GLOBALS_OBJ;
                 $this->form_schema = $this->globals->CURRENT_APP_DB;
+                
                 $this->alerts = new alerts();
                 
                 //$this->smarty = new Smarty;
@@ -78,12 +80,12 @@ class eshop_admin_products_form_imp_generated extends template{
 					 
 					 
 					 
-								$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID","{$this->globals->CURRENT_APP_DB}.list_currency");
+								$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID","eshop.list_currency");
                         			 
 					 
 				
 					 
-									$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID","{$this->globals->CURRENT_APP_DB}.categories");
+									$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID","eshop.categories");
                                 			 
 					 
 					 
@@ -174,7 +176,11 @@ class eshop_admin_products_form_imp_generated extends template{
 
                 if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare adaugata cu succes");
                         }
@@ -219,7 +225,11 @@ class eshop_admin_products_form_imp_generated extends template{
 				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare salvata cu succes");
                         }
@@ -242,7 +252,11 @@ class eshop_admin_products_form_imp_generated extends template{
 				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare stearsa cu succes");
                         }
@@ -326,17 +340,17 @@ class eshop_admin_products_form_imp_generated extends template{
 					 
 					 
 					 
-								//$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID",".{$this->globals->CURRENT_APP_DB}.list_currency");
+								//$this->CURRENCY_ID_sel = new DB_select("CURRENCY_ID",".eshop.list_currency");
 			$this->CURRENCY_ID_sel->selected_val = $this->CURRENCY_ID;
 			$this->CURRENCY_ID_sel->setup_select_options();
 			 
 					 
 				
 					 
-									//$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID",".{$this->globals->CURRENT_APP_DB}.categories");
-				//$this->CATEGORY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM {$this->globals->CURRENT_APP_DB}.categories ORDER BY NAME");
+									//$this->CATEGORY_ID_sel = new DB_select("CATEGORY_ID",".eshop.categories");
+				//$this->CATEGORY_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, NAME AS LABEL FROM eshop.categories ORDER BY NAME");
                                 
-                                $this->CATEGORY_ID_sel->table = "{$this->globals->CURRENT_APP_DB}.categories";
+                                $this->CATEGORY_ID_sel->table = "eshop.categories";
                                 $this->CATEGORY_ID_sel->value_col = "ID";
                                 $this->CATEGORY_ID_sel->label_col = "NAME";
                                 

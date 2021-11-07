@@ -151,6 +151,7 @@ INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJEC
 INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (66,33,4,1,2,'FRM1','');
 INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (67,299,2,25,4,'ESHOP_ADMIN_MESSAGES','');
 INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (68,338,2,27,4,'PHPAPPS_DESIGNER_FORM_ELEMENTS','PHPAPPS_DESIGNER_FORM_ELEMENTS');
+INSERT INTO `display_object_elements` (`ID`, `DISPLAY_OBJECT_ID`, `DISPLAY_OBJECT_TYPE_ID`, `ELEMENT_ID`, `ELEMENT_TYPE_ID`, `TEMPLATE_VARIABLE_NAME`, `DESCRIPTION`) VALUES (69,379,2,1,2,'test1_form','aaa');
 DROP TABLE IF EXISTS `errr`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -701,6 +702,8 @@ CREATE TABLE `form_elements` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO `form_elements` (`ID`, `FORM_ID`, `ELEMENT_TYPE`, `ELEMENT_NAME`) VALUES (1,1,2,'TEST');
+INSERT INTO `form_elements` (`ID`, `FORM_ID`, `ELEMENT_TYPE`, `ELEMENT_NAME`) VALUES (2,1,4,'TEST_TEXTAREA');
+INSERT INTO `form_elements` (`ID`, `FORM_ID`, `ELEMENT_TYPE`, `ELEMENT_NAME`) VALUES (3,1,1,'TEST_LABEL_1');
 DROP TABLE IF EXISTS `forms`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1797,6 +1800,7 @@ INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TIT
 INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (376,10,'eshop_admin_orders_form',384,'','','D:/work/www\\\\phpapps_dev\\\\eshop','D:/work/www\\\\phpapps_dev\\\\eshop',1,1,1,0,'',NULL,1,1,'2021-10-08 10:43:32','2021-10-08 10:43:32');
 INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (377,10,'eshop_admin_messages_form',383,'','','D:/work/www\\\\phpapps_dev\\\\eshop','D:/work/www\\\\phpapps_dev\\\\eshop',1,1,1,0,'',NULL,1,1,'2021-10-21 08:53:58','2021-10-21 08:53:58');
 INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (378,21,'phpapps_designer_form_elements_form',396,'','','D:/work/www\\\\phpapps_dev\\\\phpapps','D:/work/www\\\\phpapps_dev\\\\phpapps',1,1,1,0,'',NULL,1,1,'2021-10-29 17:06:14','2021-10-29 17:06:14');
+INSERT INTO `scripts` (`ID`, `MODULE_ID`, `SCRIPT_NAME`, `TABLE_ID`, `SCRIPT_TITLE`, `SCRIPT_LABEL`, `FORM_PHP_DIR`, `FORM_TPL_DIR`, `WEB_TYPE_ID`, `SCRIPT_TYPE_ID`, `LAYOUT_ID`, `TEMPLATE_ID`, `DESCRIPTION`, `VERSION`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (379,27,'test_form',0,'test_form','test_form',NULL,NULL,2,2,5,1,'',1,1,1,'2021-11-04 07:22:22','2021-11-04 07:22:22');
 DROP TABLE IF EXISTS `sql_console_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -3691,6 +3695,8 @@ INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `C
 INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1893,'select * from form_elements',3,1,1,'2021-10-29 16:15:04','2021-10-29 16:15:04');
 INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1894,'show tables',3,1,1,'2021-10-29 17:00:15','2021-10-29 17:00:15');
 INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1895,'select * from  display_object_elements',3,1,1,'2021-10-29 17:00:28','2021-10-29 17:00:28');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1896,'show tables',3,1,1,'2021-11-04 07:20:42','2021-11-04 07:20:42');
+INSERT INTO `sql_console_history` (`ID`, `QUERY`, `RUN_SCHEMA`, `MODIFY_UID`, `CREATE_UID`, `MODIFY_DATE`, `CREATE_DATE`) VALUES (1897,'select * from form_elements',3,1,1,'2021-11-04 07:30:53','2021-11-04 07:30:53');
 DROP TABLE IF EXISTS `sql_console_saves`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;

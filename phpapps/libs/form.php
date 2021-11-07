@@ -82,7 +82,31 @@ class form {
     
     function load_form_elements(){
         
-            $this->form_elements["flabel1"] = new flabel(1);
+            //phpapps.list_form_element_types
+            $query = new DB_query("SELECT * from form_elements WHERE FORM_ID = :form_id",array("form_id"=>$this->ID));
+            $this->globals->con->query($query,"form_el_sql");
+         
+            while($res = $this->globals->con->fetch_object("form_el_sql")){
+                switch($res->ELEMENT_TYPE){
+                    case 1:
+                        echo "LABEL:" . $res->ELEMENT_NAME . "/<br>";
+                         $this->form_elements[$res->ELEMENT_NAME] = new flabel($res->ID);
+                         $this->form_elements[$res->ELEMENT_NAME]->VALUE = $res->ELEMENT_NAME;
+                    break;
+                    
+                    case 2:
+                        echo "INPUT:" . $res->ELEMENT_NAME . "/<br>";
+                    break;
+                
+                    case 4:
+                        echo "TEXTAREA:" . $res->ELEMENT_NAME . "/<br>";
+                    break;
+                }
+                
+            }
+            
+        
+           // $this->form_elements["flabel1"] = new flabel(1);
             //$lbl = new flabel(1);
             $tmp = new finput(2,19);
             $tmp->set_element_label("MIMI  ");

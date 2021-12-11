@@ -30,9 +30,18 @@ body {
 	object-fit: contain;	
 }
 
+.card-text{
+    font-size:15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
 @media screen and (max-width:767px){
     .card-horizontal {
         flex-wrap: wrap;
         text-align: center;
     }
 }
+

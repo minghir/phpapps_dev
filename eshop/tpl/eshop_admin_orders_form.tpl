@@ -9,7 +9,19 @@ function submitDetailsForm(op){
 }
   </script>
 {/literal}    
-<div class="container">{include file="generated_tpl/eshop_admin_orders_form_generated.tpl" }</div>
+<div class="container">
+        {include file="generated_tpl/eshop_admin_orders_form_generated.tpl" }
+<p>      
+<h6> Nr. comanda: {$ORDER_ID} / {$ORDER_DATE}</h6><br>
+         {$CLIENT_ADDRESS}
+        <hr>
+        {foreach key=key from=$products item=product}
+            {$key+1}.   {$product["PRODUCT_TITLE"]}:<b> {$product["AMOUNT"]} </b>buc x <b>{$product["PRICE"]}</b> lei = <b>{$product["AMOUNT"]*$product["PRICE"]}</b> lei<br>
+        {/foreach}
+        <hr>
+        TOTAL COMANDA: <b>{$ORDER_TOTAL} lei</b>
+</p>    
+</div>
 {literal}
 <div id="server-results"><!-- For server results --></div>    
 <!--

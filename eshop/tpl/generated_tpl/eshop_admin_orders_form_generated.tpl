@@ -5,23 +5,9 @@
 			<input type="hidden" name="gfield" value="{$gfield}">
 			<input type="hidden" name="gfield_value" value="{$gfield_value}">	
 	                								<input id="ID" type="hidden" name="ID" value="{$ID}">
-                						                				                		                		                        												                				<!-- <div class="form-group"><label >CLIENT_ID :<td> <input type="text" class="tcal" name="CLIENT_ID" value="{$CLIENT_ID}"></div> -->
-		<div class="form-group">
+                						                				                		                		                        												                						<div class="form-group">
                     <label >
-                        CLIENT_ID :
-                    </label>
-                        {$CLIENT_ID} <input id="CLIENT_ID" type="hidden" name="CLIENT_ID" value="{$CLIENT_ID}">
-                </div>
-                		                		                		                        														<!-- <div class="form-group"><label >ORDER_DATE :<td> <input type="text" class="tcal" name="ORDER_DATE" value="{$ORDER_DATE}"></div> -->
-		<div class="form-group">
-                    <label >
-                        ORDER_DATE :
-                    </label>
-                        <input class="form-control" id="ORDER_DATE" type="date" name="ORDER_DATE" value="{$ORDER_DATE}">
-                </div>
-                                				                		                		                        												                						<div class="form-group">
-                    <label >
-                        STATUS_ID  :
+                        STATUS COMANDA  :
                     </label>
 			{$STATUS_ID_sel}
                 </div>

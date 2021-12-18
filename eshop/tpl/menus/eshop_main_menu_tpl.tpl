@@ -32,5 +32,5 @@
 <a class="navbar-brand" href="products.php"><img src="imgs/Diomax_logo_final_no_market_100.png" ></a>
 
 <ul class="navbar-nav mr-auto level{$level} "> 
-    {menu data=$menu_obj->menu_items}
+     {menu data=$menu_obj->menu_items} 
 </ul>

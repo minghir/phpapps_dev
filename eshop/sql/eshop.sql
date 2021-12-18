@@ -75,7 +75,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (0,'Necunoscut',NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Laura','Minghir',2,'1977-12-29','laura','alcatraz',1,20,'Hotarele','7001','Strada Almasu Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 5','','0721655467'),(5,'Laura','Minghir',1,'1977-12-29',NULL,NULL,1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','Livrare dupa ora 20','0721655467'),(15,'Laura','Minghir',2,NULL,'minghir@gmail.com','alcatraz',NULL,10,'Bucuresti','7000','','','0721655467');
+INSERT INTO `clients` VALUES (0,'Necunoscut',NULL,NULL,NULL,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'Laura','Minghir',2,'1977-12-29','laura','alcatraz',1,20,'Hotarele','7001','Strada Almasu Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 5','','0721655467'),(5,'Laura','Minghir',1,'1977-12-29','test@lest.ro',NULL,1,10,'Bucuresti','7000','Strada Almasul Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 4','Livrare dupa ora 20','0721655467'),(15,'Laura','Minghir',2,NULL,'minghir@gmail.com','alcatraz',NULL,10,'Bucuresti','7000','','','0721655467');
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +270,7 @@ CREATE TABLE `order_details` (
   `PRODUCT_ID` bigint(20) DEFAULT NULL,
   `AMOUNT` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +279,7 @@ CREATE TABLE `order_details` (
 
 LOCK TABLES `order_details` WRITE;
 /*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-INSERT INTO `order_details` VALUES (40,NULL,16,1),(41,NULL,4,1),(42,NULL,16,1),(43,NULL,3,1),(44,NULL,3,1),(45,NULL,2,1),(46,NULL,3,1),(47,47,2,1),(48,48,4,1),(49,49,4,1),(50,50,6,1),(51,51,3,1),(52,52,6,1),(53,52,8,1),(54,53,3,1),(55,53,8,1),(56,54,2,1),(57,55,4,1),(58,55,16,1),(59,55,6,1),(60,56,3,1),(61,56,2,1),(62,56,8,1),(63,57,1,1),(64,58,2,1),(65,59,3,1),(66,62,2,1),(67,63,3,1),(68,64,1,1),(69,65,3,1),(70,66,2,1),(71,67,2,1),(72,68,4,1),(73,70,3,1),(74,71,2,1),(75,72,3,1),(76,73,2,1),(77,74,6,1),(78,75,6,1);
+INSERT INTO `order_details` VALUES (47,47,2,1),(48,48,4,1),(49,49,4,1),(50,50,6,1),(51,51,3,1),(52,52,6,1),(53,52,8,1),(54,53,3,1),(55,53,8,1),(56,54,2,1),(57,55,4,1),(58,55,16,1),(59,55,6,1),(60,56,3,1),(61,56,2,1),(62,56,8,1),(63,57,1,1),(64,58,2,1),(65,59,3,1),(66,62,2,1),(67,63,3,1),(68,64,1,1),(69,65,3,1),(70,66,2,1),(71,67,2,1),(72,68,4,1),(73,70,3,1),(74,71,2,1),(75,72,3,1),(76,73,2,1),(77,74,6,1),(78,75,6,1),(79,76,6,3),(80,76,9,6),(81,76,8,1);
 /*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -301,7 +301,7 @@ CREATE TABLE `orders` (
   KEY `eshop_orders_CLIENT_ID_FK` (`CLIENT_ID`),
   KEY `eshop_orders_STATUS_ID_FK` (`STATUS_ID`),
   CONSTRAINT `eshop_orders_STATUS_ID_FK` FOREIGN KEY (`STATUS_ID`) REFERENCES `list_order_status` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +310,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (40,0,'2021-10-25 14:05:58',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(41,0,'2021-10-25 14:06:57',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(42,0,'2021-10-25 14:08:00',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(43,0,'2021-10-25 14:08:44',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(44,0,'2021-10-25 14:09:08',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(45,0,'2021-10-25 14:09:54',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(46,0,'2021-10-25 14:10:32',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(47,0,'2021-10-25 14:11:36',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(48,0,'2021-10-25 14:12:03',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(49,0,'2021-10-25 14:12:37',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et96'),(50,0,'2021-10-25 14:13:45',NULL,NULL,'t6pd65nfb6ldeceatf08m528h9'),(51,0,'2021-10-25 14:15:58',NULL,NULL,'t6pd65nfb6ldeceatf08m528h91635171358.0863'),(52,4,'2021-10-25 14:17:07',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635171427.4272'),(53,4,'2021-10-25 14:30:34',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635172234.6226'),(54,4,'2021-10-25 14:37:52',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635172672.9703'),(55,4,'2021-10-25 14:52:02',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635173522.2246'),(56,0,'2021-10-25 15:04:30',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635174270.9326'),(57,0,'2021-10-25 15:07:50',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635174470.359'),(58,0,'2021-10-25 15:10:23',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635174623.5829'),(59,0,'2021-10-25 16:03:36',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635177816.0213'),(60,0,'2021-10-25 16:04:48',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635177888.6409'),(61,0,'2021-10-25 16:06:45',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178005.1712'),(62,0,'2021-10-25 16:08:24',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178104.2444'),(63,0,'2021-10-25 16:09:44',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178184.5254'),(64,0,'2021-10-25 16:10:53',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178253.66'),(65,0,'2021-10-25 16:11:05',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178265.0967'),(66,0,'2021-10-25 16:12:05',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178325.9415'),(67,0,'2021-10-25 16:13:03',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178383.015'),(68,0,'2021-10-25 16:13:48',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178428.5311'),(69,0,'2021-10-25 16:14:19',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178459.7341'),(70,0,'2021-10-25 16:14:50',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178490.6116'),(71,0,'2021-10-25 16:17:10',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178630.7034'),(72,4,'2021-10-25 16:17:46',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178666.6361'),(73,0,'2021-10-25 16:18:14',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178694.1688'),(74,0,'2021-10-25 16:22:36',NULL,'<b>MINGHIR VICTOR</b> (minghir@gmail.com | 0721655467) <br> adsa dada dada','0dbgm0e2j4e9ut270mc5s2et961635178956.5177'),(75,4,'2021-10-25 16:23:18',NULL,'<b>Dna. Laura Minghir</b> (laura@fifi.ro | 0721655467) <br> Judet GIURGIU, Hotarele, COD POSTAL:7001, Strada Almasu Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 5','0dbgm0e2j4e9ut270mc5s2et961635178998.6399');
+INSERT INTO `orders` VALUES (52,4,'2021-10-25 14:17:07',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635171427.4272'),(53,4,'2021-10-25 14:30:34',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635172234.6226'),(54,4,'2021-10-25 14:37:52',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635172672.9703'),(55,4,'2021-10-25 14:52:02',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635173522.2246'),(66,0,'2021-10-25 16:12:05',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178325.9415'),(67,0,'2021-10-25 16:13:03',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178383.015'),(68,0,'2021-10-25 16:13:48',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178428.5311'),(70,0,'2021-10-25 16:14:50',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178490.6116'),(71,0,'2021-10-25 16:17:10',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178630.7034'),(73,0,'2021-10-25 16:18:14',NULL,NULL,'0dbgm0e2j4e9ut270mc5s2et961635178694.1688'),(74,0,'2021-10-25 16:22:36',3,'<b>MINGHIR VICTOR</b> (minghir@gmail.com | 0721655467) <br> adsa dada dada','0dbgm0e2j4e9ut270mc5s2et961635178956.5177'),(75,4,'2021-10-25 16:23:18',2,'<b>Dna. Laura Minghir</b> (laura@fifi.ro | 0721655467) <br> Judet GIURGIU, Hotarele, COD POSTAL:7001, Strada Almasu Mic, nr. 10, bl. B17, ap.36, et. 1, Sector 5','0dbgm0e2j4e9ut270mc5s2et961635178998.6399'),(76,0,'2021-12-17 11:08:25',NULL,'<b>dadsa</b> (laura@cici.ro | 0721655467) <br> dsa','ngj5soqjggr3fboailbehv45d51639739305.6034');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,6 +410,31 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary table structure for view `view_order_details`
+--
+
+DROP TABLE IF EXISTS `view_order_details`;
+/*!50001 DROP VIEW IF EXISTS `view_order_details`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `view_order_details` (
+  `ID` tinyint NOT NULL,
+  `ORDER_ID` tinyint NOT NULL,
+  `AMOUNT` tinyint NOT NULL,
+  `PRODUCT_ID` tinyint NOT NULL,
+  `CATEGORY_ID` tinyint NOT NULL,
+  `CATEGORY` tinyint NOT NULL,
+  `PRODUCT_TITLE` tinyint NOT NULL,
+  `DESCRIPTION` tinyint NOT NULL,
+  `PRICE` tinyint NOT NULL,
+  `CURRENCY_ID` tinyint NOT NULL,
+  `CURRENCY` tinyint NOT NULL,
+  `STOCK` tinyint NOT NULL,
+  `IMG` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary table structure for view `view_orders`
 --
 
@@ -419,12 +444,11 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE TABLE `view_orders` (
   `ID` tinyint NOT NULL,
-  `CLIENT_ID` tinyint NOT NULL,
-  `ORDER_DATE` tinyint NOT NULL,
-  `STATUS_ID` tinyint NOT NULL,
-  `CLIENT_ADDRESS` tinyint NOT NULL,
-  `NAME` tinyint NOT NULL,
-  `EMAIL` tinyint NOT NULL
+  `STATUS` tinyint NOT NULL,
+  `DATA` tinyint NOT NULL,
+  `PRODUSE` tinyint NOT NULL,
+  `TOTAL` tinyint NOT NULL,
+  `CLIENT` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
@@ -489,6 +513,25 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `view_order_details`
+--
+
+/*!50001 DROP TABLE IF EXISTS `view_order_details`*/;
+/*!50001 DROP VIEW IF EXISTS `view_order_details`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = cp850 */;
+/*!50001 SET character_set_results     = cp850 */;
+/*!50001 SET collation_connection      = cp850_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `view_order_details` AS select `od`.`ID` AS `ID`,`od`.`ORDER_ID` AS `ORDER_ID`,`od`.`AMOUNT` AS `AMOUNT`,`p`.`ID` AS `PRODUCT_ID`,`p`.`CATEGORY_ID` AS `CATEGORY_ID`,`p`.`CATEGORY` AS `CATEGORY`,`p`.`PRODUCT_TITLE` AS `PRODUCT_TITLE`,`p`.`DESCRIPTION` AS `DESCRIPTION`,`p`.`PRICE` AS `PRICE`,`p`.`CURRENCY_ID` AS `CURRENCY_ID`,`p`.`CURRENCY` AS `CURRENCY`,`p`.`STOCK` AS `STOCK`,`p`.`IMG` AS `IMG` from (`order_details` `od` left join `view_products` `p` on(`od`.`PRODUCT_ID` = `p`.`ID`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `view_orders`
 --
 
@@ -502,7 +545,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = cp850_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_orders` AS select `o`.`ID` AS `ID`,`o`.`CLIENT_ID` AS `CLIENT_ID`,`o`.`ORDER_DATE` AS `ORDER_DATE`,`o`.`STATUS_ID` AS `STATUS_ID`,`o`.`CLIENT_ADDRESS` AS `CLIENT_ADDRESS`,`c`.`NAME` AS `NAME`,`c`.`EMAIL` AS `EMAIL` from (`orders` `o` left join `view_clients` `c` on(`o`.`CLIENT_ID` = `c`.`ID`)) */;
+/*!50001 VIEW `view_orders` AS select `o`.`ID` AS `ID`,(select `los`.`VALUE` from `list_order_status` `los` where `los`.`ID` = `o`.`STATUS_ID`) AS `STATUS`,date_format(`o`.`ORDER_DATE`,'%e.%m.%Y %k:%i') AS `DATA`,(select count(0) from `view_order_details` `od` where `o`.`ID` = `od`.`ORDER_ID`) AS `PRODUSE`,(select sum(`od`.`AMOUNT` * `od`.`PRICE`) from `view_order_details` `od` where `o`.`ID` = `od`.`ORDER_ID`) AS `TOTAL`,concat(if(`o`.`CLIENT_ID` = 0,'client neinregistrat','client inregistrat'),'<br>',`o`.`CLIENT_ADDRESS`) AS `CLIENT` from (`orders` `o` left join `view_clients` `c` on(`o`.`CLIENT_ID` = `c`.`ID`)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -535,4 +578,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-07 23:20:15
+-- Dump completed on 2021-12-18 13:46:04

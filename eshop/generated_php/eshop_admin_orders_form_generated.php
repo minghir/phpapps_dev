@@ -25,25 +25,17 @@ class eshop_admin_orders_form_generated extends template{
         public $query;
         
         public $smarty;
+        public $view_database_errors = true;
         
 	            
 	public $ID;
         	            
-	public $CLIENT_ID;
-        	            
-	public $ORDER_DATE;
-        	            
 	public $STATUS_ID;
         		
-		 
-		 
 		 
 			public $STATUS_ID_sel;
 	 
 			
-		 
-			public $CLIENT_ID_sel;
-	 
 		 
 		 
 	
@@ -63,14 +55,9 @@ class eshop_admin_orders_form_generated extends template{
                 $this->smarty = $this->globals->sm;
                 
                 			 
-					 
-					 
 								$this->STATUS_ID_sel = new DB_select("STATUS_ID","eshop.list_order_status");
                         			 
 				
-					 
-									$this->CLIENT_ID_sel = new DB_select("CLIENT_ID","eshop.clients");
-                                			 
 					 
 					 
 		                
@@ -92,8 +79,6 @@ class eshop_admin_orders_form_generated extends template{
 	function get_rec(){
 		$this->query = new DB_query( "SELECT 
 									ID,
-												CLIENT_ID,
-												ORDER_DATE,
 												STATUS_ID
 							
 				FROM ".$this->form_schema.".".$this->form_table." 
@@ -102,8 +87,6 @@ class eshop_admin_orders_form_generated extends template{
 			$this->globals->con->query($this->query);
 			$this->globals->con->next();
 			                                                                $this->ID = stripslashes($this->globals->con->get_field("ID"));
-                                			                                                                $this->CLIENT_ID = stripslashes($this->globals->con->get_field("CLIENT_ID"));
-                                			                                                                $this->ORDER_DATE = stripslashes($this->globals->con->get_field("ORDER_DATE"));
                                 			                                                                $this->STATUS_ID = stripslashes($this->globals->con->get_field("STATUS_ID"));
                                 						
 	}
@@ -119,27 +102,23 @@ class eshop_admin_orders_form_generated extends template{
 	
 		$this->check_errors();
 		$this->query = new DB_query("INSERT INTO ".$this->form_schema.".".$this->form_table." (
-																					CLIENT_ID,
-																						ORDER_DATE,
-																						STATUS_ID
+																					STATUS_ID
 										 ) VALUES (
-																					:CLIENT_ID,
-																						:ORDER_DATE,
-																						:STATUS_ID
+																					:STATUS_ID
 													)",
 			array(
 																		                                            
-                                            ":CLIENT_ID" => $this->CLIENT_ID,
-                                        														                                            
-                                            ":ORDER_DATE" => $this->ORDER_DATE,
-                                        														                                            
                                             ":STATUS_ID" => $this->STATUS_ID,
                                         												)
 			);
 
                 if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare adaugata cu succes");
                         }
@@ -162,15 +141,11 @@ class eshop_admin_orders_form_generated extends template{
 		
 		$this->query = new DB_query("UPDATE ".$this->form_schema.".".$this->form_table." SET 
 									ID = :ID,
-												CLIENT_ID = :CLIENT_ID,
-												ORDER_DATE = :ORDER_DATE,
 												STATUS_ID = :STATUS_ID
 							
 				WHERE ".$this->gfield." = :".$this->gfield,
 			array(	
 				                                                                                    ":ID" => $this->ID,
-                                        				                                                                                    ":CLIENT_ID" => $this->CLIENT_ID,
-                                        				                                                                                    ":ORDER_DATE" => $this->ORDER_DATE,
                                         				                                                                                    ":STATUS_ID" => $this->STATUS_ID,
                                         								":".$this->gfield => $this->gfield_value
 			)	
@@ -178,7 +153,11 @@ class eshop_admin_orders_form_generated extends template{
 				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare salvata cu succes");
                         }
@@ -201,7 +180,11 @@ class eshop_admin_orders_form_generated extends template{
 				
 		if($this->alerts->get_no_errors() == 0) {	
 			if( $this->globals->con->query($this->query) == -1){
-                            $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            if($this->view_database_errors){
+                                $this->alerts->add_alert("danger",$this->globals->con->get_error());
+                            }else{
+                                $this->alerts->add_alert("danger","Database error!!!");
+                            }   
                         }else{
                             $this->alerts->add_alert("success","Inregistrare stearsa cu succes");
                         }
@@ -246,8 +229,6 @@ class eshop_admin_orders_form_generated extends template{
 		$this->gfield_value = $_POST["gfield_value"];
 		
 		                                                    $this->ID  = htmlspecialchars(addslashes(trim($_POST["ID"])));
-                                                		                                                    $this->CLIENT_ID  = htmlspecialchars(addslashes(trim($_POST["CLIENT_ID"])));
-                                                		                                                    $this->ORDER_DATE  = htmlspecialchars(addslashes(trim($_POST["ORDER_DATE"])));
                                                 		                                                    $this->STATUS_ID  = htmlspecialchars(addslashes(trim($_POST["STATUS_ID"])));
                                                 		        }
 	
@@ -278,24 +259,11 @@ class eshop_admin_orders_form_generated extends template{
 	
 	function setup_display(){
 					 
-					 
-					 
 								//$this->STATUS_ID_sel = new DB_select("STATUS_ID",".eshop.list_order_status");
 			$this->STATUS_ID_sel->selected_val = $this->STATUS_ID;
 			$this->STATUS_ID_sel->setup_select_options();
 			 
 				
-					 
-									//$this->CLIENT_ID_sel = new DB_select("CLIENT_ID",".eshop.clients");
-				//$this->CLIENT_ID_sel->db_query = new DB_query("SELECT ID AS VALUE, EMAIL AS LABEL FROM eshop.clients ORDER BY EMAIL");
-                                
-                                $this->CLIENT_ID_sel->table = "eshop.clients";
-                                $this->CLIENT_ID_sel->value_col = "ID";
-                                $this->CLIENT_ID_sel->label_col = "EMAIL";
-                                
-				$this->CLIENT_ID_sel->selected_val = $this->CLIENT_ID;
-				$this->CLIENT_ID_sel->setup_select_options();
-			 
 					 
 					 
 		        }
@@ -303,18 +271,11 @@ class eshop_admin_orders_form_generated extends template{
         function assign_vars_tpl(){
 		$this->smarty->assign(array(
 							"ID" => $this->ID,
-							"CLIENT_ID" => $this->CLIENT_ID,
-							"ORDER_DATE" => $this->ORDER_DATE,
 							"STATUS_ID" => $this->STATUS_ID,
 									 
-						 
-						 
 										"STATUS_ID_sel" => $this->STATUS_ID_sel->get_select_str(),
 			 
 									 
-										"CLIENT_ID_sel" => $this->CLIENT_ID_sel->get_select_str(),
-			 
-						 
 						 
 						"pact" => $this->pact,
 			"gact" => $this->gact,

@@ -90,6 +90,24 @@ class DB_table{
             return $value;
         }
         
+        function getFieldsArrays($array_flds = array(),$search_fld,$search_val){
+            $values = array();
+            $this->sql  =  new DB_query("SELECT " . implode(",",$array_flds) . 
+                        " FROM " .$this->table_name . 
+                        " WHERE $search_fld = :$search_fld ",
+                    array(":$search_fld"=>$search_val));
+            //echo $this->sql->prnt();
+            if($this->globals->con->query($this->sql,"DB_table_getVALUES_$search_fld") != -1){
+			while($res = $this->globals->con->fetch_array("DB_table_getVALUES_$search_fld")){
+                                $values[] = $res;
+                        }
+            }else{
+                $this->errors[] = $this->globals->con->get_error("DB_table_getVALUES_$search_fld");
+            }
+            return $values;
+        }
+        
+        
         function getLineArray($search_fld,$search_val){
             $value = -1;
             $this->sql  =  new DB_query("SELECT * " .

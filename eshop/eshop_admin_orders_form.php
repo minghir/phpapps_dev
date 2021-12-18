@@ -92,6 +92,7 @@ include ("generated_php/eshop_admin_orders_form_generated.php");
                         
                         protected $smary;
                         protected $con;
+                        private $orders_table;
                 
 		function __construct(){
 			parent::__construct();
@@ -100,6 +101,9 @@ include ("generated_php/eshop_admin_orders_form_generated.php");
                         $this->tpl = "eshop_admin_orders_form.tpl";
                         //$this->display_objects_id = $this->script_id;
                         
+                        
+                        $this->orders_table = new DB_table("{$this->globals->CURRENT_APP_DB}.view_orders");
+                        
                         $this->load_elements(); // parent function: class template
                         $this->init(); // parent function: class eshop_admin_orders_form 
 			$this->display();// parent function: class eshop_admin_orders_form 
@@ -107,6 +111,16 @@ include ("generated_php/eshop_admin_orders_form_generated.php");
 		}
 		
 		function before_get_rec(){
+                    /*
+                    $query = new DB_query("SELECT * FROM view_orders WHERE ID = :id",array(":id"=>$this->ID));
+                     if($this->globals->con->query($query) == 1){
+                            
+                        }
+                     *
+                     */
+                    
+                    
+                     
 		}
 		
 		function after_get_rec(){
@@ -140,6 +154,14 @@ include ("generated_php/eshop_admin_orders_form_generated.php");
                 }
                 
 		function before_display(){	
+                   // echo "AICI:" . $this->ID;
+                     $order_details = new DB_table("{$this->globals->CURRENT_APP_DB}.view_order_details");
+                    //print_r($order_details->getFieldsArrays(array("PRODUCT_TITLE","PRICE"),"ORDER_ID",$this->ID));
+                    $this->smarty->assign(array("CLIENT_ADDRESS"=>$this->orders_table->getValue("CLIENT", $this->ID),
+                                                "ORDER_TOTAL"=>$this->orders_table->getValue("TOTAL", $this->ID),
+                                                "ORDER_DATE"=>$this->orders_table->getValue("DATA", $this->ID),
+                                                "ORDER_ID"=>$this->ID,
+                                                "products"=>$order_details->getFieldsArrays(array("PRODUCT_TITLE","AMOUNT","PRICE"),"ORDER_ID",$this->ID)));
 		}
 		
 		function after_display(){	
